@@ -1,0 +1,69 @@
+<div class="container-provider-result-table">
+  <div class="container-provider-result-table-ie">
+    <fox-loading-overlay tag="provider-results">
+      <div class="container-frozen-column">
+        <table class="table provider-result-table">
+          <thead>
+            <tr>
+              <th class="provider-result-table-th-col1" [foxLink] (linkPressed)="sort('providerNpi')"
+                  [ngClass]="{'sorted-column-header':(column === 'providerNpi'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Provider NPI</fox-table-header-sort>
+              </th>
+              <th class="column-result-tin" [foxLink] (linkPressed)="sort('tin')"
+                  [ngClass]="{'sorted-column-header':(column === 'tin'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>TIN</fox-table-header-sort>
+              </th>
+              <th class="column-result-bizname" [foxLink] (linkPressed)="sort('businessName')"
+                  [ngClass]="{'sorted-column-header':(column === 'businessName'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Business Name</fox-table-header-sort>
+              </th>
+              <th class="column-result-lastname" [foxLink] (linkPressed)="sort('lastName')"
+                  [ngClass]="{'sorted-column-header':(column === 'lastName'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Last Name</fox-table-header-sort>
+              </th>
+              <th class="column-result-firstname" [foxLink] (linkPressed)="sort('firstName')"
+                  [ngClass]="{'sorted-column-header':(column === 'firstName'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>First Name</fox-table-header-sort>
+              </th>
+              <th class="column-result-addline1" [foxLink] (linkPressed)="sort('addressLine1')"
+                  [ngClass]="{'sorted-column-header':(column === 'addressLine1'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Address Line1</fox-table-header-sort>
+              </th>
+              <th class="column-result-addline2" [foxLink] (linkPressed)="sort('addressLine2')"
+                  [ngClass]="{'sorted-column-header':(column === 'addressLine2'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Address Line2</fox-table-header-sort>
+              </th>
+              <th class="column-result-city" [foxLink] (linkPressed)="sort('city')"
+                  [ngClass]="{'sorted-column-header':(column === 'city'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>City</fox-table-header-sort>
+              </th>
+              <th class="column-result-state" [foxLink] (linkPressed)="sort('state')"
+                  [ngClass]="{'sorted-column-header':(column === 'state'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>State</fox-table-header-sort>
+              </th>
+              <th class="column-result-zip" [foxLink] (linkPressed)="sort('zip')"
+                  [ngClass]="{'sorted-column-header':(column === 'zip'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Zip</fox-table-header-sort>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let dat of providerSearchResults | orderBy:{property: column, direction: direction}; let j = index">
+              <tr [id]=" 'provider-result-tr-' + j">
+                <td class="provider-result-table-td-col1">
+                  <i focusable="false" class="fas fa-ambulance icon-ambulance" aria-hidden="true"></i>
+                  <a [routerLink]="getUrlForProvider(dat['providerId'])">{{dat['providerNpi'] ? dat['providerNpi'] : '0000000000'}}</a>
+                </td>
+                <ng-container *ngFor="let key of dataKeys; let k = index">
+                  <td [id]=" 'provider-result-tr-' + j + '-td-' + k" *ngIf="k > 1">
+                    {{dat[key]}}
+                  </td>
+                </ng-container>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </fox-loading-overlay>
+  </div>
+</div>

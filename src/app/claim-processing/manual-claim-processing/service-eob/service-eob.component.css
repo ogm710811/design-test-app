@@ -1,0 +1,343 @@
+.page-title {
+  margin-top: 0;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.info-tooltip {
+  color: #e0e0e0;
+}
+
+.submit-btn {
+  height: 39px;
+  width: 106px;
+  border-radius: 2px;
+}
+
+.claim-search-main .shape-right {
+  width: 1px;
+  height: 405px;
+  background-color: #cccccc;
+  display: block;
+}
+
+.lookup-label {
+  overflow-wrap: unset;
+  font-size: 12px;
+  margin: -7px 0 -7px 0 !important;
+  font-weight: 600;
+}
+
+.claim-search-main .mat-input-element:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.claim-search-main label {
+  margin-bottom: 0;
+}
+
+.col-claim-no {
+  width: 100%;
+  padding-right: 5px;
+}
+
+.mat-form-input-field {
+  margin-left: 15px;
+  margin: 0;
+  margin-bottom: 0;
+  padding-bottom: 17px;
+}
+
+.container-last-row {
+  padding-bottom: 20px;
+}
+
+.container-op-info {
+  margin-top: 15px;
+}
+
+.padding-btn {
+  margin-top: 9px;
+}
+
+.btn-standard {
+  background-color: white;
+  color: #196ECF;
+  border: solid 1px #196ECF;
+  margin-right: 20px;
+}
+
+.srv-date-field {
+  width: 50%;
+  float: left;
+  margin-left: 8px;
+}
+
+.member-address-non-mat-table {
+  width: 1500px;
+}
+
+.container-hosp-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.table-request-info {
+  display: block;
+  overflow: auto;
+}
+
+.col-type-width {
+  width: 80px;
+}
+
+.col-prov1-row-width {
+  width: 650px;
+}
+
+.col-prov1-row1-width {
+  width: 500px;
+}
+
+.col-prov1-row1a-width {
+  width: 150px;
+}
+
+.col-prov1-row2-width {
+  width: 30px;
+}
+
+.col-eff-width {
+  width: 100px;
+}
+
+.col-align-width {
+  text-align: center;
+}
+
+.container-bill-label {
+  position: relative;
+  width: 140px;
+}
+
+.container-bill-content-label {
+  height: 14px;
+  width: 130px;
+  color: #333333;
+  font-family: "UHC Sans";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.container-member-value {
+  height: 14px;
+  width: 55px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.header-text {
+  height: 18px;
+  width: 94.4px;
+  color: #4E5B71;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: left;
+
+}
+
+.assign-width{
+  width: 100px;
+  margin-top: 0;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+}
+
+.container-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.container-details-card-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  margin: 20px 0 0 20px;
+}
+
+.container-details-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  margin: 0 0 30px 20px;
+}
+
+.container-serviceeob-no-padding {
+  padding: 0;
+}
+
+.container-serviceeob-summary {
+  padding: 0 20px 0 3px;
+}
+
+.container-summary-first-column {
+  padding: 0 7px 0 0;
+}
+
+.container-summary-third-column {
+  padding: 0 0 0 40px;
+}
+
+.container-card-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.container-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  margin-bottom: 25px;
+}
+
+.container-summary-row-padding {
+  margin-bottom: 20px;
+}
+
+.container-divider {
+  padding: 0;
+}
+
+.fox-input-custom {
+  margin-bottom: 18px;
+}
+
+.fox-input-padding-right {
+  padding: 0 60px 0 0;
+}
+
+.fox-input-padding-left, .container-read-only-irs {
+  padding: 0 8px 0 0;
+}
+
+.container-irs-height {
+  height: 50px;
+}
+
+.container-value-serviceeob-read-only {
+  border-bottom: 1px solid #E5EAEE;
+  width: 100%;
+  word-break: break-word;
+}
+
+.container-serviceeob-read-only .container-label-serviceeob-read-only {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+.container-value-serviceeob-read-only {
+  margin-top: 18px;
+}
+
+.container-assignee-total-benefit {
+  padding: 0 30px 0 0;
+}
+
+.container-left-border {
+  border-left: 1px solid #CED3DA;
+  height: 197px;
+  width: 1px;
+  margin: 0 0 0 40px;
+  text-align: center;
+  position: relative;
+  left: 30px;
+}
+
+.container-bottom-border {
+  border-bottom: 1px solid #CED3DA;
+  width: 100%;
+}
+
+.container-sub-total-read-only {
+  margin-bottom: 18px;
+}
+
+.container-irs-value {
+  padding-bottom: 10px;
+  margin-top: 13px;
+}
+
+.container-sub-total-value {
+  margin-top: 10px;
+  padding-bottom: 6px;
+}
+
+.container-assign-total-benefit {
+  margin-top: 10px;
+  padding-bottom: 6px;
+}
+
+.container-total-benefit {
+  margin-top: 10px;
+  padding-bottom: 6px;
+}
+
+.container-last-row {
+  margin-bottom: -7px;
+}
+
+@media (max-width: 768px) {
+  .fox-input-padding-right,
+  .fox-input-padding-left,
+  .container-read-only-irs,
+  .container-serviceeob-summary,
+  .container-summary-first-column,
+  .container-summary-third-column,
+  .container-assignee-total-benefit,
+  .container-divider{
+    padding: 0;
+  }
+
+  .row-small > div[class^="col"] {
+    padding-left: 10px;
+  }
+
+  .container-assign-total-benefit {
+    margin-left: 0;
+    padding-right: 30px;
+  }
+
+  .container-read-only-irs,
+  .container-divider,
+  .container-summary-first-column,
+  .container-summary-row-padding {
+    margin-bottom: 25px;
+  }
+}

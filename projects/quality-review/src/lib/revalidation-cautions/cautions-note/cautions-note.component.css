@@ -1,0 +1,17 @@
+fox-table .container-table {
+   width: 687px;
+   overflow-x: scroll;
+ }
+
+.text-sub-title {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.text-sub-header {
+  margin-top: 1px;
+}
+
+.fox-table-cautions {
+  margin-top: 5px;
+}

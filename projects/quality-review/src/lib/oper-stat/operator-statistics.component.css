@@ -1,0 +1,70 @@
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+}
+
+.container-arrow-left {
+  height: 14px;
+  width: 14px;
+  margin-right: 7px;
+}
+
+.span-return {
+  cursor: pointer;
+}
+
+.container-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.container-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-quality {
+  padding-bottom: 25px;
+}
+.container-heading {
+  color: #252C37;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.container-att-product {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.container-field-label {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 10px 0 0 0;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  margin-bottom: 5px;
+}
+
+.section-quality {
+  padding: 20px;
+}
+
+.container-pagination {
+  margin-top: -18px;
+}
+
+.mat-divider-one {
+  margin: 0 -20px;
+}

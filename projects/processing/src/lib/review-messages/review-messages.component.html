@@ -1,0 +1,131 @@
+<div class="container-return-previous col-xs-12">
+  <span (click)="f1EventClick()"
+        class="span-return"
+        foxHotkey="ctrl+f1"
+        hotkeyAction="click">
+    <img class="container-arrow-left"
+         src="assets/img/arrow-left.svg"/>
+    Return to Previous (F1)
+  </span>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <fox-section class="section-select-message">
+      <fox-section-title>
+        Select Message
+      </fox-section-title>
+      <form (ngSubmit)="enterEventClick()">
+        <div class="row container-row-small container-spacing">
+          <div class="col-xs-6 col-sm-5">
+            <fox-input type="text"
+                       labelText="Message #"
+                       id="txtM14NUMB"
+                       name="txtM14NUMB"
+                       [length]="5"
+                       [(ngModel)]="screen.m14numb">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4">
+            <fox-input type="text"
+                       labelText="Language"
+                       id="txtM91DV01"
+                       name="txtM91DV01"
+                       [length]="1"
+                       [ngModel]="screen.m14lang"
+                       (ngModelChange)="screen.m14lang=$event.toUpperCase()">
+            </fox-input>
+          </div>
+        </div>
+        <div class="button-submit">
+        <fox-loading-button buttonValue="Submit (S)"
+                            [buttonStatus]="buttonStatus"
+                            typeValue="submit"
+                            foxHotKeyValue="alt+s"
+                            (buttonClick)="enterEventClick()">
+        </fox-loading-button>
+      </div>
+      </form>
+    </fox-section>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <fox-section>
+      <fox-section-title>
+        Message Details
+      </fox-section-title>
+      <div *ngIf="!isResult" class="container-section-padding">
+        <img class="img-icon-input" src="assets/img/no-active-query.svg">
+        <p class="p-section-header">No active query</p>
+        <p class="p-section-description">
+          Enter valid criteria above and select Submit (S)
+        </p>
+      </div>
+      <div *ngIf="isResult">
+        <div class="row container-row-small">
+          <div class="col-xs-12 container-message-text">
+            {{screen.m14linAll}}
+          </div>
+        </div>
+        <div class="row container-row-small">
+          <div class="col-sm-6 col-xs-12">
+            <fox-read-only-field
+              label="Related ANSI Code:"
+              [value]="screen.m14ansi || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="Not Used Indicator:"
+              [value]="screen.m14used || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="Sys Gen PP:"
+              [value]="screen.m14spp || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="Denial:"
+              [value]="screen.m14denl || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="Hold:"
+              [value]="screen.m14hold || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <fox-read-only-field
+              label="Auto Gen:"
+              [value]="screen.m14agen || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="EOB Print:"
+              [value]="screen.m14eprt || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="RA Print:"
+              [value]="screen.m14rprt || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="Dup Bill Suppress:"
+              [value]="screen.m14dups || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+            <fox-read-only-field
+              label="Reconsider:"
+              [value]="screen.m14recn || '-'"
+              [horizontal]="readOnlyHorizontal">
+            </fox-read-only-field>
+          </div>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+</div>

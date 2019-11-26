@@ -1,0 +1,54 @@
+.container-description {
+  height: 20px;
+  width: 577px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 25px;
+}
+
+.container-modal-btns {
+  padding-right: 0;
+}
+
+.btn-submit-deny {
+  height: 39px;
+  width: 120px;
+  border-radius: 2px;
+  background-color: #BF3533;
+  border-color: #BF3533;
+}
+
+.btn-cancel-deny {
+  height: 39px;
+  width: 120px;
+  background-color: white;
+  color: #196ECF;
+  border: solid 1px #196ECF;
+  margin-right: 15px;
+  border-radius: 2px;
+}
+
+.textarea-denial-reason-content {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.textarea-denial-reason-content .mat-input-element {
+  resize: none;
+  height: 74px;
+  width: 1132px;
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+.label-denial-reason {
+  height: 14px;
+  width: 184.05px;
+  color: #333333;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+}
+

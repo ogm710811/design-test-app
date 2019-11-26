@@ -1,0 +1,48 @@
+<fox-modal [(visible)]="combinedClaimModalVisible" class="modal-combined-claims" modalTitle="Combined Claims - {{combinedClaimType | titlecase}}"
+           (visibleChange)="combinedClaimModalVisibleChange.emit(combinedClaimModalVisible)" [closable]="true">
+  <div class="container-sub-header">
+    <span *ngIf="isInsured" class="container-claim">
+      <img class="img-claim" src="assets/img/member-ced3da.svg" alt="member name">
+      <span class="span-user-info">
+        <span class="span-header">Member Name: </span>
+        <span class="span-data">{{memberDetails?.firstName}} {{memberDetails?.middleName}} {{memberDetails?.lastName}}</span>
+      </span>
+    </span>
+    <span *ngIf="isInsured" class="container-sub-hdr-mem">
+      <span class="span-user-info">
+        <span class="span-header-member-number">Member #: </span>
+        <span class="span-data" *ngIf="memberDetails?.aarpMembershipNumber">
+          <a [foxLink] class="link-with-underline" (linkPressed)="getMemberProfile()">{{memberDetails?.aarpMembershipNumber}}</a>
+        </span>
+      </span>
+    </span>
+    <span *ngIf="!isInsured" class="container-sub-hdr-other">
+      <img class="img-claim" focusable="false" src="assets/img/provider-ced3da.svg" alt="provider">
+      <span class="span-user-info">
+        <span class="span-header">Provider Name: </span>
+        <span class="span-data">{{billingProvName}}</span>
+      </span>
+    </span>
+    <span class="container-sub-hdr-other">
+      <img class="img-claim" src="assets/img/calendar-date-ced3da.svg" alt="calendar date"/>
+      <span class="span-user-info">
+        <span class="span-header">Sent Date: </span>
+        <span class="span-data">{{combinedSendDate | date : 'MM/dd/yyyy'}}</span>
+      </span>
+    </span>
+  </div>
+
+  <div class="container-note">
+    <p>
+      <span>There are {{combinedClaimsResultLength}} claim(s) combined with Claim #{{claimNumber}}</span>
+    </p>
+  </div>
+
+  <fox-table [tableColumns]="columns"
+             [tableData]="combinedClaimsResult | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+             (columnChanged)="tableColumnCurrentSortKey = $event"
+             (directionChanged)="tableColumnCurrentSortDirection = $event"
+             [zebraCells]="true"
+             (linkClicked)="linkClicked($event)">
+  </fox-table>
+</fox-modal>

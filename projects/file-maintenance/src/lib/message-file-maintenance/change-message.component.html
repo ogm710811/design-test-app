@@ -1,0 +1,339 @@
+<div class="col-xs-12 container-return-prev">
+  <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+  <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="F1EventClick()">Return to Previous (F1)</span>
+</div>
+
+<div class="col-xs-12 col-sm-8">
+  <fox-section class="section-message-selection">
+    <fox-section-title>Message Overview</fox-section-title>
+    <fox-section-subheader>
+      400 Character limit
+    </fox-section-subheader>
+    <div class="row container-row-small container-message-read">
+      <div class="col-xs-6 col-sm-5">
+        <fox-read-only-field
+          name="txtM18MSG"
+          maxlength="5"
+          label="Message #"
+          [value]="screen.m18msg">
+        </fox-read-only-field>
+      </div>
+      <div class="col-xs-6 col-sm-5">
+        <fox-read-only-field
+          name="txtM18ELAN"
+          maxlength="1"
+          label="Language"
+          [value]="screen.m18elan">
+        </fox-read-only-field>
+      </div>
+    </div>
+    <div class="container-row-small">
+      <div class="col-xs-12">
+        <div class="container-label-description">
+          Message Description
+        </div>
+        <div class="container-value-description">
+          {{screen.m18mln1}}
+        </div>
+      </div>
+    </div>
+  </fox-section>
+</div>
+
+<form (ngSubmit)="enterEventClick()">
+  <div class="col-xs-12 col-sm-8">
+    <fox-section class="section-message-selection">
+      <fox-section-title>Update Attributes</fox-section-title>
+      <div class="container-sub-header">
+        <fox-section-subheader>
+          Section subtitle and other descriptive text
+        </fox-section-subheader>
+      </div>
+      <div>
+        <div class="row container-row-small">
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm18ANSI"
+                       id="txtm18ANSI"
+                       labelText="Related ANSI Code"
+                       [length]="5"
+                       [(ngModel)]="screen.m18ansi"
+                       [inputValue]="screen.m18ansi">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm18USED"
+                       id="txtm18USED"
+                       labelText="Not Used Indicator"
+                       [length]="1"
+                       [(ngModel)]="screen.m18used"
+                       [inputValue]="screen.m18used">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm18QPCT"
+                       id="txtm18QPCT"
+                       labelText="Quality Percent"
+                       [length]="3"
+                       [(ngModel)]="screen.m18qpct"
+                       [inputValue]="screen.m18qpct">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm18lele"
+                       id="txtm18lele"
+                       labelText="Electronic RA - GRP Code"
+                       [length]="1"
+                       [(ngModel)]="screen.m18eele"
+                       [inputValue]="screen.m18eele">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm18lrea"
+                       id="txtm18lrea"
+                       labelText="Reason (CARC)"
+                       [length]="1"
+                       [(ngModel)]="screen.m18erea"
+                       [inputValue]="screen.m18erea">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm18lrem"
+                       id="txtm18lrem"
+                       labelText="Remark Code"
+                       [length]="1"
+                       [(ngModel)]="screen.m18erem"
+                       [inputValue]="screen.m18erem">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-6">
+          <div>
+            <div class="container-label-description">Denial</div>
+            <input type="radio"
+                   name="txtm18MIND"
+                   id="txtm18MINDNA"
+                   value=""
+                   [(ngModel)]="screen.m18mind">
+            <label class="label-radio-value" for="txtm18MINDNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18MIND"
+                   id="txtm18MINDD"
+                   value="D"
+                   [(ngModel)]="screen.m18mind">
+            <label class="label-radio-value" for="txtm18MINDD">Denial</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18MIND"
+                   id="txtm18MINDPD"
+                   value="P"
+                   [(ngModel)]="screen.m18mind">
+            <label class="label-radio-value" for="txtm18MINDPD">Possible Denial</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Hold</div>
+            <input type="radio"
+                   name="txtm18EHLD"
+                   id="txtm18EHLDNA"
+                   value=""
+                   [(ngModel)]="screen.m18ehld">
+            <label class="label-radio-value" for="txtm18EHLDNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18EHLD"
+                   id="txtm18EHLD1"
+                   value="1"
+                   [(ngModel)]="screen.m18ehld">
+            <label class="label-radio-value" for="txtm18EHLD1">1</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18EHLD"
+                   id="txtm18EHLD2"
+                   value="2"
+                   [(ngModel)]="screen.m18ehld">
+            <label class="label-radio-value" for="txtm18EHLD2">2</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18EHLD"
+                   id="txtm18EHLD3"
+                   value="3"
+                   [(ngModel)]="screen.m18ehld">
+            <label class="label-radio-value" for="txtm18EHLD3">3</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Dup Bill Suppress</div>
+            <input type="radio"
+                   name="txtm18edup"
+                   id="txtm18edupNA"
+                   value=""
+                   [(ngModel)]="screen.m18edup">
+            <label class="label-radio-value" for="txtm18edupNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18edup"
+                   id="txtm18edupN"
+                   value="N"
+                   [(ngModel)]="screen.m18edup">
+            <label class="label-radio-value" for="txtm18edupN">No</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18edup"
+                   id="txtm18edupY"
+                   value="Y"
+                   [(ngModel)]="screen.m18edup">
+            <label class="label-radio-value" for="txtm18edupY">Yes</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Reconsider</div>
+            <input type="radio"
+                   name="txtm18erec"
+                   id="txtm18erecNA"
+                   value=""
+                   [(ngModel)]="screen.m18erec">
+            <label class="label-radio-value" for="txtm18erecNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18erec"
+                   id="txtm18erecN"
+                   value="N"
+                   [(ngModel)]="screen.m18erec">
+            <label class="label-radio-value" for="txtm18erecN">No</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18erec"
+                   id="txtm18erecY"
+                   value="Y"
+                   [(ngModel)]="screen.m18erec">
+            <label class="label-radio-value" for="txtm18erecY">Yes</label>
+          </div>
+        </div>
+        <div class="col-xs-12 col-xs-6">
+          <div class="container-system-generated">
+            <div class="container-label-description">System Generated PP</div>
+            <input type="radio"
+                   name="txtm18ESGE"
+                   id="txtm18ESGENA"
+                   value=""
+                   [(ngModel)]="screen.m18esge">
+            <label class="label-radio-value" for="txtm18ESGENA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18ESGE"
+                   id="txtm18ESGE1"
+                   value="1"
+                   [(ngModel)]="screen.m18esge">
+            <label class="label-radio-value" for="txtm18ESGE1">1</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18ESGE"
+                   id="txtm18ESGE2"
+                   value="2"
+                   [(ngModel)]="screen.m18esge">
+            <label class="label-radio-value" for="txtm18ESGE2">2</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18ESGE"
+                   id="txtm18ESGE3"
+                   value="3"
+                   [(ngModel)]="screen.m18esge">
+            <label class="label-radio-value" for="txtm18ESGE3">3</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Auto Generated</div>
+            <input type="radio"
+                   name="txtm18egen"
+                   id="txtm18egenNA"
+                   value=""
+                   [(ngModel)]="screen.m18egen">
+            <label class="label-radio-value" for="txtm18egenNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18egen"
+                   id="txtm18egenB"
+                   value="B"
+                   [(ngModel)]="screen.m18egen">
+            <label class="label-radio-value" for="txtm18egenB">B</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18egen"
+                   id="txtm18egenC"
+                   value="C"
+                   [(ngModel)]="screen.m18egen">
+            <label class="label-radio-value" for="txtm18egenC">C</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">RA Print</div>
+            <input type="radio"
+                   name="txtm18erap"
+                   id="txtm18erapNA"
+                   value=""
+                   [(ngModel)]="screen.m18erap">
+            <label class="label-radio-value" for="txtm18erapNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18erap"
+                   id="txtm18erap0"
+                   value="0"
+                   [(ngModel)]="screen.m18erap">
+            <label class="label-radio-value" for="txtm18erap0">0</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18erap"
+                   id="txtm18erap1"
+                   value="1"
+                   [(ngModel)]="screen.m18erap">
+            <label class="label-radio-value" for="txtm18erap1">1</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">EOB Print</div>
+            <input type="radio"
+                   name="txtm18eeob"
+                   id="txtm18eeobNA"
+                   value=""
+                   [(ngModel)]="screen.m18eeob">
+            <label class="label-radio-value" for="txtm18eeobNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18eeob"
+                   id="txtm18eeob1"
+                   value="1"
+                   [(ngModel)]="screen.m18eeob">
+            <label class="label-radio-value" for="txtm18eeob1">1</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18eeob"
+                   id="txtm18eeob2"
+                   value="2"
+                   [(ngModel)]="screen.m18eeob">
+            <label class="label-radio-value" for="txtm18eeob2">2</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18eeob"
+                   id="txtm18eeob3"
+                   value="3"
+                   [(ngModel)]="screen.m18eeob">
+            <label class="label-radio-value" for="txtm18eeob3">3</label>
+          </div>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+
+  <div class="col-sm-12 col-sm-8 text-right">
+    <fox-loading-button buttonValue="Submit (S)"
+                        [buttonStatus]="buttonStatus"
+                        typeValue="submit"
+                        foxHotKeyValue="alt+s"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</form>

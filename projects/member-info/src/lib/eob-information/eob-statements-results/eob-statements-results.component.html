@@ -1,0 +1,63 @@
+<div class="eob-statement-search-table-main">
+  <div class="eob-statement-search-non-mat-table-main">
+    <mat-table class="table table-eob-statement-search-result"
+               [dataSource]="eobStatementDataSource"
+               matSort matPaginator tabindex="0" matSortActive="statementDate" matSortDirection="desc" matSortDisableClear>
+
+      <ng-container matColumnDef="statementDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Statement Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.statementDate"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="statementType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Statement Type</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.statementType"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="claimNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="claim-column"> Claim #</mat-header-cell>
+        <mat-cell *matCellDef="let element; let k = index" class="claim-column">
+          <div>
+            <span class="claim-column">
+              <span *ngFor="let category of element.claimNumber; let isLast = last; let i = index;">
+                <span *ngIf="!expanded[k] && i <= 9" class="span-member-claim">{{displayLessClaimNumber(element.claimNumber, k, i, category, isLast)}}</span>
+                <span *ngIf="expanded[k]" class="span-member-claim">{{displayMoreClaimNumber(element.claimNumber, k, category, isLast)}}</span>
+              </span>
+              <span *ngIf="element.claimNumber.length > 10" class="read-more-link span-member-claim-expand" (click)="displayClaimNumberToggle(k)">
+                {{expandedClaimNumber(k)}}
+              </span>
+            </span>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pdf">
+        <mat-header-cell *matHeaderCellDef> PDF</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div>
+            <span class="icon-pdf"><i class="fas fa-file-pdf" focusable="false"></i></span>
+            <a href="/#/EobMaterialPdfComponent?memberQuery={{element.memberNumber}}%20{{element.materialID}}" target="_blank">View EOB</a>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedEobStatementColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedEobStatementColumns;"></mat-row>
+    </mat-table>
+  </div>
+  <mat-paginator #paginator
+                 [length]="dataLength"
+                 [pageIndex]="currentPage"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]" class="hide">
+  </mat-paginator>
+  <div class="">
+    <fox-paginator [(paginatorInput)]="paginatorObj" [pageSizeInput]="pageSize"
+                   [dataLengthInput]="dataLength">
+    </fox-paginator>
+  </div>
+</div>

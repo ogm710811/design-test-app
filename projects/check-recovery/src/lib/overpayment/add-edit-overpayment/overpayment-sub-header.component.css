@@ -1,0 +1,64 @@
+  .container-claim-member {
+    margin-bottom: 10px;
+  }
+
+  .span-header {
+		color: #252C37;
+		font-weight: 600;
+		margin-left: 6px;
+		font-size: 14px;
+	}
+	
+	.span-member-number {
+		color: #252C37;
+		margin-left: 5px;
+		margin-right: 5px;
+		font-weight: 600;
+		font-size: 14px;
+	}
+
+	.container-section {
+		margin-bottom: 25px;
+	}
+
+	.text-user-no {
+    font-size: 14px;
+	}
+	
+	.span-member-data {
+		font-size: 14px;
+	}
+	
+	.container-claim {
+		margin-right: 5px;
+	}
+	
+	.img-claim {
+		width: 16px;
+		margin-bottom: 5px;
+	}
+	
+	.indent {
+		margin-right: 5px;
+		color: #CED3DA;
+	}
+	
+	@media screen and (max-width:767px) {
+		.container-claim-member .container-member {
+			margin-left: 0;
+		}
+	
+		.container-claim-member .text {
+			width: 100%;
+			display: block;
+			margin-left: 0;
+		}
+	
+		.btn-text {
+			margin: 0;
+		}
+
+		.indent {
+			margin-top: 2px;
+		}
+	}

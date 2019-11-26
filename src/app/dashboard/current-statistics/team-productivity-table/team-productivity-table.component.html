@@ -1,0 +1,66 @@
+<table class="table" xmlns="http://www.w3.org/1999/html">
+  <thead class="thead-default">
+  <tr>
+    <th id="th-sort-team" [foxLink] (linkPressed)="sort('teamCode')"
+        [ngClass]="{'sorted-column-header':(column == 'teamCode'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Team</fox-table-header-sort>
+    </th>
+    <th id="th-sort-user" [foxLink] (linkPressed)="sort('userName')"
+        [ngClass]="{'sorted-column-header':(column == 'userName'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Name</fox-table-header-sort>
+    </th>
+    <th id="th-sort-lookups" [foxLink] (linkPressed)="sort('lookups')"
+        [ngClass]="{'sorted-column-header':(column == 'lookups'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Lookups / HR</fox-table-header-sort>
+    </th>
+    <th id="th-sort-hours" [foxLink] (linkPressed)="sort('hours')"
+        [ngClass]="{'sorted-column-header':(column == 'hours'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Hours</fox-table-header-sort>
+    </th>
+    <th id="th-sort-match" [foxLink] (linkPressed)="sort('totalMatched')"
+        [ngClass]="{'sorted-column-header':(column == 'totalMatched'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Total Matched</fox-table-header-sort>
+    </th>
+    <th id="th-sort-no-match" [foxLink] (linkPressed)="sort('totalNotMatched')"
+        [ngClass]="{'sorted-column-header':(column == 'totalNotMatched'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Total Not Matched</fox-table-header-sort>
+    </th>
+    <th id="th-sort-total" [foxLink] (linkPressed)="sort('total')"
+        [ngClass]="{'sorted-column-header':(column == 'total'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Total</fox-table-header-sort>
+    </th>
+  </tr>
+  </thead>
+  <tbody *ngIf="viewData">
+  <ng-container
+    *ngFor="let dat of viewData | orderBy:{property: column, direction: direction}; let j = index">
+    <tr [id]=" 'productivity-tr-' + j"
+        *ngIf="(selectedUser != 'ALL' && dat['msID'] == getIdFromName(selectedUser)) || selectedUser == 'ALL'">
+      <ng-container *ngFor="let key of dataKeys; let k = index">
+        <td *ngIf="k > 0" [id]=" 'productivity-tr-' + j + '-td-' + k">
+          <div *ngIf="k < 7">
+            {{dat[key]}}
+          </div>
+          <div class="div-column-bold" *ngIf="k == 7">
+            {{dat[key]}}
+          </div>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-container>
+  <tr class="row-totals">
+    <td colspan="2"><strong>Total (All Pages)</strong></td>
+    <td><strong>TBD</strong></td>
+    <td><strong>TBD</strong></td>
+    <td><strong>{{totalMatched}}</strong></td>
+    <td><strong>{{totalNotMatched}}</strong></td>
+    <td><strong>{{totalMatched + totalNotMatched}}</strong></td>
+  </tr>
+  </tbody>
+</table>
+<fox-paginator-non-material [childIdBase]="childIdBase" [(pageSize)]="pageSizeSelected" #paginator *ngIf="!isIndividualSelected"
+                           [dataLengthInput]="dataLengthInput" [pageTotal]="pageTotal"
+                           [(currentPage)]="currentPage"
+                           (currentPageChange)="calculateNewPage();"
+                           (pageSizeChange)="currentPage=0; calculateNewPage();">
+</fox-paginator-non-material>

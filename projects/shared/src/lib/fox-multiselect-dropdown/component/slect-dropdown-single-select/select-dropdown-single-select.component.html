@@ -1,0 +1,17 @@
+<div class="container-select-single">
+  <div *ngIf="!!labelText" class="container-label">
+    <label class="label-for-select"
+           [innerHtml]="labelText">
+    </label>
+  </div>
+  <ng-select [items]="items"
+             [bindLabel]="bindLabel"
+             [bindValue]="bindValue"
+             [clearable]="clearable"
+             [hideSelected]="hideSelected"
+             (change)="onChange()"
+             [(ngModel)]="selected"
+             [placeholder]="placeholder"
+             [clearOnBackspace]="clearOnBackspace">
+  </ng-select>
+</div>

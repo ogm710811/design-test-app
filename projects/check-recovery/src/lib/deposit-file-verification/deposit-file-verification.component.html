@@ -1,0 +1,154 @@
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">
+    Unverified Deposit Files
+  </fox-section-title>
+
+  <div *ngIf="!(isUnverifiedDepositDisplay)" class="container-not-found">
+    <img src="assets/img/no-unverified-deposit.svg"/>
+    <p class="title-empty-table">There are currently no unverified deposit files</p>
+  </div>
+
+  <div *ngIf="isUnverifiedDepositDisplay">
+    <fox-table [tableColumns]="depositResultColumns"
+               [tableData]="depositResult | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+               (columnChanged)="tableColumnCurrentSortKey = $event"
+               (directionChanged)="tableColumnCurrentSortDirection = $event"
+               (linkClicked)="verifyReject($event)">
+    </fox-table>
+    <fox-paginator-non-material *ngIf="depositResult && depositResult.length"
+                               [(pageSize)]="pageSizeSelected"
+                               [dataLengthInput]="dataLengthInput" [pageTotal]="pageTotal"
+                               [(currentPage)]="currentPage"
+                               (currentPageChange)="getUnverifiedDeposits()"
+                               (pageSizeChange)="currentPage=0;getUnverifiedDeposits()">
+    </fox-paginator-non-material>
+  </div>
+</fox-section>
+
+<fox-modal [(visible)]="showVerifyDepositModal" modalTitle="Verify Confirmation">
+  <div class="verify-reject-modal-heading">
+    You are about to verify the below deposit, which cannot be undone. Are you sure you want to
+    submit this change?
+  </div>
+  <div *ngIf="verifyRejectDepositResult && verifyRejectDepositResult.length" class="container-table">
+    <fox-table [tableColumns]="verifyRejectDepositColumns" [tableData]="verifyRejectDepositResult"></fox-table>
+  </div>
+
+  <span class="verify-modal-buttons-float-right">
+    <button id="verifyConfirmationCancel" class="btn btn-secondary" type="button" [foxLink]
+            (linkPressed)="closeVerifyDepositModal()">Cancel</button>
+    <button id="verifyConfirmationConfirm" class="btn btn-primary btn-clear" type="button"
+            [foxLink] (linkPressed)="confirmVerifyDeposit()">Confirm</button>
+  </span>
+</fox-modal>
+
+<fox-modal [(visible)]="showRejectDepositModal" modalTitle="Reject Confirmation">
+  <div class="verify-reject-modal-heading">
+    You are about to reject the below deposit, which cannot be undone. Please submit a rejection
+    reason and confirm below
+  </div>
+  <div *ngIf="verifyRejectDepositResult && verifyRejectDepositResult.length" class="container-table">
+    <fox-table [tableColumns]="verifyRejectDepositColumns" [tableData]="verifyRejectDepositResult"></fox-table>
+  </div>
+
+  <div class="container-reject">
+    Rejection Reason*
+  </div>
+  <div [formGroup]="rejectForm">
+    <textarea id="rejectionDescription" formControlName="rejectionDescription"
+              [class.negative-highlight]="rejectionDescription.value.length > maxRejectionDescriptionLength"
+              #rejectionDescription class="rejection-reason-textarea" tabindex="0">
+    </textarea>
+  </div>
+  <div class="container-text-area-hint">
+    {{getRemainingCharacters(rejectionDescription.value.length)}} characters left
+  </div>
+  <span class="rejection-buttons">
+    <button id="rejectConfirmationCancel" class="btn btn-secondary" type="button" [foxLink]
+            (linkPressed)="closeRejectDepositModal()">Cancel</button>
+    <button id="rejectConfirmationConfirm" class="btn btn-primary btn-clear" type="button"
+            [disabled]="rejectionDescription.value.length > maxRejectionDescriptionLength || rejectionDescription.value.length === 0"
+            [foxLink] (linkPressed)="confirmRejectDeposit()">
+      Confirm
+    </button>
+  </span>
+</fox-modal>
+
+
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">
+    Deposit File Verification History
+  </fox-section-title>
+
+  <div class="container-search-box">
+    <form class="non-mat-form-field" [formGroup]="depositSummaryHistoryFormGroup"
+          (ngSubmit)="resetHistorySearch();getDepositHistory()" novalidate>
+      <div class="row row-small">
+        <div class="col-xs-12 col-sm-3">
+          <fox-input type="fox-date"
+                     labelText="Date Received From"
+                     formControlName="despositSummaryFrom"
+                     placeholder="MM/DD/YYYY"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <fox-input type="fox-date"
+                     labelText="Date Received To"
+                     formControlName="despositSummaryTo"
+                     placeholder="MM/DD/YYYY"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <mat-form-field class="form-field-source">
+            <mat-label>Source</mat-label>
+            <mat-select id="depositSource" formControlName="depositSource">
+              <mat-option *ngFor="let selection of depositSources" [value]="selection.code">
+                {{selection.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <mat-form-field class="form-field-verfication-status">
+            <mat-label>Verification Status</mat-label>
+            <mat-select id="depositStatus" formControlName="depositStatus">
+              <mat-option *ngFor="let selection of depositStatuses" [value]="selection.code">
+                {{selection.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-find"
+              type="submit"
+              foxHotkey="alt+s"
+              [disabled]="!checkIfFormFilled()">Find (F)
+      </button>
+    </form>
+  </div>
+  <div>
+
+    <fox-table [tableColumns]="depositDetailsListColumns"
+              [tableData]="depositHistoryResult | orderBy: {property: historyResultSortKey, direction: historyResultSortDirection}"
+              (columnChanged)="historyResultSortKey = $event"
+              (directionChanged)="historyResultSortDirection = $event"
+              (linkClicked)="verifyReject($event)" >
+    </fox-table>
+    <fox-paginator-non-material *ngIf="depositHistoryResult && depositHistoryResult.length"
+                                [(pageSize)]="pageHistorySizeSelected"
+                               [dataLengthInput]="dataHistoryLengthInput"
+                               [pageTotal]="pageTotalHistory" [(currentPage)]="currentHistoryPage"
+                               (currentPageChange)="getDepositHistory()"
+                               (pageSizeChange)="currentHistoryPage=0;getDepositHistory()">
+    </fox-paginator-non-material>
+  </div>
+</fox-section>
+
+<fox-modal [(visible)]="showRejectionReasonModal" modalTitle="Rejection Reason">
+  <div class="container-reject-reason">
+    This deposit file was rejected on {{rejectedDepositDate}} with the following reason provided by
+    {{rejectedDepositUser}}:
+  </div>
+  <hr/>
+  <div class="container-reject-description">
+    {{rejectedDepositReason}}
+  </div>
+</fox-modal>

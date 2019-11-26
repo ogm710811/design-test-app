@@ -1,0 +1,81 @@
+<fox-section>
+  <fox-section-title>Medicare Constant File - {{screen.m12titl | titlecase}}</fox-section-title>
+
+  <div class="row col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label> End Date </mat-label>
+        <input matInput #txtM12EDDT maxlength="8" size="8" type="text" disabled="{{screen.m12titl == 'REVIEW'}}" [(ngModel)]="screen.m12eddt"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label> Start Date </mat-label>
+        <input matInput #txtM12STDT maxlength="8" size="8" type="text" disabled="{{screen.m12titl == 'REVIEW'}}" [(ngModel)]="screen.m12stdt"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Out of Pockets Values</fox-section-title>
+
+  <div class="col-sm-12">
+    <div class="col-sm-1">
+      <mat-label class="mat-input-placeholder"></mat-label>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-label class="mat-input-placeholder">Plan</mat-label>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-label class="mat-input-placeholder">Percent</mat-label>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-label class="mat-input-placeholder">Amount</mat-label>
+    </div>
+    <div class="col-sm-2">
+      <mat-label class="mat-input-placeholder">Met Message</mat-label>
+    </div>
+  </div>
+
+  <div class="form-row col-sm-12 margin-bottom-20" *ngFor="let oopPlnData of screen.mdcrOopPlnData; let idx = index">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label class="margin-right-20" id="lblLabel8" #lblLabel8>{{idx+1}}.</mat-label>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput #txtM12PL01 maxlength="3" size="3" type="text" disabled="{{screen.m12titl == 'REVIEW'}}" [(ngModel)]="oopPlnData.m12pl"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput #txtM12PR01 maxlength="4" size="4" type="text" disabled="{{screen.m12titl == 'REVIEW'}}" [(ngModel)]="oopPlnData.m12pr"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput #txtM12MX01 maxlength="5" size="5" type="text" disabled="{{screen.m12titl == 'REVIEW'}}" [(ngModel)]="oopPlnData.m12mx"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput #txtM12AM01 maxlength="5" size="5" type="text" disabled="{{screen.m12titl == 'REVIEW'}}" [(ngModel)]="oopPlnData.m12am"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 text-right margin-top-40">
+    <button #F1 type="button" class="btn btn-default margin-right-20" (click)="F1EventClick()" foxHotkey="alt+r">Return (R)</button>
+    <button #Cancel type="button" class="btn btn-default margin-right-20" (click)="ClearEventClick()" foxHotkey="alt+t">Reset
+      (T)
+    </button>
+    <button #Enter type="button" class="btn btn-primary" (click)="EnterEventClick()" foxHotkey="alt+e">Enter (E)</button>
+  </div>
+</fox-section>

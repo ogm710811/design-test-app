@@ -1,0 +1,55 @@
+.fox-message-box {
+  background-color: #ffb8c9;
+  border: 1px solid #E48DA1;
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
+  color: #921a11;
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 30px;
+  min-height: 73px;
+  padding: 20px;
+  position: relative;
+}
+
+.fox-success-box {
+  background-color: #bbeabb;
+  color: #007000;
+  border: 1px solid #92B492;
+}
+
+.fox-active-box {
+  background-color: #FFE497;
+  color: #A66005;
+  border: 1px solid #E1BF61;
+}
+
+.fox-message__close-btn {
+  border: 0;
+  background: none;
+  outline: none;
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  font-size: 23px;
+}
+
+.fox-message__title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.left-icon {
+  float: left;
+  margin-right: 20px;
+  font-size: 29px;
+}
+
+.icon-close {
+  fill: gray;
+  height: 26px;
+  width: 26px;
+}

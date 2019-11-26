@@ -1,0 +1,179 @@
+<span class="span-container-btn" *ngIf="showButtons">
+  <span class="span-button-maintenance">
+    <button class="btn btn-secondary btn-maintenance button-margin-left button-margin-top"
+            type="button" #lookupOptions="matMenuTrigger" id="lookup-options-btn"
+            [matMenuTriggerFor]="dropDownRP">
+      <span class="span-margin-8">Lookup Options</span>
+      <i focusable="false" class="fas fa-caret-down i-caret"></i>
+    </button>
+  </span>
+  <span class="dropdown-divider-line"></span>
+  <mat-menu class="mat-menu-maintenance mat-menu-member-lookup" #dropDownRP="matMenu">
+    <button mat-menu-item [foxLink] [disabled]="!claim.claimTrackingId" (click)="manualMemberModalVisible()"  id="lookup-option-manual-match-btn">
+      <span class="span-hotkey-label">Alt + M</span>
+      <span>Manual Match</span>
+    </button>
+    <hr/>
+    <button id="bypass" [disabled]="!claim.claimTrackingId" mat-menu-item [foxLink] (click)="bypassModal()">
+      <span class="span-hotkey-label">Alt + Y</span>
+      <span>Bypass</span>
+    </button>
+    <button id="previous-record" [disabled]="!previousClaimNumber" mat-menu-item [foxLink]
+            (click)="showDialog = !showDialog">
+      <span class="span-hotkey-label">Alt + P</span>
+      <span>Previous Completed</span>
+    </button>
+    <button id="cancel" [disabled]="!claim.claimTrackingId" mat-menu-item [foxLink] (click)="onClickCancel()">
+      <span class="span-hotkey-label">Alt + L</span>
+      <span>Cancel Lookup</span>
+    </button>
+  </mat-menu>
+</span>
+
+<fox-modal [(visible)]="showDialog" modalTitle="Previous Member Lookup">
+  Identification Number: <span class="previous-id-number">{{previousClaimNumber}}</span>
+</fox-modal>
+
+<fox-modal [(visible)]="showBypassModal" modalTitle="Reason for Bypass"
+           class="modal-bypass-reason">
+  <p>Select a "Reason for Bypass", or type an "Other Reason".</p>
+
+  <div class="alert-red-text" [ngClass]="{'show-alert':showBypassReasonRequiredAlert}">Please
+    select a "Reason for Bypass", or type an "Other Reason".
+    <div class="exclamationCircle"><i focusable="false" class="fas fa-exclamation-circle"></i>
+    </div>
+  </div>
+
+  <mat-form-field class="mat-form-field-reason-modal">
+    <mat-select [(value)]="bypassReasonDropdown"
+                (selectionChange)="showBypassReasonRequiredAlert = false"
+                [ngClass]="{'alert-red-border':showBypassReasonRequiredAlert}">
+      <mat-option value="none" disabled selected>Reason for Bypass</mat-option>
+      <mat-option class="fox-dropdown-option" value="Knowledge">Knowledge</mat-option>
+      <mat-option class="fox-dropdown-option" value="Maintenance">Maintenance</mat-option>
+      <mat-option class="fox-dropdown-option" value="Other">Other</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <textarea *ngIf="bypassReasonDropdown =='Other'" name="bypassReason"
+            class="txtbox-bypass-reason" placeholder="Other Reason" maxlength="25"
+            [(ngModel)]="bypassReasonText"
+            [ngClass]="{'alert-red-border':showBypassReasonRequiredAlert}"></textarea>
+
+  <button class="btn btn-primary btn-bypass" id="saveBypass" (click)="processSaveBypass()"
+          name="save">Save
+  </button>
+  <button class="btn btn-secondary btn-bypass btn-bypass-cancel" id="cancelBypass"
+          (click)="showBypassModal = !showBypassModal">Cancel
+  </button>
+</fox-modal>
+
+<fox-modal *ngIf="modalView" [(visible)]="modalView" modalTitle="Manual Member Match" [closable]="true" class="manual-member-search-modal"
+           (closed)="resetManualModal()">
+  <div class="div-subheader">Search for a member to associate to this claim.</div>
+  <div class="row-15-top-margin">
+    <form [formGroup]="manualMemberSearchForm" novalidate>
+      <div class="modal-form-row">
+        <fox-input type="fox-membership" id="member-number"
+                   placeholder="123456789 1 1"
+                   labelText="Member #"
+                   [formControl]="memberNumber" class="form-field-margin form-field-wrapper">
+        </fox-input>
+        <fox-input type="text" id="medicare-number"
+                   labelText="Medicare #"
+                   [formControl]="medicareNumber" class="form-field-margin form-field-wrapper">
+        </fox-input>
+        <fox-input type="text" id="first-name"
+                   labelText="First Name"
+                   [formControl]="firstName" class="form-field-margin form-field-wrapper">
+        </fox-input>
+        <fox-input type="text" id="last-name"
+                   labelText="Last Name"
+                   [formControl]="lastName" class="form-field-wrapper">
+        </fox-input>
+      </div>
+      <div class="modal-form-row">
+        <mat-form-field class="form-field-margin form-field-wrapper mat-form-field-state" id="state-dropdown">
+          <mat-label>State</mat-label>
+          <mat-select formControlName="state">
+            <mat-option class="fox-dropdown-placeholder"></mat-option>
+            <mat-option *ngFor="let selection of statesList" [value]="selection.dropdownItemValue">
+              {{selection.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <fox-input type="fox-date" id="date-of-birth"
+                   placeholder="MM/DD/YYYY"
+                   labelText="Date of Birth"
+                   [size]="15"
+                   [formControl]="dateOfBirth" class="form-field-margin form-field-wrapper">
+        </fox-input>
+        <div class="div-inline-block">
+          <button type="submit" class="btn btn-tertiary" id="manual-match-search-btn" (click)="searchMember()">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="manual-member-search-results-area">
+    <div *ngIf="!(searchResultsFound) || baseState" class="container-not-found">
+      <i focusable="false">
+        <img class="i-svg-send" src="assets/img/information.svg"/>
+      </i>
+      <div *ngIf="baseState; else noResults">
+        <p class="no-results-header-container">Search for a member</p>
+        <p class="p-no-results">Enter criteria to find one or more possible members</p>
+      </div>
+      <ng-template #noResults>
+        <p class="no-results-header-container">No results found</p>
+        <p class="p-no-results">Please enter new criteria and try again</p>
+      </ng-template>
+    </div>
+    <div class="table-container member-table-container" *ngIf="(searchResultsFound)">
+      <table class="table manual-search-results-table">
+        <thead class="thead-default">
+        <tr>
+          <th class="th-manual-search-results-table-width">
+          </th>
+          <th [foxLink] (linkPressed)="sort('memberNumber')" class="th-member-number th-manual-search-results-attribute-width" [ngClass]="{'sorted-column-header':(column === 'memberNumber'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Member #</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('medicareNumber')" class="th-manual-search-results-attribute-width" [ngClass]="{'sorted-column-header':(column === 'medicareNumber'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Medicare #</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('lastName')" class="th-manual-search-results-attribute-width" [ngClass]="{'sorted-column-header':(column === 'lastName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Last name</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('firstName')" class="th-manual-search-results-first-name-width" [ngClass]="{'sorted-column-header':(column === 'firstName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>First Name</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('state')"  class="th-manual-search-results-state-width" [ngClass]="{'sorted-column-header':(column === 'state'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>State</fox-table-header-sort>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dat of memberListResultSet | orderBy:{property: column, direction: direction}; trackBy: trackByIndex" [id]=" 'member-tr-' + j"> {{dat.id}}
+            <td class="th-manual-search-results-table-width">
+              <input type="radio" name="memberRadio" [value]="dat.memRecNo" (click)="onSelectMember(dat.memRecNo)"/></td>
+            <td class="th-manual-search-results-attribute-width">
+              <div class="icon-user" (click)="memProfile(dat.memberNumber)">
+                <img src="assets/img/member-blue.svg" class="img-member">
+                <span class="cell-member-number">{{dat.memberNumber}}</span>
+              </div>
+            </td>
+            <td>{{dat.medicareNumber}}</td>
+            <td>{{dat.lastName}}</td>
+            <td>{{dat.firstName}}</td>
+            <td>{{dat.state}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row-15-top-margin">
+    <div class="row-15-top-margin floating-right">
+      <button class="btn btn-secondary form-field-margin" id="manual-match-cancel-btn" type="button" (click)="resetManualModal()">Cancel</button>
+      <button class="btn btn-primary" id="manual-match-match-btn" type="button" (click)="manualMemberMatch()" [disabled]="!(isSelectedMember)">Match Member</button>
+    </div>
+  </div>
+</fox-modal>

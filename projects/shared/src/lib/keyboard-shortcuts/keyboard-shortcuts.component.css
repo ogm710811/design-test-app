@@ -1,0 +1,51 @@
+.modal-sub-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: -10px;
+  color: #333333;
+}
+
+.modal-sub-title-margin-top {
+  margin-top: 30px;
+}
+.button {
+  padding: 6px 0 6px 0;
+  border-radius: 2px;
+  border: 1px solid #cccccc;
+  background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ececec 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ececec 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ececec 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  width: 60px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.div-line-height {
+  line-height: 2;
+}
+
+.button-right {
+  float: right;
+}
+
+.div-line {
+  border-bottom: solid 1px #e0e0e0;
+  margin: 8px 0;
+}
+
+.div-padding-right {
+  padding-right: 0;
+}
+
+.div-row-margin-right {
+  margin-right: -24px;
+}
+
+.div-col-margin-right {
+  margin-right: -5px;
+}
+
+.div-plus-col {
+  padding: 8px 0;
+  margin-right: -18px;
+}

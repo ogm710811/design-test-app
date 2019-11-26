@@ -1,0 +1,203 @@
+.container-member {
+  width: 386px;
+}
+
+.header-member-no {
+  color: #252C37;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: 600;
+}
+
+.text-header {
+  color: #252C37;
+  font-weight: 600;
+}
+
+.text-user-info {
+  margin: 0 5px;
+}
+
+.icon-claim, .icon-flag {
+  margin-bottom: 1px;
+}
+
+.container-subtitle {
+  font-size: 14px;
+  margin-left: 30px;
+  margin-bottom: 14px;
+}
+
+
+.container-member-info {
+  height: 361px;
+  width: 386px;
+}
+
+.container-member-info-line {
+  margin-bottom: 6px;
+  float: left;
+}
+
+.section-member-details-header {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: right;
+}
+
+.section-member-details-value {
+  line-height: 20px;
+  margin-bottom: 6px;
+  word-break: break-all;
+}
+
+.section-member-details {
+  margin-bottom: 6px;
+}
+
+.section-icon-member {
+  font-size: 25px;
+  height: 25px;
+  width: 25px;
+}
+
+.icon-member-info {
+  color: #FFFFFF;
+  height: 15px;
+  width: 15px;
+  margin: 6px;
+  position: relative;
+  bottom: 2px;
+}
+
+.container-icon {
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  background-color: #00BCD6;
+  border-radius: 50%;
+  float: left;
+}
+
+.container-member-title {
+  height: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  padding-left: 12px;
+  float: left;
+}
+
+.container-member-subtitle {
+  color: #6E7681;
+  font-size: 14px;
+  line-height: 16px;
+  float: left;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.icon-indicator {
+  margin-right: 7px;
+}
+
+.link-with-underline {
+  text-decoration: underline;
+}
+
+.patient-section {
+  padding: 20px 20px 30px 20px;
+}
+
+.pattern-para-section {
+  border-top: solid 1px #D8D8D8;
+  padding: 30px 20px 30px 20px;
+}
+
+.spl-memo-section {
+  border-top: solid 1px #D8D8D8;
+  padding: 30px 20px 30px 20px;
+}
+
+.clm-note-section {
+  border-top: solid 1px #D8D8D8;
+  padding: 30px 20px 30px 20px;
+}
+
+.btn-section {
+  border-top: solid 1px #D8D8D8;
+  padding: 30px 20px 30px 20px;
+}
+
+.row-small {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.row-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-form-field {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.btn-secondary {
+  margin-left: 15px;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-read-only {
+  border-bottom: 1px solid #E5EAEE;
+  width: 100%;
+  word-break: break-word;
+  margin-top: 10px;
+}
+
+.container-read-only .value-read-only {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 5px;
+  min-height: 16px;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.icon-member-info {
+  color: #FFFFFF;
+  height: 12px;
+  width: 12px;
+  margin: 4px;
+  position: relative;
+  bottom: 2px;
+}
+
+.container-claim-message {
+  padding: 0 0 0 30px;
+}
+
+@media  (max-width: 767px) {
+  .container-claim-message {
+    padding: 0;
+  }
+
+  .section-member-details-header {
+    text-align: left;
+  }
+
+  .section-member-details-value {
+    margin-bottom: 6px;
+  }
+}

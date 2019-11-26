@@ -1,0 +1,40 @@
+.border-left-grey {
+  border-left: solid 1px #E6E6E6;
+  padding-left: 25px;
+}
+
+.page-title {
+  margin-top: 0;
+}
+
+.fa-briefcase {
+  color: white;
+  margin-right: 5px;
+}
+
+.container-table {
+  overflow-x: scroll;
+  margin-left: 225px;
+}
+
+.container-buttons {
+  float: right;
+  margin-top: 30px;
+  margin-right: 0px;
+}
+
+.btn-clear {
+  background-color: white;
+  border: solid 1px #196ecf;
+  color: #196ecf;
+}
+
+.btn-work-queue-confirm {
+  background-color: #196ecf;
+  color: white;
+}
+
+.text-modal {
+  margin-top: -10px;
+  line-height: 20px;
+}

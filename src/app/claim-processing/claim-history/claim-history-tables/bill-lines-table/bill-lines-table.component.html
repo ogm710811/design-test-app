@@ -1,0 +1,86 @@
+<div>
+  <p>
+    <span class="container-display-billLines">
+      Displaying {{billLinesLength}} of {{billLinesTotal}} Bill Lines
+    </span>
+    <a *ngIf="billLinesTotal > 5"
+      [foxLink]
+      class="link-view-all"
+      (click)="routeBillLineDetails(data.claimNumber, data.eobType)">
+      View All
+    </a>
+  </p>
+</div>
+
+<table class="table table-bill">
+  <thead class="thead-default">
+  <tr class="container-row-bill-line">
+    <th>
+      <span class="table-column-name">Line</span>
+    </th>
+    <th>
+      <span class="table-column-name">Plan Code</span>
+    </th>
+    <th>
+      <span class="table-column-name">Type of Service</span>
+    </th>
+    <th>
+      <span class="table-column-name">Billing Provider</span>
+    </th>
+    <th>
+      <span class="table-column-name">Dates of Service</span>
+    </th>
+    <th>
+      <span class="table-column-name"># of SVCs</span>
+    </th>
+    <th>
+      <span class="table-column-name">Benefit</span>
+    </th>
+    <th>
+      <span class="table-column-name">CPT Code</span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let dat of billLinesResults; let j = index">
+    <tr [id]=" 'billLines-result-tr-' + j" class="container-row-bill-line">
+      <ng-container *ngFor="let key of dataKeys; let k = index">
+        <td [id]=" 'billLines-result-tr-' + j + '-td-' + k" *ngIf="k<8">
+          <div *ngIf="k == 0">{{dat[key]}}</div>
+          <div *ngIf="k == 1">{{dat[key]}}</div>
+          <div *ngIf="k == 2" class="container-bill-line-tooltip">
+            <span *ngIf="dat['typeOfService']"
+                  class="info-tooltip"
+                  [tooltip]="serviceTypeToolTip"
+                  placement="top">
+              <img src="assets/img/information.svg">
+            </span> {{dat[key]}}
+          </div>
+          <div *ngIf="k == 3">{{dat[key]}}</div>
+          <div *ngIf="k == 4">{{dat[key]}}</div>
+          <div *ngIf="k == 5">{{dat[key]}}</div>
+          <div *ngIf="k == 6">{{dat[key] | currency : 'USD' }}</div>
+          <div *ngIf="k == 7" class="container-bill-line-tooltip">
+            <span *ngIf="dat['cptCode']"
+                  class="info-tooltip"
+                  [tooltip]="serviceTypeToolTip"
+                  placement="top">
+              <img src="assets/img/information.svg">
+            </span>
+            {{dat[key]}}
+          </div>
+          <ng-template #serviceTypeToolTip>
+            <div><span class="tooltip-text-header">{{dat['serviceTypeHeader']}}</span><br><span
+              class="tooltip-text-msg">{{dat['serviceTypeDescr']}}</span></div>
+          </ng-template>
+          <ng-template #cptCodeToolTip>
+            <div>
+              <span class="tooltip-text-msg">{{dat['cptCodeDescription']}}</span>
+            </div>
+          </ng-template>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

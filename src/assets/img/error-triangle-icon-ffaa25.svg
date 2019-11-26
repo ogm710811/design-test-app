@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons / Error Triangle</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icons-/-Error-Triangle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="8" cy="10" r="4"></circle>
+        <path d="M0,14.8181818 L16,14.8181818 L8,1 L0,14.8181818 Z M8.72727273,12.6363636 L7.27272727,12.6363636 L7.27272727,11.1818182 L8.72727273,11.1818182 L8.72727273,12.6363636 Z M8.72727273,9.72727273 L7.27272727,9.72727273 L7.27272727,6.81818182 L8.72727273,6.81818182 L8.72727273,9.72727273 Z" id="Shape" fill="#FFAA25" fill-rule="nonzero"></path>
+    </g>
+</svg>

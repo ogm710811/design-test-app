@@ -1,0 +1,21 @@
+<div class="row table-right" *ngFor="let right_panel of tableDataArr; let i = index ">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div-table-right">
+    <table class="table-dupe-right">
+      <tr>
+        <td>
+          <a>
+            <img class="icon-qr-dup-claim-no" src="assets/img/heart-blue.svg">
+            <span class="span-claim-no">{{claimNumber}}</span>
+          </a>
+        </td>
+      </tr>
+      <tr (mouseover)="getRightData(s)" [ngClass]="s==selectedVal?'active':''"  *ngFor="let right_panel of tableDataArr[i]; let s = index">
+        <td>
+          <span *ngIf="right_panel === 'Yes'"><img class="icon-qr-dup-claim-no" src="assets/img/confirm-green.svg"></span>
+          <span *ngIf="right_panel === 'No'"><img class="icon-qr-dup-claim-no" src="assets/img/deny-red.svg"></span>
+          {{right_panel}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

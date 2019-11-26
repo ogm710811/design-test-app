@@ -1,0 +1,47 @@
+<button *ngIf="hasReleaseEnableReports"
+        type="button"
+        class="btn btn-secondary float-right"
+        (click)="reportModalVisible = true">
+  <i focusable="false" class="fas fa-chart-pie img-margin-right"></i>
+  Reports
+</button>
+<div class="page-title">Bypass Queue Management</div>
+
+<fox-section class="container-bypass-mgmt" [noPadding]="true">
+
+  <div class="container-padding">
+    <fox-section-title>Reassignment</fox-section-title>
+    <div *ngIf="teamList">
+
+      <label>Team: </label>
+      <mat-form-field>
+        <mat-select [(value)]="selectedTeam"
+                    (selectionChange)="selectedOption($event.value)">
+          <ng-container *ngFor="let team of teamList">
+            <mat-option value="{{team}}">{{team}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <fox-ui-bypassqueue-custom-table-dropdown id="bypasstbl" class="table"
+                                            [colHeads]="['Team','MSID','Claim Count','Re-Assignment','Action']"
+                                            [data]="data"
+                                            [keys]="['teamCode','userName','claimCount']"
+                                            [dropdownKeyName]="['reassignTo']"
+                                            [usersList]="usersList"
+                                            (assignToClick)="assignToClick($event)">
+  </fox-ui-bypassqueue-custom-table-dropdown>
+
+</fox-section>
+<div>
+  <fox-modal [(visible)]="showDialog" modalTitle="Confirmation">
+    <strong><span class="claim-number">{{claimsNumber}}  </span></strong>claims have been
+    re-assigned to <strong><span
+    class="msid">{{msId}}</span></strong>
+  </fox-modal>
+</div>
+
+<fox-reports [reportModalVisible]="reportModalVisible"
+             (reportModalVisibleChange)="reportModalVisible=$event" [msReports]="msReports"
+             [nasReports]="nasReports"></fox-reports>

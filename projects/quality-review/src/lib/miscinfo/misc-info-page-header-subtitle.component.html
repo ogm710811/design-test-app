@@ -1,0 +1,16 @@
+<div *ngIf="data.claimNumber || data.qualityNumber" class="container-claim-member">
+  <span *ngIf="data.claimNumber" class="container-text container-claim">
+    <span>
+      <img class="img-claim" src="/assets/img/claim.svg"/>
+      <span class="span-header">Claim #: </span>
+      <span class="span-member-data">{{data.claimNumber}}</span>
+    </span>
+  </span>
+  <span *ngIf="data.qualityNumber" class="container-text container-member">
+    <span>
+      <img class="img-claim" src="assets/img/flag-grey.svg"/>
+      <span class="span-member-number">Quality #:</span>
+      <span class="text-user-no">{{data.qualityNumber}}</span>
+    </span>
+  </span>
+</div>

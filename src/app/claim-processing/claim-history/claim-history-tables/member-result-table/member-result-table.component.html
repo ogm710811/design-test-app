@@ -1,0 +1,51 @@
+<table class="table">
+  <thead class="thead-default">
+  <tr>
+    <th [foxLink] (linkPressed)="sort('aarpMembershipNumber')"
+        [ngClass]="{'sorted-column-header':(column == 'aarpMembershipNumber'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Member</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sort('lastName')"
+        [ngClass]="{'sorted-column-header':(column == 'lastName'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Last Name</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sort('firstName')"
+        [ngClass]="{'sorted-column-header':(column == 'firstName'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>First Name</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sort('middleName')"
+        [ngClass]="{'sorted-column-header':(column == 'middleName'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Middle Name</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sort('dateOfBirth')"
+        [ngClass]="{'sorted-column-header':(column == 'dateOfBirth'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Date of Birth</fox-table-header-sort>
+    </th>
+    <th>
+      <span class="table-column-name">&nbsp;</span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let dat of memberResults; let j = index">
+    <tr [id]=" 'member-result-tr-' + j">
+      <td [id]=" 'member-result-tr-' + j + '-td-1'">
+        <div>
+          <a class="link-claim-history" (click)="getMemberProfile(dat['aarpMembershipNumber'])">
+            {{dat['displayMemberNum']}}</a>
+        </div>
+      </td>
+      <td [id]=" 'member-result-tr-' + j + '-td-2'">{{dat['lastName']}}</td>
+      <td [id]=" 'member-result-tr-' + j + '-td-3'">{{dat['firstName']}}</td>
+      <td [id]=" 'member-result-tr-' + j + '-td-4'">{{dat['middleName']}}</td>
+      <td [id]=" 'member-result-tr-' + j + '-td-5'">{{dat['dateOfBirth'] | date : 'MM/dd/yyyy'}}</td>
+      <td [id]=" 'member-result-tr-' + j + '-td-6'">
+        <button type="button" class="btn btn-primary btn-sm btn-select"
+                (click)="getClaim(dat['aarpMembershipNumber'])">
+          <span class="btn-select-txt">Select</span>
+        </button>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

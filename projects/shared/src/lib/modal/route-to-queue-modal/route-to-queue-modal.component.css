@@ -1,0 +1,39 @@
+.container-buttons {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.container-buttons .btn {
+  float: right;
+  margin-left: 15px;
+}
+
+.fld-q-sel {
+  width: 25%;
+  float: left;
+  padding-right: 15px;
+}
+
+.fld-q-name {
+  width: 50%;
+  float: left;
+}
+
+.textarea-note-content {
+  margin-top: 25px;
+  width: 100%;
+}
+
+textarea.mat-input-element {
+  resize: none;
+  height: 110px;
+  margin-bottom: 20px;
+}
+
+.mat-hint {
+  color: #333333;
+}
+
+.textarea-note-content-item-detail {
+  width: 400px;
+}

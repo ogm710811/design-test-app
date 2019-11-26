@@ -1,0 +1,165 @@
+<fox-section>
+  <fox-section-title>Search Criteria</fox-section-title>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 container-not-padding">
+        <form class="non-mat-form-field" [formGroup]="memberSearchFormGroup" novalidate>
+          <div class="row">
+            <mat-form-field class="col-xs-12 col-sm-3 col-md-3 mat-form-field-xxs">
+              <mat-label>Member #</mat-label>
+              <input placeholder="123456789" matInput #input minlength="9" maxlength="11"
+                     formControlName="memberFormControl"
+                     (keyup)="searchFieldsValidation(memberSearchFormGroup)" class="txtbox-member-no">
+              <mat-error
+                *ngIf="memberSearchFormGroup!.get('memberFormControl')!.hasError('minlength') || memberSearchFormGroup!.get('memberFormControl')!.hasError('maxLength') || memberSearchFormGroup!.get('memberFormControl')!.hasError('pattern') || memberSearchFormGroup!.get('memberFormControl')!.hasError('required')">
+                Please enter member number with 9 (123456789) or 11 digits (123456789-11)
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-xs-12 col-sm-4 col-md-4 mat-form-field-xxs">
+              <mat-label>First Name</mat-label>
+              <input placeholder="JOE" matInput #inputCheck minlength="1" maxlength="25"
+                     formControlName="memberFirstNameFormControl"
+                     (keyup)="searchFieldsValidation(memberSearchFormGroup)" class="txtbox-fn">
+              <mat-error
+                *ngIf="memberSearchFormGroup!.get('memberFirstNameFormControl')!.hasError('required')">
+                Please enter First Name and Last Name (may include ‘-‘ and “ ' ")
+              </mat-error>
+              <mat-error
+                *ngIf="memberSearchFormGroup!.get('memberFirstNameFormControl')!.hasError('pattern')">
+                Please use letters, hyphens, or apostrophes only. Do not use numbers or special
+                characters
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-xs-12 col-sm-5 col-md-5 mat-form-field-xxs">
+              <mat-label>Last Name</mat-label>
+              <input placeholder="SMITH" matInput minlength="1" maxlength="35"
+                     formControlName="memberLastNameFormControl"
+                     (keyup)="searchFieldsValidation(memberSearchFormGroup)">
+              <mat-error
+                *ngIf="memberSearchFormGroup!.get('memberLastNameFormControl')!.hasError('required')">
+                Please enter First Name and Last Name (may include ‘-‘ and “ ' ")
+              </mat-error>
+              <mat-error
+                *ngIf="memberSearchFormGroup!.get('memberLastNameFormControl')!.hasError('pattern')">
+                Please use letters, hyphens, or apostrophes only. Do not use numbers or special
+                characters
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row pull-right">
+            <div class="col-xs-12 col-sm-12 col-md-12 container-member-buttons">
+              <span class="span-search-btn">
+                <button type="submit" class="btn btn-primary btn-search"
+                        [disabled]="!memberSearchFormGroup.valid"
+                        foxHotkey="alt+s"
+                        (click)="memberResultTable()">Search (S)
+                </button>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 container-valid-criteria">
+              <p><strong>Valid search criteria include:</strong> Member #; First and Last Name ( may
+                include " - " and " ' " )</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">Member Search Results</fox-section-title>
+  <div *ngIf="!isDataDisplay" class="container-not-found">
+    <i class="fa fa-info-circle" focusable="false"></i>
+    <p class="header-container">There is no active query for claims</p>
+    <p>Search by one of the valid criteria above and select Search (S)</p>
+  </div>
+  <div [ngClass]="{'hide':!isDataDisplay}">
+    <table class="table">
+      <thead class="thead-default">
+        <tr>
+          <th class="locator-member-account-number"
+              [foxLink] (linkPressed)="onSort('memberAccountNo')"
+              [ngClass]="{'sorted-column-header':(column === 'Member'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Member </fox-table-header-sort>
+          </th>
+          <th class="locator-medicare-id"
+              [foxLink] (linkPressed)="onSort('medicareId')"
+              [ngClass]="{'sorted-column-header':(column === 'Medicare'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Medicare #</fox-table-header-sort>
+          </th>
+          <th class="locator-last-name"
+              [foxLink] (linkPressed)="onSort('lastName')"
+              [ngClass]="{'sorted-column-header':(column === 'lastName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Last Name</fox-table-header-sort>
+          </th>
+          <th class="locator-first-name"
+              [foxLink] (linkPressed)="onSort('firstName')"
+              [ngClass]="{'sorted-column-header':(column === 'firstName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>First Name</fox-table-header-sort>
+          </th>
+          <th class="locator-middle-name"
+              [foxLink] (linkPressed)="onSort('middleName')"
+              [ngClass]="{'sorted-column-header':(column === 'middleName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Middle Name</fox-table-header-sort>
+          </th>
+          <th class="locator-date-of-birth"
+              [foxLink] (linkPressed)="onSort('dateOfBirth')"
+              [ngClass]="{'sorted-column-header':(column === 'dateofbirth'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Date of Birth</fox-table-header-sort>
+          </th>
+          <th class="locator-status"
+              [foxLink] (linkPressed)="onSort('isActive')"
+              [ngClass]="{'sorted-column-header':(column === 'status'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Status</fox-table-header-sort>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr [id]=" 'member-search-tr-' + idx" *ngFor="let item of memberDataSource | orderBy:{property: column, direction: direction}; let idx = index ">
+          <td [id]=" 'member-search-tr-' + idx + '-td-0' " class="locator-member-account-number-td">
+            <a [routerLink]="getUrlForMember(item)" [queryParams]="{mp:'true'}" tabindex="0">
+              <i class="fas fa-user-circle icon-user" focusable="false"></i>
+                {{item.memberAccountNo}}
+            </a>
+          </td>
+          <td [id]=" 'member-search-tr-' + idx + '-td-1' " class="locator-medicare-id-td">
+            {{item.medicareId}}
+          </td>
+          <td [id]=" 'member-search-tr-' + idx + '-td-2' " class="locator-last-name-td">
+            {{item.lastName}}
+          </td>
+          <td [id]=" 'member-search-tr-' + idx + '-td-3' " class="locator-first-name-td">
+            {{item.firstName}}
+          </td>
+          <td [id]=" 'member-search-tr-' + idx + '-td-4' " class="locator-middle-name-td">
+            {{item.middleName}}
+          </td>
+          <td [id]=" 'member-search-tr-' + idx + '-td-5' " class="locator-date-of-birth-td">
+            {{item.dateOfBirth | date:'MM/dd/yyyy'}}
+          </td>
+          <td [id]=" 'member-search-tr-' + idx + '-td-6' " class="locator-status-td">
+            <div *ngIf="item.isActive == 'Active'">
+              <i class="fas fa-check-circle icon-active" focusable="false"></i>
+              {{item.isActive}}
+            </div>
+            <div *ngIf="item.isActive == 'Inactive'">
+              <i class="fas fa-times-circle icon-inactive" focusable="false"></i>
+              {{item.isActive}}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-container>
+      <fox-paginator-non-material [(pageSize)]="memberSearchPageSize" #paginator
+                                 [dataLengthInput]="memberSearchResultsDataLengthInput"
+                                 [pageTotal]="memberSearchPageTotal"
+                                 [(currentPage)]="currentMemberSearchPage"
+                                 (currentPageChange)="calculateResults()"
+                                 (pageSizeChange)="currentMemberSearchPage=0;calculateResults()">
+      </fox-paginator-non-material>
+    </ng-container>
+  </div>
+</fox-section>

@@ -1,0 +1,77 @@
+.column-recipient {
+  width: 168px;
+}
+
+.column-claim-num {
+  width: 160px;
+}
+
+.column-dos {
+  width: 205px;
+}
+
+.column-status {
+  width: 120px;
+}
+
+.column-primary-icd {
+  width: 130px;
+}
+
+.column-type {
+  width: 120px;
+}
+
+.icon-cross-ref {
+  color: #A4A4A4;
+  font-size: 13px;
+}
+
+.link-delete-cross-ref {
+  height: 22px;
+  color: #A4A4A4;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.icon-active {
+  color: #21B01E;
+  margin-right: 5px;
+  font-size: 12px;
+  float: left;
+  height: 20px;
+}
+
+.icon-inactive {
+  color: #E91B18;
+  margin-right: 5px;
+  font-size: 12px;
+  float: left;
+  height: 20px;
+}
+
+.table-claim-details {
+  min-width: 869px;
+  margin-bottom: 0;
+}
+
+.table-claim-details > tbody > tr:last-child {
+  border-bottom: 1px solid #DCE4E8;
+}
+
+.container-table-claim-details {
+  margin-bottom: 25px;
+  overflow: auto;
+}
+
+.icon-right {
+  margin-right: 6px;
+}
+
+.icon-position-align {
+  height: 13px;
+  width: 13px;
+  position: relative;
+  bottom: 2px;
+}

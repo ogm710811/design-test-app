@@ -1,0 +1,235 @@
+<fox-section>
+  <fox-input placeholder="Placeholder text" labelText="Text Box in Waring State" isWarningState="true"></fox-input>
+</fox-section>
+<fox-section>
+  <fox-input placeholder="Placeholder text" labelText="Text Box With Placeholder"></fox-input>
+</fox-section>
+<fox-section>
+  <fox-input placeholder="Placeholder text"
+             labelText="input text with custom icon"
+             preIconUrl="assets/img/heart-blue.svg"></fox-input>
+</fox-section>
+<fox-section>
+  <fox-input placeholder="Placeholder text"
+             labelText="input text with custom icon READ ONLY"
+             isReadOnly="true"
+             inputValue="Hello World"
+             preIconUrl="assets/img/member-blue.svg"></fox-input>
+</fox-section>
+<fox-section>
+  <fox-section-title>Read only fields</fox-section-title>
+  <div class="container-row-holder">
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field1.label"
+        [value]="readOnleyObject.field1.value"
+        [type]="types.CLAIM"></fox-read-only-field>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field2.label"
+        [value]="readOnleyObject.field2.value"></fox-read-only-field>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field7.label"
+        [value]="readOnleyObject.field7.value"></fox-read-only-field>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field3.label"
+        [arrayValue]="readOnleyObject.field3.plans"
+        [iconUrl]="'/assets/img/plan.svg'"></fox-read-only-field>
+    </div>
+  </div>
+  <div class="container-row-holder">
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field4.label"
+        [value]="readOnleyObject.field4.value"></fox-read-only-field>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field5.label"
+        [value]="readOnleyObject.field5.value"
+        [type]="types.DATE"></fox-read-only-field>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field6.label"
+        [value]="readOnleyObject.field6.value"
+        [type]="types.CURRENCY"></fox-read-only-field>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <fox-read-only-field
+        [label]="readOnleyObject.field8.label"
+        [value]="readOnleyObject.field8.value"
+        [type]="types.MEMBER"></fox-read-only-field>
+    </div>
+  </div>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-date"
+             placeholder="MM/DD/YYYY"
+             labelText="Date read only"
+             isReadOnly="true"
+             inputValue="06/01/2018"></fox-input>
+  <label>Output: {{datefc.value}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="text"
+             [placeholder]="defaultPlaceholderText"
+             labelText="Text Box With Assistive Text"
+             assistiveText="Some text to help you out"></fox-input>
+</fox-section>
+<fox-section>
+  <fox-input type="text"
+             [placeholder]="defaultPlaceholderText"
+             [labelText]="boundLabel"
+             [(ngModel)]="firstValue"></fox-input>
+  <label>Output: {{firstValue}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="text"
+             [placeholder]="defaultPlaceholderText"
+             [labelText]="boundLabel"
+             [assistiveText]="defaultAssistiveText"
+             labelExtraText="with extra text!"
+             [(ngModel)]="secondValue"></fox-input>
+  <label>Output: {{secondValue}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="text"
+             [placeholder]="defaultPlaceholderText"
+             [labelText]="boundLabel"
+             [assistiveText]="defaultAssistiveText"
+             [labelExtraText]="defaultExtraText"
+             [formControl]="fc"></fox-input>
+  <label>Output: {{fc.value}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-date"
+             placeholder="MM/DD/YYYY"
+             labelText="My Date"
+             [formControl]="datefc"></fox-input>
+  <label>Output: {{datefc.value}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-date"
+             placeholder="MM/DD/YYYY"
+             labelText="Date read only"
+             isReadOnly="true"
+             inputValue="06/01/2018"></fox-input>
+  <label>Output: {{datefc.value}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-date-range"
+             placeholder="MM/DD/YYYY - MM/DD/YYYY"
+             labelText="Date Range"
+             [formControl]="dateRangeFc"
+             [size]="28"
+             id="dateRange">
+  </fox-input>
+  <label id="lblDateRange">Output Date Range: {{dateRangeFc.value}}</label>
+</fox-section>
+
+<fox-section>
+  <fox-input type="fox-date"
+             placeholder="MM/DD/YYYY"
+             labelText="Your Date"
+
+             [(ngModel)]="datestr"></fox-input>
+  <label>Output: {{datestr}}</label>
+</fox-section>
+
+<fox-section>
+  <fox-input type="fox-date"
+             placeholder="MM/DD"
+             labelText="MM/DD date"
+             displayFormat="MM/DD"
+             programmaticFormat="MMDD"
+             [(ngModel)]="datestrMMDD"></fox-input>
+  <label>Output: {{datestr}}</label>
+</fox-section>
+
+<fox-section>
+  <fox-input type="fox-currency"
+             placeholder="$100.00"
+             labelText="It's My Money and I Want it"
+             labelExtraText="NOW"
+             assistiveText="J.G. Wentworth can get you YOUR money"
+             [formControl]="currfc"></fox-input>
+  <label>Output: {{currfc.value}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-currency"
+             placeholder="bling"
+             labelText="Dollars"
+             [(ngModel)]="currstr"></fox-input>
+  <label>Output: {{currstr}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-currency"
+             placeholder="this will accept up to 9,999,999.99"
+             labelText="7 digits plus commas and cents"
+             [maxDollarDigits]="7"
+             [(ngModel)]="currstr"></fox-input>
+  <label>Output: {{currstr}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-currency"
+             isReadOnly="true"
+             [(ngModel)]="inputReadOnly"
+             labelText="Read Only Currency"></fox-input>
+  <label>Output: {{currstr}}</label>
+</fox-section>
+
+<fox-section>
+  <fox-input type="fox-membership"
+             placeholder="$100.00"
+             labelText="My Member"
+             [formControl]="memfc"></fox-input>
+  <label>Output: {{memfc.value}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-membership"
+             placeholder="123456789 1 1"
+             labelText="Members"
+             labelExtraText="...only"
+             [(ngModel)]="memstr"></fox-input>
+  <label>Output: {{memstr}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-claim"
+             placeholder="Enter your Claim number here"
+             labelText="My Claim"
+             [formControl]="clmfc"></fox-input>
+  <label>Output: {{clmfc.value}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-claim"
+             labelText="Claims"
+             labelExtraText="...only?"
+             [(ngModel)]="clmstr"></fox-input>
+  <label>Output: {{clmstr}}</label>
+</fox-section>
+<fox-section>
+  <fox-input type="fox-phone" id="idInputPhone"
+             labelText="Phone"
+             labelExtraText="...only?"
+             [formControl]="phone"></fox-input>
+  <label id="idOutputPhone">Output: {{phone.value}}</label>
+</fox-section>
+
+<fox-section>
+  <fox-input type="fox-number" placeholder="12345" labelText="Check #" [formControl]="checknumber"></fox-input>
+</fox-section>
+
+<fox-section>
+  <fox-input type="fox-number" placeholder="12345" labelText="ZipCode" [formControl]="zipcode"></fox-input>
+</fox-section>
+
+<fox-section>
+  <fox-input type="textarea" labelText="text area with max length of 7" length="7"></fox-input>
+</fox-section>
+

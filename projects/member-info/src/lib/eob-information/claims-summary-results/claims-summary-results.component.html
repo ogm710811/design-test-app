@@ -1,0 +1,58 @@
+<div class="claim-summary-search-table-main">
+  <div class="claim-summary-search-non-mat-table-main">
+    <mat-table class="table table-claim-summary-search-result" #table
+               [dataSource]="claimSummaryDataSource">
+
+      <ng-container matColumnDef="dateOfServiceFrom">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border"> <span
+          class="modal-header-text"> Date of Service From</span></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.dateOfServiceFrom"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfServiceTo">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+          class="modal-header-text">Date of Service To</span></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.dateOfServiceTo"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="noOfClaimsPaid">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+          class="modal-header-text"># of Claims Disbursed</span></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.noOfClaimsPaid"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="noOfClaimsPending">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+          class="modal-header-text"># Of Claims Pending</span></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.noOfClaimsPending"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="totalBenfAmount">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+          class="modal-header-text">Total Benefit Amt</span></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.totalBenfAmount | currency"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border action-column"><span
+          class="modal-header-text ">Action</span></mat-header-cell>
+        <mat-cell *matCellDef="let element" class="action-column">
+          <span class="action-telegram-icon"><i class="fab fa-telegram-plane" focusable="false"></i></span><a [foxLink] (linkPressed)="generateLetter()">Write Letter</a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedClaimSummaryColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedClaimSummaryColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>

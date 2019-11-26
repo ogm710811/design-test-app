@@ -1,0 +1,12 @@
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row.expanded {
+  border-bottom-color: transparent;
+  cursor: pointer;
+}

@@ -1,0 +1,51 @@
+<table class="table table-request-results table-maint-results">
+  <thead class="thead-default">
+  <tr>
+    <th class="col-request">Request</th>
+    <th [foxLink] class="col-action" (linkPressed)="sort('mntTypCd')" [ngClass]="{'sorted-column-header':(column == 'mntTypCd'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Action</fox-table-header-sort>
+    </th>
+    <th [foxLink] class="col-timestamp" (linkPressed)="sort('createdDate')" [ngClass]="{'sorted-column-header':(column == 'createdDate'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Timestamp</fox-table-header-sort>
+    </th>
+    <th [foxLink] class="col-link-value" (linkPressed)="sort('acctNbr')" [ngClass]="{'sorted-column-header':(column == 'acctNbr'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Member #</fox-table-header-sort>
+    </th>
+    <th [foxLink] class="col-link-value" (linkPressed)="sort('clmNbr')" [ngClass]="{'sorted-column-header':(column == 'clmNbr'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Claim #</fox-table-header-sort>
+    </th>
+    <th [foxLink] class="col-status" (linkPressed)="sort('reqStsCd')" [ngClass]="{'sorted-column-header':(column == 'reqStsCd'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Status</fox-table-header-sort>
+    </th>
+    <th [foxLink] class="col-requester" (linkPressed)="sort('createdBy')" [ngClass]="{'sorted-column-header':(column == 'createdBy'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Requester</fox-table-header-sort>
+    </th>
+    <th [foxLink] class="col-verified" (linkPressed)="sort('approver')" [ngClass]="{'sorted-column-header':(column == 'approver'), 'asc': !isDesc, 'desc': isDesc}">
+      <fox-table-header-sort>Verified By</fox-table-header-sort>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let dat of maintenanceRequestResults; let j = index">
+    <tr [id]="'request-result-tr-' + j">
+      <td [id]=" 'request-result-tr-' + j + '-td-1'">
+        <a [foxLink]
+           (linkPressed)="goToRequestPage(dat)">
+          View
+        </a>
+      </td>
+      <td [id]=" 'request-result-tr-' + j + '-td-2'" >{{dat['actionCode']}}</td>
+      <td [id]=" 'request-result-tr-' + j + '-td-3'">{{dat['timeStamp']}}</td>
+      <td [id]=" 'request-result-tr-' + j + '-td-4'">
+        <i focusable="false" class="fas fa-user" aria-hidden="true"></i>
+        <a (click)="redirectDetailPage(dat['memberNum'], 'Member')">{{dat['memberNum']}}</a></td>
+      <td [id]=" 'request-result-tr-' + j + '-td-5'">
+        <i focusable="false" class="fas fa-heartbeat" aria-hidden="true"></i>
+        <a (click)="redirectDetailPage(dat['claimNum'], 'Claim')">{{dat['claimNum']}}</a></td>
+      <td [id]=" 'request-result-tr-' + j + '-td-6'">{{dat['status']}}</td>
+      <td [id]=" 'request-result-tr-' + j + '-td-7'">{{dat['requester']}}</td>
+      <td [id]=" 'request-result-tr-' + j + '-td-8'">{{dat['approver']}}</td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

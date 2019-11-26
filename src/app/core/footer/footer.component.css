@@ -1,0 +1,124 @@
+.container-footer {
+  background-color: #1B2835;
+  margin-right: 0;
+  margin-top: 90px;
+}
+
+.footer-image {
+  margin-top: 38px;
+  padding-left: 60px;
+  margin-right: 40px
+}
+
+.footer-image-size {
+  width: 170px;
+}
+
+.footer-content-margin {
+  margin-top: 50px;
+}
+
+.content-size {
+  height: 120px;
+}
+
+.content-margin-bottom {
+  margin-bottom: 20px;
+}
+
+.title-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #E1E6EB;
+}
+
+.content-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8596A8;
+
+}
+
+.footer-line-division {
+  border-top: 1px solid #2A3542;
+  margin-top: 23px;
+}
+
+.container-description {
+  margin-left: -15px;
+  margin-top: 20px;
+  white-space: nowrap;
+}
+
+.footer-description {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8596A8;
+  margin-bottom: 65px;
+}
+
+.container-size-left {
+  margin-left: -30px;
+  height: 120px;
+}
+
+.footer-margin-10 {
+  margin-bottom: 10px;
+}
+
+.footer-margin-20 {
+  margin-bottom: 20px;
+}
+
+.span-no-wrap {
+  white-space: nowrap;
+}
+
+.span-padding-bottom {
+  padding-bottom: 2px;
+}
+
+.span-padding-bottom:hover {
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+  cursor: pointer;
+}
+
+.container-environment-screen {
+  margin-top: 20px;
+  margin-left: 15px;
+  padding-right: 0;
+}
+
+.description-environment {
+  display: inline-block;
+  margin-right: 10px;
+  border-right: 1px solid #2a3542;
+  padding-right: 10px;
+}
+
+.container-line {
+  padding-left: 60px;
+  padding-right: 50px;
+}
+
+.container-app-compas {
+  margin-bottom: 10px;
+}
+
+.container-app-fastrieve {
+  margin-bottom: 10px;
+}
+
+@media  (max-width: 991px) {
+  .position-div-medium {
+    margin-left: 15px;
+    margin-top: 30px;
+  }
+}
+
+@media  (max-width: 767px) {
+  .position-div-medium-resources {
+    margin-left: 0;
+  }
+}

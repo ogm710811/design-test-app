@@ -1,0 +1,157 @@
+.icon-user-detail-item {
+  margin-right: 5px;
+  font-size: 14px;
+  float: left;
+}
+
+.no-left-padding .col-md-4 {
+  padding-left: 0;
+}
+
+.div-member-number {
+  padding-top: 14px;
+  display: flex;
+}
+
+.text-member, .icon-user-detail-item {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.mat-menu-maintenance.mat-menu-item-maintenance.mat-menu-item {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.mat-menu-maintenance.mat-menu-after.mat-menu-panel:after {
+  margin-left: 80px;
+}
+
+.mat-menu-maintenance.mat-menu-after.mat-menu-panel:before {
+  margin-left: 79px;
+}
+
+.mat-menu-maintenance:after {
+  left: 60%;
+}
+
+.mat-menu-maintenance:before {
+  left: 60%;
+}
+
+.btn-maintenance {
+  padding: 10px;
+  border: 1px solid #D3D3D3;
+  border-radius: 3px;
+  background-color: white;
+  color: #196ECF;
+  font-weight: 600;
+  line-height: 12px;
+}
+
+.icon-member {
+  font-size: 24px;
+  color: #4EBAD3;
+  padding-right: 10px;
+}
+
+.span-text {
+  font-weight: bold;
+  padding-right: 3px;
+}
+
+.icon-active {
+  color: #21B01E;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.icon-inactive {
+  color: #E91B18;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.circle-icon {
+  font-size: 6px;
+  vertical-align: middle;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.container-member-search-back {
+  text-align: right;
+}
+
+.link-member-search-back {
+  font-size: 14px;
+  text-decoration: none;
+  float: right;
+  font-weight: normal;
+}
+
+.text-member > .icon-user-detail-item {
+  margin-right: 10px;
+}
+
+.no-left-padding {
+  margin-bottom: 10px;
+}
+
+.member-profile-title {
+  padding: 23px 17px 15px 17px;
+}
+
+.member-profile-title-name {
+  color: #4E5B71;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.dropdown-divider-line {
+  border-left: 1px solid lightgray;
+  height: 36px;
+  position: absolute;
+  top: 1px;
+  right: 25px;
+  top: -13px;
+}
+
+.i-caret {
+  margin-left: 7px;
+  margin-right: -2px;
+}
+
+.button-margin-left {
+  margin-left: 10px;
+}
+
+.button-margin-top {
+  margin-top: 10px;
+}
+
+.span-button-maintenance {
+  position: relative;
+  margin-top: 10px;
+}
+
+.i-fa-cog {
+  font-size: 16px;
+}
+
+.span-margin-8 {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.fox-modal {
+  padding-top: 10px;
+}
+
+.span-badge-member-migrated {
+  margin-right: 10px;
+}
+
+.container-line-height {
+  line-height: 20px;
+}

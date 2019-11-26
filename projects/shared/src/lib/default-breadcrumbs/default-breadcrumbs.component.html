@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="breadcrumbs col-lg-12">
+    <div class="container-breadcrumb">
+      <span *ngIf="!hideBreadcrumbs" (click)="navigateHome()">
+        <i focusable="false" class="fas fa-home breadcrumbs-blue" aria-hidden="true"></i>
+        &nbsp;&nbsp;
+        <span class="breadcrumbs-grey">
+          <i focusable="false" class="fas fa-chevron-right"></i>
+        </span>
+        &nbsp;
+      </span>
+      <ng-container *ngFor="let link of linksSnapshot; let i = index">
+        <ng-container *ngIf="(i + 1) !== linksSnapshot.length && !hideBreadcrumbs">
+          <a [routerLink]="link.path" class="txt-blue" tabindex="-1">{{link.label}}</a>
+          &nbsp;
+          <span class="breadcrumbs-grey"><i focusable="false" class="fas fa-chevron-right"></i></span>&nbsp;
+        </ng-container>
+        <ng-container *ngIf="(i + 1) === linksSnapshot.length">
+          <span class="default-page-title" *ngIf="!hideBreadcrumbs" >
+            {{link.label}}
+          </span>
+          <div class="default-page-title">
+            <div class="page-title" *ngIf="!link.hideHeader">{{link.label}}</div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

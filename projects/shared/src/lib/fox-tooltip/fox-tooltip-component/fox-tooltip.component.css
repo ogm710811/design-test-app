@@ -1,0 +1,39 @@
+.fox-tooltip {
+  height: 100%;
+  display: inline-block;
+}
+
+.fox-tooltip-container-icon-content {
+  padding: 15px;
+}
+
+.fox-tooltip-content {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.fox-tooltip-content-list {
+  margin: 0;
+}
+
+.fox-tooltip-title {
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.fox-tooltip-icon {
+  width: 5px;
+  height: 5px;
+}
+
+.fox-tooltip-label {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+

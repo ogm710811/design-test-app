@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev" (click)="pf1EventClick()">
+    <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+    <span class="txt-return-pre" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0">Return to Previous (F1)</span>
+  </div>
+</div>
+<fox-member-dmg-card [screenData]="screeBeanData" [state]="state"></fox-member-dmg-card>
+<fox-section>
+  <div class="div-section-title">Bill Line Details</div>
+  <span class="div-section-subtitle">Tab or use arrows keys to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</span>
+  <div class="container-margin">
+    <fox-table *ngIf="billLineTableResult"
+               class="test"
+               [baseTableId]="'bill-line-memo-tab-'"
+               [tableColumns]="billLineTableColumns"
+               [tableData]="billLineTableResult | orderBy: {property: billLineTableSortKey, direction: billLineTableSortDirection}"
+               (columnChanged)="billLineTableSortKey = $event"
+               (directionChanged)="billLineTableSortDirection = $event"
+               [fixedTextAreaColumn]="true"
+               [textAreaCharLimit]="1000">
+    </fox-table>
+  </div>
+</fox-section>
+<div class="col-md-12 no-padding">
+  <div class="form-row margin-right-20  text-right margin-bottom-20">
+    <button type="button" class="btn btn-secondary margin-right-20" (click)="clearEventClick()"
+            foxHotkey="alt+r">Clear (R)
+    </button>
+    <button type="button" class="btn btn-secondary margin-right-20" (click)="F5EventClick()" foxHotkey="alt+m">Review BL Messages (M)
+    </button>
+    <fox-loading-button class="div-margin-left"
+                        [buttonValue] = "'Continue (L)'"
+                        [buttonStatus]="continueStatus"
+                        [typeValue]="'submit'"
+                        [hasChevron]="true"
+                        [foxHotKeyValue]="'alt+l'"
+                        (buttonClick)="EnterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

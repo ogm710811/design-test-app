@@ -1,0 +1,89 @@
+.page-title {
+  margin-top: 0;
+}
+
+.container-op-auth-limit {
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.container-auth-limit-1 {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 15px;
+}
+
+.container-first-row-auth-limit {
+  padding-top: 20px;
+}
+
+.container-last-row-auth-limit {
+  padding-bottom: 20px;
+}
+
+.container-error {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+.col-cuatn-width {
+  width: 58px;
+}
+
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+}
+
+.container-arrow-right {
+  height: 14px;
+  width: 14px;
+  margin-right: 7px;
+}
+
+.container-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.container-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 18px;
+}
+
+.container-spacing {
+  margin-bottom: 20px;
+}
+
+.container-subtitle {
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+.container-fox-section {
+  padding: 20px 20px 5px 20px;
+}
+
+.container-insured-details {
+  margin-bottom: 25px;
+}
+
+.container-claim-details {
+  margin-bottom: 35px;
+}
+
+.button-clear {
+  margin-right: 15px;
+}
+
+.span-return {
+  cursor: pointer;
+}
+

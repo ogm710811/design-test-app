@@ -1,0 +1,48 @@
+<fox-section>
+  <div>
+    <fox-section-title>Welcome to Manual Adjudication</fox-section-title>
+  </div>
+
+  <div>
+    <label>Claim #:</label>
+    <input matInput type="text" class="input-claim" label="Claim #" placeholder="Claim Number"/>
+    <button class="btn btn-primary">Search</button>
+  </div>
+</fox-section>
+
+<fox-section *ngIf="showDetails">
+  <fox-section-title>Click on claim number to adjudicate! </fox-section-title>
+  <div>
+    <table [className]="tableClass + ' table'">
+      <thead>
+        <tr>
+          <td>Claim No</td>
+          <td>Member No</td>
+          <td>Claim Date</td>
+          <td>Card No</td>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of claimNumList;let i = index">
+        <td>
+          <a href="{{item.claimNo}}" (click)="open($event,i)">{{item.claimNo}}</a>
+        </td>
+        <td>{{item.memberNo}}</td>
+        <td>{{item.claimDate}}</td>
+        <td>{{item.amount}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="claimNumOptions">
+      <fox-modal [(visible)]="claimNumOptions" modalTitle="Are you sure?">
+        <div class="modal-body">
+          {{sharedText.text}}
+          <div class="btn-next">
+            <button type="button" class="btn btn-primary" (click)="next(sharedText.index)">Next</button>
+          </div>
+        </div>
+      </fox-modal>
+    </div>
+  </div>
+</fox-section>

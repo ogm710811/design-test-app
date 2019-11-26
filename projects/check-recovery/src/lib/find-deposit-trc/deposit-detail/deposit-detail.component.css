@@ -1,0 +1,142 @@
+.container-deposit-detail-top-left {
+  float: left;
+  width: 33%;
+  padding-right: 60px;
+  border-right: 1px solid #CED3DA;
+}
+
+.container-deposit-detail-top-right {
+  float: left;
+  width: 67%;
+  padding-left: 60px;
+}
+
+.container-deposit-detail-bottom-left {
+  float: left;
+  width: 204px;
+  padding-right: 35px;
+  border-right: 1px solid #CED3DA;
+  margin-right: 25px;
+}
+
+.deposit-detail-bottom {
+  margin-top: 20px;
+}
+
+.container-deposit-detail-bottom-right {
+  float: left;
+}
+
+.container-deposit-detail-bottom-left .btn-secondary {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.label-trc {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.container-trc-selection {
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  height: 110px;
+  overflow-y: scroll;
+}
+
+.container-trc-selection[disabled] {
+  background-color: #EDEDED;
+  border: solid 1px #CED3DA;
+  color: rgba(0, 0, 0, .42);
+}
+
+input[type=radio] {
+  height: 0;
+  margin: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+input[type=radio] + label {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 14px;
+  margin: 0;
+  padding-left: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+input[type=radio]:checked + label {
+  background-color: #196ECF;
+  color: #FFFFFF;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-buttons .btn-primary {
+  margin-left: 15px;
+}
+
+.horizontal-rule {
+  margin-top: 3px;
+}
+
+.bold-header {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.deposit-date-container {
+  display: inline-block;
+  width: 150px;
+}
+
+.deposit-information-container {
+  display: inline-block;
+  width: 150px;
+  margin-left: 20px;
+}
+
+.container-trc-difference {
+  padding-top: 20px;
+  width: 168px;
+}
+
+.label-trc-difference {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.value-sum-text {
+  line-height: 30px;
+}
+
+.value-difference-text {
+  line-height: 30px;
+  color: #BF3533;
+}
+
+.zero-diff {
+  color: black;
+}
+
+.space-class {
+  position: relative;
+  top: 1px;
+  padding-right: 10px;
+}

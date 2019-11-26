@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev">
+    <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+    <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0">Cancel and Return (F1)</span>
+  </div>
+</div>
+<fox-section class="col-xs-12 col-sm-8 no-padding">
+  <div class="container-card-title"> {{deleteCommunicationCardTitle}} </div>
+  <div class="container-subtitle"> {{deleteCommunicationCardSubTitle}} </div>
+  <div class="row row-small container-display-equal-height">
+    <div class="col-xs-12 col-sm-3 container-display-equal-height">
+      <div class="container-input-and-label">
+        <div class="container-label">
+          <label class="label-for-input">Name</label>
+        </div>
+        <div class="container-input container-select-border">
+          {{screen.m9ename}}
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 container-display-equal-height">
+      <div class="container-input-and-label">
+        <div class="container-label">
+          <label class="label-for-input">Address</label>
+        </div>
+        <div class="container-input container-select-border">
+          {{address}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 text-right no-padding">
+    <button id="btnDelete" name="btnDelete" #btnLabel5 type="button" class="btn btn-danger" foxHotkey="alt+d" hotkeyAction="click" (click)="enterEventClick()">Delete (D)</button>
+  </div>
+</fox-section>
+<fox-modal (closed)="onCancelModal($event)" [visible]="endCommunicationVisible" [closable]="true" modalTitle="End Communication">
+  <div class="text-center"><strong>Details Communication:</strong></div>
+  <br/>
+  <br/>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <mat-label id="lblCommNumber"><strong>Communication Number: </strong>{{screenModal.m55comn}}</mat-label>
+      </div>
+
+      <div class="col-sm-6">
+        <mat-label id="lblStatusComm"><strong>Status: </strong>{{screenModal.m55stat}}</mat-label>
+      </div>
+    </div>
+  </div>
+
+</fox-modal>

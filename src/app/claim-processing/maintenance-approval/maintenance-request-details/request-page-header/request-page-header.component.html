@@ -1,0 +1,15 @@
+<div class="page-title">
+  {{pageTitle}}
+  <div class="no-left-padding">
+    <span class="section-status">
+      <span [ngClass]="{'circle-icon-status-pending': isPending, 'circle-icon-status-approved': isApproved, 'circle-icon-status-denied': isDeny}">
+        <i focusable="false" class="fas fa-circle"></i></span>
+      <span [ngClass]="{'section-text-pending': isPending, 'section-text-approved': isApproved, 'section-text-deny': isDeny}">
+        {{statusText}}</span>
+    </span>
+    <span class="section-from">
+      <span class="circle-icon"><i focusable="false" class="fas fa-circle"></i></span><strong>From</strong>&nbsp;
+      <span class="section-details">{{reqInfo?.requester}} on {{reqInfo?.timeStamp | date: 'MM/dd/yyyy'}}</span>
+    </span>
+  </div>
+</div>

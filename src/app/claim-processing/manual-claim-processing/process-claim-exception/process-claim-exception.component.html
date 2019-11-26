@@ -1,0 +1,88 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="cancelEventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Return to Previous (F1)
+  </span>
+</div>
+<fox-member-dmg-card [screenData]="screenBeanData"></fox-member-dmg-card>
+<fox-section [noPadding]="true">
+  <div class="container-margin-icd">
+    <div class="container-icd-label">
+      ICD Codes
+    </div>
+    <div class="row container-icd">
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          id="txtMA1ICD1"
+          name="txtMA1ICD1"
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 1"
+          [(ngModel)]="screen.scrnIcdCode"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          id="txtMA1ICD2"
+          name="txtMA1ICD2"
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 2"
+          [(ngModel)]="screen.scrnIcdCode2"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          id="txtMA1ICD3"
+          name="txtMA1ICD3"
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 3"
+          [(ngModel)]="screen.scrnIcdCode3"></fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true"
+             [noOverFlowX]="true"
+             class="fox-section-line">
+  <div class="row container-top-title">
+    <div class="col-xs-12 col-sm-8">
+      <div class="container-title container-margin-left-25">Exception Charge Line</div>
+      <div class="container-sub-title container-margin-left-25">Tab or use arrows keys to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</div>
+    </div>
+  </div>
+  <div class="margin-top-30">
+    <fox-table *ngIf="result"
+               #inputTable
+               [tableColumns]="columns"
+               [tableData]="tableData">
+    </fox-table>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding">
+  <div class="form-row text-right">
+    <button type="button"
+            class="btn btn-secondary button-margin-right-15"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button class="button-margin-right-15"
+                        [buttonValue] = "'Screen B (P)'"
+                        [buttonStatus]="btnStatus"
+                        [typeValue]="'button'"
+                        [hasChevron]="false"
+                        [foxHotKeyValue]="'alt+p'"
+                        (buttonClick)="screenBeventClick()">
+    </fox-loading-button>
+    <div class="container-btn-space">
+      <fox-loading-button [buttonValue] = "'Continue (L)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+l'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</div>

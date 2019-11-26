@@ -1,0 +1,89 @@
+<div class="container-input-and-label"
+     [ngClass]="{
+       'has-pre-icon': !!preIconUrl && !postIconUrl,
+       'has-post-icon': !!postIconUrl && !preIconUrl,
+       'has-pre-post-icon': !!preIconUrl && !!postIconUrl,
+       'container-full-height': isFullHeight
+     }">
+  <div *ngIf="!!labelText" [ngClass]="
+                           {
+                              'container-label' : !isReadOnly,
+                              'container-label-read-only' : isReadOnly
+                           }">
+    <label [for]="id" class="label-for-input"
+           [innerHtml]="labelText">
+    </label>
+    <span *ngIf="!!labelExtraText"
+          [id]="id + '-additional-label-text'" class="span-label-extra"
+          [innerHTML]="' - ' + labelExtraText">
+    </span>
+    <img src="assets/img/error-icon.svg" class="img-invalid-field" *ngIf="errorKeys.length > 0">
+    <img src="assets/img/error-triangle-icon-ffaa25.svg" class="img-invalid-field" *ngIf="isWarningState && !isReadOnly">
+  </div>
+  <div [ngClass]="
+       {
+         'container-input-error': errorKeys.length > 0,
+         'focus-within': hasFocus,
+         'container-input-disabled': isDisabled,
+         'div-disabled' : isDisabled,
+         'container-input': !isReadOnly,
+         'container-input-read-only': isReadOnly,
+         'container-input-read-only-no-padding-left-right': isReadOnlyNoPaddingLeftRight,
+         'container-input-warning': isWarningState && !isReadOnly,
+         'textarea-larger-size': largerTextArea
+       }">
+    <img *ngIf="preIconUrl" [src]="preIconUrl" [id]="id + '-pre-icon'" class="img-pre-icon"/>
+    <input *ngIf="type !== 'textarea'"
+           [ngClass]="{'input-read-only': isReadOnly}"
+           #inputField
+           type="text"
+           [id]="id"
+           [attr.name]="name"
+           spellcheck="false"
+           [placeholder]="placeholder"
+           [attr.size]="size"
+           [attr.disabled]="isDisabled ? isDisabled : undefined"
+           [(ngModel)]="inputValue"
+           (input)="onInputInput($event)"
+           (change)="onInputChange($event)"
+           (focus)="onInputFocus($event)"
+           (blur)="onInputBlur($event)"
+           (keypress)="onInputKeypress($event)"
+           (keyup)="onInputKeyup($event)"
+           [readOnly]="isReadOnly"
+           [maxLength]="length">
+
+    <textarea *ngIf="type === 'textarea'"
+              [style.min-height.px]= "textAreaWidth"
+              #inputField
+              class="text-area-no-resize"
+              [id]="id"
+              [attr.name]="name"
+              [placeholder]="placeholder"
+              [ngClass]= "{'spl-demo-tbl-text-area': textareaHasStyle}"
+              (input)="onInputInput($event)"
+              (change)="onInputChange($event)"
+              (focus)="onInputFocus($event)"
+              (blur)="onInputBlur($event)"
+              (keypress)="onInputKeypress($event)"
+              (keyup)="onInputKeyup($event)"
+              [disabled]="isDisabled"
+              [(ngModel)]="inputValue"
+              [maxLength]="length"
+              [rows]="textareaRows">
+    </textarea>
+
+    <img *ngIf="postIconUrl" [src]="postIconUrl" [id]="id + '-post-icon'" class="img-post-icon"/>
+  </div>
+</div>
+<div *ngIf="!!assistiveText" class="container-assist-text">
+  {{assistiveText}}
+</div>
+<ng-container *ngIf="errors">
+  <ng-container *ngFor="let key of errorKeys">
+    <div *ngIf="!!showErrors(key)" class="container-error-text">
+      {{showErrors(key)}}
+    </div>
+  </ng-container>
+</ng-container>
+

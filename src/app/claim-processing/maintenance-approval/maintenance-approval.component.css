@@ -1,0 +1,59 @@
+.container-result {
+  margin-top: 25px;
+}
+
+.container-padding {
+  padding-left: 20px;
+  padding-top: 16px;
+}
+
+.section-note {
+  padding-left: 20px;
+}
+
+.container-heading {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.container-not-found {
+  margin-bottom: 77px;
+}
+
+.fa-info-circle {
+  color: #e0e0e0;
+  font-size: 80px;
+  margin-bottom: 20px;
+  margin-top: 34px;
+}
+
+.header-container {
+  font-size: 18px;
+  margin-bottom: 7px;
+}
+
+.container-header-msg {
+  font-size: 13px;
+}
+
+.container-form-inputs {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.mat-form-field {
+  width: 200px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 30px;
+}
+
+.button-submit {
+  height: 39px;
+  width: 149px;
+}
+
+.container-btn-submit {
+  padding-left: 10px;
+  padding-top: 10px;
+}

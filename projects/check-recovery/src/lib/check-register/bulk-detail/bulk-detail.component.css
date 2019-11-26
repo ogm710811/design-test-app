@@ -1,0 +1,112 @@
+.non-mat-paginator .page-range > label {
+  display: flex;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2.47;
+  padding-top: 19px;
+}
+
+.non-mat-paginator .page-range span {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.non-mat-paginator .page-range {
+  padding-left: 0;
+}
+
+.pagination {
+  cursor: pointer;
+}
+
+.paginator-active {
+  background-color: #e0e0e0;
+}
+
+#checkbox-space {
+  text-align: left;
+}
+
+.result-space strong {
+  font-weight: 600;
+}
+
+.result-space-top {
+  margin-bottom: 10px;
+}
+
+.fa-user-circle {
+  color: #196ECF;
+  margin-right: 5px;
+}
+
+.checkbox-bulk-item {
+  margin: 0;
+}
+
+.row-small {
+  margin: 20px 0 0;
+  padding: 20px;
+  background-color: #F2F5F8;
+}
+
+.row-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.row-small > div[class^="col"]:first-child {
+  padding-left: 0;
+}
+
+.row-small > div[class^="col"]:last-child {
+  padding-right: 0;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.heading-height {
+  line-height: 21px;
+}
+
+.bulk-subtitle {
+  font-size: 14px;
+}
+
+.container-buttons {
+  text-align: right;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.container-table-bulk-check {
+  margin: 0 -20px;
+}
+
+.hr-summary-bulk {
+  margin: 0 30px;
+}
+
+.p-description {
+  margin-bottom: 25px;
+  color: #6E7681;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.container-paginator {
+  margin-left: -23px;
+}
+
+@media (max-width: 767px) {
+  .row-small > div[class^="col"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

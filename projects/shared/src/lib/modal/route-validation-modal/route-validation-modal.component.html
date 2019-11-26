@@ -1,0 +1,46 @@
+<fox-modal [(visible)]="modalVisible" (visibleChange)="changeVisible($event)"
+           [closable]="true" [isMinWidth]="true" modalTitle="Parameters Required">
+  <div class="row">
+    <div class="col-sm-12 container-route-modal-bdy">
+      <div class="row container-static-msg">
+        <img src="assets/img/undraw_adjustments_p22m.svg" class="img-route-modal" alt="return icon"/>
+        <span class="span-msg-header">Enter parameters to continue</span>
+      </div>
+      <div class="row container-input">
+        <fox-input #inputClaim type="fox-claim" *ngIf="commandInputVal === 'OP'"
+                   placeholder="12345-123456-1"
+                   labelText="Claim #"
+                   class="col-xs-12 input-params no-padding"
+                   (keyup.enter)="btnSubmitEventClick()"
+                   [(ngModel)]="claimInputVal">
+        </fox-input>
+        <fox-input #inputMember type="fox-membership" *ngIf="commandInputVal === 'OQ' || commandInputVal === 'CO' || commandInputVal === 'CI'"
+                   placeholder="123456789 1 1"
+                   labelText="Member #"
+                   class="col-xs-12 input-params no-padding"
+                   (keyup.enter)="btnSubmitEventClick()"
+                   [(ngModel)]="memberInputVal">
+        </fox-input>
+        <fox-input #inputComm type="fox-number" *ngIf="commandInputVal === 'RC' || commandInputVal === 'SC' || commandInputVal === 'CD'"
+                   length="20"
+                   size="20"
+                   placeholder="123456789"
+                   labelText="Comm #"
+                   class="col-xs-12 input-params no-padding"
+                   (keyup.enter)="btnSubmitEventClick()"
+                   [(ngModel)]="commInputVal">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+  <div class="form-row container-btn">
+    <fox-loading-button
+      [buttonValue] = "'Submit (S)'"
+      [buttonStatus]="buttonStatus"
+      [typeValue]="'button'"
+      [foxHotKeyValue]="'alt+s'"
+      (buttonClick)="buttonClick()"
+      class="btn-submit" disabled="btnDisabled">
+    </fox-loading-button>
+  </div>
+</fox-modal>

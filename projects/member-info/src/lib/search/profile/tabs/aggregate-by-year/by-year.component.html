@@ -1,0 +1,129 @@
+<fox-section *ngIf="!editAggregateSrc.isPayeeAggregateDisplayData; else displayData" [noPadding]="true">
+  <div class="container-padding">
+    <div class="col-md-12 no-left-padding">
+      <p class="title-aggregate pull-left">Aggregates</p>
+    </div>
+    <div class="col-md-12 no-left-padding container-not-found">
+      <i class="fa fa-info-circle" focusable="false"></i>
+      <p class="header-container">There are no Aggregates available</p>
+    </div>
+  </div>
+</fox-section>
+
+<!--Member YTD Aggregate-->
+<ng-template #displayData>
+  <fox-section [noPadding]="true">
+    <div class="container-padding">
+      <div class="col-md-12 no-left-padding">
+        <p class="title-aggregate pull-left">
+          Aggregates
+        </p>
+        <button class="btn-maintenance pull-right" type="button" (click)="openYearSelectionModal(false)" [disabled]="!hasAggregateMaintAvailable" [ngClass]="!hasAggregateMaintAvailable ? 'btn-edit-value-disable' : 'btn-edit-value'">
+          <i focusable="false" class="fas fa-edit"></i>
+          <span class="text-modify-button">Edit Values</span>
+        </button>
+      </div>
+      <div class="col-md-12 no-left-padding">
+        <p class="sub-text pull-left">Value below may be filtered by year and/or plans. Click <span class="text-weight">Edit Values</span> to submit changes; these requests may require approval.</p>
+      </div>
+    </div>
+    <div class="member-options">
+      <div class="opt-team">
+        <span class="dropdown-label">Year </span>
+        <mat-form-field class="form-field-team">
+          <mat-select [(value)]="editAggregateSrc.selectedYear" (selectionChange)="onYearSelection()">
+            <ng-container *ngFor="let year of editAggregateSrc.planYears">
+              <mat-option value="{{year}}">{{year}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="opt-individual">
+        <span class="dropdown-label">Plan </span>
+        <mat-form-field class="form-field-individual">
+          <mat-select [(value)]="editAggregateSrc.selectedPlan" (selectionChange)="onPlanSelection()">
+            <ng-container *ngFor="let plan of editAggregateSrc.planTypes">
+              <mat-option value="{{plan}}">{{plan}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <table class="table">
+      <thead class="thead-default">
+      <tr>
+        <th [foxLink] class="locator-year-aggr">
+          <span class="table-column-name">Year</span>
+        </th>
+        <th [foxLink] class="locator-plan-aggr">
+          <span class="table-column-name">Plan</span>
+        </th>
+        <th [foxLink] class="locator-plan-effective-date">
+          <span class="table-column-name">Plan Effective Date</span>
+        </th>
+        <th [foxLink] class="locator-field-aggr">
+          <span class="table-column-name">Field</span>
+        </th>
+        <th [foxLink] class="locator-current-value-aggr">
+          <span class="table-column-name">Current Value</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- special aggregates result starts here -->
+      <ng-container *ngIf="!isFilteredPayeeAggregateMemberPlan" >
+        <tr [id]=" 'ytd-tr-' + idx" *ngFor="let item of editAggregateSrc.specPayeeTable; let idx = index">
+          <td [id]=" 'ytd-tr-' + idx + '-td-0' " class="locator-year-aggr-td">
+            <strong>Lifetime</strong>
+          </td>
+          <td [id]=" 'ytd-tr-' + idx + '-td-1' " class="locator-plan-aggr-td">
+            Member
+          </td>
+          <td [id]=" 'ytd-tr-' + idx + '-td-2' " class="locator-plan-effective-date-td">
+            -
+          </td>
+          <td [id]=" 'ytd-tr-' + idx + '-td-3' " class="locator-field-aggr-td">
+            Special Payee
+          </td>
+          <td [id]=" 'ytd-tr-' + idx + '-td-4' " class="locator-current-value-aggr-td">
+            {{item.payeeAggregate | wholeNumber}}
+          </td>
+        </tr>
+      </ng-container>
+      <!-- regular aggregates result starts here -->
+      <tr [id]=" 'ytd-tr-' + idx" *ngFor="let item of editAggregateSrc.findYtdResults; let idx = index">
+        <td [id]=" 'ytd-tr-' + idx + '-td-0' " class="locator-year-aggr-td">
+          <strong>{{editAggregateSrc.selectedYear}}</strong>
+        </td>
+        <td [id]=" 'ytd-tr-' + idx + '-td-1' " class="locator-plan-aggr-td">
+          Plan {{item.plan}}
+        </td>
+        <td [id]=" 'ytd-tr-' + idx + '-td-2' " class="locator-plan-effective-date-td">
+          <ng-container *ngIf="item?.effectiveDate else noDate">{{item?.effectiveDate | date:'MM/dd/yyyy'}}</ng-container>
+          <ng-template #noDate>-</ng-template>
+        </td>
+        <td [id]=" 'ytd-tr-' + idx + '-td-3' " class="locator-field-aggr-td">
+          {{item.field | fieldFormat}}
+        </td>
+        <td [id]=" 'ytd-tr-' + idx + '-td-4' " class="locator-current-value-aggr-td">
+          {{item.currentValue | wholeNumber}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </fox-section>
+</ng-template>
+
+<!--Value Selection Modal-->
+<fox-aggregate-year-selection-modal (aggregateYear)="selectedAggregateYear($event)"
+                                    [memberProfile]="memberProfile"
+                                    [aggregateYearArr]="aggregateYears">
+
+</fox-aggregate-year-selection-modal>
+<!--Edit Aggregate Current Value Modal-->
+<fox-edit-aggregate-value-modal [editAggregateYear]="aggregateYear"
+                                  [memberProfile]="memberProfile"
+                                  (openYrSelectionModal)="openYearSelectionModal($event)"
+                                  (updateAggregateTable)="getAggregateNewValuesOnTable($event)">
+</fox-edit-aggregate-value-modal>
+

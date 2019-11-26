@@ -1,0 +1,37 @@
+.tbl-bypass-queue {
+  margin-top: 20px;
+}
+
+.tbl-bypass-queue a {
+  text-decoration: underline;
+  color: #196ECF;
+}
+
+.tbl-bypass-queue td {
+  vertical-align: middle;
+}
+
+.thead {
+  border-top: solid #dddddd 1px;
+}
+
+.tbl-head-cell {
+  background-color: #F6F8F9;
+  color: #333333;
+  vertical-align: middle;
+  min-width: 100px;
+}
+
+.mat-form-field {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+
+.mat-select {
+  background-color: white;
+}
+
+.btn-bypass {
+  margin-left: 60px;
+}

@@ -1,0 +1,197 @@
+<div class="page-title">Queue Detail
+  <a class="backClaimSearchLink" [routerLink]="backUrl" [queryParams]="{reloadQueueResults: 'true', reloadCategories: 'true'}"><i class="fas fa-chevron-left"></i> View All
+    Queues</a>
+</div>
+
+<div class="queue-detail-metadata">
+  <div class="queue-detail-title"><img class="queue-icon" src="assets/img/queue-icon.svg">{{queueName}}
+  </div>
+  <div class="container-metadata-item">
+    <p class="txt-metadata-label">Work Type</p>
+    <p class="txt-metadata-value txt-work-type">{{workType}}</p>
+  </div>
+  <div class="container-metadata-item">
+    <p class="txt-metadata-label">Queue Category</p>
+    <p class="txt-metadata-value txt-queue-category">{{queueCategory}}</p>
+  </div>
+  <div class="container-metadata-item">
+    <p class="txt-metadata-label">Queue Type</p>
+    <p class="txt-metadata-value txt-queue-type">{{queueType}}</p>
+  </div>
+  <div class="container-metadata-item border-left-grey">
+    <p class="txt-metadata-label">Total Documents</p>
+    <p class="txt-metadata-value txt-total-documents">{{totalDocuments}}</p>
+  </div>
+  <div class="container-metadata-item">
+    <p class="txt-metadata-label">Oldest Document (Days)</p>
+    <p class="txt-metadata-value txt-oldest-documents">{{oldestDocuments}}</p>
+  </div>
+  <div class="container-metadata-item">
+    <p class="txt-metadata-label">Description</p>
+    <p class="txt-metadata-value txt-description">{{description}}</p>
+  </div>
+</div>
+
+<fox-section [noPadding]="true" class="queue-detail-result" *ngIf="searchResult.length > 0">
+  <fox-section-title class="container-padding">Items in Queue</fox-section-title>
+
+  <div class="ribbon-menu" *ngIf="selectedQueueItemList.length>0">
+    <div class="ribbon-left">
+      <div class="link-ribbon"  *ngIf="selectedQueueItemList.length === 1 && isF4275Enabled" [foxPdfDownloadUrls]="selectedDocListDownloadUrls">Download as Single PDF</div>
+      <div class="link-ribbon"  *ngIf="selectedQueueItemList.length > 1 && isF4275Enabled" [foxPdfDownloadUrls]="selectedDocListDownloadUrls">Download Selected Documents as PDF</div>
+      <div class="link-ribbon" (click)="showDeleteDialog=true" *ngIf="hasOpDeleteDocument && !isLockBadgeInTheList">Delete Document(s)</div>
+      <div class="link-ribbon" (click)="sendToWorkbenchRibbon()">Send to Workbench</div>
+      <div class="link-ribbon" (click)="routeToQueueRibbon()">Route to Queue</div>
+    </div>
+    <div class="ribbon-right">
+      <div class="label-selected">{{selectedQueueItemList.length}} item<span
+        *ngIf="selectedQueueItemList.length > 1">s</span> selected
+      </div>
+      <div class="link-ribbon" (click)="resetSelectedList()">Cancel</div>
+    </div>
+  </div>
+
+  <table class="table table-column-sticky">
+    <thead class="thead-default">
+    <tr>
+      <th class="table-column-radio ">
+          <span class="table-column-name">
+            <input type="checkbox" [checked]="allChecked" (change)="changeAllSelection()" class="checkbox-queue-item"
+                   [disabled]="queueType === 'FIFO' && !hasEnhancedWorkQueueRole"/></span>
+      </th>
+      <th class="table-column-queue-item">
+        Queue Item
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let data of searchResult; let j = index">
+      <tr *ngIf="!checkIfLockedByIsPresent(data)">
+        <td class="table-column-radio">
+          <input type="checkbox" (change)="onSelectionChange(data?.wqiId, data?.wqiBusinessId, data)" [checked]="data?.checked"
+                                              [disabled]="queueType === 'FIFO' && !hasEnhancedWorkQueueRole"/></td>
+        <td class="table-column-queue-item">
+          <div class="link-queue-item">
+            <i focusable="false" class="fas fa-briefcase"></i>
+            <a *ngIf="queueType !== 'FIFO' || hasEnhancedWorkQueueRole"
+               (click)="determineModalToDisplay(true, data?.wqiId)">{{data?.wqiId}}</a>
+            <span *ngIf="queueType === 'FIFO' && !hasEnhancedWorkQueueRole">{{data?.wqiId}}</span>
+          </div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-more"
+                  [disabled]="queueType === 'FIFO' && !hasEnhancedWorkQueueRole">
+            <i class="fas fa-caret-down" aria-hidden="true"></i>
+          </button>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item [disableRipple]="true"
+                    class="btn-bottom-border btn-dropdown-workbench"
+                    (click)="sendToWorkbench(data)">Send to Workbench
+            </button>
+            <button mat-menu-item [disableRipple]="true"
+                    class="btn-bottom-border btn-dropdown-queue"
+                    (click)="routeToQueue(data?.wqiId, data)"
+                    [disabled]="workType === 'Claims'">Route to Queue
+            </button>
+          </mat-menu>
+        </td>
+      </tr>
+      <tr *ngIf="checkIfLockedByIsPresent(data)">
+        <td class="table-column-radio">
+          <input type="checkbox" (change)="onSelectionChange(data?.wqiId)" [checked]="selectedQueueItemList.indexOf(data?.wqiId)>-1"
+                                              [disabled]="true"/></td>
+        <td class="table-column-queue-item">
+          <div class="link-queue-item">
+            {{data?.wqiId}}
+          </div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-lock" #div
+                  [disabled]="queueType === 'FIFO' && !hasEnhancedWorkQueueRole" (mouseover)="getLockedUserDetails(data)">
+            <span focusable="false" class="fas fa-lock" aria-hidden="true"></span>
+          </button>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <p class="locked_font">Locked</p>
+            <p class="locked_font_small">{{userLocked}} is working on this item. <br>It cannot be
+              edited by other users.</p>
+          </mat-menu>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+  <div class="container-table">
+    <table class="table table-queue-search-result">
+      <thead class="thead-default">
+        <tr>
+          <th *ngIf="isFeatureEnabled('F4999')">Item Details</th>
+          <ng-container *ngFor="let key of dataKeys; let j = index">
+            <th>{{key}}</th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let data of searchResult; let j = index">
+        <tr>
+          <td *ngIf="isFeatureEnabled('F4999')">{{(data?.reason?.length > 50) ? (data?.reason | slice:0:50) + '...' : (data?.reason)}}</td>
+          <ng-container *ngFor="let key of dataKeys; let j = index">
+            <td>{{hasProperty(data.metadata,key) ? data.metadata[key] : '&nbsp;'}}</td>
+          </ng-container>
+        </tr>
+      </ng-container>
+      </tbody>
+
+    </table>
+  </div>
+
+  <fox-modal [(visible)]="showDeleteDialog" modalTitle="Delete Document(s)" [closable]="false">
+    <div>
+      <p>You are about to delete the below document(s), which cannot be undone. Are you sure you want to submit this change?</p>
+      <mat-error *ngIf="selectedDocList.length>10">More than 10 document checked. Please refine your selection</mat-error>
+    </div>
+
+    <table class="table table-delete-list">
+      <thead class="thead-default">
+      <tr>
+        <th class="table-header-document">Document</th>
+        <th class="table-header-type">Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container>
+        <tr *ngFor="let doc of selectedDcnList; let j=index">
+          <td>{{doc}}</td>
+          <td>Correspondence</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+
+    <div class="container-buttons">
+      <button type="button" class="btn btn-primary btn-delete" (click)="confirmDeleteDoc()" *ngIf="selectedDocList.length<11" [disabled]="selectedDocList.length<0">
+        Delete
+      </button>
+      <button type="button" class="btn btn-secondary btn-cancel" (click)="showDeleteDialog=!showDeleteDialog">
+        Cancel
+      </button>
+    </div>
+  </fox-modal>
+
+  <fox-queue-confirmation-modal [(showQueueDetailConfirmModal)]=showQueueDetailConfirmModal
+                                (showQueueDetailModalChange)="onQueueDetailModalVisibleChange($event)"
+                                [workItemId]=workItemId
+                                [workType]=workType
+                                [queueName]=queueName>
+  </fox-queue-confirmation-modal>
+
+  <fox-open-workitem-confirmation-modal [(showOpenWorkItemConfirmModal)]=showOpenWorkItemConfirmModal
+                                        (showOpenWorkItemModalChange)="onOpenWorkItemModalVisibleChange($event)"
+                                        [workItemId]=workItemId
+                                        [workType]=workType
+                                        [queueName]=queueName>
+  </fox-open-workitem-confirmation-modal>
+
+  <fox-paginator-non-material [(pageSize)]="queuePageSize"
+                             [dataLengthInput]="numberOfElements" [pageTotal]="queuePageTotal"
+                             [(currentPage)]="currentQueuePage"
+                             (currentPageChange)="loadQueue()"
+                             (pageSizeChange)="currentQueuePage=0;loadQueue()">
+  </fox-paginator-non-material>
+</fox-section>{{checkRefresh}}
+

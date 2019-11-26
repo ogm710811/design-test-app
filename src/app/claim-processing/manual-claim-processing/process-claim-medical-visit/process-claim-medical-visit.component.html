@@ -1,0 +1,141 @@
+<div class="container-medical-visit">
+  <div class="row">
+    <div class="col-xs-12 div-return-prev" (click)="pf1EventClick()">
+      <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+      <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0">Return to Previous (F1)</span>
+    </div>
+  </div>
+
+  <fox-member-dmg-card [screenData]="screeBean"></fox-member-dmg-card>
+
+  <fox-section [noPadding]="true">
+    <div class="row div-header-container">
+      <fox-section-title>
+        ICD Codes
+      </fox-section-title>
+    </div>
+
+    <div class="row row-input-holder">
+      <div class="col-xs-12 col-sm-3 div-input-container">
+        <fox-input type="text"
+                   id="txtM25ICD1"
+                   labelText="ICD Code 1"
+                   [(ngModel)]="screen.m25icd1"
+                   [length]="7"
+                   maxlength="7">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 div-input-container">
+        <fox-input type="text"
+                   id="txtM25ICD2"
+                   labelText="ICD Code 2"
+                   [(ngModel)]="screen.m25icd2"
+                   [length]="7"
+                   maxlength="7">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 div-input-container">
+        <fox-input type="text"
+                   id="txtM25ICD3"
+                   labelText="ICD Code 3"
+                   [(ngModel)]="screen.m25icd3"
+                   [length]="7"
+                   maxlength="7">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+
+  <fox-section [noPadding]="true"
+               [noOverFlowX]="true"
+               class="fox-section-icd">
+    <div class="row div-top-title">
+
+      <div class="col-xs-12 col-sm-7 col-md-8">
+        <fox-section-title class="margin-top-20">Medical Visit Charge Line</fox-section-title>
+        <div class="div-sub-title">Tab or use arrows keys to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</div>
+      </div>
+
+      <div class="col-xs-12 col-sm-5 col-md-4 div-bill-line">
+        <span class="span-bill-line">
+          <span class="div-set-bill-line div-set-bill-left ">
+            10
+          </span>
+          <span class="div-set-bill-line div-set-bill-right">
+            Set # of BILL Lines (M)
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="margin-top-30">
+      <fox-table *ngIf="result"
+                 #inputTable
+                 [tableColumns]="columns"
+                 [tableData]="result"
+                 [baseTableId]="'process-claim-medical-visit'"
+                 [fixedFirstColumn]="true">
+      </fox-table>
+    </div>
+
+    <div class="col-md-12">
+      <div class="row div-misc-plan">
+        <div class="col-xs-12 col-sm-3 div-input-bottom">
+          <fox-input type="text"
+                     id="txtM25XPA1"
+                     labelText="Exclude Payment Under Plans"
+                     [(ngModel)]="screen.m25xpa1"
+                     [length]="2"
+                     maxlength="2">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-5 div-input-left">
+          <fox-input type="text"
+                     id="txtM25ATRM"
+                     labelText="Benefits Payable After Termination Date"
+                     [(ngModel)]="screen.m25atrm"
+                     [length]="2"
+                     maxlength="2">
+          </fox-input>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 div-misc-plan">
+            <div class="div-legends-bottom-inside">
+              <span class="span-type-title">Types:</span>
+              <span *ngFor="let select of selections">
+                <span class="span-bold">{{select.id}}</span>
+                <span class="span-padding-20">{{' - ' + select.value}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </fox-section>
+
+  <div class="div-button-margin">
+    <div class="div-float-right margin-bottom-20">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="clearEventClick()"
+              foxHotkey="alt+r"
+              hotkeyAction="click">
+        Clear (R)
+      </button>
+      <fox-loading-button class="button-spacing div-margin-left"
+                          [buttonValue] = "'Continue (L)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+l'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</div>
+
+
+
+
+

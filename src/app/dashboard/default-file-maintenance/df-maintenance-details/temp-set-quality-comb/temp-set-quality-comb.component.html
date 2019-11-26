@@ -1,0 +1,86 @@
+<div class="page-title margin-top-0">
+  {{screen?.m86hed2f | titlecase}} Set Quality Combinations {{screen?.m86headf | titlecase}}
+</div>
+
+<fox-section [noPadding]="true">
+  <div class="col-md-12 no-padding margin-top-20 margin-bottom-30">
+    <div class="col-md-2 section-field-1 no-padding">
+      <div class="container-value-1">{{screen.m86typef}}</div>
+      <div class="container-label-1">{{location}}</div>
+    </div>
+    <div class="col-md-2 section-field-2 no-padding left-border">
+      <div class="container-value-2">{{screen.m86mdatf}}</div>
+      <div class="container-label-2">Last Maintenance Date</div>
+    </div>
+    <div class="col-md-2 section-field-1 no-padding left-border">
+      <div>
+        <div class="container-value-1">{{screen.m86mionf}}</div>
+        <div class="container-label-1">IONS</div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <table class="table table-set-quality margin-top-20">
+    <thead class="thead-default">
+      <tr>
+        <th class="col-number"></th>
+        <th>Percent</th>
+        <th>State</th>
+        <th>Plan</th>
+        <th>TOS</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Caution</th>
+        <th>Acceptability Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let dat of viewData; let j = index">
+        <tr [id]=" 'set-quality-comb-' + j">
+          <td class="col-number" [id]=" 'set-quality-comb-' + j + '-td-1'">{{dat.m86tLineNo}}</td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-2'">
+            <input matInput class="col-width-50" id="txtM86PCT1" name="txtM86PCT1" #txtM86PCT1 maxlength="3"  size="3"   type="text" [(ngModel)]="dat.m86tPct"/>
+          </td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-3'">
+            <input matInput class="col-width-50" id="txtM86ST1" name="txtM86ST1" #txtM86ST1 maxlength="2"  size="2"   type="text" [(ngModel)]="dat.m86tState"/>
+          </td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-4'">
+            <input matInput class="col-width-50" id="txtM86PL1" name="txtM86PL1" #txtM86PL1 maxlength="2"  size="2"   type="text" [(ngModel)]="dat.m86tPlan"/>
+          </td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-5'">
+            <input matInput class="col-width-50" id="txtM86TOS1" name="txtM86TOS1" #txtM86TOS1 maxlength="2"  size="2"   type="text" [(ngModel)]="dat.m86tTos"/>
+          </td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-6'">
+            <input matInput id="txtM86FD1" name="txtM86FD1" #txtM86FD1 maxlength="6"  size="6"   type="text" [(ngModel)]="dat.m86tFromDate"/>
+          </td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-7'">
+            <input matInput id="txtM86TD1" name="txtM86TD1" #txtM86TD1 maxlength="6"  size="6"   type="text" [(ngModel)]="dat.m86tToDate"/>
+          </td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-8'">
+            <input matInput class="col-width-50" id="txtM86CAU1" name="txtM86CAU1" #txtM86CAU1 maxlength="2"  size="2"   type="text" [(ngModel)]="dat.m86tCaution"/>
+          </td>
+          <td [id]=" 'set-quality-comb-' + j + '-td-9'">
+            <input matInput class="col-width-50" id="txtM86ACP1" name="txtM86ACP1" #txtM86ACP1 maxlength="1"  size="1"   type="text" [(ngModel)]="dat.m86tAcceptCode"/>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <fox-paginator-non-material [(pageSize)]="pageSizeSelected" [dataLengthInput]="dataLengthInput"  #paginator
+                             [pageTotal]="pageTotal" [(currentPage)]="currentPage"
+                             (currentPageChange)="calculateNewPage();"
+                             (pageSizeChange)="currentPage=0; calculateNewPage();"
+                             [pageSizeDropdownOption]="pageSizeDropdownOption">
+  </fox-paginator-non-material>
+
+  <div class="col-md-12 text-right no-padding margin-bottom-30">
+    <button type="button" class="btn btn-secondary btn-clear margin-right-20"
+            foxHotkey="alt+r" (click)="cancelEventClick()">Cancel (R)
+    </button>
+    <button type="submit" class="btn btn-primary submit-btn margin-right-20"
+            foxHotkey="alt+s" (click)="enterEventClick()">Submit (S)
+    </button>
+  </div>
+</fox-section>

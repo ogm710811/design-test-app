@@ -1,0 +1,447 @@
+<div class="container-control" *ngIf="pillOptions.length > 0 || exportOptions.length > 0 || dropdownFilterOptions.length > 0 || searchBar"
+     [ngClass]="{'container-control-narrow': narrow}">
+  <ul class="nav nav-pills" *ngIf="pillOptions.length > 0">
+    <li *ngFor="let pillOption of pillOptions; let pillIndex = index"
+        [foxLink] (click)="selectedPill = pillIndex"
+        [ngClass]="{
+          'active': pillIndex === selectedPill
+        }">
+      <a>{{pillOption}}</a>
+    </li>
+  </ul>
+  <div class="container-dropdown-filter-group" [ngClass]="{'container-narrow': narrow}">
+    <ng-container *ngIf="dropdownFilterOptions.length > 0">
+      <div *ngFor="let dropdownFilterOption of dropdownFilterOptions; let dFIndex = index"
+           class="container-dropdown-filter">
+        <div class="text-label" *ngIf="!complexFilter">Label</div>
+        <button class="btn btn-dropdown dropdown-toggle btn-filter"
+                type="button"
+                attr.id="{{'dropdownFilter' + dFIndex}}"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="true"
+                [foxLink]
+                [ngClass]="{
+                    'btn-combined-filter': searchBar
+                  }">
+          <img class="img-filter" src="assets/img/filter.svg"/>
+          <span class="txt-filter">{{dropdownFilterOption}}</span>
+          <img class="img-caret-down" src="assets/img/caret-down.svg"/>
+        </button>
+        <ul class="dropdown-menu" attr.aria-labelledby="{{'dropdownFilter' + dFIndex}}">
+          <li [foxLink]>
+            <a>Placeholder</a>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+    <div class="container-search-bar" *ngIf="searchBar">
+      <div class="div-search-bar">
+        <input type="search"
+               class="search-field form-control input-search"
+               [ngClass]="{
+                 'input-combined-filter': dropdownFilterOptions.length > 0
+               }"
+               placeholder="Search in Results"
+               [(ngModel)]="searchVal">
+        <img class="img-search-bar" src="assets/img/search.svg"/>
+      </div>
+    </div>
+    <ng-container *ngIf="complexFilter">
+      <fox-badge [badgeParams]="filterValue" class="badge-filter"></fox-badge>
+      <fox-badge [badgeParams]="filterValue" class="badge-filter"></fox-badge>
+      <div class="txt-clear">Clear All</div>
+    </ng-container>
+  </div>
+
+  <div class="dropdown-export" *ngIf="exportOptions.length > 0">
+    <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" [foxLink]>
+      <img class="img-export" src="assets/img/export-icon.svg"/>
+      <span class="txt-export" *ngIf="pillOptions.length === 0 && !searchBar">Export</span>
+      <img class="img-caret-down" src="assets/img/caret-down.svg"/>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li *ngFor="let exportOption of exportOptions; let pillIndex = index"
+          [foxLink] (click)="selectedPill = pillIndex"
+          [ngClass]="{
+            'active': pillIndex === selectedPill
+          }">
+        <a>{{exportOption}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container-table" [ngClass]="{'no-margin-bottom': noBottomMargin}">
+  <div [ngClass]="{
+         'table-scroller-vertical': fixedFirstColumn && !fixedSecondColumn,
+         'table-scroller-vertical-extra': fixedSecondColumn,
+         'table-scroller': fixedHeader
+       }"
+       *ngIf="tableData && tableData.length > 0 && (tableData  | filter: searchVal).length">
+    <table [className]="tableClass + ' table' + tableWrap + tableTopNone" [formGroup]="tableFormGroup">
+      <thead class="thead-default fixed-header">
+      <tr [ngClass]="{
+            'row-sticky': fixedHeader,
+            'header-border-top': pillOptions.length > 0 || exportOptions.length > 0 || dropdownFilterOptions.length > 0 || searchBar
+          }" *ngIf="isParentHeader">
+        <th tabindex="0" *ngFor="let col of parentHeaderColumns; let i = index" id="{{'headerParent'+i}}"
+            [foxLink]
+            [ngClass]="{
+                'column-border': col.border,
+                'text-center': true,
+                'th-header-double': col.hasDoubleLine}"
+            [attr.colspan]="col.colSpanValue">
+          <span class="table-column-name" *ngIf="!col.isDoubleLine">{{col.headerText || col.key}}</span>
+          <span class="table-column-name" *ngIf="col.isDoubleLine">
+              <span>
+                {{col.headerText.split(' ').slice(0, -1).join(' ') || col.key.split(' ').slice(0, -1).join(' ')}} <br />
+                {{col.headerText.split(' ').slice(-1).pop() || col.key.split(' ').slice(-1).pop()}}
+              </span>
+            </span>
+        </th>
+      </tr>
+      <tr [ngClass]="{
+            'row-sticky': fixedHeader,
+            'header-border-top': pillOptions.length > 0 || exportOptions.length > 0 || dropdownFilterOptions.length > 0 || searchBar
+          }" *ngIf="selectedIndexes || selectedKeepHeader">
+        <th class="table-column-expand" *ngIf="expandable">
+        </th>
+        <th class="table-column-radio" *ngIf="selectable">
+          <span class="table-column-name">
+            <input type="checkbox" [disabled]="isSelectDisabled" [checked]="allChecked" (change)="changeAllSelection()"/>
+          </span>
+        </th>
+        <th tabindex="0" class="table-column-radio" *ngIf="selectableRows">
+          <span class="table-column-name">{{selectableRows}}</span>
+        </th>
+
+        <th tabindex="0" *ngFor="let col of tableColumns; let i = index" id="{{'header'+i}}"
+            [foxLink]
+            [ngClass]="{
+              'sorted-column-header':(col.sortKey && sortByColumn === col.sortKey),
+              'header-column-border': col.hideHeaderColumnBorder,
+              'asc': !isDesc,
+              'desc': isDesc,
+              'column-border': col.border,
+              'column-sticky': i===0 && fixedFirstColumn && !fixedSecondColumn,
+              'column-sticky2': i===0 && fixedFirstColumn && fixedSecondColumn,
+              'column-second-sticky': i===1 && fixedSecondColumn,
+              'column-sticky-border': (i===0 && (fixedFirstColumn || fixedTextAreaColumn) && !fixedSecondColumn) || (i===1 && fixedFirstColumn && fixedSecondColumn),
+              'text-right': col.kind === Currency,
+              'th-header-double': col.hasDoubleLine}"
+            (linkPressed)="sort(col.sortKey)">
+          <span class="table-column-name" *ngIf="!col.sortKey && !col.isDoubleLine">{{col.headerText || col.key}}</span>
+          <span class="table-column-name" *ngIf="col.isDoubleLine">
+            <span *ngIf="col.headerText">
+              {{col.headerText.split(' ').slice(0, -1).join(' ')}} <br />
+              {{col.headerText.split(' ').slice(-1).pop()}}
+            </span>
+            <span *ngIf="!col.headerText">
+              {{col.key.split(' ').slice(0, -1).join(' ')}} <br />
+              {{col.key.split(' ').slice(-1).pop()}}
+            </span>
+          </span>
+          <fox-table-header-sort [ngClass]="{'currency-text': col.kind===Currency}"
+                                 *ngIf="col.sortKey && !col.isDoubleLine">
+            {{col.headerText || col.key}}
+          </fox-table-header-sort>
+        </th>
+
+        <th class="table-column-radio" *ngIf="selectableRight">
+          <span class="table-column-name"><input type="checkbox" [disabled]="isSelectDisabled" [checked]="allChecked" (change)="changeAllSelection()"/></span>
+        </th>
+        <th tabindex="0" class="table-column-radio" *ngIf="selectableRowsRight">
+          <span class="table-column-name">{{selectableRowsRight}}</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody formArrayName="rows" [ngClass]="{'table-single': hasFreezeColumnSelect}">
+      <ng-container *ngFor="let dat of tableData | filter: searchVal; let j=index; last as isLast">
+        <tr [ngClass]="{
+              'row-selected':isSelected(j),
+              'row-expanded': isExpanded(j),
+              'row-disabled': isRowDisabled(j)}"
+            [formGroupName]="j">
+          <td class="table-column-expand" *ngIf="expandable">
+            <ng-container *ngIf="!isRowExpandableKey || (isRowExpandableKey && dat[isRowExpandableKey])">
+              <img src="assets/img/arrow-down-blue.svg" (click)="onExpandedChange(j)" *ngIf="isExpanded(j)"/>
+              <img src="assets/img/arrow-right-blue.svg" (click)="onExpandedChange(j)" *ngIf="!isExpanded(j)"/>
+            </ng-container>
+          </td>
+          <td class="table-column-radio" *ngIf="selectable || selectableRows">
+            <input type="checkbox" [disabled]="isSelectDisabled || isRowDisabled(j)" (change)="onSelectionChange($event, j)" [checked]="!isRowDisabled(j) && (isSelected(j) || allChecked)"/>
+          </td>
+          <td *ngFor="let col of tableColumns; let k = index"
+              [ngClass]="{
+                'column-border': col.border,
+                'column-sticky': k===0 && fixedFirstColumn && !fixedSecondColumn,
+                'column-sticky2': k===0 && fixedSecondColumn,
+                'column-second-sticky': k===1 && fixedSecondColumn,
+                'column-sticky-border': k===0? ((fixedTextAreaColumn || fixedFirstColumn) && !fixedSecondColumn): k===1? (fixedFirstColumn && fixedSecondColumn): false,
+                'column-padding-textarea': (k!==1 && fixedTextAreaColumn),
+                'column-sticky-center-text': k===0 && centerText,
+                'text-right': col.kind === Currency,
+                'no-white-space': noWhiteSpace,
+                'td-height-single': col.kind !== Input && (!col.kind || col.kind !== Text) && !centerText}"
+              [ngSwitch]="col.kind === Dynamic ? col.dynamicKind(dat) : checkReadOnlyRows(j, col, k)"
+              (click)="isActiveFocus(j,$event)">
+            <img class="img-pre-icon" src="{{'assets/img/'+ col.preImage}}" *ngIf="!col.preImageToolTipKey && col.preImage && dat[col.key]" alt="pre icon">
+
+            <fox-tooltip [toolMenuParams]="getToolTip(col.preImageToolTipKey, dat[col.preImageToolTipKey.text])" *ngIf="col.preImageToolTipKey && col.preImage && dat[col.key]">
+              <img class="img-pre-icon" src="{{'assets/img/'+ col.preImage}}" alt="tooltip pre image">
+            </fox-tooltip>
+
+            <ng-container *ngSwitchCase="Currency">
+              {{dat[col.key] | currency}}
+            </ng-container>
+            <ng-container *ngSwitchCase="Images">
+              <ng-container *ngFor="let img of col.images">
+                <img class="img-pre-icon"  src="{{'assets/img/'+ img.image}}" *ngIf="img.condition(dat)" alt="image">
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="Badges">
+              <ng-container *ngFor="let badge of col.badges">
+                <div *ngIf="badge.condition(dat)" class="container-badge">
+                  <fox-badge [badgeParams]="badge.badge" *ngIf="!badge.toolTipKey"></fox-badge>
+                  <fox-tooltip [toolMenuParams]="getToolTip(dat[badge.toolTipKey])" *ngIf="badge.toolTipKey">
+                    <fox-badge [badgeParams]="badge.badge"></fox-badge>
+                  </fox-tooltip>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="Date">
+              {{dat[col.key] | date:'MM/dd/yyyy'}}
+            </ng-container>
+            <ng-container *ngSwitchCase="Link">
+              <a tabindex="0" (click)="linkClickEvent({col: col,data: dat, index: j})">{{dat[col.key]}}</a>
+            </ng-container>
+            <ng-container *ngSwitchCase="MemberItem">
+              <fox-member-profile-format-table [itemToFormat]="dat[col.key]"></fox-member-profile-format-table>
+            </ng-container>
+            <ng-container *ngSwitchCase="NextLineText">
+              <div [ngClass]="{'div-next-line': col.kind === NextLineText}">
+                <div>{{dat[col.key]['firstLine']}}</div>
+                <div>{{dat[col.key]['secondLine']}}</div>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="IconItem">
+              <fox-icon-item-format-table [itemToFormat]="dat[col.key]"></fox-icon-item-format-table>
+            </ng-container>
+            <ng-container *ngSwitchCase="CheckBox">
+              <input type="checkbox" [disabled]="isSelectDisabled || isRowDisabled(j)" (click)="onSelectionChange($event, j, dat)" [checked]="!isRowDisabled(j) && (allChecked || dat[col.key])"/>
+            </ng-container>
+            <ng-container *ngSwitchCase="Input">
+              <!-- Unfortunately we have to switch on input here, since the selector won't pick up the type when it's conditional-->
+              <ng-container [ngSwitch]="col.inputType">
+                <ng-container *ngSwitchCase="'fox-date'">
+                  <fox-input type="fox-date" [formControlName]="col.formControlName || col.key"
+                             foxGridItem [gridName]="uniqueId"
+                             [disabled]="col.isDisabled"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [col]="gridColNumOf(col)" [row]="j" [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchCase="'fox-date-range'">
+                  <fox-input type="fox-date-range" [formControlName]="col.formControlName || col.key"
+                             foxGridItem [gridName]="uniqueId"
+                             [disabled]="col.isDisabled"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [col]="gridColNumOf(col)" [row]="j" [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchCase="'fox-currency'">
+                  <fox-input type="fox-currency" [formControlName]="col.formControlName || col.key"
+                             foxGridItem [gridName]="uniqueId"
+                             [disabled]="col.isDisabled"
+                             [length]="col.textLength"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [col]="gridColNumOf(col)" [row]="j" [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchCase="'fox-membership'">
+                  <fox-input type="fox-membership" [formControlName]="col.formControlName || col.key"
+                             foxGridItem [gridName]="uniqueId"
+                             [disabled]="col.isDisabled"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [col]="gridColNumOf(col)" [row]="j" [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchCase="'fox-claim'">
+                  <fox-input type="fox-claim" [formControlName]="col.formControlName || col.key"
+                             foxGridItem [gridName]="uniqueId"
+                             [disabled]="col.isDisabled"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [col]="gridColNumOf(col)" [row]="j" [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchCase="'fox-phone'">
+                  <fox-input type="fox-phone" [formControlName]="col.formControlName || col.key"
+                             foxGridItem [gridName]="uniqueId"
+                             [disabled]="col.isDisabled"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [col]="gridColNumOf(col)" [row]="j" [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchCase="'fox-select-single'">
+                  <div class="selectdiv">
+                    <select *ngIf="!col.isDisabled" [formControlName]="col.formControlName || col.key"
+                            [id]="baseTableId + 'tbl-cell' + j + k"
+                            class="enabled-color"
+                            foxGridItem
+                            [gridName]="uniqueId"
+                            [col]="gridColNumOf(col)"
+                            [row]="j">
+                      <option [value]="option.key" *ngFor="let option of col.dropDownOptions">
+                        {{option.value}}
+                      </option>
+                    </select>
+                    <select *ngIf="col.isDisabled" [formControlName]="col.formControlName || col.key"
+                            [id]="baseTableId + 'tbl-cell' + j + k"
+                            class="disabled-color"
+                            foxGridItem
+                            [gridName]="uniqueId"
+                            [col]="gridColNumOf(col)"
+                            [row]="j"
+                            disabled>
+                      <option [value]="option.key" *ngFor="let option of col.dropDownOptions">
+                        {{option.value}}
+                      </option>
+                    </select>
+                  </div>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="'fox-date-mmyy'">
+                  <fox-input type="fox-date"
+                             id="{{col.key+j}}"
+                             name="{{col.key+j}}"
+                             placeholder="MM/YY"
+                             displayFormat="MM/YY"
+                             programmaticFormat="MMYY"
+                             [formControlName]="col.formControlName || col.key"
+                             [disabled]="col.isDisabled"
+                             foxGridItem
+                             [gridName]="uniqueId"
+                             [col]="gridColNumOf(col)"
+                             [row]="j"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="'fox-date-mmdd'">
+                  <fox-input type="fox-date"
+                             id="{{col.key+j}}"
+                             name="{{col.key+j}}"
+                             placeholder="MM/DD"
+                             displayFormat="MM/DD"
+                             programmaticFormat="MMDD"
+                             [formControlName]="col.formControlName || col.key"
+                             [disabled]="col.isDisabled"
+                             foxGridItem
+                             [gridName]="uniqueId"
+                             [col]="gridColNumOf(col)"
+                             [row]="j"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="'fox-dropdown'">
+                  <ng-select [items]="col.dropDownOptions"
+                             [bindLabel]="col.dropDownLabel || 'label'"
+                             [bindValue]="col.dropDownBindValue"
+                             [hideSelected]="true"
+                             [clearable]="col.dropDownClearable"
+                             [formControlName]="col.formControlName || col.key"
+                             foxGridItem
+                             [gridName]="uniqueId"
+                             [col]="gridColNumOf(col)"
+                             [row]="j">
+                  </ng-select>
+                </ng-container>
+                <ng-container *ngSwitchCase="'text'">
+                  <fox-input type="text"
+                             [formControlName]="col.formControlName || col.key"
+                             foxGridItem
+                             [gridName]="uniqueId"
+                             [col]="gridColNumOf(col)"
+                             [row]="j"
+                             [disabled]="col.isDisabled"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [length]="col.textLength"
+                             [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchCase="'textarea'">
+                  <fox-input type="textarea"
+                             [formControlName]="col.formControlName || col.key"
+                             foxGridItem
+                             [gridName]="uniqueId"
+                             [disabled]="col.isDisabled"
+                             [id]="baseTableId + 'tbl-cell' + j + k"
+                             [length]="textAreaCharLimit"
+                             [textareaHasStyle]="fixedTextAreaColumn"
+                             [col]="gridColNumOf(col)"
+                             [row]="j"
+                             [inputValue]="dat[col.key]"></fox-input>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <fox-input [formControlName]="col.formControlName || col.key" foxGridItem [gridName]="uniqueId" [col]="gridColNumOf(col)" [row]="j"></fox-input>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="CurrencyText">
+              <span class="span-text-line">
+                <span>{{dat[col.key] | currency}}</span>
+              </span>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <span [ngClass]="{'span-bold': (lastRowBold && isLast)}">
+                {{dat[col.key]}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="col.menus && col.menus.length">
+              <button class="button-border" [class.button-border-F4913]="isF4913Enabled" mat-icon-button [matMenuTriggerFor]="menu" [id]="baseTableId + 'tbl-cell' + j + k">
+                <img class="dcn-caret" [class.dcn-caret-F4913]="isF4913Enabled" src="assets/img/caret-down-10px.svg">
+              </button>
+              <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                <ng-container *ngFor="let menu of col.menus; let j = index;">
+                  <button mat-menu-item
+                          [id]="baseTableId + 'tbl-cell' + j + k"
+                          [disableRipple]="true"
+                          (click)="menuClickEvent({menu: menu,data: dat, index: j})"
+                          *ngIf="menu.kind === 'menu' && (menu.visible ? menu.visible(dat) : true)"
+                          [disabled]="menu.disabled && menu.disabled(dat)">
+                    {{menu.title}}
+                  </button>
+                  <hr *ngIf="menu.kind === 'divider' && (menu.visible ? menu.visible(dat) : true)">
+                </ng-container>
+              </mat-menu>
+            </ng-container>
+          </td>
+          <td class="table-column-radio" *ngIf="selectableRight || selectableRowsRight">
+            <input [id]="baseTableId + 'tbl-cell' + j + k" type="checkbox" [disabled]="isSelectDisabled || isRowDisabled(j)" (change)="onSelectionChange($event, j)" [checked]="!isRowDisabled(j) && (isSelected(j) || allChecked)"/>
+          </td>
+        </tr>
+
+        <tr class="expanded-content" *ngIf="isExpanded(j)">
+          <td [attr.colspan]="tableColumns.length + 1 + (selectable?1:0)">
+            <fox-table-expand-row [component]="dat.component" [data]="dat"></fox-table-expand-row>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="tableData && tableData.length < 1" class="container-empty-table">
+    <img class='img-no-results' [src]="emptyStateImage"/>
+    <p class="title-empty-table">
+      <span>{{emptyStateTitle}}</span>
+    </p>
+    <p class="subtitle-empty-table">
+      <span>{{emptyStateSubtitle}}</span>
+    </p>
+  </div>
+
+  <div *ngIf="tableData && tableData.length >= 1 && (tableData  | filter : searchVal).length < 1" class="container-empty-table">
+    <img class='img-no-active-query' src="assets/img/no-active-query.svg"/>
+    <p class="title-empty-table">
+      <span>No results match criteria</span>
+    </p>
+    <p class="subtitle-empty-table">
+      <span>Broaden filters or search and try again</span>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<fox-modal [visible]="state.modalIsVisible" [largerMaxWidth]="true" modalTitle="Member Search Results" [noHorizontalScroll]="true" (closed)="clearEventClick()">
+  <div class="subtitle-section">
+    <span class="subtitle">
+      Select a Member # to proceed.
+    </span>
+  </div>
+  <div class="mat-table-section">
+    <mat-table class="table-member" #table [dataSource]="dataSource" matSort matPaginator>
+      <ng-container matColumnDef="isSelected">
+        <mat-header-cell class="header-cell cell-small" *matHeaderCellDef>
+          <span class="span-select-header">
+              Select
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="cell-small">
+          <input type="radio" class="span-cell btn-radio" (click)="memberSelected(element)"
+            [checked]="element.isSelected">
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="memberNumber">
+        <mat-header-cell class="header-cell member-number-cell cell-medium" id="memberNumber" *matHeaderCellDef
+          mat-sort-header>Member #</mat-header-cell>
+        <mat-cell class="member-number-cell cell-medium" *matCellDef="let element">
+          <span class="span-cell"><img class="img-member-number" src="assets/img/member-blue.svg" /></span>
+          <span tabindex="'-1'" id="member-number" class="span-member span-cell">
+            {{element.memberNumber}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell class="header-cell cell-lg" *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+        <mat-cell class="cell-lg" *matCellDef="let element">
+          <span class="span-cell">
+            {{element.name}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <mat-header-cell class="header-cell cell-lg" *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+        <mat-cell class="cell-lg" *matCellDef="let element">
+          <span class="span-cell">
+            {{element.addressLine1}}
+            <span *ngIf="element.addressLine2">
+              <br>
+              {{element.addressLine2}}
+            </span>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <mat-header-cell class="header-cell cell-medium" *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+        <mat-cell class="cell-medium" *matCellDef="let element">
+          <span class="span-cell">
+            {{element.city}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <mat-header-cell class="header-cell cell-small" *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+        <mat-cell class="cell-small" *matCellDef="let element">
+          <span class="span-cell">
+            {{element.state}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="zip">
+        <mat-header-cell class="header-cell cell-small" *matHeaderCellDef mat-sort-header>ZIP</mat-header-cell>
+        <mat-cell class="cell-small" *matCellDef="let element">
+          <span class="span-cell">
+            {{element.zip}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="addressType">
+        <mat-header-cell class="header-cell cell-medium" *matHeaderCellDef mat-sort-header>Address Type
+        </mat-header-cell>
+        <mat-cell class="cell-medium" *matCellDef="let element">
+          <span class="span-cell">
+            {{element.addressType}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="personType">
+        <mat-header-cell class="header-cell cell-medium" *matHeaderCellDef mat-sort-header>Person Type</mat-header-cell>
+        <mat-cell class="cell-medium" *matCellDef="let element">
+          <span class="span-cell" *ngIf="element.isAuxiliary">
+            {{element.personType}}
+          </span>
+          <span class="span-cell" *ngIf="!element.isAuxiliary"><img class="img-member-number" src="assets/img/member-blue.svg" /></span>
+          <span *ngIf="!element.isAuxiliary" tabindex="'-1'" id="member-number" class="span-member span-cell">
+            {{element.memberNumber}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row class="member-header" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="member-row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  <div class="button-section">
+    <button id="clear" name="clear" #clear type="button" class="btn btn-secondary btn-cancel margin-right-20"
+      (click)="clearEventClick()">Cancel</button>
+    <fox-loading-button id="enter" name="enter" #enter [buttonValue]="'Submit'" [buttonStatus]="loadingStatus"
+      [typeValue]="'button'" (buttonClick)="enterEventClick()" class="btn-submit" [useSmallerWidth]="true" [hasChevron]="false">
+    </fox-loading-button>
+  </div>
+</fox-modal>

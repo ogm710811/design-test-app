@@ -1,0 +1,368 @@
+<fox-section>
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Claim:</p>
+        <p class="txt-metadata-value txt-work-type">{{screenBean.m81clm}} </p>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Member ID:</p>
+        <p class="txt-metadata-value txt-work-type">{{screenBean.m81mid}} </p>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Last Maintenance Date:</p>
+        <p class="txt-metadata-value txt-work-type">{{screenBean.m81mdat}} </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Name:</p>
+        <p class="txt-metadata-value txt-work-type">{{screenBean.m81nam}} </p>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Last Maintenance Ions:</p>
+        <p class="txt-metadata-value txt-work-type">{{screenBean.m81mion}} </p>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Date to Quality:</p>
+        <p class="txt-metadata-value txt-work-type">{{screenBean.m81dtoq}} </p>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Sequence # :</p>
+        <p class="txt-metadata-value txt-work-type">{{screenBean.m81sloc}} - {{screenBean.m81snum}}</p>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Original Information</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Original Examiner Ions:</mat-label>
+        <input matInput id="txtM81OION" name="txtM81OION" #txtM81OION="ngModel" maxlength="6" size="6" type="text"
+          [(ngModel)]="screenBean.m81oion" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Elevated Quality:</mat-label>
+        <input matInput id="txtM81ELQ" name="txtM81ELQ" #txtM81ELQ="ngModel" maxlength="3" size="3" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81elq" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Original Errors:</mat-label>
+        <input matInput id="txtM81OER1" name="txtM81OER1" #txtM81OER1="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81oer1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81OER2" name="txtM81OER2" #txtM81OER2="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81oer2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81OER3" name="txtM81OER3" #txtM81OER3="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81oer3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81OER4" name="txtM81OER4" #txtM81OER4="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81oer4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81OER5" name="txtM81OER5" #txtM81OER5="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81oer5" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Original Error Removal:</mat-label>
+        <input matInput id="txtM81OREM" name="txtM81OREM" #txtM81OREM="ngModel" maxlength="1" size="1" type="text"
+          [(ngModel)]="screenBean.m81orem" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Original Reasons:</mat-label>
+        <input matInput id="txtM81ORQ1" name="txtM81ORQ1" #txtM81ORQ1="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81orq1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81ORQ2" name="txtM81ORQ2" #txtM81ORQ2="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81orq2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81ORQ3" name="txtM81ORQ3" #txtM81ORQ3="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81orq3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81ORQ4" name="txtM81ORQ4" #txtM81ORQ4="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81orq4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput id="txtM81ORQ5" name="txtM81ORQ5" #txtM81ORQ5="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81orq5" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Original Quality Ions:</mat-label>
+        <input matInput id="txtM81QION" name="txtM81QION" #txtM81QION="ngModel" maxlength="6" size="6" type="text"
+          [(ngModel)]="screenBean.m81qion" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Most Recent Information</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Most Recent Examiner Ions:</mat-label>
+        <input matInput id="txtM81LION" name="txtM81LION" #txtM81LION="ngModel" maxlength="6" size="6" type="text"
+          [(ngModel)]="screenBean.m81lion" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Date Completed:</mat-label>
+        <input matInput id="txtM81DCMP" name="txtM81DCMP" #txtM81DCMP="ngModel" maxlength="8" size="8" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81dcmp" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Most Recent Errors:</mat-label>
+        <input matInput id="txtM81RER1" name="txtM81RER1" #txtM81RER1="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rer1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RER2" name="txtM81RER2" #txtM81RER2="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rer2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RER3" name="txtM81RER3" #txtM81RER3="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rer3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RER4" name="txtM81RER4" #txtM81RER4="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rer4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RER5" name="txtM81RER5" #txtM81RER5="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rer5" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Most Recent Error Removal:</mat-label>
+        <input matInput id="txtM81RREM" name="txtM81RREM" #txtM81RREM="ngModel" maxlength="1" size="1" type="text"
+          [(ngModel)]="screenBean.m81rrem" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Most Recent Reasons:</mat-label>
+        <input matInput id="txtM81RRQ1" name="txtM81RRQ1" #txtM81RRQ1="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rrq1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRQ2" name="txtM81RRQ2" #txtM81RRQ2="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rrq2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRQ3" name="txtM81RRQ3" #txtM81RRQ3="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rrq3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRQ4" name="txtM81RRQ4" #txtM81RRQ4="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rrq4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRQ5" name="txtM81RRQ5" #txtM81RRQ5="ngModel" maxlength="2" size="2" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rrq5" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Most Recent Quality Ions:</mat-label>
+        <input matInput id="txtM81RQIO" name="txtM81RQIO" #txtM81RQIO="ngModel" maxlength="6" size="6" type="text"
+          [(ngModel)]="screenBean.m81rqio" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Revalidation Information</fox-section-title>
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Original Reval Errors:</mat-label>
+        <input matInput id="txtM81ORE1" name="txtM81ORE1" #txtM81ORE1="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81ore1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81ORE2" name="txtM81ORE2" #txtM81ORE2="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81ore2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81ORE3" name="txtM81ORE3" #txtM81ORE3="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81ore3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81ORE4" name="txtM81ORE4" #txtM81ORE4="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81ore4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81ORE5" name="txtM81ORE5" #txtM81ORE5="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81ore5" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Most Recent Reval Errors:</mat-label>
+        <input matInput id="txtM81RRE1" name="txtM81RRE1" #txtM81RRE1="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rre1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRE2" name="txtM81RRE2" #txtM81RRE2="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rre2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRE3" name="txtM81RRE3" #txtM81RRE3="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rre3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRE4" name="txtM81RRE4" #txtM81RRE4="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rre4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <input matInput id="txtM81RRE5" name="txtM81RRE5" #txtM81RRE5="ngModel" maxlength="2" size="2" type="text"
+          [(ngModel)]="screenBean.m81rre5" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Reval Ions:</mat-label>
+        <input matInput id="txtM81RION" name="txtM81RION" #txtM81RION="ngModel" maxlength="6" size="6" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rion" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Date to Reval:</mat-label>
+        <input matInput id="txtM81RDAT" name="txtM81RDAT" #txtM81RDAT="ngModel" maxlength="8" size="8" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rdat" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Reval Completed:</mat-label>
+        <input matInput id="txtM81RCDA" name="txtM81RCDA" #txtM81RCDA="ngModel" maxlength="8" size="8" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m81rcda" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 text-right margin-top-40">
+    <button id="clear" name="clear" #clear type="button" class="btn btn-default margin-right-20" (click)="clearEventClick()"
+      foxHotkey="alt+t">Reset (T)</button>
+    <button id="enter" name="enter" #enter type="button" class="btn btn-primary" (click)="enterEventClick()" foxHotkey="alt+e">Enter
+      (E)
+    </button>
+  </div>
+</fox-section>

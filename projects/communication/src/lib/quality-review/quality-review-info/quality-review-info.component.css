@@ -1,0 +1,139 @@
+.container-cancel-return {
+  margin-bottom: 25px;
+}
+
+.link-cancel-return {
+  text-decoration: none;
+}
+
+.img-cancel-return, .img-member-number {
+  margin-right: 7px;
+  width: 14px;
+  height: 14px;
+}
+
+.img-communication {
+  margin-right: 6px;
+  width: 14px;
+  height: 14px;
+}
+
+.row-small {
+  margin: 0 -10px;
+}
+
+.row-small > div[class*="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-equal-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-quality-member-info {
+  border-top: solid 3px #60A1EB;
+}
+
+.img-read-only {
+  width: 14px;
+  height: 14px;
+}
+
+.container-member-label {
+  color: #252C37;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: right;
+  margin-bottom: 6px;
+}
+
+.container-member-value {
+  color: #252C37;
+  line-height: 20px;
+  margin-bottom: 6px;
+}
+
+.container-member-image {
+  background: #00BCD6;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.btn-submit {
+  float: right;
+}
+
+.container-read {
+  border-bottom: 1px solid #E5EAEE;
+  width: 100%;
+  word-break: break-word;
+  margin-top: 25px;
+}
+
+.container-read .container-label-read-only {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.container-read .container-value-read-only {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 5px;
+  min-height: 16px;
+}
+
+.container-communication-details-title,
+.container-quality-review-title,
+.container-quality-reply-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.container-quality-replies {
+  margin-top: 25px;
+}
+
+.container-error-codes {
+  margin-top: 25px;
+}
+
+.span-mem-circle {
+  background: #00BCD6;
+  border-radius: 100%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin-right: 7px;
+}
+
+.span-rep-circle {
+  background: #60A1EB;
+  border-radius: 100%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+.span-mem-circle img,
+.span-rep-circle img{
+  height: 11.43px;
+  margin-left: calc((20px - 11.43px) / 2);
+  width: 11.43px;
+}
+
+@media (max-width: 767px) {
+  .container-member-label {
+    text-align: left;
+  }
+}
+

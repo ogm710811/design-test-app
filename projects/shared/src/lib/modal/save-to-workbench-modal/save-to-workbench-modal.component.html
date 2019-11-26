@@ -1,0 +1,173 @@
+<fox-modal [(visible)]="modalVisible" (visibleChange)="changeVisible($event)" [closable]="false"
+           modalTitle="Save to Workbench" [enableContentPadding]="false">
+  <fox-message-box [(visible)]="noRecordsErrorMessage" messageBoxTitle="Error"
+                   messageType="error">
+    No Records Found. Please refine your search criteria
+  </fox-message-box>
+  <div class="container-side-margin">
+    <p>
+      Find a user below or save to your own workbench
+    </p>
+    <mat-form-field class="fld-q-sel input-first-name">
+      <mat-label>First Name</mat-label>
+      <input maxlength="33" matInput class="input-value-first-name" [(ngModel)]="firstName"
+             [disabled]="workQueueBusinessIdTypeDescription === 'Claim-Number'
+             || workQueueQueue === 'ADD'
+             || workQueueQueue === 'ACC'">
+    </mat-form-field>
+    <mat-form-field class="fld-q-sel input-last-name">
+      <mat-label>Last Name</mat-label>
+      <input maxlength="33" matInput class="input-value-last-name" [(ngModel)]="lastName"
+             [disabled]="workQueueBusinessIdTypeDescription === 'Claim-Number'
+             || workQueueQueue === 'ADD'
+             || workQueueQueue === 'ACC'">
+    </mat-form-field>
+    <mat-form-field class="fld-q-sel input-msid">
+      <mat-label>MSID</mat-label>
+      <input maxlength="10" matInput class="input-value-msid" [(ngModel)]="msid"
+             [disabled]="workQueueBusinessIdTypeDescription === 'Claim-Number'
+             || workQueueQueue === 'ADD'
+             || workQueueQueue === 'ACC'">
+    </mat-form-field>
+    <button type="button" class="btn btn-tertiary btn-search btn-save-wrkbnch-search" (click)="searchUser()"
+            [disabled]="workQueueBusinessIdTypeDescription === 'Claim-Number'
+            || workQueueQueue === 'ADD'
+            || workQueueQueue === 'ACC'">Search
+    </button>
+  </div>
+
+  <div class="container-table" [ngClass]="{'container-table-workbench':isF5001Enabled && !(searchResult.length > 3)}" *ngIf="searchResult.length > 0">
+    <table class="table table-member-search">
+      <thead class="thead-default">
+        <tr>
+          <th class="column-radio"></th>
+          <th class="column-result-firstname" [foxLink] (linkPressed)="sort('firstName')"
+              [ngClass]="{'sorted-column-header':(column == 'firstName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>First Name</fox-table-header-sort>
+          </th>
+          <th class="column-result-lastname" [foxLink] (linkPressed)="sort('lastName')"
+              [ngClass]="{'sorted-column-header':(column == 'lastName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Last Name</fox-table-header-sort>
+          </th>
+          <th class="column-result-msid" [foxLink] (linkPressed)="sort('userName')"
+              [ngClass]="{'sorted-column-header':(column == 'userName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>MSID</fox-table-header-sort>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <ng-container
+        *ngFor="let dat of searchResult | orderBy:{property: column, direction: direction}; let j = index">
+        <tr [id]="'claim-message-result-tr-' + j">
+          <td class="column-radio">
+            <input type="radio" name="providerRadio" class="radio-user" (click)="selectedMsid = dat['userName']" [checked]="selectedMsid == dat['userName']"></td>
+          <td>{{dat['firstName']}}</td>
+          <td>{{dat['lastName']}}</td>
+          <td>{{dat['userName']}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container-side-margin container-bottom" [ngClass]="{'container-bottom-toggle':isF5001Enabled}">
+
+    <div *ngIf="!isF5001Enabled">
+      <mat-form-field class="textarea-reason">
+        <mat-label class="note-field-label">Reason for Assignment*</mat-label>
+        <mat-hint class="characters-left" align="end">{{200 - textarea.value.length}} characters
+          left
+        </mat-hint>
+        <textarea  matInput #textarea class="text-area-reason-content" (keyup)="onKeyUp()" [(ngModel)]="reasonContent"></textarea>
+
+      </mat-form-field>
+
+      <mat-form-field class="fld-q-sel dropdown-urgency">
+        <mat-label>Urgency*</mat-label>
+        <mat-select class="sel-q-sel save-wrkbnch-urgency" [(value)]="urgency">
+          <mat-option *ngFor="let option of urgencyOptions" [value]="option.id">
+            {{option.description}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="fld-q-sel input-follow-up-date">
+        <mat-label>Follow-Up Date</mat-label>
+        <input maxlength="10" matInput class="input-value-follow-up-date" [formControl]="followUpDateFormControl" [(ngModel)]="followUpDate" placeholder="MM/DD/YYYY" >
+        <mat-error *ngIf="followUpDateFormControl.hasError('date')">
+          {{followUpDateFormControl.getError('date')}}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="container-buttons">
+        <button (click)="onSavePressed('next')" *ngIf="displayTwoButtons()" id="btn-modal-save-next" class="btn btn-primary" type="button"
+                [disabled]="!selectedMsid || !urgency || !reasonContent || followUpDateFormControl.hasError('date') ||
+                !(textarea.value.length > 0 && textarea.value.length < 201)">Save & Get Next
+        </button>
+        <button (click)="onSavePressed('exit')" *ngIf="displayTwoButtons()" id="btn-modal-save-exit" class="btn btn-primary"
+                type="button"
+                [disabled]="!selectedMsid || !urgency || !reasonContent || followUpDateFormControl.hasError('date') ||
+                !(textarea.value.length > 0 && textarea.value.length < 201)">Save & Exit
+        </button>
+        <button (click)="onSavePressed('normal')" *ngIf="!displayTwoButtons()" id="btn-modal-confirm" class="btn btn-primary"
+                type="button"
+                [disabled]="!selectedMsid || !urgency || !reasonContent || followUpDateFormControl.hasError('date') ||
+                !(textarea.value.length > 0 && textarea.value.length < 201)">Save
+        </button>
+        <button type="button" id="btn-modal-cancel" class="btn btn-secondary"
+                (click)="changeVisible(false)">Cancel
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="isF5001Enabled">
+
+      <mat-form-field class="textarea-reason">
+        <mat-label class="note-field-label">Item Details</mat-label>
+        <mat-hint class="characters-left" align="end">{{20 - reasonInput.value.length}} characters left</mat-hint>
+        <input matInput #reasonInput class="text-area-reason-content" (keyup)="onKeyUp()" [(ngModel)]="reasonContent"/>
+      </mat-form-field>
+
+      <mat-form-field class="fld-q-sel dropdown-urgency">
+        <mat-label>Urgency*</mat-label>
+        <mat-select class="sel-q-sel save-wrkbnch-urgency" [(value)]="urgency">
+          <mat-option *ngFor="let option of urgencyOptions" [value]="option.id">
+            {{option.description}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="fld-q-sel input-follow-up-date">
+        <mat-label>Follow-Up Date</mat-label>
+        <input maxlength="10" matInput class="input-value-follow-up-date" [formControl]="followUpDateFormControl" [(ngModel)]="followUpDate" placeholder="MM/DD/YYYY">
+        <mat-error *ngIf="followUpDateFormControl.hasError('date')">
+          {{followUpDateFormControl.getError('date')}}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="container-buttons">
+        <button (click)="onSavePressed('next')" *ngIf="displayTwoButtons()" id="btn-modal-save-next" class="btn btn-primary"
+                type="button"
+                [disabled]="!selectedMsid || !urgency || followUpDateFormControl.hasError('date') ||
+                reasonInput.value.length > 20">Save & Get Next
+        </button>
+        <button (click)="onSavePressed('exit')" *ngIf="displayTwoButtons()" id="btn-modal-save-exit" class="btn btn-primary"
+                type="button"
+                [disabled]="!selectedMsid || !urgency || followUpDateFormControl.hasError('date') ||
+                reasonInput.value.length > 20">Save & Exit
+        </button>
+        <button (click)="onSavePressed('normal')" *ngIf="!displayTwoButtons()" id="btn-modal-confirm" class="btn btn-primary"
+                type="button"
+                [disabled]="!selectedMsid || !urgency || followUpDateFormControl.hasError('date') ||
+                reasonInput.value.length > 20">Save
+        </button>
+        <button type="button" id="btn-modal-cancel" class="btn btn-secondary"
+                (click)="changeVisible(false)">Cancel
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</fox-modal>

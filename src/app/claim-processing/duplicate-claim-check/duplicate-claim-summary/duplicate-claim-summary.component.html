@@ -1,0 +1,18 @@
+<fox-section>
+  <p>
+    <span class="header-summary">Summary of Duplicates Found</span>
+  </p>
+
+  <div *ngFor="let chosenBillLineKeyLocal of chosenBillLineKeyLocals">
+    <p>
+      <span class="span-bill-line-bold">Bill Line #{{chosenBillLineKeyLocal.billLine}} </span>
+      <span class="span-bill-line-normal"> {{chosenBillLineKeyLocal.legend}} </span>
+      <span class="span-bill-line-bold" *ngIf="chosenBillLineKeyLocal?.claimNum !== ''">Claim #{{chosenBillLineKeyLocal.claimNum}}</span>
+    </p>
+  </div>
+
+  <div class="container-buttons summary-container-buttons">
+    <button class="btn-secondary btn-summary-previous" (click)="hideSummary()">Previous (P)</button>
+    <button class="btn-primary btn-summary-submit" (click)="submit()">Submit (S)</button>
+  </div>
+</fox-section>

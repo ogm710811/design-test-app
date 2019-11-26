@@ -1,0 +1,31 @@
+.container-breadcrumb {
+  color: #196ECF;
+  padding: 8px 30px;
+  box-shadow: none;
+  font-size: 11px;
+}
+
+.nav-home a {
+  text-decoration: underline;
+  text-decoration-color: #252c37;
+  color: #252c37;
+  line-height: 1.3;
+}
+
+.span-current-page {
+  color: #252C37;
+  line-height: 1;
+}
+
+.icon-arrow-right {
+  height: 8px;
+  width: 8px;
+  margin: 0 7px 1px;
+}
+
+.link-breadcrumb-prev {
+  text-decoration: underline;
+  text-decoration-color: #252c37;
+  color: #252c37;
+  line-height: 1.3;
+}

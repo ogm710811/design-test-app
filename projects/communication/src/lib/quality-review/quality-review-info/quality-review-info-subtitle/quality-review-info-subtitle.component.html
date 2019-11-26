@@ -1,0 +1,24 @@
+<div class="container-claim-member">
+  <span *ngIf="memberName || account" class="container-claim">
+    <img class="img-claim" src="assets/img/member.svg"/>
+    <span class="span-user-info">
+      <span *ngIf="memberName" class="span-header">Member: <span class="span-member-name">{{memberName}}</span></span>
+      <span *ngIf="!!memberName && !!account" class="span-dash-color"> | </span>
+      <span *ngIf="account" class="span-user-no"><a [routerLink]="getUrl(account)" target="_blank" >{{account | formatMember}}</a></span>
+    </span>
+  </span>
+  <span *ngIf="communication" class="container-member">
+    <img class="img-claim" src="assets/img/mail-grey.svg"/>
+    <span class="span-user-info">
+      <span class="span-header">Communication: </span>
+      <span class="span-user-no">{{communication}}</span>
+    </span>
+  </span>
+  <span *ngIf="quality" class="container-member">
+    <img class="img-claim" src="assets/img/flag-grey-medium-dark.svg"/>
+    <span class="span-user-info">
+      <span class="span-header">Quality #: </span>
+      <span class="span-user-no">{{quality}}</span>
+    </span>
+  </span>
+</div>

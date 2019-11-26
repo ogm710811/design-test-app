@@ -1,0 +1,83 @@
+.btn-maintenance {
+  padding: 0;
+  border: 1px solid #196ECF;
+  border-radius: 3px;
+  font-weight: 500;
+  line-height: 13px;
+  font-size: 13px;
+  width: 140px;
+  height: 35px;
+}
+
+.span-margin-15 {
+  margin-right: 15px;
+  align-items: center;
+}
+
+.span-container-btn {
+  position: relative;
+  padding: 0;
+
+}
+
+.span-sus-btn {
+  position: relative;
+  padding-left: 15px;
+}
+
+.span-sus-float-btn {
+  position: relative;
+}
+
+.span-sus-right-btn {
+  position: relative;
+  padding-left: 15px;
+}
+
+.span-hotkey-label {
+  float: right;
+}
+
+.btn-suspend {
+  border: 1px solid #D3D3D3;
+  font-weight: 500;
+  line-height: 13px;
+  font-size: 13px;
+  height: 35px;
+}
+
+.img-caret-down {
+  -webkit-align-items: center;
+  align-items: center;
+  height: 34px;
+  padding: 14px 8px;
+  margin-right: -22px;
+  border-left: 1px solid #196ECF;
+}
+
+.menu-border-bottom {
+  border-bottom: 1px solid #D8D8D8;
+  padding-bottom: 12px;
+}
+
+.menu-border-padding {
+  padding-top: 12px;
+}
+
+.img-bullet {
+  height: 10px;
+  margin-right: 5px;
+  margin-bottom: 1px;
+}
+
+.span-second-btn {
+  position: relative;
+}
+
+.span-sus-float-btn {
+  position: relative;
+}
+
+
+
+

@@ -1,0 +1,360 @@
+<div class="container-grey-border no-padding table-bill-line">
+  <div class="container-hospital-line-table">
+    <table class="table table-hospital-bill-line">
+      <thead class="thead-default">
+      <tr>
+        <ng-container *ngIf="!isEobType">
+          <th [foxLink] (linkPressed)="sort('billLineNumber')" class="column-bill-line-num"
+              [ngClass]="{'sorted-column-header':(column === 'billLineNumber'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Bill Line #</fox-table-header-sort>
+          </th>
+          <th [foxLink] class="column-bill-type">
+            Bill Line Type
+          </th>
+          <th [foxLink]>
+            Plan Code
+          </th>
+          <th [foxLink] (linkPressed)="sort('prvType')"
+              [ngClass]="{'sorted-column-header':(column === 'prvType'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Type of Service</fox-table-header-sort>
+          </th>
+          <th [foxLink]>
+            Rendering Provider
+          </th>
+          <th [foxLink] (linkPressed)="sort('srvFromDate')"
+              [ngClass]="{'sorted-column-header':(column === 'srvFromDate'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Date of Service From</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('srvToDate')"
+              [ngClass]="{'sorted-column-header':(column === 'srvToDate'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Date of Service To</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('srvDay')"
+              [ngClass]="{'sorted-column-header':(column === 'srvDay'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort># of Days</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('preXstInd')"
+              [ngClass]="{'sorted-column-header':(column === 'preXstInd'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Pre-Existing</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('icuDay')"
+              [ngClass]="{'sorted-column-header':(column === 'icuDay'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>ICU Days</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('srgryDate')"
+              [ngClass]="{'sorted-column-header':(column === 'srgryDate'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Date of Surgery</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareHspIhd')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareHspIhd'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Medicare Inpatient Deduct</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareHspDays1')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareHspDays1'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Hos Days</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareHspDays2')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareHspDays2'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Hos Coins</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareHspLtrDay')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareHspLtrDay'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Medicare LTR</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareSnfDays1')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareSnfDays1'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>SNF Days</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareSnfDays2')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareSnfDays2'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>SNF Coinsurance Days</fox-table-header-sort>
+          </th>
+          <th *ngIf="isF5191Enabled" [foxLink] (linkPressed)="sort('mcareSnfDays3')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareSnfDays3'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>SNF >100</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('blNoPayInd')"
+              [ngClass]="{'sorted-column-header':(column === 'blNoPayInd'), 'asc': !isDesc, 'desc': isDesc}">
+            No Pay
+          </th>
+          <th [foxLink]>
+            Benefit Amount
+          </th>
+          <th [foxLink] (linkPressed)="sort('accidentDate')"
+              [ngClass]="{'sorted-column-header':(column === 'accidentDate'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Date of Accident</fox-table-header-sort>
+          </th>
+          <th [foxLink]>
+            Billing Provider
+          </th>
+        </ng-container>
+
+        <ng-container *ngIf="isEobType">
+          <th class="col-toggle"></th>
+          <th [foxLink] (linkPressed)="sort('billLineNumber')"
+              [ngClass]="{'sorted-column-header':(column === 'billLineNumber'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Bill Line #</fox-table-header-sort>
+          </th>
+          <th [foxLink] class="column-bill-type">
+            Bill Line Type
+          </th>
+          <th [foxLink] (linkPressed)="sort('planCode')"
+              [ngClass]="{'sorted-column-header':(column === 'planCode'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Plan Code</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('serviceCode')"
+              [ngClass]="{'sorted-column-header':(column === 'serviceCode'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Type of Service</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('billProviderNm')"
+              [ngClass]="{'sorted-column-header':(column === 'billProviderNm'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Rendering Provider</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('serviceFromDate')"
+              [ngClass]="{'sorted-column-header':(column === 'serviceFromDate'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Date of Service From</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('serviceToDate')"
+              [ngClass]="{'sorted-column-header':(column === 'serviceToDate'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Date of Service To</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('serviceAccum1')"
+              [ngClass]="{'sorted-column-header':(column === 'serviceAccum1'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort># of Days</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('preXstInd')"
+              [ngClass]="{'sorted-column-header':(column === 'preXstInd'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Pre-Existing</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('serviceAccum2')"
+              [ngClass]="{'sorted-column-header':(column === 'serviceAccum2'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>ICU Days</fox-table-header-sort>
+          </th>
+          <th [foxLink]>
+            Date of Surgery
+          </th>
+          <th [foxLink] (linkPressed)="sort('hspSnfDayInd')"
+              [ngClass]="{'sorted-column-header':(column === 'hspSnfDayInd'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Medicare Inpatient Deduct</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareHspDays1')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareHspDays1'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Hos Days</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('mcareHspDays2')"
+              [ngClass]="{'sorted-column-header':(column === 'mcareHspDays2'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Hos Coins</fox-table-header-sort>
+          </th>
+          <th [foxLink]>
+            Medicare LTR
+          </th>
+          <th [foxLink]>
+            SNF Days
+          </th>
+          <th [foxLink]>
+            SNF Coinsurance Days
+          </th>
+          <th *ngIf="isF5191Enabled" [foxLink] (linkPressed)="sort('serviceAccum1')"
+              [ngClass]="{'sorted-column-header':(column === 'serviceAccum1'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>SNF >100</fox-table-header-sort>
+          </th>
+          <th [foxLink]>
+            No Pay
+          </th>
+          <th [foxLink] (linkPressed)="sort('benefitAmount')"
+              [ngClass]="{'sorted-column-header':(column === 'benefitAmount'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Benefit Amount</fox-table-header-sort>
+          </th>
+          <th [foxLink]>
+            Date of Accident
+          </th>
+          <th [foxLink]>
+            Billing Provider
+          </th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngIf="!isEobType">
+        <ng-container *ngFor="let dat of billLinesResultSet; let j = index">
+          <tr [id]=" 'billLines-hospital-tr-' + j">
+            <td>
+              <span *ngIf="dat['enteredBillLineNumber']">{{dat['enteredBillLineNumber']}}</span>
+            </td>
+            <td>
+              <span>Entered</span>
+            </td>
+            <ng-container *ngFor="let key of dataKeys; let k = index" [ngSwitch]="k">
+              <td [id]=" 'billLines-hospital-tr-' + j + '-td-' + k" *ngIf="k !== 0 && ((isF5191Enabled &&  k < 21) || (!isF5191Enabled && k < 20))">
+                <div *ngSwitchCase="1"><span>{{dat['enteredPlanCode']}}</span></div>
+                <div *ngSwitchCase="2">
+                  <span *ngIf="dat['enteredTypeOfService']" focusable="false"
+                        class="glyphicon glyphicon-info-sign info-tooltip"
+                        [tooltip]="enteredServiceTypeToolTip" placement="bottom"
+                        (mouseover)="getServiceType(dat['enteredTypeOfService'])"></span>
+                  &nbsp;<span>{{dat['enteredTypeOfService']}}</span>
+                </div>
+                <div *ngSwitchCase="3" class="tooltip-render-npi">
+                  <span *ngIf="dat['enteredRenderingProv']" focusable="false"
+                        class="glyphicon glyphicon-info-sign info-tooltip"
+                        [tooltip]="enteredRenderNpiToolTip" placement="bottom"></span>
+                  &nbsp;<span>{{dat['enteredRenderingProv']}}</span>
+                </div>
+                <div *ngSwitchCase="4">
+                  <span>{{dat['enteredDosFromDate'] | date: 'MM/dd/yyyy'}}</span></div>
+                <div *ngSwitchCase="5"><span>{{dat['enteredDosToDate'] | date: 'MM/dd/yyyy'}}</span>
+                </div>
+                <div *ngSwitchCase="6"><span>{{dat['enteredNumOfDays']}}</span></div>
+                <div *ngSwitchCase="7"><span>{{dat['enteredPreExisting']}}</span></div>
+                <div *ngSwitchCase="8"><span>{{dat['enteredNumOfIcuDays']}}</span></div>
+                <div *ngSwitchCase="9">
+                  <span>{{dat['enteredDateOfSurgery']| date: 'MM/dd/yyyy'}}</span></div>
+                <div *ngSwitchCase="10"><span>{{dat['enteredMedicareInpatientDeductInd']}}</span>
+                </div>
+                <div *ngSwitchCase="11"><span>{{dat['enteredHospDays']}}</span></div>
+                <div *ngSwitchCase="12"><span>{{dat['enteredHospCoins']}}</span></div>
+                <div *ngSwitchCase="13"><span>{{dat['enteredMedicareLtr']}}</span></div>
+                <div *ngSwitchCase="14"><span>{{dat['enteredSnfDays']}}</span></div>
+                <div *ngSwitchCase="15"><span>{{dat['enteredSnfCoinDays']}}</span></div>
+                <div *ngSwitchCase="isF5191Enabled ? 16 : 99"><span>{{dat['enteredSnfGreaterThan100']}}</span></div>
+                <div *ngSwitchCase="isF5191Enabled ? 17 : 16"><span>{{dat['enteredNoPay']}}</span></div>
+                <div *ngSwitchCase="isF5191Enabled ? 18 : 17" class="currency-column"><span>{{dat['enteredBenefitAmt'] | currency : 'USD'}}</span>
+                </div>
+                <div *ngSwitchCase="isF5191Enabled ? 19 : 18">
+                  <span>{{dat['enteredDateOfAccident'] | date: 'MM/dd/yyyy'}}</span></div>
+                <div *ngSwitchCase="isF5191Enabled ? 20 : 19">
+                  <span *ngIf="dat['enteredBillingProvName']" focusable="false"
+                        class="glyphicon glyphicon-info-sign info-tooltip"
+                        [tooltip]="enteredBillNpiToolTip" placement="bottom"></span>
+                  &nbsp;<span>{{dat['enteredBillingProvName']}}</span>
+                </div>
+                <ng-template #enteredBillNpiToolTip>
+                  <div><span class="tooltip-text-header">Billing Provider NPI</span><br><span
+                    class="tooltip-text-msg">{{dat['enteredBillingProvNpi']}}</span></div>
+                </ng-template>
+                <ng-template #enteredRenderNpiToolTip>
+                  <div><span class="tooltip-text-header">Rendering Provider NPI</span><br><span
+                    class="tooltip-text-msg">{{dat['enteredRenderingProvNpi']}}</span></div>
+                </ng-template>
+                <ng-template #enteredServiceTypeToolTip>
+                  <div><span class="tooltip-text-header">{{serviceTypeHeader}}</span><br><span
+                    class="tooltip-text-msg">{{serviceTypeDescr}}</span></div>
+                </ng-template>
+              </td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="isEobType">
+        <ng-container *ngFor="let dat of billLinesResultSet; let j = index">
+          <tr [id]=" 'billLines-hospital-tr-' + j"
+              [ngClass]="{'row-expand': (j === rowClicked && !isCollapse)}">
+            <td [id]=" 'billLines-hospital-tr-' + j + '-td-0'"
+                [ngClass]="{'border-expand': (j === rowClicked && !isCollapse && isBillLineMsg)}"
+                class="col-toggle">
+                <span *ngIf="dat['eobBillLineMessageCount'] > 0" [foxLink] class="clickable" [attr.aria-expanded]="!isCollapse" aria-controls="'#collapsedRow_'+j"
+                      (linkPressed)="billLineRowClick(dat.eobBillLineKey, j, isCollapse, dat.eobBillLineMessageCount)">
+                  <button type="button" class="btn-indicator" [disabled]="true">
+                    <span *ngIf="j !== rowClicked || isCollapse">
+                      <img class="icon-arrow-toggle" focusable="false" src="assets/img/arrow-right-blue.svg">
+                    </span>
+                    <span *ngIf="j === rowClicked && !isCollapse">
+                      <img class="icon-arrow-toggle" focusable="false" src="assets/img/arrow-down-blue.svg">
+                    </span>
+                  </button>
+                </span>
+            </td>
+            <ng-container *ngFor="let key of dataKeys; let k = index" [ngSwitch]="k">
+              <td [id]=" 'billLines-hospital-tr-' + j + '-td-' + k+1"
+                  *ngIf="((isF5191Enabled &&  k < 22) || (!isF5191Enabled && k < 21))">
+                <div class="column-bill-line-num" *ngSwitchCase="0">
+                  <span class="margin-right-20">{{dat['eobBillLineNumber']}}</span>
+                  <span class="section-msg-banner" *ngIf="dat['eobBillLineMessageCount'] > 0">
+                    <span>{{dat['eobBillLineMessageCount']}} Message<span *ngIf="dat['eobBillLineMessageCount'] > 1">s</span></span>
+                  </span>
+                </div>
+                <div *ngSwitchCase="1"><span *ngIf="dat['eobBillLineNumber']">EOB</span></div>
+                <div *ngSwitchCase="2"><span
+                  *ngIf="dat['eobPlanCode']">{{dat['eobPlanCode']}}</span></div>
+                <div *ngSwitchCase="3">
+                  <span *ngIf="isEobType && dat['eobTypeOfService']" focusable="false"
+                        class="glyphicon glyphicon-info-sign info-tooltip"
+                        [tooltip]="eobServiceTypeToolTip" placement="bottom"
+                        (mouseover)="getServiceType(dat['eobTypeOfService'])"></span>
+                  &nbsp;<span *ngIf="dat['eobTypeOfService']">{{dat['eobTypeOfService']}}</span>
+                </div>
+                <div *ngSwitchCase="4" class="tooltip-render-npi">
+                  <span *ngIf="isEobType && dat['eobRenderingProv']" focusable="false"
+                        class="glyphicon glyphicon-info-sign info-tooltip"
+                        [tooltip]="eobRenderNpiToolTip" placement="bottom"></span>
+                  &nbsp;<span *ngIf="dat['eobRenderingProv']">{{dat['eobRenderingProv']}}</span>
+                </div>
+                <div *ngSwitchCase="5"><span *ngIf="dat['eobDosFromDate']">{{dat['eobDosFromDate'] | date: 'MM/dd/yyyy'}}</span>
+                </div>
+                <div *ngSwitchCase="6"><span *ngIf="dat['eobDosToDate']">{{dat['eobDosToDate'] | date: 'MM/dd/yyyy'}}</span>
+                </div>
+                <div *ngSwitchCase="7"><span
+                  *ngIf="dat['eobNumOfDays']">{{dat['eobNumOfDays']}}</span></div>
+                <div *ngSwitchCase="8"><span
+                  *ngIf="dat['eobPreExisting']">{{dat['eobPreExisting']}}</span></div>
+                <div *ngSwitchCase="9"><span *ngIf="dat['eobNumOfIcuDays']">{{dat['eobNumOfIcuDays']}}</span>
+                </div>
+                <div *ngSwitchCase="10"><span *ngIf="dat['eobDateOfSurgery']">{{dat['eobDateOfSurgery'] | date: 'MM/dd/yyyy'}}</span>
+                </div>
+                <div *ngSwitchCase="11"><span *ngIf="dat['eobMedicareInpatientDeductInd']">{{dat['eobMedicareInpatientDeductInd']}}</span>
+                </div>
+                <div *ngSwitchCase="12"><span *ngIf="dat['eobHospDays']">{{dat['eobHospDays']}}</span>
+                </div>
+                <div *ngSwitchCase="13"><span *ngIf="dat['eobHospCoins']">{{dat['eobHospCoins']}}</span>
+                </div>
+                <div *ngSwitchCase="14"><span *ngIf="dat['eobMedicareLtr']">{{dat['eobMedicareLtr']}}</span>
+                </div>
+                <div *ngSwitchCase="15"><span *ngIf="dat['eobSnfDays']">{{dat['eobSnfDays']}}</span>
+                </div>
+                <div *ngSwitchCase="16"><span *ngIf="dat['eobSnfCoinDays']">{{dat['eobSnfCoinDays']}}</span>
+                </div>
+                <div *ngSwitchCase="isF5191Enabled ? 17 : 99"><span *ngIf="dat['eobSnfGreaterThan100']">{{dat['eobSnfGreaterThan100']}}</span>
+                </div>
+                <div *ngSwitchCase="isF5191Enabled ? 18 : 17"><span *ngIf="dat['eobNoPay']">{{dat['eobNoPay']}}</span>
+                </div>
+                <div *ngSwitchCase="isF5191Enabled ? 19 : 18" class="currency-column"><span *ngIf="dat['eobBenefitAmt']">{{dat['eobBenefitAmt'] | currency : 'USD'}}</span>
+                </div>
+                <div *ngSwitchCase="isF5191Enabled ? 20 : 19"><span *ngIf="dat['eobDateOfAccident']">{{dat['eobDateOfAccident'] | date: 'MM/dd/yyyy'}}</span>
+                </div>
+                <div *ngSwitchCase="isF5191Enabled ? 21 : 20">
+                  <span *ngIf="isEobType && dat['eobBillingProvName']" focusable="false"
+                        class="glyphicon glyphicon-info-sign info-tooltip"
+                        [tooltip]="eobBillNpiToolTip" placement="bottom"></span>
+                  &nbsp;<span *ngIf="dat['eobBillingProvName']">{{dat['eobBillingProvName']}}</span>
+                </div>
+                <ng-template #eobBillNpiToolTip>
+                  <div><span class="tooltip-text-header">Billing Provider NPI</span><br><span
+                    class="tooltip-text-msg">{{dat['eobBillingProvNpi']}}</span></div>
+                </ng-template>
+                <ng-template #eobRenderNpiToolTip>
+                  <div><span class="tooltip-text-header">Rendering Provider NPI</span><br><span
+                    class="tooltip-text-msg">{{dat['eobRenderingProvNpi']}}</span></div>
+                </ng-template>
+                <ng-template #eobServiceTypeToolTip>
+                  <div><span class="tooltip-text-header">{{serviceTypeHeader}}</span><br><span
+                    class="tooltip-text-msg">{{serviceTypeDescr}}</span></div>
+                </ng-template>
+              </td>
+            </ng-container>
+          </tr>
+          <tr *ngIf="j===rowClicked && isBillLineMsg" id="collapsedRow_{{j}}" [collapse]="isCollapse" class="container-tr">
+            <td colspan="22" [ngClass]="{'container-bill': !isCollapse }" *ngIf="!isCollapse">
+              <div *ngIf="!isBillLineDataDisplay" class="container-load">Loading...</div>
+              <div *ngIf="isBillLineDataDisplay"><p><span class="title-billLines-msg">Bill Line Messages</span>
+              </p></div>
+              <fox-bill-lines-messages *ngIf="isBillLineDataDisplay"
+                                       [billLinesResults]="billLinesResults"></fox-bill-lines-messages>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

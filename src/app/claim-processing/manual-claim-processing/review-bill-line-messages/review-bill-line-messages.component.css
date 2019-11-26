@@ -1,0 +1,27 @@
+.container-return-prev-page {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+}
+
+.span-return-prev-page {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  font-weight: 500;
+  top: 7px;
+  cursor: pointer;
+}
+
+.container-reviewmsg-card-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  padding: 20px 20px 0 20px;
+}
+
+.container-reviewmsg-card-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  padding: 0 0 25px 20px;
+}

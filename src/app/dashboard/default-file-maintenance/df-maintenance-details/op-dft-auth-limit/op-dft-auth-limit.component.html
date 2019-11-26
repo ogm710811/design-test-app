@@ -1,0 +1,323 @@
+<div class="row">
+  <div class="col-xs-12 container-div-return-prev">
+    <span (click)="returnEventClick()"
+          foxHotkey="ctrl+f1"
+          hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Cancel and Return (F1)</span>
+    </span>
+  </div>
+</div>
+<form (ngSubmit)="enterEventClick()">
+  <fox-section [paddingBottom23px]="true">
+    <div class="container-ions-title">
+      <fox-section-title>Authority Limit Details</fox-section-title>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs">
+        <fox-input type="text"
+                   id="txtM83AUTV"
+                   name="txtM83AUTV"
+                   labelText="{{rpdma83.m83autl | titlecase}}"
+                   isReadOnly = "true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   inputValue="{{rpdma83.m83autv}}">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs-xs">
+        <fox-input type="text"
+                   id="txtM83POSV"
+                   name="txtM83POSV"
+                   labelText="{{maintInputField.label}}"
+                   isReadOnly = "true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   inputValue="{{maintInputField.value}}">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs">
+        <fox-input type="text"
+                   id="txtM83MION"
+                   name="txtM83MION"
+                   labelText="IONS"
+                   isReadOnly = "true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   inputValue="{{rpdma83.m83mion}}">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-xs">
+        <fox-input type="text"
+                   id="txtM83MDAT"
+                   name="txtM83MDAT"
+                   labelText="Last Maintenance Date"
+                   isReadOnly = "true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   inputValue="{{rpdma83.m83mdat}}">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [paddingBottom23px]="true">
+    <div class="container-ions-title">
+      <fox-section-title>Default Authority Limit</fox-section-title>
+      <div *ngIf="rpdma83.m83func === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83DINS"
+                   name="txtM83DINS"
+                   labelText="Deceased Insureds"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83dinsInd === 'Y'"
+                   (input)="onEventChange('m83dins', $event, 'm83dinsInd')"
+                   [(ngModel)]="rpdma83.m83dins"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83EXSC"
+                   name="txtM83EXSC"
+                   labelText="Exception Screen"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83exscInd === 'Y'"
+                   (input)="onEventChange('m83exsc', $event, 'm83exscInd')"
+                   [(ngModel)]="rpdma83.m83exsc"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83FOPR"
+                   name="txtM83FOPR"
+                   labelText="Foreign Provider"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83foprInd === 'Y'"
+                   (input)="onEventChange('m83fopr', $event, 'm83foprInd')"
+                   [(ngModel)]="rpdma83.m83fopr"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83WAPR"
+                   name="txtM83WAPR"
+                   labelText="Waiver of Premium"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83waprInd === 'Y'"
+                   (input)="onEventChange('m83wapr', $event, 'm83waprInd')"
+                   [(ngModel)]="rpdma83.m83wapr"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs container-fox-inputs-in-between">
+        <fox-input type="text"
+                   id="txtM83PADJ"
+                   name="txtM83PADJ"
+                   labelText="Payment Adjustments"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83padjInd === 'Y'"
+                   (input)="onEventChange('m83padj', $event, 'm83padjInd')"
+                   [(ngModel)]="rpdma83.m83padj"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83MSLT"
+                   name="txtM83MSLT"
+                   labelText="Med Supp When Ltr Days Exhausted"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83msltInd === 'Y'"
+                   (input)="onEventChange('m83mslt', $event, 'm83msltInd')"
+                   [(ngModel)]="rpdma83.m83mslt"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs container-fox-inputs container-fox-inputs-in-between">
+        <fox-input type="text"
+                   id="txtM83CLAG"
+                   name="txtM83CLAG"
+                   labelText="Claim Aggregate"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83clagInd === 'Y'"
+                   (input)="onEventChange('m83clag', $event, 'm83clagInd')"
+                   [(ngModel)]="rpdma83.m83clag"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs container-fox-inputs container-fox-inputs-in-between">
+        <fox-input type="text"
+                   id="txtM83POSD"
+                   name="txtM83POSD"
+                   labelText="Period of Days"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83posdInd === 'Y'"
+                   (input)="onEventChange('m83posd', $event, 'm83posdInd')"
+                   [(ngModel)]="rpdma83.m83posd"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83SNFD"
+                   name="txtM83SNFD"
+                   labelText="SNF Confinement (In Days)"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83snfdInd === 'Y'"
+                   (input)="onEventChange('m83snfd', $event, 'm83snfdInd')"
+                   [(ngModel)]="rpdma83.m83snfd"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83PDNF"
+                   name="txtM83PDNF"
+                   labelText="PDN - 1st Payment"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83pdnfInd === 'Y'"
+                   (input)="onEventChange('m83pdnf', $event, 'm83pdnfInd')"
+                   [(ngModel)]="rpdma83.m83pdnf"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83PUPB"
+                   name="txtM83PUPB"
+                   labelText="Claim Aggregate"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83pupbInd === 'Y'"
+                   (input)="onEventChange('m83pupb', $event, 'm83pupbInd')"
+                   [(ngModel)]="rpdma83.m83pupb"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM83PSHF"
+                   name="txtM83PSHF"
+                   labelText="PDN Shifts"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83pshfInd === 'Y'"
+                   (input)="onEventChange('m83pshf', $event, 'm83pshfInd')"
+                   [(ngModel)]="rpdma83.m83pshf"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs">
+        <fox-input type="text"
+                   id="txtM83PLAN"
+                   name="txtM83PLAN"
+                   labelText="All Plans"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83planInd === 'Y'"
+                   (input)="onEventChange('m83plan', $event, 'm83planInd')"
+                   [(ngModel)]="rpdma83.m83plan"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section>
+    <div class="container-ions-title">
+      <fox-section-title>Cautions</fox-section-title>
+      <div *ngIf="rpdma83.m83func === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-6 col-sm-2 container-fox-inputs"
+           *ngFor="let mapCautions of rpdma83.mapCautions; let idx = index"
+           [ngClass]="{
+            'container-input-right': (idx % 6 === 0),
+            'container-right-xs': (idx % 2 === 0),
+            'container-input-left': (idx % 6 === 5),
+            'container-left-xs': (idx % 2 === 1),
+            'container-inputs': (idx % 6 !== 0 || idx % 5 !== 5)
+         }">
+        <fox-input type="text"
+                   id="txtM83CA{{idx}}"
+                   name="txtM83CA{{idx}}"
+                   labelText="Caution {{idx + 1}}"
+                   [isReadOnly]="rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [inputValue]="mapCautions.cauD"
+                   [isWarningState]="mapCautions.warning === 'Y'"
+                   (input)="onEventChangeCaution(idx, $event)"
+                   [(ngModel)]="mapCautions.cauD"
+                   length="2">
+        </fox-input>
+      </div>
+    </div>
+    <mat-divider [ngClass]="{'mat-divider-margins': rpdma83.m83func === 'UPDATE', 'mat-divider-margins-read-only': rpdma83.m83func !== 'UPDATE'}"></mat-divider>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-col-bottom">
+        <fox-input type="text"
+                   id="txtM83VLIT"
+                   name="txtM83VLIT"
+                   labelText="???"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83vlitInd === 'Y'"
+                   (input)="onEventChange('m83vlit', $event, 'm83vlitInd')"
+                   [(ngModel)]="rpdma83.m83vlit"
+                   length="9">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-col-bottom">
+        <fox-input type="text"
+                   id="txtM83VREP"
+                   name="txtM83VREP"
+                   labelText="???"
+                   [isReadOnly] = "rpdma83.m83func !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="rpdma83.m83func !== 'UPDATE'"
+                   [isWarningState]="rpdma83.m83vrepInd === 'Y'"
+                   (input)="onEventChange('m83vrep', $event, 'm83vrepInd')"
+                   [(ngModel)]="rpdma83.m83vrep"
+                   length="9">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+</form>
+<div *ngIf="rpdma83.m83func === 'UPDATE'">
+  <div class="container-buttons">
+    <button type="button"
+            class="btn btn-secondary button-margin"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button [buttonValue] = "'Submit (L)'"
+                        [buttonStatus]="continueStatus"
+                        [typeValue]="'submit'"
+                        [hasChevron]="true"
+                        [foxHotKeyValue]="'alt+l'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

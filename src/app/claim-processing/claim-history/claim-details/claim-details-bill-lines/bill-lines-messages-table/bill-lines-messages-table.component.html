@@ -1,0 +1,40 @@
+<table class="table table-bill-line-mgs">
+  <thead class="thead-default">
+  <tr class="header-bill-line">
+    <th>
+      <span class="column-code">Code</span>
+    </th>
+    <th>
+      <span class="column-message">Message</span>
+    </th>
+    <th>
+      <span class="column-created">Created</span>
+    </th>
+    <th>
+      <span class="column-author">Author</span>
+    </th>
+    <th>
+      <span class="column-modified">Modified</span>
+    </th>
+    <th>
+      <span class="column-mod-author">Modified Author</span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let dat of billLinesResults; let j = index">
+    <tr [id]=" 'billLines-msg-tr-' + j" class="bill-lines">
+      <td [id]=" 'billLines-msg-tr-' + j + '-td-1'">{{dat['messageCode']}}</td>
+      <td [id]=" 'billLines-msg-tr-' + j + '-td-2'">{{dat['messageText']}}</td>
+      <td [id]=" 'billLines-msg-tr-' + j + '-td-3'">{{dat['messageCreatedDate'] | date :
+        'MM/dd/yyyy'}}
+      </td>
+      <td [id]=" 'billLines-msg-tr-' + j + '-td-4'">{{dat['messageCreatedBy']}}</td>
+      <td [id]=" 'billLines-msg-tr-' + j + '-td-5'">{{dat['messageLastModifiedDate'] | date :
+        'MM/dd/yyyy'}}
+      </td>
+      <td [id]=" 'billLines-msg-tr-' + j + '-td-6'">{{dat['messageLastModifiedBy']}}</td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

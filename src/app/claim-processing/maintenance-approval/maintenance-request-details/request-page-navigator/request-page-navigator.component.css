@@ -1,0 +1,47 @@
+.container-goto {
+  height: 13px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 25px;
+}
+
+.container-link-1 {
+  padding-left: 0;
+  text-decoration: none;
+}
+
+.container-link-2 {
+  padding-right: 0;
+}
+
+.link-prev-result {
+  padding-right: 25px;
+  text-decoration: none;
+}
+
+.fa-chevron-right {
+  height: 10px;
+  width: 10px;
+  margin-left: 3px;
+  font-size: 13px;
+}
+
+.fa-chevron-left {
+  height: 10px;
+  width: 10px;
+  margin-right: 3px;
+  font-size: 13px;
+}
+
+.fa-arrow-left {
+  margin-right: 3px;
+  font-size: 12px;
+}
+
+.link-next-result {
+  text-decoration: none;
+}
+
+.containers-links {
+  float: right;
+}

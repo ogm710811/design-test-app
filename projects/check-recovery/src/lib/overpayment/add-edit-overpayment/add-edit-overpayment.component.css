@@ -1,0 +1,156 @@
+.full-width {
+  width: 100%;
+}
+
+.section-subtitle {
+  height: auto;
+  width: auto;
+  color: #b3b3b3;
+  margin-top: -5px;
+}
+
+.subtitle {
+  height: auto;
+  width: auto;
+  color: #6E7681;
+}
+
+.padding-right-15 {
+  padding-right: 15px;
+}
+
+.ovp-select-left {
+  padding-left: 0px;
+}
+
+.ovp-select-right {
+  padding-right: 0px;
+}
+
+.container-half-width {
+  width: 50%;
+}
+
+@media (max-width: 767px) {
+  .ovp-select-left {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .ovp-select-right {
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 25px;
+  }
+
+  .container-half-width {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+.div-table-section {
+  width: 100%;
+  height: 100%;
+  margin-top: 25px;
+}
+
+.img-member {
+  height: 14px;
+}
+
+.section-cancel {
+  margin-bottom: 25px;
+  margin-left: 15px;
+  padding-left: 0px;
+}
+
+.arrow-cancel {
+  height: 14px;
+  margin-right: 7px;
+}
+
+.link-cancel {
+  text-decoration: none;
+}
+
+.section-row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.button-section {
+  display: flex;
+  margin-bottom: 90px;
+  border-top: 1px solid #b3b3b3;
+  justify-content: flex-end;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.btn-clear {
+  margin-right: 15px;
+  margin-top: 25px;
+  height: 39px;
+  width: 120px;
+}
+
+.btn-submit {
+  margin-top: 25px;
+  height: 39px;
+  width: 120px;
+}
+
+.dollar-icon {
+  height: 14px;
+  margin-right: 7px;
+}
+
+.section-op-amount {
+  display: flex;
+  background-color: #F1F5F8;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.op-amount {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.op-amounts-row {
+  display: flex;
+}
+
+.span-op-amounts-circle {
+  background: #21b01e;
+  border-radius: 100%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin-right: 7px;
+}
+
+.span-op-amounts-circle img {
+  height: 11.43px;
+  margin-left: calc((20px - 10px) / 2);
+  width: 11.43px;
+  margin-top: 2px;
+}
+
+.div-container-amounts {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 0 #E3E6E8;
+  margin-bottom: 25px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.div-input-section {
+  padding: 20px 20px 0px 20px;
+}

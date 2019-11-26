@@ -1,0 +1,16 @@
+<div *ngIf="data.claimNumber || data.memberNumber" class="container-claim-member">
+  <span *ngIf="data.claimNumber" class="container-text container-claim">
+    <span>
+      <img class="img-claim" src="/assets/img/claim.svg"/>
+      <span class="span-header">Claim #: </span>
+      <span class="span-member-data">{{data.claimNumber}}</span>
+    </span>
+  </span>
+  <span *ngIf="data.memberNumber" class="container-text container-member">
+    <span>
+      <img class="img-claim" src="/assets/img/member.svg"/>
+      <span class="span-member-number">Member #:</span>
+      <span class="text-user-no">{{data.memberNumber}}</span>
+    </span>
+  </span>
+</div>

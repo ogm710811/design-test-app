@@ -1,0 +1,40 @@
+
+.btn-clear {
+    height: 39px; 
+    font-size: 14px;
+    color: #196ECF;
+    border-color: #196ECF;
+    width: 120px;
+}
+
+.section-subtitle {
+    height: auto;
+    width: auto;
+    color: #b3b3b3;
+    margin-top: -5px;
+}
+
+.subtitle {
+    height: auto;
+    width: auto;
+    color: #6E7681;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.no-padding-left {
+    padding-left: 0px;
+}
+
+.no-padding-right {
+    padding-right: 0px;
+}
+.custom-label {
+    font-weight: 600;
+    color: #252C37;
+    margin-top: -5px;
+    font-size: 12px;
+    margin-left: 2px;
+}

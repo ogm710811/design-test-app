@@ -1,0 +1,8 @@
+.container-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-buttons .btn-primary {
+  margin-left: 15px;
+}

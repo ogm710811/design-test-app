@@ -1,0 +1,47 @@
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.img-arrow-left {
+  height: 14px;
+  width: 14px;
+  margin-right: 5px;
+}
+
+.container-row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.container-padding-block {
+  padding: 20px 20px 23px 20px;
+}
+
+.container-title-details {
+  margin-bottom: -10px;
+}
+
+.container-info-padding {
+  padding-top: 7px;
+}
+
+.container-padding-card {
+  padding-top: 2px;
+}
+
+.container-input {
+  padding: 18px 10px 0 10px;
+}
+
+.button-margin-right-15 {
+  margin-right: 15px;
+}
+
+

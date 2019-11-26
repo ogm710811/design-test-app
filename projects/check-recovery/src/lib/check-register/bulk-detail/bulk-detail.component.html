@@ -1,0 +1,68 @@
+<!-- Bulk Check Detail Page -->
+
+<fox-section class="bulk-detail-main">
+
+  <fox-section-title class="heading-height">Summary</fox-section-title>
+  <div class="row row-small row-eq-height">
+    <div class="col-xs-12 col-sm-2 container-series row-eq-height">
+      <div class="container-read-only">
+        <div class="label-read-only">Series</div>
+        <div class="value-read-only">{{checkSeries}}</div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 row-eq-height">
+      <div class="container-read-only">
+        <div class="label-read-only">Number</div>
+        <div class="value-read-only">{{checkNumber}}</div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-2 row-eq-height">
+      <div class="container-read-only">
+        <div class="label-read-only">Issue Date</div>
+        <div class="value-read-only">{{issueDate | date:'MM/dd/yy'}}</div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 row-eq-height">
+      <div class="container-read-only">
+        <div class="label-read-only">Check Status</div>
+        <div class="value-read-only">{{status | titlecase}}</div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-check-amount row-eq-height">
+      <div class="container-read-only">
+        <div class="label-read-only">Check Amount</div>
+        <div class="value-read-only">{{checkAmount | currency}}</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <fox-section-title>Bulk Check Items</fox-section-title>
+  <p class="p-description">Use Completed Checkboxes to track your progress, using the
+    Save Changes button to save selection</p>
+  <div class="container-table-bulk-check">
+    <fox-table [tableColumns]="tableColumns"
+               [tableData]="bulkDetailsTableData | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+               (columnChanged)="tableColumnCurrentSortKey = $event"
+               (directionChanged)="tableColumnCurrentSortDirection = $event"
+               (selectionChanged)="selectionChanged($event)"
+               [selectedIndexes]="completeIndices">
+    </fox-table>
+  </div>
+
+  <div class="container-paginator" [ngClass]="{'hide':!isDataDisplay}">
+    <fox-paginator-non-material [(pageSize)]="bulkCheckResultPageSize" #paginator
+                                [dataLengthInput]="bulkCheckResultPageDataLength"
+                                [pageTotal]="bulkCheckResultPageTotal"
+                                [(currentPage)]="currentBulkCheckPage"
+                                (currentPageChange)="calculateResults()"
+                                (pageSizeChange)="currentBulkCheckPage=0;calculateResults()">
+    </fox-paginator-non-material>
+  </div>
+</fox-section>
+<div class="container-buttons">
+  <button type="submit" class="btn btn-primary" (click)="completeSave()">
+    Save Changes
+  </button>
+</div>

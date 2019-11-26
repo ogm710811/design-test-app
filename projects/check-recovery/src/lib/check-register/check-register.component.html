@@ -1,0 +1,354 @@
+<div *ngIf="replaceSuccessMsg">
+  <fox-message-box [visible]="replaceSuccessMsg" messageBoxTitle="Replace Check"
+                   messageType="success">
+    Replace Transaction Processed Successfully.
+  </fox-message-box>
+</div>
+
+<div *ngIf="voidSuccessMsg">
+  <fox-message-box [visible]="voidSuccessMsg" messageBoxTitle="Void Check" messageType="success">
+    Void Transaction Processed Successfully.
+  </fox-message-box>
+</div>
+
+<div *ngIf="denySuccessMsg">
+  <fox-message-box [visible]="denySuccessMsg" messageBoxTitle="Deny Check" messageType="success">
+    Deny Transaction Processed Successfully.
+  </fox-message-box>
+</div>
+
+<div *ngIf="authorizeSuccessMsg">
+  <fox-message-box [visible]="authorizeSuccessMsg" messageBoxTitle="Authorize Check"
+                   messageType="success">
+    Authorize Transaction Processed Successfully.
+  </fox-message-box>
+</div>
+
+<fox-section>
+  <fox-section-title>
+    Search {{isF4764Enabled ? 'Parameters' : 'Options'}}
+  </fox-section-title>
+  <fox-section-subheader *ngIf="isF4764Enabled">
+    Search by claim, member, provider information, or check information.
+  </fox-section-subheader>
+  <div class="container-search-box check-register-main-top" [class.row]="isF4764Enabled">
+    <div [class.check-register-selection]="!isF4764Enabled">
+      <div *ngIf="isF4764Enabled">
+        <form [formGroup]="checkRegisterFormGroup" (ngSubmit)="search()">
+          <fox-input id="input-check-series"
+                     class="col-xs-12 col-sm-2"
+                     labelText="Check Series"
+                     [formControl]="checkRegisterFormGroup?.get('checkSeriesFormGroup')?.get('checkSeriesControl')">
+          </fox-input>
+          <fox-input id="input-check-num"
+                     class="col-xs-12 col-sm-3"
+                     labelText="Check #"
+                     [formControl]="checkRegisterFormGroup?.get('checkSeriesFormGroup')?.get('CheckRegisterNoControl')">
+          </fox-input>
+          <fox-input type="fox-date"
+                     placeholder="MMDDYYYY"
+                     id="input-check-issue-dt"
+                     class="col-xs-12 col-sm-2"
+                     labelText="Issue Date"
+                     programmaticFormat="MMDDYYYY"
+                     displayFormat="MMDDYYYY"
+                     [length]="8"
+                     [formControl]="checkRegisterFormGroup?.get('checkSeriesFormGroup')?.get('CheckRegisterIssueDateControl')">
+          </fox-input>
+          <div class="col-xs-12 col-sm-1 container-or"><div>or</div></div>
+          <fox-input type="fox-membership"
+                     id="input-acct-num"
+                     class="col-xs-12 col-sm-3"
+                     labelText="Account #"
+                     [formControl]="checkRegisterFormGroup?.get('accountNoFormGroup')?.get('CheckRegisterAccountNoControl')">
+          </fox-input>
+          <div class="col-xs-12 col-sm-1 container-or"><div>or</div></div>
+          <fox-input type="fox-claim"
+                     id="input-claim-num"
+                     class="col-xs-12 col-sm-3"
+                     labelText="Claim #"
+                     [formControl]="checkRegisterFormGroup?.get('claimOrBatchFormGroup')?.get('CheckRegisterClaimOrBatchControl')"
+                     [(ngModel)]="claimNumInput">
+          </fox-input>
+          <div class="col-xs-12 col-sm-1 container-or"><div>or</div></div>
+          <fox-input id="input-provider-tin"
+                     class="col-xs-12 col-sm-3"
+                     labelText="Provider TIN"
+                     [formControl]="checkRegisterFormGroup?.get('byProviderFormGroup')?.get('CheckRegisterPrvdrTINControl')">
+          </fox-input>
+          <fox-input id="input-provider-npi"
+                     class="col-xs-12 col-sm-3"
+                     labelText="Provider NPI"
+                     [formControl]="checkRegisterFormGroup?.get('byProviderFormGroup')?.get('CheckRegisterPrvdrNPIControl')">
+          </fox-input>
+          <div class="col-xs-12 container-btn-row">
+            <div class="container-btns">
+              <button type="button"
+                      id="btn-clear"
+                      class="btn btn-secondary"
+                      foxHotkey="alt+r"
+                      (click)="checkRegisterFormGroup?.reset()">
+                Clear (R)
+              </button>
+              <button type="submit"
+                      id="btn-search"
+                      [disabled]="checkRegisterFormGroup ? checkRegisterFormGroup.invalid : true"
+                      class="btn btn-primary btn-find"
+                      foxHotkey="alt+s">
+                Search (S)
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="!isF4764Enabled">
+        <mat-form-field class="autofocus-select col-sm-2">
+          <mat-label>Search Type</mat-label>
+          <mat-select [(ngModel)]="checkRegisterDropdown"
+                      (selectionChange)="switchForm(checkRegisterDropdown)">
+            <mat-option value="check_series">Check Series</mat-option>
+            <mat-option value="account_number">Account #</mat-option>
+            <mat-option value="claim_number">Claim #</mat-option>
+            <mat-option value="provider">Provider</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="!isF4764Enabled">
+        <form *ngIf="checkSeriesFormGroup && checkRegisterDropdown === 'check_series'"
+              class="non-mat-form-field"
+              novalidate
+              [formGroup]="checkSeriesFormGroup"
+              (ngSubmit)="searchData(checkSeriesFormGroup, checkRegisterDropdown)"
+              >
+          <mat-form-field *ngIf="checkRegisterDropdown === 'check_series'" class="col-sm-2">
+            <mat-label>Check Series</mat-label>
+            <input matInput #input maxlength="3" formControlName="checkSeriesControl" required>
+            <mat-error
+              *ngIf="checkSeriesFormGroup?.controls['checkSeriesControl']?.hasError('required')">
+              Check Series required for Find
+            </mat-error>
+            <mat-error
+              *ngIf="checkSeriesFormGroup?.controls['checkSeriesControl']?.hasError('minlength')">
+              Check Series must be 3 numeric characters
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-sm-2">
+            <mat-label>Check #</mat-label>
+            <input matInput #inputCheck maxlength="7" formControlName="CheckRegisterNoControl"
+                   required>
+            <mat-error
+              *ngIf="checkSeriesFormGroup?.controls['CheckRegisterNoControl']?.hasError('required')">
+              Check # required for Find
+            </mat-error>
+            <mat-error
+              *ngIf="checkSeriesFormGroup.controls['CheckRegisterNoControl'].hasError('minlength')">
+              Check # must be 7 numeric characters
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field *ngIf="checkRegisterDropdown === 'check_series'" class="col-sm-2">
+            <mat-label>Issue Date</mat-label>
+            <input matInput formControlName="CheckRegisterIssueDateControl" required>
+            <mat-error
+              *ngIf="checkSeriesFormGroup.controls['CheckRegisterIssueDateControl'].hasError('required')">
+              Issue Date required for Find
+            </mat-error>
+            <mat-error
+              *ngIf="checkSeriesFormGroup.controls['CheckRegisterIssueDateControl'].hasError('date')">
+              {{checkSeriesFormGroup.controls['CheckRegisterIssueDateControl'].getError('date')}}
+            </mat-error>
+          </mat-form-field>
+          <div class="non-mat-button col-sm-2">
+            <button class="btn btn-primary btn-find" mat-raised-button type="submit"
+                    foxHotkey="alt+s">Search (S)
+            </button>
+          </div>
+        </form>
+
+        <form *ngIf="accountNoFormGroup && checkRegisterDropdown === 'account_number'"
+              class="non-mat-form-field"
+              [formGroup]="accountNoFormGroup"
+              (ngSubmit)="searchData(accountNoFormGroup, checkRegisterDropdown)"
+              novalidate>
+          <mat-form-field class="col-sm-2">
+            <mat-label>Account #</mat-label>
+            <input matInput #input maxlength="10" formControlName="CheckRegisterAccountNoControl"
+                   required>
+            <mat-error *ngIf="accountNoFormGroup?.controls?.CheckRegisterAccountNoControl.invalid">
+              Account Number must be 10 numeric characters
+            </mat-error>
+          </mat-form-field>
+          <div class="non-mat-button">
+            <button class="btn btn-primary  btn-find" mat-raised-button type="submit"
+                    foxHotkey="alt+s">Search (S)
+            </button>
+          </div>
+        </form>
+
+        <form *ngIf="claimOrBatchFormGroup && checkRegisterDropdown === 'claim_number'"
+              class="non-mat-form-field"
+              novalidate
+              [formGroup]="claimOrBatchFormGroup"
+              (ngSubmit)="searchData(claimOrBatchFormGroup, checkRegisterDropdown)">
+          <mat-form-field class="col-sm-2">
+            <mat-label>Claim #</mat-label>
+            <input matInput #input maxlength="12" formControlName="CheckRegisterClaimOrBatchControl"
+                   [(ngModel)]="claimNumInput" required>
+            <mat-error
+              *ngIf="!claimOrBatchFormGroup.controls.CheckRegisterClaimOrBatchControl.valid">
+              Claim Number must be 12 numeric characters
+            </mat-error>
+          </mat-form-field>
+          <div class="non-mat-button">
+            <button class="btn btn-primary  btn-find" mat-raised-button type="submit"
+                    foxHotkey="alt+s">Search (S)
+            </button>
+          </div>
+        </form>
+
+        <form *ngIf="byProviderFormGroup && checkRegisterDropdown === 'provider'"
+              class="non-mat-form-field"
+              novalidate
+              [formGroup]="byProviderFormGroup"
+              (ngSubmit)="searchData(byProviderFormGroup,checkRegisterDropdown)">
+          <mat-form-field class="col-sm-2">
+            <mat-label>Provider TIN</mat-label>
+            <input matInput #input maxlength="9" formControlName="CheckRegisterPrvdrTINControl">
+            <mat-error *ngIf="!byProviderFormGroup.controls['CheckRegisterPrvdrTINControl'].valid">
+              TIN
+              must be 9 numeric characters
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-sm-2">
+            <mat-label>Provider NPI</mat-label>
+            <input matInput #input maxlength="10" formControlName="CheckRegisterPrvdrNPIControl">
+            <mat-error *ngIf="!byProviderFormGroup.controls['CheckRegisterPrvdrNPIControl'].valid">
+              NPI
+              must be 10 numeric characters
+            </mat-error>
+          </mat-form-field>
+          <div class="non-mat-button col-sm-2">
+            <button class="btn btn-primary btn-find" mat-raised-button type="submit"
+                    foxHotkey="alt+s">Search (S)
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true" class="check-register-search-result">
+  <fox-section-title class="container-padding">Search Results</fox-section-title>
+  <p class="container-subtitle">Please note: it can take up to 24 hours after a check is issued to appear in the check register.</p>
+  <div class="col-md-12 check-register-selection">
+    <p
+      *ngIf="(checkRegisterDropdown === 'account_number' || checkRegisterDropdown === 'claim_number' || checkRegisterDropdown === 'provider') && isPayeeNameMismatch === true">
+      All checks for a member must have the same payee</p>
+    <p
+      *ngIf="(checkRegisterDropdown === 'account_number' || checkRegisterDropdown === 'claim_number' || checkRegisterDropdown === 'provider') && isTinMismatch === true">
+      All checks for a provider must have the same TIN</p>
+  </div>
+
+  <div *ngIf="!isData" class="container-not-found">
+    <i focusable="false" class="fa fa-info-circle"></i>
+    <p class="header-container">No active query</p>
+    <p>Search by one of the available methods above to get started</p>
+  </div>
+
+  <div class="btn-div" [ngClass]="{'hide':!isData}">
+    <span class="label-selected">
+    {{checkedItems.length > 0 ? checkedItems.length : 'No'}} items selected:
+    </span>
+    <button type="submit" class="btn btn-secondary btn-go" (click)="postMultipleChecks()"
+            [disabled]="checkedItems.length < 1">Multiple Replacement
+    </button>
+  </div>
+
+  <div class="check-register-main" [ngClass]="{'hide':!isData}">
+    <div class="container-check-register-table-main">
+      <mat-table class="check-register-table" #table [dataSource]="dataSource" matSort matPaginator
+                 tabIndex="0">
+        <ng-container matColumnDef="replaceOrVoid">
+          <mat-header-cell *matHeaderCellDef [style.width]="50"></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <input type="checkbox"
+                   *ngIf="element.status === 'OUTSTANDING' && element.isBulk !== 'BULK' && dataSource.data.length >= 2 && element.payeeName !== 'PURGED CHECK'"
+                   (click)="selectCheckBox($event)" value="{{element.checkId}}"
+                   [checked]="isSelected(element.checkId)">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="checkNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Check #</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a [routerLink]="getUrlForCheck(element)" tabindex="0"><i focusable="false"
+                                                                      class="fas fa-sign-out-alt"></i>
+              {{element.checkSeries}}/{{element.checkNumber}}</a>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="issueDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.issueDate | date:'MM/dd/yy'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="claimAmount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Claim<br/>Amount</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.claimAmount | currency}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+          <mat-cell *matCellDef="let element" class="example-cell" [style.width]="200">
+            {{element.status | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="payeeName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Payee</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.payeeName}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="tin">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> TIN</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.tin}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="claimNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Claim #</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.claimNumber}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="accountNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Account #</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.accountNumber}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="checkAmount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Check<br/>Amount</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.checkAmount | currency}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="isBulk">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Check<br/>Type</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.isBulk}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator
+                     [length]="dataLength"
+                     [pageIndex]="currentPage"
+                     [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 20]" class="hide">
+      </mat-paginator>
+
+    </div>
+  </div>
+  <fox-paginator [(paginatorInput)]="paginatorObj" [pageSizeInput]="pageSize"
+                 [ngClass]="{'hide':!isData}"
+                 [dataLengthInput]="dataLength"></fox-paginator>
+
+</fox-section>

@@ -1,0 +1,66 @@
+.member-card-main.container-padding {
+  padding-top: 16px;
+}
+
+.user-icon {
+  padding-right: 10px;
+  color: #196ECF;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  bottom: 2px;
+}
+
+.full-name-text {
+  color: #196ECF;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.full-name-text a:hover {
+  text-decoration: none;
+}
+
+.claim-number-member-card {
+  color: #8691A3;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  padding-left: 10px;
+}
+
+.pull-right.action-icon {
+  color: #196ECF;
+  font-size: 20px;
+  padding-right: 20px;
+}
+
+.member-id-icon {
+  color: #196ECF;
+  font-size: 14px;
+  padding-right: 10px;
+}
+
+.member-id-text {
+  padding-right: 20px;
+  color: #196ECF;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.container-padding {
+  padding: 0;
+}
+
+.helper-text-member-card {
+  color: #8691A3;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.container-helper-text {
+  padding: 0;
+  margin-top: 10px;
+}

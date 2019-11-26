@@ -1,0 +1,36 @@
+.container-claim-member {
+  margin-bottom: 10px;
+}
+
+.span-header {
+  color: #252C37;
+  font-weight: 600;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.span-member-data {
+  font-size: 14px;
+}
+
+.text-user-no {
+  font-size: 14px;
+}
+
+.span-member-number {
+  color: #252C37;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.img-claim {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 5px;
+}
+
+.container-text {
+  margin-right: 10px;
+}

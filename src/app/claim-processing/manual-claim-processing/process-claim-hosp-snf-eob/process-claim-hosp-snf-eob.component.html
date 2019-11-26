@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev" (click)="pf1EventClick()">
+    <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+    <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0">Return to Previous (F1)</span>
+  </div>
+</div>
+<fox-section [noPadding]="true">
+  <div class="container-details-card-title"> {{detailsCardTitle}} </div>
+  <div class="container-details-subtitle"> {{detailsCardSubTitle}} </div>
+  <fox-table class="col-xs-12 col-sm-12 container-hosp-snf-no-padding"
+             #inputTable
+             [tableColumns]="hospSnfEobTableColumns"
+             [tableData]="hospSnfEobTableData"
+             [fixedFirstColumn]="true"
+             [fixedSecondColumn]="true">
+  </fox-table>
+</fox-section>
+<fox-section>
+  <div class="container-card-title"> {{summaryCardTitle}} </div>
+  <div class="container-subtitle"> {{summaryCardSubTitle}} </div>
+  <div class="container-hosp-snf-eob-summary">
+    <div class="col-xs-12 col-sm-7 container-summary-first-column">
+      <div class="container-summary-row-padding">
+        <div class="col-xs-12 col-sm-7 container-hosp-snf-no-padding">
+          <fox-input type="fox-currency"
+                     id="txtAssignMaxAmount"
+                     name="txtAssignMaxAmount"
+                     length="8"
+                     labelText="Assign Max Amount"
+                     class="col-xs-12 col-sm-12 fox-input-custom fox-input-padding-right"
+                     [(ngModel)]="screenBean.maxAmtAssignee"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-5 container-hosp-snf-no-padding">
+          <div class="container-read-only-irs">
+            <div class="container-hosp-snf-read-only container-irs-height">
+              <div id="lblReadonlyIRS" class="container-label-hosp-snf-read-only">IRS</div>
+              <div id="containerReadonlyIRS" class="container-value-hosp-snf-read-only">{{screenBean.irsBuwAmt}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7 container-hosp-snf-no-padding">
+          <fox-input type="fox-currency"
+                     id="txtAssignAdjust"
+                     name="txtAssignAdjust"
+                     length="8"
+                     labelText="Assign Adjust"
+                     class="col-xs-12 col-sm-12 fox-input-custom fox-input-padding-right"
+                     (keyup.enter)="enterEventClick()"
+                     [(ngModel)]="screenBean.assigneeAdj"></fox-input>
+        </div>
+      <div class="col-xs-12 col-sm-5 container-hosp-snf-no-padding">
+          <fox-input type="fox-claim"
+                     id="txtAdujustmentClaimNumber"
+                     name="txtAdujustmentClaimNumber"
+                     placeholder="12345-123456-1"
+                     labelText="Adjustment Claim #"
+                     class="col-xs-12 col-sm-12 fox-input-custom fox-input-padding-left"
+                     (keyup.enter)="enterEventClick()"
+                     [ngModelOptions]="{updateOn: 'blur'}"
+                     [(ngModel)]="screenBean.adjClmNum"></fox-input>
+        </div>
+      <div class="container-summary-row-padding">
+        <div class="col-xs-12 col-sm-7 container-assignee-total-benefit">
+          <div class="container-hosp-snf-read-only">
+            <div id="lblAssigneeTotalBenefit" class="container-label-hosp-snf-read-only">Assignee Total Benefit</div>
+            <div id="containerAssigneeTotalBenefit" class="container-value-hosp-snf-read-only"><img src="assets/img/Currency.svg" class="icon-currency-symbol" />{{screenBean.assgneeTotBene}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-divider">
+      <div class="visible-sm visible-md visible-lg hidden-xs container-left-border"></div>
+      <div class="hidden-sm visible-xs container-bottom-border"></div>
+    </div>
+    <div class="col-xs-12 col-sm-4 container-summary-third-column">
+      <div class="col-xs-12 container-hosp-snf-no-padding container-sub-total-read-only">
+        <div class="container-hosp-snf-read-only">
+          <div class="container-label-hosp-snf-read-only">Sub Total</div>
+          <div id="txtSubTotal" class="container-value-hosp-snf-read-only container-sub-total-value"><img src="assets/img/Currency.svg" class="icon-currency-symbol" />{{screenBean.subTotal}}</div>
+        </div>
+      </div>
+      <div class="col-xs-12 container-hosp-snf-no-padding">
+        <fox-input type="fox-currency"
+                   id="txtAdjustment"
+                   name="txtAdjustment"
+                   length="8"
+                   labelText="Adjustment"
+                   class="col-xs-12 col-sm-12 fox-input-custom container-hosp-snf-no-padding"
+                   (keyup.enter)="enterEventClick()"
+                   [(ngModel)]="screenBean.adjustment"></fox-input>
+      </div>
+      <div class="col-xs-12 container-hosp-snf-no-padding">
+        <div class="container-hosp-snf-read-only">
+          <div class="container-label-hosp-snf-read-only">Total Benefit</div>
+          <div id="txtTotalBenefit" class="container-value-hosp-snf-read-only"><img src="assets/img/Currency.svg" class="icon-currency-symbol" />{{screenBean.totalBene}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="form-row margin-top-20 text-right margin-bottom-20">
+  <button type="button" class="btn btn-secondary margin-right-20" (click)="clearBtnEventClick()" foxHotkey="alt+r" hotkeyAction="click">
+    Clear (R)
+  </button>
+  <fox-loading-button [buttonValue] = "'Continue (L)'" [buttonStatus]="buttonStatus" [hasChevron]="true" [typeValue]="'button'" [foxHotKeyValue]="'alt+l'" (buttonClick)="enterEventClick()" class="btn-submit"></fox-loading-button>
+</div>
+
+

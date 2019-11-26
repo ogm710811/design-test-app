@@ -1,0 +1,143 @@
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-Black.woff) format('woff'),
+  url(./svg/UHCSans-Black.svg) format('svg'),
+  url(./eot/UHCSans-Black.eot) format('embedded-opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-BlackItalic.woff) format('woff'),
+  url(./svg/UHCSans-BlackItalic.svg) format('svg'),
+  url(./eot/UHCSans-BlackItalic.eot) format('embedded-opentype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-Bold.woff) format('woff'),
+  url(./svg/UHCSans-Bold.svg) format('svg'),
+  url(./eot/UHCSans-Bold.eot) format('embedded-opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-BoldItalic.woff) format('woff'),
+  url(./svg/UHCSans-BoldItalic.svg) format('svg'),
+  url(./eot/UHCSans-BoldItalic.eot) format('embedded-opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-Heavy.woff) format('woff'),
+  url(./svg/UHCSans-Heavy.svg) format('svg'),
+  url(./eot/UHCSans-Heavy.eot) format('embedded-opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-HeavyItalic.woff) format('woff'),
+  url(./svg/UHCSans-HeavyItalic.svg) format('svg'),
+  url(./eot/UHCSans-HeavyItalic.eot) format('embedded-opentype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-Italic.woff) format('woff'),
+  url(./svg/UHCSans-Italic.svg) format('svg'),
+  url(./eot/UHCSans-Italic.eot) format('embedded-opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-Light.woff) format('woff'),
+  url(./svg/UHCSans-Light.svg) format('svg'),
+  url(./eot/UHCSans-Light.eot) format('embedded-opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-LightItalic.woff) format('woff'),
+  url(./svg/UHCSans-LightItalic.svg) format('svg'),
+  url(./eot/UHCSans-LightItalic.eot) format('embedded-opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-Medium.woff) format('woff'),
+  url(./svg/UHCSans-Medium.svg) format('svg'),
+  url(./eot/UHCSans-Medium.eot) format('embedded-opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-MediumItalic.woff) format('woff'),
+  url(./svg/UHCSans-MediumItalic.svg) format('svg'),
+  url(./eot/UHCSans-MediumItalic.eot) format('embedded-opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-Regular.woff) format('woff'),
+  url(./svg/UHCSans-Regular.svg) format('svg'),
+  url(./eot/UHCSans-Regular.eot) format('embedded-opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-SemiBold.woff) format('woff'),
+  url(./svg/UHCSans-SemiBold.svg) format('svg'),
+  url(./eot/UHCSans-SemiBold.eot) format('embedded-opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-SemiBoldItalic.woff) format('woff'),
+  url(./svg/UHCSans-SemiBoldItalic.svg) format('svg'),
+  url(./eot/UHCSans-SemiBoldItalic.eot) format('embedded-opentype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-UltraLight.woff) format('woff'),
+  url(./svg/UHCSans-UltraLight.svg) format('svg'),
+  url(./eot/UHCSans-UltraLight.eot) format('embedded-opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: UHCSans;
+  src: url(./woff/UHCSans-UltraLightItalic.woff) format('woff'),
+  url(./svg/UHCSans-UltraLightItalic.svg) format('svg'),
+  url(./eot/UHCSans-UltraLightItalic.eot) format('embedded-opentype');
+  font-weight: 200;
+  font-style: italic;
+}

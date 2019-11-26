@@ -1,0 +1,54 @@
+<fox-section [drawRectangle]="false" noPadding="true">
+  <form [formGroup]="claimSummarySearchFormGroup">
+    <div class="claim-summary">
+      <div class="form-row form-row-first">
+        <mat-form-field class="margin-right-20">
+          <mat-label>Member #</mat-label>
+          <input matInput placeholder="123456789 1 1" maxlength="13" formControlName="memberNo" required
+                 [ngModel]="memberIdInput | formatMemberNumber"
+                 (ngModelChange)="memberIdInput=$event">
+          <mat-error
+            *ngIf="(!claimSummarySearchFormGroup.controls['memberNo'].valid || !claimSummarySearchFormGroup.controls['memberNo'].hasError('required'))
+                    && claimSummarySearchFormGroup.controls['memberNo'].touched">
+            Required Field. Please Enter 11-digit member #
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="margin-right-20">
+          <mat-label>Date of Service From</mat-label>
+          <input maxlength="10" matInput [ngModel]="dosFromInput | dateFormat" (ngModelChange)="dosFromInput = $event" placeholder="MM/DD/YYYY" formControlName="dateOfServiceFrom" required>
+          <mat-error
+            *ngIf="claimSummarySearchFormGroup.controls['dateOfServiceFrom'].hasError('date')">
+            {{claimSummarySearchFormGroup.controls['dateOfServiceFrom'].getError('date')}}
+          </mat-error>
+          <mat-error
+            *ngIf="claimSummarySearchFormGroup.controls['dateOfServiceFrom'].hasError('required')">
+            Required field. Please Enter MMDDYYYY
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="margin-right-20">
+          <mat-label>Date of Service To</mat-label>
+          <input maxlength="10" matInput [ngModel]="dosToInput | dateFormat" (ngModelChange)="dosToInput = $event" placeholder="MM/DD/YYYY" formControlName="dateOfServiceTo" required>
+          <mat-error
+            *ngIf="claimSummarySearchFormGroup.controls['dateOfServiceTo'].hasError('date')">
+            {{claimSummarySearchFormGroup.controls['dateOfServiceTo'].getError('date')}}
+          </mat-error>
+          <mat-error
+            *ngIf="claimSummarySearchFormGroup.controls['dateOfServiceTo'].hasError('required')">
+            Required field. Please Enter MMDDYYYY
+          </mat-error>
+        </mat-form-field>
+        <div class="container-buttons">
+          <button type="button" (click)="onSubmit()"
+                  class="btn btn-primary margin-right-20"
+                  foxHotkey="alt+y" [disabled]="!claimSummarySearchFormGroup.valid">
+            Get Claim Summary (Y)
+          </button>
+          <button type="button" (click)="onSubmitForDrug()" class="btn btn-primary"
+                  foxHotkey="alt+m" [disabled]="!claimSummarySearchFormGroup.valid">
+            Get Drug Prescription Summary (M)
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</fox-section>

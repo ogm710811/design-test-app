@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev">
+    <img src="assets/img/arrow-left.svg"/>
+    <span class="span-return-prev">Return to Previous (F1)</span>
+  </div>
+</div>
+<fox-section [noPadding]="true">
+  <fox-loading-overlay>
+    <div class="container-details-card-title">EOB Details</div>
+    <div class="container-details-subtitle">Use Alt + K to copy an Assign. Ind value down to the rows below.</div>
+    <fox-table class="col-xs-12 col-sm-12 container-drugeob-nopadding"
+               #inputtable
+               [tableColumns]="drugEobTableColumns"
+               [tableData]="drugEobTableData"
+               [fixedFirstColumn]="true"
+               [fixedSecondColumn]="true">
+    </fox-table>
+  </fox-loading-overlay>
+</fox-section>
+<fox-section>
+  <fox-loading-overlay>
+    <div class="container-summary-card-title"> EOB Summary </div>
+    <div class="container-summary-subtitle">Tab or use arrows keys to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</div>
+    <div class="container-drugeob-summary">
+      <div class="col-xs-12 col-sm-7 container-drugeobsum-firstcol">
+        <div class="container-summary-row-padding">
+        <div class="col-xs-12 col-sm-7 container-drugeob-nopadding">
+          <fox-input type="fox-currency"
+                     id="txtAssignMaxAmount"
+                     name="txtAssignMaxAmount"
+                     length="8"
+                     labelText="Assign Max Amount"
+                     class="col-xs-12 col-sm-12 fox-input-custom fox-input-padding-right"
+                     (keyup.enter)="onSubmit()"
+                     [(ngModel)]="procClmDrugEob.assgnMaxAmt"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-5 container-drugeob-nopadding">
+          <div class="container-read-only-irs">
+            <div class="container-drugeob-read-only container-irs-height">
+              <div id="lblReadonlyIRS" class="drugeob-title-readonly">IRS</div>
+              <div id="containerReadonlyIRS" class="drugeob-value-readonly">--{{procClmDrugEob.buwAmt}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7 container-drugeob-nopadding">
+        <fox-input type="fox-currency"
+                   id="txtAssignAdjust"
+                   name="txtAssignAdjust"
+                   length="8"
+                   labelText="Assign Adjust"
+                   class="col-xs-12 col-sm-12 fox-input-custom fox-input-padding-right"
+                   (keyup.enter)="onSubmit()"
+                   [(ngModel)]="procClmDrugEob.assAdj"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-5 container-drugeob-nopadding">
+        <fox-input type="fox-claim"
+                   id="txtAdujustmentClaimNumber"
+                   name="txtAdujustmentClaimNumber"
+                   placeholder="12345-123456-1"
+                   labelText="Adjustment Claim #"
+                   class="col-xs-12 col-sm-12 fox-input-custom fox-input-padding-left"
+                   (keyup.enter)="onSubmit()"
+                   [ngModelOptions]="{updateOn: 'blur'}"
+                   [(ngModel)]="procClmDrugEob.adjClm"></fox-input>
+      </div>
+      <div class="container-summary-row-padding">
+        <div class="col-xs-12 col-sm-7 container-drugeob-nopadding container-assign-total-benefit">
+          <div class="container-drugeob-read-only">
+            <div id="lblAssigneeTotalBenefit" class="drugeob-title-readonly">Assignee Total Benefit</div>
+            <div id="containerAssigneeTotalBenefit" class="drugeob-value-readonly"><img src="assets/img/Currency.svg" class="icon-currency-symbol" />{{procClmDrugEob.totBen}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-divider">
+      <div class="visible-sm visible-md visible-lg hidden-xs container-left-border"></div>
+      <div class="hidden-sm visible-xs container-bottom-border"></div>
+    </div>
+    <div class="col-xs-12 col-sm-4 container-drugeobsum-thirdcol">
+      <div class="col-xs-12 container-drugeob-nopadding container-sub-total-read-only">
+        <div class="container-drugeob-read-only">
+          <div class="drugeob-title-readonly">Sub Total</div>
+          <div id="txtSubTotal" class="drugeob-value-readonly container-sub-total-value"><img src="assets/img/Currency.svg" class="icon-currency-symbol" />{{procClmDrugEob.subtotAmt}}</div>
+        </div>
+      </div>
+      <div class="col-xs-12 container-drugeob-nopadding">
+        <fox-input type="fox-currency"
+                   id="txtAdjustment"
+                   name="txtAdjustment"
+                   length="8"
+                   labelText="Adjustment"
+                   class="col-xs-12 col-sm-12 fox-input-custom container-drugeob-nopadding"
+                   (keyup.enter)="onSubmit()"
+                   [(ngModel)]="procClmDrugEob.adjAmt"></fox-input>
+      </div>
+      <div class="col-xs-12 container-drugeob-nopadding">
+        <div class="container-drugeob-read-only">
+          <div class="drugeob-title-readonly">Total Benefit</div>
+          <div id="txtTotalBenefit" class="drugeob-value-readonly"><img src="assets/img/Currency.svg" class="icon-currency-symbol" />{{procClmDrugEob.totBen}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </fox-loading-overlay>
+</fox-section>
+<div class="form-row margin-top-20 margin-top-27 text-right margin-bottom-20">
+  <button type="button" class="btn btn-secondary margin-right-20" (click)="clearEventClick()" foxHotkey="alt+r">Clear
+    (R)
+  </button>
+  <fox-loading-button [buttonValue]="'Continue (L)'" [buttonStatus]="buttonStatus" [typeValue]="'button'" [hasChevron]="true"
+                      [foxHotKeyValue]="'alt+l'" (buttonClick)="onSubmit()" class="btn-continue"></fox-loading-button>
+</div>
+

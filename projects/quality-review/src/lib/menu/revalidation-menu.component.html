@@ -1,0 +1,45 @@
+<fox-section>
+  <fox-loading-overlay>
+    <fox-section-title>{{titleQuality}}</fox-section-title>
+    <div class="section-subtitle">
+      <span class="subtitle">{{sectionSubtitle}}</span>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 margin-top-25">
+        <label class="custom-label">{{qualityDateLabel}}</label>
+        <fox-input type="fox-date" id="txtM75QUDA" name="txtM75QUDA" #txtM75QUDA="ngModel"
+          [(ngModel)]="screenBean.m75quda" placeholder="MM/DD/YYYY" displayFormat="MM/DD/YYYY"
+          programmaticFormat="MM/DD/YYYY" (keydown.enter)="enterEventClick()"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 margin-top-25">
+        <mat-form-field class="full-width">
+          <mat-label>{{locationLabel}}</mat-label>
+          <input matInput id="txtM75QULO" name="txtM75QULO" #txtM75QULO="ngModel" maxlength="3" size="3" type="text"
+            [(ngModel)]="screenBean.m75qulo" (keydown.enter)="enterEventClick()" />
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-3 margin-top-25">
+        <mat-form-field class="full-width">
+          <mat-label>{{qualityNumberLabel}}</mat-label>
+          <input matInput id="txtM75QUNO" name="txtM75QUNO" #txtM75QUNO="ngModel" maxlength="4" size="4" type="text"
+            [(ngModel)]="screenBean.m75quno" (keydown.enter)="enterEventClick()" />
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-3 margin-top-25">
+        <mat-form-field class="full-width">
+          <mat-label>{{ionsIDLabel}}</mat-label>
+          <input matInput id="txtM75QUID" name="txtM75QUID" #txtM75QUID="ngModel" maxlength="6" size="6" type="text"
+            [(ngModel)]="screenBean.m75quid" (keydown.enter)="enterEventClick()" />
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 margin-top-25 text-right">
+        <button id="clear" name="clear" #clear type="button" class="btn btn-secondary btn-clear margin-right-20"
+          (click)="clearEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)</button>
+        <fox-loading-button id="enter" name="enter" #enter [buttonValue]="'Submit (S)'" [buttonStatus]="loadingStatus"
+          [typeValue]="'button'" [foxHotKeyValue]="'alt+s'" (buttonClick)="enterEventClick()" class="btn-submit"
+          [useSmallerWidth]="true">
+        </fox-loading-button>
+      </div>
+    </div>
+  </fox-loading-overlay>
+</fox-section>

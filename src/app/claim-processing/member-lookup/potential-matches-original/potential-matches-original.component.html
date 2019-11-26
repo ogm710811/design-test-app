@@ -1,0 +1,280 @@
+<fox-section [borderLeftBlue]="true">
+  <div class="row claim-stat">
+    <div class="col-sm-2 claim-stat-title">
+      <div class="claim-stat-icon"><i focusable="false" class="fas fa-inbox"></i></div>
+      Claim Source:
+    </div>
+    <div class="col-sm-2">
+      <span
+        class="potential-matches-claim-source">{{claim.claimSource?claim.claimSource : 'N/A'}}</span>
+    </div>
+    <div class="col-sm-3 claim-stat-title claim-stat-right">
+      <div class="claim-stat-icon"><i focusable="false" class="fas fa-id-card"></i></div>
+      Transaction ID:
+    </div>
+    <div class="col-sm-5">
+    <span class="potential-matches-id">
+      <a *ngIf="claim.claimTrackingId && canViewImage" id="claim-tracking-id"
+         href="/#/ClaimSearchPdfComponent?claimQuery={{claim.claimTrackingId}}"
+         target="_blank">{{claim.claimTrackingId}}
+      </a>
+      <a id="claim-tracking-id" class="disabled" *ngIf="claim.claimTrackingId && !canViewImage">
+        {{claim.claimTrackingId}}
+      </a>
+      <span *ngIf="!claim.claimTrackingId">N/A</span>
+    </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 claim-stat-title">
+      <div class="claim-stat-icon"><i focusable="false" class="fas fa-hashtag"></i></div>
+      Potential Matches:
+    </div>
+    <div class="col-sm-2">
+      <span class="potential-matches-number">{{(displayedMatches.length) ? displayedMatches.length : 'N/A'}}</span>
+    </div>
+    <div class="col-sm-3 claim-stat-title claim-stat-right">
+      <div class="claim-stat-icon"><i focusable="false" class="fas fa-user-times"></i></div>
+      Bypass Reason:
+    </div>
+    <div class="col-sm-5">
+      <span class="potential-matches-reason">{{claim.bypassReason?claim.bypassReason : 'N/A'}}</span>
+    </div>
+  </div>
+</fox-section>
+
+<div id="potential-matches" class="potential-matches">
+  <div id='potential-match-container'>
+    <div id="potential-match-stats">
+      <fox-section [noPadding]="true">
+        <fox-section-title class="container-padding">
+          <ng-content select="fox-potential-matches-table-title"></ng-content>
+        </fox-section-title>
+        <table class="table" *ngIf="claim.claimTrackingId">
+          <thead class="thead-default">
+          <tr>
+            <th></th>
+            <th>Claim</th>
+            <th>Option #1</th>
+            <th>Option #2</th>
+            <th>Option #3</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Match Score</td>
+            <td></td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals">{{match.matchScore}}</td>
+          </tr>
+          <tr>
+            <td>Account Number</td>
+            <td>{{claim.membershipNumber}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.membershipNumber.substring(0,9) !== match.membershipNumber) &&
+                                       !(match.isEmpty())
+                           }">{{match.extendedMembershipNumber}}
+            </td>
+          </tr>
+          <tr>
+            <td>Medicare ID</td>
+            <td>{{claim.medicareId}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.medicareId !== match.medicareId) &&
+                                       !(match.isEmpty())
+                           }">{{match.medicareId}}
+            </td>
+          </tr>
+          <tr>
+            <td>MBI</td>
+            <td>{{claim.mbi}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true}">{{match.mbi}}
+            </td>
+          </tr>
+          <tr>
+            <td>First Name</td>
+            <td>{{claim.firstName}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.firstName !== match.firstName) &&
+                                       !(match.isEmpty())
+                           }">{{match.firstName}}
+            </td>
+          </tr>
+          <tr>
+            <td>Middle Name</td>
+            <td>{{claim.middleName}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.middleName !== match.middleName) &&
+                                       !(match.isEmpty())
+                           }">{{match.middleName}}
+            </td>
+          </tr>
+          <tr>
+            <td>Last Name</td>
+            <td>{{claim.lastName}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.lastName !== match.lastName) &&
+                                       !(match.isEmpty())
+                           }">{{match.lastName}}
+            </td>
+          </tr>
+          <tr>
+            <td>Date of Birth</td>
+            <td>{{claim.dateOfBirth}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.dateOfBirth !== match.dateOfBirth) &&
+                                       !(match.isEmpty())
+                           }">{{match.dateOfBirth}}
+            </td>
+          </tr>
+          <tr>
+            <td>Permanent Address</td>
+            <td>{{claim.permanentAddress}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true}">{{match.permanentAddress}}
+            </td>
+          </tr>
+          <tr>
+            <td>Temporary Address</td>
+            <td>{{claim.temporaryAddress}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true}">{{match.temporaryAddress}}
+            </td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>{{claim.gender}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.gender !== match.gender) && !(match.isEmpty())
+                           }">{{match.gender}}
+            </td>
+          </tr>
+          <tr>
+            <td>Date of Death</td>
+            <td>{{claim.dateOfDeath}}</td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [ngClass]="{'match-cell': true,
+                            'nomatch': (claim.dateOfDeath !== match.dateOfDeath) &&
+                                       !(match.isEmpty())
+                           }">{{match.dateOfDeath}}
+            </td>
+          </tr>
+          <tr>
+            <td>Account Status</td>
+            <td></td>
+            <td *ngFor="let match of displayedMatches; trackBy: matchEquals"
+                [class.match-cell]="true"><span *ngIf="match.accountStatus ==='Active'"
+                                                class="icon-active"><i focusable="false"
+                                                                       class="fas fa-check-circle"></i></span>{{match.accountStatus}}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="cell-opt-btn"></td>
+            <td *ngFor="let match of displayedMatches; let idx = index; trackBy: matchEquals"
+                class="cell-opt-btn text-center">
+              <button [disabled]="match.isEmpty()"
+                      [ngClass]="{'btn-disabled': match.isEmpty()}"
+                      [id]="'option' + (idx + 1)"
+                      [foxHotkey]="'alt+' + (idx + 1).toString()"
+                      [hotkeyDescription]="'Choose potential match #' + (idx + 1).toString() + ' as the match for the displayed claim'"
+                      (click)="onClickMatch(idx+1)" [name]="'option' + (idx + 1).toString()"
+                      class="btn btn-primary">Select ({{idx + 1}})
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="!(claim.claimTrackingId)" class="container-not-found">
+          <i focusable="false" class="fa fa-info-circle"></i>
+          <p class="header-container" *ngIf="queueType !== 'BYPASS'">No Items remaining in Member
+            Lookup Queue</p>
+          <p class="header-container" *ngIf="queueType === 'BYPASS'">Make a selection to view bypass
+            items</p>
+          <p *ngIf="queueType === 'BYPASS'">Choose a bypass queue or enter a Transaction ID above</p>
+          <button class="btn btn-secondary btn-view-dashboard" (click)="goToDashboard()">
+            View Member Lookup Dashboard
+          </button>
+        </div>
+      </fox-section>
+    </div>
+  </div>
+  <fox-section class="container-buttons">
+    <div>
+      <button id="previous-record" (click)="showDialog = !showDialog"
+              [disabled]="!previousClaimNumber" class="btn btn-secondary"
+              [ngClass]="{'btn-disabled': !previousClaimNumber}"
+              foxHotkey="alt+p"
+              hotkeyDescription="Display the claim id number of the most recently completed claim for this session">
+        Previous Completed (P)
+      </button>
+
+      <button #noMatch id="no-match" (click)="onClickNoMatch()" class="btn btn-secondary"
+              [disabled]="!claim.claimTrackingId"
+              [ngClass]="{'btn-disabled': !claim.claimTrackingId}"
+              foxHotkey="alt+n"
+              hotkeyDescription="Submit that the currently displayed claim does not match any of the displayed potential matches">
+        No Match (N)
+      </button>
+
+      <button id="bypass" class="btn btn-secondary" (click)="bypassModal()"
+              [disabled]="!claim.claimTrackingId"
+              [ngClass]="{'btn-disabled': !claim.claimTrackingId}"
+              foxHotkey="alt+b" hotkeyDescription="Bypass the currently displayed claim">Bypass (B)
+      </button>
+
+      <button id="cancel" (click)="onClickCancel()" class="btn btn-secondary"
+              [disabled]="!claim.claimTrackingId"
+              [ngClass]="{'btn-disabled': !claim.claimTrackingId}"
+              foxHotkey="alt+l"
+              hotkeyDescription="Cancel your processing of the currently displayed claim">
+        Cancel (L)
+      </button>
+    </div>
+  </fox-section>
+
+  <fox-modal [(visible)]="showDialog" modalTitle="Previous Member Lookup">
+    Identification Number: <span class="previous-id-number">{{previousClaimNumber}}</span>
+  </fox-modal>
+
+  <fox-modal [(visible)]="showBypassModal" modalTitle="Reason for Bypass"
+             class="modal-bypass-reason">
+    <p>Select a "Reason for Bypass", or type an "Other Reason".</p>
+
+    <div class="alert-red-text" [ngClass]="{'show-alert':showBypassReasonRequiredAlert}">Please
+      select a "Reason for Bypass", or type an "Other Reason".
+      <div class="exclamationCircle"><i focusable="false" class="fas fa-exclamation-circle"></i>
+      </div>
+    </div>
+
+    <mat-form-field>
+      <mat-select [(value)]="bypassReasonDropdown"
+                  (selectionChange)="showBypassReasonRequiredAlert = false"
+                  [ngClass]="{'alert-red-border':showBypassReasonRequiredAlert}">
+        <mat-option value="none" disabled selected>Reason for Bypass</mat-option>
+        <mat-option class="fox-dropdown-option" value="Knowledge">Knowledge</mat-option>
+        <mat-option class="fox-dropdown-option" value="Maintenance">Maintenance</mat-option>
+        <mat-option class="fox-dropdown-option" value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <textarea *ngIf="bypassReasonDropdown ==='Other'" name="bypassReason"
+              class="txtbox-bypass-reason" placeholder="Other Reason" maxlength="25"
+              [(ngModel)]="bypassReasonText"
+              [ngClass]="{'alert-red-border':showBypassReasonRequiredAlert}"></textarea>
+
+    <button class="btn btn-primary btn-bypass" id="saveBypass" (click)="processSaveBypass()"
+            name="save">Save
+    </button>
+    <button class="btn btn-secondary btn-bypass btn-bypass-cancel" id="cancelBypass"
+            (click)="showBypassModal = !showBypassModal">Cancel
+    </button>
+  </fox-modal>
+</div>

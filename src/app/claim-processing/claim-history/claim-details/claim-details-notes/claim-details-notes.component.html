@@ -1,0 +1,106 @@
+<fox-section>
+  <fox-loading-overlay>
+    <div class="container-claim-detail-notes">
+    <div class="container-grey-border no-padding">
+    <div class="section-note-title">Claim Notes</div>
+    <div class="section-note-subtitle">Users may edit or delete their own notes</div>
+    <div class="section-note" *ngIf="isClaimNote && canViewNote">
+      <div class="section-note-log">
+        <span>
+          <span class="container-note-name">{{claimNoteDetails?.createdBy}}</span>
+          <span class="container-note-time"><i>Created {{claimNoteDetails?.createdDate}}</i></span>
+          <span class="icon-circle">&bull;</span>
+          <span class="container-note-name">{{claimNoteDetails?.lastModifiedBy}}</span>
+          <span class="container-note-time"><i>Modified {{claimNoteDetails?.lastModifiedDate}}</i></span>
+        </span>
+      </div>
+      <div class="container-note-details" *ngIf="!isEdit">
+        <div class="section-note-details" innerHtml="{{claimNote}}"></div>
+      </div>
+      <div *ngIf="toggleClaimNoteEditFeature && !isEdit && canEditNote && !isLocked">
+        <a (click)="editNote()" class="link-edit-note">
+          <span><img class="icon-note" src="assets/img/Edit.svg">Edit Note</span></a>
+        <a (click)="deleteNote()" class="link-delete-note">
+          <span><img class="icon-note" src="assets/img/Trash.svg">Delete Note</span></a>
+      </div>
+      <div *ngIf="!toggleClaimNoteEditFeature || isLocked">
+        <a class="link-edit-note-disabled">
+          <span><img class="icon-note" src="assets/img/edit-grey.svg">Edit Note</span></a>
+        <a class="link-delete-note-disabled">
+          <span><img class="icon-note" src="assets/img/trash-grey.svg">Delete Note</span></a>
+      </div>
+      <div class="container-edit-note" *ngIf="isEdit">
+        <mat-form-field class="textarea-claim-note-content">
+          <mat-label class="label-note-field"></mat-label>
+          <textarea matInput #textarea maxlength="256" [(ngModel)]="noteContent"></textarea>
+          <mat-hint class="container-textarea-hint" align="end">{{256 - textarea.value.length}}
+            characters left
+          </mat-hint>
+        </mat-form-field>
+        <div class="col-md-12 text-right container-note-btns">
+          <button type="button" class="btn btn-secondary btn-cancel" (click)="cancelNote()"
+                  foxHotkey="alt+r">Cancel
+          </button>
+          <button type="submit" class="btn btn-primary btn-submit" (click)="saveEditNote()"
+                  [disabled]="textarea.value.length == 0"
+                  foxHotkey="alt+s" [ngClass]="{'btn-disabled': textarea.value.length == 0}">Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isClaimNote || !canViewNote">
+      <div class="container-note-button">
+        <div class="container-not-found" *ngIf="!isAddition">
+          <span><img class="img-info" src="assets/img/information.svg"></span>
+          <p class="header-container">No claim notes found</p>
+          <button *ngIf="toggleClaimNoteEditFeature && canEditNote && !isLocked" type="button" class="btn btn-secondary btn-add-note btn-spacing"
+                  foxHotkey="alt+r" (click)="addNote()">Add New Claim Note
+          </button>
+          <button *ngIf="!toggleClaimNoteEditFeature || isLocked" type="button" class="btn btn-secondary btn-spacing"
+                  foxHotkey="alt+r" (click)="addNote()" [disabled]="true">Add New Claim Note
+          </button>
+        </div>
+      </div>
+      <div class=" row row-claim-note">
+        <div class="col-md-12 no-padding" *ngIf="isAddition">
+          <div class="col-md-10 container-note-add no-padding">
+            <mat-form-field class="textarea-claim-note-add">
+              <mat-label class="label-note-field"></mat-label>
+              <textarea matInput #textarea maxlength="256"
+                        placeholder="Write new note text here..."
+                        [(ngModel)]="noteContent"></textarea>
+              <mat-hint class="container-textarea-hint" align="end">{{256 - textarea.value.length}}
+                characters left
+              </mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-md-1 no-padding container-add-note-btns">
+            <button type="submit" class="btn btn-primary btn-submit-note" (click)="saveAddNote()"
+                    [disabled]="textarea.value.length == 0"
+                    foxHotkey="alt+s" [ngClass]="{'btn-disabled': textarea.value.length == 0}">Add New Note
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </fox-loading-overlay>
+</fox-section>
+
+<fox-modal [(visible)]="isDeleteModal" class="modal-delete" modalTitle="Delete Note"
+           [closable]="false">
+  <p class="container-del-txt">
+    By deleting this claim note, you will no longer have access to view it. This action cannot be
+    undone. Are you sure you wish to delete this claim note?
+  </p>
+  <div class="container-buttons">
+    <button type="button" id="btn-cancel-modal-cancel" class="btn btn-secondary btn-cancel-delete"
+            (click)="cancelDeleteNote()">Cancel
+    </button>
+    <button type="button" id="btn-cancel-modal-confirm" class="btn btn-primary btn-submit-delete"
+            (click)="confirmDeleteNote()">Delete
+    </button>
+  </div>
+</fox-modal>

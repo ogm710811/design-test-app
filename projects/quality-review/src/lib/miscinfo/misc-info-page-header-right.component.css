@@ -1,0 +1,69 @@
+.span-btn-pill {
+  position: relative;
+}
+
+.pill-btn .btn-button:hover {
+  background-color: #ECF4FE;
+}
+
+.pill-btn .btn-button {
+  padding: 0 0 0 8px;
+  border: 1px solid #196ECF;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 12px;
+  width: auto;
+  height: 30px;
+  margin-right: 20px;
+  min-width: 190px;
+  font-size: 13px;
+}
+
+.pill-btn .btn-button .caret-down {
+  width: 24px;
+  align-items: center;
+  height: 100%;
+  border-left:1px solid #196ECF;
+  padding: 0 8px;
+}
+
+.span-hotkey-label {
+  float: right;
+  color: #6E7681;
+}
+
+.img-pre-icon {
+  width: 13px;
+  height: 13px;
+  margin-top: -2px;
+}
+
+.btn-exit {
+  border: 1px solid #196ECF;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 12px;
+  width: auto;
+  height: 30px;
+  font-size: 13px;
+  padding: 0 8px;
+}
+
+.btn-text {
+  margin: 0 10px;
+  font-weight: 500;
+}
+
+::ng-deep .mat-menu-panel.menu-qr-related-info.mat-menu-after.mat-menu-below {
+  margin-top: 39px;
+  margin-left: -39px;
+  width: 100%;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane {
+  width: 240px;
+}

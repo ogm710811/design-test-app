@@ -1,0 +1,66 @@
+<!-- Purged Check Informtation Page -->
+<div class="go-back-link">
+  <a tabindex="0" (keyup.enter)="goBack()" (keyup.space)="goBack()" (click)="goBack()">
+    <i focusable="false" aria-hidden="true" class="fa fa-chevron-left"></i> Return to Check Register
+  </a>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-3">
+    <fox-section>
+      <fox-section-title class="container-color">Summary</fox-section-title>
+      <div class="container-summary">
+      <div class="container-read-only" class="container-summary-values">
+        <div class="label-read-only">Series</div>
+        <div class="value-read-only" class="container-summary-content">{{purgeDetails.checkSeries}}</div>
+      </div>
+      <div class="container-read-only" class="container-summary-values">
+      <div class="label-read-only">Number</div>
+      <div class="value-read-only" class="container-summary-content">{{purgeDetails.checkNumber}}</div>
+      </div>
+      <div class="container-read-only" class="container-summary-values">
+      <div class="label-read-only">Check status</div>
+      <div class="value-read-only" class="container-summary-content">{{purgeDetails.status.toString() | titlecase}}</div>
+      </div>
+      <div class="container-read-only" class="container-summary-values">
+      <div class="label-read-only">Issue Date</div>
+      <div class="value-read-only" class="container-summary-content">{{purgeDetails.issueDate | date:'MM/dd/yy'}}</div>
+      </div>
+      <div class="container-read-only" class="container-summary-values">
+      <div class="label-read-only">Purge Date</div>
+      <div class="value-read-only" class="container-summary-content">{{purgeDetails.purgeDate | date:'MM/dd/yy'}}</div>
+      </div>
+      <div class="container-read-only" class="container-summary-values">
+      <div class="label-read-only">Clearing Date</div>
+      <div class="value-read-only" class="container-summary-content">{{purgeDetails.cashDate}}</div>
+      </div>
+      <div class="container-read-only" class="container-summary-values">
+      <div class="label-read-only">Clearing Date</div>
+      <div class="value-read-only" class="container-summary-content">{{purgeDetails.cashDate | date:'MM/dd/yy'}}</div>
+      </div>
+      <div class="container-read-only" class="container-summary-values">
+      <div class="label-read-only">Check Amount</div>
+      <div class="value-read-only" class="container-summary-content">{{purgeDetails.checkAmount | currency}}</div>
+      </div>
+      </div>
+      </fox-section>
+
+  </div>
+  <div class="purge-check col-xs-12 col-sm-9">
+    <fox-section>
+      <fox-section-title class="title-purge-check">Purged Check List</fox-section-title>
+      <fox-table [tableColumns]="displayedColumns"  [tableData]="purgedCheckListData"> </fox-table>
+      <mat-paginator #paginator
+                     [length]="dataLength"
+                     [pageIndex]="currentPage"
+                     [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 20]" class="hide">
+      </mat-paginator>
+      <fox-paginator [(paginatorInput)]="paginatorObj" [pageSizeInput]="pageSize"
+                     [dataLengthInput]="dataLength"></fox-paginator>
+    </fox-section>
+</div>
+
+</div>
+<!-- Paginator Ends-->
+
+

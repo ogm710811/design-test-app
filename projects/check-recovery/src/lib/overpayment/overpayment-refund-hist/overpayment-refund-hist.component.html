@@ -1,0 +1,98 @@
+<div class="row col-xs-12 pull-left container-cancel-return">
+  <a class="link-cancel-return"
+     (click)="CancelEventClick()"
+     foxHotkey="ctrl+f1"
+     hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-cancel-return"/>
+    Cancel and Return (F1)
+  </a>
+</div>
+
+<fox-section>
+  <fox-section-title>
+    Refund Overview
+  </fox-section-title>
+  <div class="row row-small container-equal-height">
+    <div class="col-xs-12 col-sm-3 container-equal-height">
+      <div class="container-read container-refund-status">
+        <div class="container-label-read-only">
+          Status
+        </div>
+        <div class="container-value-read-only">
+          {{screenBean.ma1bStat}}
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-equal-height">
+      <div class="container-read">
+        <div class="container-label-read-only">
+          Claim #
+        </div>
+        <div class="container-value-read-only">
+          <img src="assets/img/claim-252c37.svg" class="img-refund"/>
+          <span>{{screenBean.ma1bClno}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-equal-height">
+      <div class="container-read">
+        <div class="container-label-read-only">
+          Provider Unresolved
+        </div>
+        <div class="container-value-read-only">
+          <img src="assets/img/currency-black.svg" class="img-refund"/>
+          <span>{{screenBean.ma1bProp}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-equal-height">
+      <div class="container-read">
+        <div class="container-label-read-only">
+          Insured Unresolved
+        </div>
+        <div class="container-value-read-only">
+          <img src="assets/img/currency-black.svg" class="img-refund"/>
+          <span>{{screenBean.ma1bImop}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>
+    Overpayment Refund Details & Updates
+  </fox-section-title>
+  <fox-section-subheader>
+    Tab or use arrow keys to navigate and update fields. Click “Submit” or use Alt + S or Enter to proceed.
+  </fox-section-subheader>
+  <div class="container-refund-table">
+    <fox-table #inputTable
+               [tableColumns]="refundColumns"
+               [tableData]="viewData">
+    </fox-table>
+  </div>
+  <div class="container-refund-paginator">
+    <fox-paginator-non-material #paginator
+                                [(pageSize)]="pageSizeSelected"
+                                [dataLengthInput]="dataLengthInput"
+                                [pageTotal]="pageTotal"
+                                [(currentPage)]="currentPage"
+                                (currentPageChange)="calculateNewPage();"
+                                (pageSizeChange)="currentPage=0; calculateNewPage();">
+    </fox-paginator-non-material>
+  </div>
+</fox-section>
+
+<div class="row">
+  <div class="col-xs-12">
+    <button id="Enter"
+            name="Enter"
+            type="submit"
+            foxHotkey="alt+s"
+            class="btn btn-primary btn-submit"
+            (click)="EnterEventClick()">
+      Submit Updates (S)
+    </button>
+  </div>
+</div>

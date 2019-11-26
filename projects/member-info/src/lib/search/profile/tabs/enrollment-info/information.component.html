@@ -1,0 +1,11 @@
+<!--Insurance Plan-->
+<fox-member-enrollment-info-insurance-parent
+  [membershipNumber]="membershipNumber">
+</fox-member-enrollment-info-insurance-parent>
+
+<!--Special handling Codes-->
+<fox-member-enrollment-info-handling-code
+  (specialHandlingCode)="displayActiveMsg($event)"
+  [isSpecialHCUpdated]="isSpecialHCUpdated"
+  [membershipNumber]="membershipNumber">
+</fox-member-enrollment-info-handling-code>

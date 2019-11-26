@@ -1,0 +1,157 @@
+<div class="container-workbench-content">
+  <fox-section [noPadding]="!isF4913Enabled" [drawRectangle]="!isF4913Enabled" class="section-workbench-summary">
+    <mat-form-field class="dropdown-user">
+      <div class="txt-user">User</div>
+      <mat-select [(value)]="user" [disabled]="!hasRole(EH_WQ)" (valueChange)="onChangeSelectedUser()">
+        <mat-option *ngFor="let user of allUsers" [value]="user">{{fullNameFor(user)}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <fox-section-title class="title-workbench-summary" id="title-workbench-summary">{{isF4913Enabled ? 'WORKBENCH ITEMS' : 'Items to Display'}}</fox-section-title>
+    <div class="div-workbench-all-item-types-summary"
+         (click)="getWorkbenchItems('All', undefined, undefined)"
+         [ngClass]="{'div-workbench-entry-selected': 'All' === selectedText}">
+      <div class="work-icon">
+        <img class="image-pnc" src="assets/img/work-item-grey.svg"/>
+        <span class="text-workbench-all-item-types">All Work</span>
+      </div>
+      <span class="text-workbench-item-type-count">{{workbenchItemTypeSummary}}</span>
+    </div>
+    <ng-container *ngFor="let itemType of workbenchItemTypeCounts">
+      <img class="image-pnc" src="assets/img/document-grey.svg"/>
+      <div class="div-workbench-item-type-summary"
+           (click)="getWorkbenchItems(itemType.name, itemType.name, undefined)"
+           [ngClass]="{'div-workbench-entry-selected': itemType.name === selectedText}">
+        <span class="text-workbench-item-type">{{itemType.name}}</span>
+        <span class="text-workbench-item-type-count">{{itemType.count}}</span>
+      </div>
+      <ng-container *ngFor="let category of itemType.category">
+        <div class="div-workbench-type-category-summary"
+             (click)="getWorkbenchItems(category.name, undefined, category.name)"
+             [ngClass]="{'div-workbench-entry-selected': category.name === selectedText}">
+          <span class="text-workbench-type-category">{{category.name}}</span>
+          <span class="text-workbench-type-category-count">{{category.count}}</span>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="margin-workbench-bottom"></div>
+  </fox-section>
+
+  <fox-section [noPadding]="isF4913Enabled" [drawRectangle]="isF4913Enabled" class="container-workbench-items">
+    <div class="div-workbench-header-sub-header">
+      <fox-section-title class="workbench-title">Workbench Items</fox-section-title>
+      <fox-section-subheader>Select a dropdown to work or re-assign an item. Use the checkboxes to re-assign multiple items.</fox-section-subheader>
+      <div *ngIf="!isF4913Enabled && displayWorkbenchItems.length === 0">
+        <fox-loading-overlay>
+          <i focusable="false" class="fa fa-info-circle"></i>
+          <p class="header-container">No workbench items to display</p>
+        </fox-loading-overlay>
+      </div>
+    </div>
+
+    <ng-container *ngIf="isF4913Enabled || displayWorkbenchItems.length > 0">
+      <fox-loading-overlay>
+        <ng-container *ngIf="isF4913Enabled">
+          <div class="container-ribbon">
+            <div class="ribbon-menu ribbon-menu-F4913" *ngIf="selectedWorkbenchItemList.length > 0">
+              <div class="ribbon-left">
+                <div *ngIf="selectedWorkbenchItemList.length === 1" class="link-ribbon" (click)="onWorkThisItemRibbon()">Work This Item</div>
+                <div class="link-ribbon" (click)="sendToWorkbenchRibbon()">Send to Workbench</div>
+                <div class="link-ribbon" (click)="routeToQueueRibbon()">Route to Queue</div>
+              </div>
+              <div class="ribbon-right">
+                <div class="label-selected">{{selectedWorkbenchItemList.length}} item<span
+                  *ngIf="selectedWorkbenchItemList.length > 1">s</span> selected
+                </div>
+                <div class="link-ribbon" (click)="workbenchTable.clearSelection(); selectedWorkbenchItemList=[]">
+                  Cancel
+                </div>
+              </div>
+            </div>
+          </div>
+          <fox-table #workbenchTable
+                     [tableColumns]="wbCols"
+                     [tableData]="currentTableData"
+                     [selectable]="true"
+                     [selectedKeepHeader]="true"
+                     [disabledIndexes]="disabledIndexes"
+                     [sortByColumn]="sortBy"
+                     emptyStateImage="assets/img/empty-workbench.svg"
+                     emptyStateTitle="No workbench items found"
+                     emptyStateSubtitle="You have no outstanding items. Nice work!"
+                     (columnChanged)="onSortColumnChange($event)"
+                     (directionChanged)="onSortDirectionChange($event)"
+                     (selectionChanged)="onTableSelectionChange($event)"
+                     (menuClicked)="menuClicked($event)">
+          </fox-table>
+          <ng-container *ngIf="displayWorkbenchItems.length > 0">
+            <fox-paginator-non-material [pageSize]="itemsPerPage"
+                                        [dataLengthInput]="numberOfElements"
+                                        [pageTotal]="totalPages"
+                                        [(currentPage)]="currentPage"
+                                        (currentPageChange)="setPage($event)"
+                                        (pageSizeChange)="perPageItemsChange($event)">
+            </fox-paginator-non-material>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!isF4913Enabled">
+          <div class="container-ribbon">
+            <div class="ribbon-menu" *ngIf="selectedWorkbenchItemList.length > 0">
+              <div class="ribbon-left">
+                <div class="link-ribbon" (click)="sendToWorkbenchRibbon()">Send to Workbench</div>
+                <div class="link-ribbon" (click)="routeToQueueRibbon()">Route to Queue</div>
+              </div>
+              <div class="ribbon-right">
+                <div class="label-selected">{{selectedWorkbenchItemList.length}} item<span
+                  *ngIf="selectedWorkbenchItemList.length > 1">s</span> selected
+                </div>
+                <div class="link-ribbon" (click)="cancelWorkBenchRibbon()">
+                  Cancel
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </fox-loading-overlay>
+    </ng-container>
+  </fox-section>
+</div>{{checkRefresh}}
+
+<fox-route-to-queue-modal [modalVisible]="routeToQueueModalVisible"
+                          (modalVisibleChange)="routeToQueueModalVisible=$event">
+</fox-route-to-queue-modal>
+
+<fox-save-to-workbench-modal [modalVisible]="saveToWorkbenchModalVisible"
+                             (modalVisibleChange)="saveToWorkbenchModalVisible=$event">
+</fox-save-to-workbench-modal>
+
+<fox-queue-confirmation-modal [(showQueueDetailConfirmModal)]="showQueueConfirmationModal"
+                              [workItemId]="workItemId"
+                              [queueName]="queueName"
+                              [workType]="workType"
+                              (showQueueDetailConfirmModalChange) = "onShowQueueDetailConfirmModalChange()">
+</fox-queue-confirmation-modal>
+
+<fox-open-workitem-confirmation-modal
+  [showOpenWorkItemConfirmModal]="showOpenWorkItemConfirmationModal"
+  [workItemId]="workItemId"
+  [workType]="workType"
+  [queueName]="queueName"
+  (showOpenWorkItemModalChange) = "onShowOpenWorkItemModalChange()">
+</fox-open-workitem-confirmation-modal>
+
+<fox-modal [(visible)]="isNotesModal" [closable]="true" [modalTitle]="'Item #' + wqiBusinessIdModal + ' Notes'">
+  <ng-container *ngFor="let note of notesModalData, let i = index">
+    <div class="container-note-data">
+      <span class="span-note-index">{{notesModalData.length - i}}</span>
+      <span class="container-note-details">
+        <div class="container-note-meta">
+          <span class="span-created-by">{{note.noteCreatedBy}}</span>
+          <span class="span-created-on">Created on <span>{{note.noteCreatedDt}}</span></span>
+        </div>
+        <div class="container-note-proper">
+          <span>{{note.note}}</span>
+        </div>
+      </span>
+    </div>
+  </ng-container>
+</fox-modal>

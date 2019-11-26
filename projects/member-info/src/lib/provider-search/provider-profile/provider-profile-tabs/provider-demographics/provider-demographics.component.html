@@ -1,0 +1,647 @@
+<fox-section>
+  <div>
+    <div class="tab-heading">Main Provider Overview</div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Name']"
+                 [values]="[detailsService?.providerDetails?.providerName?.businessName]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Provider Type']"
+                 [values]="[providerTypeCode?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="hidden-xs">
+      <fox-field [labels]="['Name', 'Provider Type']"
+                 [values]="[detailsService?.providerDetails?.providerName?.businessName,
+                 providerTypeCode?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Street Address']"
+                 [values]="[providerAddress?.addressLine1]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['City, State, Zip']"
+                 [values]="[providerAddress?.city]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs"></div>
+
+    <div class="hidden-xs">
+      <fox-field [labels]="['Street Address', 'City, State, Zip']"
+                 [values]="[providerAddress?.addressLine1,
+                  providerAddress?.city + ', ' + providerAddress?.state + ', ' + providerAddress?.postalCode]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Country']"
+                 [values]="[providerAddress?.country]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Phone, Extension']"
+                 [values]="[detailsService?.providerDetails?.phone?.contactInfo]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Fax']"
+                 [values]="[detailsService?.providerDetails?.fax?.contactInfo]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Email']"
+                 [values]="[detailsService?.providerDetails?.email?.contactInfo?.includes('@') ? detailsService?.providerDetails?.email?.contactInfo : '']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Country', 'Phone, Extension']"
+                 [values]="[providerAddress?.country,
+                 detailsService?.providerDetails?.phone?.contactInfo]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Fax', 'Email']"
+                 [values]="[detailsService?.providerDetails?.fax?.contactInfo,
+                 detailsService?.providerDetails?.email?.contactInfo]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="hidden-xs hidden-sm">
+      <fox-field [labels]="['Country', 'Phone, Extension', 'Fax', 'Email']"
+                 [values]="[providerAddress?.country,
+                 detailsService?.providerDetails?.phone?.contactInfo,
+                 detailsService?.providerDetails?.fax?.contactInfo,
+                 detailsService?.providerDetails?.email?.contactInfo?.includes('@') ? detailsService?.providerDetails?.email?.contactInfo : '']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Website']"
+                 [values]="[detailsService?.providerDetails?.email?.contactInfo?.includes('@') ? '' : detailsService?.providerDetails?.email?.contactInfo]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Provider Start & End Dates']"
+                 [values]="[detailsService?.providerDetails?.providerId?.recordDetail?.startDate | date: 'MM/dd/yyyy'+' '+detailsService?.providerDetails?.providerId?.recordDetail | date: 'MM/dd/yyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Modified Date']"
+                 [values]="[detailsService?.providerDetails?.providerId?.recordDetail?.lastUpdateDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Modified By']"
+                 [values]="[detailsService?.providerDetails?.providerId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['website', 'Provider Start & End Dates']"
+                 [values]="[detailsService?.providerDetails?.email?.contactInfo?.includes('@') ? '' : detailsService?.providerDetails?.email?.contactInfo,
+                 detailsService?.providerDetails?.providerId?.recordDetail?.startDate | date: 'MM/dd/yyyy'+' '+detailsService?.providerDetails?.providerId?.recordDetail | date: 'MM/dd/yyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Modified Date', 'Modified By']"
+                 [values]="[detailsService?.providerDetails?.providerId?.recordDetail?.lastUsedDate | date: 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.providerId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="hidden-sm hidden-xs">
+      <fox-field [labels]="['Website', 'Provider Start & End Dates', 'Modified Date', 'Modified By']"
+                 [values]="[detailsService?.providerDetails?.email?.contactInfo?.includes('@') ? '' : detailsService?.providerDetails?.email?.contactInfo,
+                 detailsService?.providerDetails?.providerId?.recordDetail?.startDate | date: 'MM/dd/yyyy'+' '+detailsService?.providerDetails?.providerId?.recordDetail | date: 'MM/dd/yyy',
+                 detailsService?.providerDetails?.providerId?.recordDetail?.lastUsedDate | date: 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.providerId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section *ngIf="detailsService?.providerDetails?.overrideProviderName">
+  <div>
+    <div class="tab-heading">Override Provider</div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Name']"
+                 [values]="[detailsService?.providerDetails?.overrideProviderName?.businessName]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Provider Type']"
+                 [values]="[providerTypeCode?.usageType]">
+      </fox-field>
+    </div>
+
+    <div class="hidden-xs">
+      <fox-field [labels]="['Name', 'Provider Type']"
+                 [values]="[detailsService?.providerDetails?.overrideProviderName?.businessName,
+                 providerTypeCode?.usageType]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Street Address']"
+                 [values]="[providerTypeCode?.usageType]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['City, State, Zip']"
+                 [values]="[overrideProviderAddress?.city + ', ' + overrideProviderAddress?.state + ', ' + overrideProviderAddress?.postalCode]">
+      </fox-field>
+    </div>
+
+    <div class="hidden-xs">
+      <fox-field [labels]="['Street Address', 'City, State, Zip']"
+                 [values]="[overrideProviderAddress?.addressLine1 + ', ' + overrideProviderAddress?.addressLine2,
+                 overrideProviderAddress?.city + ', ' + overrideProviderAddress?.state + ', ' + overrideProviderAddress?.postalCode]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Country']"
+                 [values]="[providerAddress?.country]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Override Provider Start & End Dates']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.startDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Modifed Date']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.endDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Modified By']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Country', 'Override Provider Start & End Dates']"
+                 [values]="[providerAddress?.country,
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.startDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Modified Date', 'Modified By']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.endDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="hidden-xs hidden-sm">
+      <fox-field [labels]="['Country', 'Override Provider Start & End Dates', 'Modified Date', 'Modified By']"
+                 [values]="[providerAddress?.country,
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.startDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.endDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section *ngIf="detailsService?.providerDetails?.overrideProviderName">
+  <div>
+    <div class="tab-heading">Override Provider</div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Name']"
+                 [values]="[detailsService?.providerDetails?.overrideProviderName?.businessName]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Provider Type']"
+                 [values]="[providerTypeCode?.usageType]">
+      </fox-field>
+    </div>
+
+    <div class="hidden-xs">
+      <fox-field [labels]="['Name', 'Provider Type']"
+                 [values]="[detailsService?.providerDetails?.overrideProviderName?.businessName,
+                 providerTypeCode?.usageType]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Street Address']"
+                 [values]="[providerTypeCode?.usageType]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['City, State, Zip']"
+                 [values]="[overrideProviderAddress?.city + ', ' + overrideProviderAddress?.state + ', ' + overrideProviderAddress?.postalCode]">
+      </fox-field>
+    </div>
+
+    <div class="hidden-xs">
+      <fox-field [labels]="['Street Address', 'City, State, Zip']"
+                 [values]="[overrideProviderAddress?.addressLine1 + ', ' + overrideProviderAddress?.addressLine2,
+                 overrideProviderAddress?.city + ', ' + overrideProviderAddress?.state + ', ' + overrideProviderAddress?.postalCode]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Country']"
+                 [values]="[providerAddress?.country]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Override Provider Start & End Dates']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.startDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Modifed Date']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.endDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Modified By']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Country', 'Override Provider Start & End Dates']"
+                 [values]="[providerAddress?.country,
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.startDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Modified Date', 'Modified By']"
+                 [values]="[detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.endDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="hidden-xs hidden-sm">
+      <fox-field [labels]="['Country', 'Override Provider Start & End Dates', 'Modified Date', 'Modified By']"
+                 [values]="[providerAddress?.country,
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.startDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.endDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.alternativeProviderId?.recordDetail?.lastUpdateUser]">
+      </fox-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div>
+    <div class="tab-heading">Provider Status</div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['TIN']"
+                 [values]="[detailsService?.providerDetails?.providerTin?.tin]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['TIN Type, TIN Description']"
+                 [values]="[detailsService?.providerDetails?.providerTin?.tinTypeCode + ', ' + detailsService?.providerDetails?.providerTin?.tinTypeDesc]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['NPI']"
+                 [values]="[detailsService?.providerDetails?.providerNpi?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['HealthCare Network #(MPIN)']"
+                 [values]="[mPin?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['TIN', 'TIN Type, TIN Description']"
+                 [values]="[detailsService?.providerDetails?.providerTin?.tin,
+                 detailsService?.providerDetails?.providerTin?.tinTypeCode + ', ' + detailsService?.providerDetails?.providerTin?.tinTypeDesc]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['NPI', 'HealthCare Network #(MPIN)']"
+                 [values]="[detailsService?.providerDetails?.providerNpi?.idNumber,
+                 mPin?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="hidden-sm hidden-xs">
+      <fox-field [labels]="['TIN', 'TIN Type, TIN Description', 'NPI', 'HealthCare Network #(MPIN)']"
+                 [values]="[detailsService?.providerDetails?.providerTin?.tin,
+                 detailsService?.providerDetails?.providerTin?.tinTypeCode + ', ' + detailsService?.providerDetails?.providerTin?.tinTypeDesc,
+                 detailsService?.providerDetails?.providerNpi?.idNumber,
+                 mPin?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Tax Status']"
+                 [values]="[tinTaxStatus?.taxStatusDesc]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Start & End Dates']"
+                 [values]="[tinTaxStatus?.recordDetail?.startDate | date : 'MM/dd/yyyy' + ', ' + tinTaxStatus?.recordDetail?.endDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Last Paper Claim Date']"
+                 [values]="[detailsService?.providerDetails?.providerDetail?.manualClaimDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Last EC Claim Date']"
+                 [values]="[detailsService?.providerDetails?.providerDetail?.ecClaimDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Tax Status', 'Start & End Dates']"
+                 [values]="[tinTaxStatus?.taxStatusDesc,
+                 tinTaxStatus?.recordDetail?.startDate | date : 'MM/dd/yyyy' + ', ' + tinTaxStatus?.recordDetail?.endDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Last Paper Claim Date', 'Last EC Claim Date']"
+                 [values]="[detailsService?.providerDetails?.providerDetail?.manualClaimDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.providerDetail?.ecClaimDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="hidden-sm hidden-xs">
+      <fox-field [labels]="['Tax Status', 'Start & End Dates', 'Last Paper Claim Date', 'Last EC Claim Date']"
+                 [values]="[tinTaxStatus?.taxStatusDesc,
+                 tinTaxStatus?.recordDetail?.startDate | date : 'MM/dd/yyyy' + ', ' + tinTaxStatus?.recordDetail?.endDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.providerDetail?.manualClaimDate | date : 'MM/dd/yyyy',
+                 detailsService?.providerDetails?.providerDetail?.ecClaimDate | date : 'MM/dd/yyyy']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['IHD Waiver % for Coinsurance']"
+                 [values]="[' ']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['IHD Waiver % for Deductible']"
+                 [values]="[' ']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Preferred Provider Within Medicare Selected Network']"
+                 [values]="[' ']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Taxonomy Code']"
+                 [values]="[taxonomyCode?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['IHD Waiver % for Coinsurance', 'IHD Waiver % for Deductible']"
+                 [values]="[' ',
+                 ' ']">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-sm"></div>
+
+    <div class="visible-sm">
+      <fox-field [labels]="['Preferred Provider Within Medicare Selected Network', 'Taxonomy Code']"
+                 [values]="[' ',
+                 taxonomyCode?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen hidden-xs hidden-sm"></div>
+
+    <div class="hidden-sm hidden-xs">
+      <fox-field [labels]="['IHD Waiver % for Coinsurance', 'IHD Waiver % for Deductible', 'Preferred Provider Within Medicare Selected Network', 'Taxonomy Code']"
+                 [values]="[' ',
+                 ' ',
+                 ' ',
+                 taxonomyCode?.idNumber]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen"></div>
+
+    <div>
+      <fox-field [showOneColumn]="true"
+                 [labels]="['Contract Start Date, Contract End Date']"
+                 [values]="[' ']">
+      </fox-field>
+    </div>
+  </div>
+</fox-section>
+<fox-section>
+
+  <div>
+    <div class="tab-heading">Provider Preferences</div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Claim Payment Preference']"
+                 [values]="[detailsService?.clmPaymentPref]">
+      </fox-field>
+    </div>
+
+    <div class="div-height-fifteen visible-xs"></div>
+
+    <div class="visible-xs">
+      <fox-field [labels]="['Claim Material Preference']"
+                 [values]="[detailsService?.clmMaterialPref]">
+      </fox-field>
+    </div>
+
+    <div class="hidden-xs">
+      <fox-field [showTwoColumn]="true"
+                 [labels]="['Claim Payment Preference', 'Claim Material Preference']"
+                 [values]="[detailsService?.clmPaymentPref, detailsService?.clmMaterialPref]">
+      </fox-field>
+    </div>
+  </div>
+</fox-section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

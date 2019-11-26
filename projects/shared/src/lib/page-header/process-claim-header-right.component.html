@@ -1,0 +1,32 @@
+<span class="span-container-btn" *ngIf="data.options">
+  <span class="span-button-maintenance">
+    <button class="btn btn-pill-header btn-maintenance button-margin-left button-margin-top"
+            type="button" #lookupOptions="matMenuTrigger" id="lookup-options-btn"
+            [matMenuTriggerFor]="dropDownRP">
+      <span class="span-margin-15">Claim Options</span>
+      <img class="img-caret-down" src="assets/img/caret-down-blue.svg"/>
+    </button>
+  </span>
+  <mat-menu class="mat-menu-right-hed" #dropDownRP="matMenu" xPosition="after">
+    <button mat-menu-item (click)="clickBtn(option.identifier)" *ngFor="let option of data.options"
+            [ngClass]="option.class==='hasBorder'? 'menu-border-bottom': option.class==='afterBorder'? 'menu-border-padding': 'no-border'"
+            foxHotkey="{{option.tab}}" hotkeyAction="click">
+      <span class="span-hotkey-label">{{option.key}}</span>
+      <span>{{option.display}}</span>
+    </button>
+  </mat-menu>
+</span>
+
+<span *ngIf="data.secondButton" [ngClass]="data.suspendBtn ? 'span-second-btn': 'span-second-float-btn'">
+  <button type="button" class="btn btn-pill-header button-visible btn-second-right"
+          (click)="clickBtn(data.secondButton.identifier)" foxHotkey="{{data.secondButton.tab}}" hotkeyAction="click">
+    {{data.secondButton.display}}
+  </button>
+</span>
+<span *ngIf="data.suspendBtn" [ngClass]="data.options ? 'span-sus-btn': data.secondButton ? 'span-sus-right-btn' : 'span-sus-float-btn'">
+  <button type="button" class="btn btn-pill-header button-visible"
+          (click)="clickBtn(data.suspendBtn.identifier)" foxHotkey="{{data.suspendBtn.tab}}" hotkeyAction="click">
+    <img *ngIf="data.suspendBtn.identifier === 's'" src="assets/img/icon-bullet-round/bullet-round-1e5ca4.svg" class="img-bullet"> {{data.suspendBtn.display}}
+  </button>
+</span>
+

@@ -1,0 +1,492 @@
+<!--Replace/Void Screen -->
+<div class="margin-top-0 replace-void-main">
+  <span class="col-md-12 no-padding" *ngIf="providerTINFailMsg">
+      <fox-message-box [(visible)]="providerTINFailMsg" messageBoxTitle="Provider Not Found"
+                       [(closable)]="hideCloseBtn">
+        Provider not found in Provider Database.  Please reprocess claim to correct provider
+      </fox-message-box>
+    </span>
+  <span class="col-md-12 no-padding" *ngIf="memberNotFoundMsg">
+      <fox-message-box [(visible)]="memberNotFoundMsg" messageBoxTitle="Member Not Found"
+                       [(closable)]="hideCloseBtn">
+        Member not found in Member Database.  Please reprocess claim to correct member
+      </fox-message-box>
+    </span>
+  <span class="col-md-12 no-padding" *ngIf="providerBUWFailMsg">
+      <fox-message-box [(visible)]="providerBUWFailMsg" messageBoxTitle="Backup Withholding"
+                       [(closable)]="hideCloseBtn">
+        Void and Reprocess
+      </fox-message-box>
+    </span>
+  <div class="">
+    <mat-form-field class="autofocus-select col-md-3 no-padding">
+      <mat-label>Action</mat-label>
+      <mat-select [(ngModel)]="actionDropdown" class="non-mat-select"
+                  (selectionChange)="actionDropdownOnChange(actionDropdown)" [disabled]="isShowForm"
+                  required>
+        <mat-option [value]="option.key" *ngFor="let option of dropdownOptionsForBUW">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!isActionSelected">
+        Action Dropdown selection is <span class="span-validation-message">required</span>
+      </mat-error>
+    </mat-form-field>
+    <div class="btn-from-select col-md-3" *ngIf="actionDropdown == 'replace_same_provider'">
+      <button type="button" class="btn btn-secondary" (click)="openProviderModal()">
+        Choose Address
+      </button>
+    </div>
+    <div class="btn-from-select col-md-3" *ngIf="actionDropdown == 'replace_payee'">
+      <button type="button" class="btn btn-secondary" (click)="openMemberModal()">
+        Find Member
+      </button>
+    </div>
+  </div>
+  <div class="error-text">
+    <span *ngIf="isDisplayErrorTxt()">MUST RE-ISSUE BUW REFUND TO THE SAME PROVIDER</span>
+  </div>
+
+  <div class="border-bottom col-md-12"></div>
+  <form class="col-md-12" *ngIf="actionDropdown || isShowForm" [formGroup]="replaceOrVoidFormGroup"
+        (ngSubmit)="replaceVoidSubmit(replaceOrVoidFormGroup,actionDropdown)" novalidate>
+    <div class="row-80px-margin">
+      <!--Form for Void-->
+      <div *ngIf="actionDropdown === 'option_void'" class="col-md-4 extend-check-detail-form-payee">
+        <div class="container-replace-reason">
+          <mat-form-field class="reason-error autofocus-select">
+            <mat-label>Replace Reason</mat-label>
+            <mat-select class="non-mat-select" formControlName="ReplaceReason"
+                        [errorStateMatcher]="matcher" required>
+              <mat-option value="">Select Replace Reason</mat-option>
+              <mat-option value="LOST_CHECK">1. Lost Check</mat-option>
+              <mat-option value="DECEASED_INSURED">2. Deceased insured</mat-option>
+              <mat-option value="ACCOUNT_PAID_IN_FULL">3. Account Paid in Full</mat-option>
+              <mat-option value="STALE_DATED">4. Stale-dated</mat-option>
+              <mat-option value="INCORRECT_PAYEE">5. Incorrect payee</mat-option>
+              <mat-option value="OVERPAYMENT">6. Overpayment</mat-option>
+              <mat-option value="INCORRECT_ADDRESS">7. Incorrect Address</mat-option>
+              <mat-option value="WRONG_PROVIDER">8. Wrong provider</mat-option>
+              <mat-option value="DAMAGED_CHECK">9. Damaged check</mat-option>
+              <mat-option value="ASSIGNMENT_OF_BENEFITS_RECEIVED">10. Assignment of Benefits Received
+              </mat-option>
+              <mat-option value="SURVEY_LETTER">11. Survey Letter</mat-option>
+              <mat-option value="OTHER">12. Other</mat-option>
+            </mat-select>
+            <mat-error
+                    *ngIf="!replaceOrVoidFormGroup?.controls.ReplaceReason.valid && replaceOrVoidFormGroup?.controls['ReplaceReason'].touched">
+              Replace Reason selection is <span class="span-validation-message">required</span>
+            </mat-error>
+          </mat-form-field>
+          <p *ngIf="replaceOrVoidFormGroup?.controls['ReplaceReason'].value == 'OTHER'">
+            <mat-form-field class="reason-textarea">
+              <mat-label>Other Reason</mat-label>
+              <textarea matInput #textarea required maxlength="256"
+                        formControlName="otherReplaceReason"></textarea>
+              <mat-hint align="end" class="margin-top-20">{{textarea.value.length}} / 256</mat-hint>
+              <mat-error *ngIf="isOtherReasonSelected">Other Reason is <span class="span-validation-message">required</span>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <mat-form-field class="col-md-8 autofocus-select no-padding">
+            <mat-label class="reason-label">Returned Check?</mat-label>
+            <mat-select class="non-mat-select" formControlName="ReturnCheck">
+              <mat-option value="true">YES</mat-option>
+              <mat-option value="false">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!--Form for Provider and Member Replacenment-->
+      <div *ngIf="actionDropdown !== 'option_void'" class="col-md-4 extend-check-detail-form-payee">
+        <mat-form-field class="non-mat-field-input">
+          <mat-label>Member Account #</mat-label>
+          <input matInput formControlName="MemberAcc">
+        </mat-form-field>
+        <mat-form-field class="non-mat-field-input">
+          <mat-label>Payee</mat-label>
+          <input matInput formControlName="Payee">
+          <mat-error>
+            <span class="span-validation-message" *ngIf="payee.errors?.required && payee.touched">
+              Payee name is required.
+            </span>
+            <span class="span-validation-message" *ngIf="payee?.errors?.maxlength && payee.touched">
+              Payee name maximum length is 34 characters.
+            </span>
+            <span class="span-validation-message" *ngIf="payee?.errors?.pattern && payee.touched">
+              Incorrect format. Please use: letters, and/or special characters of (-  ,   /  ' ).
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <p *ngIf="checkDetails && !!(checkDetails!.tin) || isDisplayTin()">
+          <mat-form-field class="non-mat-field-input">
+            <mat-label>TIN</mat-label>
+            <input matInput formControlName="Tin" [value]="replaceOrVoidFormGroup.get('Tin')!.value | prependZero">
+          </mat-form-field>
+        </p>
+        <p *ngIf="actionDropdown === 'replace_same_provider'">
+          <mat-form-field class="non-mat-field-input">
+            <mat-label>NPI</mat-label>
+            <input matInput formControlName="Npi">
+          </mat-form-field>
+        </p>
+      </div>
+      <div *ngIf="actionDropdown !== 'option_void'"
+           class="col-md-4 extend-check-detail-form-address border-left">
+        <mat-form-field class="non-mat-field-input">
+          <mat-label>Address Line 1</mat-label>
+          <input maxlength="100" matInput formControlName="AddOne">
+        </mat-form-field>
+        <mat-form-field class="non-mat-field-input">
+          <mat-label>Address Line 2</mat-label>
+          <input maxlength="100" matInput formControlName="AddTwo">
+        </mat-form-field>
+        <mat-form-field class="non-mat-field-input">
+          <mat-label>Address Line 3</mat-label>
+          <input maxlength="100" matInput formControlName="AddThree">
+        </mat-form-field>
+        <mat-form-field class="non-mat-field-input">
+          <mat-label>City</mat-label>
+          <input maxlength="50" matInput formControlName="City">
+        </mat-form-field>
+        <mat-form-field class="col-md-4 no-padding">
+          <mat-label>State</mat-label>
+          <input maxlength="2" matInput formControlName="State">
+        </mat-form-field>
+        <mat-form-field class="col-md-8 field-zip">
+          <mat-label>Zip</mat-label>
+          <input maxlength="20" matInput formControlName="Zip" (keypress)="omitSpecChar($event)">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 extend-check-detail-form-reason" *ngIf="actionDropdown !== 'option_void'">
+        <mat-form-field class="reason-error autofocus-select">
+          <mat-label>Replace Reason</mat-label>
+          <mat-select class="non-mat-select" formControlName="ReplaceReason"
+                      [errorStateMatcher]="matcher" required>
+            <mat-option value="">Select Replace Reason</mat-option>
+            <mat-option value="LOST_CHECK">1. Lost Check</mat-option>
+            <mat-option value="DECEASED_INSURED">2. Deceased insured</mat-option>
+            <mat-option value="ACCOUNT_PAID_IN_FULL">3. Account Paid in Full</mat-option>
+            <mat-option value="STALE_DATED">4. Stale-dated</mat-option>
+            <mat-option value="INCORRECT_PAYEE">5. Incorrect payee</mat-option>
+            <mat-option value="OVERPAYMENT">6. Overpayment</mat-option>
+            <mat-option value="INCORRECT_ADDRESS">7. Incorrect Address</mat-option>
+            <mat-option value="WRONG_PROVIDER">8. Wrong provider</mat-option>
+            <mat-option value="DAMAGED_CHECK">9. Damaged check</mat-option>
+            <mat-option value="ASSIGNMENT_OF_BENEFITS_RECEIVED">10. Assignment of Benefits Received
+            </mat-option>
+            <mat-option value="SURVEY_LETTER">11. Survey Letter</mat-option>
+            <mat-option value="OTHER">12. Other</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="!replaceOrVoidFormGroup?.controls.ReplaceReason.valid && replaceOrVoidFormGroup?.controls['ReplaceReason'].touched">
+            Replace Reason selection is <span class="span-validation-message">required</span>
+          </mat-error>
+        </mat-form-field>
+        <p *ngIf="replaceOrVoidFormGroup?.controls['ReplaceReason'].value == 'OTHER'">
+          <mat-form-field class="reason-textarea">
+            <mat-label>Other Reason</mat-label>
+            <textarea matInput #textarea required maxlength="256"
+                      formControlName="otherReplaceReason"></textarea>
+            <mat-hint align="end" class="margin-top-20">{{textarea.value.length}} / 256</mat-hint>
+            <mat-error *ngIf="isOtherReasonSelected">Other Reason is <span class="span-validation-message">required</span>
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <ng-container *ngIf="actionDropdown == 'replace_same_provider'">
+          <div class="col-md-8 no-padding">
+            <input type="checkbox" (click)="selectCheckBoxRA($event)"/>&nbsp;<span>Replacement RA Message on Check <span
+            class="ra-checkbox-text">(This will override existing text in Notation field)</span></span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="actionDropdown !== 'option_void'">
+          <mat-form-field class="col-md-8 autofocus-select no-padding mat-form-notation-select">
+            <mat-label class="reason-label notation-select">Include Notation on Check</mat-label>
+            <mat-select class="non-mat-select" formControlName="IncludeNotation">
+              <mat-option value="true">YES</mat-option>
+              <mat-option value="false">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+        <mat-form-field class="col-md-8 autofocus-select no-padding">
+          <mat-label class="reason-label">Returned Check?</mat-label>
+          <mat-select class="non-mat-select" formControlName="ReturnCheck">
+            <mat-option value="true">YES</mat-option>
+            <mat-option value="false">NO</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <ng-container *ngIf="actionDropdown !== 'option_void'">
+          <mat-form-field class="notation-textarea">
+            <mat-label>Notation</mat-label>
+            <textarea matInput maxlength="78" formControlName="Notation"></textarea>
+          </mat-form-field>
+        </ng-container>
+      </div>
+    </div>
+    <span class="col-md-12" *ngIf="errorMsg">
+      <fox-message-box [(visible)]="errorMsg" messageBoxTitle="Operation Failed">
+        An Unexpected error occurred
+      </fox-message-box>
+    </span>
+    <div class="row-80px-margin">
+      <span>
+        <button type="submit" class="btn btn-primary btn-apply-bulk-action"
+                *ngIf="displaySubmitButton()"
+                [disabled]="!replaceOrVoidFormGroup?.valid">
+          Submit
+        </button>
+      </span>
+    </div>
+    <div class="col-md-12">
+      <p class="col-md-6 col-md-offset-6 approve-deny-button" *ngIf="displayButtons()">
+        <button type="button" class="btn btn-primary btn-deny" (click)="getDenialeRequest()">Deny
+        </button>
+        <button type="button" class="btn btn-primary btn-approve" (click)="getApprovalRequest()">
+          Authorize
+        </button>
+      </p>
+    </div>
+  </form>
+
+  <!--Starts Provider Modal-->
+  <fox-modal [(visible)]="showProviderModal" modalTitle="Select a Provider Address">
+    <p *ngIf="viewAlternateString">The provider you selected has alternate address on file. Choose
+      "View Alternate" to view and confirm the address.</p>
+    <div class="col-md-12 container-grey-border">
+      <div class="">
+        <mat-table class="check-register-table" #table [dataSource]="providerDataSource"
+                   tabindex="0">
+          <ng-container matColumnDef="providerName">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border">
+              <span class="modal-header-text"> Provider Name</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <input type="radio"
+                     name="providerRadio"
+                     (click)="selectProviderRow(element)" class="margin-right-20">
+              {{element.providerName}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="tin">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> TIN</span></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.tin}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="npi">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> NPI</span></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.npi}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Address</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div [innerHTML]="element.address"></div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="addressType">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Address Type</span></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.addressType}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="alternativeOnFile">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Alternative on File</span></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.alternateOnFile}}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedProviderColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedProviderColumns;"></mat-row>
+        </mat-table>
+      </div>
+      <mat-paginator #paginator
+                     [length]="dataLength"
+                     [pageIndex]="currentPage"
+                     [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 20]" class="hide">
+      </mat-paginator>
+      <div class="row text-size">
+        <fox-paginator [(paginatorInput)]="paginatorObj" [pageSizeInput]="pageSize"
+                       [dataLengthInput]="dataLength"></fox-paginator>
+        <div class="provider-btn">
+          <button type="button" class="btn btn-primary confirm-btn" (click)="openAltProviderModal()"
+                  [disabled]="!isAlternateRadioSelected">View Alternate
+          </button>
+          <button type="button" class="btn btn-primary clear-btn-provider" (click)="cancelDialog()">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary confirm-btn"
+                  (click)="providerConfirmSubmit()"
+                  [disabled]="!isRadioSelected">Select Address
+          </button>
+        </div>
+      </div>
+    </div>
+  </fox-modal>
+  <!--Ends Provider Modal-->
+
+  <!--Start Alternate Provider Modal-->
+  <fox-modal [(visible)]="showAltProviderModal" modalTitle="Confirm Provider Address">
+    <p *ngIf="bothAltProviderStr">This provider has both override and alternate addresses, listed
+      below. Verify the intended mailing address before issuing a replacement check.</p>
+    <div class="col-md-12 container-grey-border">
+      <div class="">
+        <mat-table class="check-register-table alt-modal-table" #table
+                   [dataSource]="altProviderDataSource">
+          <ng-container matColumnDef="blank">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> &nbsp;</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div class="text-blank-column" [innerHTML]="element.blankColumn"></div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="providerName">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border">
+              <span class="modal-header-text"> Provider Name</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <input type="radio"
+                     name="providerRadio"
+                     (click)="selectProviderRow(element)" class="margin-right-20">
+              {{element.providerName}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="tin">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> TIN</span></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.tin}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="npi">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> NPI</span></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.npi}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Address</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div [innerHTML]="element.address"></div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="addressType">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Address Type</span></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.addressType}}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedAltProviderColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedAltProviderColumns;"></mat-row>
+        </mat-table>
+      </div>
+
+      <div class="row text-size">
+        <div class="col-md-4">
+          <p class="block-override" *ngIf="isClaimSelcted">
+            <span><i focusable="false" class="fa fa-exclamation-circle left-icon"></i></span>
+            <span>Override on File</span><br/>
+            <span>Override Provider information is on file for this selection. <br/>Please verify address before submitting.</span>
+          </p>
+        </div>
+        <div class="alt-provider-btn col-md-8">
+          <button type="button" class="btn btn-primary confirm-btn" (click)="backToProviderModal()">
+            Back to List
+          </button>
+          <button type="button" class="btn btn-primary clear-btn-provider" (click)="cancelDialog()">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary confirm-btn"
+                  (click)="altProviderConfirmSubmit()"
+                  [disabled]="!isAlternateSelectedAddress">Select Address
+          </button>
+        </div>
+      </div>
+    </div>
+  </fox-modal>
+  <!--Ends Alternate Provider Modal-->
+
+  <!--Starts Member Modal-->
+  <fox-modal [(visible)]="showMemberModal" modalTitle="Select Address">
+    <div class="col-md-12 container-grey-border">
+      <div class="">
+        <mat-table class="check-register-table" #table [dataSource]="memberDataSource" matSort
+                   tabindex="0">
+
+          <ng-container matColumnDef="memberAccountNo">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Member #</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div [innerHTML]="element.memberAccountNo"></div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="memberName">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Member Name</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div [innerHTML]="element.memberName"></div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Address</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div [innerHTML]="element.address"></div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="addressType">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Address Type</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div [innerHTML]="element.addressType"></div>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="radioSelect">
+            <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+              class="modal-header-text"> Select</span></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <input type="radio" name="memberRadio" (click)="selectMemberRow(element)">
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedMemberColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedMemberColumns;"></mat-row>
+        </mat-table>
+      </div>
+      <mat-paginator #paginator
+                     [length]="dataLength"
+                     [pageIndex]="currentPage"
+                     [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 20]" class="hide">
+      </mat-paginator>
+      <div class="row text-size">
+        <fox-paginator [(paginatorInput)]="paginatorObj" [pageSizeInput]="pageSize"
+                       [dataLengthInput]="dataLength"></fox-paginator>
+        <div class="provider-btn">
+          <button type="button" class="btn btn-primary clear-btn-provider" (click)="cancelDialog()">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary confirm-btn" (click)="memberConfirmSubmit()"
+                  [disabled]="!isRadioSelected">Select Address
+          </button>
+        </div>
+      </div>
+    </div>
+  </fox-modal>
+  <!--Ends Member Modal-->
+</div>

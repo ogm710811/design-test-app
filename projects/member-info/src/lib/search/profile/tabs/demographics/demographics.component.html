@@ -1,0 +1,156 @@
+<ng-container *ngIf="toggleMemberDemographicsVersionFeature; else memberDemographicsOldVersion">
+  <fox-section>
+    <fox-section-title>
+      Demographics
+    </fox-section-title>
+    <div class="row">
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12 container-inline-name">
+          <span class="txt-data-member">Name:</span>
+          <span>{{memberProfile?.memberDetails?.memberName?.prefix | titlecase |slice:0:6}}
+            {{memberProfile?.memberDetails?.memberName?.firstName | titlecase | slice:0:25}}
+            {{memberProfile?.memberDetails?.memberName?.middleName | titlecase | slice:0:25}}
+            {{memberProfile?.memberDetails?.memberName?.lastName | titlecase | slice:0:35}}</span>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Medicare #:</span>
+          <ng-container *ngIf="memberProfile">
+            <span *ngIf="memberProfile && memberProfile?.memberDetails">{{memberProfile?.memberDetails?.medicareId}}&nbsp;</span>
+          </ng-container>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Medicare Part B:</span>
+          <span *ngIf="memberProfile && memberProfile?.memberDetails">{{memberProfile?.memberDetails?.partBDateEffective | date:'MM/dd/yyyy'}}&nbsp;</span>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Phone Number:</span>
+          <span *ngIf="memberProfile?.memberDetails">{{currentMemberPhone}}</span>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Gender:</span>
+          <span *ngIf="memberProfile?.memberDetails">{{memberProfile?.memberDetails?.gender | slice:0:6}}</span>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Member #:</span>
+          <span *ngIf="memberProfile && memberProfile.memberDetails && memberProfile.memberDetails.aarpMembershipNumber && memberProfile.memberDetails.householdId && memberProfile.memberDetails.householdId.length">
+            {{memberProfile.memberDetails.aarpMembershipNumber.membershipNumber + '-' + memberProfile.memberDetails.aarpMembershipNumber.associationId + '-' + memberProfile.memberDetails.householdId[0].insuredCode}}
+          </span>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Marital Status:</span>
+          <span></span>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Date of Birth:</span>
+          <span *ngIf="memberProfile">{{memberProfile?.memberDetails?.dateOfBirth | date:'MM/dd/yyyy'}}</span>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Date of Death:</span>
+          <span *ngIf="memberProfile && memberProfile?.memberDetails">{{memberProfile?.memberDetails?.dateOfDeath | date:'MM/dd/yyyy'}}</span>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="txt-data-member">Spouse Name:</span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+</ng-container>
+<ng-template #memberDemographicsOldVersion>
+  <fox-section>
+    <fox-section-title>
+      Demographics
+    </fox-section-title>
+    <div class="">
+      <div class="col-md-4 no-left-padding border-right">
+        <p class="margin-bottom"><span
+                class="label-detail-item locator-prefix-class">Prefix: </span><span
+                class="col-md-4 no-left-padding margin-bottom locator-prefix-class"
+                *ngIf="memberProfile?.memberDetails?.memberName">{{memberProfile?.memberDetails?.memberName?.prefix | slice:0:6}}&nbsp;</span>
+        </p>
+        <div class="margin-bottom"><span
+                class="label-detail-item locator-firstname-class">First Name: </span></div>
+        <div class="col-md-6 no-left-padding margin-bottom locator-firstname-class"
+             *ngIf="memberProfile?.memberDetails?.memberName">
+          {{memberProfile?.memberDetails?.memberName?.firstName | slice:0:25}}&nbsp;
+        </div>
+        <div class="margin-bottom"><span class="label-detail-item locator-middlename-class">Middle Name: </span>
+        </div>
+        <div class="col-md-6 no-left-padding margin-bottom locator-middlename-class"
+             *ngIf="memberProfile?.memberDetails?.memberName">
+          {{memberProfile?.memberDetails?.memberName?.middleName | slice:0:25}}&nbsp;
+        </div>
+        <div class="margin-bottom"><span
+                class="label-detail-item locator-lastname-class">Last Name: </span></div>
+        <div class="col-md-6 no-left-padding margin-bottom locator-lastname-class"
+             *ngIf="memberProfile?.memberDetails?.memberName">
+          {{memberProfile?.memberDetails?.memberName?.lastName | slice:0:35}}&nbsp;
+        </div>
+        <div class="margin-bottom"><span
+                class="label-detail-item locator-suffix-class">Suffix: </span></div>
+        <div class="col-md-6 no-left-padding margin-bottom locator-suffix-class"
+             *ngIf="memberProfile?.memberDetails?.memberName">
+          {{memberProfile?.memberDetails?.memberName?.suffix | slice:0:6}}&nbsp;
+        </div>
+        <div class="margin-bottom"><span
+                class="label-detail-item locator-gender-class">Gender: </span></div>
+        <div class="col-md-6 no-left-padding margin-bottom locator-gender-class"
+             *ngIf="memberProfile?.memberDetails">{{memberProfile?.memberDetails?.gender | slice:0:6}}&nbsp;
+        </div>
+      </div>
+      <div class="col-md-4 border-right">
+        <p><span class="label-detail-item locator-membernumber-class">Member #: </span><span
+                class="locator-membernumber-class"
+                *ngIf="memberProfile && memberProfile.memberDetails && memberProfile.memberDetails.aarpMembershipNumber && memberProfile.memberDetails.householdId && memberProfile.memberDetails.householdId.length">
+          {{memberProfile.memberDetails.aarpMembershipNumber.membershipNumber + '-' + memberProfile.memberDetails.aarpMembershipNumber.associationId + '-' + memberProfile.memberDetails.householdId[0].insuredCode}}&nbsp;
+        </span>
+        </p>
+        <p><span class="label-detail-item locator-medicarenumber-class">Medicare #: </span><span
+                class="locator-medicarenumber-class" *ngIf="memberProfile && memberProfile?.memberDetails">{{memberProfile?.memberDetails?.medicareId}}&nbsp;</span>
+        </p>
+        <p><span class="label-detail-item locator-medicarepartb-class">Medicare Part B: </span><span
+                class="locator-medicarepartb-class" *ngIf="memberProfile && memberProfile?.memberDetails">{{memberProfile?.memberDetails?.partBDateEffective | date:'MM/dd/yyyy'}}&nbsp;</span>
+        </p>
+        <p><span class="label-detail-item locator-dateofbirth-class">Date of Birth: </span><span
+                class="locator-dateofbirth-class" *ngIf="memberProfile">{{memberProfile?.memberDetails?.dateOfBirth | date:'MM/dd/yyyy'}}&nbsp;</span>
+        </p>
+        <p><span class="label-detail-item locator-dateofdeath-class">Date of Death: </span><span
+                class="locator-dateofdeath-class" *ngIf="memberProfile && memberProfile?.memberDetails">{{memberProfile?.memberDetails?.dateOfDeath | date:'MM/dd/yyyy'}}&nbsp;</span>
+        </p>
+        <p><span class="label-detail-item locator-phone-class">Phone Number: </span><span
+                class="locator-dateofdeath-class" *ngIf="memberProfile?.memberDetails">{{currentMemberPhone}}</span>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p><span class="label-detail-item locator-maritalstatus-class">Marital Status: </span><span
+                class="locator-maritalstatus-class">&nbsp;</span></p>
+        <p><span
+                class="label-detail-item locator-spousefirstname-class">Spouse First Name: </span><span
+                class="locator-spousefirstname-class">&nbsp;</span></p>
+        <p><span class="label-detail-item locator-spouselastname-class">Spouse Last Name: </span><span
+                class="locator-spouselastname-class">&nbsp;</span></p>
+      </div>
+    </div>
+  </fox-section>
+</ng-template>
+
+<!--Adresses on File Section-->
+<fox-member-demographics-address [membershipNumber]="membershipNumber">
+</fox-member-demographics-address>
+
+<!--3rd Party Designees Section-->
+<fox-member-demographics-designees [membershipNumber]="membershipNumber">
+</fox-member-demographics-designees>
+
+<!--Dependents Section-->
+<!--<fox-member-demographics-dependents></fox-member-demographics-dependents>-->
+
+<!--Member Preferences-->
+<fox-member-demographics-preferences [memberPreference]='memberPreference' [membershipNumber]="membershipNumber">
+</fox-member-demographics-preferences>

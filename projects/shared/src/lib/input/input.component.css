@@ -1,0 +1,180 @@
+.container-input-and-label {
+  display: block;
+  margin-bottom: 7px;
+  width: 100%
+}
+
+.container-label {
+  margin-bottom: 7px;
+}
+
+.container-label-read-only {
+  margin-bottom: -1px;
+}
+
+.label-for-input {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.span-label-extra {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  margin: 0;
+}
+
+.textarea-larger-size {
+  height: 59px;
+}
+
+.img-invalid-field {
+  height: 13px;
+  float: right;
+  width: 13px;
+}
+
+.container-input {
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  padding: 6px 10px 7px;
+}
+
+.container-input-warning {
+  border: 1px solid #FFAA25;
+}
+
+.img-pre-icon {
+  margin-right: 7px;
+  height: 14px;
+  width: 14px;
+}
+
+.img-post-icon {
+  margin-left: 7px;
+  height: 14px;
+  width: 14px;
+  float: right;
+}
+
+.container-input.focus-within,
+.container-input-error,
+.container-input-error.focus-within {
+  padding: 5px 9px 6px;
+}
+
+.container-input.focus-within {
+  border: 2px solid #196ECF;
+}
+
+.container-input-error,
+.container-input-error.focus-within {
+  border: 2px solid #BF3533;
+}
+
+.container-input > input,
+.container-input > textarea {
+  width: 100%;
+  animation: none;
+  border: none;
+  box-shadow: none;
+  color: #252C37;
+  font-size: 14px;
+  line-height: 14px;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.container-input > textarea[class^='spl-demo-tbl-text-area'] {
+  height: 53px;
+  resize: none;
+  width: 285px;
+}
+
+.container-input > textarea[class^='text-area-no-resize'] {
+  resize: none;
+  height: 100%;
+}
+
+.has-pre-post-icon .container-input > input,
+.has-pre-post-icon .container-input > textarea {
+  /* The width of .container-input, minus padding and border, minus a single icon */
+  max-width: calc(100% - 22px - 42px);
+}
+
+.has-pre-icon .container-input > input,
+.has-post-icon .container-input > input,
+.has-pre-icon .container-input > textarea,
+.has-post-icon .container-input > textarea {
+  /* The width of .container-input, minus padding and border, minus a single icon */
+  max-width: calc(100% - 22px - 21px);
+}
+
+.container-input > input::placeholder,
+.container-input > textarea::placeholder {
+  color: #B6BCC3;
+  font-size: 14px;
+}
+
+.container-error-text {
+  color: #BF3533;
+  max-width: 100%;
+}
+
+.container-assist-text,
+.container-error-text {
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.container-assist-text {
+  color: #6E7681;
+}
+
+.container-input-disabled,
+.container-input-disabled.container-input,
+.container-input-disabled.container-input-read-only {
+  background: #EDEDED;
+  cursor: not-allowed;
+}
+
+.container-input-disabled > input,
+.container-input-disabled > textarea {
+  cursor: not-allowed;
+}
+
+.div-disabled {
+  background-color: #EDEDED;
+}
+
+.container-input-read-only {
+  border-bottom: 1px solid #CED3DA;
+  background-color: #FFFFFF;
+  padding: 6px 10px 7px;
+}
+
+.container-input-read-only-no-padding-left-right {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.input-read-only {
+  border: none;
+  width: calc(100% - 22px);
+}
+
+.container-full-height {
+  height: 100%;
+}
+
+.container-full-height .container-input {
+  height: 100%;
+}

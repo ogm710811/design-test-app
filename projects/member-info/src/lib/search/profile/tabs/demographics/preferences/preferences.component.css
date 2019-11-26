@@ -1,0 +1,24 @@
+.member-preference-section .mat-input-element.mat-form-field-autofill-control {
+  border-color: currentcolor currentcolor #cccccc;
+  border-radius: 0;
+  border-style: none none solid;
+  border-width: medium medium 1px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.member-preference-section mat-label {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.value-text {
+  line-height: 30px;
+  color: #333333;
+  font-size: 16px;
+}
+
+.horizontal-rule {
+  margin-top: 3px;
+  background-color: #CED3DA;
+}

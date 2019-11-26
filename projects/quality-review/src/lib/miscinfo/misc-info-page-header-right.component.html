@@ -1,0 +1,17 @@
+<span class="span-btn-pill pill-btn">
+  <button class="btn-button" mat-button type="button" [matMenuTriggerFor]="dropDownMA">
+    <img aria-hidden="true" src="/assets/img/information-1.svg" class="img-pre-icon"/>
+    <span class="span-margin-8 btn-text">Related Information</span>
+    <img class="caret-down" src="assets/img/caret-down-blue.svg"/>
+  </button>
+  <button class="btn-exit" mat-button type="button" (click)="exitReview()">
+    <img aria-hidden="true" src="/assets/img/close-blue.svg" class="img-pre-icon"/>
+    <span class="span-margin-8 btn-text" >Exit Review</span>
+  </button>
+</span>
+<mat-menu #dropDownMA="matMenu" class="mat-menu-links" class="menu-qr-related-info">
+  <div>
+    <button type="button" mat-menu-item [foxLink] foxHotkey="alt+p" hotkeyAction="click" (click)="getUrlForClaim()">Claim History Detail <span class="span-hotkey-label">Alt + P</span></button>
+    <button type="button" mat-menu-item [foxLink] foxHotkey="alt+m" hotkeyAction="click" (click)="getUrlForMember()">Member Profile <span class="span-hotkey-label">Alt + M</span></button>
+  </div>
+</mat-menu>

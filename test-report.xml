@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/ogarci14/dev/code/fox-ui original/fox-ui-client/src/app/claim-processing/member-lookup/potential-matches/potential-matches-table-title/potential-matches-table-title.component.spec.ts">
+    <testCase name="PotentialMatchesTableTitleComponent should create" duration="302"/>
+  </file>
+  <file path="/Users/ogarci14/dev/code/fox-ui original/fox-ui-client/src/app/core/fox-ui/fox-ui.component.spec.ts">
+    <testCase name="Log in page Component test should display the login page" duration="232"/>
+    <testCase name="Log in page Component test should have &apos;Sign in&apos; as title element" duration="97"/>
+    <testCase name="Log in page Component test should simulate enter key" duration="83"/>
+  </file>
+  <file path="/Users/ogarci14/dev/code/fox-ui original/fox-ui-client/src/app/claim-processing/maintenance-approval/maintenance-request-details/update-member-aggregate-request/update-member-aggregate-request.component.spec.ts">
+    <testCase name="UpdateMemberAggregateRequestComponent ngOnInit should populate isPending with true" duration="595"/>
+    <testCase name="UpdateMemberAggregateRequestComponent ngOnInit should populate first and last name of the member" duration="356"/>
+    <testCase name="UpdateMemberAggregateRequestComponent ngOnInit should child component reqInfo property be populated with queryParams" duration="324"/>
+    <testCase name="UpdateMemberAggregateRequestComponent ngOnInit should display planYear, Plan, field, originalValue and newValue" duration="352"/>
+    <testCase name="UpdateMemberAggregateRequestComponent route should the Back to search reusults have the correct route" duration="342"/>
+    <testCase name="UpdateMemberAggregateRequestComponent route should arrpMembershipNum have the correct route" duration="601"/>
+    <testCase name="UpdateMemberAggregateRequestComponent should isDesc be changed, viewData populated when short method is called" duration="604"/>
+  </file>
+</testExecutions>

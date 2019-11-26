@@ -1,0 +1,48 @@
+<button type="button" class="btn btn-secondary float-right" (click)="reportModalVisible = true">
+  <i focusable="false" class="fas fa-chart-pie img-margin-right"></i>Reports
+</button>
+<div class="page-title">Bypass Queue</div>
+
+<fox-section>
+  <fox-section-title>Member Lookup: Bypass Queue Selection</fox-section-title>
+  <div class="container-bypass-dropdown">
+    <div class="container-left">
+      <mat-form-field>
+        <mat-label id="lbl-select-user-bypass">Bypass Queue</mat-label>
+        <mat-select id="select-user-bypass" [(value)]="selectedUser" (selectionChange)="onChangeSelectedUser($event.value)">
+          <mat-option *ngFor="let user of userList" value="{{user}}">{{user}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="separator"></div>
+    <mat-form-field id="form-Field-trans-id">
+      <div class="exclamationCircle" *ngIf="showNotFoundAlert">
+        <i focusable="false" class="fas fa-exclamation-circle"></i>
+      </div>
+      <mat-label>Transaction ID</mat-label>
+      <input matInput maxlength="60" [(ngModel)]="trackingIdInput" [ngClass]="{'alert-red-border':showNotFoundAlert}">
+      <div class="txt-not-found-alert" *ngIf="showNotFoundAlert">ID not found</div>
+    </mat-form-field>
+    <div class="container-button">
+      <button class="btn btn-primary btn-find" id="btnFind" name="btnFind" foxHotkey="alt+s"
+              hotkeyDescription="Find the Transaction ID entered in the text box"
+              (click)="findBypass()" [disabled]="trackingIdInput.trim().length < 1" #transid>
+        Search by Transaction ID (S)
+      </button>
+    </div>
+  </div>
+</fox-section>
+<fox-potential-matches-original #potentialMatchesComponent [user]="selectedUser" queueType="BYPASS" [trackingId]="trackingId">
+  <fox-potential-matches-table-title-original>
+    Bypass Queue Items
+  </fox-potential-matches-table-title-original>
+</fox-potential-matches-original>
+<div class="row">
+  <fox-section [noPadding]="true" class="col-sm-7">
+    <fox-section-title class="container-padding">Queue Totals</fox-section-title>
+    <fox-queue-totals-table [user]="selectedUser"></fox-queue-totals-table>
+  </fox-section>
+</div>
+
+<fox-reports [reportModalVisible]="reportModalVisible" (reportModalVisibleChange)="reportModalVisible=$event"
+             [msReports]="msReports" [nasReports]="nasReports"></fox-reports>

@@ -1,0 +1,605 @@
+<mat-tab-group *ngIf="isDataDisplay"
+               class="col-md-8 tab-claim-overview"
+               (selectedTabChange)="onTabChange($event)"
+               [disableRipple]="true"
+               [@.disabled]="true"
+               [dynamicHeight]="true">
+  <mat-tab #claim>
+    <ng-template mat-tab-label>
+      <span>Claim</span>
+    </ng-template>
+    <div>
+      <div class="container-tab-header">
+        <div class="container-tab-title margin-bottom-5">Claim Overview</div>
+        <div class="container-search-subtitle">High-level information about this claim and claim messages (if applicable)</div>
+      </div>
+      <div class="container-data-table">
+        <div class="section-data-field">
+          <div class="container-table-data-field">
+            <table class="table table-data-field">
+              <thead class="thead-default">
+              <tr class="header-bill-line">
+                <th class="col-eob-header"><span class="column-data-header">Data Field</span></th>
+                <th><span class="column-data-header">Value</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="section-data-field-header">Member #</td>
+                <td class="section-data-field-value">
+                  <span *ngIf="memberDetails?.aarpMembershipNumber">
+                    <img class="icon-member-tab icon-indicator" src="assets/img/member-blue.svg"/>
+                  </span>
+                  <a [foxLink] class="link-with-underline" (linkPressed)="getMemberProfile()">{{memberDetails?.aarpMembershipNumber}}</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Medicare #</td>
+                <td class="section-data-field-value">{{memberDetails?.medicareId}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Claim Status</td>
+                <td class="section-data-field-value">{{claimDetails?.claimHistoryStatusCode}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Dates of Service</td>
+                <td class="section-data-field-value">{{dos}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">No Pay</td>
+                <td class="section-data-field-value">{{claimDetails?.noPayIndicator}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Primary ICD</td>
+                <td class="section-data-field-value">{{claimDetails?.primaryIcdCode}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Claim Type</td>
+                <td class="section-data-field-value">{{claimDetails?.claimTypeIndicator}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">AARP Assigned</td>
+                <td>
+                  <span *ngIf="claimDetails.assignedIndicator === 'Y'">
+                    <span><img class="icon-member-tab icon-indicator" src="assets/img/confirm-green.svg"></span>
+                    <span class="span-icon-value">Yes</span>
+                  </span>
+                  <span *ngIf="claimDetails.assignedIndicator === 'N'">
+                    <span><img class="icon-member-tab icon-indicator" src="assets/img/deny-red.svg"></span>
+                    <span class="span-icon-value">No</span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Total Coinsurance</td>
+                <td class="section-data-field-value">{{claimDetails?.totCoinsurance | currency : 'USD'}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Total Copay</td>
+                <td class="section-data-field-value">{{claimDetails?.totCopay | currency : 'USD'}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Total Deductible</td>
+                <td class="section-data-field-value">{{claimDetails?.totDeductible | currency : 'USD'}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Pay After Term Date</td>
+                <td class="section-data-field-value">{{claimDetails?.payAfterTermDate}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="container-tab-title container-claim-msg">Claim Messages</div>
+        <div *ngIf="claimMessagesResult.length === 0" class="container-not-found">
+          <span>
+            <img class="img-info" src="assets/img/information.svg"/>
+          </span>
+          <div class="section-note-1">No Claim Messages</div>
+          <div class="section-note-2">There are no claim-level messages associated to this claim</div>
+        </div>
+        <div *ngIf="claimMessagesResult.length > 0">
+          <fox-claim-details-message [claimMessagesResult]="claimMessagesResult">
+          </fox-claim-details-message>
+          <fox-paginator-non-material [(pageSize)]="pageSizeSelected"
+                                      [dataLengthInput]="dataLengthInput" [pageTotal]="pageTotal"
+                                      [(currentPage)]="currentPage"
+                                      (currentPageChange)="calculateNewPage();"
+                                      (pageSizeChange)="currentPage=0; calculateNewPage();">
+          </fox-paginator-non-material>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab #provider>
+    <ng-template mat-tab-label>
+      <span>Provider</span>
+    </ng-template>
+    <div>
+      <div class="container-tab-header">
+        <div class="row row-header">
+          <div class="col-md-12 no-padding">
+            <div class="col-md-6 no-padding">
+              <div class="container-tab-title margin-bottom-5">Provider Overview</div>
+              <div class="container-search-subtitle">Claim and patient details recorded by the provider</div>
+            </div>
+            <div class="col-md-6 btn-sub-tabs no-padding">
+              <button class="btn btn-secondary btn-bill-provider" (click)="routeProviderSearch()">
+                <span><img class="icon-member-tab icon-right icon-position-align" focusable="false" src="assets/img/Provider.svg"></span>Billing Provider Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-data-table">
+        <div class="section-data-field">
+          <div class="container-table-data-field">
+            <table class="table table-data-field">
+              <thead class="thead-default">
+              <tr class="header-bill-line">
+                <th class="col-provider"><span class="column-data-header">Data Field</span></th>
+                <th><span class="column-data-header">Value</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="section-data-field-header">Patient #</td>
+                <td class="section-data-field-value">{{claimDetails?.patientNum}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Additional ICD</td>
+                <td class="section-data-field-value">{{claimDetails?.additionalIcdCode}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">DRG</td>
+                <td class="section-data-field-value">{{claimDetails?.drg}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Discharge Status</td>
+                <td class="section-data-field-value">{{claimDetails?.dischargeStatus}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Attending Provider Name</td>
+                <td class="section-data-field-value">{{claimDetails?.attendingProvName}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Facility Code</td>
+                <td class="section-data-field-value">{{claimDetails?.facilityCode}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Frequency Code</td>
+                <td class="section-data-field-value">{{claimDetails?.frequencyCode}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Billing Provider Name</td>
+                <td class="section-data-field-value">{{claimDetails?.billingProvName}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Billing Provider Address</td>
+                <td class="section-data-field-value">{{address}}
+                </td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Billing Provider TIN #</td>
+                <td class="section-data-field-value">{{claimDetails?.billingProvTin}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Billing Provider NPI #</td>
+                <td class="section-data-field-value">{{claimDetails?.billingProvNpi}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab #benefits>
+    <ng-template mat-tab-label>
+      <span>Benefits</span>
+    </ng-template>
+    <div>
+      <div class="container-tab-header">
+        <div class="row row-header">
+          <div class="col-md-12 no-padding">
+            <div class="col-md-6 no-padding">
+              <div class="container-tab-title margin-bottom-5">Benefit Overview</div>
+              <div class="container-search-subtitle">Summary information about calculated benefits</div>
+            </div>
+            <div class="col-md-6 btn-sub-tabs no-padding">
+              <button class="btn btn-secondary btn-eob-tab" (click)="routeEOB()">
+                <span><img class="icon-member-tab icon-right icon-position-align" src="assets/img/pdf-fill.svg"></span>View Explanation of Benefits
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-data-table">
+        <div class="section-data-field">
+          <div class="container-table-data-field">
+            <table class="table table-data-field">
+              <thead class="thead-default">
+              <tr class="header-bill-line">
+                <th class="col-eob-header"><span class="column-data-header">Data Field</span></th>
+                <th><span class="column-data-header">Value</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="section-data-field-header">Total Billed Amount</td>
+                <td class="section-data-field-value">{{claimDetails?.totBilledAmt | currency : 'USD'}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Total Benefit Amount</td>
+                <td class="section-data-field-value">{{claimDetails?.totBenefitAmt | currency : 'USD'}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Amount Plan Paid</td>
+                <td class="section-data-field-value">{{claimDetails?.amtPlanPaid | currency : 'USD'}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Process Date</td>
+                <td class="section-data-field-value">{{claimDetails?.processDate | date : 'MM/dd/yyyy'}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container-tab-header">
+        <div class="container-tab-title margin-bottom-5">Explanation of Benefits</div>
+        <div class="container-search-subtitle">Details about the EOB and RA (if applicable)</div>
+      </div>
+      <div class="container-data-table">
+        <div class="section-data-field">
+          <div class="container-table-data-field">
+            <table class="table table-data-field">
+              <thead class="thead-default">
+              <tr class="header-bill-line">
+                <th class="col-eob-header"><span class="column-data-header">Data Field</span></th>
+                <th><span class="column-data-header">Value</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="section-data-field-header">EOB Sent Date</td>
+                <td class="section-data-field-value">{{claimDetails?.eobSentDate | date : 'MM/dd/yyyy'}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Type</td>
+                <td class="section-data-field-value">{{claimDetails?.eobType}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">Indicator</td>
+                <td class="section-data-field-value">{{claimDetails?.eobIndicator}}</td>
+              </tr>
+              <tr>
+                <td class="section-data-field-header">RA Sent Date</td>
+                <td class="section-data-field-value">{{claimDetails?.raSentDate | date : 'MM/dd/yyyy'}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab #payments>
+    <ng-template mat-tab-label>
+      <span>Payments</span>
+    </ng-template>
+    <div class="container-tab-header">
+      <div class="container-tab-title margin-bottom-5">Payment Overview</div>
+      <div class="container-search-subtitle">Summary payment information about this claim</div>
+    </div>
+    <div class="row row-claim-payment">
+      <div class="col-md-12 no-padding">
+        <div class="col-md-6 container-payment-details-1 no-padding">
+          <div class="section-payment-details">
+            <div class="row-payment-header">Combined</div>
+            <div class="row-payment-value">{{claimDetails?.combinedStatusIndicator}}</div>
+          </div>
+        </div>
+        <div class="col-md-6 container-payment-details-2 no-padding">
+          <div class="section-payment-details">
+            <div class="row-payment-header">Payment Type</div>
+            <div class="row-payment-value">{{claimDetails?.paymentType}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-claim-payment">
+      <div class="col-md-12 no-padding">
+        <div class="col-md-6 container-payment-details-1 no-padding">
+          <div class="section-payment-details">
+            <div class="row-payment-header">Payment Date</div>
+            <div class="row-payment-value">{{claimDetails?.paymentDate | date : 'MM/dd/yyyy'}}</div>
+          </div>
+        </div>
+        <div class="col-md-6 container-payment-details-2 no-padding">
+          <div class="section-payment-details">
+            <div class="row-payment-header">IRS withholding</div>
+            <div class="row-payment-value">{{claimDetails?.irsWithholding | currency : 'USD'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-tab-sub-header">
+      <div class="container-tab-title">Member & Provider Payments</div>
+    </div>
+    <div class="section-table-payment">
+      <table class="table table-data-field table-member-payment">
+        <thead class="thead-default">
+        <tr>
+          <th class="col-member-payment"></th>
+          <th class="col-payment-subtotal"><span class="column-data-header">Subtotal</span></th>
+          <th class="col-payment-adjustment"><span class="column-data-header">Adjustment</span></th>
+          <th><span class="column-data-header">Total Paid</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="section-data-field-header">Member</td>
+          <td>{{claimDetails?.memberSubtotal | currency : 'USD'}}</td>
+          <td>({{claimDetails?.memberAdjustment | currency : 'USD'}})</td>
+          <td>{{claimDetails?.totPaidToMember | currency : 'USD'}}</td>
+        </tr>
+        <tr>
+          <td class="section-data-field-header">Provider</td>
+          <td>{{claimDetails?.providerSubtotal | currency : 'USD'}}</td>
+          <td>({{claimDetails?.providerAdjustment | currency : 'USD'}})</td>
+          <td>{{claimDetails?.totPaidToProvider | currency : 'USD'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+
+  <mat-tab #medicare>
+    <ng-template mat-tab-label>
+      <span>Medicare</span>
+    </ng-template>
+    <div>
+      <div class="container-sub-tab-title">Original Medicare Claim Information</div>
+      <div class="container-table-data-field">
+        <table class="table table-data-field">
+          <thead class="thead-default">
+          <tr class="header-bill-line">
+            <th class="col-medicare-header"><span class="column-data-header">Data Field</span></th>
+            <th><span class="column-data-header">Value</span></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="section-data-field-header">Medicare Claim #</td>
+            <td class="section-data-field-value">{{claimDetails?.medicareClaimNum | currency : 'USD'}}</td>
+          </tr>
+          <tr>
+            <td class="section-data-field-header">Date of EOMB</td>
+            <td class="section-data-field-value">{{claimDetails?.dateOfEomb | date : 'MM/dd/yyyy'}}</td>
+          </tr>
+          <tr>
+            <td class="section-data-field-header">Total Charge Amount</td>
+            <td class="section-data-field-value">{{claimDetails?.totChargeAmountMedicare | currency : 'USD'}}</td>
+          </tr>
+          <tr>
+            <td class="section-data-field-header">Total Approved</td>
+            <td class="section-data-field-value">{{claimDetails?.totApprovedMedicare | currency : 'USD'}}</td>
+          </tr>
+          <tr>
+            <td class="section-data-field-header">Ineligible Amount Total</td>
+            <td class="section-data-field-value">{{claimDetails?.ineligibleAmtTotalMedicare | currency : 'USD'}}</td>
+          </tr>
+          <tr>
+            <td class="section-data-field-header">Total Paid Amount</td>
+            <td class="section-data-field-value">{{claimDetails?.totPaidAmtMedicare | currency : 'USD'}}</td>
+          </tr>
+          <tr>
+            <td class="section-data-field-header">Total Deductible</td>
+            <td class="section-data-field-value">{{claimDetails?.totDeductibleMedicare | currency : 'USD'}}</td>
+          </tr>
+          <tr>
+            <td class="section-data-field-header">Total Coinsurance</td>
+            <td class="section-data-field-value">{{claimDetails?.totCoinsuranceMedicare | currency : 'USD'}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="container-sub-tab-title">Adjusted Medicare Claim Information</div>
+      <div class="section-data-field">
+        <div class="container-table-data-field">
+          <table class="table table-data-field">
+            <thead class="thead-default">
+            <tr class="header-bill-line">
+              <th class="col-medicare-header"><span class="column-data-header">Data Field</span></th>
+              <th><span class="column-data-header">Value</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="section-data-field-header">Orig Amount Approved</td>
+              <td class="section-data-field-value">{{claimDetails?.origAmtApprovedMedicare | currency : 'USD'}}</td>
+            </tr>
+            <tr>
+              <td class="section-data-field-header">Orig Payment</td>
+              <td class="section-data-field-value">{{claimDetails?.origPaymentMedicare | currency : 'USD'}}</td>
+            </tr>
+            <tr>
+              <td class="section-data-field-header">Orig Date</td>
+              <td class="section-data-field-value">{{claimDetails?.origDateMedicare | date : 'MM/dd/yyyy'}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<div class="col-md-offset-8 container-grey-border no-padding" *ngIf="isDataDisplay">
+  <div *ngIf="isMemberDataDisplay">
+    <div class="container-member-header-section">
+      <div class="pull-left section-icon-member">
+        <span class="container-icon">
+          <span><img class="icon-member-info" focusable="false" src="assets/img/Member_White.svg"></span>
+        </span>
+      </div>
+      <div class="container-member-title margin-bottom-5">
+        {{memberDetails?.firstName}} {{memberDetails?.middleName}} {{memberDetails?.lastName}} {{memberDetails?.suffix}}
+      </div>
+      <div class="container-member-num">#{{memberDetails?.aarpMembershipNumber}}</div>
+    </div>
+    <div class="container-member-section">
+      <div class="section-member-details">
+        <span><img class="icon-indicator" focusable="false" src="assets/img/Calendar_Dates.svg"></span>
+        <span class="section-member-details-header">Date of Birth:</span>
+        <span class="section-member-details-value">{{memberDetails?.dateOfBirth | date : 'MM/dd/yyyy'}}</span>
+      </div>
+      <div class="section-member-details">
+        <span><img class="icon-indicator" focusable="false" src="assets/img/Calendar_Dates.svg"></span>
+        <span class="section-member-details-header">Date of Death:</span>
+        <span class="section-member-details-value">{{memberDetails?.dateOfDeath | date : 'MM/dd/yyyy'}}</span>
+      </div>
+      <div class="section-member-details">
+        <span><img class="icon-indicator" focusable="false" src="assets/img/Claim_Number.svg"></span>
+        <span class="section-member-details-header">Lifetime Claims:</span>
+        <span class="section-member-details-value">{{noOFClaims}}</span>
+      </div>
+      <div>
+        <span><img class="icon-indicator" focusable="false" src="assets/img/flag-grey.svg"></span>
+        <span class="section-member-details-header">Plans:</span>
+        <span class="section-member-details-value">{{memberDetails?.effectivePlans}}</span>
+      </div>
+    </div>
+    <div class="section-link-member">
+      <span><a [foxLink] class="link-member-profile" (linkPressed)="getMemberProfile()">Member Profile Page</a></span>
+    </div>
+  </div>
+  <div *ngIf="!isMemberDataDisplay">
+    <div class="container-member-header-section">
+      <div class="pull-left section-icon-member">
+        <span class="container-icon">
+          <span><img class="icon-member-info" focusable="false" src="assets/img/Member_White.svg"></span>
+        </span>
+      </div>
+      <div class="container-member-title margin-bottom-5">
+        Member
+      </div>
+    </div>
+    <div class="container-not-found-section">
+      <div class="container-not-found">
+        <i focusable="false">
+          <img class="img-info" src="assets/img/information.svg"/>
+        </i>
+        <div class="section-note-1">No member found</div>
+        <div class="section-note-2">This claim does not have an associated member</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-offset-8 container-grey-border no-padding" *ngIf="isDataDisplay">
+  <div class="container-related-resources">
+    <div class="container-related-resources-title">Related Resources</div>
+    <div class="container-related-resources-subtitle">Links and documents associated to this claim</div>
+  </div>
+  <div *ngIf="!isEmptyRelatedSources">
+    <div class="container-claim-resources">
+      <div class="container-resources-title">CLAIMS</div>
+      <div class="container-resources-details" *ngIf="isPaperImage">
+        <div class="section-link-resources"><a [foxLink] class="link-resources-details">Paper Claim Image</a></div>
+        <div class="link-resources-details-note">View this image in the FOX Document Repository</div>
+      </div>
+      <div class="container-resources-details" *ngIf="claimDetails.adjustmentClaimNum !== '000000000000'">
+        <div class="section-link-resources">
+          <a [foxLink] class="link-resources-details" (linkPressed)="routeClaimDetails(claimDetails.adjustmentClaimNum)">
+          Adjustment Claim #{{claimDetails.adjustmentClaimNum}}</a>
+        </div>
+        <div class="link-resources-details-note">View the Claim Detail page for the adjustment claim</div>
+      </div>
+      <div class="container-resources-details">
+        <div class="section-link-resources">
+          <a [foxLink] class="link-resources-details" [ngClass]="{'disabled': isF5191Disabled}" (linkPressed)="getCombinedClaims('INSURED')">Insured Combined Claims</a>
+        </div>
+        <div class="link-resources-details-note">Displays all combined insured claims in a modal</div>
+      </div>
+      <div class="container-resources-details">
+        <div class="section-link-resources">
+          <a [foxLink] class="link-resources-details" [ngClass]="{'disabled': isF5191Disabled}" (linkPressed)="getCombinedClaims('PROVIDER')">Provider Combined Claims</a>
+        </div>
+        <div class="link-resources-details-note">Displays all combined provider claims in a modal</div>
+      </div>
+    </div>
+    <div class="container-payment-resources">
+      <div class="container-resources-title">PAYMENTS</div>
+      <div class="container-resources-details">
+        <div class="section-link-resources">
+          <a [foxLink] class="link-resources-details" (linkPressed)="routeCheckRegistry()">Member Check Payment</a>
+        </div>
+        <div class="link-resources-details-note">View info related to the payment within the check register</div>
+      </div>
+      <div class="container-resources-details" *ngIf="!isAchPayment">
+        <div class="section-link-resources">
+          <a [foxLink] class="link-resources-details" (linkPressed)="routeCheckRegistry()">Provider Check Payment</a>
+        </div>
+        <div class="link-resources-details-note">View info related to the payment within the check register</div>
+      </div>
+      <div class="container-resources-details" *ngIf="isAchPayment">
+        <div class="section-link-resources"><a [foxLink] class="link-resources-details" (linkPressed)="getAchPayment()">Provider ACH Payment</a></div>
+        <div class="link-resources-details-note">Opens the ACH Payment info in a modal</div>
+      </div>
+      </div>
+  </div>
+  <div class="section-not-found" *ngIf="isEmptyRelatedSources">
+    <div class="container-not-found">
+      <span>
+        <img class="img-info" src="assets/img/information.svg"/>
+      </span>
+      <div class="section-note-1">No resources available</div>
+      <div class="section-note-2">This claim does not have associated resources</div>
+    </div>
+  </div>
+</div>
+
+<fox-modal [(visible)]="achPaymentModalVisible" class="modal-achpayment" modalTitle="ACH Payment">
+  <div class="col-md-12 container-achpayment">
+
+    <div class="col-md-2 no-padding div-achpayment-paymentdate">
+      <p class="label-achpayment">Payment Date</p>
+      <p class="value-achpayment">{{achPaymentDetail?.achPaymentDate | date : 'MM/dd/yyyy'}}</p>
+    </div>
+
+    <div class="col-md-2 no-padding div-achpayment-paymentnumber">
+      <p class="label-achpayment">ACH #</p>
+      <p class="value-achpayment">{{achPaymentDetail?.achNumber}}</p>
+    </div>
+
+    <div class="col-md-2 no-padding div-achpayment-paymentamount">
+      <p class="label-achpayment">ACH Amount</p>
+      <p class="value-achpayment">{{achPaymentDetail?.achAmount | currency : 'USD'}}</p>
+    </div>
+
+    <div class="col-md-6 no-padding div-achpayment-paymentname">
+      <p class="label-achpayment">Paid To</p>
+      <p class="value-achpayment">{{achPaymentDetail?.achName}}</p>
+    </div>
+
+  </div>
+
+</fox-modal>
+
+<fox-combined-claims-modal [(combinedClaimModalVisible)]="combinedClaimModalVisible"
+                           [combinedClaimsResult] = "combinedClaimsResult"
+                           [claimNumber] ="claimNumber"
+                           [combinedClaimsResultLength] = "combinedClaimsResultLength"
+                           (cancelCombinedClaimModal) = "cancelCombinedClaimModal()"
+                           [combinedClaimType] = "combinedClaimType"
+                           [memberDetails] = "memberDetails"
+                           [billingProvName] = "claimDetails?.billingProvName"
+                           [combinedSendDate] = "combinedSendDate">
+</fox-combined-claims-modal>

@@ -1,0 +1,18 @@
+.use-left-margin {
+  margin-left: 20px;
+}
+
+.use-top-margin {
+  margin-top: 20px;
+}
+
+.tbl-results {
+  width: 100%;
+}
+
+.a-disabled{
+  pointer-events: none;
+  color: black;
+  text-decoration: none;
+  opacity: 0.8;
+}

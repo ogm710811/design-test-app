@@ -1,0 +1,42 @@
+.container-route-modal-bdy {
+  padding-top: 5px;
+}
+
+.span-msg-header {
+  color: #333333;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.container-static-msg {
+  text-align: center;
+}
+
+.img-route-modal {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  width: 200px;
+}
+
+.container-btn {
+  text-align: center;
+  margin-top: 23px;
+  padding-bottom: 5px;
+}
+
+.container-input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+
+.input-params {
+  float: none;
+  display: block;
+  margin: 0 auto;
+  max-width: 238px;
+}

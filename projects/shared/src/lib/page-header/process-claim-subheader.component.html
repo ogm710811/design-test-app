@@ -1,0 +1,54 @@
+<div class="container-claim-member">
+  <span *ngIf="memberName || account" class="container-claim">
+    <img class="claim-img" src="assets/img/member.svg"/>
+    <span class="text-user-info">
+      <span *ngIf="memberName" id="subheadertitle" class="text-header">Member: <span class="span-member-name">{{memberName}}</span></span>
+      <span *ngIf="!!memberName && !!account" class="span-dash-color"> | </span>
+      <span *ngIf="account" class="text-user-no">
+        <a target="_blank" href="/#/{{getUrl(account)}}" >{{account}}</a>
+      </span>
+    </span>
+  </span>
+  <span *ngIf="claimNumb" class="container-member">
+    <span class="text-user-info">
+      <img class="claim-img" src="assets/img/claim.svg"/>
+      <span class="header-member-no">Claim #: </span>
+      <span class="text-user-no">{{claimNumb}}</span>
+    </span>
+  </span>
+  <span *ngIf="communication" class="container-member">
+    <span class="text-user-info">
+      <img class="claim-img" src="assets/img/mail-grey.svg"/>
+      <span class="header-member-no">Communication: </span>
+      <span class="text-user-no">{{communication}}</span>
+    </span>
+  </span>
+  <span *ngIf="quality" class="container-member">
+    <span class="text-user-info">
+      <img class="claim-img" src="assets/img/flag-grey-medium-dark.svg"/>
+      <span class="header-member-no">Quality #: </span>
+      <span class="text-user-no">{{quality}}</span>
+    </span>
+  </span>
+  <span *ngIf="dateOfBirth" class="container-member">
+    <span class="text-user-info">
+      <img class="claim-img" src="assets/img/calendar-grey-medium-dark.svg"/>
+      <span class="header-member-no">Date of Birth: </span>
+      <span class="text-user-no">{{dateOfBirth}}</span>
+    </span>
+  </span>
+  <span *ngIf="plans" class="container-member">
+    <span class="text-user-info">
+      <img class="claim-img" src="assets/img/plan.svg"/>
+      <span class="header-member-no">Plans: </span>
+      <span class="text-user-no">{{plans}}</span>
+    </span>
+  </span>
+  <span *ngIf="details" class="container-member">
+    <span class="text-user-info">
+      <img class="claim-img" src="assets/img/work-item-grey.svg"/>
+      <span class="header-member-no">Details: </span>
+      <span class="text-user-no">{{(details.length > 50) ?  (details | slice:0:50) + '...' : (details)}}</span>
+    </span>
+  </span>
+</div>

@@ -1,0 +1,125 @@
+<fox-message-box [(visible)]="eobStatementNotFoundMsg" messageBoxTitle="No EOB Statements found">
+  Please update your search query and try again.
+</fox-message-box>
+
+<fox-message-box [(visible)]="claimSummaryNotFoundMsg" messageBoxTitle="No Claim Summary found">
+  Please update your search query and try again.
+</fox-message-box>
+
+<fox-message-box [(visible)]="drugSummaryNotFoundMsg"
+                 messageBoxTitle="No Prescription Drug Claim Summary found">
+  Please update your search query and try again.
+</fox-message-box>
+
+<div class="eob-info">
+  <mat-tab-group #eobInfoTabs [(selectedIndex)]="defaultTabIndex" [disableRipple]="true"
+                 [@.disabled]="true"
+                 [dynamicHeight]="true"
+                 (selectedTabChange)="onSelectedTab($event)">
+    <mat-tab foxHotkey="alt+b" hotkeyAction="emit"
+             (hotkeyPressed)="changePosition(0)">
+      <ng-template mat-tab-label>
+        <span>EOB Statements (B)</span>
+      </ng-template>
+      <fox-eob-statements-form
+        (submitEobStatement)="onEobStatementSubmit($event)"
+        [memberIdInput]="memberIdInput" [dosFromInput]="dosFromInput" [dosToInput]="dosToInput">
+      </fox-eob-statements-form>
+    </mat-tab>
+
+    <mat-tab *ngIf="toogleFeature" #summary foxHotkey="alt+l" hotkeyAction="emit"
+             (hotkeyPressed)="changePosition(1)">
+      <ng-template mat-tab-label>
+        <span>Summary of Claims (L)</span>
+      </ng-template>
+      <fox-claims-summary-form
+        (submitClaimSummary)="onClaimSummarySubmit($event)"
+        (submitDrugSummary)="onDrugSummarySubmit($event)"></fox-claims-summary-form>
+    </mat-tab>
+  </mat-tab-group>
+
+  <fox-section [noPadding]="true" *ngIf="eobStatementResultsExist">
+    <ng-container *ngIf="eobStatementResultsExist">
+      <fox-section-title class="member-card-main container-padding">
+        <fox-member-card [memberCardResults]="memberCardResults"></fox-member-card>
+      </fox-section-title>
+    </ng-container>
+  </fox-section>
+
+  <fox-section [noPadding]="true" *ngIf="claimSummaryResultsExist && !isDrugMemberCard">
+    <ng-container *ngIf="claimSummaryResultsExist">
+      <fox-section-title class="member-card-main container-padding">
+        <fox-member-card [memberCardResults]="memberCardClaimResults"></fox-member-card>
+      </fox-section-title>
+    </ng-container>
+  </fox-section>
+
+  <fox-section [noPadding]="true" *ngIf="drugSummaryResultsExist && isDrugMemberCard">
+    <ng-container *ngIf="drugSummaryResultsExist">
+      <fox-section-title class="member-card-main container-padding">
+        <fox-member-card [memberCardResults]="memberCardDrugResults"></fox-member-card>
+      </fox-section-title>
+    </ng-container>
+  </fox-section>
+
+  <fox-section [noPadding]="true">
+    <fox-section-title class="container-padding" *ngIf="!resultsExist">
+      Search Results
+    </fox-section-title>
+
+    <fox-section-title class="container-padding" *ngIf="eobStatementResultsExist">
+      EOB Statements Search Results
+    </fox-section-title>
+
+    <fox-section-title class="container-padding"
+                       *ngIf="claimSummaryResultsExist && !isDrugMemberCard">
+      Claim Summary
+    </fox-section-title>
+
+    <fox-section-title class="container-padding"
+                       *ngIf="drugSummaryResultsExist && isDrugMemberCard">
+      Prescription Drug Claim Summary
+    </fox-section-title>
+    <ng-container *ngIf="!resultsExist">
+      <fox-loading-overlay>
+        <div class="container-not-found">
+          <i focusable="false" class="fa fa-info-circle"></i>
+          <p class="header-container">There is no active query</p>
+          <p>Search by one of the available fields above to get started</p>
+        </div>
+      </fox-loading-overlay>
+    </ng-container>
+    <ng-container *ngIf="eobStatementResultsExist">
+      <fox-loading-overlay>
+        <fox-eob-statements-results
+          [eobStatementResults]="eobStatementResults"></fox-eob-statements-results>
+      </fox-loading-overlay>
+    </ng-container>
+
+    <ng-container *ngIf="claimSummaryResultsExist && !isDrugMemberCard">
+      <fox-loading-overlay>
+        <fox-claims-summary-results
+          [claimSummaryResults]="claimSummaryResults" [claimSummaryFormValues]="claimSummaryFormValues"></fox-claims-summary-results>
+      </fox-loading-overlay>
+    </ng-container>
+
+    <ng-container *ngIf="drugSummaryResultsExist && isDrugMemberCard">
+      <fox-loading-overlay>
+        <fox-drug-summary-results [(isDesc)]="drugSummaryIsDesc" [(column)]="drugSummarySortColumn"
+                                  [memberCardResults]="memberCardDrugResults"
+                                  [totalDrugSummaryResults]="totalDrugSummaryResults"
+                                  [drugSummaryResults]="drugSummaryResults"
+                                  [drugSummaryFormValues]="drugSummaryFormValues"
+                                  (columnChange)="drugSummaryResultTable()"></fox-drug-summary-results>
+        <fox-paginator-non-material [(pageSize)]="drugSummaryPageSize"
+                                   [dataLengthInput]="drugSummaryResultsDataLengthInput"
+                                   [pageTotal]="drugSummaryPageTotal"
+                                   [(currentPage)]="currentDrugSummaryPage"
+                                   (currentPageChange)="drugSummaryResultTable()"
+                                   (pageSizeChange)="currentDrugSummaryPage=0;drugSummaryResultTable()">
+        </fox-paginator-non-material>
+      </fox-loading-overlay>
+    </ng-container>
+
+  </fox-section>
+</div>

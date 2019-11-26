@@ -1,0 +1,45 @@
+.fox-section-description {
+  margin: 0;
+  padding-bottom: 30px;
+  color: #6E7681;
+}
+
+.fox-section-result {
+  color: #6E7681;
+}
+
+.container-row-gutter-width {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.container-row-gutter-width > [class^="col-"] {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.title-section-result {
+  margin: 20px;
+}
+
+.container-not-padding {
+  padding: 0;
+}
+
+.container-input-row {
+  padding-bottom: 25px;
+}
+
+.container-padding {
+  padding: 20px;
+}
+
+.span-search-btn {
+  padding-left: 10px;
+}
+
+@media (max-width: 373px) {
+  .span-clear-button-xxs {
+    display: none;
+  }
+}

@@ -1,0 +1,93 @@
+.eob-statement .form-row, .claim-summary .form-row {
+  width: 100%;
+  height: 55px;
+  margin-top: 20px;
+}
+
+.eob-statement .form-row .mat-form-field, .claim-summary .form-row .mat-form-field {
+  float: left;
+}
+
+.eob-statement .form-row-first, .claim-summary .form-row-first {
+  margin-bottom: 45px;
+}
+
+.btn-find-eob {
+  margin-top: 16px;
+}
+
+.container-buttons {
+  padding-top: 16px;
+}
+
+.container-not-found {
+  margin-bottom: 100px;
+}
+
+.icon-pdf {
+  color: #196ECF;
+  padding-right: 10px;
+}
+
+.read-more-link {
+  color: #196ECF;
+  cursor: pointer;
+}
+
+.claim-column {
+  word-wrap: break-word;
+  word-break: break-all;
+  min-width: 37%;
+  line-height: 1.7;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+  .claim-column {
+    word-wrap: break-word;
+    word-break: break-all;
+    min-width: 17%;
+  }
+}
+
+.action-column {
+  word-wrap: break-word;
+  word-break: break-all;
+  min-width: 21%;
+}
+
+.drug-action-column {
+  word-wrap: break-word;
+  word-break: break-all;
+  min-width: 65%;
+}
+
+.common-action-icon {
+  color: #196ECF;
+  font-size: 14px;
+  padding-right: 10px;
+  padding-left: 31px;
+}
+
+.report-action-icon {
+  color: #196ECF;
+  font-size: 14px;
+  padding-right: 10px;
+}
+
+.action-icon {
+  color: #196ECF;
+  font-size: 14px;
+  padding-right: 5px;
+}
+
+.action-telegram-icon {
+  color: #196ECF;
+  font-size: 14px;
+  padding-right: 5px;
+  padding-left: 10px;
+}
+
+.table.table-eob-statement-search-result {
+  table-layout: fixed;
+}

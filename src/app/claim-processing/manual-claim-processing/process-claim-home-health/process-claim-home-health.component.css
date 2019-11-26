@@ -1,0 +1,242 @@
+.page-title {
+  margin-top: 0px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.col-sl-no-width {
+  width: 40px;
+  padding-top: 20px;
+}
+
+.container-op-info {
+  margin-top: 15px;
+}
+
+.container-last-row {
+  padding-bottom: 30px;
+}
+
+.container-upper{
+  text-transform: uppercase;
+}
+
+.container-center{
+  text-align: center;
+}
+
+.container-bill-card {
+  padding-top: 10px;
+}
+
+.container-bill-label {
+  position: relative;
+  width: 140px;
+}
+
+.container-bill-content-label {
+  height: 14px;
+  width: 130px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.container-op-info {
+  margin-top: 15px;
+}
+
+.container-last-row {
+  margin-bottom: 30px;
+}
+
+.container-member-value {
+  height: 14px;
+  width: 55px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.header-text {
+  height: 18px;
+  width: 94.4px;
+  color: #4E5B71;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: left;
+}
+
+.left-border {
+  border-left: 1px solid #cccccc;
+  height: 140px;
+}
+
+.text-upper{
+  text-transform: uppercase;
+}
+
+.text-style {
+  text-transform: uppercase;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+  padding-left: 5px;
+  padding-right: 8px;
+}
+
+.slNo-value{
+  padding-top: 20px;
+  width: 34px;
+}
+
+.big-label-width {
+  width: 280px;
+  padding-left: 0px;
+}
+
+.col-ser-Dt-width {
+  width: 95px;
+}
+
+.col-ser-dates-width {
+  width:160px;
+}
+
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+}
+
+.container-arrow-right {
+  height: 14px;
+  width: 14px;
+  margin-right: 7px;
+}
+
+.container-icd-label {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  height: 21px;
+  margin-bottom: 25px;
+}
+
+.container-margin-icd {
+  margin: 20px 20px 23px 20px;
+}
+
+.container-margin-left-25 {
+  margin-left: 25px;
+}
+
+.container-icd {
+  margin-left: 0;
+  padding-right: 20px;
+}
+
+.container-ben-date {
+  margin-bottom: 7px;
+}
+
+.margin-input {
+  margin: 20px 20px 30px 20px;
+}
+
+.container-input {
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  padding: 6px 10px 7px;
+}
+
+.fox-section-icd {
+  margin-top: -27px;
+}
+
+.container-top-title {
+  padding-top: 30px;
+}
+
+.container-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+
+}
+
+.container-sub-title {
+  color: #6E7681;
+  line-height: 16px;
+}
+
+.span-bill-line {
+  float: right;
+  padding-right: 20px;
+}
+
+.span-set-bill-line {
+  display: inline-flex;
+  height: 35px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.span-set-bill-left {
+  color: #252C37;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-left: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+.span-set-bill-right {
+  color: #ffffff;
+  background-color: #196ECF;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+.div-margin-right-15 {
+  margin-right: 15px;
+}
+
+.container-trip-date {
+  width: 170px;
+}
+
+.span-return {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container-trip-date {
+    width: 100%;
+  }
+}

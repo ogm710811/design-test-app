@@ -1,0 +1,23 @@
+mat-form-field.mat-form-field {
+  border: solid 1px #cccccc;
+  border-radius: 3px;
+}
+
+::ng-deep mat-form-field.mat-form-field.mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-form-field-label-wrapper {
+  margin-top: -18px;
+  padding: 0;
+}
+
+input.mat-input-element, textarea.mat-input-element {
+  border: none;
+}
+
+mat-select.mat-select {
+  border: none;
+  margin: 0;
+  height: 34px;
+}
+
+::ng-deep div.mat-form-field-infix.mat-form-field-infix {
+  padding-top: 0;
+}

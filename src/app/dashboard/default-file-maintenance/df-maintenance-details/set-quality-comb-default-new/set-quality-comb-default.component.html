@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-xs-12 pull-left container-return-prev-page">
+    <a href="#" (click)="f1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev-page">{{isOverrideOption ? 'Return to Previous (F1)' : 'Cancel and Return (F1)'}}</span>
+    </a>
+  </div>
+</div>
+<fox-section *ngIf="!isOverrideOption" [noPadding]="true" >
+  <fox-section-title class="container-setqlty-comb-title">Quality Combinations Defaults</fox-section-title>
+  <div class="row container-setqlty-comb-details">
+    <div class="col-xs-12 col-sm-3 container-setqlty-comb-input">
+      <fox-input type="text"
+                 [isReadOnly]="true"
+                 labelText="Authority Level"
+                 id="txtAuthorityLevel"
+                 [ngModel]="deftScreen.m86type">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-setqlty-comb-input">
+      <fox-input type="text"
+                 [isReadOnly]="true"
+                 labelText="Last Maintenance Date"
+                 id="txtLastMaintDateDeft"
+                 [ngModel]="deftScreen.m86mdat">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-setqlty-comb-input">
+      <fox-input type="text"
+                 [isReadOnly]="true"
+                 labelText="{{maintInputField.label}}"
+                 id="txtPosition"
+                 [ngModel]="maintInputField.value">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-setqlty-comb-input">
+      <fox-input type="text"
+                 [isReadOnly]="true"
+                 labelText="Maintenance IONs"
+                 id="txtIons"
+                 [ngModel]="deftScreen.m86mion">
+      </fox-input>
+    </div>
+  </div>
+</fox-section>
+<fox-section *ngIf="isOverrideOption" [noPadding]="true">
+  <fox-section-title class="container-setqlty-comb-title">Overview</fox-section-title>
+  <div class="row container-setqlty-comb-details">
+    <div class="col-xs-12 col-sm-3 container-setqlty-comb-input">
+      <fox-input type="text"
+                 [isReadOnly]="true"
+                 labelText="Template Number"
+                 id="txtTemplateNumber"
+                 [ngModel]="overrideScreen.m86typef">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-setqlty-comb-input">
+      <fox-input type="text"
+                 [isReadOnly]="true"
+                 labelText="Last Maintenance Date"
+                 id="txtLastMaintDate"
+                 [ngModel]="overrideScreen.m86mdatf">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-setqlty-comb-input">
+      <fox-input type="text"
+                 [isReadOnly]="true"
+                 labelText="Maintenance IONs"
+                 id="txtMaintIons"
+                 [ngModel]="overrideScreen.m86mionf">
+      </fox-input>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true" >
+  <fox-section-title class="container-setqlty-comb-title">Quality Combinations</fox-section-title>
+  <fox-table #inputTable
+             [tableColumns]="setQltyCombColumn"
+             [fixedFirstColumn]="true"
+             [tableData]="setQltyCombTableData | orderBy: {property: resultCurrentSortKey, direction: resultSortDirection}"
+             (columnChanged)="resultCurrentSortKey = $event"
+             (directionChanged)="resultSortDirection = $event"
+             [sortByColumn]="'Line #'">
+  </fox-table>
+  <div class="row container-setqlty-comb-paginator">
+    <fox-paginator-non-material [(pageSize)]="pageSizeSelected"
+                                [dataLengthInput]="dataLengthInput" #paginator
+                                [pageTotal]="pageTotal"
+                                [(currentPage)]="currentPage"
+                                (currentPageChange)="calculateNewPage();"
+                                (pageSizeChange)="currentPage=0; calculateNewPage();">
+    </fox-paginator-non-material>
+  </div>
+  <div class="row text-right container-setqlty-override-btn" *ngIf="!isOverrideOption && isEditable">
+    <div class="col-sm-12">
+      <button type="button"
+              class="btn btn-secondary btn-clear-setqltycomb-deft"
+              foxHotkey="alt+r"
+              (click)="clearEventClick()"
+              hotkeyAction="click">Clear (R)
+      </button>
+      <fox-loading-button [buttonValue]="'Submit (S)'"
+                          [buttonStatus]="buttonStatus"
+                          [typeValue]="'button'"
+                          [foxHotKeyValue]="'alt+s'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</fox-section>
+<div class="row text-right" *ngIf="!isOverrideReview && isOverrideOption">
+  <div class="col-sm-12">
+    <button type="button"
+            class="btn btn-secondary btn-clear-setqltycomb-deft"
+            foxHotkey="alt+r"
+            (click)="clearEventClick()"
+            hotkeyAction="click">Clear (R)
+    </button>
+    <fox-loading-button [buttonValue]="'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>
+<fox-section *ngIf="isOverrideReview && overrideScreen.m86excTable.m86excts[0].m86tExcNo">
+  <fox-section-title>Excluded Locations</fox-section-title>
+  <div class="container-setqlty-excluded-loc" *ngFor="let locationObject of overrideScreen.m86excTable.m86excts">
+    <div>{{locationObject.m86tExcNo ? locationObject.m86tExcNo+' , ' : ''}}</div>
+  </div>
+</fox-section>

@@ -1,0 +1,15 @@
+fox-input + label {
+  margin-left: 150px;
+}
+
+@media  (min-width: 767px) {
+
+  .container-row-holder {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin:0;
+    padding-top: 25px;
+  }
+}

@@ -1,0 +1,17 @@
+<fox-claim-info-header #claimInfoHeader
+                       [claimNumber] = claimNumber
+                       [memberNumber] = memberNumber
+                       (chKeyEvent) = "onChkeyEvent($event)"></fox-claim-info-header>
+
+<fox-duplicate-processing #duplicateProcessClaim
+                          [hidden]="summarySwitch"
+                          [claimHistoryStart] = claimInfoHeader.claimNumber
+                          [claimHistoryKey] = chkeyEvent
+                          (chosenBillLineKeyEvent)="showSummary($event)"></fox-duplicate-processing>
+
+<fox-duplicate-claim-summary *ngIf="summarySwitch"
+                             (hideSummaryEvent) = "hideSummary()"
+                             [claimHistoryKey] = claimInfoHeader.claimNumber
+                             [chosenBillLineKey]="chosenBillLineKey"
+                             [incomingClaim]="incomingClaim"
+                             [incomingBilline]="incomingBilline"></fox-duplicate-claim-summary>

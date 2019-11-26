@@ -1,0 +1,65 @@
+.mat-tab-group {
+  border: 0;
+  margin-bottom: 25px;
+  opacity: 1;
+  overflow: visible;
+}
+
+.mat-tab-group .mat-tab-header {
+  border: 0;
+  opacity: 1;
+  overflow: visible;
+}
+
+.mat-tab-group .mat-tab-header .mat-tab-label-container {
+  border: 0;
+  opacity: 1;
+  overflow: visible;
+}
+
+.member-profile-tabs > .mat-tab-group > .mat-tab-header > .mat-tab-label-container {
+  background-color: white;
+  border-bottom: solid 1px #E3E3E3;
+  box-shadow: none;
+  margin-bottom: 20px;
+}
+
+.mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels {
+  border: 0;
+  opacity: 1;
+  overflow: visible;
+}
+
+.mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels .mat-tab-label {
+  background-color: #F6F8F9;
+  border: 1px solid #CED3DA;
+  border-radius: 3px 3px 0 0;
+  box-sizing: border-box;
+  opacity: 1 !important;
+  overflow: visible;
+  padding: 18px 30px 17px;
+}
+
+.mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels .mat-tab-label:hover {
+  color: #5A616D;
+}
+
+.mat-tab-label:focus {
+  outline: none;
+  overflow: visible;
+}
+
+.mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels .mat-tab-label.mat-tab-label-active {
+  background-color: transparent;
+  border-bottom: 0;
+  z-index: 2
+}
+
+.mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-ink-bar {
+  visibility: hidden !important;
+}
+
+mat-ink-bar.mat-ink-bar {
+  visibility: hidden !important;
+}
+

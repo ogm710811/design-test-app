@@ -1,0 +1,32 @@
+<div class="stat-box-border">
+  <div class="caption">
+    <div class="row">
+      <div class="div-margin-left-5">
+        <div class="stat-box-subtitle-text">
+          <div class="stat-box-subtitle-1">{{statBoxTitle}}</div>
+          <div class="stat-box-subtitle-2">{{statBoxSubtitle}}</div>
+        </div>
+        <p class="stat-box-value-text">{{statBoxValue}}</p>
+      </div>
+      <hr class="div-margin-top--5">
+
+      <ng-container *ngIf="!hasSupervisorRole">
+        <span class="stat-small-title">Lookups Per Hour:</span>
+        <span class="stat-small-value">TBD</span>
+      </ng-container>
+
+      <ng-container *ngIf="hasSupervisorRole">
+        <span class="stat-small-container">
+          <span class="stat-small-title">Lookups Per Hour:</span>
+          <span class="stat-small-value">TBD</span>
+        </span>
+        <span class="line-vertical"></span>
+        <span class="stat-small-container">
+          <span class="stat-small-title">Bypass:</span>
+          <span class="stat-small-value bypass-value">{{bypassBoxValue}}</span>
+        </span>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

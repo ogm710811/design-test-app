@@ -1,0 +1,85 @@
+.container-revw-cpthpcs-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  padding: 0 20px 25px 0;
+  margin-top: -10px;
+}
+
+.containter-revw-cpthcpcs-input, .container-revwcpt-read-only {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.containter-revw-first-input, .container-revwcpt-first-readonly {
+  padding-right: 10px;
+}
+
+.containter-revw-last-input, .container-revwcpt-last-readonly {
+  padding-left: 10px;
+}
+
+.container-revwcpthcpcs-btn-section {
+  margin-top: 23px;
+}
+
+.btn-clear-revw-cpthcpcs {
+  margin-right: 15px;
+}
+
+.img-section-shape {
+  display: block;
+  height: 179px;
+  width: 192px;
+  margin: 35px auto 25px;
+}
+
+.para-section-header {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  margin: 0 auto;
+  width: 260px
+}
+
+.para-section-description {
+  font-size: 13px;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  padding-top: 7px;
+}
+
+.container-revw-cpthcpcs-label {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin-top: 22px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.container-revw-cpthcpcs-value {
+  font-size: 14px;
+  line-height: 16px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.divider-revw-cpthcpcs-codes {
+  margin: 30px -20px 20px -20px;
+}
+
+.input-reve-cpthcpcs-codes {
+  padding: 5px 0 7px 0;
+}
+
+@media (max-width: 768px) {
+  .divider-revw-cpthcpcs-codes {
+    display: none;
+  }
+
+  .containter-revw-first-input, .containter-revw-cpthcpcs-input, .containter-revw-last-input {
+    padding: 10px 15px 10px 15px;
+  }
+}

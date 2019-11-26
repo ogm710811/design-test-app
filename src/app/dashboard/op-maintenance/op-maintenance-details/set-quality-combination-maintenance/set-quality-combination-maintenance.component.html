@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 container-return-prev">
+    <a class="link-decoration" href="#" (click)="f1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </a>
+  </div>
+</div>
+
+<fox-section class="section-title-of">
+  <div class="row no-padding">
+    <div class="col-xs-12 container-title-info">
+      <fox-section-title>Operator Information (IONS)</fox-section-title>
+    </div>
+  </div>
+  <div class="row row-holder div-member-details-container">
+    <div class="col-xs-12 col-sm-2 container-input">
+      <fox-input type="text"
+                 labelText="Name"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 [(ngModel)]="screen.m78name">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-input">
+      <fox-input type="text"
+                 labelText="IONS ID"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 [(ngModel)]="screen.m78ions">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-input">
+      <fox-input type="text"
+                 labelText="Last Maintenance"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 [(ngModel)]="screen.m78mdat">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-input">
+      <fox-input type="text"
+                 labelText="Maintenance IONs"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 [(ngModel)]="screen.m78mion">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-input">
+      <fox-input type="text"
+                 labelText="Position"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 [(ngModel)]="screen.m78posl">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-input">
+      <fox-input type="text"
+                 labelText="Authority Level"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 [(ngModel)]="screen.m78alvl">
+      </fox-input>
+    </div>
+  </div>
+</fox-section>
+<fox-section class="table-style">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="container-title">
+        <fox-section-title>Quality Combinations</fox-section-title>
+      </div>
+      <div *ngIf="screen.m78titl === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Use Tab or arrows keys to navigate and update fields. Click "Submit" (Alt + S) to proceed.</fox-section-subheader>
+      </div>
+    </div>
+  </div>
+  <div class="container-table-style">
+    <fox-table #inputTable
+               [tableColumns]="inputColumns"
+               [tableData]="viewData | orderBy: {property: tableSortKey, direction: tableSortDirection}"
+               (columnChanged)="tableSortKey = $event"
+               (directionChanged)="tableSortDirection = $event"
+               [fixedFirstColumn]="true">
+    </fox-table>
+    <div class="row pagnatn-op-auth-comb">
+      <fox-paginator-non-material #paginator
+                                  [(pageSize)]="pageSizeSelected"
+                                  [dataLengthInput]="dataLengthInput"
+                                  [pageTotal]="pageTotal"
+                                  [(currentPage)]="currentPage"
+                                  (currentPageChange)="calculateNewPage();"
+                                  (pageSizeChange)="currentPage=0; calculateNewPage();"
+                                  [pageSizeDropdownOption]="pageSizeDropdownOption">
+      </fox-paginator-non-material>
+    </div>
+  </div>
+</fox-section>
+<div class="row" *ngIf="isReadOnly">
+  <div class="col-sm-12 text-right">
+    <button type="button"
+            class="btn btn-secondary  button-margin"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button [buttonValue]="'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

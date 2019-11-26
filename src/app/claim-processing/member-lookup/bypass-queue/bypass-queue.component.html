@@ -1,0 +1,60 @@
+<div class="page-title">
+  <span>Bypass Queue</span>
+  <div class="div-visible-col">
+    <fox-potential-matches-actions #potentialMatchesActions [user]="selectedUser" queueType="BYPASS" [trackingId]="trackingId"></fox-potential-matches-actions>
+    <br *ngIf="innerWidth <= 768">
+    <button *ngIf="hasReleaseEnableReports" type="button" class="btn btn-secondary btn-reports button-visible btn-reports" (click)="reportModalVisible = true">
+      <img src="assets/img/Report-blue.svg" class="img-reports"> Reports
+    </button>
+  </div>
+</div>
+
+<fox-section>
+  <fox-section-title>Member Lookup: Bypass Queue Selection</fox-section-title>
+  <div class="container-bypass-dropdown div-container">
+
+    <div class="row div-row-margin-top">
+      <div class="col-sm-3 col-padding-right">
+        <mat-form-field class="form-field">
+          <mat-label id="lbl-select-user-bypass">Bypass Queue</mat-label>
+          <mat-select id="select-user-bypass" [(value)]="selectedUser" (selectionChange)="onChangeSelectedUser($event.value)">
+            <mat-option *ngFor="let user of userList" value="{{user}}">{{user}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-5 col-padding-right">
+        <mat-form-field class="form-field" id="form-Field-trans-id">
+          <div class="exclamationCircle" *ngIf="showNotFoundAlert">
+            <i focusable="false" class="fas fa-exclamation-circle"></i>
+          </div>
+          <mat-label>Transaction ID</mat-label>
+          <input matInput maxlength="60" [(ngModel)]="trackingIdInput" [ngClass]="{'alert-red-border':showNotFoundAlert}">
+          <div class="txt-not-found-alert" *ngIf="showNotFoundAlert">ID not found</div>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 div-line-height">
+        <button class="btn btn-primary btn-find btn-ellipsis"
+                id="btnFind" name="btnFind" foxHotkey="alt+f"
+                hotkeyDescription="Find the Transaction ID entered in the text box"
+                (click)="findBypass()" [disabled]="trackingIdInput.trim().length < 1" #transid>
+          Find Transaction (F)
+        </button>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-potential-matches [user]="selectedUser" queueType="BYPASS" (eventClicked)="childEventClicked($event)" [trackingId]="trackingId">
+  <fox-potential-matches-table-title>
+    Bypass Queue Items
+    <div class="div-subheader">Enter the matching option number if possible, or enter no match.<span *ngIf="hasNoMatches"> You may bypass or cancel lookup.</span></div>
+  </fox-potential-matches-table-title>
+</fox-potential-matches>
+<div class="row">
+  <fox-section [noPadding]="true" class="col-sm-7">
+    <fox-section-title class="container-padding">Queue Totals</fox-section-title>
+    <fox-queue-totals-table [user]="selectedUser"></fox-queue-totals-table>
+  </fox-section>
+</div>
+
+<fox-reports [reportModalVisible]="reportModalVisible" (reportModalVisibleChange)="reportModalVisible=$event"
+             [msReports]="msReports" [nasReports]="nasReports"></fox-reports>

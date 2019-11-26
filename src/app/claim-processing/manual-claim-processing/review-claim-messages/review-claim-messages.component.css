@@ -1,0 +1,64 @@
+.container-claim-messages {
+  padding: 0 20px;
+}
+
+.container-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  font-weight: 500;
+  top: 7px;
+  cursor: pointer;
+}
+
+.span-return-prev:focus {
+  border: none;
+  text-decoration: none;
+  outline: none;
+}
+
+.container-msg-header {
+  padding: 20px 20px 0 20px;
+  margin: 0;
+}
+
+.container-msg-detail {
+  padding: 20px;
+  margin: 0;
+}
+
+.p-msg-content {
+  margin-bottom: 15px;
+  line-height: 21px;
+}
+
+.span-msg-sub-header {
+  margin-top: -7px;
+  display: flex;
+  line-height: 16px;
+  color: #6E7681;
+}
+
+.container-no-msg {
+  padding: 25px 20px 30px 20px;
+  text-align: center;
+}
+
+.img-no-msg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+  height: 184px;
+  margin-bottom: 25px;
+}
+
+.span-msg-desc {
+  line-height: 16px;
+  color: #6E7681;
+}

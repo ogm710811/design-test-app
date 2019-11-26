@@ -1,0 +1,47 @@
+<div class="viewer-container">
+  <div class="page-overlay">
+    <button class="btn-overlay" type="button" (click)="onFirstPageClicked()" >
+      <img class="img-arrow-stop" focusable="false" src="assets/img/arrow-leftStop-ffffff.svg" placement="center">
+    </button>
+    <button class="btn-overlay" type="button" (click)="onPreviousClicked()">
+      <i focusable="false" class="fas fa-arrow-left"></i>
+    </button>
+    <input class="input-page-number" maxlength="3" foxNumbers [(ngModel)]="pageInputValue" (keypress)="onKeyPress($event)">
+      of {{totalPages}}
+    <button class="btn-overlay" type="button" (click)="onNextClicked()">
+      <i focusable="false" class="fas fa-arrow-right"></i>
+    </button>
+    <button class="btn-overlay" type="button" (click)="onLastPageClicked()">
+      <img class="img-arrow-stop" focusable="false" src="assets/img/arrow-rightStop-ffffff.svg" placement="center">
+    </button>
+    <button class="btn-overlay" type="button" (click)="onRotateLeftClicked()">
+      <i focusable="false" class="fa fa-undo"></i>
+    </button>
+    <button class="btn-overlay" type="button" (click)="onRotateRightClicked()">
+      <i focusable="false" class="fa fa-undo fa-flip-horizontal"></i>
+    </button>
+    <button class="btn-overlay" type="button" (click)="onZoomOutClicked()">
+      <i focusable="false" class="fas fa-minus"></i>
+    </button>
+    <button class="btn-overlay" type="button" (click)="onZoomInClicked()">
+      <i focusable="false" class="fas fa-plus"></i>
+    </button>
+    <button class="btn-overlay" type="button" [foxPdfDownloadUrl]="downloadLink">
+      <i focusable="false" class="fas fa-download"></i>
+    </button>
+  </div>
+  <div class="pdf-container" [id]="'something'">
+    <pdf-viewer [src]="{data: pdfInternal, disableAutoFetch: true, disableStream: true}"
+                [show-all]="false"
+                [stick-to-page]="true"
+                [rotation]="currentRotation"
+                [zoom]="currentZoomScale"
+                [original-size]="true"
+                [fit-to-page]="false"
+                [(page)]="currentPage"
+                (after-load-complete)="onLoad($event)">
+    </pdf-viewer>
+  </div>
+</div>
+
+

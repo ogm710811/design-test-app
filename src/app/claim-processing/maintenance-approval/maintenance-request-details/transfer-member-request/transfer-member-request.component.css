@@ -1,0 +1,200 @@
+.container-padding {
+  padding: 0;
+}
+
+.container-row-padding {
+  padding-left: 5px;
+}
+
+.section-status {
+  height: 14px;
+  width: 108px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.section-details{
+  font-weight: 400;
+}
+
+.section-from {
+  height: 12px;
+  width: 228px;
+  color: #4E5B71;
+  font-size: 14px;
+  line-height: 12px;
+}
+
+.circle-icon {
+  font-size: 4px;
+  vertical-align: middle;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.section-divider {
+  height: 12px;
+  width: 10px;
+  color: #4E5B71;
+  line-height: 12px;
+}
+
+.page-title {
+  margin-top: 0;
+}
+
+.link-back-search {
+  font-size: 14px;
+  text-decoration: none;
+  float: left;
+  font-weight: normal;
+}
+
+.container-goto {
+  height: 13px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 25px;
+}
+
+.container-link-1 {
+  padding-left: 0;
+  text-decoration: none;
+}
+
+.container-link-2 {
+  padding-right: 0;
+}
+
+.link-prev-result {
+  padding-right: 25px;
+  text-decoration: none;
+}
+
+.fa-chevron-right {
+  height: 10px;
+  width: 10px;
+  margin-left: 3px;
+  font-size: 13px;
+}
+
+.fa-chevron-left {
+  height: 10px;
+  width: 10px;
+  margin-right: 3px;
+  font-size: 13px;
+}
+
+.fa-arrow-left {
+  margin-right: 3px;
+  font-size: 12px;
+}
+
+.link-next-result {
+  text-decoration: none;
+}
+
+.containers-links {
+  float: right;
+}
+
+.container-main-section, .container-right-box {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container-left-box {
+  padding-left: 0;
+  padding-right: 30px;
+}
+
+.title-card {
+  width: 590px;
+  color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  padding-top: 16px;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.div-fullname {
+  display: flex;
+}
+
+.span-current-name {
+  height: 22px;
+  color: #333333;
+  font-size: 22px;
+}
+
+.link-claim-detail {
+  height: 22px;
+  color: #196ECF;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.span-new-name {
+  height: 22px;
+  color: #333333;
+  font-size: 22px;
+  line-height: 22px;
+}
+
+.span-current-lastname {
+  padding-left: 10px;
+}
+
+.member-img {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.fa-user {
+  font-size: 16px;
+  color: #196ECF;
+}
+
+.section-member {
+  width: 43%;
+}
+
+.section-card {
+  width: 43%;
+  margin-left: 20px;
+}
+
+.section-title {
+  margin-bottom: 7px;
+}
+
+.container-trans-member-details {
+  display: flex;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+
+.section-member {
+  width: 43%;
+}
+
+.section-card {
+  width: 43%;
+  margin-left: 20px;
+}
+
+.icon-right-arrow {
+  font-size: 17px;
+  font-weight: lighter;
+  padding-top: 25px;
+  padding-right: 31px;
+  padding-left: 31px;
+}
+
+.col-member-value {
+  width: 343px;
+}
+

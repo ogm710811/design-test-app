@@ -1,0 +1,66 @@
+<!--Member Insurance Plan-->
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">
+    Insurance Plans
+  </fox-section-title>
+  <div class="member-insurance-table-main">
+    <div class="member-insurance-non-mat-table-main">
+      <mat-table class="member-insurance-non-mat-table" [dataSource]="insuranceDataSource" #table
+                 matSort
+                 tabindex="0">
+
+        <ng-container matColumnDef="planCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Plan Code</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.planCode}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="planName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Plan Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.planName}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.status}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="effectiveDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Effective Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.effectiveDate | date:'MM/dd/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="termDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Term Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.termDate | date:'MM/dd/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="termReason">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Reason for Term</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.termReason}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="premPaidThrough">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Premium Paid Through</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.premPaidThrough}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="grsAccount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> GRS Account</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.grsAccount}}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedInsuranceColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedInsuranceColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</fox-section>

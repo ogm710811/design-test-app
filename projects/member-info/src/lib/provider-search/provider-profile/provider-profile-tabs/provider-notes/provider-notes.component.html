@@ -1,0 +1,21 @@
+<fox-section>
+  <div>
+    <div class="tab-heading">Provider Notes</div>
+    <div class="container-not-found" *ngIf="!detailsService || !detailsService?.hasNotes">
+      <i focusable="false" class="fa fa-info-circle"></i>
+      <p class="header-container">No data to display</p>
+    </div>
+    <div *ngIf="detailsService && detailsService.hasNotes && detailsService.providerDetails && detailsService.providerDetails.note">
+      <ng-container *ngFor="let item of detailsService.providerDetails.note; let j = index">
+        <div class="row-provider-notes"><p>
+          <span><b>{{item?.recordDetail?.lastUpdateUser}}</b></span><span
+          class="container-note-date"><i>Posted {{item?.recordDetail?.lastUpdateDate | date : 'MM/dd/yyyy'}}</i></span>
+        </p></div>
+        <div class="container-provider-notes">{{item?.note}}</div>
+        <div class="section-member-payment"
+             *ngIf="detailsService && detailsService.providerDetails && detailsService.providerDetails.note && (j < detailsService.providerDetails.note.length - 1)"></div>
+      </ng-container>
+    </div>
+  </div>
+</fox-section>
+

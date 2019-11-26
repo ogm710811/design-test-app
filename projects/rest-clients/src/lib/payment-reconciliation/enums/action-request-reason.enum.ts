@@ -1,0 +1,15 @@
+export type ActionRequestReasonEnum = 'LOST_CHECK' | 'DECEASED_INSURED' | 'ACCOUNT_PAID_IN_FULL' | 'STALE_DATED' | 'INCORRECT_PAYEE' | 'OVERPAYMENT' | 'INCORRECT_ADDRESS' | 'WRONG_PROVIDER' | 'DAMAGED_CHECK' | 'ASSIGNMENT_OF_BENEFITS_RECEIVED' | 'SURVEY_LETTER' | 'OTHER';
+export const ActionRequestReasonEnum = {
+  LOSTCHECK: 'LOST_CHECK' as ActionRequestReasonEnum,
+  DECEASEDINSURED: 'DECEASED_INSURED' as ActionRequestReasonEnum,
+  ACCOUNTPAIDINFULL: 'ACCOUNT_PAID_IN_FULL' as ActionRequestReasonEnum,
+  STALEDATED: 'STALE_DATED' as ActionRequestReasonEnum,
+  INCORRECTPAYEE: 'INCORRECT_PAYEE' as ActionRequestReasonEnum,
+  OVERPAYMENT: 'OVERPAYMENT' as ActionRequestReasonEnum,
+  INCORRECTADDRESS: 'INCORRECT_ADDRESS' as ActionRequestReasonEnum,
+  WRONGPROVIDER: 'WRONG_PROVIDER' as ActionRequestReasonEnum,
+  DAMAGEDCHECK: 'DAMAGED_CHECK' as ActionRequestReasonEnum,
+  ASSIGNMENTOFBENEFITSRECEIVED: 'ASSIGNMENT_OF_BENEFITS_RECEIVED' as ActionRequestReasonEnum,
+  SURVEYLETTER: 'SURVEY_LETTER' as ActionRequestReasonEnum,
+  OTHER: 'OTHER' as ActionRequestReasonEnum
+};

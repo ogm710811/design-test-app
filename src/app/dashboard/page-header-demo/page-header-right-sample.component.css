@@ -1,0 +1,46 @@
+.span-btn-pill {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.pill-btn .btn-button:hover {
+  background-color: #ECF4FE;
+}
+
+.pill-btn .btn-button {
+  padding: 0 0 0 8px;
+  border-radius: 3px;
+  border:1px solid #196ECF;
+  color: #196ECF;
+  line-height: 13px;
+  font-size: 13px;
+  width: auto;
+  height: 35px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.pill-btn .btn-button .caret-down {
+  width: 24px;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 34px;
+  border-left: 1px solid #196ECF;
+  padding: 14px 8px;
+}
+
+.img-pre-icon {
+  width: 13px;
+  height: 13px;
+  margin-top: -2px;
+}
+
+.btn-margin {
+  margin-right: 10px;
+}
+
+@media (max-width: 574px) {
+  .pill-btn .btn-button {
+    margin-top: 10px;
+  }
+}

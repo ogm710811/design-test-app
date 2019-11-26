@@ -1,0 +1,42 @@
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+}
+
+.span-return {
+  cursor: pointer;
+}
+
+.container-arrow-right {
+  height: 14px;
+  width: 14px;
+  margin-right: 7px;
+}
+
+.container-spacing {
+  margin-bottom: 25px;
+}
+
+.container-fox-section {
+  padding: 20px 20px 5px 20px;
+}
+
+.button-clear {
+  margin-right: 15px;
+}
+
+.container-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.container-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 18px;
+}

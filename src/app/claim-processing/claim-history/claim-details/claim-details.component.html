@@ -1,0 +1,198 @@
+<div class="col-md-12 section-claim-back">
+  <span *ngIf="command === 'QR'">
+    <a class="link-claim-back" [routerLink]="qrurl">
+      <span><img class="icon-back" focusable="false" src="assets/img/arrow-left.svg">Back to Quality Review</span></a>
+  </span>
+  <span *ngIf="command === 'RM'">
+    <a class="link-claim-back" [routerLink]="maintenanceUrl">
+      <span><img class="icon-back" focusable="false" src="assets/img/arrow-left.svg">Back to Maintenance Approval</span></a>
+  </span>
+  <span *ngIf="!(command === 'QR' || command === 'RM')">
+    <a class="link-claim-back" [routerLink]="url">
+      <span><img class="icon-back" focusable="false" src="assets/img/arrow-left.svg">Back to Claim  Search</span></a>
+  </span>
+</div>
+
+<div *ngIf="pageHeaderService.currentNav===1">
+  <fox-claim-details-home [claimDetails]="claimDetails"
+                          [memberDetails]="memberDetails"
+                          [isDataDisplay]="isDataDisplay"
+                          [isAchPayment]="isAchPayment"
+                          [claimNumber]="claimNumber"
+                          [dos]="dos" [noOFClaims]="noOFClaims"
+                          [claimMessagesResult]="claimMessagesResult" [viewData]="viewData"
+                          [pageTotal]="pageTotal" [dataLengthInput]="dataLengthInput"
+                          [isMemberDataDisplay]="isMemberDataDisplay">
+  </fox-claim-details-home>
+</div>
+
+<div *ngIf="pageHeaderService.currentNav===2" class="container-bill-lines">
+  <fox-section>
+    <div class="col-md-12 no-padding">
+      <div class="col-md-12 section-bill-line-heading">
+        <div class="col-xs-12 col-md-6 no-padding section-sub-header">
+          <div class="section-bill-line-title">{{billLineTitle}} Bill Lines</div>
+          <div class="section-bill-line-subtitle">Click rows with message indicators to expand and view bill line messages</div>
+        </div>
+        <div class="col-xs-12 col-md-6 no-padding section-bill-line-btns">
+          <mat-button-toggle-group class="toggle-group-bill-line" #toggleGroup="matButtonToggleGroup"
+                                   value="entered" (change)="getToggleValue()" [(value)]="billLineType">
+            <mat-button-toggle class="btn-toggle-border btn-entered" value="entered" #enteredButton="matButtonToggle">
+              <span class="btn-entered-eob">Entered</span>
+            </mat-button-toggle>
+            <mat-button-toggle class="btn-toggle-border btn-eob" value="eob" #eobButton="matButtonToggle">
+              <span class="btn-entered-eob">EOB</span>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+      <div class="col-xs-12 no-padding container-table-bill-line" *ngIf="isBillLinesDisplay">
+        <fox-bill-lines-drug *ngIf="isEobDrug" [billLinesResultSet]="billLinesResultSet"
+                             [isEobType]="isEobType"
+                             [(isDesc)]="billLinesResultIsDesc"
+                             [(column)]="billLinesSortColumn"
+                             (columnChange)="currentbillLinesPage = 0;getBillLinesDetails()">
+        </fox-bill-lines-drug>
+        <fox-bill-lines-nopay *ngIf="isEobNoPay" [billLinesResultSet]="billLinesResultSet"
+                              [isEobType]="isEobType"
+                              [(isDesc)]="billLinesResultIsDesc"
+                              [(column)]="billLinesSortColumn"
+                              (columnChange)="currentbillLinesPage = 0;getBillLinesDetails()">
+        </fox-bill-lines-nopay>
+        <fox-bill-lines-medsupp *ngIf="isEobMed" [billLinesResultSet]="billLinesResultSet"
+                                [isEobType]="isEobType"
+                                [(isDesc)]="billLinesResultIsDesc"
+                                [(column)]="billLinesSortColumn"
+                                (columnChange)="currentbillLinesPage = 0;getBillLinesDetails()">
+        </fox-bill-lines-medsupp>
+        <fox-bill-lines-hospital *ngIf="isEobHos" [billLinesResultSet]="billLinesResultSet"
+                                 [isEobType]="isEobType"
+                                 [(isDesc)]="billLinesResultIsDesc"
+                                 [(column)]="billLinesSortColumn"
+                                 (columnChange)="currentbillLinesPage = 0;getBillLinesDetails()">
+        </fox-bill-lines-hospital>
+        <fox-bill-lines-service *ngIf="isEobSvc" [billLinesResultSet]="billLinesResultSet"
+                                [isEobType]="isEobType"
+                                [(isDesc)]="billLinesResultIsDesc"
+                                [(column)]="billLinesSortColumn"
+                                (columnChange)="currentbillLinesPage = 0;getBillLinesDetails()">
+        </fox-bill-lines-service>
+
+        <fox-paginator-non-material [(pageSize)]="billLinesPageSize"
+                                    [dataLengthInput]="billLinesDataLengthInput"
+                                    [pageTotal]="billLinesPageTotal"
+                                    [(currentPage)]="currentbillLinesPage"
+                                    (currentPageChange)="getBillLinesDetails()"
+                                    (pageSizeChange)="currentbillLinesPage=0;getBillLinesDetails()">
+        </fox-paginator-non-material>
+      </div>
+      <div *ngIf="!isBillLinesDisplay">
+        <div class="container-not-found cros-ref-container-not-found">
+          <span><img class="img-info" focusable="false" src="assets/img/information.svg"></span>
+          <div class="section-note-1">No Bill Lines to Display</div>
+          <div class="section-note-2">This claim does not have associated bill lines</div>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+</div>
+
+<div *ngIf="pageHeaderService.currentNav===3" class="container-claim-cross-reference">
+  <fox-claim-cross-reference [crossReferenceResultSet]="crossReferenceResultSet"
+                             [isCrossRefDataDisplay]="isCrossRefDataDisplay"
+                             [isAddNewDisabled]="isMaintenanceDisabled"
+                             [isCrossReferenceActive]="isCrossRefActive"
+                             [crossRefLength]="crossRefLength"
+                             (postDeleteSuccess)="getCrosRefPostDelete($event)"
+                             (postAddSuccess)="getCrosRefPostAdd($event)"
+                             [claimNumber]="claimNumber"
+                             [isLocked]="isLocked">
+  </fox-claim-cross-reference>
+</div>
+
+<div *ngIf="pageHeaderService.currentNav===4" class="container-claim-notes">
+  <fox-claim-details-notes [claimNoteDetails]="claimNoteDetails"
+                           [isClaimNote]="isClaimNote"
+                           [claimNote]="claimNote"
+                           [claimNumber]="claimNumber"
+                           [isLocked]="isLocked"
+                           (claimNoteIdEvent)="updateClaimNoteId($event)">
+  </fox-claim-details-notes>
+</div>
+
+<div *ngIf="pageHeaderService.currentNav===5" class="container-claim-audit">
+  <fox-claim-details-audit *ngIf="isClaimAudit"
+                           [claimAuditDetails]="claimAuditDetails"
+                           [suspendReason]="suspendReason"
+                           [qualityErrorCode]="qualityErrorCode">
+  </fox-claim-details-audit>
+</div>
+
+<fox-send-replace-eob-modal [(sendReplaceModalVisible)]="sendReplaceModalVisible"
+                            [enableSendReplace]="enableSendReplace"
+                            [eobModalType]="eobModalType" [eobModalTitle]="eobModalTitle"
+                            [isEobActive]="isEobActive" [isRaActive]="isRaActive"
+                            [sendReplaceEobResultSet]="sendReplaceEobResultSet"
+                            [sendReplaceEobValidateSet]="sendReplaceEobResultSet"
+                            (cancelSendReplace)="cancelSendReplace()"
+                            (confirmSendReplace)="confirmSendReplace()"
+                            (sendReplaceSuccessMsg)="sendReplaceSuccessMsg($event)"
+                            (sendReplaceFailMsg)="sendReplaceFailMsg($event)"
+                            (responseMsg)="responseMsg=$event">
+</fox-send-replace-eob-modal>
+
+<fox-update-eob-modal [(isUpdateEobModalVisible)]="updateEobModalVisible"
+                      [claimDetails]="claimDetails"
+                      [claimNumber]="claimNumber" [exceptionInd]="exceptionInd"
+                      [eobUpdateReqBody]="eobUpdateReqBody"
+                      [isEobHos]="isEobHos"
+                      (cancelUpdateEob)="cancelUpdateEob()"
+                      (confirmUpdateEob)="confirmUpdateEob()"
+                      (updateEobSuccessMsg)="updateEobSuccessMsg($event)"
+                      (updateEobFailMsg)="updateEobFailMsg($event)"
+                      (responseMsg)="responseMsg=$event">
+</fox-update-eob-modal>
+
+<fox-transfer-claim-search-modal
+  [(transferClaimSearchModalVisible)]="transferClaimSearchModalVisible"
+  [claimDetails]="claimDetails" [memberDetails]="memberDetails" [dos]="dos"
+  [claimNumber]="claimNumber"
+  (cancelTransferClaim)="cancelSearchModal()"
+  (confirmTransferClaim)="confirmSearchModal()"
+  (transferClaimSuccessMsg)="transferClaimSuccessMsg($event)"
+  (transferClaimFailMsg)="transferClaimFailMsg($event)"
+  (responseMsg)="responseMsg=$event">
+</fox-transfer-claim-search-modal>
+
+<fox-delete-claim-modal [(deleteClaimModalVisible)]="deleteClaimModalVisible"
+                        [claimNumber]="claimNumber"
+                        [validateNoteContent]="claimNote"
+                        [noteContent]="claimNote"
+                        [claimNoteDetails]="claimNoteDetails"
+                        (cancelDeleteClaim)="cancelDeleteClaim()"
+                        (confirmDeleteClaim)="confirmDeleteClaim()"
+                        (responseMsg)="responseMsg=$event"
+                        (deleteClmSuccessMsg)="deleteClmSuccessMsg($event)"
+                        (deleteClmFailMsg)="deleteClmFailMsg($event)"
+                        (responseVal)="setClaimHistStatusCd($event)">
+</fox-delete-claim-modal>
+
+<fox-reactivate-claim-modal [(reactivateModalVisible)]="reactivateModalVisible"
+                            [claimNumber]="claimNumber"
+                            (cancelReactivateClaim)="cancelReactivateClaim()"
+                            (confirmReactivateClaimModal)="confirmReactiveClaimModal()"
+                            (reactivateClmSuccessMsg)="reactivateOrSuspndClmSuccessMsg($event)"
+                            (reactivateClmFailMsg)="reactivateOrSuspndClmFailMsg($event)"
+                            (responseMsg)="responseMsg=$event"
+                            (responseVal)="setClaimHistStatusCd($event)">
+</fox-reactivate-claim-modal>
+
+<fox-suspend-claim-modal [(suspendClaimModalVisible)]="suspendClaimModalVisible"
+                         [claimNumber]="claimNumber"
+                         (cancelSuspendClaim)="cancelSuspendClaim()"
+                         (suspendClmSuccessMsg)="reactivateOrSuspndClmSuccessMsg($event)"
+                         (suspendClmFailMsg)="reactivateOrSuspndClmFailMsg($event)"
+                         (confirmSuspendClaimModal)="confirmSuspendClaimModal()"
+                         (responseMsg)="responseMsg=$event"
+                         (responseVal)="setClaimHistStatusCd($event)">
+</fox-suspend-claim-modal>

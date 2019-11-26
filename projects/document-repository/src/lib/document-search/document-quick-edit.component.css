@@ -1,0 +1,92 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.modal-quick-edit {
+  z-index: 1000;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  background-color: #fff;
+  padding: 25px;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #CED3DA;
+  font-size: 14px;
+  overflow-y: scroll;
+}
+
+.modal__close-btn {
+  border: 0;
+  background: none;
+  color: #4E5B71;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+}
+
+.modal__title {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.header-group {
+  color: #196ECF;
+  border-bottom: 1px solid #196ECF;
+  font-weight: 600;
+  padding-bottom: 7px;
+  margin-top: 30px;
+}
+
+.icon-margin-right {
+  margin-right: 7px;
+}
+
+.txt-no-changes, .txt-form-invalid {
+  line-height: 12px;
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.txt-form-invalid {
+  color: red;
+}
+
+.form-field-linked {
+  margin-top: 20px;
+  width: 100%;
+  border-bottom: 1px solid #CED3DA;
+  padding-bottom: 10px;
+}
+
+.txt-link-to-member {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sidebar {
+  padding-bottom: 20px;
+}
+
+.container-input-field {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.container-input-field .mat-input-container {
+  margin:0;
+}

@@ -1,0 +1,67 @@
+<form (ngSubmit)="openDetailQualityReview()" class="margin-top-25">
+  <fox-section>
+    <fox-section-title>Locate a Communication</fox-section-title>
+    <div class="container-sub-title">
+      <fox-section-subheader>Search by Communication Number OR Quality Date, Location, and Number.</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 container-padding-first">
+        <fox-input type="fox-number"
+                   labelText="Communication Number"
+                   id="txtCommunication"
+                   name="txtCommunication"
+                   [(ngModel)]="screen.m85cndt"
+                   [length]="11">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-1 container-div-or container-padding-middle">
+        <div class="container-circle">or</div>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-padding-middle">
+        <fox-input #qualityDateInput
+                   type="fox-date"
+                   labelText="Quality Date"
+                   id="txtQualityDate"
+                   name="txtQualityDate"
+                   [inputValue]="qualityDate">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-2 container-padding-middle">
+        <fox-input type="text"
+                   labelText="Location"
+                   id="txtLocation"
+                   name="txtLocation"
+                   [(ngModel)]="screen.m85qnlo"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-padding-last">
+        <fox-input type="fox-number"
+                   labelText="Number"
+                   id="txtNumber"
+                   name="txtNumber"
+                   [(ngModel)]="screen.m85qnno"
+                   [length]="5">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="container-btn">
+          <button type="button"
+                  class="btn btn-secondary button-margin"
+                  (click)="clear()"
+                  foxHotkey="alt+r"
+                  hotkeyAction="click">
+            Clear (R)
+          </button>
+          <fox-loading-button [buttonValue] = "'Submit (S)'"
+                              [buttonStatus]="continueStatus"
+                              [typeValue]="'submit'"
+                              [foxHotKeyValue]="'alt+s'">
+          </fox-loading-button>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+</form>

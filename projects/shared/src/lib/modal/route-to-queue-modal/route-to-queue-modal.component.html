@@ -1,0 +1,101 @@
+<fox-modal [(visible)]="modalVisible" (visibleChange)="changeVisible($event)" [closable]="false"
+           modalTitle="Route to Queue">
+  <p>
+    Select a queue from the list below
+  </p>
+
+  <mat-form-field class="fld-q-sel">
+    <mat-label>Work Type*</mat-label>
+    <mat-select class="sel-q-sel route-work-type" [(value)]="lastWorkType" (selectionChange)="changeWorkType()">
+      <mat-option value="">Select a Work Type</mat-option>
+      <mat-option *ngFor="let option of workTypeOptions" [value]="option.description">
+        {{option.description}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="fld-q-sel">
+    <mat-label>Category*</mat-label>
+    <mat-select class="sel-q-sel route-category" [(value)]="lastCategory" (selectionChange)="changeCategory()">
+      <mat-option value="">Select a Category</mat-option>
+      <mat-option *ngFor="let option of categoryOptions" [value]="option.categoryName">
+        {{option.categoryName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="fld-q-name">
+    <mat-label>Queue Name*</mat-label>
+    <mat-select class="sel-q-sel route-queue-name" [(value)]="lastQueueName">
+      <mat-option value="">Select a Queue Name</mat-option>
+      <mat-option *ngFor="let option of queueNameOptions" [value]="option.queueId">
+        {{option.description}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="isF5001Enabled" [ngClass]="{'div-note-content-new':isF5001Enabled}">
+    <mat-form-field class="textarea-note-content textarea-note-content-item-detail">
+      <mat-label class="note-field-label">Item Details</mat-label>
+      <mat-hint class="characters-left" align="end">{{20 - textarea.value.length}} characters left
+      </mat-hint>
+      <input type="text" matInput #textarea class="text-area-note-content" (keyup)="onKeyUp()" [(ngModel)]="noteContent" />
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="!isF5001Enabled">
+    <mat-form-field class="textarea-note-content">
+      <mat-label class="note-field-label">Note Text*</mat-label>
+      <mat-hint class="characters-left" align="end">{{200 - textarea.value.length}} characters left
+      </mat-hint>
+      <textarea matInput #textarea class="text-area-note-content" (keyup)="onKeyUp()" [(ngModel)]="noteContent"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="isF5001Enabled" class="container-buttons">
+    <button (click)="onRoutePressed('queue')" *ngIf="!displayTwoButtons()"
+            [disabled]="!lastWorkType || !lastCategory || !lastQueueName || noteContent.length > 20"
+            id="btn-modal-confirm"
+            class="btn btn-primary"
+            type="button">
+      Route to Queue
+    </button>
+    <button type="button" id="btn-modal-cancel" class="btn btn-secondary"
+            (click)="changeVisible(false)">Cancel
+    </button>
+    <button (click)="onRoutePressed('exit')" *ngIf="displayTwoButtons()"
+            [disabled]="!lastWorkType || !lastCategory || !lastQueueName || noteContent.length > 20"
+            id="btn-modal-confirm-exit" class="btn btn-primary"
+            type="button">
+      Route to Queue & Exit
+    </button>
+    <button (click)="onRoutePressed('next')" *ngIf="displayTwoButtons()"
+            [disabled]="!lastWorkType || !lastCategory || !lastQueueName || noteContent.length > 20"
+             id="btn-modal-confirm-next" class="btn btn-primary"
+            type="button">
+      Route to Queue & Get Next
+    </button>
+  </div>
+
+  <div *ngIf="!isF5001Enabled" class="container-buttons">
+    <button (click)="onRoutePressed('queue')" *ngIf="!displayTwoButtons()"
+            [disabled]="!lastWorkType || !lastCategory || !lastQueueName || noteContent.length > 200 || noteContent.length === 0"
+            id="btn-modal-confirm" class="btn btn-primary"
+            type="button">
+      Route to Queue
+    </button>
+    <button type="button" id="btn-modal-cancel" class="btn btn-secondary"
+            (click)="changeVisible(false)">Cancel
+    </button>
+    <button (click)="onRoutePressed('exit')" *ngIf="displayTwoButtons()"
+            [disabled]="!lastWorkType || !lastCategory || !lastQueueName || noteContent.length > 200 || noteContent.length === 0"
+            id="btn-modal-confirm-exit" class="btn btn-primary"
+            type="button">
+      Route to Queue & Exit
+    </button>
+    <button (click)="onRoutePressed('next')" *ngIf="displayTwoButtons()"
+            [disabled]="!lastWorkType || !lastCategory || !lastQueueName || noteContent.length > 200 || noteContent.length === 0"
+            id="btn-modal-confirm-next" class="btn btn-primary"
+            type="button">
+      Route to Queue & Get Next
+    </button>
+  </div>
+</fox-modal>

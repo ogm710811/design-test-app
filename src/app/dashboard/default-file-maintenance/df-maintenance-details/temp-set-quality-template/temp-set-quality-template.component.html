@@ -1,0 +1,571 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="btnClick('PF1')" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Cancel and Return (F1)
+  </span>
+</div>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Set Quality Template Details</fox-section-title>
+      <div *ngIf="screenMap.m79headi === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-overview-padding">
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79TEMP"
+                     name="txtM79TEMP"
+                     labelText="Template"
+                     [length]=45
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screenMap.m79tempi"
+                     [(ngModel)]="screenMap.m79tempi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79DATE"
+                     name="txtM79DATE"
+                     labelText="Last Maintenance Date"
+                     [length]=45
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screenMap.m79datei"
+                     [(ngModel)]="screenMap.m79datei">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79IONS"
+                     name="txtM79IONS"
+                     labelText="Ions"
+                     [length]=45
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screenMap.m79ionsi"
+                     [(ngModel)]="screenMap.m79ionsi">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>
+        Update Set Quality Template
+      </fox-section-title>
+      <div *ngIf="screenMap.m79headi === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79PAY"
+                     name="txtM79PAY"
+                     labelText="Payments"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79payi"
+                     [(ngModel)]="screenMap.m79payi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79NPAY"
+                     name="txtM79NPAY"
+                     labelText="No Payments"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79npayi"
+                     [(ngModel)]="screenMap.m79npayi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79CORP"
+                     name="txtM79CORP"
+                     labelText="Corporate"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79corpi"
+                     [(ngModel)]="screenMap.m79corpi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79NDOC"
+                     name="txtM79NDOC"
+                     labelText="New Doctor"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79ndoci"
+                     [(ngModel)]="screenMap.m79ndoci">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79NHOS"
+                     name="txtM79NHOS"
+                     labelText="New Hospital"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79nhosi"
+                     [(ngModel)]="screenMap.m79nhosi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79SPEC"
+                     name="txtM79SPEC"
+                     labelText="Spec Pay/Alt Addr"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79speci"
+                     [(ngModel)]="screenMap.m79speci">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79SCLM"
+                     name="txtM79SCLM"
+                     labelText="Split Claim"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79sclmi"
+                     [(ngModel)]="screenMap.m79sclmi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79BEN"
+                     name="txtM79BEN"
+                     labelText="Benefit Extension"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79beni"
+                     [(ngModel)]="screenMap.m79beni">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79ADMH"
+                     name="txtM79ADMH"
+                     labelText="Compas History"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79admhi"
+                     [(ngModel)]="screenMap.m79admhi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79PDN"
+                     name="txtM79PDN"
+                     labelText="PDN - 1ST Pay"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79pdni"
+                     [(ngModel)]="screenMap.m79pdni">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79LTRS"
+                     name="txtM79LTRS"
+                     labelText="Letters"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79ltrsi"
+                     [(ngModel)]="screenMap.m79ltrsi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79REVD"
+                     name="txtM79REVD"
+                     labelText="Reval Disb"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79revdi"
+                     [(ngModel)]="screenMap.m79revdi">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79EXS"
+                     name="txtM79EXS"
+                     labelText="Exception Screen"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79exsi"
+                     [(ngModel)]="screenMap.m79exsi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79COMM"
+                     name="txtM79COMM"
+                     labelText="Communications"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79commi"
+                     [(ngModel)]="screenMap.m79commi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79REVS"
+                     name="txtM79REVS"
+                     labelText="Reval Susp"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79revsi"
+                     [(ngModel)]="screenMap.m79revsi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79PAYA"
+                     name="txtM79PAYA"
+                     labelText="Payment Adjust"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79payai"
+                     [(ngModel)]="screenMap.m79payai">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79DECI"
+                     name="txtM79DECI"
+                     labelText="Deceased Insureds"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79decii"
+                     [(ngModel)]="screenMap.m79decii">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79REVP"
+                     name="txtM79REVP"
+                     labelText="Reval Payment >  $"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79revpi"
+                     [(ngModel)]="screenMap.m79revpi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM79SMEM"
+                     name="txtM79SMEM"
+                     labelText="Special Memo"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79smemi"
+                     [(ngModel)]="screenMap.m79smemi">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-6 container-input-field">
+          <fox-input type="text"
+                     id="txtM79MLTR"
+                     name="txtM79MLTR"
+                     labelText="Med Supp when LTR days exhausted"
+                     [length]=45
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79mltri"
+                     [(ngModel)]="screenMap.m79mltri">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>
+        Assign Information
+      </fox-section-title>
+      <div *ngIf="screenMap.m79headi === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM96ASNA"
+                     name="txtM96ASNA"
+                     labelText="Assign > $"
+                     [length]=5
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79asnai"
+                     [(ngModel)]="screenMap.m79asnai">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM96ASNP"
+                     name="txtM96ASNP"
+                     labelText="Assign %"
+                     [length]=3
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79asnpi"
+                     [(ngModel)]="screenMap.m79asnpi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM96ASHA"
+                     name="txtM96ASHA"
+                     labelText="Assign Hosp > $"
+                     [length]=5
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79ashai"
+                     [(ngModel)]="screenMap.m79ashai">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM96ASHP"
+                     name="txtM96ASHP"
+                     labelText="Assign Hosp %"
+                     [length]=3
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79ashpi"
+                     [(ngModel)]="screenMap.m79ashpi">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM96NASA"
+                     name="txtM96NASA"
+                     labelText="Non Assign > $"
+                     [length]=5
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79nasai"
+                     [(ngModel)]="screenMap.m79nasai">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM96NASP"
+                     name="txtM96NASP"
+                     labelText="Non Assign %"
+                     [length]=3
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79naspi"
+                     [(ngModel)]="screenMap.m79naspi">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM96NAHA"
+                     name="txtM96NAHA"
+                     labelText="Non Assign Hosp > $"
+                     [length]=5
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79nahai"
+                     [(ngModel)]="screenMap.m79nahai">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM96NAHP"
+                     name="txtM96NAHP"
+                     labelText="Non Assign Hosp %"
+                     [length]=3
+                     [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                     [inputValue]="screenMap.m79nahpi"
+                     [(ngModel)]="screenMap.m79nahpi">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Message</fox-section-title>
+      <div *ngIf="screenMap.m79headi === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-input">
+        <div *ngFor="let msg of msgt; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM79MES"
+                       name="txtM79MES"
+                       labelText="Message {{idx + 1}}"
+                       [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                       [inputValue]="msg.m79tMsgNo"
+                       [(ngModel)]="msg.m79tMsgNo"
+                       [length]="5">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM79MSP"
+                       name="txtM79MSP"
+                       labelText="Message {{idx + 1}}%"
+                       [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                       [inputValue]="msg.m79tMsgPct"
+                       [(ngModel)]="msg.m79tMsgPct"
+                       [length]="5">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Cautions</fox-section-title>
+      <div *ngIf="screenMap.m79headi === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-input">
+        <div *ngFor="let cmsg of cmsgt; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM79CM1"
+                       name="txtM79CM1"
+                       labelText="Caution {{idx + 1}}"
+                       [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                       [inputValue]="cmsg.m79tCmsgNo"
+                       [(ngModel)]="cmsg.m79tCmsgNo"
+                       [length]="2">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM79CP1"
+                       name="txtM79CP1"
+                       labelText="Caution {{idx + 1}}%"
+                       [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                       [inputValue]="cmsg.m79tCmsgPct"
+                       [(ngModel)]="cmsg.m79tCmsgPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Letters</fox-section-title>
+      <div *ngIf="screenMap.m79headi === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-input">
+        <div *ngFor="let ltr of ltrst; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM79LTR1"
+                       name="txtM79LTR1"
+                       labelText="Letter {{idx + 1}}"
+                       [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                       [inputValue]="ltr.m79tLtrs"
+                       [(ngModel)]="ltr.m79tLtrs"
+                       [length]="8">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM79LTP1"
+                       name="txtM79LTP1"
+                       labelText="Letter {{idx + 1}}%"
+                       [isReadOnly]="screenMap.m79headi !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenMap.m79headi !== 'UPDATE'"
+                       [inputValue]="ltr.m79tLtrsPct"
+                       [(ngModel)]="ltr.m79tLtrsPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding" *ngIf="screenMap.m79headi === 'UPDATE'">
+  <div class="form-row text-right">
+    <button id="btnClear" name="btnClear" type="button" class="btn btn-secondary button-clear"
+            foxHotkey="alt+r" hotkeyAction="click" (click)="btnClick('CLEAR')">Clear (R)
+    </button>
+    <fox-loading-button [buttonValue]="'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="btnClick('ENTER')"
+                        class="btn-submit">
+    </fox-loading-button>
+  </div>
+</div>
+

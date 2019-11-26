@@ -1,0 +1,64 @@
+<fox-section class="fox-section-check-replacement">
+  <fox-message-box
+    [messageBoxTitle]='boxMessageTitle'
+    visible="true"
+    [closable]="isMessageClosable" *ngIf="isErrorMessageVisible" (closed)="errorMessageClosed()">
+    {{errorMessageSettings?.messageBoxBody}}
+  </fox-message-box>
+  <fox-section-title>Check Actions</fox-section-title>
+  <fox-section-subheader>Select an action and enter data bellow.</fox-section-subheader>
+  <div class="container-fluid container-fluid-select-action">
+    <form [formGroup]="actionForm">
+      <div class="row container-select-action">
+        <div class="col-xs-12 col-sm-8 col-md-4 container-select-single">
+          <div class="container-label">
+            <label class="label-for-select">Action</label>
+          </div>
+          <ng-select class="ng-select-bottom"
+                     [items]="getDropdownOptionsForReplacement()"
+                     [selectOnTab]="true"
+                     [clearable]="false"
+                     bindValue="value"
+                     labelForId="action"
+                     placeholder="Select Action"
+                     formControlName="action">
+          </ng-select>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-4 container-select-button">
+          <span *ngIf="actionForm.value.action === 0 && !state.isAuthorizeScreen" class="span-button-search">
+            <button type="submit" class="btn btn-secondary btn-search"
+                    foxHotkey="alt+r" (click)="openMemberModal()">{{selectButtonText}}
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="actionForm.value.action !== null || state.isAuthorizeScreen" class="row container-select-form">
+      <div class="col-md-12">
+        <fox-section-title>Replace Check(s)</fox-section-title>
+        <fox-section-subheader>Update the fields below and use the Submit button.</fox-section-subheader>
+        <div *ngIf="actionForm.value.action === 0 && !isInstitutionReadOnly()" class="alert container-institution-radio-group" role="alert">
+          <form [formGroup]="institutionForm">
+            <span class="span-institution-label">Institution?</span>
+            <span class="span-institution-radio">
+                <input type="radio" value="yes" formControlName="institution"/>
+              </span>
+            <span class="span-institution-radio-label">Yes</span>
+            <span class="span-institution-radio">
+                <input type="radio" value="no" formControlName="institution"/>
+              </span>
+            <span class="span-institution-radio-label">No</span>
+          </form>
+        </div>
+        <fox-check-actions
+                [selectedAction]="actionForm.value"
+                [isInstitution]="institutionForm?.value"
+                [checkDetails]="checkDetails"
+                [isAuthorizeScreen]="state.isAuthorizeScreen">
+        </fox-check-actions>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-check-member-modal *ngIf="isMemberModal()"></fox-check-member-modal>
+<fox-check-provider-modal *ngIf="!isMemberModal()"></fox-check-provider-modal>

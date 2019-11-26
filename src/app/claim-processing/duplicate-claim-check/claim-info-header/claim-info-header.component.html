@@ -1,0 +1,53 @@
+<fox-section class="fox-section">
+  <div class="header-with-heart">
+    <i class="fas fa-heartbeat"></i>
+    Claim #{{claimNumber}}
+  </div>
+
+  <div>
+    <div class="container-service-dates">
+      <div class="div-info-title service-dates-info-title">Dates of Service</div>
+      <br>
+      <div class="info-body service-dates-info-body">{{dateOfServiceStart}} - {{dateOfServiceEnd}}
+      </div>
+    </div>
+
+    <div class="container-billed-amount">
+      <div class="div-info-title billed-amount-info-title">Total Billed Amount</div>
+      <br>
+      <div class="info-body billed-amount-info-body">${{totalBilledAmount}}</div>
+    </div>
+
+    <div class="container-plans">
+      <div class="div-info-title plans-info-title">Effective Plans</div>
+      <br>
+      <div class="info-body plans-info-body">{{effectivePlans}}</div>
+    </div>
+
+    <div class="container-effective-date">
+      <div class="div-info-title effective-date-info-title">Effective Date</div>
+      <br>
+      <div class="div-info-body effective-date-info-body">{{effectiveDate}}</div>
+    </div>
+
+    <div class="container-claim-type">
+      <div class="div-info-title claim-type-info-title">Claim Type</div>
+      <br>
+      <div class="div-info-body claim-type-info-body">{{claimType}}</div>
+    </div>
+
+    <div class="container-member-name">
+      <div class="div-info-title member-name-info-title">Member Name</div>
+      <br>
+      <div class="div-info-body member-name-info-body">{{memberPrefix}} {{memberFirstName}}
+        {{memberMiddleName}} {{memberLastName}} {{memberSuffix}}
+      </div>
+    </div>
+
+    <div class="container-member-number">
+      <div class="div-info-title member-number-info-title">Member #</div>
+      <br>
+      <div class="div-info-body member-number-info-body">{{memberNumber}}</div>
+    </div>
+  </div>
+</fox-section>

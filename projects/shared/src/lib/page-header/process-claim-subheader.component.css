@@ -1,0 +1,125 @@
+.header-member-no {
+  color: #252C37;
+  font-weight: 600;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.text-header {
+  color: #252C37;
+  font-weight: 600;
+}
+
+.caret-down path {
+  fill: #196ECF;
+}
+
+.text-user-no {
+  color: #252C37;
+}
+
+.text-user-info {
+  margin: 0 5px;
+  white-space: nowrap;
+}
+
+.caret-down {
+  width: 8px;
+  align-items: center;
+}
+
+.btn-caret {
+  border: 0.5px solid lightgray;
+  border-radius: 15%;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+.container-dropdown {
+  padding-left: 7px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.mat-menu-member:after {
+  left: 50%;
+}
+
+.mat-menu-member:before {
+  left: 50%;
+}
+
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-member.mat-menu-below,
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-claim.mat-menu-below {
+  margin-left: initial;
+  margin-top: initial;
+  position: absolute;
+  left: -67px;
+  top: 0;
+  min-width: 200px;
+}
+
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-member.mat-menu-below.mat-menu-width,
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-claim.mat-menu-below.mat-menu-width {
+  margin-left: initial;
+  margin-top: initial;
+  position: absolute;
+  left: -135px;
+  top: 0;
+  min-width: 266px;
+  overflow-x: hidden;
+}
+
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-member.mat-menu-below:after,
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-claim.mat-menu-below:after {
+  margin-top: -14px;
+  top: 16px;
+  left: initial;
+  right: 113px;
+}
+
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-member.mat-menu-below:before,
+.cdk-overlay-container .cdk-overlay-pane .mat-menu-claim.mat-menu-below:before {
+  margin-top: -14px;
+  top: 14px;
+  left: initial;
+  right: 112px;
+}
+
+.claim-img {
+  width: 16px;
+  height: 16px;
+  color: #6E7681;
+  margin-bottom: 5px;
+}
+
+.container-claim-member {
+  margin-bottom: 10px;
+  clear: both;
+}
+
+.span-member-name {
+  font-weight: 400;
+}
+
+.span-dash-color {
+  color: #CED3DA;
+}
+
+@media screen and (max-width:767px) {
+
+  .container-claim-member .container-member .text-user-info {
+    margin-left: 0;
+  }
+  .container-claim-member .text {
+    width: 100%;
+    display: block;
+    margin-left: 0;
+  }
+  .btn-text {
+    margin: 0;
+  }
+
+}

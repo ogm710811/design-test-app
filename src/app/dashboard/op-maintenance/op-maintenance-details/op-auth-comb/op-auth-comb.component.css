@@ -1,0 +1,100 @@
+.page-title {
+  margin-top: 0;
+}
+
+.container-op-auth-comb {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.col-sl-no-width {
+  width: 72px;
+}
+.col-proc-width {
+  width: 25px;
+}
+.col-plan-width {
+  width: 95px;
+}
+.col-tos-width {
+  width: 95px;
+}
+.col-std-width {
+  width:148px;
+}
+.col-endd-width {
+  width:148px;
+}
+.col-cau-width {
+  width: 95px;
+}
+.col-accep-width {
+  width: 1px;
+}
+.col-stat-width {
+  width:95px;
+}
+.pagnatn-op-auth-comb {
+  margin: -35px 0 0;
+}
+
+.container-return-prev {
+  text-align: left;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0 15px 25px 15px;
+  position: relative;
+  cursor: pointer;
+  margin-top: -2px;
+}
+
+.link-decoration  {
+  text-decoration: none;
+}
+
+
+.field-label {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 0;
+  overflow-wrap: break-word;
+}
+
+.field-value {
+  color: #252C37;
+  line-height: 16px;
+  padding: 5px 0 7px 0;
+  overflow-wrap: break-word;
+  border-bottom: 1px solid #E5EAEE;
+}
+
+.container-title {
+  margin-bottom: 15px;
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.button-margin {
+  margin-right: 15px;
+}
+
+.container-table-style {
+  margin: 0 -20px;
+}
+
+.container-input {
+  padding-top: 18px;
+}
+
+.container-title-details {
+  margin-bottom: -8px;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+}

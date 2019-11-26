@@ -1,0 +1,189 @@
+<fox-section>
+  <fox-section-title class="section-title">
+    <div class="container-section-number"><div class="div-section-number">1</div></div> <div class="div-title-text">Find Member</div>
+  </fox-section-title>
+  <div class="div-subtitle">Enter a 9-digit or an 11-digit member # below and select the Search button to begin. Manual claims may only be processed for migrated members</div>
+  <div class="div-container-form">
+    <div class="container-input">
+      <fox-input type="fox-membership"
+                 placeholder="123456789 1 1"
+                 labelText="Member #"
+                 class="col-xs-12 col-sm-3 fox-input-custom input-membership-number"
+                 [formControl]="memberNumber"></fox-input>
+      <fox-input type="fox-date"
+                 placeholder="MM/DD/YYYY"
+                 labelText="Service Start Date"
+                 class="col-xs-12 col-sm-3 fox-input-custom input-service-start"
+                 [formControl]="serviceStartDate"></fox-input>
+      <fox-input type="fox-date"
+                 placeholder="MM/DD/YYYY"
+                 labelText="Service End Date"
+                 labelExtraText="Optional"
+                 class="col-xs-12 col-sm-3 fox-input-custom input-service-end"
+                 [formControl]="serviceEndDate"></fox-input>
+      <div class="col-xs-12 col-sm-3 fox-input-custom">
+        <button class="btn btn-secondary btn-find" foxHotkey="alt+s" type="submit" (click)="findMembers()" [disabled]="memberNumber && memberNumber.value && (memberNumber.value.length < 9 || memberNumber.value.length > 11 || serviceStartDate.value.length < 10)">Search (S)</button>
+        <hr class="hr-input" *ngIf="innerWidth < 768">
+      </div>
+    </div>
+  </div>
+  <hr class="hr-input" *ngIf="innerWidth >= 768">
+  <div class="div-member-search">
+    <span [foxLink] (click)="openMemberSearch()" class="span-member-search"><span class="span-icon-external-link"><img src="assets/img/external-link-blue.svg"></span><span class="span-member-search-text">Member Search Page</span></span>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <fox-loading-overlay tag="search-member">
+    <div class="container-padding">
+      <fox-section-title class="fox-section-title">
+        <div class="container-section-number"><div class="div-section-number">2</div></div><div class="div-title-text">Select Member</div>
+      </fox-section-title>
+      <div class="fox-section-subtitle">
+        <span>Choose which member to associate this claim to. Manual claims may only be processed for migrated members</span>
+      </div>
+    </div>
+    <div class="table-container" *ngIf="memberListResultSet && memberListResultSet.length > 0">
+      <table class="table history-table">
+        <thead class="thead-default">
+        <tr>
+          <th>
+
+          </th>
+          <th [foxLink] (linkPressed)="sort('memberNumber')"
+              [ngClass]="{'sorted-column-header':(column == 'memberNumber'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Member #</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('lastName')"
+              [ngClass]="{'sorted-column-header':(column == 'lastName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Last name</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('firstName')"
+              [ngClass]="{'sorted-column-header':(column == 'firstName'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>First Name</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('genderCode')"
+              [ngClass]="{'sorted-column-header':(column == 'genderCode'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Gender Code</fox-table-header-sort>
+          </th>
+          <th [foxLink] (linkPressed)="sort('migrated')"
+              [ngClass]="{'sorted-column-header':(column == 'migrated'), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>Migrated</fox-table-header-sort>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container
+          *ngFor="let dat of memberListResultSet | orderBy:{property: column, direction: direction}; let j = index">
+          <tr [id]=" 'member-tr-' + j">
+            <td class="td-section-header td-section-tooltip">
+              <input *ngIf="dat.migrated === true" type="radio"
+                     [id]="'input-radio-member-number-' + j"
+                     name="memberRadio" [value]="dat.memberNumber"
+                     (click)="selectedMember = dat.memberNumber"/>
+              <span tooltip="You may only associate claims to migrated members"
+                    data-placement="bottom">
+                <input *ngIf="dat.migrated === false" class="input-radio-disabled"
+                       disabled [id]="'input-radio-member-number-' + j"
+                       type="radio" name="memberRadio" [value]="dat.memberNumber"
+                       (click)="selectedMember = dat.memberNumber"/>
+              </span>
+            </td>
+            <ng-container *ngFor="let key of dataHistoryKeys; let k = index">
+              <td [id]=" 'member-tr-' + j + '-td-' + k" *ngIf="k !== 4">
+                {{dat[key]}}
+              </td>
+              <td [id]=" 'member-tr-' + j + '-td-' + k" *ngIf="k === 4">
+                <span *ngIf="dat[key] === true"><i focusable="false"
+                                                   class="fas fa-check-circle icon-migrated icon-migrated-true"></i>Yes</span>
+                <span *ngIf="dat[key] === false"><i focusable="false"
+                                                    class="fas fa-times-circle icon-migrated icon-migrated-false"></i>No</span>
+              </td>
+            </ng-container>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </fox-loading-overlay>
+  <div *ngIf="isDefault && !findMember" class="container-section-padding">
+    <img class="img-section-shape" src="assets/img/no-active-query.svg">
+    <p class="p-section-header">No active query</p>
+    <p class="p-section-description">Enter valid criteria above
+      and
+      select Search (S)</p>
+  </div>
+  <div *ngIf="!findMember && !isDefault && isMemberNotFound" class="container-section-padding">
+    <img class="img-section-shape" src="assets/img/no-results.svg">
+    <p class="p-section-header">No results match criteria</p>
+    <p class="p-section-description">Please try a new search</p>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title class="section-title">
+    <div class="container-section-number"><div class="div-section-number">3</div></div> <div class="div-title-text">Document Details</div>
+  </fox-section-title>
+  <div class="div-subtitle">Determine if the claim image already exists in FOX or Fastrieve. If not, a new document may optionally be uploaded.</div>
+  <div class="div-label-image-exists">Image Currently Exists in FOX or Fastrieve</div>
+  <div class="div-provider-type-container">
+    <mat-button-toggle-group class="toggle-group-image-exists" #doesImageExist="matButtonToggleGroup" value="false">
+      <mat-button-toggle class="btn-toggle-border btn-toggle-no" value="false" #noImageExists="matButtonToggle">
+        No
+      </mat-button-toggle>
+      <mat-button-toggle class="btn-toggle-yes" value="true" #imageExists="matButtonToggle">
+        Yes
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="div-doc-info-container">
+    <div *ngIf="doesImageExist.value === 'false'; else isTrue" class="div-container-upload">
+      <span class="span-claim-image-upload">Claim Image Upload</span><span class="span-optional"> – Optional</span>
+      <div class="file-upload">
+        <input id="hidden-file-2" #fileInput type="file" accept=".pdf" (change)="onFileChange($event.target.files)">
+        <button type="button" class="btn btn-secondary btn-browse" (click)="fileInput.click()" foxHotkey="alt+b">Browse (B)</button>
+        <div class="div-file" [ngClass]="{'div-file-selected': isFileSelected, 'div-no-file': !isFileSelected}">
+          <div class="div-selected-file">{{localFileLocation}}</div>
+          <div><small>Max filesize: 3 megabytes (MB); Acceptable file type: .PDF</small></div>
+        </div>
+      </div>
+    </div>
+    <ng-template #isTrue>
+      <div class="div-container-upload">
+        <mat-form-field class="form-field-margin col-xs-12 col-sm-4">
+          <mat-label>DCN #</mat-label>
+          <input matInput #input [(ngModel)]="userProvided">
+        </mat-form-field>
+        <mat-form-field class="form-field-margin form-field-margin-right form-field-image-source form-field-state col-xs-12 col-sm-3">
+          <mat-label>Image Source</mat-label>
+          <mat-select class="mat-option-image-source" [(value)]="imageSource">
+            <mat-option value=""></mat-option>
+            <mat-option value="fastrieve">Fastrieve</mat-option>
+            <mat-option value="fox">FOX</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-template>
+  </div>
+</fox-section>
+
+<div>
+  <button type="button" class="btn btn-primary btn-continue" foxHotkey="alt+l" (click)="onClickContinue()" [disabled]="(!selectedMember) || (doesImageExist.value === 'true' && (!userProvided || !imageSource))">Continue (L) <i focusable="false" class="fas fa-chevron-right"></i></button>
+</div>
+
+<fox-modal [(visible)]="isContinuing" modalTitle="Initiating Manual Claim... {{progressBarValue}}%"
+           [closable]="false" [hideBorder]="true">
+  <span>
+    <span class="container-progress-bar">
+      <mat-progress-bar
+        [color]="progressBarColor"
+        [mode]="progressBarMode"
+        [value]="progressBarValue"
+        [bufferValue]="progressBarBufferValue">
+      </mat-progress-bar>
+    </span>
+    <button tabindex="-1" type="button" class="btn btn-secondary btn-cancel-modal"
+            (click)="cancelSubs()">Cancel</button>
+  </span>
+  <div>{{uploadDetailText}}</div>
+</fox-modal>

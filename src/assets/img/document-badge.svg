@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+  <title>Group 4</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <path d="M7.10416667,3.14285714 L7.10416667,0.245535714 C7.19189453,0.30078125 7.26708984,0.356026786 7.3297526,0.417410714 L9.88639323,2.921875 C9.94905599,2.98325893 10.0054525,3.05691964 10.061849,3.14285714 L7.10416667,3.14285714 Z M6.30208333,3.33928571 C6.30208333,3.66462054 6.5715332,3.92857143 6.90364583,3.92857143 L10.3125,3.92857143 L10.3125,10.4107143 C10.3125,10.7360491 10.0430501,11 9.7109375,11 L1.2890625,11 C0.95694987,11 0.6875,10.7360491 0.6875,10.4107143 L0.6875,0.589285714 C0.6875,0.263950893 0.95694987,0 1.2890625,0 L6.30208333,0 L6.30208333,3.33928571 Z" id="path-1"></path>
+  </defs>
+  <g id="Workbench-(WRK-WKBN)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Workbench-Usability-Update---2" transform="translate(-128.000000, -4199.000000)">
+      <g id="Group-4" transform="translate(128.000000, 4199.000000)">
+        <circle id="Oval-2" fill="#FFAA25" cx="10.5" cy="10.5" r="10.5"></circle>
+        <g id="Icons-/-Document" transform="translate(5.000000, 5.000000)">
+          <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+          </mask>
+          <use id="Shape" fill="#9A9A9A" fill-rule="evenodd" xlink:href="#path-1"></use>
+          <g id="_Helper-/-Color-Tokens-/-White-(#FFFFFF)" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero">
+            <rect id="Color-Box" x="0" y="0" width="11" height="11"></rect>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

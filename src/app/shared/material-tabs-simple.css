@@ -1,0 +1,59 @@
+::ng-deep .mat-tab-group {
+  border: 0;
+  margin-bottom: 25px;
+  opacity: 1;
+  overflow: visible;
+}
+
+::ng-deep .mat-tab-group .mat-tab-header {
+  border: 0;
+  opacity: 1;
+  overflow: visible;
+}
+
+::ng-deep .mat-tab-group .mat-tab-header .mat-tab-label-container {
+  border: 0;
+  opacity: 1;
+  overflow: visible;
+}
+
+::ng-deep .mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels {
+  border: 0;
+  opacity: 1;
+  overflow: visible;
+}
+
+::ng-deep .mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels .mat-tab-label {
+  background-color: #F6F8F9;
+  border: 1px solid #CED3DA;
+  border-radius: 3px 3px 0 0;
+  box-sizing: border-box;
+  opacity: 1 !important;
+  overflow: visible;
+  padding: 18px 30px 17px;
+}
+
+::ng-deep .mat-tab-label:focus {
+  box-shadow: 5px -3px 20px -5px #196ECF, -5px -2px 20px -5px #196ECF;
+  -moz-box-shadow: 5px -3px 20px -5px #196ECF, -5px -2px 20px -5px #196ECF;
+  -webkit-box-shadow: 5px -3px 20px -5px #196ECF, -5px -2px 20px -5px #196ECF;
+  outline: none;
+  overflow: visible;
+}
+
+::ng-deep .mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels .mat-tab-label.mat-tab-label-active {
+  background-color: #FFFFFF;
+  border-bottom: 0;
+  z-index: 2
+}
+
+::ng-deep .mat-tab-body-wrapper {
+  background-color: #FFFFFF;
+  border: 1px solid #CED3DA;
+  margin-top: -1.1px;
+  padding: 29px 20px 31px;
+}
+
+mat-tab-group ::ng-deep .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-ink-bar {
+  visibility: hidden !important;
+}

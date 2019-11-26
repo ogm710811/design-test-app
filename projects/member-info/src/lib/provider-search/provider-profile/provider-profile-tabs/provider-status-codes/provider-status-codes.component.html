@@ -1,0 +1,96 @@
+<fox-section>
+  <div>
+    <div class="tab-heading">Special Handling Codes</div>
+    <div class="container-not-found" *ngIf="!detailsService?.providerDetails?.specialHandlingCode">
+      <i focusable="false" class="fa fa-info-circle"></i>
+      <p class="header-container">No data to display</p>
+    </div>
+    <table class="table" *ngIf="detailsService?.providerDetails?.specialHandlingCode">
+      <colgroup>
+        <col span="1" class="width-24">
+        <col span="1" class="width-17">
+        <col span="1" class="width-17">
+        <col span="1" class="width-42">
+      </colgroup>
+      <thead class="thead-default">
+      <tr>
+        <th [foxLink] (linkPressed)="sort('sph')"
+            [ngClass]="{'sorted-column-header':(column == 'sph'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Special Handling Code</fox-table-header-sort>
+        </th>
+        <th [foxLink] (linkPressed)="sort('description')"
+            [ngClass]="{'sorted-column-header':(column == 'description'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Description</fox-table-header-sort>
+        </th>
+        <th [foxLink] (linkPressed)="sort('effectiveFrom')"
+            [ngClass]="{'sorted-column-header':(column == 'effectiveFrom'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Effective From</fox-table-header-sort>
+        </th>
+        <th [foxLink] (linkPressed)="sort('effectiveTo')"
+            [ngClass]="{'sorted-column-header':(column == 'effectiveTo'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Effective To</fox-table-header-sort>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let spcl of detailsService?.providerDetails?.specialHandlingCode;">
+        <td>{{spcl?.sphCode}}</td>
+        <td>{{spcl?.sphDesc}}</td>
+        <td>{{spcl?.recordDetail?.startDate | date : 'MM/dd/yyyy'}}</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</fox-section>
+<fox-section>
+  <div>
+    <div class="tab-heading">Acceptability Codes</div>
+    <div class="container-not-found" *ngIf="!detailsService?.providerDetails?.eligibilityCode">
+      <i focusable="false" class="fa fa-info-circle"></i>
+      <p class="header-container">No data to display</p>
+    </div>
+    <table class="table" *ngIf="detailsService?.providerDetails?.eligibilityCode">
+      <colgroup>
+        <col span="1" class="width-24">
+        <col span="1" class="width-17">
+        <col span="1" class="width-17">
+        <col span="1" class="width-17">
+        <col span="1" class="width-25">
+      </colgroup>
+      <thead class="thead-default">
+      <tr>
+        <th [foxLink] (linkPressed)="sort('acceptCode')"
+            [ngClass]="{'sorted-column-header':(column == 'acceptCode'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Acceptability Code</fox-table-header-sort>
+        </th>
+        <th [foxLink] (linkPressed)="sort('descriptionAcc')"
+            [ngClass]="{'sorted-column-header':(column == 'descriptionAcc'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Description</fox-table-header-sort>
+        </th>
+        <th [foxLink] (linkPressed)="sort('invstDate')"
+            [ngClass]="{'sorted-column-header':(column == 'invstDate'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Investigation Date</fox-table-header-sort>
+        </th>
+        <th [foxLink] (linkPressed)="sort('accEffectFrom')"
+            [ngClass]="{'sorted-column-header':(column == 'accEffectFrom'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Effective From</fox-table-header-sort>
+        </th>
+        <th [foxLink] (linkPressed)="sort('accEffectTo')"
+            [ngClass]="{'sorted-column-header':(column == 'accEffectTo'), 'asc': !isDesc, 'desc': isDesc}">
+          <fox-table-header-sort>Effective To</fox-table-header-sort>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let accp of detailsService?.providerDetails?.eligibilityCode;">
+        <td>{{accp?.acceptabilityCode}}</td>
+        <td>{{accp?.acceptabilityDesc}}</td>
+        <td>{{accp?.investigationDate | date : 'MM/dd/yyyy'}}</td>
+        <td>{{accp?.recordDetail?.startDate | date : 'MM/dd/yyyy'}}</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</fox-section>

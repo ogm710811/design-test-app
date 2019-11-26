@@ -1,0 +1,58 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "../dist/out-tsc/spec",
+    "types": [
+      "jest",
+      "node"
+    ],
+    "paths": {
+      "@fox/state-management": [
+        "../projects/state-management/src/public-api"
+      ],
+      "@fox/rest-clients": [
+        "../projects/rest-clients/src/public-api"
+      ],
+      "@fox/test-support": [
+        "../projects/test-support/src/public-api"
+      ],
+      "@fox/shared": [
+        "../projects/shared/src/public-api"
+      ],
+      "@fox/login": [
+        "../projects/login/src/public-api"
+      ],
+      "@fox/claim-pdf": [
+        "../projects/claim-pdf/src/public-api"
+      ],
+      "@fox/eob-material-pdf": [
+        "../projects/eob-material-pdf/src/public-api"
+      ],
+      "@fox/file-maintenance": [
+        "../projects/file-maintenance/src/public-api"
+      ],
+      "@fox/home": [
+        "../projects/home/src/public-api"
+      ],
+      "@fox/processing": [
+        "../projects/processing/src/public-api"
+      ],
+      "@fox/quality-review": [
+        "../projects/quality-review/src/public-api"
+      ],
+      "@fox/check-recovery": [
+        "../projects/check-recovery/src/public-api"
+      ],
+      "@fox/document-repository": [
+        "../projects/document-repository/src/public-api"
+      ],
+      "@fox/communication": [
+        "../projects/communication/src/public-api"
+      ],
+      "@fox/member-info": [
+        "../projects/member-info/src/public-api"
+      ]
+    }
+  }
+}

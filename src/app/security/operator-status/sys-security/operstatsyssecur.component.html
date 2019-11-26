@@ -1,0 +1,64 @@
+<div class="row container-nav-link no-padding">
+  <div class="col-xs-12 container-return-prev">
+    <a class="link-decoration" href="#" (click)="pf1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </a>
+  </div>
+</div>
+<fox-section>
+  <div class="row container-section-row no-padding">
+    <div class="col-xs-12 container-section-title no-padding">
+      <fox-section-title>Results</fox-section-title>
+    </div>
+  </div>
+  <div class="row container-section-inputs">
+    <div class="col-xs-12 col-sm-3 container-input-sm">
+      <fox-read-only-field
+        [label]="'Processing Dates'"
+        [value]="screen.m93pdat">
+      </fox-read-only-field>
+    </div>
+    <div class="col-xs-6 col-sm-2 container-input-xs-sm">
+      <fox-read-only-field
+        [label]="'Site'"
+        [value]="screen.m93site">
+      </fox-read-only-field>
+    </div>
+    <div class="col-xs-6 col-sm-2 container-input-sm">
+      <fox-read-only-field
+        [label]="'Division'"
+        [value]="screen.m93div">
+      </fox-read-only-field>
+    </div>
+    <div class="col-xs-6 col-sm-2 container-input-last no-padding">
+      <fox-read-only-field
+        [label]="'Location'"
+        [value]="screen.m93loc">
+      </fox-read-only-field>
+    </div>
+  </div>
+  <div class="row container-table-style no-padding">
+    <fox-table #inputTable
+               [tableColumns]="columns"
+               [tableData]="viewData | orderBy: {property: tableDataSortKey, direction: tableDataDirection}"
+               [noBottomMargin]="true"
+               [noBorderTopHeader]="true"
+               [noWhiteSpace]="true"
+               (columnChanged)="tableDataSortKey = $event"
+               (directionChanged)="tableDataDirection = $event"
+               [fixedFirstColumn]="true">
+    </fox-table>
+    <div class="col-xs-12 container-paginator no-padding">
+      <fox-paginator-non-material #paginator
+                                  [(pageSize)]="pageSizeSelected"
+                                  [dataLengthInput]="dataLengthInput"
+                                  [pageTotal]="pageTotal"
+                                  [(currentPage)]="currentPage"
+                                  (currentPageChange)="calculateNewPage();"
+                                  (pageSizeChange)="currentPage=0; calculateNewPage();"
+                                  [pageSizeDropdownOption]="pageSizeDropdownOption">
+      </fox-paginator-non-material>
+    </div>
+  </div>
+</fox-section>

@@ -1,0 +1,45 @@
+.fa-user,
+.fa-balance-scale,
+.fa-heartbeat,
+.fa-file {
+  margin-right: 3px;
+}
+
+.container-column {
+  float: left;
+  width: 25%;
+}
+
+.col-search-field {
+  margin-top: 30px;
+  padding-left: 15px;
+  width: 100%;
+  height: 52px;
+  padding-top: 0;
+}
+
+.container-form-field {
+  width: 25%;
+  float: left;
+  height: 82px;
+}
+
+.span-toggle-button {
+  font-family: Helvetica Neue, Heveltica Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.4285;
+  color: #333333;
+  font-weight: 450;
+}
+
+.button-toggle-group-shadow {
+  box-shadow: none;
+}
+
+.mat-button-toggle-group-container {
+  margin-top: 25px;
+}
+
+.mat-button-toggle-right-border {
+  border-right: 1px solid #cccccc;
+}

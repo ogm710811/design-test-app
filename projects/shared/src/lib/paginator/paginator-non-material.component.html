@@ -1,0 +1,93 @@
+<div class="non-mat-paginator">
+  <div class="paginator-show-field">
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Show </label>
+        <mat-form-field>
+          <mat-select id="select-page-size" [(value)]="pageSize" (selectionChange)="changePageSize($event)">
+            <mat-option [value]="k" *ngFor="let k of pageSizeDropdownOption">{{k}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="page-range">
+    <label>Showing <span>{{startPageRange}}-{{lastPageRange}}</span> of
+      <span>{{dataLengthInput}}</span></label>
+  </div>
+
+  <div >
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{'pointer-events-none':currentPage === 0}">
+          <a [id]="prevId" class="page-link page-link-left" *ngIf="!(currentPage === 0)" aria-label="Previous" foxLink
+             (linkPressed)="previousPage()">
+            <i class="fas fa-chevron-left" focusable="false"></i>
+          </a>
+          <a [id]="prevId" class="page-link page-link-left-grey" *ngIf="currentPage === 0" aria-label="Previous" >
+            <i class="fas fa-chevron-left" focusable="false"></i>
+          </a>
+        </li>
+
+        <ng-container *ngIf ="pageTotal < 7">
+          <li class="page-item">
+            <a [id]="pageNumId(k)" class="page-link" *ngFor="let k of pages" foxLink (linkPressed)="switchPageIndex(k)"
+              [ngClass]="{'paginator-active':(currentPage === k)}">{{k + 1}}</a>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf ="pageTotal > 6">
+          <li class="page-item">
+            <a [id]="pageNumId(1)" class="page-link"  foxLink (linkPressed)="switchPageIndex(0)"
+              [ngClass]="{'paginator-active':(currentPage === 0)}">1</a>
+          </li>
+
+          <ng-container *ngIf="currentPage < 3">
+            <li class="page-item" *ngFor="let k of [1,2,3]">
+              <a [id]="pageNumId(k+1)" class="page-link" foxLink (linkPressed)="switchPageIndex(k)"
+                 [ngClass]="{'paginator-active':(currentPage === k)}">{{k + 1}}</a>
+            </li>
+          </ng-container>
+
+          <li class="page-item" *ngIf="currentPage > 2">
+            <a [id]="pageNumId(2)" class="page-link"  foxLink (linkPressed)="dottedPreviousPage()">...</a>
+          </li>
+
+          <ng-container *ngIf="currentPage > 2 && currentPage < lastPageNumber - 3">
+            <li class="page-item">
+              <a [id]="pageNumId(3)" class="page-link"  foxLink (linkPressed)="switchPageIndex(currentPage)" class="paginator-active">{{currentPage + 1}}</a>
+            </li>
+            <li class="page-item">
+              <a [id]="pageNumId(4)" class="page-link"  foxLink (linkPressed)="switchPageIndex(currentPage+1)">{{currentPage + 2}}</a>
+            </li>
+          </ng-container>
+
+          <li class="page-item" *ngIf="currentPage < lastPageNumber - 3">
+            <a [id]="pageNumId(5)" class="page-link" foxLink (linkPressed)="dottedNextPage()">...</a>
+          </li>
+
+          <ng-container *ngIf="currentPage > lastPageNumber - 4">
+            <li class="page-item" *ngFor="let l of [3,2,1]">
+              <a [id]="pageNumId(6-l)" class="page-link" foxLink (linkPressed)="switchPageIndex(lastPageNumber - (l + 1))"
+                 [ngClass]="{'paginator-active':(currentPage === lastPageNumber - (l + 1))}">{{lastPageNumber - l}}</a>
+            </li>
+          </ng-container>
+
+          <li class="page-item">
+            <a [id]="pageNumId(6)" class="page-link"  foxLink (linkPressed)="switchPageIndex(lastPageNumber-1)"
+              [ngClass]="{'paginator-active':(currentPage === (lastPageNumber-1))}">{{lastPageNumber}}</a>
+          </li>
+        </ng-container>
+
+        <li class="page-item" [ngClass]="{'pointer-events-none':currentPage === pageTotal-1}">
+          <a [id]="nextId" class="page-link page-link-right" *ngIf="!(currentPage === (pageTotal-1))" aria-label="Next" foxLink (linkPressed)="nextPage()">
+            <i class="fas fa-chevron-right" focusable="false"></i>
+          </a>
+          <a [id]="nextId" class="page-link page-link-right-grey" *ngIf="currentPage === (pageTotal-1)" aria-label="Next" >
+            <i class="fas fa-chevron-right" focusable="false"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

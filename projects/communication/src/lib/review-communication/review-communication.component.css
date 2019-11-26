@@ -1,0 +1,275 @@
+.container-navigation-links {
+  padding: 0 20px;
+  margin: 0;
+}
+
+.container-review-communication {
+  margin-bottom: 20px;
+}
+
+.container-review-comm-content {
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 20px 0 20px;
+}
+
+.container-return-prev {
+  padding: 5px 15px 25px 0;
+  position: relative;
+}
+
+.container-padding-title {
+  padding-bottom: 25px ;
+}
+
+.container-pre-sub-link {
+  padding: 5px 0 5px 10px;
+  position: relative;
+  border-right: 2px solid #CED3DA;
+}
+
+.container-rc-grey-border {
+  background-color: #FFFFFF;
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 0 #E3E6E8;
+}
+
+.container-section-subtitle {
+  height: 16px;
+  color: #6E7681;
+  line-height: 16px;
+}
+
+.section-title-container {
+  padding: 20px 20px 0 20px;
+}
+
+.container-details-card {
+  padding-top: 20px;
+}
+
+.container-details-item {
+  padding: 0 20px 6px 0;
+  margin: 0;
+}
+
+.container-details-last-item {
+  padding: 0 20px 0 0;
+  margin: 0;
+}
+
+.container-details-left-text {
+  padding-left: 0;
+  text-align: right;
+  color: #252C37;
+  font-weight: 600;
+  line-height: 20px;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.container-details-right-text {
+  padding: 0 20px 0 0;
+  line-height: 20px;
+}
+
+.container-review-info-heading {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  padding-bottom: 5px;
+}
+
+.container-review-info-value {
+  color: #252C37;
+  line-height: 16px;
+  border-bottom: 1px solid #E3E6E8;
+  height: 16px;
+}
+
+.container-concerns-left-col {
+  padding: 25px 10px 0 0;
+}
+
+.container-claims-padding {
+  padding: 25px 0 0;
+}
+
+.container-concerns-right-col {
+  padding: 25px 0 0 10px;
+}
+
+.container-padding-top-25{
+  padding-top: 25px;
+}
+
+.fa-times-circle {
+  color: #BF3533;
+}
+
+.icon-migrated-false {
+  color: #f44336;
+}
+
+.icon-migrated {
+  margin-right: 6px;
+}
+
+.section-blue-top-border{
+  border-top-width: 3px;
+  border-top-color: #196ECF;
+  border-top-style: solid;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.icon-review-com-info-claim-nos {
+  height: 15px;
+  width: 15px;
+  position: relative;
+  margin-right: 7px;
+  bottom: 1px;
+}
+
+.icon-review-com-info-phone {
+  opacity: .5;
+}
+
+.container-pre-link {
+  padding: 0 ;
+}
+
+.img-next {
+  float: right;
+  margin-left: 7px;
+}
+
+.span-next {
+  position: relative;
+  left: 10px;
+}
+
+.container-next-link {
+  padding: 0;
+}
+
+.span-return-previous {
+  margin-left: 5px;
+  color: #196ECF;
+  position: absolute;
+  font-weight: 500;
+  top: 7px;
+  cursor: pointer;
+}
+
+.container-return-row {
+  padding: 0 10px;
+  margin-bottom: 25px;
+}
+
+.container-review-comm-title {
+  margin-bottom: -10px;
+}
+
+.container-display-flex {
+  padding: 0 0 25px 0;
+}
+
+.container-display-flex-last {
+  padding: 0;
+}
+
+.container-value {
+  padding: 0 0 0 20px;
+}
+
+.container-first-row {
+  padding-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .span-next {
+    position: relative;
+    left: -5px;
+    float: right;
+  }
+
+  .container-pre-link {
+    margin-bottom: 25px;
+    margin-right: 0;
+  }
+
+  .container-concerns-left-col {
+    padding: 25px 0 0 0;
+  }
+
+  .container-concerns-right-col {
+    padding: 25px 0 0 0;
+  }
+
+  .container-return-row {
+    padding: 0;
+    margin: 0;
+  }
+
+  .span-return-link {
+    margin-left: 0;
+  }
+
+  .container-padding-link {
+    margin-left: 0;
+    padding-top: 0;
+  }
+
+  .container-details-left-text {
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .container-details-right-text {
+    padding: 0;
+  }
+
+  .container-details-item {
+    padding: 0 20px 12px 0;
+  }
+
+  .container-value {
+    padding: 0;
+  }
+
+  .container-pre-sub-link {
+    padding: 5px 1px 5px 10px;
+  }
+
+  .container-fixed-width {
+    width: 200px;
+    display: flex;
+    float: right;
+  }
+
+}
+
+@media  (min-width: 767px) {
+
+  .container-fixed-width {
+    width: 205px;
+    display: flex;
+    float: right;
+  }
+
+  .container-display-flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin:0;
+  }
+
+}

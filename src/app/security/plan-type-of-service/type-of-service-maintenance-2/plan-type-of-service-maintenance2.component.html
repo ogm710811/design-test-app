@@ -1,0 +1,239 @@
+<fox-section>
+  <fox-section-title>Plan And Type of Service Information File - {{screenBean.m38titl | titlecase}}</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Plan:</mat-label>
+        <input matInput id="txtM38PLN" name="txtM38PLN" #txtM38PLN="ngModel" maxlength="3" size="3" type="text" [(ngModel)]="screenBean.m38pln"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>State:</mat-label>
+        <input matInput id="txtM38STE" name="txtM38STE" #txtM38STE="ngModel" maxlength="2" size="2" type="text" [(ngModel)]="screenBean.m38ste"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Type of Service:</mat-label>
+        <input matInput id="txtM38TOS" name="txtM38TOS" #txtM38TOS="ngModel" maxlength="2" size="2" type="text" [(ngModel)]="screenBean.m38tos"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Age Indicator:</mat-label>
+        <input matInput id="txtM38AGE" name="txtM38AGE" #txtM38AGE="ngModel" maxlength="1" size="1" type="text" [(ngModel)]="screenBean.m38age"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Stop Date:</mat-label>
+        <input matInput id="txtM38SDT" name="txtM38SDT" #txtM38SDT="ngModel" maxlength="8" size="8" type="text" [(ngModel)]="screenBean.m38sdt"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Hip Plans</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <mat-label>Start Day</mat-label>
+        <input matInput id="txtM38SDY1" name="txtM38SDY1" #txtM38SDY1="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38sdy1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <mat-label>End Day</mat-label>
+        <input matInput id="txtM38EDY1" name="txtM38EDY1" #txtM38EDY1="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38edy1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <mat-label>Daily Benefit</mat-label>
+        <input matInput id="txtM38DBN1" name="txtM38DBN1" #txtM38DBN1="ngModel" maxlength="7" [disabled]="screenBean.isReview" size="7"
+          type="text" [(ngModel)]="screenBean.m38dbn1" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38SDY2" name="txtM38SDY2" #txtM38SDY2="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38sdy2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38EDY2" name="txtM38EDY2" #txtM38EDY2="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38edy2" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38DBN2" name="txtM38DBN2" #txtM38DBN2="ngModel" maxlength="7" [disabled]="screenBean.isReview" size="7"
+          type="text" [(ngModel)]="screenBean.m38dbn2" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38SDY3" name="txtM38SDY3" #txtM38SDY3="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38sdy3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38EDY3" name="txtM38EDY3" #txtM38EDY3="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38edy3" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38DBN3" name="txtM38DBN3" #txtM38DBN3="ngModel" maxlength="7" [disabled]="screenBean.isReview" size="7"
+          type="text" [(ngModel)]="screenBean.m38dbn3" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38SDY4" name="txtM38SDY4" #txtM38SDY4="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38sdy4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38EDY4" name="txtM38EDY4" #txtM38EDY4="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m38edy4" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38DBN4" name="txtM38DBN4" #txtM38DBN4="ngModel" maxlength="7" [disabled]="screenBean.isReview" size="7"
+          type="text" [(ngModel)]="screenBean.m38dbn4" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38SDY5" name="txtM38SDY5" #txtM38SDY5="ngModel" maxlength="3" size="3" [disabled]="screenBean.isReview"
+          type="text" [(ngModel)]="screenBean.m38sdy5" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38EDY5" name="txtM38EDY5" #txtM38EDY5="ngModel" maxlength="3" size="3" [disabled]="screenBean.isReview"
+          type="text" [(ngModel)]="screenBean.m38edy5" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM38DBN5" name="txtM38DBN5" #txtM38DBN5="ngModel" maxlength="7" [disabled]="screenBean.isReview" size="7"
+          type="text" [(ngModel)]="screenBean.m38dbn5" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Med Supp Plans</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label>IHD Waiver:</mat-label>
+        <input matInput id="txtM38IWFG" name="txtM38IWFG" #txtM38IWFG="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+          type="text" [(ngModel)]="screenBean.m38iwfg" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM38IWPP" name="txtM38IWPP" #txtM38IWPP="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m38iwpp" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label>IHD / OOP</mat-label>
+        <input matInput id="txtM38IHD1" name="txtM38IHD1" #txtM38IHD1="ngModel" maxlength="4" [disabled]="screenBean.isReview" size="4"
+          type="text" [(ngModel)]="screenBean.m38ihd1" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label>Period 1 / OOP LTR</mat-label>
+        <input matInput id="txtM38PR11" name="txtM38PR11" #txtM38PR11="ngModel" maxlength="6" [disabled]="screenBean.isReview" size="6"
+          type="text" [(ngModel)]="screenBean.m38pr11" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label>Period 2 / OOP</mat-label>
+        <input matInput id="txtM38PR21" name="txtM38PR21" #txtM38PR21="ngModel" maxlength="6" [disabled]="screenBean.isReview" size="6"
+          type="text" [(ngModel)]="screenBean.m38pr21" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label>Period 3 / OOP</mat-label>
+        <input matInput id="txtM38PR31" name="txtM38PR31" #txtM38PR31="ngModel" maxlength="6" [disabled]="screenBean.isReview" size="6"
+          type="text" [(ngModel)]="screenBean.m38pr31" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <input matInput id="txtM38IOP1" name="txtM38IOP1" #txtM38IOP1="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+        type="text" [(ngModel)]="screenBean.m38iop1" />
+    </div>
+    <div class="col-sm-3">
+      <input matInput id="txtM38OP11" name="txtM38OP11" #txtM38OP11="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+        type="text" [(ngModel)]="screenBean.m38op11" />
+    </div>
+    <div class="col-sm-3">
+      <input matInput id="txtM38OP21" name="txtM38OP21" #txtM38OP21="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+        type="text" [(ngModel)]="screenBean.m38op21" />
+    </div>
+    <div class="col-sm-3">
+      <input matInput id="txtM38OP31" name="txtM38OP31" #txtM38OP31="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+        type="text" [(ngModel)]="screenBean.m38op31" />
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-4">
+      <mat-label>{{screenBean.m38err1}}</mat-label>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20 text-right">
+    <button id="enter" name="enter" #enter type="button" class="btn btn-default margin-right-20" (click)="f4EventClick()" foxHotkey="alt+p">Previous
+      Screen (P)</button>
+    <button id="Reset" name="Reset" #Reset type="button" class="btn btn-default margin-right-20" (click)="resetEventClick()"
+      foxHotkey="alt+r">Reset (R)
+    </button>
+    <button id="Submit" name="Submit" #Submit type="button" class="btn btn-primary" [disabled]="screenBean.isReview" (click)="submitEventClick()"
+      foxHotkey="alt+e">Enter (E)</button>
+  </div>
+</fox-section>

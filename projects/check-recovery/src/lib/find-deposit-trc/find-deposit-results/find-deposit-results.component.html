@@ -1,0 +1,55 @@
+<div class="table-trc-deposit-result">
+  <table class="table table-deposit-search-result">
+    <thead class="thead-default">
+    <tr>
+      <th [foxLink] (linkPressed)="sort('checkClaimNumber')"
+          [ngClass]="{'sorted-column-header':(column == 'checkClaimNumber'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Deposit Check Claim #</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('checkNumber')"
+          [ngClass]="{'sorted-column-header':(column == 'checkNumber'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Check #</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('depositDate')"
+          [ngClass]="{'sorted-column-header':(column == 'depositDate'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Deposit Date</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('depositSummaryId.depositStatusId.code')"
+          [ngClass]="{'sorted-column-header':(column == 'depositSummaryId.depositStatusId.code'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Deposit Status</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('depositAmount')"
+          [ngClass]="{'sorted-column-header':(column == 'depositAmount'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Deposit Amount</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('depositSummaryId.fileControlId.fileSourceId.fileSourceCode')"
+          [ngClass]="{'sorted-column-header':(column == 'depositSummaryId.fileControlId.fileSourceId.fileSourceCode'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Deposit Source</fox-table-header-sort>
+      </th>
+      <th class="table-header-trc">
+        <span class="table-column-name table-column">TRCs</span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let dat of findDepositResults; let j = index">
+      <tr [id]=" 'deposit-tr-' + j">
+        <ng-container *ngFor="let key of dataKeys; let k = index">
+          <td [id]=" 'deposit-tr-' + j + '-td-' + k" *ngIf="k==0">
+            <a [routerLink]="getUrlForCheck(dat['depositDetailId'])" [queryParams]="{dci: dat.dcn}">
+              <img src="/assets/img/check-blue.svg"/>
+              {{dat[key]}}
+            </a>
+          </td>
+          <td [id]=" 'deposit-tr-' + j + '-td-' + k" *ngIf="k!=0 && k!=4 && k!=7 && k!=8">
+            {{dat[key]}}
+          </td>
+          <td [id]=" 'deposit-tr-' + j + '-td-' + k" *ngIf="k==4" class="column-amount">
+            {{+dat[key] | currency}}
+          </td>
+        </ng-container>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

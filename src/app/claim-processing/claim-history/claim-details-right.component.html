@@ -1,0 +1,74 @@
+<span class="span-btn-pill pill-btn" *ngIf="!isIwriteDisabled" [matMenuTriggerFor]="dropDownMA">
+  <button class="btn-button" mat-button type="button" >
+    <img class="img-svg-send" src="assets/img/Send-iWrite.svg"/>
+    <span class="span-margin-8 btn-text">Iwrite</span>
+    <img class="img-caret-down" src="assets/img/caret-down-blue.svg"/>
+  </button>
+</span>
+<span class="span-bspan-btn-pilltn-pill pill-btn" >
+  <button class="btn-button btn-maintenance" mat-button type="button"
+          [disabled]="isMaintenanceDisabled" [matMenuTriggerFor]="dropDownMC">
+    <span>
+          <img *ngIf="!isMaintenanceDisabled" class="img-svg-gear" src="assets/img/Gear.svg"/>
+          <img *ngIf="isMaintenanceDisabled" class="img-svg-gear" src="assets/img/gear-faded.svg"/>
+    </span>
+    <span class="span-margin-8 btn-text ">Maintenance</span>
+    <img class="img-caret-down" src="assets/img/caret-down-blue.svg"/>
+  </button>
+</span>
+<mat-menu  #dropDownMA="matMenu" class="mat-menu-links mat-menu-iwrite">
+  <div>
+    <button class="mat-menu-item-iwrite-member mat-menu-item-maintenance" [foxLink] mat-menu-item
+     (click)="generateLetter('INSURED')">Write Letter for Insured
+    </button>
+    <button class="mat-menu-item-iwrite-provider mat-menu-item-maintenance" [foxLink] mat-menu-item
+      (click)="generateLetter('PROVIDER')">Write Letter for Provider
+    </button>
+  </div>
+</mat-menu>
+
+<span [ngClass]="{'line-maintenance': !isMaintenanceDisabled, 'line-maintenance-disabled': isMaintenanceDisabled}"></span>
+<mat-menu class="mat-menu-maintenance mat-menu-maintenance-position" #dropDownMC="matMenu">
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2598Enabled || !((isSendEobActive || isSendRaActive) && isStatusDisbursed)"
+          (click)="menuClicked('send-eob')">Send EOB...
+  </button>
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2598Enabled || !((isReplaceEobActive || isReplaceRaActive) && isStatusDisbursed)"
+          (click)="menuClicked('replace-eob')">Replace EOB...
+  </button>
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2284Enabled || !isCrossRefActive"
+          (click)="menuClicked('add-cross-ref')">Add Cross reference...
+  </button>
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2303Enabled || !isUpdateEobActive"
+          (click)="menuClicked('update-eob')">Update EOB...
+  </button>
+  <mat-divider></mat-divider>
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2286Enabled || !isTransferClaimActive"
+          (click)="menuClicked('transfer-claim')">Transfer Claim...
+  </button>
+  <mat-divider></mat-divider>
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2288Enabled || !isReactive"
+          (click)="menuClicked('reactivate-claim')"> Reactivate Claim...
+  </button>
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2288Enabled || !isSuspend"
+          (click)="menuClicked('suspend-claim')"> Suspend Same Day...
+  </button>
+  <button class="mat-menu-item-maintenance" mat-menu-item
+          [foxLink]
+          [disabled]="!isF2287Enabled || !isClaimDeleted"
+          (click)="menuClicked('delete-claim')">  Delete Claim...
+  </button>
+</mat-menu>

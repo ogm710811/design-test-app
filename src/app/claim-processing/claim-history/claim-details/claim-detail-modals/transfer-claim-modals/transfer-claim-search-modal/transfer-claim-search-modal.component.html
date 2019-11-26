@@ -1,0 +1,140 @@
+<fox-modal [(visible)]="transferClaimSearchModalVisible" class="modal-transfer-claim-search"
+           modalTitle="Transfer Claim" [closable]="false"
+           (visibleChange)="transferClaimModalVisibleChange.emit(transferClaimSearchModalVisible)">
+  <div *ngIf="!hideSearchSection && !isDataDisplay">
+    <div class="container-transfer-claim-text">
+      <span>This action will transfer the below claim(s). Select the "X" icon to remove an individual claim (at least one is required).</span>
+    </div>
+    <fox-transfer-claim-details-table [claimDetails]="claimDetails" [dos]="dos"
+                                      [claimNumber]="claimNumber">
+    </fox-transfer-claim-details-table>
+    <div class="container-member-search-text">
+      <span> Enter search criteria to find a member to transfer. Valid search criteria include Member #; First and Last Name.</span>
+    </div>
+    <div class="container-form-fields col-md-12">
+      <form class="non-mat-form-field" [formGroup]="memberSearchFormGroup" novalidate>
+        <mat-form-field class="col-md-3 no-padding fields-member-num">
+          <mat-label>Member #</mat-label>
+          <input placeholder="123456789" matInput #input minlength="9" maxlength="11"
+                 formControlName="memberFormControl" [(ngModel)]="memberNumInput"
+                 class="txtbox-member-no">
+          <mat-error
+            *ngIf="memberSearchFormGroup!.get('memberFormControl')!.hasError('minlength') || memberSearchFormGroup!.get('memberFormControl')!.hasError('maxLength') || memberSearchFormGroup!.get('memberFormControl')!.hasError('pattern')">
+            Minimum of 9 digits required
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <div class="field-divider col-md-1 no-padding">
+        <span>
+          <span class="section-dash">-- </span>
+          <span class="text-bold">OR</span>
+          <span class="section-dash"> --</span>
+        </span>
+      </div>
+      <mat-form-field class="col-md-3 no-padding fields-member-name" [tooltip]="memberNameToolTip" placement="bottom">
+        <mat-label>First Name</mat-label>
+        <input placeholder="JOE" matInput #inputCheck minlength="1" maxlength="25"
+               disabled="disabled" [(ngModel)]="firstNameInput" class="txtbox-fn">
+      </mat-form-field>
+      <mat-form-field class="col-md-3 no-padding fields-member-name" [tooltip]="memberNameToolTip" placement="bottom">
+        <mat-label>Last Name</mat-label>
+        <input placeholder="SMITH" matInput minlength="1" maxlength="35"
+               disabled="disabled" [(ngModel)]="lastNameInput">
+      </mat-form-field>
+      <ng-template #memberNameToolTip>
+        <div class="tooltip-text-msg"><span>Future FOX Enhancement</span></div>
+      </ng-template>
+    </div>
+    <div class="col-md-12 text-right container-modal-btns">
+      <button type="button" id="btn-cancel-modal" class="btn btn-secondary btn-clear-modal"
+              (click)="cancelTransferClaimModal()">Cancel
+      </button>
+      <button type="button" id="btn-confirm-modal" class="btn btn-primary btn-search-modal"
+              [disabled]="!checkIfFormFilled()"
+              [ngClass]="{'btn-disabled': !checkIfFormFilled()}" (click)="memberResultTable()">Search
+        <span class="span-next-page">
+          <span><img class="icon-next-page" focusable="false" src="assets/img/arrow-right-white.svg"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="hideSearchSection && !isDataDisplay && !isConfirmTransfer">
+    <div class="container-not-found">
+      <span><img class="img-info" focusable="false" src="assets/img/information.svg"></span>
+      <div class="section-note-1">No results found</div>
+      <div class="section-note-2">Please try a new search</div>
+    </div>
+    <div class="col-md-12 container-modal-btns">
+      <div class="col-md-6 container-btn-left text-left">
+        <button type="button" id="btn-modal-new-search" class="btn btn-secondary btn-previous-page"
+                (click)="newMemberSearch()">
+          <span class="span-previous-page">
+            <span><img class="icon-previous-page" focusable="false" src="assets/img/arrow-left.svg"></span>New Search
+          </span>
+        </button>
+      </div>
+      <div class="col-md-6 container-btn-right text-right">
+        <button type="button" id="btn-modal-cancel" class="btn btn-secondary btn-clear-modal"
+                (click)="cancelTransferClaimModal()">Cancel
+        </button>
+        <button type="button" id="btn-modal-confirm"
+                class="btn btn-primary btn-search-modal btn-disabled"
+                [disabled]="true">Select
+          <span class="span-next-page">
+            <span><img class="icon-next-page" focusable="false" src="assets/img/arrow-right-white.svg"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isDataDisplay">
+    <p class="container-transfer-claim-text">
+      <span>Select a single member to transfer the claim(s) to. When finished, click "Select"</span>
+    </p>
+    <fox-transfer-claim-result-table [transferClaimResult]="transferClaimResult"
+                                     (selectedMember)="selectedMemberDetails=$event;isSelectEnable=true">
+    </fox-transfer-claim-result-table>
+    <div class="col-md-12 container-modal-btns">
+      <div class="col-md-3 container-btn-left text-left">
+        <button type="button" class="btn btn-secondary btn-previous-page" (click)="newMemberSearch()">
+          <span class="span-previous-page">
+            <span><img class="icon-previous-page" focusable="false" src="assets/img/arrow-left.svg"></span>New Search
+          </span>
+        </button>
+      </div>
+      <div class="col-md-9 container-btn-right text-right">
+        <button type="button" class="btn btn-secondary btn-clear-modal"
+                (click)="cancelTransferClaimModal()">Cancel
+        </button>
+        <button type="button" class="btn btn-primary btn-search-modal btn-disabled"
+                [ngClass]="{'btn-disabled': !isSelectEnable}"
+                [disabled]="!isSelectEnable" (click)="transferClaim()">Select
+          <span class="span-next-page">
+            <span><img class="icon-next-page" focusable="false" src="assets/img/arrow-right-white.svg"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isConfirmTransfer">
+    <div>
+      <div class="container-transfer-details">
+        <span>You are about to transfer the following claim(s) from <strong>Member # {{memberDetails.aarpMembershipNumber}} ({{memberDetails.firstName}} {{memberDetails.lastName}})</strong> to <strong>Member {{selectedMemberDetails.memberNum}} ({{selectedMemberDetails.firstName}} {{selectedMemberDetails.lastName}})</strong>: {{claimNumber}}</span>
+      </div>
+      <div class="container-confirm-msg">
+        <span>Please make sure to perform all appropriate aggregate maintenance adjustments for both accounts.</span>
+      </div>
+    </div>
+    <div class="col-md-12 text-right container-modal-btns">
+      <button type="button" class="btn btn-secondary btn-clear-modal"
+              (click)="cancelTransferClaimModal()">Cancel
+      </button>
+      <button type="button" class="btn btn-primary btn-search-modal" (click)="postTransferClaim()">
+        Transfer
+      </button>
+    </div>
+  </div>
+</fox-modal>

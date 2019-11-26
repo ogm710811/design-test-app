@@ -1,0 +1,14 @@
+<fox-modal [(visible)]="deleteModalVisible" modalTitle="Delete Note" [closable]="false">
+  <p class="you-are-about-to-del">
+    You are about to delete the below note(s), which cannot be undone. Are you sure you want to
+    delete this note?
+  </p>
+  <div class="container-buttons">
+    <button type="button" id="btn-cancel-modal-cancel" class="btn btn-secondary"
+            (click)="onDeletelModalCancelPressed()">Cancel
+    </button>
+    <button type="button" id="btn-cancel-modal-confirm" class="btn btn-primary"
+            (click)="onDeleteModalConfirmPressed()">Delete
+    </button>
+  </div>
+</fox-modal>

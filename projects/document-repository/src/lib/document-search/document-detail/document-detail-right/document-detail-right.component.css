@@ -1,0 +1,80 @@
+.span-btn-pill {
+  position: relative;
+}
+
+.pill-btn .btn-button:hover {
+  background-color: #ECF4FE;
+}
+
+.pill-btn .btn-button {
+  padding: 0 0 0 8px;
+  border:1px solid #196ECF;
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 13px;
+  font-size: 13px;
+  width: auto;
+  height: 35px;
+  text-align: center;
+  min-width: 180px;
+}
+
+.pill-btn .btn-button .caret-down {
+  width: 24px;
+  -webkit-align-items: center;
+  align-items: center;
+  border-left: 1px solid #196ECF;
+  padding: 14px 8px;
+  height: 34px
+}
+
+.modal-frame {
+  height: 300px;
+  width: 870px;
+  border: 1px solid #CED3DA;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.th-dcn {
+  height: 40px;
+  width: 150px;
+  background-color: #F6F8F9;
+}
+
+.th-doc-type {
+  height: 40px;
+  width: 250px;
+  background-color: #F6F8F9;
+}
+
+.td-dcn-column-item {
+  height: 40px;
+  width: 150px;
+  background-color: #FFFFFF;
+}
+
+.td-doc-type-item {
+  height: 40px;
+  width: 250px;
+  background-color: #FFFFFF;
+}
+
+.container-buttons .btn {
+  width: 100px;
+  margin-right: 20px;
+  height: 40px;
+  border-radius: 2px;
+  float: right;
+}
+
+.table-delete-list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 420px;
+  margin-top: 20px;
+  border: 1px solid #DCE4E8;
+}

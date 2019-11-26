@@ -1,0 +1,30 @@
+.container-padding {
+  padding: 0;
+}
+
+.container-margin {
+  margin-bottom: 17px;
+}
+
+.btn-agg-cancel {
+  margin-right: 15px;
+}
+
+.btn-padding {
+  height: 39px;
+  width: 130px;
+}
+
+.btn-submit-padding {
+  padding-right: 15px;
+}
+
+.span-next-button {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.img-arrow-right {
+  width: 10px;
+  height: 10px;
+}

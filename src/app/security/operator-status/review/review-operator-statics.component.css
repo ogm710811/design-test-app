@@ -1,0 +1,210 @@
+.mat-divider-margins {
+  margin: 20px -20px 19px;
+}
+
+.button-spacing {
+  margin-left: 15px;
+}
+
+.container-float-right {
+  float: right;
+}
+
+.container-table {
+  margin-right: -20px;
+  margin-left: -20px;
+  margin-bottom: -35px;
+}
+
+.container-button-select {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.container-menu-circle {
+  width: 27px;
+  height: 27px;
+  border-radius: 13px;
+  font-size: 13px;
+  color: #5A616D;;
+  line-height: 27px;
+  text-align: center;
+  background: #EEEFF2;
+  margin: 23px auto 0;
+}
+
+.container-title-circle {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: white;;
+  line-height: 21px;
+  text-align: center;
+  background: #5A616D;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.container-div-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+}
+
+.container-btns {
+  margin-bottom: 90px;
+  float: right;
+}
+
+.btn-submit {
+  margin-left: 15px;
+}
+
+.container-subtitle {
+  margin-top: -10px;
+  margin-bottom: 17px;
+}
+
+.container-fox-inputs {
+  margin-bottom: 18px;
+}
+
+.container-ions-title {
+  margin-bottom: 25px;
+}
+
+.container-input-right {
+  padding-right: 10px;
+}
+
+.container-input-left {
+  padding-left: 10px;
+}
+
+.container-inputs {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.container-div-fox-sub-title {
+  margin-top: -8px;
+  margin-bottom: 22px
+}
+
+.paginator-material {
+  margin-left: -23px;
+  padding-right: 0;
+}
+
+.paginator-material > div {
+  margin-right: -23px;
+}
+
+.container-paginator-row {
+  margin-right: -47px;
+}
+
+.container-bottom-selectors {
+  margin-top: 25px;
+}
+
+.container-bottom-selectors-column {
+  margin-bottom: -5px;
+}
+
+.container-bottom-input {
+  width: 115px;
+  display: inline-block;
+}
+
+.span-valid-value {
+  color: #5A616D;
+  line-height: 14px;
+  font-size: 12px;
+}
+
+.container-other-search-methods {
+  margin-bottom: 25px;
+}
+
+.container-other-search-methods-closed {
+  margin-bottom: 20px;
+}
+
+.span-other-search {
+  margin-left: 13px;
+}
+
+.span-other-search:focus {
+  outline: 2px solid #196ECF;
+}
+
+.span-other-search-label {
+  color: #196ECF;
+  margin-left: 7px;
+}
+
+.img-arrow {
+  height: 14px;
+  width: 14px;
+  margin-top: -2px;
+}
+
+@media (max-width: 992px){
+  .container-left-sm {
+    padding-left: 10px;
+    padding-right: 15px;
+  }
+
+  .container-right-sm {
+    padding-right: 10px;
+    padding-left: 15px;
+  }
+
+  .container-fox-inputs-sm {
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container-input-right {
+    padding-right: 15px;
+  }
+
+  .container-input-left {
+    padding-left: 15px;
+  }
+
+  .container-inputs {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .container-left-xs {
+    padding-left: 10px;
+  }
+
+  .container-right-xs {
+    padding-right: 10px;
+  }
+
+  .container-fox-inputs-xs {
+    margin-bottom: 18px;
+  }
+
+  .container-fox-inputs-in-between {
+    padding-top: 0;
+  }
+
+  .container-menu-circle {
+    margin: 5px auto;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="navigation-section-header">
+  <div (click)="pageHeaderService.currentNav = i + 1" *ngFor="let tab of primaryTabs; let i=index"
+    [ngClass]="{'btn-navigation-active':(pageHeaderService.currentNav === i + 1), 'container-hide-tab': !showTab(tab)}"
+    class="btn-navigation" foxHotkey="{{'alt+'+(i+1)}}" hotkeyAction="click">
+    {{tab + " ("+(i+1)+")"}}
+  </div>
+  <div [ngClass]="{'btn-navigation-active':(pageHeaderService.currentNav >= primaryTabCount)}"
+       class="btn-navigation"
+       tabindex = "0"
+       foxHotkey="alt+m"
+       hotkeyAction="click"
+       [matMenuTriggerFor]="Menu"
+       *ngIf="secondaryTabs.length">
+    More
+    <img src="assets/img/caret-down.svg" class="caret-down">
+  </div>
+  <mat-menu #Menu="matMenu" class="mat-menu-navigation-dropdown">
+    <button mat-menu-item
+            class="menu-item-more"
+            foxHotkey="{{'alt+'+(i+1+primaryTabCount)}}"
+            hotkeyAction="click"
+            *ngFor="let tab of secondaryTabs; let i=index;"
+            (click)="pageHeaderService.currentNav =(i + 1 + primaryTabCount)">
+      {{tab + " ("+(i+1+primaryTabCount)+")"}}
+    </button>
+  </mat-menu>
+</div>

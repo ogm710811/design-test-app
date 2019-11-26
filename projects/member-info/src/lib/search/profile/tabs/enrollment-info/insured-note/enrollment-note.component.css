@@ -1,0 +1,81 @@
+.label-insured-note {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.text-bold-insured-note {
+  font-weight: bold;
+}
+
+.btn-note {
+  height: 39px;
+  width: 106px;
+}
+
+.txtarea-note {
+  height: 128.19px;
+  width: 1132px;
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  resize: none;
+  padding: 5px;
+  margin-top: 0;
+}
+
+.note-btn-div {
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn-cancel {
+  margin-right: 10px;
+  background-color: white;
+  color: #196ECF;
+  border: 1px solid #196ECF;
+}
+
+.add-post {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #BDC5C9;
+  border-radius: 3px 3px 0 0;
+  background-color: #F6F8F9;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+#avatar {
+  background-image: url('http://i.stack.imgur.com/Dj7eP.jpg');
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+}
+
+.name-posted-date {
+  position: relative;
+  top: 6px;
+}
+
+.posted-date-element {
+  position: relative;
+  right: 60px;
+}
+
+.name-element {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.action-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #196ECF;
+}
+
+.avatar-name-posted-date {
+  margin-top: 20px;
+}

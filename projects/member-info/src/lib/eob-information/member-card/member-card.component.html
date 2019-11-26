@@ -1,0 +1,17 @@
+<ng-container *ngFor="let item of memberCardResults">
+  <div class="container-fluid">
+    <div class="row no-gutters">
+      <div class="col-md-6 text-left container-padding">
+            <span class="user-icon"><i class="fas fa-user" focusable="false"></i></span>
+            <span class="full-name-text">{{item.fullName | titlecase}}</span>
+            <span class="claim-number-member-card">#{{item.claimNumber}}</span>
+      </div>
+      <div class="col-md-6 text-right container-padding">
+        <span><span class="member-id-icon"><i class="fas fa-id-card" focusable="false"></i></span>
+        <span class="member-id-text"><a [routerLink]="getUrlForMember(item.claimNumberForUrl)"
+                                        [queryParams]="{eob:'true'}">View Member Profile</a></span></span>
+        <span class="pull-right action-icon"><i class="fas fa-ellipsis-h" focusable="false"></i></span>
+      </div>
+    </div>
+  </div>
+</ng-container>

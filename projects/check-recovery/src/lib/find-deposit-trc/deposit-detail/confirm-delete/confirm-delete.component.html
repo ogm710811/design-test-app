@@ -1,0 +1,17 @@
+<fox-modal [visible]="!!trcNumber" (visibleChange)="trcNumber = undefined"
+           modalTitle="Confirmation">
+  <p>
+    You are about to delete TRC # {{trcNumber}}. This action cannot be undone. Do you want to
+    proceed?
+  </p>
+  <div class="container-buttons">
+    <button type="button" id="btn-cancel-modal-cancel" class="btn btn-secondary"
+            (click)="onDeleteModalCancelPressed()">
+      Cancel
+    </button>
+    <button type="button" id="btn-cancel-modal-confirm" class="btn btn-primary"
+            (click)="onDeleteModalConfirmPressed()">
+      Confirm
+    </button>
+  </div>
+</fox-modal>

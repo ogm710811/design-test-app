@@ -1,0 +1,87 @@
+.container-input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.container-label {
+  margin-bottom: 7px;
+}
+
+.ng-select-bottom {
+  margin-bottom: 2px;
+}
+
+.label-for-select {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.fox-input-other-reason {
+  margin-top: 23px;
+}
+
+.span-checkbox-reason-label {
+  color: #252C37;
+  padding-left: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.text-checkbox-reason-label {
+  color: #252C37;
+  padding-top: 5px;
+  padding-left: 17px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.container-checkbox-top {
+  padding-top: 19px;
+}
+
+.container-checkbox-no-provider {
+  padding-top: 23px;
+  padding-bottom: 10px;
+}
+
+.container-checkbox-is-provider {
+  padding-top: 47px;
+  padding-bottom: 10px;
+}
+
+.text-area-other-reason-no-provider {
+  padding-top: 14px;
+  padding-bottom: 10px;
+}
+
+.text-area-other-reason-is-provider {
+  padding-top: 37px;
+  padding-bottom: 10px;
+}
+
+.container-dropdown-top {
+  padding-top: 23px;
+}
+
+.container-input-reason-right {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.container-input-reason-return-top {
+  padding-top: 16px;
+  padding-bottom: 10px;
+}
+
+.container-input-notation-top {
+  padding-top: 14px;
+}
+
+

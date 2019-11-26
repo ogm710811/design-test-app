@@ -1,0 +1,161 @@
+.text-style {
+  text-transform: uppercase;
+}
+.page-title {
+  margin-top: 0px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+.header-style {
+  text-align:center;
+}
+
+.container-upper{
+   text-transform: uppercase;
+ }
+
+.container-op-info {
+  margin-top: 15px;
+}
+
+.container-margin {
+  margin-top: 14px;
+}
+
+.container-with {
+  width: 750px;
+}
+
+.col-textarea-width {
+  width: 350px;
+  height: 58px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.container-last-row {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.container-bill-content-label {
+  height: 14px;
+  width: 130px;
+  color: #333333;
+  font-family: "UHC Sans";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.container-bill-card {
+  padding-top: 10px;
+}
+
+.left-border {
+  border-left: 1px solid #cccccc;
+  height: 80px;
+}
+
+col-type-width {
+  width: 80px;
+}
+
+.col-plan-width {
+  width: 75px;
+}
+
+.col-prov-width {
+  width: 125px;
+}
+
+.col-cpt-width {
+  width:80px;
+}
+
+.col-charge-width {
+  width: 91px;
+}
+
+.col-text-width {
+  width: 500px;
+}
+
+.col-text1-width {
+  width: 850px;
+}
+
+.col-text2-width {
+  width: 400px;
+}
+
+.col-align-width {
+  text-align: center;
+}
+
+.col-textarea-width1 {
+  width: 350px;
+}
+
+.div-section-title {
+  height: 21px;
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  margin-bottom: 0;
+}
+
+.div-section-subtitle {
+  height: 16px;
+  color: #6E7681;
+  line-height: 16px;
+}
+
+.div-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+}
+
+.container-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+}
+
+.txt-return-pre {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  font-weight: 500;
+  top: 7px;
+  cursor: pointer;
+}
+

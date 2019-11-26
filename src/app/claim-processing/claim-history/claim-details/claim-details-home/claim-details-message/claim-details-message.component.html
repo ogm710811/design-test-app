@@ -1,0 +1,14 @@
+<div class="container-claim-message">
+  <ng-container *ngFor="let row of claimMessagesResult; let j=index">
+    <div [ngClass]="{'row-claim-message-1':(j === 0), 'row-claim-message':(j !== 0)}">
+      <div class="section-msg-header">
+        <span class="section-created-by">{{row.messageCreatedBy}}</span>
+        <span class="section-created-date">{{row.messageCreatedDate | date : 'MM/dd/yyyy'}}</span>
+      </div>
+      <div class="section-claim-msg">
+        <span class="txt-blue section-claim-code">#{{row.messageCode}}: </span>
+        <span>{{row.messageText}}</span>
+      </div>
+    </div>
+  </ng-container>
+</div>

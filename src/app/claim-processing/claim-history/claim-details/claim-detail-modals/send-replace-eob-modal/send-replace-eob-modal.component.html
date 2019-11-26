@@ -1,0 +1,93 @@
+<fox-modal [(visible)]="sendReplaceModalVisible" class="modal-eob" modalTitle={{eobModalTitle}}
+           [closable]="false"
+           (visibleChange)="sendReplaceModalVisibleChange.emit(sendReplaceModalVisible)">
+  <p class="container-eob-modal-txt">
+    <span *ngIf="eobModalType === 'SEND'">Please select the intended recipients to send the below EOB(s) to. <span
+      *ngIf="sendReplaceEobResultSet.length > 1">Some claims below may have already been sent and should instead be replaced.</span></span>
+    <span *ngIf="eobModalType === 'REPLACE'">Please select the intended recipients to replace the below EOB(s) to. <span
+      *ngIf="sendReplaceEobResultSet.length > 1">Some claims below may need to be sent instead of replaced.</span></span>
+  </p>
+  <div class="container-send-replace-table">
+    <table class="table table-send-replace-eob">
+      <thead class="thead-default">
+      <tr class="table-header">
+        <th [foxLink] class="column-recipient">
+          <span>Recipient</span>
+        </th>
+        <th [foxLink] class="column-claim-num">
+          <span>Claim #</span>
+        </th>
+        <th [foxLink] class="column-dos">
+          <span>Dates of Service</span>
+        </th>
+        <th [foxLink] class="column-status">
+          <span>Claim Status</span>
+        </th>
+        <th [foxLink] class="column-primary-icd">
+          <span>Primary ICD</span>
+        </th>
+        <th [foxLink] class="column-type">
+          <span>Claim Type</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody class="container-tbody-eob">
+      <ng-container *ngFor="let dat of sendReplaceEobResultSet; let j = index">
+        <tr [id]=" 'eob-tr-' + j">
+          <td [id]=" 'eob-tr-' + j + '-td-1'" class="column-recipient">
+            <div class="container-checkbox">
+              <span [tooltip]="isEobActive ? ((dat['eobIndicator'] === 'N') ? eobToolTip : null) : authToolTip"
+                    placement="bottom">
+                <input type="checkbox"
+                       [checked]="dat['eobIndicator'] === 'Y'"
+                       [disabled]="dat['eobIndicator'] === 'N' || !isEobActive"
+                       (change)="checkIndicator(j, 'eob')"/>
+                <span class="span-checkbox-text span-insured">Insured </span>
+              </span>
+              <span [tooltip]="isRaActive ? ((dat['raIndicator'] === 'N') ? raToolTip : null) : authToolTip"
+                    placement="bottom">
+                <input type="checkbox"
+                       [checked]="dat['raIndicator'] === 'Y'"
+                       [disabled]="dat['raIndicator'] === 'N' || !isRaActive"
+                       (change)="checkIndicator(j, 'ra')"/>
+                <span class="span-checkbox-text">Provider </span>
+              </span>
+            </div>
+          </td>
+          <td [id]=" 'eob-tr-' + j + '-td-2'" class="column-claim-num">{{dat['claimNumber']}}</td>
+          <td [id]=" 'eob-tr-' + j + '-td-3'" class="column-dos">{{dat['dos']}}</td>
+          <td [id]=" 'eob-tr-' + j + '-td-4'" class="column-status">{{dat['status']}}</td>
+          <td [id]=" 'eob-tr-' + j + '-td-5'" class="column-primary-icd">{{dat['icdCode']}}</td>
+          <td [id]=" 'eob-tr-' + j + '-td-6'" class="column-type">{{dat['claimType']}}</td>
+        </tr>
+        <ng-template #eobToolTip>
+          <div *ngIf="dat['eobIndicator'] === 'N'">
+            <span class="tooltip-error-text" *ngIf="dat['typeIndicator'] === 'REPLACE'">This EOB has not been sent; please Send instead</span>
+            <span class="tooltip-error-text" *ngIf="dat['typeIndicator'] === 'SEND'">This EOB has already been sent; please Replace instead</span>
+          </div>
+        </ng-template>
+        <ng-template #raToolTip>
+          <div *ngIf="dat['raIndicator'] === 'N'">
+            <span class="tooltip-error-text" *ngIf="dat['typeIndicator'] === 'REPLACE'">This RA has not been sent; please Send instead</span>
+            <span class="tooltip-error-text" *ngIf="dat['typeIndicator'] === 'SEND'">This RA has already been sent; please Replace instead</span>
+          </div>
+        </ng-template>
+        <ng-template #authToolTip>
+          <span class="tooltip-error-text">User does not have permission to perform this action</span>
+        </ng-template>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-12 text-right container-modal-btns">
+    <button type="button" class="btn btn-secondary btn-clear-modal"
+            (click)="cancelModalEob()">Cancel
+    </button>
+    <button type="submit" class="btn btn-primary btn-search-modal"
+            [disabled]="!enableSendReplace"
+            [ngClass]="{'btn-disabled': !enableSendReplace}" (click)="sendReplaceEob()">
+      <span *ngIf="eobModalType === 'SEND'">Send</span>
+      <span *ngIf="eobModalType === 'REPLACE'">Replace</span>
+    </button>
+  </div>
+</fox-modal>

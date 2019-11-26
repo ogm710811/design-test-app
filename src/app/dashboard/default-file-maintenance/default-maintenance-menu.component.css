@@ -1,0 +1,164 @@
+.container-deftmaint-title-section {
+  margin-bottom: -8px;
+}
+
+.container-deftmaint-number-section {
+  background-color: #5A616D;
+  color: #ffffff;
+  height: 21px;
+  width: 21px;
+  display: inline-block;
+  border-radius: 21px;
+}
+
+.container-deftmaint-number-value {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 11px;
+  margin-left: 7px;
+  margin-top: 5px;
+}
+
+.container-deftmaint-title-text {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+  margin-left: 8px;
+}
+
+.container-deftmaint-menu-subtitle {
+  color: #6E7681;
+  font-size: 14px;
+  line-height: 16px;
+  padding-bottom: 25px;
+}
+
+.container-deftmaint-menu-circle {
+  width: 27px;
+  height: 27px;
+  border-radius: 13px;
+  font-size: 13px;
+  color: #5A616D;;
+  line-height: 27px;
+  text-align: center;
+  background: #EEEFF2;
+  margin: 23px auto 0;
+}
+
+.mat-label-section-title {
+  height: 14px;
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 16px;
+}
+
+.btn-clear-deftmaint-menu {
+  margin-right: 15px;
+}
+
+.input-dropdown-selection {
+  padding-top: -2px;
+}
+
+.container-row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.container-row-small > div[class*="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.label-deftmaint-menu-action {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.container-drop-down-menu {
+  padding: 7px 6px 7px 8px;
+  margin-top: 7px;
+}
+
+.container-deftmaint-input-field {
+  padding-left: 20px;
+  padding-right: 0;
+}
+
+.input-location-deftmaint-menu {
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+.input-firstname-deftmaint-menu {
+  margin-bottom: 18px;
+  padding-left: 10px;
+  padding-right: 12px;
+}
+
+.input-template-deftmaint-menu {
+  margin-bottom: 0;
+  padding-left: 10px;
+  padding-right: 12px;
+}
+
+.input-field-authority-level {
+  padding-left: 0;
+  padding-right: 10px;
+}
+
+.input-field-position-deftmaint {
+  margin-bottom: 18px;
+  padding-left: 10px;
+  padding-right: 12px;
+}
+
+.container-deftmaint-btn-section {
+  margin-top: 2px;
+}
+.mat-option-first-value {
+  margin-top: 5px;
+}
+
+.mat-option-last-value {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+
+  .container-deftmaint-input-field {
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  .input-firstname-deftmaint-menu {
+    padding: 0;
+  }
+
+  .input-field-position-deftmaint {
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  .container-deftmaint-menu-circle {
+    margin: 5px auto;
+  }
+
+  .input-template-deftmaint-menu {
+    padding: 0;
+  }
+
+  .input-field-authority-level {
+    padding: 0;
+  }
+
+  .input-location-deftmaint-menu {
+    padding: 0;
+    margin-bottom: 18px;
+  }
+}

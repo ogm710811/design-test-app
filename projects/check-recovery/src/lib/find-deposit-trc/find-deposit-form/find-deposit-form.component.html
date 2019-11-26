@@ -1,0 +1,66 @@
+<fox-section [drawRectangle]="false" noPadding="true">
+  <div (keydown)="keyDownFunction($event)">
+    <form #depositForm="ngForm">
+      <div class="row-small row-eq-height">
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <fox-input type="fox-number"
+                     placeholder="12345-123456-1"
+                     labelText="Deposit Check Claim #"
+                     name="claim-number"
+                     [length]="11"
+                     [(ngModel)]="model.depositNumberVal">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <fox-input type="fox-currency"
+                     placeholder="1,000"
+                     labelText="Check Amount"
+                     name="check-amount"
+                     [(ngModel)]="model.depositCheckAmountVal"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <fox-input type="fox-number"
+                     placeholder="123456789"
+                     labelText="Check #"
+                     name="check-number"
+                     [length]="9"
+                     [(ngModel)]="model.depositCheckNumberVal"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <fox-input type="fox-date"
+                     placeholder="MM/DD/YYYY"
+                     labelText="Deposit Date"
+                     name="deposit-date"
+                     [(ngModel)]="model.depositDateVal"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-3">
+          <mat-form-field class="form-field-deposit-source">
+            <mat-label>Deposit Source</mat-label>
+            <mat-select name="deposit-source" class="dropdown-source" [(ngModel)]="model.depositSourceVal" [ngModelOptions]="fieldModelOptions">
+              <mat-option class="fox-dropdown-placeholder" value="" selected>All</mat-option>
+              <ng-container *ngFor="let source of depositSources">
+                <mat-option [value]="source.code">{{source.description}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row-small row-eq-height">
+      <div class="col-xs-12 text-right">
+        <button type="button" class="btn btn-secondary btn-clear"
+                foxHotkey="alt+r"
+                (click)="depositForm.resetForm()">
+          Clear (R)
+        </button>
+        <button type="button" class="btn btn-primary btn-find"
+                [disabled]="!checkIfDepositFormFilled()"
+                foxHotkey="alt+s"
+                (click)="submitDeposit.emit(model)">
+          Search (S)
+        </button>
+      </div>
+    </div>
+    </form>
+  </div>
+</fox-section>
+

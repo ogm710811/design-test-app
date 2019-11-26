@@ -1,0 +1,525 @@
+<div id="fox-ui" *ngIf="isLoggedIn else redirect">
+  <mat-sidenav-container [@.disabled]="isNewNav" (backdropClick)="close('backdrop')">
+    <mat-sidenav #sidenav (keydown.escape)="close('escape')" [mode]="isNewNav ? ('over') : (mobileQuery.matches ? 'over' : 'side')" [fixedInViewport]="true" position="end"
+      [fixedTopGap]="42" [ngClass]="isNewNav ? 'container-full-width' : 'container-old-menu'" id="matSidenav">
+      <div *ngIf="!isNewNav" class="div-menu-height">
+        <div class="static-sidenav">
+          <div class="btn-nav btn-nav-dashboard" (click)="navigationButtonClick(dashboardLabelConst)"
+            [ngClass]="{'btn-nav-active':(currentModule === dashboardConst)}">
+            <i focusable="false" class="fas fa-chart-bar"></i><br>
+            <p>Stats</p>
+          </div>
+          <div class="btn-nav btn-nav-claim" (click)="navigationButtonClick(claimsLabelConst)"
+            [ngClass]="{'btn-nav-active':(currentModule === claimConst)}">
+            <i focusable="false" class="fas fa-heartbeat" aria-hidden="true"></i>
+            <p>Claims</p>
+          </div>
+          <div
+            class="btn-nav btn-nav-check" (click)="navigationButtonClick(checkLabelConst)"
+            [ngClass]="{'btn-nav-active':(currentModule === checkConst)}">
+            <i focusable="false" class="fas fa-balance-scale"></i>
+            <p>Checks</p>
+          </div>
+          <div class="btn-nav btn-nav-member" (click)="navigationButtonClick(memberLabelConst)"
+            [ngClass]="{'btn-nav-active':(currentModule === memberConst)}">
+            <i focusable="false" class="fa fa-users" aria-hidden="true"></i>
+            <p>Member</p>
+          </div>
+          <div class="btn-nav btn-nav-doc"
+            (click)="navigationButtonClick(documentLabelConst)"
+            [ngClass]="{'btn-nav-active':(currentModule === documentConst)}">
+            <i focusable="false" class="fas fa-file" aria-hidden="true"></i>
+            <p>Docs</p>
+          </div>
+          <div
+            class="btn-nav btn-nav-comm"
+            [ngClass]="{'btn-nav-active':(currentModule === communicationConst)}"
+            (click)="navigationButtonClick(communicationLabelConst)">
+            <i focusable="false" class="fa fa-envelope" aria-hidden="true"></i>
+            <p>Comm</p>
+          </div>
+
+          <div class="btn-nav btn-nav-qr"
+            (click)="navigationButtonClick('')" [ngClass]="{'btn-nav-active':(currentModule === '')}">
+            <i focusable="false" class="fa fa-check-circle" aria-hidden="true"></i>
+            <p>QR</p>
+          </div>
+
+          <div class="btn-nav btn-nav-file"
+            (click)="navigationButtonClick(fileLabelConst)"
+            [ngClass]="{'btn-nav-active':(currentModule === fileMaintenanceConst)}">
+            <i focusable="false" class="fa fa-check-circle" aria-hidden="true"></i>
+            <p>File</p>
+          </div>
+
+          <div class="separator-nav"></div>
+          <div class="btn-nav"
+               (click)="navigationButtonClick(helpAndTraining)">
+            <i focusable="false" class="fa fa-question-circle" aria-hidden="true"></i>
+          </div>
+          <div class="btn-nav"><i focusable="false" class="far fa-keyboard"></i></div>
+        </div>
+
+        <div class="sidenav-items">
+          <div class="nav-title">{{currentChildNav}}</div>
+
+          <ng-container *ngIf="currentChildNav === dashboardLabelConst">
+            <div class="nav-category"><i focusable="false"
+                class="fas fa-chart-area"></i>
+              Metrics</div>
+            <div class="nav-link-container">
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === currentStatsLabel)}">
+                <div id="menu-item-current-stats" class="col-xs-9"
+                  (click)="navigateTo(dashboardConst, currentStatsConst)">{{currentStatsLabel}}</div>
+                <div class="col-xs-2">{{currentStatsCommandConst}}</div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="currentChildNav === claimsLabelConst">
+            <div
+
+              class="nav-category">
+              <i focusable="false" class="fas fa-clipboard"></i> Search & Processing
+            </div>
+            <div class="nav-link-container">
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === claimSearchLabel)}">
+                <div id="menu-item-claim-search" class="col-xs-9" (click)="navigateTo(claimConst, claimSearchConst)">
+                  {{claimSearchLabel}}</div>
+                <div class="col-xs-2">{{claimSearchCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === claimHistoryLabel)}">
+                <div class="col-xs-9" (click)="navigateTo(claimConst, claimHistoryConst)">{{claimHistoryLabel}}</div>
+                <div class="col-xs-2">{{claimHistoryCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === duplicateClaimLabel)}"
+                *ngIf="!isToggleFeature('F3001')">
+                <div class="col-xs-9" (click)="navigateTo(claimConst, duplicateClaimConst)">{{duplicateClaimLabel}}
+                </div>
+                <div class="col-xs-2">{{duplicateClaimCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === manualClaimIntakeLabel)}"
+                *ngIf="!isToggleFeature('F1772')">
+                <div id="menu-item-claim-history" class="col-xs-9 nav-link-me"
+                  (click)="navigateTo(claimConst, manualClaimIntakeConst)">{{manualClaimIntakeLabel}}</div>
+                <div class="col-xs-2">{{manualClaimIntakeCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === manualClaimProcessingLabel)}"
+                *ngIf="!isToggleFeature('F4907')">
+                <div id="menu-item-claim-process" class="col-xs-9 nav-link-me"
+                  (click)="navigateTo(claimConst, manualClaimProcessingConst)">{{manualClaimProcessingLabel}}</div>
+                <div class="col-xs-2">{{manualClaimEligibilityCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === maintenanceApprovalLabel)}"
+                 *ngIf="!isToggleFeature('F3514')">
+                <div id="menu-item-claim-dup" class="col-xs-9 nav-link-me"
+                  (click)="navigateTo(claimConst, maintenanceApprovalConst)">{{maintenanceApprovalLabel}}</div>
+                <div class="col-xs-2">{{maintenanceApprovalCommandConst}}</div>
+              </div>
+            </div>
+            <div class="nav-category" *ngIf="hasStaffRole || hasSupervisorRole">
+              <i focusable="false" class="fas fa-chart-area"></i>
+              Member Lookup
+            </div>
+            <div class="nav-link-container">
+              <div *ngIf="hasStaffRole" class="row"
+                [ngClass]="{'nav-link-active':(currentPage === memberQueueLabel)}">
+                <div id="menu-item-mbr-que" class="col-xs-9 nav-link-mq"
+                  (click)="isF4681Enabled ? navigateTo(claimConst, memberQueueConstOrig) : navigateTo(claimConst, memberQueueConst)">
+                  {{memberQueueLabel}}
+                </div>
+                <div class="col-xs-2">{{memLookupCommandConst}}</div>
+              </div>
+              <div *ngIf="hasStaffRole" class="row"
+                [ngClass]="{'nav-link-active':(currentPage === bypassQueueLabel)}">
+                <div id="menu-item-bypass-que" class="col-xs-9 nav-link-bq"
+                  (click)="isF4681Enabled ? navigateTo(claimConst, bypassQueueConstOrig) : navigateTo(claimConst, bypassQueueConst)">
+                  {{bypassQueueLabel}}
+                </div>
+                <div class="col-xs-2">{{bypassCommandConst}}</div>
+              </div>
+              <div *ngIf="hasSupervisorRole" class="row"
+                [ngClass]="{'nav-link-active':(currentPage === bypassManagementLabel)}">
+                <div id="menu-item-bypass-mgmt" class="col-xs-9 nav-link-bqm"
+                  (click)="navigateTo(claimConst, bypassManagementConst)">
+                  {{bypassManagementLabel}}
+                </div>
+                <div class="col-xs-2">{{bypassMgmtCommandConst}}</div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="currentChildNav === checkLabelConst">
+            <div
+
+              class="nav-category"><i focusable="false" class="fas fa-chart-area"></i> Checks</div>
+            <div class="nav-link-container">
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === findCheckLabel)}"
+                *ngIf="!isToggleFeature('F4764')">
+                <div id="menu-item-check-find" class="col-xs-9" (click)="navigateTo(checkConst, findCheckConst)">
+                  {{findCheckLabel}}</div>
+                <div class="col-xs-2">{{checkRecoveryCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === depositFileVerificationLabel)}"
+                *ngIf="!isToggleFeature('F4764')">
+                <div id="menu-item-deposit-file-ver" class="col-xs-9 nav-link-me"
+                  (click)="navigateTo(checkConst, depositFileVerificationConst)">{{depositFileVerificationLabel}}</div>
+                <div class="col-xs-2">{{depositFileVerificationCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === manualDepositEntryLabel)}"
+                *ngIf="!isToggleFeature('F4764')">
+                <div id="menu-item-manual-entry" class="col-xs-9 nav-link-me"
+                  (click)="navigateTo(checkConst, manualEntryConst)">{{manualEntryLabel}}</div>
+                <div class="col-xs-2">{{manualEntryCommandConst}}</div>
+              </div>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === findDepositTRCLabel)}"
+                 *ngIf="!isToggleFeature('F4764')">
+                <div id="menu-item-trc" class="col-xs-9" (click)="navigateTo(checkConst, findDepositTRCConst)">
+                  {{findDepositTRCLabel}}</div>
+                <div class="col-xs-2">{{findDepositTRCCommandConst}}</div>
+              </div>
+              <p></p>
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === overpaymentSelectionLabel)}"
+                *ngIf="!isToggleFeature('F4900')">
+                <div class="col-xs-9" (click)="navigateTo(checkConst, overpaymentSelectionConst)">
+                  {{overpaymentSelectionLabel}}
+                </div>
+                <div class="col-xs-2">{{overpaymentSelectionCommandConst}}</div>
+              </div>
+
+            <div class="row" [ngClass]="{'nav-link-active':(currentPage === overpaymentRecoveryLabel)}"
+                 *ngIf="!isToggleFeature('F3388')">
+              <div class="col-xs-9" (click)="navigateTo(checkConst, overpaymentRecoveryConst)">
+                {{overpaymentRecoveryLabel}}
+              </div>
+              <div class="col-xs-2">{{overpaymentRecoveryCommandConst}}</div>
+            </div>
+
+            <div class="row" [ngClass]="{'nav-link-active':(currentPage === addOrEditOverPaymentLabel)}"
+                 *ngIf="!isToggleFeature('F4900')">
+              <div class="col-xs-9" (click)="navigateTo(checkConst, addOrEditOverpaymentConst)">
+                {{addOrEditOverPaymentLabel}}
+              </div>
+              <div class="col-xs-2">{{addOrEditCommandConst}}</div>
+            </div>
+          </div>
+        </ng-container>
+
+          <ng-container *ngIf="currentChildNav === memberLabelConst">
+            <div class="nav-category"><i focusable="false"
+                class="fas fa-info-circle"></i>
+              Member Details</div>
+            <div class="nav-link-container">
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === memberSearchLabel)}">
+                <div id="menu-item-mbr-search" class="col-xs-9" (click)="navigateTo(memberConst, memberSearchConst)">
+                  {{memberSearchLabel}}</div>
+                <div class="col-xs-2">{{memberSearchCommandConst}}</div>
+              </div>
+            </div>
+
+            <div class="nav-category"><i focusable="false"
+                class="fas fa-ambulance"></i>
+              Provider</div>
+            <div class="nav-link-container">
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === providerSearchLabel)}">
+                <div id="menu-item-prov-search" class="col-xs-9" (click)="navigateTo(memberConst, providerSearchConst)">
+                  {{providerSearchLabel}}</div>
+                <div class="col-xs-2">{{providerSearchCommandConst}}</div>
+              </div>
+            </div>
+
+            <div
+
+              class="nav-category"><i focusable="false" class="fas fa-file-alt"></i> Benefits</div>
+            <div class="nav-link-container">
+              <div class="row"
+                [ngClass]="{'nav-link-active':(currentPage === memberEobInfoLabel)}"
+                *ngIf="!isToggleFeature('F4898')">
+                <div id="menu-item-mbr-eob" class="col-xs-9 nav-link-mq"
+                  (click)="navigateTo(memberConst, memberEobInfoConst)">{{memberEobInfoLabel}}</div>
+                <div class="col-xs-2">{{memberEobInfoCommandConst}}</div>
+              </div>
+            </div>
+            <div class="nav-link-container">
+              <div class="row" *ngIf="!isToggleFeature('F4898')"
+                [ngClass]="{'nav-link-active':(currentPage === processingIcdTableMaintenanceLabel)}">
+                <div class="col-xs-9 nav-link-mq"
+                  (click)="navigateTo(processingConst, processingIcdTableMaintenanceConst)">
+                  {{processingIcdTableMaintenanceLabel}}</div>
+                <div class="col-xs-2">{{processingRouteCommandIcdTableMaintenanceConst}}</div>
+              </div>
+              <div *ngIf="!isToggleFeature('F4898')" class="row"
+                [ngClass]="{'nav-link-active':(currentPage === processingRouteLabelDrugInquiry)}">
+                <div class="col-xs-9 nav-link-mq" (click)="navigateTo(processingConst, processingDrugInquiryConst)">
+                  {{processingRouteLabelDrugInquiry}}</div>
+                <div class="col-xs-2">{{processingRouteCommandlDrugInquiryConst}}</div>
+              </div>
+              <div *ngIf="!isToggleFeature('F4898')" class="row"
+                [ngClass]="{'nav-link-active':(currentPage === processingReviewMessageLabel)}">
+                <div class="col-xs-9 nav-link-mq" (click)="navigateTo(processingConst, processingReviewMessageConst)">
+                  {{processingReviewMessageLabel}}</div>
+                <div class="col-xs-2">{{processingRouteCommandReviewMessageConst}}</div>
+              </div>
+              <div class="row" *ngIf="!isToggleFeature('F4898')"
+                [ngClass]="{'nav-link-active':(currentPage === processingRouteLabelReviewCptHcpsCodes)}">
+                <div class="col-xs-9 nav-link-mq"
+                  (click)="navigateTo(processingConst, processingRoutePathReviewCptHpcsCodesConst)">
+                  {{processingRouteLabelReviewCptHcpsCodes}}</div>
+                <div class="col-xs-2">{{processingRouteCommandReviewCptHpcsCodesConst}}</div>
+              </div>
+              <div class="row" *ngIf="!isToggleFeature('F4898')"
+                [ngClass]="{'nav-link-active':(currentPage === processingRouteLabelReviewIcdCodesConst)}">
+                <div class="col-xs-9 nav-link-mq"
+                  (click)="navigateTo(processingConst, processingRoutePathReviewIcdCodesConst)">
+                  {{processingRouteLabelReviewIcdCodesConst}}</div>
+                <div class="col-xs-2">{{processingRouteCommandReviewIcdCodesConst}}</div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="currentChildNav === documentLabelConst">
+            <div class="nav-category">
+              <i focusable="false" class="fas fa-clipboard"></i> Document Management
+            </div>
+            <div class="nav-link-container">
+              <div
+                class="row"
+                [ngClass]="{'nav-link-active':(currentPage === documentSearchLabel)}">
+                <div id="menu-item-doc-search" class="col-xs-9"
+                  (click)="navigateTo(documentConst, documentSearchConst)">{{documentSearchLabel}}</div>
+                <div class="col-xs-2">{{documentSearchCommandConst}}</div>
+              </div>
+              <div *ngIf="hasOpMaintainWq" class="row"
+                [ngClass]="{'nav-link-active':(currentPage === documentUploadLabel)}">
+                <div class="col-xs-9" (click)="navigateTo(documentConst, documentUploadConst)">{{documentUploadLabel}}
+                </div>
+                <div class="col-xs-2">{{documentUploadCommandConst}}</div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="currentChildNav === communicationLabelConst">
+            <div class="nav-category">
+              <i focusable="false" class="fas fa-clipboard"></i> Information Central
+            </div>
+            <div class="nav-link-container">
+              <div *ngIf="!isToggleFeature('F4900')"
+                class="row"
+                [ngClass]="{'nav-link-active':(currentPage === commListLabel)}">
+                <div  class="col-xs-9" (click)="navigateModal(communicationConst, commListConst, commListCommandConst)">
+                  {{commListLabel}}
+                </div>
+                <div class="col-xs-2">{{commListCommandConst}}</div>
+              </div>
+              <div *ngIf="!isToggleFeature('F4900')"
+                class="row"
+                [ngClass]="{'nav-link-active':(currentPage === commRevLabel)}">
+                <div  class="col-xs-9" (click)="navigateModal(communicationConst, commRevConst, commRevCommandConst)">
+                  {{commRevLabel}}
+                </div>
+                <div class="col-xs-2">{{commRevCommandConst}}</div>
+              </div>
+              <div *ngIf="!isToggleFeature('F4900')"
+                class="row"
+                [ngClass]="{'nav-link-active':(currentPage === commDeleteLabel)}">
+                <div  class="col-xs-9" (click)="navigateModal(communicationConst, commDeleteConst, commDeleteCommandConst)">
+                  {{commDeleteLabel}}
+                </div>
+                <div class="col-xs-2">{{commDeleteCommandConst}}</div>
+              </div>
+              <div *ngIf="!isToggleFeature('F4900')"
+                class="row"
+                [ngClass]="{'nav-link-active':(currentPage === commInfoLabel)}">
+                <div  class="col-xs-9" (click)="navigateModal(communicationConst, commInfoConst, commInfoCommandConst)">
+                  {{commInfoLabel}}
+                </div>
+                <div class="col-xs-2">{{commInfoCommandConst}}</div>
+              </div>
+              <div *ngIf="!isToggleFeature('F4900')"
+                   class="row"
+                   [ngClass]="{'nav-link-active':(currentPage === commSuspendedLabel)}">
+                <div  class="col-xs-9" (click)="navigateModal(communicationConst, commInfoConst, commSuspendedCommandConst)">
+                  {{commSuspendedLabel}}
+                </div>
+                <div class="col-xs-2">{{commSuspendedCommandConst}}</div>
+              </div>
+              <div *ngIf="!isToggleFeature('F4900')"
+                class="row"
+                [ngClass]="{'nav-link-active':(currentPage === commQualityReviewLabel)}">
+                <div
+                  id="menu-item-doc-upload"
+                  class="col-xs-9"
+                  (click)="navigateTo(communicationConst, commQualityReviewConst)">
+                  {{commQualityReviewLabel}}
+                </div>
+                <div class="col-xs-2">{{commQualityReviewCommandConst}}</div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="currentChildNav === fileLabelConst">
+
+            <div class="nav-category">
+              <i focusable="false" class="fas fa-clipboard"></i> Operator File
+            </div>
+            <div class="nav-link-container">
+              <div *ngIf="!isToggleFeature('F4899')"
+                class="row"
+                [ngClass]="{'nav-link-active':(currentPage === operatorFileLabel)}">
+                <div
+                  class="col-xs-9 container-op-maintenance"
+                  (click)="navigateTo(dashboardConst, operatorFileConst)">
+                  {{operatorFileLabel}}
+                </div>
+                <div class="col-xs-2">{{operatorFileCommandConst}}</div>
+              </div>
+            </div>
+
+            <div class="nav-category">
+              <i focusable="false" class="fas fa-clipboard"></i> Default File
+            </div>
+            <div class="nav-link-container">
+              <div *ngIf="!isToggleFeature('F4899')" class="row" [ngClass]="{'nav-link-active':(currentPage === defaultFileLabel)}">
+                <div  class="col-xs-9" (click)="navigateTo(dashboardConst, defaultFileConst)">{{defaultFileLabel}}</div>
+                <div class="col-xs-2">{{defaultFileCommandConst}}</div>
+              </div>
+            </div>
+          </ng-container>
+
+
+          <ng-container *ngIf="currentChildNav ===  helpAndTraining">
+            <div class="nav-category">
+              <span><img src="assets/img/help-white.svg"> Help & Training</span>
+            </div>
+            <div class="nav-link-container">
+            </div>
+
+          </ng-container>
+        </div>
+      </div>
+      <div *ngIf="isNewNav" class="row div-flex-container">
+        <div #leftSide class="col-sm-11 col-xs-10 col-md-11 col-lg-11 side-left-container ">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-30">
+            <ng-container *ngFor="let menuInfo of sideMenu; let i = index">
+              <div class="col-md-3 col-xs-12 col-sm-6 navigation-menu-div-distance" *ngIf="i < 4">
+                <p [id]=" 'idMDL' + (i + 1)" class="label-sidemenu-header">{{menuInfo.modelName}}</p>
+                <div *ngFor="let link of menuInfo.sideMenuLink; let idx = index;" [ngClass]="{'div-link-disabled':isToggleFeature(link?.featureName)}" class="margin-bottom-5 no-wrap" >
+                  <a [ngClass]="{'link-disabled':isToggleFeature(link?.featureName)}" (click)="closeMenu(link)" [id]="'idUrl' + link.command + (idx + 1)"
+                     class="no-underline">
+                    <span [id]="'idCMD' + link.command + (idx + 1)" class="sidemenu-command"> {{link.command}} </span>
+                    <span [id]="'idLBL' + link.command + (idx + 1)" class="sidemenu-label"> {{link.label}} </span>
+                  </a>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ng-container *ngFor="let menuInfo of sideMenu; let i = index">
+              <div class="col-md-3 col-xs-12 col-sm-6 navigation-menu-div-distance" *ngIf="i >= 4">
+                <p [id]=" 'idMDL' + (i + 1)" class="label-sidemenu-header">{{menuInfo.modelName}}</p>
+                <div class="col-lg-12 margin-bottom-5 no-wrap" *ngFor="let link of menuInfo.sideMenuLink; let idx = index;"
+                     [ngClass]="{'div-link-disabled':isToggleFeature(link?.featureName)}">
+                  <a [ngClass]="{'link-disabled':isToggleFeature(link?.featureName)}" (click)="closeMenu(link)" [id]="'idUrl' + link.command + (idx + 1)"
+                     class="no-underline">
+                    <span [id]="'idCMD' + link.command + (idx + 1)" class="sidemenu-command"> {{link.command}} </span>
+                    <span [id]="'idLBL' + link.command + (idx + 1)" class="sidemenu-label"> {{link.label}} </span>
+                  </a>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="right-container-color">
+          <div class="col-md-12 col-xs-12 col-sm-12 margin-top-30 no-padding">
+            <div class="col-md-1 col-xs-1 col-sm-1 sidemenu-icon-space">
+              <i focusable="false" class="fas fa-question-circle icon-sidemenu"></i>
+            </div>
+            <div class="col-md-9 col-xs-9 col-sm-9 no-padding margin-bottom-10">
+              <span id="idHelp" class="label-help">Help & Training</span>
+            </div>
+            <div class="col-md-12 col-xs-12 col-sm-12">
+              <p><a id="idUrlTrng" (click)="goToUrlTrng()" class="label-sidemenu-help"> HUB Training Materials </a></p>
+              <p><a id="idUrlAsk" (click)="goToUrlAsk()" class="label-sidemenu-help"> AskKB </a></p>
+              <p><a id="idKeyboard" (click)="showKeyboardShortcutsModal(true)" class="label-sidemenu-help"> Keyboard Shortcut Helper </a></p>
+            </div>
+          </div>
+          <div class="col-md-12 col-xs-12 col-sm-12 no-padding margin-top-30">
+            <div class="col-md-1 col-xs-1 col-sm-1 sidemenu-icon-space">
+              <i focusable="false" class="fas fa-flag icon-sidemenu"></i>
+            </div>
+            <div class="col-md-9 col-xs-9 col-sm-9 no-padding margin-bottom-10">
+              <span id="idIWrite" class="label-help">iWrite</span>
+            </div>
+            <div class="col-md-12 col-xs-12 col-sm-12">
+              <p><a id="idUrlWLetters" (click)="goToUrlWLetters()" class="label-sidemenu-help"> Write Letters </a></p>
+              <p><a id="idUrlFLetters" (click)="goToUrlFLetters()" class="label-sidemenu-help"> Find Letters </a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="container-content-fixed" [class.no-scroll]="!isScrollable">
+      <fox-header #header headerId="fox-header" headerTitle="FOX Claims" (showMenuChange)="menuToggle($event)">
+      </fox-header>
+      <div class="fox-content">
+        <fox-page-header *ngIf="pageHeaderConfig && pageHeaderConfig.headerType === 'new'" [config]="pageHeaderConfig" (eventHideWorkItems)="hideWorkItems($event)" class="container-page-header"></fox-page-header>
+        <div *ngIf="isLoggedIn"
+             class="container-viewreport"
+             [ngClass]="{
+               'hide-scrollbar-horizontally-menu' : hiddenHorizontallyScrollOnMenuPage,
+               'full-width': fullWidth}">
+          <div class="container-fluid dashboard-container"
+               [class.full-width]="fullWidth">
+            <fox-default-breadcrumbs *ngIf="pageHeaderConfig && pageHeaderConfig.headerType === 'old'" [config]="pageHeaderConfig"></fox-default-breadcrumbs>
+            <ng-container *ngIf="!hideAssertiveMessages">
+              <fox-message-box *ngFor="let messageBox of messageBoxes; let k = index"
+                               visible="true"
+                               [messageBoxTitle]="messageBox.title"
+                               [timeOutLength]="messageBox.timeout"
+                               [messageType]="messageBox.type">
+                {{messageBox.content}}
+              </fox-message-box>
+            </ng-container>
+            <div class="row">
+              <div class="col-lg-12">
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <fox-footer *ngIf="!hideFooter" (showKeyboardShortcutsModal)="showKeyboardShortcutsModal($event)"></fox-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <fox-feature-flag-modal [(visible)]="showFeatureFlagModal"></fox-feature-flag-modal>
+  <fox-route-to-queue-modal [modalVisible]="routeToQueueModalVisible"
+    (modalVisibleChange)="routeToQueueModalVisible=$event"></fox-route-to-queue-modal>
+  <fox-save-to-workbench-modal [modalVisible]="saveToWorkbenchModalVisible"
+    (modalVisibleChange)="saveToWorkbenchModalVisible=$event"></fox-save-to-workbench-modal>
+  <fox-route-vld-modal [(modalVisible)]="routeValidModalVisible"
+                 (modalVisibleChange)="routeValidModalVisible=$event"
+                 [commandInputVal]="commandInput">
+  </fox-route-vld-modal>
+</div>
+<ng-template #redirect>
+  <fox-login-page-redirect></fox-login-page-redirect>
+</ng-template>
+
+<fox-keyboard-shortcuts [visibleModal]="showKeyboardShortcut"
+                        (visibleModalEmitter)="onKeyboardShortcutsModalClose($event)">
+</fox-keyboard-shortcuts>

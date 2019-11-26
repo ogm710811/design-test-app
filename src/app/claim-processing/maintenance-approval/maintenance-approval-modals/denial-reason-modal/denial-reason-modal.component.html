@@ -1,0 +1,25 @@
+<fox-modal [(visible)]="denialReasonModalVisible" class="modal-denial-reason"
+           modalTitle="Denial Reason" [closable]="false"
+           (visibleChange)="denialReasonModalVisibleChange.emit(denialReasonModalVisible)">
+  <div>
+    <p class="container-description">
+      <span>Please enter a reason for this denial below. This will appear in the claim and/or member’s audit log.</span>
+    </p>
+  </div>
+  <div>
+    <mat-form-field class="textarea-denial-reason-content">
+      <mat-label class="label-denial-reason">Denial Reason</mat-label>
+      <textarea matInput #textarea required maxlength="256" [(ngModel)]="denialRsn"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="col-md-12 text-right container-modal-btns">
+    <button type="button" id="btn-cancel-modal" class="btn btn-secondary btn-cancel-deny"
+            (click)="cancelDenialReasonModal()">Cancel
+    </button>
+    <button type="button" id="btn-confirm-modal" class="btn btn-primary btn-submit-deny"
+            [disabled]="denialRsn === ''"
+            foxHotkey="alt+s" [ngClass]="{'btn-disabled': denialRsn === ''}"
+            (click)="submitDeny()">Deny
+    </button>
+  </div>
+</fox-modal>

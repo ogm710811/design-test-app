@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="10" cy="10" r="10"></circle>
+        <path d="M5.5,5.92307692 C7.13625,5.92307692 8.46153846,4.59778846 8.46153846,2.96153846 C8.46153846,1.32528846 7.13625,0 5.5,0 C3.86375,0 2.53846154,1.32528846 2.53846154,2.96153846 C2.53846154,4.59778846 3.86375,5.92307692 5.5,5.92307692 Z M5.5,6.76923077 C3.664375,6.76923077 0,7.71410256 0,9.58974359 L0,11 L11,11 L11,9.58974359 C11,7.71410256 7.335625,6.76923077 5.5,6.76923077 Z" id="path-3"></path>
+    </defs>
+    <g id="---🏆-PB65-(Comm-Info)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PB65---1" transform="translate(-60.000000, -259.000000)">
+            <g id="Containers-/-Basic-Card-/-Header-Only-Copy-2" transform="translate(40.000000, 239.000000)">
+                <g id="Icons-/-Entities-/-Member" transform="translate(20.000000, 20.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Oval" fill="#D8D8D8" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <g id="_Helper-/-Color-Tokens-/-Accent-Blue-(#00BCD6)" mask="url(#mask-2)" fill="#00BCD6" fill-rule="nonzero">
+                        <rect id="Color-Box" x="0" y="0" width="20" height="20"></rect>
+                    </g>
+                    <g id="Icons-/-Member" mask="url(#mask-2)">
+                        <g transform="translate(4.285714, 4.285714)">
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <use id="Shape" stroke="none" fill="#196ECF" fill-rule="nonzero" xlink:href="#path-3"></use>
+                            <g id="_Helper-/-Color-Tokens-/-White-(#FFFFFF)" stroke="none" fill="none" mask="url(#mask-4)" fill-rule="nonzero">
+                                <rect id="Color-Box" fill="#FFFFFF" x="0" y="0" width="11" height="11"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

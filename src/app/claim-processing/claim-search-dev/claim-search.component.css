@@ -1,0 +1,574 @@
+.mat-header-member {
+  min-width: 1px;
+}
+
+.mat-table-search {
+  width: 1200px;
+}
+
+.claim-search-main .claim-search-field {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.claim-search-main .claim-search-btns {
+  padding-right: 0;
+}
+
+.claim-search-main .claim-search-btns button {
+  width: 141px;
+  margin-top: 30px;
+}
+
+.claim-search-main .claim-search-btns .btn-clear {
+  margin-right: 20px;
+}
+
+.claim-search-main .shape-right {
+  width: 1px;
+  height: 405px;
+  background-color: #cccccc;
+  display: block;
+}
+
+.claim-search-table-main {
+  margin-top: 20px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.claim-search-non-mat-table-main {
+  overflow-x: auto;
+}
+
+.col-claim-no {
+  width: 100%;
+  padding-right: 25px;
+}
+
+.col-search-field {
+  width: 50%;
+  float: left;
+  padding-left: 15px;
+}
+
+.container-left-border {
+  border-left: 1px solid #cccccc;
+}
+
+.claim-search-field .claim-search-member-fields {
+  height: 300px;
+  padding-left: 10px;
+  padding-right: 25px;
+}
+
+.claim-search-field .claim-search-provider-fields {
+  height: 300px;
+  margin-bottom: 15px;
+  padding-left: 10px;
+}
+
+.claim-search-main .mat-input-element:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.claim-search-label {
+  font-size: 19px;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.claim-search-non-mat-table .mat-sort-header-button {
+  align-items: center;
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  outline: 0 none;
+  padding: 0;
+  font-weight: bold;
+  font-size: 14px;
+  width: 1200px;
+}
+
+.container-grey-border.claim-search-table-main {
+  overflow: auto;
+}
+
+.claim-search-main label {
+  margin-bottom: 0;
+}
+
+.mat-form-field {
+  min-height: 80px;
+}
+
+fox-modal .mat-table {
+  max-height: 260px;
+  overflow: auto;
+}
+
+.a-claim-number {
+  text-decoration: none;
+}
+
+.icon-briefcase,
+.icon-user {
+  color: #196ECF;
+  margin-right: 5px;
+  font-size: 12px;
+  width: 18px;
+  float: left;
+  height: 20px;
+}
+
+.icon-briefcase {
+  padding-top: 8px;
+}
+
+.container-not-found {
+  margin-bottom: 100px;
+}
+
+.container-paginator {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.container-margin-subheader {
+  margin-right: 2px;
+}
+
+.fox-section-paginator {
+  margin-top: -25px;
+}
+
+@media (min-width: 992px) {
+  /*make it to bigger columns*/
+  .col-md-4 {
+    width: 40%;
+  }
+
+  .col-md-2 {
+    width: 20%;
+  }
+}
+
+a.disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.btn-margin-right {
+  margin-right: 15px;
+}
+
+.btn-margin-search  {
+  margin-right: 32px;
+}
+
+.container-button-distance {
+  margin-bottom: 30px;
+}
+
+.input-claim-tracking {
+  width: 458px;
+  margin-left: 20px;
+}
+
+.input-small-size {
+  width: 155px;
+}
+
+.input-mid-size {
+  width: 233px;
+}
+
+.div-small-size {
+  width: 155px;
+  margin-left: 20px;
+}
+
+.container-dob {
+  width: 155px;
+  margin-left: 20px;
+}
+
+.container-medicare {
+  width: 155px;
+  margin-left: 20px;
+}
+
+.container-fname {
+  width: 233px;
+  margin-left: 20px;
+}
+
+.container-bill-tin {
+  width: 198px;
+}
+
+.container-billing-npi {
+  width: 198px;
+}
+
+.container-dos-from {
+  width: 155px;
+}
+
+.container-dos-to {
+  width: 155px;
+}
+
+.container-receipt-from {
+  width: 155px;
+  margin-left: 20px;
+}
+
+.container-claim-status {
+  width: 240px;
+}
+
+.container-receipt-to {
+  margin-left: 20px;
+}
+
+.div-mid-size{
+  width: 233px;
+  margin-left: 20px;
+}
+
+.mat-header-cell-claim {
+  min-width: 194px;
+  position: sticky;
+  left: 0;
+  background-color: #f6f8f9;
+}
+
+.btn-size {
+  height: 39px;
+  font-size: 14px;
+}
+
+.btn-txt-color {
+  color: #196ecf;
+}
+
+.mat-expansion-border-blue {
+  border-top: 3px solid #196ECF;
+}
+
+.container-margin-header {
+  margin-bottom: 9px;
+}
+
+.txt-search-header {
+  font-weight: 600;
+  color: #333333;
+  font-size: 18px;
+}
+
+.txt-sub-header {
+  color: #818080;
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+}
+
+.mat-form-field-claim-status {
+  width: 240px;
+}
+
+.btn-more {
+  margin-right: 20px;
+  float: right;
+  background-color: transparent;
+  border-radius: 15%;
+  line-height: 15px;
+}
+
+.btn-ellipsis {
+  margin-top: -16px;
+  height: 20px;
+  width: 20px;
+  font-size: 10px;
+  padding: 0px 3px 0px;
+}
+
+.mat-cell-member {
+  padding-left: 0px;
+  margin-left: -5px;
+  margin-top: 5px;
+  min-width: 1px;
+}
+
+.text-simplify {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100px;
+  margin-top: 7px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #196ECF;
+}
+
+.txt-param-subheader {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mat-cell-claim {
+  min-width: 195px;
+  position: sticky;
+  left: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-right: 1px solid #dce4e8;
+}
+
+.mat-cell-claim-even{
+  background-color: #ffffff;
+}
+
+.mat-cell-claim-odd{
+  background-color: #f6f8f9;
+}
+
+.div-inline-flex {
+  display: inline-flex;
+}
+
+.tooltip-claim-tracking {
+  font-size: 16px;
+  color: #4E5B71;
+  font-weight: 600;
+}
+
+.tooltip-actual-claim {
+  font-size: 13px;
+  color: #4E5B71;
+}
+
+.tooltip-copy-clipboard {
+  font-size: 11px;
+  text-decoration: none;
+  background-color: #FFF;
+  color: #196ECF;
+  cursor: pointer;
+}
+
+.menu-div-size {
+  width: 100%;
+  padding-left: 15px;
+  padding-top: 7px
+}
+
+.img-member {
+  margin-left:20px;
+  height: 13px;
+}
+
+.cell-member-number {
+  color: #196ECF;
+  margin-left: 17px;
+  border-bottom: 1px solid;
+  padding-bottom: 1px;
+}
+
+.fox-section-margin {
+  margin-top: 25px;
+}
+
+.txt-header {
+  font-size: 18px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.container-header-table {
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+.mat-row-height.mat-row {
+  min-height: 18px;
+}
+
+@media (max-width: 1230px) {
+  .container-dos-from {
+    margin-right: 20px;
+  }
+
+  .container-receipt-to {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1199px) {
+  .container-left-border {
+    border: none;
+  }
+
+  .container-dob {
+    width: 480px;
+    margin-left: 20px;
+  }
+
+  .container-bill-tin {
+    margin-left: 20px;
+  }
+
+  .container-billing-npi {
+    width: 690px;
+  }
+
+  .container-dos-from {
+    margin-left: 20px;
+  }
+
+  .container-receipt-to {
+    width: 155px;
+    margin-left: 20px;
+  }
+
+  .container-receipt-from {
+    width: 560px;
+  }
+
+  .container-claim-status {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 1026px) {
+  .container-receipt-from {
+    width: 450px;
+  }
+
+  .container-dos-to {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1004px) {
+  .container-billing-npi {
+    width: 680px;
+  }
+}
+
+@media (max-width: 991px) {
+  .container-dob {
+    width: 271px;
+    margin-left: 20px;
+  }
+
+  .container-billing-npi {
+    width: 485px;
+  }
+
+  .container-receipt-from {
+    width: 350px;
+  }
+
+  .container-dos-to {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 816px) {
+  .container-receipt-from {
+    width: 200px;
+  }
+}
+
+@media (max-width: 799px) {
+  .container-billing-npi {
+    width: 440px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container-medicare {
+    width: 400px;
+    margin-left: 20px;
+  }
+
+  .container-fname {
+    width: 400px;
+    margin-left: 20px;
+  }
+
+  .container-dob {
+    width: 155px;
+  }
+}
+
+@media (max-width: 754px) {
+  .container-billing-npi {
+    width: 300px;
+  }
+}
+
+@media (max-width: 714px) {
+  .container-receipt-from {
+    width: 155px;
+  }
+}
+
+@media (max-width: 691px) {
+  .container-medicare {
+    width: 300px;
+  }
+
+  .container-fname {
+    width: 300px;
+  }
+}
+
+@media (max-width: 662px) {
+  .container-billing-npi {
+    width: 230px;
+    margin-left: 2px;
+  }
+
+  .container-medicare {
+    width: 300px;
+  }
+
+  .container-fname {
+    width: 233px;
+  }
+
+  .container-dos-to {
+    width: 250px;
+  }
+}
+
+@media (max-width: 620px) {
+  .container-medicare {
+    width: 155px;
+  }
+
+  .container-billing-npi {
+    width: 198px;
+  }
+
+  .container-dos-to {
+    width: 200px;
+  }
+  .container-dob {
+    width: 155px;
+  }
+}
+
+@media (max-width: 594px) {
+  .container-margin-header {
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+}

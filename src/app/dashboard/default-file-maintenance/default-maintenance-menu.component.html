@@ -1,0 +1,159 @@
+<fox-section>
+  <fox-section-title class="container-deftmaint-title-section">
+    <div class="container-deftmaint-number-section">
+      <div class="container-deftmaint-number-value">1</div>
+    </div>
+    <div class="container-deftmaint-title-text">Maintenance Parameters</div>
+  </fox-section-title>
+  <fox-section-subheader>Enter Authority Level and Position OR Division OR Location OR Template to begin.</fox-section-subheader>
+  <div class="col-xs-12 col-sm-4 no-padding">
+    <fox-input type="text"
+               id="txtAuthorityLevel"
+               name="txtAuthorityLevel"
+               [length]="2"
+               [size]="2"
+               labelText="Authority Level"
+               class="col-xs-12 col-sm-12 input-field-authority-level"
+               (keyup.enter)="enterEventClick()"
+               [(ngModel)]="screen.m82lev">
+    </fox-input>
+  </div>
+  <div class="col-xs-12 col-sm-3 no-padding">
+    <fox-input type="text"
+               id="txtPosition"
+               name="txtPosition"
+               [length]="1"
+               [size]="1"
+               labelText="Position"
+               class="col-xs-12 col-sm-12 input-field-position-deftmaint"
+               (keyup.enter)="enterEventClick()"
+               [(ngModel)]="screen.m82pos">
+    </fox-input>
+  </div>
+  <div class="col-xs-12 col-sm-1 no-padding">
+    <div class="container-deftmaint-menu-circle">or</div>
+  </div>
+  <div class="col-xs-12 col-sm-3 no-padding">
+    <fox-input type="text"
+               id="txtDivision"
+               name="txtDivision"
+               [length]="3"
+               [size]="3"
+               labelText="Division"
+               class="col-xs-12 col-sm-12 input-firstname-deftmaint-menu"
+               (keyup.enter)="enterEventClick()"
+               [(ngModel)]="screen.m82div">
+    </fox-input>
+  </div>
+  <div class="col-xs-12 col-sm-1 no-padding">
+    <div class="container-deftmaint-menu-circle">or</div>
+  </div>
+  <div class="col-xs-12 col-sm-3 no-padding">
+    <fox-input type="text"
+               id="txtLocation"
+               name="txtLocation"
+               [length]="3"
+               [size]="3"
+               labelText="Location"
+               class="col-xs-12 col-sm-12 input-location-deftmaint-menu"
+               (keyup.enter)="enterEventClick()"
+               [(ngModel)]="screen.m82loc">
+    </fox-input>
+  </div>
+  <div class="col-xs-12 col-sm-1 no-padding">
+    <div class="container-deftmaint-menu-circle">or</div>
+  </div>
+  <div class="col-xs-12 col-sm-3 no-padding">
+    <fox-input type="text"
+               id="txtTemplate"
+               name="txtTemplate"
+               [length]="3"
+               [size]="3"
+               labelText="Template"
+               class="col-xs-12 col-sm-12 input-template-deftmaint-menu"
+               (keyup.enter)="enterEventClick()"
+               [(ngModel)]="screen.m82tem">
+    </fox-input>
+  </div>
+</fox-section>
+<fox-section>
+  <fox-section-title class="container-deftmaint-title-section">
+    <div class="container-deftmaint-number-section">
+      <div class="container-deftmaint-number-value">2</div>
+    </div>
+    <div class="container-deftmaint-title-text">Select Defaults or Overrides</div>
+  </fox-section-title>
+  <fox-section-subheader>Select an Action and click “Submit” or Alt + S to continue.</fox-section-subheader>
+  <div class="col-xs-12 col-sm-5 no-padding">
+    <div class="container-input-and-label">
+      <label class="label-deftmaint-menu-action">Action</label>
+      <div class="input-dropdown-selection">
+        <mat-select #txtSelection
+                    class="container-drop-down-menu"
+                    id="txtSelection"
+                    [(value)]="screen.m82sel"
+                    (selectionChange)="onChangeSelectedAction($event.value)">
+          <mat-label class="mat-label-section-title">OPERATOR DEFAULTS</mat-label>
+          <mat-option value="A" class="mat-option-first-value">A - Authority Limit</mat-option>
+          <mat-option value="B">B - Authority Combinations</mat-option>
+          <mat-option value="C">C - Set Quality</mat-option>
+          <mat-option value="D">D - Set Quality Combinations</mat-option>
+          <mat-option value="E">E - Transaction Security</mat-option>
+          <mat-option value="F" class="mat-option-last-value">F - Copy</mat-option>
+          <mat-label class="mat-label-section-title">TEMPORARY OVERRIDES</mat-label>
+          <mat-option value="H" class="mat-option-first-value">H - Authority Limits</mat-option>
+          <mat-option value="I">I - Authority Combinations</mat-option>
+          <mat-option value="J">J - Set Quality</mat-option>
+          <mat-option value="K">K - Set Quality Combinations</mat-option>
+          <mat-option value="L">L - Set Quality Template</mat-option>
+          <mat-option value="M">M - Template Exclusions</mat-option>
+          <mat-option value="N">N - Site Template Assignments</mat-option>
+        </mat-select>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-3 container-deftmaint-input-field">
+    <fox-input type="text"
+               id="txtLevel"
+               name="txtLevel"
+               [length]="2"
+               [size]="2"
+               labelText="Level"
+               class="col-xs-12 col-sm-12 no-padding"
+               (keyup.enter)="enterEventClick()"
+               [disabled]="disableInputField"
+               [ngModelOptions]="{updateOn: 'blur'}"
+               [(ngModel)]="screen.m82clev">
+    </fox-input>
+  </div>
+  <div class="col-xs-12 col-sm-3 container-deftmaint-input-field">
+    <fox-input type="text"
+               id="txtCopyPosition"
+               name="txtCopyPosition"
+               [length]="1"
+               [size]="1"
+               labelText="Position"
+               class="col-xs-12 col-sm-12 no-padding"
+               (keyup.enter)="enterEventClick()"
+               [disabled]="disableInputField"
+               [ngModelOptions]="{updateOn: 'blur'}"
+               [(ngModel)]="screen.m82cpos">
+    </fox-input>
+  </div>
+</fox-section>
+<div class="row container-row-small pull-right">
+  <div class="col-sm-12 no-padding container-deftmaint-btn-section">
+    <button type="button"
+            class="btn btn-secondary btn-clear-deftmaint-menu"
+            foxHotkey="alt+r"
+            (click)="clearEventClick()"
+            hotkeyAction="click">Clear (R)
+    </button>
+    <fox-loading-button [buttonValue]="'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

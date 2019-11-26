@@ -1,0 +1,12 @@
+<div foxSection
+     [ngClass]="{ 'container-grey-border': drawRectangle,
+                  'container-grey-border-bottom-23': paddingBottom23px,
+                  'container-grey-border-bottom-0': drawRectangleNoBottomPadding,
+                  'container-grey-border-no-overflow-x': noOverFlowX,
+                  'no-padding': noPadding,
+                  'row': bootstrapRow,
+                  'border-left-blue': borderLeftBlue,
+                  'border-top-blue': borderTopBlue,
+                  'container-grey-no-scroll': overflowDisabled}">
+  <ng-content></ng-content>
+</div>

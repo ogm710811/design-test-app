@@ -1,0 +1,32 @@
+.row-provider-header {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #333333;
+}
+
+.row-provider-value {
+  font-size: 16px;
+  line-height: 18px;
+  color: #333333;
+}
+
+.container-provider-field {
+  padding-top: 5px;
+}
+
+.content-end {
+  padding-bottom: 20px;
+}
+
+.section-member-payment {
+  height: 1px;
+  width: 1128px;
+  transform: scaleY(-1);
+  background-color: #D8D8D8;
+  margin-bottom: 20px;
+}
+
+.div-height-fifteen {
+  height: 15px;
+}

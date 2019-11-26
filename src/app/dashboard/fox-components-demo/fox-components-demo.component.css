@@ -1,0 +1,36 @@
+.jumbotron-background-color {
+  background-color: transparent;
+}
+
+.container-row {
+  margin-left: 3px;
+}
+
+.div-badge-container {
+  padding-bottom: 33px;
+}
+
+.div-badge-title {
+  padding-top: 33px;
+}
+
+.div-badge-card {
+  margin-top: 33px;
+}
+
+.btn.disabled {
+  background-color: #8B8A8A;
+  border: #8B8A8A;
+  color: white;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.img-tooltip-target {
+  width: 33px;
+  height: 33px;
+}
+
+.button-spacing {
+  margin: 10px;
+}

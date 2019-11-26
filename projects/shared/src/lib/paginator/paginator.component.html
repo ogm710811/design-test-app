@@ -1,0 +1,74 @@
+<div class="non-mat-paginator">
+  <div class="paginator-show-field">
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Show </label>
+        <mat-form-field>
+          <mat-select [id]="'select-page-size'" [(value)]="pageSize" (selectionChange)="changePageSize($event)">
+            <mat-option [value]="k" *ngFor="let k of pageSizeOption">{{k}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="page-range">
+    <label>Showing <span>{{startPageIndex}}-{{lastPageIndex}}</span> of
+      <span>{{dataLengthInput}}</span></label>
+  </div>
+  <div>
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li class="page-item">
+          <a id="lnk-pg-prev" tabindex="0" class="page-link-arrow" *ngIf="!(currentPage == 0)" aria-label="Previous" (click)="previousPaginator()">
+            <i class="fas fa-chevron-left" focusable="false"></i>
+          </a>
+          <a id="lnk-pg-prev-dis" tabindex="0" *ngIf="(currentPage == 0)" class="page-link-arrow-disabled" aria-label="Previous">
+            <i class="fas fa-chevron-left" focusable="false"></i>
+          </a>
+        </li>
+        <ng-container *ngIf ="pageTotal < 7">
+          <li class="page-item">
+            <a [id]="'lnk-pg-' + k" tabindex="0" class="page-link" *ngFor="let k of pages" (click)="switchPageIndex(k)"
+              [ngClass]="{'paginator-active':(paginatorInput._pageIndex == k), 'active':setPageRange()}">{{k+1}}</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf ="pageTotal > 6">
+          <li class="page-item">
+            <a [id]="lnk-pg-0" tabindex="0" class="page-link"  (click)="switchPageIndex(0)"
+              [ngClass]="{'paginator-active':(paginatorInput._pageIndex == '0'), 'active':setPageRange()}">1</a>
+          </li>
+          <li class="page-item">
+            <a [id]="pageNumDot1" *ngIf="dottedSecondPageIndicator" (click)="dottedPreviousPage()">...</a>
+            <a [id]="lnk-pg-1" tabindex="0" class="page-link" *ngIf="!dottedSecondPageIndicator" (click)="switchPageIndex(1)"
+              [ngClass]="{'paginator-active':(paginatorInput._pageIndex == '1'), 'active':setPageRange()}">2</a>
+          </li>
+          <li class="page-item">
+            <a [id]="lnk-pg-2" tabindex="0" class="page-link"  (click)="switchPageIndex(thirdPageNumber-1)"
+              [ngClass]="{'paginator-active':(paginatorInput._pageIndex == (thirdPageNumber-1)), 'active':setPageRange()}">{{thirdPageNumber}}</a>
+          </li>
+          <li class="page-item">
+            <a [id]="lnk-pg-3" tabindex="0" class="page-link"  (click)="switchPageIndex(fourthPageNumber-1)"
+              [ngClass]="{'paginator-active':(paginatorInput._pageIndex == (fourthPageNumber-1)), 'active':setPageRange()}">{{fourthPageNumber}}</a>
+          </li>
+          <li class="page-item">
+            <a [id]="pageNumDot2" *ngIf="dottedFifthPageIndicator" (click)="dottedNextPage()">...</a>
+            <a [id]="lnk-pg-4" tabindex="0" class="page-link" *ngIf="!dottedFifthPageIndicator" (click)="switchPageIndex(lastPageNumber-2)"
+               [ngClass]="{'paginator-active':(paginatorInput._pageIndex == (lastPageNumber-2)), 'active':setPageRange()}">{{lastPageNumber-1}}</a>
+          </li>
+          <li class="page-item">
+            <a [id]="lnk-pg-5" tabindex="0" class="page-link"  (click)="switchPageIndex(lastPageNumber-1)"
+              [ngClass]="{'paginator-active':(paginatorInput._pageIndex == (lastPageNumber-1)), 'active':setPageRange()}">{{lastPageNumber}}</a>
+          </li>
+        </ng-container>
+        <li class="page-item">
+          <a id="lnk-pg-next" tabindex="0" class="page-link-arrow" aria-label="Next"*ngIf="!(currentPage == (pageTotal-1))" (click)="nextPaginator()">
+            <i class="fas fa-chevron-right" focusable="false"></i>
+          </a>
+          <a id="lnk-pg-next-dis" tabindex="0" class="page-link-arrow-disabled" *ngIf="currentPage == (pageTotal-1)"aria-label="Next">
+            <i class="fas fa-chevron-right" focusable="false"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

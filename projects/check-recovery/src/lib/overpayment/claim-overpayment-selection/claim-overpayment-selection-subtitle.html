@@ -1,0 +1,10 @@
+<div class="container-claim-member">
+  <span *ngIf="memberName || account" class="container-claim">
+    <img class="img-claim" src="assets/img/member.svg"/>
+    <span class="span-user-info">
+      <span class="span-header">Member # <span class="span-member-name">{{memberName}}</span></span>
+      <span *ngIf="memberName && account" class="span-dash-color"> | </span>
+      <span *ngIf="account" class="span-user-no"><a [routerLink]="getUrl(account)" target="_blank" >{{account | formatMember}}</a></span>
+    </span>
+  </span>
+</div>

@@ -1,0 +1,39 @@
+<fox-section>
+  <fox-section-title class="fox-section-title">
+    <div class="container-section-number"><div class="div-section-number">4</div></div><div class="div-title-text">Claim Summary</div>
+  </fox-section-title>
+  <div class="div-fields">
+    <div class="div-claim-number col-xs-12 col-sm-3">
+      <div class="div-section-width" [ngxClipboard]="claimNumber" (cbOnSuccess)="claimNumberCopied()">
+        <p class="p-label p-tooltip-container"><span class="span-label" tooltip="Copy to Clipboard">Claim #</span></p>
+        <div>
+          <input class="input-field input-section-description input-claim-number" #claimNumber [value]="aClaimNumber" readonly>
+        </div>
+        <hr class="hr-field">
+      </div>
+      <div *ngIf="isClaimNumberCopied === true" class="div-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</div>
+    </div>
+    <div class="div-dcn col-xs-12 col-sm-4">
+      <div class = "div-section-padding-left div-section-width" [ngxClipboard]="dcn" (cbOnSuccess)="dcnCopied()">
+        <p class="p-label" [ngClass]="{'p-tooltip-container' : innerWidth < 768}"><span class="span-label" tooltip="Copy to Clipboard">DCN #</span></p>
+        <div class = "p-section-padding">
+          <input class="input-field input-section-description input-dcn" #dcn [value]="aDcn" readonly>
+        </div>
+        <hr class="hr-field">
+      </div>
+      <div *ngIf="isDcnCopied === true" class="div-if-copied"><i focusable="false" class="i-section-margin fas fa-check-circle icon-check"></i>Copied to clipboard</div>
+    </div>
+  </div>
+  <div class="div-claim-info col-xs-12 col-sm-4">
+    <p><span class="span-section-header">Name:  </span> <span class="span-section-name"> {{memberName}} </span></p>
+    <p><span class="span-section-header">Member #: </span> <span class="span-section-member"> {{memberNumber}} </span></p>
+    <p class="p-dates-of-service"><span class="span-section-header">Dates of Service:</span><span class="span-section-dates-of-service">{{dosFrom}} <span *ngIf="dosTo" class="span-date-service-to">- {{dosTo}}</span></span></p>
+  </div>
+</fox-section>
+
+<div class="div-section-padding">
+  <button type="button" class="btn btn-primary btn-proceed" foxHotkey="alt+l" foxLink (linkPressed)="proceedToEligibility()">
+    Proceed to Eligibility (L) <img class="img-arrow-right" src="assets/img/arrow-right-white.svg"/>
+  </button>
+</div>
+

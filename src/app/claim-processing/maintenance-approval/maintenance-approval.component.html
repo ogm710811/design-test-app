@@ -1,0 +1,85 @@
+<fox-section [noPadding]="true">
+  <div>
+    <h1 class="container-heading container-padding">Request Search Parameters</h1>
+    <p class="section-note">Enter search criteria below and select <strong>Search (S)</strong> to view requests.</p>
+  </div>
+  <form [formGroup]="maintenanceApprovalFormGroup" novalidate>
+    <div class="container-form-inputs">
+      <mat-form-field class="autofocus-select col-md-2">
+        <mat-label>Team</mat-label>
+        <mat-select formControlName="team" [(ngModel)]="teamSelected">
+          <mat-option value="">All</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-2">
+        <mat-label>MSID</mat-label>
+        <input matInput maxlength="20" placeholder="JFox" formControlName="msIdFormControl" [(ngModel)]="msIdInput">
+        <mat-error *ngIf="maintenanceApprovalFormGroup.controls['msIdFormControl'].hasError('pattern')">
+          MSID must be alphanumeric
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="autofocus-select col-md-2">
+        <mat-label>Action Type</mat-label>
+        <mat-select formControlName="actionType" [(ngModel)]="actionTypeSelected">
+          <mat-option value="">All</mat-option>
+          <mat-option value="TRANSFERCLAIM">Transfer Claim</mat-option>
+          <mat-option value="UPDATEEOB">Update EOB</mat-option>
+          <mat-option value="ACCOUNTTRANSFER">Transfer Member</mat-option>
+          <mat-option value="MEMBERAGGRMAINT">Update Member Aggregate</mat-option>
+          <mat-option value="CROSSREFMAINT">Update Cross-Reference</mat-option>
+          <mat-option value="REACTIVATECLAIM">Reactivate Claim</mat-option>
+          <mat-option value="DELETECLAIM">Delete Claim</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="autofocus-select col-md-2">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" [(ngModel)]="statusSelected">
+          <mat-option value="">All</mat-option>
+          <mat-option value="PENDING">Pending</mat-option>
+          <mat-option value="APPROVED">Approved</mat-option>
+          <mat-option value="DENIED">Denied</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="container-btn-submit col-md-2">
+        <button class="btn btn-primary button-submit"
+                mat-raised-button type="submit"
+                foxHotkey="alt+s"
+                (click)="getRequests()">
+          Search (S)
+        </button>
+      </div>
+
+    </div>
+  </form>
+</fox-section>
+
+<fox-section class="container-result" [noPadding]="true">
+  <div>
+    <h1 class="container-heading container-padding">Request Results</h1>
+  </div>
+  <fox-loading-overlay>
+    <div *ngIf="!isDataDisplay" class="container-not-found">
+      <i focusable="false" class="fa fa-info-circle"></i>
+      <p class="header-container">Awaiting Search</p>
+      <p class="container-header-msg">Enter a search query above to display requests</p>
+    </div>
+    <ng-container *ngIf="isDataDisplay">
+      <fox-request-results [maintenanceRequestResults]="maintenanceRequestResults"
+                           [(isDesc)]="requestResultIsDesc"
+                           [(column)]="requestResultSortColumn"
+                           (columnChange)="getRequests()">
+      </fox-request-results>
+      <fox-paginator-non-material [(pageSize)]="requestResultPageSize"
+                                 [dataLengthInput]="requestResultDataLengthInput"
+                                 [pageTotal]="requestResultPageTotal"
+                                 [(currentPage)]="currentRequestResultPage"
+                                 (currentPageChange)="getRequests()"
+                                 (pageSizeChange)="currentRequestResultPage=0;getRequests()">
+      </fox-paginator-non-material>
+    </ng-container>
+  </fox-loading-overlay>
+</fox-section>

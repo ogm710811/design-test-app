@@ -1,0 +1,37 @@
+.container-div-selection {
+  width: 115px;
+}
+
+.container-div-inline-block {
+  display: inline-block;
+}
+
+.container-div-button {
+  width: 120px;
+  position: absolute;
+  top: 13px;
+  left: 130px;
+}
+
+.container-div-fox-sub-title {
+  margin-top: -10px;
+  margin-bottom: 25px
+}
+
+.mat-divider-margins {
+  margin: 0 -20px 20px;
+}
+
+.container-div-paginator {
+  margin: -30px 5px -10px -23px;
+}
+
+.container-div-row {
+  position: relative;
+  margin-bottom: -7px;
+}
+
+.container-table-communication-history {
+  margin-left: -20px;
+  margin-right: -20px;
+}

@@ -1,0 +1,14 @@
+<div class="row table-left">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <table class="table-dupe-claims" >
+      <tr class="tr-first">
+        <td></td>
+        <td><a><img class="icon-qr-dup-claim-no" src="assets/img/heart-blue.svg" >{{claimNumber}}</a></td>
+      </tr>
+      <tr *ngFor="let left_panel of mapped">
+        <td>{{left_panel.type}}</td>
+        <td>{{leftPanel(left_panel)}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

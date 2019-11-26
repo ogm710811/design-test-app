@@ -1,0 +1,283 @@
+<form #clmMsgForm="ngForm">
+  <div class="row">
+    <div class="col-xs-12 col-sm-5 col-md-4">
+      <fox-section class="row">
+        <div>
+          <div class="container-icon">
+            <span><img class="icon-member-info" focusable="false" src="assets/img/Member_White.svg"></span>
+          </div>
+          <div class="container-member-title">
+            Member Information
+          </div>
+        </div>
+        <div class="container-member-subtitle">View current member plans below. Click the Member # to view the member’s profile page.</div>
+        <div class="row row-small">
+          <div class="col-xs-12 col-sm-4 section-member-details-header">
+            Name
+          </div>
+          <div class="col-xs-12 col-sm-8 section-member-details-value">
+            {{screenBean.m78inam}}
+          </div>
+          <div class="col-xs-12 col-sm-4 section-member-details-header">
+            Member #
+          </div>
+          <div class="col-xs-12 col-sm-8 section-member-details-value">
+            <span><img class="icon-member-tab icon-indicator" src="assets/img/member-blue.svg"/></span>
+            <a class="no-underline" [foxLink] (linkPressed)="getMemberProfile()">{{screenBean.m78mid}}</a>
+          </div>
+          <div class="col-xs-12 col-sm-4 section-member-details-header">
+            Assignee
+          </div>
+          <div class="col-xs-12 col-sm-8 section-member-details-value">
+            {{screenBean.m78anam}}
+          </div>
+          <div class="col-xs-12 col-sm-4 section-member-details-header">
+            Member State
+          </div>
+          <div class="col-xs-12 col-sm-8 section-member-details-value">
+            {{screenBean.m78ist1 || screenBean.m78ast2 || screenBean.m78ast3}}
+          </div>
+          <div class="col-xs-12 col-sm-4 section-member-details-header">
+            TIN #
+          </div>
+          <div class="col-xs-12 col-sm-8 section-member-details-value">
+            {{screenBean.m78atin}}
+          </div>
+          <div class="col-xs-12 col-sm-4 section-member-details-header">
+            Indicator
+          </div>
+          <div class="col-xs-12 col-sm-8 section-member-details-value">
+            {{screenBean.m78aind}}
+          </div>
+        </div>
+      </fox-section>
+    </div>
+    <div class="container-claim-message col-xs-12 col-sm-7">
+      <fox-section>
+        <div class="patient-section">
+          <fox-section-title>Patient</fox-section-title>
+          The below patient # may be modified in QR and read-only in Revalidation.
+          <div class="row row-small row-eq-height" *ngIf="isRevalidate">
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Patient #</div>
+                <div class="value-read-only">{{screenBean.m78patn}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row row-small" *ngIf="!isRevalidate">
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Patient #</mat-label>
+                <input matInput id="txtM78PATN" name="txtM78PATN" #txtM78PATN="ngModel" maxlength="20" size="20" type="text"
+                       [(ngModel)]="screenBean.m78patn"/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="pattern-para-section">
+          <fox-section-title>Pattern Paragraphs</fox-section-title>
+          <span *ngIf="isRevalidate">Click Review Claim Messages for details.</span>
+          <span *ngIf="!isRevalidate">Enter up to 7 claim messages below.</span>
+          <div class="row row-small row-eq-height" *ngIf="isRevalidate">
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Message #1</div>
+                <div class="value-read-only">{{screenBean.m78pln1}}</div>
+              </div>
+            </div>
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Message #2</div>
+                <div class="value-read-only">{{screenBean.m78pln2}}</div>
+              </div>
+            </div>
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Message #3</div>
+                <div class="value-read-only">{{screenBean.m78pln3}}</div>
+              </div>
+            </div>
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Message #4</div>
+                <div class="value-read-only">{{screenBean.m78pln4}}</div>
+              </div>
+            </div>
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Message #5</div>
+                <div class="value-read-only">{{screenBean.m78pln5}}</div>
+              </div>
+            </div>
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Message #6</div>
+                <div class="value-read-only">{{screenBean.m78pln6}}</div>
+              </div>
+            </div>
+            <div class="col-xs-6 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Message #7</div>
+                <div class="value-read-only">{{screenBean.m78pln7}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row row-small" *ngIf="!isRevalidate">
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Message #1</mat-label>
+                <input matInput id="txtM78PLN1" name="txtM78PLN1" #txtM78PLN1="ngModel" maxlength="5" size="5" type="text"
+                       class="col-xs-12 col-sm-6" [(ngModel)]="screenBean.m78pln1" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Message #2</mat-label>
+                <input matInput id="txtM78PLN2" name="txtM78PLN2" #txtM78PLN2="ngModel" maxlength="5" size="5" type="text"
+                       class="col-xs-12 col-sm-6" [(ngModel)]="screenBean.m78pln2" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Message #3</mat-label>
+                <input matInput id="txtM78PLN3" name="txtM78PLN3" #txtM78PLN3="ngModel" maxlength="5" size="5" type="text"
+                       class="col-xs-12 col-sm-6" [(ngModel)]="screenBean.m78pln3" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Message #4</mat-label>
+                <input matInput id="txtM78PLN4" name="txtM78PLN4" #txtM78PLN4="ngModel" maxlength="5" size="5" type="text"
+                       class="col-xs-12 col-sm-6" [(ngModel)]="screenBean.m78pln4" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Message #5</mat-label>
+                <input matInput id="txtM78PLN5" name="txtM78PLN5" #txtM78PLN5="ngModel" maxlength="5" size="5" type="text"
+                       class="col-xs-12 col-sm-6" [(ngModel)]="screenBean.m78pln5" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Message #6</mat-label>
+                <input matInput id="txtM78PLN6" name="txtM78PLN6" #txtM78PLN6="ngModel" maxlength="5" size="5" type="text"
+                       class="col-xs-12 col-sm-6" [(ngModel)]="screenBean.m78pln6" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field class="container-form-field">
+                <mat-label>Message #7</mat-label>
+                <input matInput id="txtM78PLN7" name="txtM78PLN7" #txtM78PLN7="ngModel" maxlength="5" size="5" type="text"
+                       class="col-xs-12 col-sm-6" [(ngModel)]="screenBean.m78pln7" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 margin-top-25">
+              <a class="no-underline" [foxLink] foxHotkey="alt+f6">Review Claim Messages Text (F6)</a>
+            </div>
+          </div>
+        </div>
+        <div class="spl-memo-section">
+          <fox-section-title>Special Memos</fox-section-title>
+          <span *ngIf="!isRevalidate">Add special memos below. Include message indicator if needed.</span>
+          <div class="row row-small row-eq-height" *ngIf="isRevalidate">
+            <div class="col-xs-3 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">PP Indicator</div>
+                <div class="value-read-only">{{screenBean.m78p1in}}</div>
+              </div>
+            </div>
+            <div class="col-xs-9 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Special Memo</div>
+                <div class="value-read-only">{{specialMemo1}}</div>
+              </div>
+            </div>
+            <div class="col-xs-3 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">PP Indicator</div>
+                <div class="value-read-only">{{screenBean.m78p2in}}</div>
+              </div>
+            </div>
+            <div class="col-xs-9 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Special Memo</div>
+                <div class="value-read-only">{{specialMemo2}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row row-small" *ngIf="!isRevalidate">
+            <div class="col-xs-3">
+              <mat-form-field class="container-form-field">
+                <mat-label>PP Indicator</mat-label>
+                <input matInput id="txtM78P1IN" name="txtM78P1IN" #txtM78P1IN="ngModel" maxlength="1" size="1" type="text"
+                       [(ngModel)]="screenBean.m78p1in" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-9">
+              <mat-form-field class="container-form-field">
+                <mat-label>Special Memo</mat-label>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="5" [(ngModel)]="specialMemo1">
+                </textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-xs-3">
+              <mat-form-field class="container-form-field">
+                <mat-label>PP Indicator</mat-label>
+                <input matInput id="txtM78P2IN" name="txtM78P2IN" #txtM78P2IN="ngModel" maxlength="1" size="1" type="text"
+                       [(ngModel)]="screenBean.m78p2in" />
+              </mat-form-field>
+            </div>
+            <div class="col-xs-9">
+              <mat-form-field class="container-form-field">
+                <mat-label>Special Memo</mat-label>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="5" [(ngModel)]="specialMemo2">
+                </textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="clm-note-section">
+          <fox-section-title>Claim Note</fox-section-title>
+          <span *ngIf="!isRevalidate">Add note below (400 character limit).</span>
+          <div class="row row-small row-eq-height" *ngIf="isRevalidate">
+            <div class="col-xs-12 row-eq-height">
+              <div class="container-read-only">
+                <div class="label-read-only">Claim Note</div>
+                <div class="value-read-only">{{screenBean.m78clnt}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row row-small" *ngIf="!isRevalidate">
+            <div class="col-xs-12">
+              <mat-form-field class="container-form-field">
+                <mat-label>Claim Note</mat-label>
+                <textarea matInput id="txtM78CLNT" name="txtM78CLNT" #txtM78CLNT="ngModel" matTextareaAutosize
+                          matAutosizeMinRows="3" matAutosizeMaxRows="5" maxlength="256" [(ngModel)]="screenBean.m78clnt">
+                </textarea>
+                <mat-hint class="container-textarea-hint" align="end">{{256 - txtM78CLNT.value.length}}
+                  characters left
+                </mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="btn-section" *ngIf="!isRevalidate">
+          <button type="submit"
+                  class="btn btn-primary"
+                  foxHotkey="alt+s">Submit (S)
+          </button>
+          <button type="button"
+                  class="btn btn-secondary"
+                  foxHotkey="alt+r"
+                  (click)="clmMsgForm.resetForm()">Clear (R)
+          </button>
+        </div>
+      </fox-section>
+    </div>
+  </div>
+</form>
+

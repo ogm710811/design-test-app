@@ -1,0 +1,439 @@
+<div class="container-fluid">
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-background-color">
+        <h2 class="font-weight-bold">US28128: Fox Badge Component</h2>
+        <h3 class="text-primary">Page Headers</h3>
+        <p class="lead">
+          On pages, statuses are represented by badges next to the page title.
+          The visual display of the badge elements for fox-ui is shown below.
+        </p>
+        <hr class="my-4">
+        <div class="container-fluid">
+          <div class="row no-gutters">
+
+            <div class="col-md-12 div-badge-container">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Record Locked</h4>
+                  <fox-badge [badgeParams]="recordLocked"></fox-badge>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Queue</h4>
+                  <fox-badge [badgeParams]="queue"></fox-badge>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 div-badge-container">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Special Handling Code</h4>
+                  <fox-badge [badgeParams]="specialHandlingCode"></fox-badge>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Request Denied</h4>
+                  <fox-badge [badgeParams]="requestDenied"></fox-badge>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 div-badge-container">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Maintenance Pending</h4>
+                  <fox-badge [badgeParams]="maintPending"></fox-badge>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Request Approved</h4>
+                  <fox-badge [badgeParams]="{}"></fox-badge>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 div-badge-container">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Paper Claim</h4>
+                  <fox-badge [badgeParams]="paperClaim"></fox-badge>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Pending Approval</h4>
+                  <fox-badge [badgeParams]="pendingApproval"></fox-badge>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 div-badge-container">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Member Migrated</h4>
+                  <fox-badge [badgeParams]="memberMigrated"></fox-badge>
+                </div>
+                <div class="col-md-6"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <h3 class="text-primary div-badge-title">Quick View</h3>
+        <p class="lead">
+          Statuses may optionally be abbreviated to only display icon badge variants.
+          This is shown below.
+        </p>
+        <hr class="my-4">
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-md-12">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Record Locked</h4>
+                  <fox-badge [badgeParams]="recordLockedIcon"></fox-badge>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Paper Claim</h4>
+                  <fox-badge [badgeParams]="paperClaimIcon"></fox-badge>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-primary div-badge-title">Additional Custom Settings</h3>
+        <p class="lead">
+          Statuses may optionally be customized with other settings.
+          This is shown below.
+        </p>
+        <hr class="my-4">
+        <div class="container-fluid">
+          <div class="row no-gutters mt-">
+            <div class="col-md-12">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <h4 class="font-weight-bold">Icon after text description</h4>
+                  <fox-badge [badgeParams]="iconAfterTextDescription"></fox-badge>
+                </div>
+                <div class="col-md-4">
+                  <h4 class="font-weight-bold">No icon only text</h4>
+                  <fox-badge [badgeParams]="noIcon"></fox-badge>
+                </div>
+                <div class="col-md-4">
+                  <h4 class="font-weight-bold">Text change dynamically</h4>
+                  <fox-badge [badgeParams]="dynamicText"></fox-badge>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div role="separator" class="divider"></div>
+
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-background-color">
+        <h2 class="font-weight-bold">US27572: Fox Select Dropdown Component</h2>
+        <p class="lead">This menu is implemented using the following Angular library: <a href="https://ng-select.github.io/ng-select#/data-sources">ng-select</a></p>
+        <hr class="my-4">
+        <div class="row">
+          <div class="col-md-4">
+            <h3 class="text-primary">Fox Multiselect Selected item</h3>
+            <hr>
+            <fox-section>
+              <fox-select-dropdown [selectDropdownDataSource]="selectDropdownDataSource" [selectedItems]=selectedItems [selectDropdownParams]=default (selectedItemsEmitter)=onBasicSelectedItemsSelectAll($event)></fox-select-dropdown>
+            </fox-section>
+            <div class="alert div-badge-card" role="alert">
+              <h4 class="alert-heading">Selected Items</h4>
+              <hr>
+              <ng-container *ngIf="basicSelectedItemsSelectAll.length">
+                <ul class="list-inline" >
+                  <li *ngFor="let item of basicSelectedItemsSelectAll"><strong>{{item.id}}:{{item.name}}</strong></li>
+                </ul>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3 class="text-primary">Fox Multiselect All</h3>
+            <hr>
+            <fox-section>
+              <fox-select-dropdown [selectDropdownDataSource]="selectDropdownDataSource" [selectDropdownParams]=selectAll (selectedItemsEmitter)=onSelectedItemsSelectAll($event)></fox-select-dropdown>
+            </fox-section>
+            <div class="alert div-badge-card" role="alert">
+              <h4 class="alert-heading">Selected Items</h4>
+              <hr>
+              <ng-container *ngIf="selectedItemsSelectAll.length">
+                <ul class="list-inline" >
+                  <li *ngFor="let item of selectedItemsSelectAll"><strong>{{item.id}}:{{item.name}}</strong></li>
+                </ul>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3 class="text-primary">Hidden Selected Items</h3>
+            <hr>
+            <fox-section>
+              <fox-select-dropdown [selectDropdownDataSource]="selectDropdownDataSource" [selectDropdownParams]=hideSelected (selectedItemsEmitter)=onHiddenItemsSelected($event)></fox-select-dropdown>
+            </fox-section>
+            <div class="alert div-badge-card" role="alert">
+              <h4 class="alert-heading">Selected Items</h4>
+              <hr>
+              <ng-container *ngIf="hiddenItemsSelected.length">
+                <ul class="list-inline" >
+                  <li *ngFor="let item of hiddenItemsSelected"><strong>{{item.id}}:{{item.name}}</strong></li>
+                </ul>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-background-color">
+        <h2 class="font-weight-bold">Fox Select Dropdown Component</h2>
+        <p class="lead">This menu is implemented using the following Angular library: <a href="https://ng-select.github.io/ng-select#/data-sources">ng-select</a></p>
+        <hr class="my-4">
+        <div class="row">
+          <div class="col-md-4">
+            <h3 class="text-primary">Fox Single Select</h3>
+            <hr>
+            <fox-section>
+              <fox-select-single [items]="items"
+                                 [clearable]="false"
+                                 [selected]="items[1]"
+                                 (selectEmitter)="showSelected = $event">
+              </fox-select-single>
+            </fox-section>
+            <div class="alert div-badge-card" role="alert">
+              <h4 class="alert-heading">Selected Item</h4>
+              <hr>
+              <ng-container>
+                {{showSelected | json}}
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3 class="text-primary">With bindLabel and bindValue</h3>
+            <hr>
+            <fox-section>
+              <fox-select-single [items]="items"
+                                 [clearable]="false"
+                                 [selected]="items[1].id"
+                                 bindLabel="label"
+                                 bindValue="id"
+                                 (selectEmitter)="showSelected1 = $event">
+              </fox-select-single>
+            </fox-section>
+            <div class="alert div-badge-card" role="alert">
+              <h4 class="alert-heading">Selected Item</h4>
+              <hr>
+              <ng-container>
+                {{showSelected1}}
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3 class="text-primary">With clearbale=true and hideSelected=false</h3>
+            <hr>
+            <fox-section>
+              <fox-select-single [items]="items"
+                                 [clearable]="true"
+                                 [hideSelected]="false"
+                                 [selected]="items[1]"
+                                 (selectEmitter)="showSelected2 = $event">
+              </fox-select-single>
+            </fox-section>
+            <div class="alert div-badge-card" role="alert">
+              <h4 class="alert-heading">Selected Item</h4>
+              <hr>
+              <ng-container>
+                {{showSelected2 | json}}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-background-color">
+        <h2 class="font-weight-bold">US33542: Fox Tooltip Component</h2>
+        <hr class="my-4">
+        <div class="row container-row">
+          <h3 class="text-primary">Fox Tooltip by Placements</h3>
+          <hr>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolMenuTop">
+              <button type="button" class="btn btn-primary">
+                <span class="small">Info Tooltip: Top</span>
+              </button>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolMenuRight">
+              <button type="button" class="btn btn-primary">
+                <span class="small">Info Tooltip: Right</span>
+              </button>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolMenuBottom">
+              <button type="button" class="btn btn-primary">
+                <span class="small">Info Tooltip: Bottom</span>
+              </button>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolMenuLeft">
+              <button type="button" class="btn btn-primary">
+                <span class="small">Info Tooltip: Left</span>
+              </button>
+            </fox-tooltip>
+          </div>
+        </div>
+        <hr>
+        <div class="row container-row">
+          <h3 class="text-primary">Additional Custom Settings</h3>
+          <hr>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolIconContent">
+              <button type="button" class="btn btn-primary">
+                <span class="small">Tooltip Info Icon</span>
+              </button>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoBottomHelp">
+              <a href="#" class="white-text p-0 m-0">
+                <img class="img-tooltip-target" src="assets/img/help-blue.svg"/>
+              </a>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoTopHelp">
+              <a href="#" class="white-text p-0 m-0">
+                <img class="img-tooltip-target" src="assets/img/member-blue.svg"/>
+              </a>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolIconContentDisable">
+              <button type="button" class="btn btn-primary disabled">
+                <span class="small">Tooltip Elem Disable</span>
+              </button>
+            </fox-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-background-color">
+        <div class="row container-row">
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolDynamicText">
+              <button type="button" class="btn btn-primary">
+                <span class="small">Dynamic Text</span>
+              </button>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3">
+            <fox-tooltip [toolMenuParams]="infoToolDynamicTextWithAutoWidth">
+              <button type="button" class="btn btn-primary">
+                <span class="small">Dynamic Text with Auto width</span>
+              </button>
+            </fox-tooltip>
+          </div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-background-color">
+        <h2 class="font-weight-bold">US31911: Fox DataButton Component</h2>
+        <hr class="my-4">
+        <div class="row container-row">
+          <h3 class="text-primary">Fox Databutton</h3>
+          <hr>
+          <div class="col-md-3">
+            <fox-databutton [title]="title"></fox-databutton>
+          </div>
+          <div class="col-md-3">
+            <fox-databutton [title]="title" [menus]="menus" (menuClicked)="menuClicked($event)"></fox-databutton>
+          </div>
+          <div class="col-md-3">
+            <fox-databutton [preIcon]="preIcon" [title]="title" [menus]="menus" (menuClicked)="menuClicked($event)"></fox-databutton>
+          </div>
+          <div class="col-md-3">
+            <fox-databutton [preIcon]="preIcon"></fox-databutton>
+          </div>
+        </div>
+        <hr class="my-4">
+        <div class="row container-row">
+          <div class="col-md-3">
+            <fox-databutton [preIcon]="preIcon" [menus]="menus" (menuClicked)="menuClicked($event)"></fox-databutton>
+          </div>
+        </div>
+        <hr class="my-4">
+        <div class="row container-row">
+          <div class="col-md-3">
+            Menu Clicked: {{selectedMenu}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-background-color">
+        <h2 class="font-weight-bold">US33906: Fox Button Component</h2>
+        <p class="lead">This Button is implemented using the following Angular component</p>
+        <hr class="my-4">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="text-primary">Button Spinner Animation.</h3>
+            <hr>
+            <fox-section>
+              <fox-loading-button class="button-spacing" [buttonValue] = "'Submit (S)'" [buttonStatus]="buttonStatus" [typeValue]="'button'" [foxHotKeyValue]="'alt+s'"  (buttonClick)="btnClick($event)"></fox-loading-button>
+
+              <fox-loading-button class="button-spacing" [buttonValue] = "'Continue (L)'" [buttonStatus]="buttonStatus" [typeValue]="'button'" [foxHotKeyValue]="'alt+l'"  (buttonClick)="btnClick($event)"></fox-loading-button>
+            </fox-section>
+          </div>
+          <div class="col-md-12">
+
+            <fox-section>
+              <h3 class="text-primary">Fox Button Fill Buttons. </h3>
+              <hr>
+              <fox-loading-button class="button-spacing" [buttonValue] = "'Continue (L)'" [buttonStatus]="'Submit'" [typeValue]="'button'"
+                                  [hasChevron]="true" (buttonClick)="btnClick($event)"></fox-loading-button>
+              <fox-loading-button class="button-spacing" [buttonStatus]="'Working...'" [typeValue]="'button'" (buttonClick)="btnClick($event)"></fox-loading-button>
+              <fox-loading-button class="button-spacing" [buttonStatus]="'Success!'" [typeValue]="'button'" (buttonClick)="btnClick($event)"></fox-loading-button>
+              <fox-loading-button class="button-spacing" [buttonStatus]="'Failed'" [typeValue]="'button'" (buttonClick)="btnClick($event)"></fox-loading-button>
+
+              <h3 class="text-primary">Fox Button Outline Buttons. </h3>
+              <hr>
+                <fox-loading-button class="button-spacing" [buttonValue] = "'Submit (S)'" [buttonStatus]="'OutlineSubmit(S)'" [typeValue]="'button'" (buttonClick)="btnClick($event)"></fox-loading-button>
+                <fox-loading-button class="button-spacing" [buttonStatus]="'OutlineWorking...'" [typeValue]="'button'" (buttonClick)="btnClick($event)"></fox-loading-button>
+                <fox-loading-button class="button-spacing" [buttonStatus]="'OutlineSuccess!'" [typeValue]="'button'"  (buttonClick)="btnClick($event)"></fox-loading-button>
+                <fox-loading-button class="button-spacing" [buttonStatus]="'OutlineFailed'" [typeValue]="'button'" (buttonClick)="btnClick($event)"></fox-loading-button>
+            </fox-section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+<fox-modal class="open-workitem-confirmation-modal" [(visible)]="showOpenWorkItemConfirmModal"
+           [closable]="false" modalTitle="Opening New Work Item">
+  <div class="text-modal">You are about to open a different work item.  Doing so will <b>send the current open item to your workbench</b>.  Do you wish to proceed?
+  </div>
+  <div class="container-buttons">
+    <button type="button" class="btn btn-clear" (click)="onOpenWorkItemConfirmationCancelPressed()">
+      Cancel
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" class="btn btn-work-queue-confirm" (click)="onOpenWorkItemConfirmationPressed()"><span><i
+      class="fas fa-briefcase" focusable="false"></i></span><span>Work This Item</span>
+    </button>
+  </div>
+</fox-modal>

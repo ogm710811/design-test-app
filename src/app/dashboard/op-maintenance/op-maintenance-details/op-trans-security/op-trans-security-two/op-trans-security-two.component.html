@@ -1,0 +1,438 @@
+<div class="row">
+  <div class="col-xs-12 container-div-return-prev">
+    <span (click)="F1EventClick()"
+          foxHotkey="ctrl+f1"
+          hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </span>
+  </div>
+</div>
+<form (ngSubmit)="EnterEventClick()">
+  <fox-section>
+    <div class="container-ions-title">
+      <fox-section-title>Operator Information (IONS)</fox-section-title>
+    </div>
+    <div class="row hidden-sm hidden-xs">
+      <div class="container-row-holder">
+        <div class="col-xs-6 col-md-2 container-input-right container-right-sm container-right-xs container-fox-inputs-sm-read-only container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Name'"
+                               value="{{screenBean2.m76name}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 col-md-2 container-inputs container-left-sm container-left-xs container-fox-inputs-sm-read-only container-fox-inputs-xs">
+          <fox-read-only-field [label]="'IONS ID'"
+                               value="{{screenBean2.m76ions}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 col-md-2 container-inputs container-right-sm container-right-xs container-fox-inputs-sm-read-only container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Last Maintenance'"
+                               value="{{lastMaintenanceDate}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 col-md-2 container-inputs container-left-sm container-left-xs container-fox-inputs-sm-read-only container-fox-inputs-xs">
+          <fox-read-only-field [label]="'IONS'"
+                               value="{{screenBean2.m76mion}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 col-md-2 container-inputs container-right-sm container-right-xs">
+          <fox-read-only-field [label]="'Position'"
+                               value="{{screenBean2.m76opos}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 col-md-2 container-input-left container-left-sm container-left-xs">
+          <fox-read-only-field [label]="'Authority Level'"
+                               value="{{screenBean2.m76auth}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="row visible-xs visible-sm">
+      <div class="container-row-holder">
+        <div class="col-xs-6 container-input-right container-right-sm container-right-xs container-fox-inputs-sm container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Name'"
+                               value="{{screenBean2.m76name}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 container-inputs container-left-sm container-left-xs container-fox-inputs-sm container-fox-inputs-xs">
+          <fox-read-only-field [label]="'IONS ID'"
+                               value="{{screenBean2.m76ions}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </div>
+    <div class="row visible-xs visible-sm">
+      <div class="container-row-holder">
+        <div class="col-xs-6 container-inputs container-right-sm container-right-xs container-fox-inputs-sm container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Last Maintenance'"
+                               value="{{lastMaintenanceDate}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 container-inputs container-left-sm container-left-xs container-fox-inputs-sm container-fox-inputs-xs">
+          <fox-read-only-field [label]="'IONS'"
+                               value="{{screenBean2.m76mion}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </div>
+    <div class="row visible-xs visible-sm">
+      <div class="container-row-holder">
+        <div class="col-xs-6 container-inputs container-right-sm container-right-xs">
+          <fox-read-only-field [label]="'Position'"
+                               value="{{screenBean2.m76opos}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 container-input-left container-left-sm container-left-xs">
+          <fox-read-only-field [label]="'Authority Level'"
+                               value="{{screenBean2.m76auth}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [paddingBottom23px]="true">
+    <fox-section-title>Electronic Claim</fox-section-title>
+    <div *ngIf="screenBean2.m76titl === 'UPDATE'" class="container-subtitle">
+      <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs-xs">
+        <fox-input type="text"
+                   id="txtM76TS01"
+                   name="txtM76TS01"
+                   labelText="Suspense Processing"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts01Ind === 'N'"
+                   (input) = "onEventChange('m76ts01', $event, 'm76ts01Ind')"
+                   [(ngModel)]="screenBean2.m76ts01"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs-xs">
+        <fox-input type="text"
+                   id="txtM76TS02"
+                   name="txtM76TS02"
+                   labelText="Verification Maintenance"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts02Ind === 'N'"
+                   (input) = "onEventChange('m76ts02', $event, 'm76ts02Ind')"
+                   [(ngModel)]="screenBean2.m76ts02"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs">
+        <fox-input type="text"
+                   id="txtM76TS03"
+                   name="txtM76TS03"
+                   labelText="Transaction Controller"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts03Ind === 'N'"
+                   (input) = "onEventChange('m76ts03', $event, 'm76ts03Ind')"
+                   [(ngModel)]="screenBean2.m76ts03"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs">
+        <fox-input type="text"
+                   id="txtM76TS04"
+                   name="txtM76TS04"
+                   labelText="Career Conversion"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts04Ind === 'N'"
+                   (input) = "onEventChange('m76ts04', $event, 'm76ts04Ind')"
+                   [(ngModel)]="screenBean2.m76ts04"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [paddingBottom23px]="true">
+    <fox-section-title>Operator: Details, Security, & Quality</fox-section-title>
+    <div *ngIf="screenBean2.m76titl === 'UPDATE'" class="container-subtitle">
+      <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs-xs">
+        <fox-input type="text"
+                   id="txtM76TS17"
+                   name="txtM76TS17"
+                   labelText="Operator Info"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts17Ind === 'N'"
+                   (input) = "onEventChange('m76ts17', $event, 'm76ts17Ind')"
+                   [(ngModel)]="screenBean2.m76ts17"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs-xs">
+        <fox-input type="text"
+                   id="txtM76TS12"
+                   name="txtM76TS12"
+                   labelText="Operator Trans Security"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts12Ind === 'N'"
+                   (input) = "onEventChange('m76ts12', $event, 'm76ts12Ind')"
+                   [(ngModel)]="screenBean2.m76ts12"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs">
+        <fox-input type="text"
+                   id="txtM76TS09"
+                   name="txtM76TS09"
+                   labelText="Operator Set Quality"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts09Ind === 'N'"
+                   (input) = "onEventChange('m76ts09', $event, 'm76ts09Ind')"
+                   [(ngModel)]="screenBean2.m76ts09"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs">
+        <fox-input type="text"
+                   id="txtM76TS06"
+                   name="txtM76TS06"
+                   labelText="Operator Authority Limits"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts06Ind === 'N'"
+                   (input) = "onEventChange('m76ts06', $event, 'm76ts06Ind')"
+                   [(ngModel)]="screenBean2.m76ts06"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [paddingBottom23px]="true">
+    <fox-section-title>Defaults & Overrides</fox-section-title>
+    <div *ngIf="screenBean2.m76titl === 'UPDATE'" class="container-subtitle">
+      <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS10"
+                   name="txtM76TS10"
+                   labelText="Set Quality Defaults"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts10Ind === 'N'"
+                   (input) = "onEventChange('m76ts10', $event, 'm76ts10Ind')"
+                   [(ngModel)]="screenBean2.m76ts10"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS13"
+                   name="txtM76TS13"
+                   labelText="Trans Security Defaults"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts13Ind === 'N'"
+                   (input) = "onEventChange('m76ts13', $event, 'm76ts13Ind')"
+                   [(ngModel)]="screenBean2.m76ts13"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS07"
+                   name="txtM76TS07"
+                   labelText="Authority Limit Default"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts07Ind === 'N'"
+                   (input) = "onEventChange('m76ts07', $event, 'm76ts07Ind')"
+                   [(ngModel)]="screenBean2.m76ts07"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS16"
+                   name="txtM76TS16"
+                   labelText="Authority Limit Overrides"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts16Ind === 'N'"
+                   (input) = "onEventChange('m76ts16', $event, 'm76ts16Ind')"
+                   [(ngModel)]="screenBean2.m76ts16"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs">
+        <fox-input type="text"
+                   id="txtM76TS19"
+                   name="txtM76TS19"
+                   labelText="Set Quality Overrides"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts19Ind === 'N'"
+                   (input) = "onEventChange('m76ts19', $event, 'm76ts19Ind')"
+                   [(ngModel)]="screenBean2.m76ts19"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [paddingBottom23px]="true">
+    <fox-section-title>Files</fox-section-title>
+    <div *ngIf="screenBean2.m76titl === 'UPDATE'" class="container-subtitle">
+      <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS05"
+                   name="txtM76TS05"
+                   labelText="Help File"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts05Ind === 'N'"
+                   (input) = "onEventChange('m76ts05', $event, 'm76ts05Ind')"
+                   [(ngModel)]="screenBean2.m76ts05"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS11"
+                   name="txtM76TS11"
+                   labelText="Message File"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts11Ind === 'N'"
+                   (input) = "onEventChange('m76ts11', $event, 'm76ts11Ind')"
+                   [(ngModel)]="screenBean2.m76ts11"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS14"
+                   name="txtM76TS14"
+                   labelText="Microfilm Range File"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts14Ind === 'N'"
+                   (input) = "onEventChange('m76ts14', $event, 'm76ts14Ind')"
+                   [(ngModel)]="screenBean2.m76ts14"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs container-fox-inputs">
+        <fox-input type="text"
+                   id="txtM76TS08"
+                   name="txtM76TS08"
+                   labelText="Provider File"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts08Ind === 'N'"
+                   (input) = "onEventChange('m76ts08', $event, 'm76ts08Ind')"
+                   [(ngModel)]="screenBean2.m76ts08"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs">
+        <fox-input type="text"
+                   id="txtM76TS15"
+                   name="txtM76TS15"
+                   labelText="Provider Quality File"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts15Ind === 'N'"
+                   (input) = "onEventChange('m76ts15', $event, 'm76ts15Ind')"
+                   [(ngModel)]="screenBean2.m76ts15"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [paddingBottom23px]="true">
+    <fox-section-title>Other</fox-section-title>
+    <div *ngIf="screenBean2.m76titl === 'UPDATE'" class="container-subtitle">
+      <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 container-input-right container-right-xs container-fox-inputs-xs">
+        <fox-input type="text"
+                   id="txtM76TS20"
+                   name="txtM76TS20"
+                   labelText="HIC #"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts20Ind === 'N'"
+                   (input) = "onEventChange('m76ts20', $event, 'm76ts20Ind')"
+                   [(ngModel)]="screenBean2.m76ts20"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-left-xs container-fox-inputs-xs">
+        <fox-input type="text"
+                   id="txtM76TS21"
+                   name="txtM76TS21"
+                   labelText="HIC ACF IND"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts21Ind === 'N'"
+                   (input) = "onEventChange('m76ts21', $event, 'm76ts21Ind')"
+                   [(ngModel)]="screenBean2.m76ts21"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-inputs container-right-xs">
+        <fox-input type="text"
+                   id="txtM76TS22"
+                   name="txtM76TS22"
+                   labelText="ICD Code Table"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts22Ind === 'N'"
+                   (input) = "onEventChange('m76ts22', $event, 'm76ts22Ind')"
+                   [(ngModel)]="screenBean2.m76ts22"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-left container-left-sm container-left-xs">
+        <fox-input type="text"
+                   id="txtM76TS18"
+                   name="txtM76TS18"
+                   labelText="Message Quality"
+                   [isReadOnly] = "screenBean2.m76titl !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean2.m76titl !== 'UPDATE'"
+                   [isWarningState]="screenBean2.m76ts18Ind === 'N'"
+                   (input) = "onEventChange('m76ts18', $event, 'm76ts18Ind')"
+                   [(ngModel)]="screenBean2.m76ts18"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <div class="container-btns">
+    <div class="">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="PF4EventClick()"
+              foxHotkey="alt+m"
+              hotkeyAction="click">
+        Page Backward (M)
+      </button>
+      <fox-loading-button class="btn-submit"
+                          *ngIf="screenBean2.m76titl === 'UPDATE'"
+                          [buttonValue] = "'Submit (S)'"
+                          [buttonStatus]="buttonStatus"
+                          [typeValue]="'submit'"
+                          [foxHotKeyValue]="'alt+s'">
+      </fox-loading-button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,210 @@
+<div class="row container-return-row">
+  <div class="container-padding-title">
+    <div class="col-xs-6 col-sm-8 container-return-prev">
+      <span class="span-return-previous span-return-link" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="pf1EventClick()">
+        <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+        Exit and Return (F1)
+      </span>
+    </div>
+    <div class="col-xs-6 col-sm-4 container-pre-link container-padding-link no-padding">
+      <div class="container-fixed-width">
+        <div class="col-xs-7 col-sm-7 container-pre-sub-link" (click)="previousCommunicationEventClick()">
+          <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+          <span class="span-return-previous" foxHotkey="alt+j" hotkeyAction="click" tabindex="0">
+            Previous (J)
+          </span>
+        </div>
+        <div class="col-xs-5 col-sm-5 container-return-prev container-next-link" (click)="nextCommunicationEventClick()">
+          <span class="span-return-previous span-next" foxHotkey="alt+i" hotkeyAction="click" tabindex="0">
+            Next (I)<img src="assets/img/arrow-right-blue.svg" class="img-return-icon img-next" alt="return icon"/>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row container-main-common">
+  <div class="col-xs-12 col-sm-4">
+    <fox-section class="section-blue-top-border">
+      <div class="row no-padding no-margin">
+        <div class="col-xs-12">
+          <fox-section-title class="container-review-comm-title">Communication Overview</fox-section-title>
+        </div>
+      </div>
+      <div class="container-details-card">
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Communication Status</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">
+            <i focusable="false" class="fas fa-times-circle icon-migrated icon-migrated-false"></i>
+            {{commStatus}}
+          </div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Initiated By</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56init}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Date Received</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56dter}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Date Completed</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56dtec}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Date Sent</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56dtes}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Send to Change Date</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56stcd}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Last Accessed By</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56laby}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Completed By</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56comp}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Sent to ID</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56stid}}</div>
+        </div>
+        <div class="row container-details-item no-margin">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Location</div>
+          <div class="col-xs-6 container-details-right-text">{{screen.m56loca}}</div>
+        </div>
+        <div class="row container-details-last-item no-margin ">
+          <div class="col-xs-12 col-sm-6 container-details-left-text">Changed By</div>
+          <div class="col-xs-12 col-sm-6 container-details-right-text">{{screen.m56chby}}</div>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+  <div class="col-xs-12 col-sm-8">
+    <fox-section>
+      <div class="row no-padding">
+        <div class="col-xs-12">
+          <fox-section-title class="container-review-comm-title">Concerns & Resolutions</fox-section-title>
+          <span class="container-section-subtitle">Click on a Claim number to view additional details.</span>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex container-first-row">
+        <div class="col-xs-12 col-sm-6 no-padding">
+          <fox-read-only-field
+            [label]="'Caller/Writer'"
+            [value]="screen.m56clwr">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-value">
+          <fox-read-only-field
+            [label]="'Phone#, Extension'"
+            [value]="setPhoneNumber(screen.m56phn1, screen.m56phn2, screen.m56phn3, screen.m56extn)">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex">
+        <div class="col-xs-12 col-sm-6 no-padding">
+          <fox-read-only-field
+            [label]="'Other Caller/Writer'"
+            [value]="screen.m56otcw">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-value">
+          <fox-read-only-field
+            [label]="'Concern Codes'"
+            [arrayValue]="[screen.m56cc01, screen.m56cc02]">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex">
+        <div class="col-xs-12 col-sm-6 no-padding">
+          <fox-read-only-field
+            [label]="'Call Back By'"
+            [value]="screen.m56cbbd">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-value">
+          <fox-read-only-field
+            [label]="'Best Times'"
+            [value]="screen.m56best">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex">
+        <div class="col-xs-12 no-padding">
+          <fox-read-only-field
+            [label]="'Claims'"
+            [value]="screen.m56crn1"
+            [type]="readonlyTypes.CLAIM"
+            [linkArray]="[screen.m56crn1, screen.m56crn2, screen.m56crn3, screen.m56crn4]"
+            (linkClicked)="linkClicked($event)">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex">
+        <div class="col-xs-12 no-padding">
+          <fox-read-only-field
+            [label]="'Problem / Concern'"
+            [value]="screen.m56pc01">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex-last">
+        <div class="col-xs-12 no-padding">
+          <fox-read-only-field
+            [label]="'Resolution'"
+            [value]="'Some text'">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </fox-section>
+    <fox-section>
+      <div class="row no-padding no-margin">
+        <div class="col-xs-12">
+          <fox-section-title class="container-review-comm-title">Quality & Review</fox-section-title>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex container-first-row">
+        <div class="col-xs-12 col-sm-6 no-padding">
+          <fox-read-only-field
+            [label]="'Quality Date'"
+            [value]="screen.m56qdte"
+            [type]="readonlyTypes.DATE">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-value">
+          <fox-read-only-field
+            [label]="'Quality Errors'"
+            [arrayValue]="[screen.m56qer1, screen.m56qer2, screen.m56qer3]">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex">
+        <div class="col-xs-12 col-sm-6 no-padding">
+          <fox-read-only-field
+            [label]="'Date Quality Suspended'"
+            [value]="screen.m56qsus"
+            [type]="readonlyTypes.DATE">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-value">
+          <fox-read-only-field
+            [label]="'Quality Reasons'"
+            [arrayValue]="[screen.m56qrs1, screen.m56qrs2, screen.m56qrs3]">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="no-margin container-display-flex-last">
+        <div class="col-xs-12 col-sm-6 no-padding">
+          <fox-read-only-field
+            [label]="'Quality Reviewed By'"
+            [value]="screen.m56qrev"
+            [type]="readonlyTypes.MEMBER">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+</div>

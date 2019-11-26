@@ -1,0 +1,64 @@
+<div class="container-trc-form">
+  <mat-tab-group [(selectedIndex)]="lastPressed" [disableRipple]="true" [@.disabled]="true"
+                 [dynamicHeight]="true">
+    <mat-tab #deposit foxHotkey="alt+d" hotkeyAction="emit"
+             (hotkeyPressed)="changePosition(deposit.origin, deposit.position)">
+      <ng-template mat-tab-label>
+        <span>Find by Deposit (D)</span>
+      </ng-template>
+      <fox-find-deposit-form (submitDeposit)="onDepositSubmit($event)"></fox-find-deposit-form>
+    </mat-tab>
+
+    <mat-tab #trc foxHotkey="alt+t" hotkeyAction="emit"
+             (hotkeyPressed)="changePosition(trc.origin, trc.position)">
+      <ng-template mat-tab-label>
+        <span>Find by TRC (T)</span>
+      </ng-template>
+      <fox-find-trc-form (submitTrc)="onTrcSubmit($event)"></fox-find-trc-form>
+    </mat-tab>
+  </mat-tab-group>
+
+  <fox-section [noPadding]="true">
+    <fox-section-title class="container-padding">
+      Search Results
+    </fox-section-title>
+
+    <fox-loading-overlay>
+      <div *ngIf="!resultsExist" class="container-not-found">
+        <i focusable="false" class="fa fa-info-circle"></i>
+        <p class="header-container">No active query</p>
+        <p>Search by one of the available methods above to get started</p>
+      </div>
+
+      <ng-container *ngIf="depositResultsExist">
+        <fox-find-deposit-results [findDepositResults]="depositResults" [(isDesc)]="depositIsDesc"
+                                  [(column)]="depositSortColumn"
+                                  (columnChange)="findDeposit()">
+        </fox-find-deposit-results>
+        <fox-paginator-non-material [(pageSize)]="depositPageSize"
+                                   [dataLengthInput]="depositDataLengthInput"
+                                   [pageTotal]="depositPageTotal"
+                                   [(currentPage)]="currentDepositPage"
+                                   (currentPageChange)="findDeposit()"
+                                   (pageSizeChange)="currentDepositPage=0;findDeposit()">
+        </fox-paginator-non-material>
+      </ng-container>
+
+      <ng-container *ngIf="trcResultsExist">
+
+        <fox-find-trc-results [findTrcResults]="trcResults"
+                              [(isDesc)]="trcIsDesc"
+                              [(column)]="trcSortColumn"
+                              (columnChange)="findTrc()">
+        </fox-find-trc-results>
+
+        <fox-paginator-non-material [(pageSize)]="trcPageSize"
+                                   [dataLengthInput]="trcDataLengthInput" [pageTotal]="trcPageTotal"
+                                   [(currentPage)]="currentTrcPage"
+                                   (currentPageChange)="findTrc()"
+                                   (pageSizeChange)="currentTrcPage=0;findTrc()">
+        </fox-paginator-non-material>
+      </ng-container>
+    </fox-loading-overlay>
+  </fox-section>
+</div>

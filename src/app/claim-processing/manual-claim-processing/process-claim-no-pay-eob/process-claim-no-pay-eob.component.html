@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 div-return-prev">
+    <a class="link-decoration" href="#" (click)="pf1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous Step (F1)</span>
+    </a>
+  </div>
+</div>
+<fox-section [noPadding]="true">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 container-margin">
+      <div class="container-table-title">EOB Details</div>
+      <div class="container-sub-title">Use Alt + K to copy an Assign. Ind value down to the rows below. Click “Continue” (or use Alt + L or Enter) to proceed.</div>
+    </div>
+  </div>
+  <div class="container-table-margin">
+    <fox-table #inputTable
+               [tableColumns]="EobTableColumns"
+               [tableData]="NoPayEobTableData"
+               [fixedFirstColumn]="true"
+               [fixedSecondColumn]="true">
+    </fox-table>
+  </div>
+</fox-section>
+<div class="container-button-margin">
+  <div class="container-btn">
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button class="container-btn-margin"
+                        [buttonValue] = "'Continue (L)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [hasChevron]="true"
+                        [foxHotKeyValue]="'alt+l'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

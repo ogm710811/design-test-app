@@ -1,0 +1,94 @@
+<span class="span-btn-pill pill-btn">
+  <button class="btn-button"
+          mat-button type="button"
+          [matMenuTriggerFor]="download">
+    <span class="span-margin-8 btn-text">Document Management</span>
+    <img class="caret-down" src="assets/img/caret-down-blue.svg"/>
+  </button>
+</span>
+
+<mat-menu #download="matMenu" [overlapTrigger]="false" class="menu-document-detail">
+  <button (click)="separateDoc()"
+          mat-menu-item
+          [disableRipple]="true"
+          [disabled]="pdfTotalPages < 2 || data?.isDocTypeClaim || data?.isStatusComplete"
+          *ngIf="data.currentWorkQueueBusinessId !== data.documentControlNumber">
+    Separate Document
+  </button>
+  <button mat-menu-item
+          [disableRipple]="true"
+          disabled>
+    Download Native PDF
+  </button>
+  <mat-divider *ngIf="data.currentWorkQueueBusinessId !== data.documentControlNumber"></mat-divider>
+  <button (click)="sendToWorkbench()"
+          mat-menu-item
+          [disableRipple]="true"
+          [disabled]="data.isStatusComplete">
+    Send to Workbench
+  </button>
+  <button (click)="routeToQueue()"
+          mat-menu-item
+          [disableRipple]="true"
+          [disabled]="data.isStatusComplete">
+    Route to Queue
+  </button>
+  <mat-divider></mat-divider>
+  <button (click)="deleteItemDoc()"
+          mat-menu-item
+          [disableRipple]="true"
+          [disabled]="!hasEnhancedRole || data.isStatusComplete"
+          *ngIf="data.currentWorkQueueBusinessId !== data.documentControlNumber">
+    Delete Document
+  </button>
+  <button mat-menu-item [disableRipple]="true" [foxPdfDownloadUrl]="data.downloadUrl"> Download PDF</button>
+</mat-menu>
+
+<fox-document-detail-separate-modal
+  [(separateModalVisible)]="separateModalVisible"
+  (abortSeparation)="onAbortSeparation()"
+  (separateDocumentSuccessfulMsg)="onSeparateDocumentSuccessfulMsg($event)"
+  (separateDocumentUnsuccessfulMsg)="onSeparateDocumentUnsuccessfulMsg($event)"
+  [documentVO]="data.documentVO">
+</fox-document-detail-separate-modal>
+
+<fox-modal [(visible)]="showDeleteDialog"
+           modalTitle="Delete Document(s)"
+           [closable]="false"
+           class="modal-frame"
+           *ngIf="showDeleteDialog">
+  <div>
+    <p>
+      You are about to delete the below document(s), which cannot be undone. Are you sure you want to submit this change?
+    </p>
+  </div>
+
+  <table class="table table-delete-list">
+    <thead class="thead-default">
+    <tr>
+      <th class="th-dcn">Document</th>
+      <th class="th-doc-type">Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container>
+      <tr *ngFor="let dcn of data.selectedDcnList">
+        <td class="td-dcn-column-item">{{dcn}}</td>
+        <td class="td-doc-type-item">Correspondence</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+
+  <div class="container-buttons">
+    <button type="button" class="btn btn-primary btn-delete"
+            (click)="confirmDeleteDoc()"
+            *ngIf="data.selectedDcnList?.length<11">
+      Delete
+    </button>
+    <button type="button" class="btn btn-secondary btn-cancel"
+            (click)="showDeleteDialog=!showDeleteDialog">
+      Cancel
+    </button>
+  </div>
+</fox-modal>

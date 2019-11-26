@@ -1,0 +1,88 @@
+<fox-section>
+  <fox-section-title>Rx Search Results</fox-section-title>
+  <div>
+    <div class="form-row form-row-first">
+      <mat-form-field class="margin-right-20">
+        <mat-label>Search Results#</mat-label>
+        <input id="txtM03SNUM" matInput maxlength="4" size="4" disabled="disabled" type="text" [(ngModel)]="screenBean.searchRsltNum"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="margin-right-20">
+        <mat-label>Multiple Benefits Exist:</mat-label>
+        <input id="txtM03MULT" matInput maxlength="1" size="1" disabled="disabled" type="text" [(ngModel)]="screenBean.multiBenExist"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="margin-top-40">
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <th>Drug Name</th>
+            <th>Strength</th>
+            <th>Volume</th>
+            <th>Form</th>
+            <th>Benefit</th>
+            <th>NDC</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor=" let searchRslt of viewData">
+            <tr>
+              <td>
+                <div>
+                  <mat-label>{{searchRslt.drugName}}</mat-label>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <mat-label>{{searchRslt.strength}}</mat-label>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <mat-label>{{searchRslt.unit}}</mat-label>
+                </div>
+              </td>
+
+              <td>
+                <div>
+                  <mat-label>{{searchRslt.form}}</mat-label>
+                </div>
+              </td>
+
+
+              <td>
+                <div>
+                  <mat-label>{{searchRslt.benefitAmt}}</mat-label>
+                </div>
+              </td>
+
+              <td>
+                <div>
+                  <mat-label>{{searchRslt.ndc}}</mat-label>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row margin-top-40">
+      <fox-paginator-non-material [(pageSize)]="pageSizeSelected" [dataLengthInput]="dataLengthInput" #paginator [pageTotal]="pageTotal"
+        [(currentPage)]="currentPage" (currentPageChange)="calculateNewPage();" (pageSizeChange)="currentPage=0; calculateNewPage();"></fox-paginator-non-material>
+    </div>
+
+    <div class="form-row margin-right-20 text-right margin-top-40">
+
+      <button id="btnErrorCancel" name="cancel" #btnLabel6 type="button" class="btn btn-default" foxHotkey="alt+r"
+        (click)="RETURNEventClick()">
+        Return (R)
+      </button>
+    </div>
+
+  </div>
+</fox-section>

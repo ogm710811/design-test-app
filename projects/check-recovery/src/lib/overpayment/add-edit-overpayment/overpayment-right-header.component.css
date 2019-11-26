@@ -1,0 +1,41 @@
+.btn-pill {
+  border-radius: 3px;
+  height: 35px;
+  text-align: center;
+  border:1px solid #D3D3D3;
+  color: #196ECF;
+  margin-right: 15px;
+}
+
+.btn-refund {
+  width: 129px;
+  margin-top: 0;
+  height: 35px;
+}
+
+.img-trash {
+  height: 14px;
+  margin-right: 6px;
+  margin-left: -8px;
+}
+
+.btn-secondary {
+  margin-left: 15px;
+  width: 129px;
+}
+
+.btn-delete {
+  width: 129px;
+  margin-left: 15px;
+  margin-top: 0;
+  height: 35px;
+}
+
+.container-overpayment-buttons {
+  margin: 0;
+  padding: 0;
+}
+
+.span-delete {
+  margin-left: -6px;
+}

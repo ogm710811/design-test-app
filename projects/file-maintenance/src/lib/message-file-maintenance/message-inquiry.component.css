@@ -1,0 +1,55 @@
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+}
+
+.span-return {
+  cursor: pointer;
+}
+
+.container-arrow-left {
+  height: 14px;
+  width: 14px;
+  margin-right: 7px;
+}
+
+.container-row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.container-row-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-message-text {
+  margin: 25px 0;
+}
+
+.container-label-message-text {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+}
+
+.container-value-message-text {
+  color: #252C37;
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 5px;
+}
+
+@media  (min-width: 767px) {
+  .container-row-holder {
+    display: flex;
+    margin: 0;
+    padding-top: 25px;
+  }
+}

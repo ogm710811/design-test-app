@@ -1,0 +1,16 @@
+<div class="container-tile-box">
+    <div class="row container-title">
+      <span class="span-icon">
+        <img src={{icon}} focusable="false" class="img-tile" />
+      </span>
+      <span class="span-label" [id]="'TITLE' + statBoxTitle">
+        {{statBoxTitle}}
+      </span>
+    </div>
+    <div class="row container-list" *ngFor="let linkInfo of linksInformations; let i = index;">
+      <div class="container-links-command" [id]="linkInfo.command + 'CMD' + (i+1)">{{linkInfo.command}}</div>
+      <div class="container-links">
+        <a class="link-item" [id]="linkInfo.command + 'LBL' + (i+1)" routerLink='{{linkInfo.link}}'><u class="link-description">{{linkInfo.label}}</u></a>
+      </div>
+    </div>
+</div>

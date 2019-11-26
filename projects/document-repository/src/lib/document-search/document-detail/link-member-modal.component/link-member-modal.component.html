@@ -1,0 +1,118 @@
+<fox-modal class="link-member-fox-modal" [(visible)]="showLinkMemberModal" [closable]="false"
+           modalTitle="Link Member" [enableContentPadding]="false">
+
+  <fox-message-box [(visible)]="searchMemberTooManyResultsMsg" messageBoxTitle="Error"
+                   messageType="error">
+    Over 25 Records found, please enter additional search criteria
+  </fox-message-box>
+
+  <fox-message-box [(visible)]="searchMemberNoResults" messageBoxTitle="No Member found"
+                   messageType="error">
+    No Member found, please update search criteria
+  </fox-message-box>
+
+  <div class="txt-search-member">Search for a member to link that member to this document:</div>
+
+  <form [formGroup]="linkMemberFormGroup" class="form-search-member non-mat-form-field"
+        (ngSubmit)="linkMemberSearchSubmit(linkMemberFormGroup)">
+    <div class="form-section">
+      <div class="form-row form-row-height">
+        <mat-form-field class="margin-right-18 link-member-mbr-no">
+          <input maxlength="22" matInput placeholder="Member #" formControlName="memberNumber">
+        </mat-form-field>
+
+        <mat-form-field class="margin-right-18 link-member-first-nm">
+          <input maxlength="25" matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field class="margin-right-18 link-member-last-nm">
+          <mat-label>Last Name</mat-label>
+          <input maxlength="33" matInput formControlName="lastName">
+        </mat-form-field>
+        <div class="dropdown-state">
+          <mat-form-field class="margin-right-18 link-member-st-dropdown dropdown-state">
+            <mat-label>Member State</mat-label>
+            <mat-select formControlName="memberState">
+              <mat-option [value]="">
+              </mat-option>
+              <mat-option *ngFor="let state of memberStates" [value]="state.code">
+                {{state.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="margin-right-18 link-member-dob link-member-form-field">
+          <mat-label>Date of Birth</mat-label>
+          <input class="link-member-mbr-no" matInput placeholder="MM/DD/YYYY"
+                 formControlName="dateOfBirth">
+          <mat-error *ngIf="!linkMemberFormGroup!.get('dateOfBirth')!.valid">
+            Enter date as MM/DD/YYYY
+          </mat-error>
+
+        </mat-form-field>
+
+        <button type="button" id="btn-search-member"
+                class="btn btn-primary btn-link-search-clear search-button-form-button"
+                [disabled]="!checkIfFormFilled()" type="submit">Search
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="container-link-member-mbr-results" *ngIf="memberMatches.length > 0">
+    <table class="table container-table">
+      <thead class="thead-default">
+      <tr>
+        <th></th>
+        <th>
+          <div class="link-member-no-color">Member</div>
+        </th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Member State</th>
+        <th>Date of Birth</th>
+        <th>Insurance Plans</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let memberMatch of memberMatches; let i = index">
+        <tr [id]=" 'mbrmatch-tr-' + i">
+          <td [id]=" 'mbrmatch-td-radio-td-' + i" class="link-member-mbr-cell-padding">
+            <input type="radio" name="mbrMatch" id="mbrMatch"
+                   (change)="onSelectionChange(i)"/>
+          </td>
+          <td [id]=" 'mbrmatch-tr-memberAccountNo-td-' + i"
+              class="link-member-mbr-no-underline link-member-no-color link-member-mbr-cell-padding">
+            {{memberMatch.memberNo}}
+          </td>
+          <td wrap [id]=" 'mbrmatch-tr-lastName-td-' + i" class="link-member-mbr-cell-padding">
+            {{memberMatch.lastName}}
+          </td>
+          <td [id]=" 'mbrmatch-tr-firstName-td-' + i" class="link-member-mbr-cell-padding">
+            {{memberMatch.firstName}}
+          </td>
+          <td [id]=" 'mbrmatch-tr-stateProvinceCode-td-' + i" class="link-member-mbr-cell-padding">
+            {{memberMatch.state}}
+          </td>
+          <td [id]=" 'mbrmatch-tr-dateOfBirth-td-' + i" class="link-member-mbr-cell-padding">
+            {{memberMatch.dob}}
+          </td>
+          <td [id]=" 'mbrmatch-tr-dateOfBirth-td-' + i" class="link-member-mbr-cell-padding">
+            {{memberMatch.planCode}}
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="container-buttons">
+    <button type="button" class="btn btn-clear" (click)="onLinkMemberCancelPressed()">Cancel
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" id="btn-link-member" class="btn btn-primary btn-link-member"
+            [disabled]="executeLinkFunctionEnable" (click)="onLinkMemberLinkPressed()">
+      Link Member & Update Attributes
+    </button>
+  </div>
+
+</fox-modal>

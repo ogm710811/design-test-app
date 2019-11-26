@@ -1,0 +1,225 @@
+<fox-section [noPadding]="true">
+  <div class="title-section">Basic Cells with Optional Column Borders</div>
+  <fox-table class="test" [tableColumns]="columns"
+             [tableData]="result | orderBy: {property: resultCurrentSortKey, direction: resultSortDirection}"
+             (columnChanged)="resultCurrentSortKey = $event"
+             (directionChanged)="resultSortDirection = $event">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Common Header</div>
+  <fox-table [tableColumns]="hospitalInputColumns"
+             [parentHeaderColumns]="columnsHeader"
+             [isParentHeader]="true"
+             [tableData]="hospitalTableData">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Zebra Cells</div>
+
+  <fox-table class="test" [tableColumns]="columns" [zebraCells]="true" [tableData]="result">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Fixed Column with Currency and link</div>
+
+  <fox-table class="test" [tableColumns]="bigColumns" [tableData]="bigResult" [fixedFirstColumn]="true">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Non-Fixed Column with Currency and link</div>
+
+  <fox-table class="test" [tableColumns]="bigColumns" [tableData]="bigResult">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Non-Fixed Column with Icon link</div>
+
+  <fox-table class="test" [tableColumns]="iconColumns" [tableData]="iconResult">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true" class="section-selectable">
+  <div class="title-section">Selectable</div>
+
+  <div class="ribbon-menu" *ngIf="selectedIndex.length">
+    <div class="ribbon-left">
+      <div class="link-ribbon">Download as Single PDF</div>
+      <div class="link-ribbon">Download Selected Documents as PDF</div>
+      <div class="link-ribbon">Delete Document(s)</div>
+    </div>
+    <div class="ribbon-right">
+      <div class="label-selected">{{selectedIndex.length}} item<span *ngIf="selectedIndex.length > 1">s</span> selected</div>
+      <div class="link-ribbon" (click)="clearSelectionTable()">Cancel</div>
+    </div>
+  </div>
+
+  <fox-table #selectableTable class="test" [tableColumns]="columns" [selectable]="true" [selectableRight]="true" [tableData]="result" (selectionChanged)="onSelectionChanged($event)">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true" class="section-selectable">
+  <div class="title-section">Selectable Rows with header</div>
+
+  <div class="ribbon-menu" *ngIf="selectedIndex1.length">
+    <div class="ribbon-left">
+      <div class="link-ribbon">Download as Single PDF</div>
+      <div class="link-ribbon">Download Selected Documents as PDF</div>
+      <div class="link-ribbon">Delete Document(s)</div>
+    </div>
+    <div class="ribbon-right">
+      <div class="label-selected">{{selectedIndex1.length}} item<span *ngIf="selectedIndex1.length > 1">s</span> selected</div>
+      <div class="link-ribbon" (click)="clearSelectionHeaderTable()">Cancel</div>
+    </div>
+  </div>
+
+  <fox-table #selectableTable1 class="test" [tableColumns]="columns" selectableRows="Left Header" selectableRowsRight="Right Header"  [tableData]="result" (selectionChanged)="onSelectionHeaderChanged($event)">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true" class="section-selectable">
+  <div class="title-section">Expandable</div>
+
+  <fox-table class="test" [tableColumns]="columns" [expandable]="true" [tableData]="result">
+  </fox-table>
+</fox-section>
+<fox-section [noPadding]="true" class="section-selectable">
+  <div class="title-section">Selectable and Expandable</div>
+
+  <div class="ribbon-menu" *ngIf="selectedIndex2.length">
+    <div class="ribbon-left">
+      <div class="link-ribbon">Download as Single PDF</div>
+      <div class="link-ribbon">Download Selected Documents as PDF</div>
+      <div class="link-ribbon">Delete Document(s)</div>
+    </div>
+    <div class="ribbon-right">
+      <div class="label-selected">{{selectedIndex2.length}} item<span *ngIf="selectedIndex2.length > 1">s</span> selected</div>
+      <div class="link-ribbon" (click)="clearSelectionColumnTable()">Cancel</div>
+    </div>
+  </div>
+
+  <fox-table #selectableTable2 class="test" [tableColumns]="fixedColumns" [selectable]="true" [expandable]="true" [tableData]="fixedHeaderData" (selectionChanged)="onSelectionColumnChanged($event)">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section ">Fixed Header </div>
+
+  <fox-table class="test" [tableColumns]="fixedColumns" [selectable]="false" [tableData]="fixedHeaderData" [fixedHeader]="true">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Empty State</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="[]">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">No Results</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="[]">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section ">Search Filter</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [searchBar]="true">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Search Filter With No Matches</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="[]" [searchBar]="true">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Pill Filters</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [pillOptions]="['Red','Blue', 'Yellow']">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Export (Long)</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [exportOptions]="['Red','Blue', 'Yellow']">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Export (Short)</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [pillOptions]="['Red','Blue', 'Yellow']" [exportOptions]="['Red','Blue', 'Yellow']">
+  </fox-table>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="title-section">Named Filters</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [dropdownFilterOptions]="['Silver','Gold']">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Complex Filters</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [dropdownFilterOptions]="['Silver']" [complexFilter]="true">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="title-section">Kitchen Sink Table (Wide)</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [dropdownFilterOptions]="['Silver']" [searchBar]="true"
+             [complexFilter]="true" [exportOptions]="['Red','Blue', 'Yellow']">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true" class="section-narrow">
+  <div class="title-section">Kitchen Sink Table (Narrow)</div>
+
+  <fox-table class="test" [tableColumns]="columns" [tableData]="result" [dropdownFilterOptions]="['Silver']" [searchBar]="true" [narrow]="true"
+             [complexFilter]="true" [exportOptions]="['Red','Blue', 'Yellow']">
+  </fox-table>
+</fox-section>
+
+<fox-section [noPadding]="true" class="section-selectable">
+  <div class="title-section">Input</div>
+
+  <fox-table #inputTable class="test" [tableColumns]="inputColumns" [tableData]="inputResult">
+  </fox-table>
+  <code>
+    {{outputJson}}
+  </code>
+</fox-section>
+<fox-section [noPadding]="true" class="section-selectable">
+  <div class="title-section">Input</div>
+
+  <fox-table #inputTable2 class="test" [tableColumns]="inputColumns2" [tableData]="inputResult2">
+  </fox-table>
+  <code>
+    {{outputJson2}}
+  </code>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="title-section">Text Area</div>
+  <fox-table #inputTable3 class="test" [tableColumns]="billLineTableColumns"
+             [tableData]="billLineTableResult | orderBy: {property: billLineTableSortKey, direction: billLineTableSortDirection}"
+             (columnChanged)="billLineTableSortKey = $event"
+             (directionChanged)="billLineTableSortDirection = $event"
+             [fixedTextAreaColumn]="true">
+  </fox-table>
+  <code>
+    {{outputJson3}}
+  </code>
+</fox-section>
+

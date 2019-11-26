@@ -1,0 +1,19 @@
+
+<button class="btn btn-pill-header btn-margin">Link Here</button>
+<button class="btn btn-pill-header btn-margin">Link Here</button>
+<button class="btn btn-pill-header btn-margin">Link Here</button>
+<span class="span-btn-pill pill-btn">
+  <button class="btn-button btn-pill-header" mat-button type="button" [matMenuTriggerFor]="dropDownMA">
+    <img aria-hidden="true" src="/assets/img/information-1.svg" class="img-pre-icon"/>
+    <span class="span-margin-8 btn-text">{{data.buttonTitle}}</span>
+    <img class="caret-down" src="assets/img/caret-down-blue.svg"/>
+  </button>
+</span>
+<mat-menu #dropDownMA="matMenu" class="mat-menu-links-demo">
+  <div>
+    <button [foxLink] mat-menu-item (click)="clickBtn(data.item)">Separate Document</button>
+    <button [foxLink] mat-menu-item (click)="clickBtn(data.item1)">Delete a Document </button>
+    <button [foxLink] mat-menu-item (click)="clickBtn(data.item2)">Send to Workbench</button>
+    <button [foxLink] mat-menu-item (click)="clickBtn(data.item3)">Route to Queue</button>
+  </div>
+</mat-menu>

@@ -1,0 +1,101 @@
+<fox-modal [visible]="state.modalIsVisible" [largerMaxWidth]="true" modalTitle="Select a Provider Address" (closed)="clearEventClick()">
+    <div class="mat-table-section">
+      <mat-table class="table-member" #table [dataSource]="dataSource" matSort matPaginator>
+        <ng-container matColumnDef="isSelected">
+          <mat-header-cell class="header-cell cell-small" *matHeaderCellDef>
+            <span class="span-select-header">
+                Select
+            </span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell-small">
+            <input type="radio" class="span-cell btn-radio" (click)="memberSelected(element)"
+              [checked]="element.isSelected">
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="providerType">
+          <mat-header-cell class="header-cell cell-medium" id="providerType" *matHeaderCellDef
+            mat-sort-header>Provider Type</mat-header-cell>
+          <mat-cell class="cell-medium" *matCellDef="let element">
+            <span id="provider-type" class="span-cell">
+              {{element.providerType}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="name">
+          <mat-header-cell class="header-cell cell-lg" *matHeaderCellDef mat-sort-header>Provider Name</mat-header-cell>
+          <mat-cell class="cell-lg" *matCellDef="let element">
+            <span class="span-cell">
+              {{element.name}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="address">
+          <mat-header-cell class="header-cell cell-lg" *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+          <mat-cell class="cell-lg" *matCellDef="let element">
+            <span class="span-cell">
+              {{element.address}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="city">
+          <mat-header-cell class="header-cell cell-medium" *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+          <mat-cell class="cell-medium" *matCellDef="let element">
+            <span class="span-cell">
+              {{element.city}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="state">
+          <mat-header-cell class="header-cell cell-small" *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+          <mat-cell class="cell-small" *matCellDef="let element">
+            <span class="span-cell">
+              {{element.state}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="zip">
+          <mat-header-cell class="header-cell cell-small" *matHeaderCellDef mat-sort-header>ZIP</mat-header-cell>
+          <mat-cell class="cell-small" *matCellDef="let element">
+            <span class="span-cell">
+              {{element.zip}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="tin">
+          <mat-header-cell class="header-cell cell-small" *matHeaderCellDef mat-sort-header>TIN
+          </mat-header-cell>
+          <mat-cell class="cell-small" *matCellDef="let element">
+            <span class="span-cell">
+              {{element.tin}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="npi">
+          <mat-header-cell class="header-cell cell-small" *matHeaderCellDef mat-sort-header>NPI</mat-header-cell>
+          <mat-cell class="cell-small" *matCellDef="let element">
+            <span class="span-cell">
+              {{element.npi}}
+            </span>
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row class="member-header" *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row class="member-row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+    <div class="button-section">
+      <button id="clear" name="clear" #clear type="button" class="btn btn-secondary btn-cancel margin-right-20"
+        (click)="clearEventClick()">Cancel</button>
+      <fox-loading-button id="enter" name="enter" #enter [buttonValue]="'Submit'" [buttonStatus]="loadingStatus"
+        [typeValue]="'button'" (buttonClick)="enterEventClick()" class="btn-submit" [useSmallerWidth]="true">
+      </fox-loading-button>
+    </div>
+  </fox-modal>

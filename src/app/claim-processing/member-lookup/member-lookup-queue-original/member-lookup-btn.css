@@ -1,0 +1,54 @@
+#form-Field-trans-id {
+  vertical-align: bottom;
+  float: left;
+}
+
+.btn-find {
+  padding-top: 8px;
+}
+
+.separator {
+  width: 1px;
+  height: 52px;
+  background-color: #D8D8D8;
+  margin-left: 20px;
+  margin-right: 20px;
+  float: left;
+  margin-top: 10px;
+}
+
+.container-left,
+.container-right {
+  float: left;
+}
+
+.container-bypass-dropdown label {
+  margin-bottom: 19px;
+  margin-right: 3px;
+}
+
+.exclamationCircle {
+  color: #BF3533;
+  position: absolute;
+  top: -2px;
+  right: 2px;
+}
+
+.txt-not-found-alert {
+  color: #BF3533;
+  font-size: 13px;
+  position: absolute;
+  bottom: -15px;
+}
+
+.alert-red-border {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+  border: solid 1px #b10c00;
+}
+
+.container-button {
+  float: left;
+  padding-top: 16px;
+  margin-left: 20px;
+}
+

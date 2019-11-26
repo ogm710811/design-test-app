@@ -1,0 +1,15 @@
+<fox-modal [(visible)]="cancelModalVisible" (closed)="onCancelModalCancelPressed()"
+           modalTitle="Confirm">
+  <p>
+    You are about to cancel this transaction and lose all entered data. Do you want to proceed?
+  </p>
+  <div class="container-buttons">
+    <button type="button" id="btn-cancel-modal-cancel" class="btn btn-secondary"
+            (click)="onCancelModalCancelPressed()">Cancel
+    </button>
+    <button type="button" id="btn-cancel-modal-confirm" class="btn btn-primary"
+            (click)="onCancelModalConfirmPressed()">Confirm
+    </button>
+  </div>
+</fox-modal>
+

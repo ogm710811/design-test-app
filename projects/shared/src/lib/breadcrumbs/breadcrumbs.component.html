@@ -1,0 +1,21 @@
+<div class="container-breadcrumb">
+  <span (click)="navigateHome()" class="nav-home">
+    <a (click)="navigateHome()">Home</a>
+  </span>
+  <span>
+    <img class="icon-arrow-right" src="/assets/img/arrow-right.svg"/>
+  </span>
+  <ng-container *ngFor="let link of links; let i = index">
+    <ng-container *ngIf="(i + 1) !== links.length && !link.disableBreadcrumb">
+      <a [routerLink]="link.path" class="link-breadcrumb-prev" tabindex="-1">{{link.label}}</a>
+      <span><img class="icon-arrow-right" src="assets/img/arrow-right.svg"/></span>
+    </ng-container>
+    <ng-container *ngIf="(i + 1) !== links.length && link.disableBreadcrumb">
+      <span class="span-current-page">{{customTitle && customTitle.length > 0 ? customTitle : link.label}}</span>
+      <span><img class="icon-arrow-right" src="assets/img/arrow-right.svg"/></span>
+    </ng-container>
+    <ng-container *ngIf="(i + 1) === links.length">
+      <span class="span-current-page">{{customTitle && customTitle.length > 0 ? customTitle : link.label}}</span>
+    </ng-container>
+  </ng-container>
+</div>

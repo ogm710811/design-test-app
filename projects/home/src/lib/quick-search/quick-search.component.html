@@ -1,0 +1,120 @@
+<div class="container-home-header"
+     [ngClass]="{'container-winter' : season === 'winter', 'container-spring' : season === 'spring',
+     'container-summer' : season === 'summer', 'container-fall' : season === 'fall'}">
+  <div class="container-header-text">
+    <h1 id="P1" class="h1-title">Welcome to <span class="h1-strong">FOX</span></h1>
+    <p id="P3" class="p-subheader">Use the Menu navigation or Command Bar to find specific pages.</p>
+  </div>
+  <div class="container-buttons">
+    <div class="form-row">
+      <button type="submit" id="TRNRSC" class="btn btn-primary margin-right-20" (click)="goToTraining()">
+        <i focusable="false">
+            <img src="assets/img/external-link-white.svg" class="margin-right-6"/>
+        </i>
+        Training Resources </button>
+      <button type="submit" id="ASK" class="btn btn-secondary margin-right-20" (click)="goToAsk();">
+          <i focusable="false">
+              <img src="assets/img/external-link-blue.svg" class="margin-right-6"/>
+          </i>
+        AskKB </button>
+    </div>
+  </div>
+</div>
+<div class="row margin-top-20 container-workbench-full-width">
+  <div class="row container-dashboard-header">
+    <div class="col-sm-8 col-xs-12 container-dashboard-left">
+      <div class="container-cards-title">Quick Links</div>
+      <div class="container-cards-subtitle">Common pages shown below. Click the links or enter commands in the command bar to access.</div>
+    </div>
+    <div class="col-sm-4 col-xs-12 container-dashboard-right hidden-xs">
+      <div class="container-cards-title">Recent Work Items</div>
+      <div class="container-cards-subtitle">Access your full workbench to view all items.</div>
+    </div>
+  </div>
+  <div class="row container-dashboard">
+    <div class="col-sm-8 col-xs-12 container-cards">
+      <div class="row container-row-tile" *ngFor="let tileRow of tiles">
+        <div class="col-sm-6 col-xs-12 container-single-card" *ngFor="let tile of tileRow; let i = index;">
+          <fox-tile-box [statBoxTitle]="tileRow[i].title" [icon]="tileRow[i].icon" [linksInformations]="tileRow[i].menuLink">
+          </fox-tile-box>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-xs-12 container-workbench">
+      <div class="col-sm-4 col-xs-12 container-dashboard-right visible-xs">
+        <div class="container-cards-title">Recent Work Items</div>
+        <div class="container-cards-subtitle">Access your full workbench to view all items.</div>
+      </div>
+      <div *ngIf="visbilityWorkBenchFully" class="container-main-workbench">
+        <div class="list-group list-group-root container-list-position">
+          <a href="#item-1" class="list-group-item workbench-header" data-toggle="collapse">
+            <div class="row">
+              <span class="span-workbench-header">Work Items</span>
+            </div>
+            <div class="row container-workbench-all-items">
+              <div class="col-sm-12 col-xs-12">
+                <span class="span-workbench-all-items-margin">All Item Types</span>
+                <i focusable="false" class="fas fa-caret-right icon-blue"></i>
+                <div class="container-float-right">
+                  <span>{{items.itemCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let item of items.workType" class="row container-margin-top">
+              <div class="col-sm-12 col-xs-12  container-margin-top">
+                <div class="container-workbench-workType">
+                  <i focusable="false" class="fas fa-file fa-xs icon-white"></i>
+                </div>
+                <span class="icon-blue">{{item.name}}</span>
+                <div class="container-float-right">
+                  <span class="span-correspondence-checks-number">{{item.count}}</span>
+                </div>
+              </div>
+              <div *ngFor="let subItem of item.category">
+                <div class="col-sm-12 col-xs-12 container-correspondence-checks">
+                  <span (click)="sortByClickWorkType(subItem.name)" class="span-paper-non-claims">{{subItem.name}}</span>
+                  <span class="span-correspondence-checks-number">{{subItem.count}}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a *ngFor="let workbench of workBenchItems" class="list-group-item container-workbench-item-size" data-toggle="collapse" routerLink="/work-queue/workbench/">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <i focusable="false" class="i-workbench-category"
+                   [ngClass]="workbench.description === 'Claim-Number' ? 'fas fa-heartbeat' : 'fas fa-file'"></i>
+                <span class="item-label">
+                <a [id]="workbench.idDocument" class="link-document">
+                  {{workbench.idDocument}}
+                </a>
+              </span>
+                <i focusable="false" class="fas fa-angle-right icon-blue-float-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-12 col-xs-12 container-margin-top">
+              <span class="span-workbench-date"> {{workbench.dateFormatted}} - </span>
+
+              <span
+                [ngClass]="{'span-priority-awesome': workbench.days >= 0 && workbench.days <= 7, 'span-priority-good': workbench.days > 7 && workbench.days <= 15, 'span-priority-bad': workbench.days > 15 && workbench.days <= 30, 'span-priority-critical': workbench.days > 30 }"
+                class="span-workbench-days-remaining">{{workbench.days}} DAYS </span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div *ngIf="visbilityWorkBenchFully" class="text-center container-workbench-footer">
+        <p class="p-workbench-footer"> <a class="link-workbench-footer" routerLink="/work-queue/workbench/">View All</a></p>
+      </div>
+
+      <fox-section *ngIf="!visbilityWorkBenchFully" class="container-workbench-empty">
+        <fox-section-title>Work Items</fox-section-title>
+        <div class="text-center">
+          <img class="img-not-found" src="assets/img/workbench-items-not-found.svg" />
+          <div class="container-not-found-content">
+            <fox-section-title>No workbench items to display</fox-section-title>
+            <fox-section-subheader>You have no outstanding items. Nice work! </fox-section-subheader>
+          </div>
+        </div>
+      </fox-section>
+    </div>
+  </div>
+</div>

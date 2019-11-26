@@ -1,0 +1,35 @@
+<fox-section class="container-provider-summary">
+  <div class="container-provider-header">
+    <i focusable="false" class="fas fa-ambulance" aria-hidden="true"></i>&nbsp;{{detailsService?.providerDetails?.providerName?.businessName}}
+  </div>
+  <br>
+  <div class="row row-provider-header">
+    <div class="col-md-3">
+      <span class="container-provider-summary-header-1">TIN </span>
+      <span class="container-provider-summary-header-2 provider-name-padding">NPI </span>
+    </div>
+    <div class="col-md-4 left-border">
+      <span class="container-provider-summary-header-3">Phone Number </span>
+      <span class="container-provider-summary-header-4 provider-name-padding">Email Address </span>
+    </div>
+    <div class="col-md-2 left-border">
+      <span class="container-provider-summary-header-1">State </span>
+      <span class="container-provider-summary-header-2">Provider Type </span>
+    </div>
+  </div>
+  <div class="row row-provider-value">
+    <div class="col-md-3 container-provider-field">
+      <span class="container-provider-summary-header-1">{{detailsService?.providerDetails?.providerTin?.tin}} </span>
+      <span class="container-provider-summary-header-2 provider-name-padding">{{detailsService?.providerDetails?.providerNpi?.idNumber}} </span>
+    </div>
+    <div class="col-md-4 container-provider-field left-border">
+      <span class="container-provider-summary-header-3 col-md-4">{{detailsService?.providerDetails?.phone?.contactInfo}}&nbsp;</span>
+      <span
+        class="container-provider-summary-header-4 provider-name-padding col-md-7 col-md-7-half word-wrap-break">{{detailsService?.providerDetails?.email?.contactInfo?.includes('@') ? detailsService?.providerDetails?.email?.contactInfo : ''}} </span>
+    </div>
+    <div class="col-md-2 container-provider-field left-border">
+      <span class="container-provider-summary-header-1">{{providerAddress?.state}}&nbsp;</span>
+      <span class="container-provider-summary-header-2">{{providerTypeCode?.idNumber}}</span>
+    </div>
+  </div>
+</fox-section>

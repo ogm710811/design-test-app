@@ -1,0 +1,66 @@
+<fox-modal [visible]="visibleModal"
+           [modalTitle]="modalTitle"
+           (visibleChange)="onCancel()"
+           class="modal-account">
+  <p class="p-descriptive-text">You may make changes, remove, or add a special handling code below. Changes may require approval.</p>
+  <p class="p-codes">
+    <span *ngIf="addSpecialHandlingCodeToggle">Active Code:</span>
+    <span *ngIf="!addSpecialHandlingCodeToggle">No Codes Currently Active</span>
+  </p>
+  <a *ngIf="!addSpecialHandlingCodeToggle"
+     class="link-remove-code link-add-special-handling-code"
+     (click)="onAddSpecialHandlingCodeToggle()">
+    <i class="fas fa-plus-circle icon-fa-times-circle" focusable="false"></i>
+    <span class="span-add-special-handling-code">Add Special Handling Code</span>
+  </a>
+
+  <form novalidate
+
+        (ngSubmit)="onSaveChanges()">
+    <ng-container [formGroup]="specialHandlingCodeForm">
+      <div *ngIf="addSpecialHandlingCodeToggle" class="row">
+        <mat-form-field class="col-xs-2 mat-f-field-input">
+          <mat-label>
+            Code*
+            <span *ngIf="CodeControl && CodeControl?.touched && CodeControl?.hasError('required')">
+              <i focusable="false" class="fas fa-exclamation-circle icon-fa-exclamation-small"></i>
+            </span>
+          </mat-label>
+          <input type="text" maxlength="1"
+                 [ngClass]="{'border-red ' : CodeControl && CodeControl?.touched && CodeControl?.hasError('required')}"
+                 matInput class="input-code" formControlName="codeControl" placeholder="Field Input"
+                 (keyup)="checkSaveChangesButtonState()">
+          <mat-error>
+            {{codeErrorMessage}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-xs-5 mat-f-field-input">
+          <mat-label>Description*</mat-label>
+          <input [ngClass]="{'border-red ' : (DescriptionControl && DescriptionControl.touched && DescriptionControl?.hasError('required')) || DescriptionControl?.hasError('maxlength')}"
+                 matInput class="input-description"
+                 formControlName="descriptionControl"
+                 maxlength="255"
+                 (keyup)="checkSaveChangesButtonState()">
+          <mat-error class="mat-error-margin">Description is required.</mat-error>
+        </mat-form-field>
+
+        <div class="div-read-only-cover">
+          <a *ngIf="removeCodeToggle" class="link-remove-code" (click)="onRemoveCode()" >
+            <i class="fas fa-times-circle icon-fa-times-circle" focusable="false"></i>
+            <span class="span-remove-code">Remove Code</span>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit"
+                class="btn btn-primary button-submit"
+                [disabled]="disableWhenSpecialCode || !canSave">
+          Save Changes
+        </button>
+        <button type="button" (click)="onCancel()" class="btn btn-secondary button-cancel">Cancel</button>
+      </div>
+    </ng-container>
+  </form>
+
+</fox-modal>

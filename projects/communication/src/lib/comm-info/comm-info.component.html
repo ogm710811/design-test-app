@@ -1,0 +1,269 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span>
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Cancel and Return (F1)
+  </span>
+</div>
+<div class="row container-row-small">
+  <div class="col-xs-12 col-sm-4">
+    <fox-section class="section-blue-top-border">
+      <div class="row no-padding no-margin">
+        <div class="col-xs-12 no-padding">
+          <div class="container-section-title">
+            <img src="assets/img/member-icon.svg"/>
+            <div class="container-member-info-title">Member Information</div>
+          </div>
+          <span class="span-section-subtitle">Click on Member # to view additional details.</span>
+        </div>
+      </div>
+      <div class="container-details-card">
+        <div class="row container-row-small container-details-allignment container-right-section-margin">
+          <div class="col-xs-12 col-sm-3 container-details-left-text container-details-left-alignment">
+            <span>Name</span>
+          </div>
+          <div class="col-xs-12 col-sm-9 container-details-right-alignment container-details-right-xs">
+            {{ screen.m65name }}</div>
+        </div>
+        <div class="row container-row-small container-details-allignment container-right-section-margin">
+          <div class="col-xs-12 col-sm-3 container-details-left-text container-details-left-alignment">
+            <span>Member #</span>
+          </div>
+          <div class="col-xs-12 col-sm-9 container-details-right-xs"><img class="img-member-size" src="assets/img/member-blue.svg"/>
+            <a class="link-memmber-number">{{screen.m65acct + '-' + screen.m65assn + '-' + screen.m65insc}}</a>
+          </div>
+        </div>
+        <div class="row container-row-small container-details-allignment container-right-section-margin">
+          <div class="col-xs-12 col-sm-3 container-details-left-text container-details-left-alignment">
+            <span>Address</span>
+          </div>
+          <div class="col-xs-12 col-sm-9 container-details-right-alignment container-details-right-xs">
+            {{ screen.m65addr + ', ' + screen.m65cszc }}
+          </div>
+        </div>
+        <div class="row container-row-small container-details-last-row">
+          <div class="col-xs-12 col-sm-3 container-details-left-text container-details-left-alignment">
+            <span>Phone</span>
+          </div>
+          <div class="col-xs-12 col-sm-9 container-details-right-alignment container-details-right-xs">
+            {{screen.m65aare+ '-' + screen.m65aph1 + '-' + screen.m65aph2}}
+          </div>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+  <div class="col-xs-12 col-sm-8">
+    <fox-section>
+      <fox-section-title>Communication Overview</fox-section-title>
+      <div class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+      <div class="row container-row-small container-display-equal-height">
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-input type="fox-date"
+                     id="txtReceivedDate"
+                     name="txtReceivedDate"
+                     displayFormat="MM/DD/YYYY"
+                     programmaticFormat="YYYY-MM-DD"
+                     labelText="Date Received"
+                     (keyup.enter)="completeAllEventClick()"
+                     [disabled]="disableOption"
+                     [(ngModel)]="requestedDate"></fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small container-display-equal-height">
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-select-single id="txtCallWriter"
+                             [items]="callerWriterList"
+                             [clearable]="true"
+                             [selected]="screen.m65call"
+                             (selectEmitter)="assignCallWriter($event)"
+                             bindValue="id"
+                             labelText="Caller / Writer">
+          </fox-select-single>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-input type="text"
+                     id="txtOthCallWriter"
+                     name="txtOthCallWriter"
+                     length="1"
+                     [disabled]="screen.m65call !== '3'"
+                     labelText="Other Caller / Writer"
+                     [(ngModel)]="screen.m65othe">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-last-row-sm">
+          <fox-input type="fox-phone"
+                     id="txtPhoneNumber"
+                     name="txtPhoneNumber"
+                     labelText="Phone Number"
+                     [(ngModel)]="screen.m65area">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-last-row">
+          <fox-input type="text"
+                     id="txtExtn"
+                     name="txtExtn"
+                     foxAutoFocus
+                     labelText="Extension">
+          </fox-input>
+        </div>
+      </div>
+    </fox-section>
+    <fox-section>
+      <fox-section-title>Communication Details</fox-section-title>
+      <div class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields. Click "Send Communication" or use Alt + S or Enter to proceed.</fox-section-subheader>
+      </div>
+      <div class="row container-row-small container-display-equal-height">
+        <div class="col-xs-12 col-sm-6 container-input-custom"
+             [ngClass]="common.comcomm.command=='CI' ? 'container-display-block' : 'container-display-none'">
+          <fox-input type="text"
+                     id="txtSendIonsSuspend"
+                     name="txtSendIons"
+                     length="6"
+                     labelText="Send to Ions ID #"
+                     (blur)="checkForValidator($event.target.id)"
+                     [formControl]="sendIons"
+                     [(ngModel)]="screen.m65sion"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input-custom"
+             [ngClass]="common.comcomm.command!='CI' ? 'container-display-block' : 'container-display-none'">
+          <fox-input type="text"
+                     id="txtSendIonsAdd"
+                     name="txtSendIons"
+                     length="6"
+                     labelText="Send to Ions ID #"
+                     (blur)="checkForValidator($event.target.id)"
+                     [formControl]="sendIons"
+                     [(ngModel)]="screen.m65sion"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-custom"
+             [ngClass]="common.comcomm.command!='CI' ? 'container-display-block' : 'container-display-none'">
+          <fox-input type="text"
+                     id="txtLocation"
+                     name="txtLocation"
+                     length="3"
+                     labelText="Location"
+                     [(ngModel)]="screen.m65loca"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-input type="text"
+                     id="txtConcrnCode"
+                     name="txtConcrnCode"
+                     length="3"
+                     labelText="Concern Code #"
+                     (blur)="checkForValidator($event.target.id)"
+                     [formControl]="concern_code"
+                     [(ngModel)]="screen.m65ccd1">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-input type="text"
+                     id="txtCallbckBy"
+                     name="txtCallbckBy"
+                     length="6"
+                     labelText="Callback By"
+                     [(ngModel)]="screen.m65cabk"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-input type="text"
+                     id="txtBestTime"
+                     name="txtBestTime"
+                     length="17"
+                     labelText="Best Time"
+                     [(ngModel)]="screen.m65btim"></fox-input>
+        </div>
+        <div class="col-xs-12 container-input-custom">
+          <fox-input type="textarea"
+                     id="txtProblemConcern"
+                     name="txtProblemConcern"
+                     labelText="Problem/Concern"
+                     [formControl]="problem"
+                     (blur)="checkForValidator($event.target.id)"
+                     [(ngModel)]="screen.m65pro1"></fox-input>
+        </div>
+        <div class="col-xs-12 container-input-custom" *ngIf="common.comcomm.command!='CI'">
+          <fox-input type="textarea"
+                     labelText="Resolution"
+                     [(ngModel)]="screen.m65res1"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-input type="fox-claim"
+                     id="txtClaimId1"
+                     name="txtClaimId1"
+                     labelText="Claim 1 #"
+                     (blur)="checkForValidator($event.target.id)"
+                     [formControl]="claimNumber"
+                     [(ngModel)]="screen.m65cre1"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-custom">
+          <fox-input type="fox-claim"
+                     id="txtClaimId2"
+                     name="txtClaimId2"
+                     labelText="Claim 2 #"
+                     [(ngModel)]="m65cre2"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-last-row-sm">
+          <fox-input type="fox-claim"
+                     id="txtClaimId3"
+                     name="txtClaimId3"
+                     labelText="Claim 3 #"
+                     [(ngModel)]="m65cre3"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-last-row">
+          <fox-input type="fox-claim"
+                     id="txtClaimId4"
+                     name="txtClaimId4"
+                     labelText="Claim 4 #"
+                     [(ngModel)]="m65cre4"></fox-input>
+        </div>
+      </div>
+    </fox-section>
+    <fox-section *ngIf="common.comcomm.command!='CI'">
+      <fox-section-title>
+        <div class="container-circle div-circle-margin">
+          <img src="assets/img/Flag-white.svg" class="img-completion-flag"/>
+        </div>
+        Completion Status
+      </fox-section-title>
+      <div class="container-subtitle-completion">
+        <fox-section-subheader>Confirm status below.</fox-section-subheader>
+      </div>
+      <div class="col-xs-12 col-sm-6 no-padding">
+        <fox-select-single id="selectCompletionstatus"
+                           [items]="selectionStatusList"
+                           [selected]="screen.m65comp"
+                           [clearable]="true"
+                           (selectEmitter)="screen.m65comp = $event"
+                           bindValue="id"
+                           labelText="Complete">
+        </fox-select-single>
+      </div>
+    </fox-section>
+  </div>
+</div>
+<div class="container-btns">
+  <button id="btnEnter" [disabled]="!isEnableEnterComm" name="Enter" type="Enter" class="btn btn-primary"
+          (click)="completeAllEventClick()"
+          hotkeyAction="click"
+          foxHotkey="alt+s">{{buttonValue}}
+  </button>
+</div>
+<fox-modal [visible]="endCommunicationVisible" modalTitle="End Communication" (visibleChange)="changeVisible($event)">
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-3 container-end-communication-label">Communication #:</div>
+    <div class="col-xs-12 col-sm-9">{{screenModal.m55comn}}</div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-3 container-end-communication-label">Location :</div>
+    <div class="col-xs-12 col-sm-9">{{screenModal.m55lloc}}</div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-3 container-end-communication-label">Status :</div>
+    <div class="col-xs-12 col-sm-9">{{screenModal.m55stat}}</div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-3 container-end-communication-label">Quality# :</div>
+    <div class="col-xs-12 col-sm-9">{{screenModal.m55lqua + screenModal.m55qual}}</div>
+  </div>
+</fox-modal>

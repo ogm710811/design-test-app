@@ -1,0 +1,31 @@
+fox-duplicates-right-panel {
+  overflow-x: scroll;
+  display: flex;
+}
+
+.container-sub-title {
+  margin-left: 20px;
+}
+
+.container-btn {
+  float: right;
+  margin: 20px;
+}
+
+.p-sub-title {
+  color: #6E7681;
+  margin-bottom: 20px;
+}
+
+.btn-arrow {
+  margin: 0 10px 0 10px;
+  height: 34px;
+  width: 135px;
+  border: 1px solid #CED3DA;
+  padding: 0;
+  font-weight: 400;
+}
+
+.icon-arrow {
+  height: 11px;
+}

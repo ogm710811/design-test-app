@@ -1,0 +1,66 @@
+<fox-section>
+  <div>
+    <div class="form-row">
+
+      <mat-form-field class="margin-right-20">
+        <mat-label>Enter Selection:</mat-label>
+        <input matInput maxlength="2" size="10" type="text" [(ngModel)]="screenBean.ma1sel1"/>
+      </mat-form-field>
+
+    </div>
+
+    <br/>
+
+    <table class="table">
+      <thead class="thead-default">
+      <tr>
+        <!-- <th [foxLink] (linkPressed)="sort('teamCode')" [ngClass]="{'sorted-column-header':(column == 'teamCode'), 'asc': !isDesc, 'desc': isDesc}"> -->
+        <th>ERROR</th>
+        <th>CODE DESCRIPTION</th>
+      </tr>
+      </thead>
+
+
+      <tbody *ngIf="screenBean.errorList">
+      <ng-container  *ngFor="let browseGridVar of viewData">
+        <tr>
+          <td>
+            <div id="Col0">
+              <mat-label>{{browseGridVar.ma1err}}</mat-label>
+            </div>
+          </td>
+          <td>
+            <div id="Col1">
+              <mat-label>{{browseGridVar.ma1dis}}</mat-label>
+            </div>
+          </td>
+
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <fox-paginator-non-material [(pageSize)]="pageSizeSelected" [dataLengthInput]="dataLengthInput"  #paginator
+                                 [pageTotal]="pageTotal" [(currentPage)]="currentPage"
+                                 (currentPageChange)="calculateNewPage();"
+                                 (pageSizeChange)="currentPage=0; calculateNewPage();"></fox-paginator-non-material>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <br/>
+
+    <div class="form-row margin-right-20 text-right">
+      <button id="btnErrorCancel" name="cancel" #btnLabel6 type="button"
+              class="btn btn-default margin-right-20" foxHotkey="alt+c"
+              (click)="cancelEventClick()">
+        Cancel (C)
+      </button>
+      <button id="Enter" name="Enter" #btnLabel5 type="button" class="btn btn-primary"
+              foxHotkey="alt+e" (click)="enterEventClick()">
+        Enter (E)
+      </button>
+    </div>
+  </div>
+</fox-section>

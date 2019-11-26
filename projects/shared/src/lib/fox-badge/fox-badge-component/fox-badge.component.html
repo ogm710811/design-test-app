@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row no-gutters">
+    <ng-container *ngIf="currentTemplate(badgeTemplates.iconText)">
+      <div class="col">
+        <div [ngClass]="badgeClasses">
+          <div *ngIf="showIconBefore" class="bd-chip-icon-before">
+          <span class="fa-stack mx-0">
+            <i class="fa fa-square fa-1x fa-stack-1x invisible"></i>
+            <i class="fa fa-stack-1x" data-group="true" [ngClass]="badgeParams.iconClasses"></i>
+          </span>
+          </div>
+          <span>{{displayText}}</span>
+          <div *ngIf="showIconAfter" class="bd-chip-icon-after">
+          <span class="fa-stack mx-0">
+            <i class="fa fa-square fa-1x fa-stack-1x invisible"></i>
+            <i class="fa fa-stack-1x" data-group="true" [ngClass]="badgeParams.iconClasses"></i>
+          </span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="currentTemplate(badgeTemplates.icon)">
+      <div class="col">
+        <div [ngClass]="badgeClasses">
+        <span class="fa-stack mx-0">
+          <i class="fa fa-square fa-1x fa-stack-1x invisible"></i>
+          <i class="fa fa-stack-1x" data-group="true" [ngClass]="badgeParams.iconClasses"></i>
+        </span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+

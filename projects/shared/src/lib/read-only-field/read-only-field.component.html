@@ -1,0 +1,36 @@
+<div class="container-read-only-field" *ngIf="!horizontal">
+  <div class="container-read-only-detail container-read-only">
+    <div class="container-field-label">{{label}}</div>
+    <div class="container-field-value">
+      <img *ngIf="iconUrl" class="img-icon-input" alt="input icon" [src]="iconUrl"/>
+      <img *ngIf="type === date" class="img-icon-input" alt="Calendar icon" src="/assets/img/calendar-cfcfcf.svg"/>
+      <img *ngIf="type === currency" class="img-icon-input" alt="Currency icon" src="/assets/img/currency-black.svg"/>
+      <img *ngIf="type === member" class="img-icon-input" alt="Currency icon" src="/assets/img/member.svg"/>
+      <img *ngIf="type === claim" class="img-icon-input" alt="Currency icon" src="assets/img/claim.svg"/>
+      <span *ngIf="!linkArray"> {{arrayValue ? concatArray(arrayValue) : value}}</span>
+      <span *ngIf="linkArray">
+        <span *ngFor="let linkValue of linkArray, let first = first, let last = last">
+          <span *ngIf="linkValue && !first">, </span> <a *ngIf="linkValue" (click)="linkClickEvent(linkValue)" tabindex="0" target="_blank">{{linkValue}}</a>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="row container-row-small" *ngIf="horizontal">
+  <div class="col-xs-12 col-sm-5">
+    <div class="container-field-label-horizontal">
+      {{label}}
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-7">
+    <div class="container-field-value-horizontal">
+      <img *ngIf="iconUrl" class="img-icon-input" alt="input icon" [src]="iconUrl"/>
+      <img *ngIf="type === date" class="img-icon-input" alt="Calendar icon" src="assets/img/calendar-cfcfcf.svg"/>
+      <img *ngIf="type === currency" class="img-icon-input" alt="Currency icon" src="assets/img/currency-black.svg"/>
+      <img *ngIf="type === member" class="img-icon-input" alt="Currency icon" src="assets/img/member-blue.svg"/>
+      <img *ngIf="type === claim" class="img-icon-input" alt="Currency icon" src="assets/img/claim.svg"/>
+      {{value}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-12 pull-left container-return-prev-page">
+    <a href="#" (click)="pf1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev-page">Return to Previous (F1)</span>
+    </a>
+  </div>
+</div>
+<fox-loading-overlay>
+  <fox-section [noPadding]="true">
+    <div class="container-reviewmsg-card-title">Message Text</div>
+    <fox-table *ngIf="reviewbilllinetabledata"
+               #inputTable
+               [tableColumns]="reviewbilllinecolumns"
+               [fixedFirstColumn]="true"
+               [tableData]="reviewbilllinetabledata | orderBy: {property: resultCurrentSortKey, direction: resultSortDirection}"
+               [isWhiteSpaceWrap]="true"
+               [centerText]="true"
+               (columnChanged)="resultCurrentSortKey = $event"
+               (directionChanged)="resultSortDirection = $event"
+               [sortByColumn]="'#'">
+    </fox-table>
+  </fox-section>
+</fox-loading-overlay>

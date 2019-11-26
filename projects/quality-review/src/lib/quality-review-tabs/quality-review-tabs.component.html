@@ -1,0 +1,17 @@
+<fox-qltyrvwrvldmiscinfo *ngIf="pageHeaderService.currentNav === 1">
+</fox-qltyrvwrvldmiscinfo>
+
+<div *ngIf="pageHeaderService.currentNav === 2">
+  <fox-revalidation-cautions></fox-revalidation-cautions>
+</div>
+
+<div *ngIf="pageHeaderService.currentNav === 3">
+  <fox-duplicates></fox-duplicates>
+</div>
+
+<fox-claim-messages *ngIf="pageHeaderService.currentNav === 4">
+</fox-claim-messages>
+
+<fox-section *ngIf="pageHeaderService.currentNav === 5">
+  <fox-section-title>Content 5 Here</fox-section-title>
+</fox-section>

@@ -1,0 +1,672 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "fox-ui-client": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "../fox-ui-server/src/main/resources/public",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.dev.json",
+            "polyfills": "src/polyfills.ts",
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              "src/current-stats-data.json",
+              "src/bypass-queue-data.json"
+            ],
+            "styles": [
+              "node_modules/bootstrap/less/bootstrap.less",
+              "src/bootstrap-css.less"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/moment/moment.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/tsconfig.app.json",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "mock": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mock.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fox-ui-client:build",
+            "sourceMap": {
+              "scripts": true,
+              "styles": true,
+              "vendor": true
+            }
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fox-ui-client:build:production"
+            },
+            "mock": {
+              "browserTarget": "fox-ui-client:build:mock"
+            }
+          }
+        },
+        "serve-e2e": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fox-ui-client:build:mock",
+            "progress": false
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fox-ui-client:build:production"
+            },
+            "mock": {
+              "browserTarget": "fox-ui-client:build:mock"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fox-ui-client:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "src/tsconfig.spec.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": []
+          }
+        }
+      }
+    },
+    "fox-ui-client-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor-mock.conf.js"
+          },
+          "configurations": {
+            "mock": {
+              "devServerTarget": "fox-ui-client:serve-e2e"
+            },
+            "remote": {
+              "protractorConfig": "./protractor-remote.conf.js"
+            },
+            "release": {
+              "protractorConfig": "./protractor-remote-release.conf.js"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "shared": {
+      "root": "projects/shared",
+      "sourceRoot": "projects/shared/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/shared/tsconfig.lib.json",
+            "project": "projects/shared/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/shared/tsconfig.spec.json",
+            "rootDir": "projects/shared"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/shared/tsconfig.lib.json",
+              "projects/shared/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "rest-clients": {
+      "root": "projects/rest-clients",
+      "sourceRoot": "projects/rest-clients/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/rest-clients/tsconfig.lib.json",
+            "project": "projects/rest-clients/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/rest-clients/tsconfig.spec.json",
+            "rootDir": "projects/rest-clients"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/rest-clients/tsconfig.lib.json",
+              "projects/rest-clients/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "state-management": {
+      "root": "projects/state-management",
+      "sourceRoot": "projects/state-management/src",
+      "projectType": "library",
+      "prefix": "",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/state-management/tsconfig.lib.json",
+            "project": "projects/state-management/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/state-management/tsconfig.spec.json",
+            "rootDir": "projects/state-management"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/state-management/tsconfig.lib.json",
+              "projects/state-management/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "test-support": {
+      "root": "projects/test-support",
+      "sourceRoot": "projects/test-support/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/test-support/tsconfig.lib.json",
+            "project": "projects/test-support/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/test-support/tsconfig.lib.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "login": {
+      "root": "projects/login",
+      "sourceRoot": "projects/login/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/login/tsconfig.lib.json",
+            "project": "projects/login/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/login/tsconfig.spec.json",
+            "rootDir": "projects/login"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/login/tsconfig.lib.json",
+              "projects/login/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "file-maintenance": {
+      "root": "projects/file-maintenance",
+      "sourceRoot": "projects/file-maintenance/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/file-maintenance/tsconfig.lib.json",
+            "project": "projects/file-maintenance/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/file-maintenance/tsconfig.spec.json",
+            "rootDir": "projects/file-maintenance"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/file-maintenance/tsconfig.lib.json",
+              "projects/file-maintenance/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "claim-pdf": {
+      "root": "projects/claim-pdf",
+      "sourceRoot": "projects/claim-pdf/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/claim-pdf/tsconfig.lib.json",
+            "project": "projects/claim-pdf/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/claim-pdf/tsconfig.spec.json",
+            "rootDir": "projects/claim-pdf"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/claim-pdf/tsconfig.lib.json",
+              "projects/claim-pdf/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "eob-material-pdf": {
+      "root": "projects/eob-material-pdf",
+      "sourceRoot": "projects/eob-material-pdf/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/eob-material-pdf/tsconfig.lib.json",
+            "project": "projects/eob-material-pdf/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/eob-material-pdf/tsconfig.spec.json",
+            "rootDir": "projects/eob-material-pdf"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/eob-material-pdf/tsconfig.lib.json",
+              "projects/eob-material-pdf/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "home": {
+      "root": "projects/home",
+      "sourceRoot": "projects/home/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/home/tsconfig.lib.json",
+            "project": "projects/home/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/home/tsconfig.spec.json",
+            "rootDir": "projects/home"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/home/tsconfig.lib.json",
+              "projects/home/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "processing": {
+      "root": "projects/processing",
+      "sourceRoot": "projects/processing/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/processing/tsconfig.lib.json",
+            "project": "projects/processing/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/processing/tsconfig.spec.json",
+            "rootDir": "projects/processing"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/processing/tsconfig.lib.json",
+              "projects/processing/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "quality-review": {
+      "root": "projects/quality-review",
+      "sourceRoot": "projects/quality-review/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/quality-review/tsconfig.lib.json",
+            "project": "projects/quality-review/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/quality-review/tsconfig.spec.json",
+            "rootDir": "projects/quality-review"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/quality-review/tsconfig.lib.json",
+              "projects/quality-review/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "document-repository": {
+      "root": "projects/document-repository",
+      "sourceRoot": "projects/document-repository/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/document-repository/tsconfig.lib.json",
+            "project": "projects/document-repository/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/document-repository/tsconfig.spec.json",
+            "rootDir": "projects/document-repository"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/document-repository/tsconfig.lib.json",
+              "projects/document-repository/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "communication": {
+      "root": "projects/communication",
+      "sourceRoot": "projects/communication/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/communication/tsconfig.lib.json",
+            "project": "projects/communication/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/communication/tsconfig.spec.json",
+            "rootDir": "projects/communication"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/communication/tsconfig.lib.json",
+              "projects/communication/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "member-info": {
+      "root": "projects/member-info",
+      "sourceRoot": "projects/member-info/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/member-info/tsconfig.lib.json",
+            "project": "projects/member-info/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/member-info/tsconfig.spec.json",
+            "rootDir": "projects/member-info"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/member-info/tsconfig.lib.json",
+              "projects/member-info/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "check-recovery": {
+      "root": "projects/check-recovery",
+      "sourceRoot": "projects/check-recovery/src",
+      "projectType": "library",
+      "prefix": "fox",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/check-recovery/tsconfig.lib.json",
+            "project": "projects/check-recovery/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/check-recovery/tsconfig.spec.json",
+            "rootDir": "projects/check-recovery"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/check-recovery/tsconfig.lib.json",
+              "projects/check-recovery/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "fox-ui-client",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "fox",
+      "styleext": "css"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "fox"
+    },
+    "@schematics/angular:library": {
+      "prefix": "fox"
+    }
+  }
+}

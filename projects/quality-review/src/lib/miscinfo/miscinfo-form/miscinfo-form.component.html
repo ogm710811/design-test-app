@@ -1,0 +1,74 @@
+<fox-section>
+  <fox-section-title id="qual-act-title">
+    Quality Actions
+  </fox-section-title>
+  Tab to navigate and update fields. Click “Submit” or use Alt + S or Enter to proceed.
+  <form class="row flex-row">
+    <div class="misc-info-form-row">
+      <label class="col-xs-12 label-for-input">Quality Reply</label>
+      <ul class="nav nav-pills" *ngIf="pillOptions.length > 0">
+          <li *ngFor="let pillOption of pillOptions; let pillIndex = index"
+              [foxLink] (click)="pillSelected(pillIndex)"
+              [ngClass]="{
+                'active': pillIndex === selectedPill
+              }">
+              <a [ngClass]="{'bypass': pillIndex === 3}">{{pillOption}}</a>
+          </li>
+        </ul>
+    </div>
+    <div class="misc-info-form-row error-code-row">
+      <label class="col-xs-12 label-for-input"
+        id="qual-act-errc-label">{{isReval ? 'Reval Errors' : 'Error Codes'}}</label>
+      <fox-input class="col-xs-12 col-sm-4 err-code-input first-row-item" name="error1" [(ngModel)]="screenBean.m76qer1" id="qual-act-errc-1">
+      </fox-input>
+      <fox-input class="col-xs-12 col-sm-4 err-code-input" name="error2" [(ngModel)]="screenBean.m76qer2" id="qual-act-errc-2">
+      </fox-input>
+      <fox-input class="col-xs-12 col-sm-4 err-code-input last-row-item" name="error3" [(ngModel)]="screenBean.m76qer3" id="qual-act-errc-3">
+      </fox-input>
+      <fox-input class="col-xs-12 col-sm-4 err-code-input first-row-item" name="error4" [(ngModel)]="screenBean.m76qer4" id="qual-act-errc-4">
+      </fox-input>
+      <fox-input class="col-xs-12 col-sm-4 err-code-input" name="error5" [(ngModel)]="screenBean.m76qer5" id="qual-act-errc-5">
+      </fox-input>
+    </div>
+    <div class="misc-info-form-row">
+      <fox-input type="textarea" class="col-xs-12 fox-input-margin-top" labelText="Insured Note" name="insured-note"
+        [(ngModel)]="screenBean.m76in1" id="qual-act-ins-note" length="154"></fox-input>
+    </div>
+    <div class="misc-info-form-row">
+        <fox-input type="fox-date" class="col-xs-12 col-sm-8 fox-input-margin-top" id="txtM76QUDA" name="txtM75QUDA" #txtM76QUDA="ngModel"
+        [(ngModel)]="screenBean.m76qdat" placeholder="MM/DD/YYYY" displayFormat="MM/DD/YYYY"
+        programmaticFormat="MM/DD/YYYY" labelText="Quality Date"></fox-input>
+    </div>
+    <div class="misc-info-form-row">
+      <fox-input class="col-xs-12 col-sm-8 fox-input-margin-top" labelText="Location" name="location"
+        [(ngModel)]="screenBean.m76qloc" id="qual-act-location"></fox-input>
+    </div>
+    <div class="misc-info-form-row">
+
+      <fox-input class="col-xs-12 col-sm-8 fox-input-margin-top" labelText="Quality Number" name="quality-number"
+        [(ngModel)]="screenBean.m76qnum" id="qual-act-qual-num"></fox-input>
+    </div>
+    <div class="misc-info-form-row">
+      <fox-input class="col-xs-12 col-sm-8 fox-input-margin-top" labelText="IONs ID" name="ions-id"
+        [(ngModel)]="screenBean.m76qion" id="qual-act-ions-id"></fox-input>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 misc-info-form-row" id="qual-act-err-rem">
+      <fox-select-single [items]="errRemoval" [selected]="screenBean.m76erem" (selectEmitter)="screenBean.m76erem = $event" bindValue="id"
+      labelText="Error Removal">
+      </fox-select-single>
+    </div>
+    <div class="col-xs-12 fox-input-margin-top misc-info-form-row">
+      <button *ngIf="!useLoadingButton" type="submit" class="btn btn-primary" foxHotkey="alt+s"
+        (click)="submit.emit(screenBean)" id="qual-act-submit">Submit (S)
+      </button>
+      <fox-loading-button *ngIf="useLoadingButton" id="submit" name="submit" #submit [buttonValue]="'Submit (S)'"
+        [buttonStatus]="loadingStatus" [typeValue]="'button'" [foxHotKeyValue]="'alt+s'"
+        (buttonClick)="submitClicked()" class="btn-submit" [useSmallerWidth]="true">
+      </fox-loading-button>
+      <button type="button" class="btn btn-secondary" foxHotkey="alt+r" (click)="clearEventClick()"
+        id="qual-act-clear" hotkeyAction="click">Clear (R)
+      </button>
+    </div>
+  </form>
+</fox-section>

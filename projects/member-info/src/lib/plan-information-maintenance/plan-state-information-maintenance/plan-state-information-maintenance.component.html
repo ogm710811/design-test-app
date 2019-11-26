@@ -1,0 +1,91 @@
+<fox-section>
+  <fox-section-title>Plan and State Information File - {{screenBean.title | titlecase }}</fox-section-title>
+  <div class="form-row">
+    <mat-form-field class="margin-right-20">
+      <mat-label>Record Type:</mat-label>
+      <input id="txtM27RTYP" matInput maxlength="1" size="1" tabindex="" type="text" [(ngModel)]="screenBean.recType" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <mat-label>State:</mat-label>
+      <input id="txtM27STE" matInput maxlength="2" size="2" tabindex="" type="text" [(ngModel)]="screenBean.state" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row margin-top-40">
+    <mat-form-field class="margin-right-20">
+      <mat-label>Caution 60 Indicator:</mat-label>
+      <input id="txtM27IND" matInput maxlength="1" size="1" tabindex="" type="text" [(ngModel)]="screenBean.ind" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <mat-label>Stop Date:</mat-label>
+      <input id="txtM27STDT" matInput maxlength="8" size="8" tabindex="" type="text" [(ngModel)]="screenBean.stopDt" />
+    </mat-form-field>
+  </div>
+</fox-section>
+
+<fox-section *ngIf="screenBean.tosFields[0].code !== '  ' ">
+  <fox-section-title>Type Of Service</fox-section-title>
+  <table class="table margin-top-20">
+    <thead class="thead-default">
+      <tr>
+        <th>Code</th>
+        <th>Start</th>
+        <th>Stop</th>
+        <th>Plan Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of screenBean.tosFields">
+        <tr>
+          <td>
+            <div id="Col0">
+              <mat-label>{{item.code}}</mat-label>
+            </div>
+          </td>
+          <td>
+            <div id="Col1">
+              <mat-label>{{item.startDt}}</mat-label>
+            </div>
+          </td>
+          <td>
+            <div id="Col1">
+              <mat-label>{{item.endDt}}</mat-label>
+            </div>
+          </td>
+          <td>
+            <div id="Col1">
+              <mat-label>{{item.planType}}</mat-label>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</fox-section>
+
+
+<fox-section>
+  <fox-section-title>Exception States</fox-section-title>
+  <div class="col-sm-12 container-exception-states">
+    <div class="col-sm-1 container-exception-states-form" *ngFor="let item of screenBean.stateInfos; let idx = index">
+      <mat-form-field class="mat-form-width">
+        <input id="txtM27ST1" matInput name="txtM27ST1" #txtM27ST1 maxlength="2" size="2" tabindex="" type="text" [(disabled)]="screenBean.titleFlag"
+          [(ngModel)]="item.exState" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 text-right margin-top-60">
+    <button id="btnErrorCancel" type="button" class="btn btn-default margin-right-20" foxHotkey="alt+r" (click)="CANCELEventClick()">
+      Return (R)
+    </button>
+    <button id="btnErrorCancel" type="button" class="btn btn-default margin-right-20" foxHotkey="alt+t" (click)="CLEAREventClick()">
+      Reset (T)
+    </button>
+    <button id="Enter" name="Enter" #btnLabel5 type="button" class="btn btn-primary" foxHotkey="alt+e" (click)="ENTEREventClick()">
+      Enter (E)
+    </button>
+  </div>
+</fox-section>

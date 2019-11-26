@@ -1,0 +1,33 @@
+.container-input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.container-label {
+  margin-bottom: 7px;
+}
+
+.ng-select-bottom {
+  margin-bottom: 2px;
+}
+
+.label-for-select {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.container-input-reason-right {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.container-input-reason-return-top {
+  padding-top: 16px;
+  padding-bottom: 10px;
+}
+
+
+

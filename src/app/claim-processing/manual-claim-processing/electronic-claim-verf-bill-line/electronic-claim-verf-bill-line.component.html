@@ -1,0 +1,99 @@
+<div class="page-title"><span><img class="icon-indicator" focusable="false" src="assets/img/heart.svg"></span>
+  Verification File Maintainance - Bill Lines
+</div>
+<fox-section>
+  <div> <label>Claim: </label> {{screenBean.m45clo1}}</div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <fox-table [tableColumns]="columns" [tableData]="tableData"
+             [fixedFirstColumn]="false">
+  </fox-table>
+</fox-section>
+
+<fox-section>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="fox-currency" labelText="Total Amount Charged" id="txtM45BLDT"
+               [(ngModel)]="screenBean.m45bldt"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-currency" labelText="Total Amount Approved" id="txtM45APRT"
+               [(ngModel)]="screenBean.m45aprt"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-currency" labelText="Total Amount Deducted" id="txtM45DEDT"
+               [(ngModel)]="screenBean.m45dedt"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-currency" labelText="Total Amount Paid" id="txtM45PAYT"
+               [(ngModel)]="screenBean.m45payt"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-currency" labelText="Total Amount Ineligible" id="txtM45INAT"
+               [(ngModel)]="screenBean.m45inat"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+  </div>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="text" id="txtM45CINT"
+               labelText="Claim Interest"
+               [(ngModel)]="screenBean.m45cint"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-date" id="txtM45SDFR"
+               labelText="Service From Date"
+               [(ngModel)]="screenBean.map45SavePart.claimServFromDate" placeholder="MM/DD/YYYY"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-date" id="txtM45SDTO"
+               labelText="Service To Date"
+               [(ngModel)]="screenBean.map45SavePart.claimServToDate" placeholder="MM/DD/YYYY"
+               class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="text" id="txtM45ERCD"
+               labelText="Errors"
+               [(ngModel)]="screenBean.m45ercd" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="text" id="txtM45IERR"
+               labelText="Insured Errors"
+               [(ngModel)]="screenBean.m45ierr" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+  </div>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="text" id="txtM45REPL"
+               labelText="Reply"
+               [(ngModel)]="screenBean.m45repl" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <label class="form-row-margin-top-40">1-Complete 2-Bypass 4-Manual</label>
+  </div>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="text" id="txtM45CLMN"
+               labelText="Note"
+               [(ngModel)]="screenBean.m45clmn" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+  </div>
+  <div class="col-md-12 no-padding form-row-margin-top">
+    <div class="form-row text-right">
+      <button type="button" class="btn btn-secondary form-field-margin-right" (click)="pf1EventClick()"
+              foxHotkey="alt+j">Return
+        (J)
+      </button>
+      <button type="button" class="btn btn-secondary form-field-margin-right" (click)="pf4EventClick()"
+              foxHotkey="alt+i">
+        Insured Screen
+        (I)
+      </button>
+    </div>
+  </div>
+</fox-section>
+
+
+
+
+
+

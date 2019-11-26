@@ -1,0 +1,51 @@
+<fox-section>
+  <fox-loading-overlay>
+    <div class="container-grey-border container-non-standard">
+      <div class="container-audit-heading">Claim Audit</div>
+      <div class="row row-audit-log">
+        <div class="col-md-12 section-audit-log-info no-padding">
+          <div class="container-audit-log col-md-6 no-padding">
+            <div class="section-audit-log no-padding">
+              <div class="row-audit-header">Receipt Date</div>
+              <div class="row-audit-value">{{claimAuditDetails?.receiptDate | date: 'MM/dd/yyyy'}}</div>
+            </div>
+            <div class="section-audit-log no-padding">
+              <div class="row-audit-header">Suspend Date</div>
+              <div class="row-audit-value">{{claimAuditDetails.suspendDate | date: 'MM/dd/yyyy'}}</div>
+            </div>
+          </div>
+          <div class="container-audit-log col-md-6 no-padding">
+            <div class="section-audit-log no-padding">
+              <div class="row-audit-header">Suspend Reason</div>
+              <div class="row-audit-value">{{suspendReason}}</div>
+            </div>
+            <div class="section-audit-log no-padding">
+              <div class="row-audit-header">Completed By</div>
+              <div class="row-audit-value">{{claimAuditDetails?.completedBy}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-audit-log">
+        <div class="col-md-12 section-audit-log-info no-padding">
+          <div class="container-audit-log col-md-6 no-padding">
+            <div class="section-audit-log no-padding">
+              <div class="row-audit-header">Quality Date</div>
+              <div class="row-audit-value">{{claimAuditDetails?.qualityDate | date: 'MM/dd/yyyy'}}</div>
+            </div>
+            <div class="section-audit-log no-padding">
+              <div class="row-audit-header">Quality Error Code</div>
+              <div class="row-audit-value">{{qualityErrorCode}}</div>
+            </div>
+          </div>
+          <div class="container-audit-log col-md-6 no-padding">
+            <div class="section-audit-log no-padding">
+              <div class="row-audit-header">Processing System</div>
+              <div class="row-audit-value">{{claimAuditDetails?.processingSystem}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fox-loading-overlay>
+</fox-section>

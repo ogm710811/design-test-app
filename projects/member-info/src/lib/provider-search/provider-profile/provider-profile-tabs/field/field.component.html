@@ -1,0 +1,91 @@
+<table *ngIf="labels.length === 1 && !showOneColumn" class="table-provider">
+  <tbody>
+    <tr><td class="padding-bottom-five"><div class="provider-header">{{labels[0]}}</div></td></tr>
+    <tr><td class="table-row-value padding-bottom-three"><img *ngIf="labels[0] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/><div class="provider-value">{{values[0]}}</div></td></tr>
+  </tbody>
+</table>
+
+<table *ngIf="labels.length === 2 && !showTwoColumn" class="table-provider">
+  <tbody>
+  <tr>
+    <td class="table-row-fifty padding-bottom-five"><div class="provider-header">{{labels[0]}}</div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-fifty padding-bottom-five"><div class="provider-header">{{labels[1]}}</div></td>
+  </tr>
+  <tr class="table-transparent">
+    <td class="table-row-value padding-bottom-three"><div class="provider-value"><img *ngIf="labels[0] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/>{{values[0]}}</div></td>
+    <td></td>
+    <td class="table-row-value padding-bottom-three"><div class="provider-value"><img *ngIf="labels[1] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/>{{values[1]}}</div></td>
+  </tr>
+  </tbody>
+</table>
+
+<table *ngIf="labels.length === 4" class="table-provider">
+  <tbody>
+  <tr>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header">{{labels[0]}}</div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header">{{labels[1]}}</div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header">{{labels[2]}}</div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header">{{labels[3]}}</div></td>
+  </tr>
+  <tr class="table-transparent">
+    <td class="table-row-value padding-bottom-three"><img *ngIf="labels[0] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/><div class="provider-value">{{values[0]}}</div></td>
+    <td></td>
+    <td class="table-row-value padding-bottom-three"><img *ngIf="labels[1] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/><div class="provider-value">{{values[1]}}</div></td>
+    <td></td>
+    <td class="table-row-value padding-bottom-three"><img *ngIf="labels[2] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/><div class="provider-value">{{values[2]}}</div></td>
+    <td></td>
+    <td class="table-row-value padding-bottom-three"><img *ngIf="labels[3] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/><div class="provider-value">{{values[3]}}</div></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<table *ngIf="showOneColumn" class="table-provider">
+  <tbody>
+  <tr>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header">{{labels[0]}}</div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header"></div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header"></div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header"></div></td>
+  </tr>
+  <tr class="table-transparent">
+    <td class="table-row-value padding-bottom-three"><div class="provider-value"><img *ngIf="labels[0] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/>{{values[0]}}</div></td>
+    <td></td>
+    <td class="padding-bottom-three"><div class="provider-value"></div></td>
+    <td></td>
+    <td class="padding-bottom-three"><div class="provider-value"></div></td>
+    <td></td>
+    <td class="padding-bottom-three"><div class="provider-value"></div></td>
+  </tr>
+  </tbody>
+</table>
+
+<table *ngIf="showTwoColumn" class="table-provider">
+  <tbody>
+  <tr>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header">{{labels[0]}}</div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header">{{labels[1]}}</div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header"></div></td>
+    <td class="table-row-separation"></td>
+    <td class="table-row-quarter padding-bottom-five"><div class="provider-header"></div></td>
+  </tr>
+  <tr class="table-transparent">
+    <td class="table-row-value padding-bottom-three"><div class="provider-value"><img *ngIf="labels[0] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/>{{values[0]}}</div></td>
+    <td></td>
+    <td class="table-row-value padding-bottom-three"><div class="provider-value"><img *ngIf="labels[1] === 'Email'" class="image-icon" src="/assets/img/mail.svg"/>{{values[1]}}</div></td>
+    <td></td>
+    <td class="padding-bottom-three"><div class="provider-value"></div></td>
+    <td></td>
+    <td class="padding-bottom-three"><div class="provider-value"></div></td>
+  </tr>
+  </tbody>
+</table>

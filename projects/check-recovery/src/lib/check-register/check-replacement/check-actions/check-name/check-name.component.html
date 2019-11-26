@@ -1,0 +1,138 @@
+<div class="col-xs-12 col-sm-4 col-md-4" [formGroup]="parent">
+  <div class="row" formGroupName="checkName">
+    <div *ngIf="isInstitution && !state.isAuthorizeScreen" class="col-xs-12 container-input">
+      <div class="container-input-and-label">
+        <label class="label-for-input">Full Payee Name - Required</label>
+        <img src="assets/img/error-icon.svg" class="img-invalid-field"
+             *ngIf="displayValidation('fullPayeeName')" alt="error icon">
+        <div class="container-input-box"
+             [ngClass]="{
+                 'focus-within': hasFullPayeeNameFocus,
+                 'container-input-box-error': displayValidation('fullPayeeName')
+               }">
+          <input
+              class="txtbox-fn"
+              type="text"
+              (focus)="onInputFocus('fullPayeeName')"
+              (blur)="onInputBlur('fullPayeeName')"
+              formControlName="fullPayeeName">
+        </div>
+      </div>
+      <div class="container-error-text"
+           *ngIf="displayValidation('fullPayeeName')" alt="error icon">
+        {{errorMessage['fullPayeeName']}}
+      </div>
+    </div>
+    <div *ngIf="!isInstitution && !state.isAuthorizeScreen">
+      <div class="col-xs-12 container-input">
+        <div class="container-input-and-label">
+          <label class="label-for-input">First Name - Required</label>
+          <img src="assets/img/error-icon.svg" class="img-invalid-field"
+               *ngIf="displayValidation('checkFirstName')" alt="error icon">
+          <div class="container-input-box"
+               [ngClass]="{
+                 'focus-within': hasCheckFirstNameFocus,
+                 'container-input-box-error': displayValidation('checkFirstName')
+               }">
+            <input
+                class="txtbox-fn"
+                type="text"
+                (focus)="onInputFocus('checkFirstName')"
+                (blur)="onInputBlur('checkFirstName')"
+                formControlName="checkFirstName">
+          </div>
+        </div>
+        <div class="container-error-text"
+             *ngIf="displayValidation('checkFirstName')" alt="error icon">
+          {{errorMessage['checkFirstName']}}
+        </div>
+      </div>
+      <div class="col-xs-12 container-input">
+        <div class="container-input-and-label">
+          <label class="label-for-input">Last Name - Required</label>
+          <img src="assets/img/error-icon.svg" class="img-invalid-field" *ngIf="displayValidation('checkLastName')" alt="error icon">
+          <div class="container-input-box"
+               [ngClass]="{
+                 'focus-within': hasCheckLastNameFocus,
+                 'container-input-box-error': displayValidation('checkLastName')
+               }">
+            <input
+                class="txtbox-fn"
+                type="text"
+                (focus)="onInputFocus('checkLastName')"
+                (blur)="onInputBlur('checkLastName')"
+                formControlName="checkLastName">
+          </div>
+        </div>
+        <div *ngIf="displayValidation('checkLastName')" class="container-error-text">
+          {{errorMessage['checkLastName']}}
+        </div>
+      </div>
+      <div class="col-xs-6 container-input">
+        <div class="container-input-and-label">
+          <label class="label-for-input">Middle Initial</label>
+          <img src="assets/img/error-icon.svg" class="img-invalid-field" *ngIf="displayValidation('checkMiddleName')" alt="error icon">
+          <div class="container-input-box"
+               [ngClass]="{
+                 'focus-within': hasMiddleNameFocus,
+                 'container-input-box-error': displayValidation('checkMiddleName')
+               }">
+            <input
+                class="txtbox-fn"
+                type="text"
+                (focus)="onInputFocus('checkMiddleName')"
+                (blur)="onInputBlur('checkMiddleName')"
+                formControlName="checkMiddleName">
+          </div>
+        </div>
+        <div *ngIf="displayValidation('checkMiddleName')" class="container-error-text">
+          {{errorMessage['checkMiddleName']}}
+        </div>
+      </div>
+      <div class="col-xs-6 container-input">
+        <div class="container-input-and-label">
+          <label class="label-for-input">Suffix</label>
+          <img src="assets/img/error-icon.svg" class="img-invalid-field" *ngIf="displayValidation('checkSuffixName')" alt="error icon">
+          <div class="container-input-box"
+               [ngClass]="{
+                 'focus-within': hasCheckSuffixNameFocus,
+                 'container-input-box-error': displayValidation('checkSuffixName')
+               }">
+            <input
+              class="txtbox-fn"
+              type="text"
+              (focus)="onInputFocus('checkSuffixName')"
+              (blur)="onInputBlur('checkSuffixName')"
+              formControlName="checkSuffixName">
+          </div>
+        </div>
+        <div *ngIf="displayValidation('checkSuffixName')" class="container-error-text">
+          {{errorMessage['checkSuffixName']}}
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 div-container-institution" *ngIf="state.isAuthorizeScreen">
+      <fox-read-only-field label="Institution?" [value]="getInstitutionValue()">
+      </fox-read-only-field>
+    </div>
+    <div *ngIf="state?.checkDetails?.payee && state.isAuthorizeScreen">
+      <div class="col-xs-12 div-container-read-only">
+        <fox-read-only-field label="Full Payee Name" [value]="state?.checkDetails?.payee"></fox-read-only-field>
+      </div>
+    </div>
+    <div *ngIf="!state?.checkDetails?.payee && state.isAuthorizeScreen">
+      <div class="col-xs-12 div-container-read-only">
+        <fox-read-only-field label="First Name" [value]="state?.checkDetails?.payeeFirstName"></fox-read-only-field>
+      </div>
+      <div class="col-xs-12 div-container-read-only">
+        <fox-read-only-field label="Last Name" [value]="state?.checkDetails?.payeeSurname"></fox-read-only-field>
+      </div>
+      <div class="col-xs-6 div-container-read-only">
+        <fox-read-only-field label="Middle Initial" [value]="state?.checkDetails?.payeeMiddleInitial"></fox-read-only-field>
+      </div>
+      <div class="col-xs-6 div-container-read-only">
+        <fox-read-only-field label="Suffix" [value]="state?.checkDetails?.suffix"></fox-read-only-field>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+.container-eob-modal-txt {
+  min-height: 20px;
+  max-width: 877px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 20px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.container-send-replace-table {
+  margin-bottom: 30px;
+  overflow: auto;
+}
+
+.container-modal-btns {
+  padding-right: 20px;
+}
+
+.btn-search-modal, .btn-clear-modal {
+  height: 39px;
+  width: 128px;
+  border-radius: 2px;
+}
+
+.btn-clear-modal {
+  margin-right: 15px;
+}
+
+.table-send-replace-eob {
+  margin-bottom: 0;
+}
+
+.table-send-replace-eob > tbody > tr:last-child {
+  border-bottom: 1px solid #DCE4E8;
+}
+
+.table-send-replace-eob > thead:first-child > tr:first-child > th {
+  max-height: 38px;
+  background-color: #F6F8F9;
+  color: #4E5B71;
+}
+
+.column-recipient {
+  width: 168px;
+}
+
+.column-claim-num {
+  width: 160px;
+}
+
+.column-dos {
+  width: 205px;
+}
+
+.column-status {
+  width: 130px;
+}
+
+.column-primary-icd {
+  width: 130px;
+}
+
+.column-type {
+  width: 120px;
+}
+
+.span-checkbox-text {
+  height: 14px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  padding-left: 5px;
+}
+
+.container-checkbox {
+  width: 151px;
+  line-height: 14px;
+  vertical-align: middle;
+}
+
+.tooltip-error-text {
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 500;
+  width: 200px;
+}
+
+.container-tbody-eob {
+  max-height: 112px;
+}
+
+table.table-send-replace-eob tbody, table.table-send-replace-eob thead {
+  width: 915px;
+  display: block;
+}
+
+table.table-send-replace-eob tbody {
+  width: 912px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 1px solid #DCE4E8;
+}
+
+input[type='checkbox'][disabled] {
+  pointer-events: none;
+}
+
+.span-insured {
+  margin-right: 10px;
+}

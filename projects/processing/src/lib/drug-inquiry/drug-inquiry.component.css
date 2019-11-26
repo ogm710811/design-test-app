@@ -1,0 +1,115 @@
+.container-title {
+  margin: 0;
+  padding: 20px 20px 0 20px;
+}
+
+.container-title-rx {
+  margin: 0;
+  padding: 0;
+}
+
+.container-sub-title {
+  margin: -7px 0 0 0;
+  padding: 0 0 20px 0;
+  color: #6E7681;
+  line-height: 16px;
+}
+
+.container-rx-search {
+  margin: 0;
+  padding: 0 0 18px 0;
+}
+
+.container-rx-params {
+  margin: 0;
+  padding: 0 0 20px 0;
+}
+
+.container-input-padding {
+  margin: 0;
+  padding: 0;
+}
+
+.container-input-last {
+  margin: 0;
+  padding: 0;
+}
+
+.container-buttons {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-margin-right-15 {
+  margin-right: 15px;
+}
+
+.span-multiple-benefit {
+  color: #303949;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.img-flag {
+  margin: 0 5px 0 10px;
+}
+
+.container-sub-title-search {
+  margin: 0;
+  padding: 0 0 25px 0;
+}
+
+.container-no-search {
+  text-align: center;
+  margin: 0;
+  padding: 25px 20px 50px 20px;
+}
+
+.img-no-msg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+  height: 184px;
+  margin-bottom: 25px;
+}
+
+.span-msg-desc {
+  color: #424242;
+  font-size: 13px;
+  line-height: 13px;
+}
+
+.container-table-search {
+  margin: 0;
+  padding: 0;
+}
+
+.container-div-paginator {
+  margin: -1px 0 0 -3px;
+  padding: 0;
+}
+
+.container-input-caption {
+  margin-top: -4px;
+  color: #252C37;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+@media (min-width: 767px) {
+
+  .container-input-padding {
+    padding-right: 20px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .container-input-padding {
+    margin-bottom: 18px;
+  }
+
+}

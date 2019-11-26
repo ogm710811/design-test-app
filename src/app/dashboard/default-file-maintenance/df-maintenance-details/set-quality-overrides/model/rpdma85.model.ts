@@ -1,0 +1,96 @@
+import { M85cmsgt } from './m85cmsgt.model';
+import { M85exct } from './m85exct.model';
+import { M85ltrst } from './m85ltrst.model';
+import { M85msgt } from './m85msgt.model';
+
+/**
+ * Model class Rpdma85
+ * Path: screenbean/setqltyovrd
+ * Model: com::uhc::aarp::fox::domain::screenbean::setqltyovrd::Rpdma85
+ */
+export class Rpdma85 {
+  m85hed2 = '';
+  m85head = '';
+  m85typl = '';
+  m85type = '';
+  m85mdat = '';
+  m85mpol = '';
+  m85mpos = '';
+  m85mion = '';
+  m85pay = '';
+  m85npay = '';
+  m85corp = '';
+  m85ndoc = '';
+  m85nhos = '';
+  m85spec = '';
+  m85sclm = '';
+  m85ben = '';
+  m85admh = '';
+  m85pdn = '';
+  m85ltrs = '';
+  m85revd = '';
+  m85exs = '';
+  m85comm = '';
+  m85revs = '';
+  m85paya = '';
+  m85deci = '';
+  m85revp = '';
+  m85smem = '';
+  m85ver1 = '';
+  m85ver2 = '';
+  m85mltr = '';
+  m85asna = '';
+  m85asnp = '';
+  m85asha = '';
+  m85ashp = '';
+  m85nasa = '';
+  m85nasp = '';
+  m85naha = '';
+  m85nahp = '';
+  m85msp1 = '';
+  m85msp2 = '';
+  m85msp3 = '';
+  m85msp4 = '';
+  m85msp5 = '';
+  m85msp6 = '';
+  m85msp7 = '';
+  m85msp8 = '';
+  m85msp9 = '';
+  m85ms10 = '';
+  m85mp10 = '';
+  m85cp1 = '';
+  m85cp2 = '';
+  m85cp3 = '';
+  m85cp4 = '';
+  m85cp5 = '';
+  m85cp6 = '';
+  m85cp7 = '';
+  m85cp8 = '';
+  m85cp9 = '';
+  m85cp10 = '';
+  m85lp01 = '';
+  m85lp02 = '';
+  m85lp03 = '';
+  m85lp04 = '';
+  m85lp05 = '';
+  m85lp06 = '';
+  m85lp07 = '';
+  m85lp08 = '';
+  m85lp09 = '';
+  m85lp10 = '';
+  m85excl = '';
+  m85verf = '';
+  m85veri = '';
+  m85err1 = '';
+  m85msgts: M85msgt[] = [];
+  m85ltrsts: M85ltrst[] = [];
+  m85cmsgts: M85cmsgt[] = [];
+  m85excts: M85exct[] = [];
+  m85tExlNo = '';
+  m85tRevpZ = 0;
+  m85tAsnaZ = 0;
+  m85tAshaZ = 0;
+  m85tNasaZ = 0;
+  m85tNahaZ = 0;
+   excLocationDisp = true;
+}

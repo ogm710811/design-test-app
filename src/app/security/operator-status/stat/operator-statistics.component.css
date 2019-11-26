@@ -1,0 +1,104 @@
+.container-site-margin {
+  margin-left: -30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.table-tr-border-top {
+  border-top:  solid 1px lightgray;
+}
+
+.container-review-record {
+  margin-left: -10px;
+  margin-top: 40px;
+}
+
+.mat-divider-one {
+  margin: 25px -20px 10px;
+}
+
+.mat-divider-two {
+  margin: 0 -20px 10px;
+}
+
+.container-field-label {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 10px 0 0 0;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  margin-bottom: 5px;
+}
+
+.container-productive-staff {
+  margin-bottom: -10px;
+}
+
+.container-title-card {
+  margin-bottom: 15px;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+}
+
+.container-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.container-div-fox-sub-title {
+  margin-top: -10px;
+  margin-bottom: 25px
+}
+
+.container-table-op-statistics {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.container-div-paginator {
+  margin: -30px -20px -10px -23px;
+}
+
+.mat-divider-margins {
+  margin: 3px -20px 20px;
+}
+
+.container-div-selection {
+  width: 115px;
+}
+
+.container-div-inline-block {
+  display: inline-block;
+}
+
+.container-div-button {
+  width: 120px;
+  position: absolute;
+  top: 13px;
+  left: 130px;
+}
+
+.container-div-row {
+  position: relative;
+  margin-bottom: -7px;
+}
+
+@media  (min-width: 767px) {
+  .container-row-holder {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}

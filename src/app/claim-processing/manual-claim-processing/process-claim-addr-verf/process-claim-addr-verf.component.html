@@ -1,0 +1,169 @@
+<div class="row">
+  <div id="Address-verification-previous"
+       class="col-xs-12 container-return-prev">
+    <span (click)="pf1EventClick()"
+          foxHotkey="ctrl+f1"
+          hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </span>
+  </div>
+</div>
+<fox-section>
+  <div class="container-div-section-padding-add">
+    <fox-section-title>Member Demographics</fox-section-title>
+    <div class="row container-div-demographics-first-row">
+      <div class="container-row-holder hidden-xs">
+        <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Name'"
+                               value="{{screen.m36inam}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-5 container-inputs container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Address'"
+                               value="{{screen.m36iad1}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input-left">
+          <fox-read-only-field [label]="'Address'"
+                               value="{{screen.m36iad2}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="visible-xs">
+        <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs-read-only">
+          <fox-read-only-field [label]="'Name'"
+                               value="{{screen.m36inam}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="visible-xs">
+        <div class="col-xs-12 col-sm-5 container-inputs container-fox-inputs-xs-read-only">
+          <fox-read-only-field [label]="'Address'"
+                               value="{{screen.m36iad1}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="visible-xs">
+        <div class="col-xs-12 col-sm-4 container-input-left">
+          <fox-read-only-field [label]="'Address'"
+                               value="{{screen.m36iad2}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </div>
+    <div class="row container-div-alternative-address">
+      <div class="container-row-holder hidden-xs">
+        <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Alternate Name'"
+                               value="{{screen.m36anam}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-5 container-inputs container-fox-inputs-xs">
+          <fox-read-only-field [label]="'Alternate Address 1'"
+                               value="{{screen.m36aad1}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input-left">
+          <fox-read-only-field [label]="'Alternate Address 2'"
+                               value="{{screen.m36aad2}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="visible-xs">
+        <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs-read-only">
+          <fox-read-only-field [label]="'Alternate Name'"
+                               value="{{screen.m36anam}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="visible-xs">
+        <div class="col-xs-12 col-sm-5 container-inputs container-fox-inputs-xs-read-only">
+          <fox-read-only-field [label]="'Alternate Address 1'"
+                               value="{{screen.m36aad1}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="visible-xs">
+        <div class="col-xs-12 col-sm-4 container-input-left container-div-alternative-address2">
+          <fox-read-only-field [label]="'Alternate Address 2'"
+                               value="{{screen.m36aad2}}">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section>
+  <div class="container-div-section-padding-add">
+    <fox-section-title>Additional Details</fox-section-title>
+    <div class="container-div-fox-sub-title">
+      <fox-section-subheader>Confirm mailing address and Medicare ID are correct.</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-2">
+        <label class="label-for-input">
+          Is The Mailing <span class="span-white-space">Address Correct?</span>
+        </label>
+        <div class="container-select-border">
+          <ng-select [items]="items"
+                     bindLabel="name"
+                     bindValue="id"
+                     [clearable]="false"
+                     (change)="onChangeSelect($event)"
+                     [(ngModel)]="screen.m36acor">
+          </ng-select>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-div-medicare-id">
+        <fox-input type="text"
+                   id="txtM36HICN"
+                   name="txtM36HICN"
+                   labelText="Medicare Id"
+                   [(ngModel)]="screen.m36hicn"
+                   [length]="12">
+        </fox-input>
+      </div>
+    </div>
+    <div *ngIf="screen.m36acor === 'N'" class="row">
+      <div class="col-xs-12 container-alert-text-font">
+        <span class="span-alert-text-font-weight">All address changes and/or updates must be made in COMPAS.</span>
+      </div>
+    </div>
+  </div>
+  <mat-divider class="mat-divider-margins"></mat-divider>
+  <div class="container-div-section-padding-add">
+    <fox-section-title>Insured Note </fox-section-title>
+    <div class="container-div-fox-sub-title">
+      <fox-section-subheader>Add insured note below (256 character limit).</fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 container-div-text-area">
+        <fox-input type="textarea"
+                   labelText="Insured Note"
+                   isFullHeight = true;
+                   [(ngModel)]="screen.m36ins1"
+                   length="256"></fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="container-button-margin">
+  <div class="container-btn margin-bottom-20">
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button class="container-btn-margin"
+                        [buttonValue] = "'Continue (L)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [hasChevron]="true"
+                        [foxHotKeyValue]="'alt+l'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

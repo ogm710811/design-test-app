@@ -1,0 +1,186 @@
+<fox-section [paddingBottom23px]="showOtherSearchMethods"
+             [drawRectangleNoBottomPadding]="true">
+  <fox-section-title><div class="container-title-circle">1</div>Enter Criteria</fox-section-title>
+  <div class="container-div-fox-sub-title">
+    <fox-section-subheader>Enter Location # and Process Claim/Quality -or- IONS to begin</fox-section-subheader>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97COMLOC"
+                 name="txtM97COMLOC"
+                 labelText="Location #"
+                 length="3"
+                 [(ngModel)]="screenBean.m97comloc">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97PORQ"
+                 name="txtM97PORQ"
+                 labelText="Process Claim or Quality"
+                 length="7"
+                 [(ngModel)]="screenBean.m97porq">
+      </fox-input>
+      <div><span class="span-valid-value">Valid values include P, Q or S</span></div>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs">
+      <fox-input type="text"
+                 id="txtM97IONS"
+                 name="txtM97IONS"
+                 labelText="IONS"
+                 length="6"
+                 [(ngModel)]="screenBean.m97ions">
+      </fox-input>
+    </div>
+  </div>
+  <mat-divider class="mat-divider-margins"></mat-divider>
+  <div class="row" [ngClass]="{
+    'container-other-search-methods': showOtherSearchMethods,
+    'container-other-search-methods-closed': !showOtherSearchMethods
+  }">
+    <span class="span-other-search" (click)="showOtherSearchMethodsFunction()" (keydown.enter)="showOtherSearchMethodsFunction()" tabindex="0">
+      <img class="img-arrow" *ngIf="!showOtherSearchMethods" alt="arrow right" src="/assets/img/arrow-right-blue.svg"/>
+      <img class="img-arrow" *ngIf="showOtherSearchMethods" alt="arrow right" src="/assets/img/arrow-down-blue.svg"/>
+      <span class="span-other-search-label">Other Search Methods</span>
+    </span>
+  </div>
+  <div *ngIf="showOtherSearchMethods" class="row">
+    <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97DIV"
+                 name="txtM97DIV"
+                 labelText="Division #"
+                 length="3"
+                 [(ngModel)]="screenBean.m97div">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97DBYL"
+                 name="txtM97DBYL"
+                 labelText="By Location"
+                 length="1"
+                 [(ngModel)]="screenBean.m97dbyl">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97SITE"
+                 name="txtM97SITE"
+                 labelText="Site #"
+                 length="1"
+                 [(ngModel)]="screenBean.m97site">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97SBYD"
+                 name="txtM97SBYD"
+                 labelText="By Division"
+                 length="1"
+                 [(ngModel)]="screenBean.m97sbyd">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+  </div>
+  <div *ngIf="showOtherSearchMethods" class="row">
+    <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97ORG"
+                 name="txtM97ORG"
+                 labelText="Organization #"
+                 length="3"
+                 [(ngModel)]="screenBean.m97org">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM97OBYD"
+                 name="txtM97OBYD"
+                 labelText="By Division"
+                 length="1"
+                 [(ngModel)]="screenBean.m97obyd">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs">
+      <fox-input type="text"
+                 id="txtM97OBYS"
+                 name="txtM97OBYS"
+                 labelText="By Site"
+                 length="1"
+                 [(ngModel)]="screenBean.m97obys">
+      </fox-input>
+    </div>
+  </div>
+</fox-section>
+<fox-section [paddingBottom23px]="true">
+  <fox-section-title><div class="container-title-circle">2</div>Specify Date</fox-section-title>
+  <div class="container-div-fox-sub-title">
+    <fox-section-subheader>Enter Authority Level and Position OR Division OR Location OR Template to begin</fox-section-subheader>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+      <fox-input type="fox-date"
+                 id="txtM97DAY"
+                 name="txtM97DAY"
+                 labelText="Day"
+                 length="10"
+                 [(ngModel)]="specifyDateDay">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs container-fox-inputs-xs">
+      <fox-input type="fox-date"
+                 id="txtM97WEEK"
+                 name="txtM97WEEK"
+                 labelText="Week"
+                 length="10"
+                 [(ngModel)]="specifyDateWeek">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs">
+      <fox-input type="fox-date"
+                 placeholder="MM/YY"
+                 id="txtM97MNTH"
+                 name="txtM97MNTH"
+                 labelText="Month"
+                 displayFormat="MM/YY"
+                 programmaticFormat="MMYY"
+                 length="5"
+                 [(ngModel)]="screenBean.m97mnth">
+      </fox-input>
+    </div>
+  </div>
+</fox-section>
+<div class="container-float-right">
+  <button type="button"
+          class="btn btn-secondary"
+          (click)="btnClearEventClick()"
+          foxHotkey="alt+r"
+          hotkeyAction="click">
+    Clear (R)
+  </button>
+  <fox-loading-button class="button-spacing"
+                      [buttonValue] = "'Continue (L)'"
+                      [buttonStatus]="continueStatus"
+                      [typeValue]="'button'"
+                      [hasChevron]="true"
+                      [foxHotKeyValue]="'alt+l'"
+                      (buttonClick)="btnEnterEventClick()">
+  </fox-loading-button>
+</div>

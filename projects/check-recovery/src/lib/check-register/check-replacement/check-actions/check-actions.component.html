@@ -1,0 +1,57 @@
+<ng-container *ngIf="selectedAction || state.isAuthorizeScreen">
+  <form [formGroup]="checkActionFormGroup" (ngSubmit)="onSubmit()">
+    <div class="row" *ngIf="currentCheckActionForm(checkActionForms.replaceCheck) || state.isAuthorizeScreen">
+      <fox-check-name [parent]="checkActionFormGroup"
+                      [isInstitution]="isInstitution">
+      </fox-check-name>
+      <fox-check-info [parent]="checkActionFormGroup"
+                      [isProvider]="isProvider"
+                      [checkRegisterInfo]="checkRegisterInfo">
+      </fox-check-info>
+      <fox-check-reason [parent]="checkActionFormGroup"
+                        [isProvider]="isProvider">
+      </fox-check-reason>
+    </div>
+    <div class="row" *ngIf="currentCheckActionForm(checkActionForms.voidCheck) && !state.isAuthorizeScreen">
+      <fox-check-void [parent]="checkActionFormGroup"></fox-check-void>
+    </div>
+    <div class="container-check-buttons"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 container-alert">
+        <ng-container *ngIf="checkActionFormGroup.get('checkReplaceReason.checkReason')?.invalid &&
+                             checkActionFormGroup.get('checkReplaceReason.checkReason')?.touched">
+          <div class="col container-alert-icon">
+            <img class="img-alert" src="assets/img/error-icon.svg" alt="alert message"/>
+          </div>
+          <div class="col-md-11 container-alert-text">
+            <p class="text-alert">Missing Replace Reason</p>
+            <p>Select from drop down and re-submit</p>
+          </div>
+        </ng-container>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 container-buttons">
+        <span class="pull-right">
+          <span *ngIf="!state.isAuthorizeScreen">
+            <button type="button" class="btn btn-secondary btn-search"
+                    foxHotkey="alt+r"
+                    (click)="resetForm()">Clear (R)
+            </button>
+            <button type="submit" class="btn btn-primary btn-search span-search-btn" [disabled]="checkActionFormGroup.invalid"
+              foxHotkey="alt+s">Submit (S)
+            </button>
+          </span>
+          <span *ngIf="state.isAuthorizeScreen">
+            <button class="btn btn-primary btn-deny">
+              <img class="img-deny" src="assets/img/Deny-white.svg">
+              Deny
+            </button>
+            <button class="btn btn-primary btn-authorize">
+                <img class="img-authorize" src="assets/img/checkmark-white.svg">
+                Authorize
+              </button>
+          </span>
+        </span>
+      </div>
+    </div>
+  </form>
+</ng-container>

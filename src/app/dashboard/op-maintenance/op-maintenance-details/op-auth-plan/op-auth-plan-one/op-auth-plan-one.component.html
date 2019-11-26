@@ -1,0 +1,172 @@
+<fox-loading-overlay>
+  <div class="container-plans-auth row">
+    <div class="col-xs-12 container-return-prev">
+      <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+      <span class="span-return-pre" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="cancelEventClick()">Return to Previous (F1)</span>
+    </div>
+  </div>
+  <fox-section [noPadding]="true">
+    <div class="row container-overview">
+      <div class="col-xs-12 container-overview-title">
+        <fox-section-title class="margin-top-20 margin-bottom-20">Overview</fox-section-title>
+      </div>
+      <div class="col-xs-12 container-overview-content">
+        <div class="col-xs-12 col-sm-6 col-md-3 container-read-only-custom">
+          <fox-input type="text"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeft="true"
+                     labelText="{{screen.map67Literal | titlecase}}"
+                     inputValue="{{screen.map67Value}}">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 container-read-only-custom container-read-small">
+          <fox-input type="text"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeft="true"
+                     labelText="{{screen.map67Position | titlecase}}"
+                     inputValue="{{screen.map67PosDesc}}">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [noPadding]="true" [overflowDisabled]="true">
+    <div class="row container-med-supplement">
+      <div class="col-xs-12 container-top-title"
+           [ngClass]="screen.map67Title1 === 'UPDATE' ? 'container-top-title': 'container-top-title-default'">
+        <fox-section-title class="margin-top-20">Medicare Supplement Plans</fox-section-title>
+        <div *ngIf="screen.map67Title1 === 'UPDATE'" class="container-sub-title">
+          <fox-section-subheader>Check box to grant operator access.</fox-section-subheader>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'UPDATE'" class="col-xs-12 container-plans-list">
+        <div *ngFor="let msInfoList of medSuplementPlans; let i = index"
+             [ngClass]="{ 'container-med-sup-infoList' : msInfoList.length > 0}">
+          <div *ngFor="let msInfo of msInfoList; let i = index; let last = last" class="container-med-sup" [ngClass]="{'container-last-cell' : last && i === 12 }">
+            <div class="container-vertical-align"
+                 [ngClass]="{ 'container-vertical-selected' : msInfo.map67MsAuth === '', 'container-vertical-unselected' : msInfo.map67MsAuth === 'N', 'container-last-cell' : last && i === 12 }">
+            <span class="span-checkbox-value">
+            <input type="checkbox" [checked]="msInfo.map67MsAuth === ''"
+                   (change)="changeSingleSelect($event, msInfo)"
+                   [attr.name]="'msPlan' + i"/>
+            </span>
+              <span class="span-ckeckbox-label">{{msInfo.map67MsPlan}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && medReadOnlyPermissions.length > 0" class="col-xs-12 container-description">
+        <span class="span-icon-permission"><img src="assets/img/confirm-green.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">PERMISSIONS</span>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && medReadOnlyPermissions.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let msInfoList of medReadOnlyPermissions; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : msInfoList.length > 0}">
+          <div *ngFor="let msInfo of msInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{msInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && medReadOnlyDenials.length > 0" class="col-xs-12 container-description"
+           [ngClass]="{'margin-top-30' : medReadOnlyPermissions.length > 0}">
+        <span class="span-icon-permission"><img src="assets/img/deny-red.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">DENIALS</span>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && medReadOnlyDenials.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let msInfoList of medReadOnlyDenials; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : msInfoList.length > 0}">
+          <div *ngFor="let msInfo of msInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{msInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'UPDATE'" class="col-xs-12 container-select-all">
+        <input type="checkbox" [checked]="allMsSelect" (change)="changeAllMsSelect($event, allMsSelect)"/>
+        <span class="span-select-label">Select/Unselect All</span>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [noPadding]="true" [overflowDisabled]="true">
+    <div class="row container-med-supplement">
+      <div class="col-xs-12 container-top-title">
+        <fox-section-title class="margin-top-20">Hospital Indemnity Plans - HIP</fox-section-title>
+        <div *ngIf="screen.map67Title1 === 'UPDATE'" class="container-sub-title">
+          <fox-section-subheader>Check box to grant operator access.</fox-section-subheader>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'UPDATE'" class="col-xs-12 container-plans-list">
+        <div *ngFor="let hsInfoList of hospIdemnityPlans; let i = index"
+             [ngClass]="hsInfoList.length > 0 ? 'container-med-sup-infoList': 'container-med-sup-infoList_noBorder'">
+          <div *ngFor="let hsInfo of hsInfoList; let i = index; let last = last" class="container-med-sup"
+               [ngClass]="{'container-last-cell' : last && i === 12 }">
+            <div class="container-vertical-align"
+                 [ngClass]="{ 'container-vertical-selected' : hsInfo.map67HipAuth === '', 'container-vertical-unselected' : hsInfo.map67HipAuth === 'N', 'container-last-cell' : last && i === 12}">
+            <span class="span-checkbox-value">
+            <input type="checkbox" [checked]="hsInfo.map67HipAuth === ''"
+                   (change)="changeSingleHsSelect($event, hsInfo)"
+                   [attr.name]="'hsPlan' + i"/>
+            </span>
+              <span class="span-ckeckbox-label">{{hsInfo.map67HipPlan}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && hosReadOnlyPermissions.length > 0" class="col-xs-12 container-description">
+        <span class="span-icon-permission"><img src="assets/img/confirm-green.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">PERMISSIONS</span>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && hosReadOnlyPermissions.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let hsInfoList of hosReadOnlyPermissions; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : hsInfoList.length > 0}">
+          <div *ngFor="let hsInfo of hsInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{hsInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && hosReadOnlyDenials.length > 0" class="col-xs-12 container-description"
+           [ngClass]="{'margin-top-30': hosReadOnlyPermissions.length > 0}">
+        <span class="span-icon-permission"><img src="assets/img/deny-red.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">DENIALS</span>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'REVIEW' && hosReadOnlyDenials.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let hsInfoList of hosReadOnlyDenials; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : hsInfoList.length > 0}">
+          <div *ngFor="let hsInfo of hsInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{hsInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map67Title1 === 'UPDATE'" class="col-xs-12 container-select-all">
+        <input type="checkbox" [checked]="allHsSelect" (change)="changeAllHsSelect($event, allHsSelect)"/>
+        <span class="span-select-label">Select/Unselect All</span>
+      </div>
+    </div>
+  </fox-section>
+  <div class="container-button-margin" *ngIf="screen.map67Title1 === 'UPDATE'">
+    <div class="container-float-right margin-bottom-20">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="nextScreenClick()"
+              foxHotkey="alt+m"
+              hotkeyAction="click">
+        Next Screen (M)
+      </button>
+      <fox-loading-button class="button-margin-left"
+                          [buttonValue] = "'Submit (S)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+s'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</fox-loading-overlay>

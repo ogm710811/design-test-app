@@ -1,0 +1,157 @@
+.fox-section-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.fox-section-subtitle {
+  color: #6E7681;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.section-title {
+  margin-bottom: 5px;
+}
+
+.div-title {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+}
+
+.div-subtitle {
+  color: #6E7681;
+  font-size: 14px;
+  line-height: 16px;
+  display: inline-block;
+}
+
+.content-callout-base {
+  width: 100%;
+  background-color: #F2F5F8;
+  margin-top: 25px;
+  padding: 15px 20px;
+}
+
+.subtitle-copy {
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.div-rescan-dcn {
+  padding-top: 9px;
+  padding-left: 10px;
+  line-height: 18px;
+}
+
+.div-container-upload {
+  margin-top: 25px;
+}
+
+.span-choose-file {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.file-upload {
+  margin-top: 5px;
+  height: 40px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.btn-browse {
+  margin-top: -10px;
+  height: 39px;
+}
+
+.div-file {
+  margin-left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 15px;
+  padding-top: 3px;
+  width: calc(90% - 130px);
+}
+
+.div-no-file {
+  color: #333333;
+}
+
+.div-file-selected {
+  font-weight: 500;
+}
+
+.div-selected-file {
+  margin-bottom: 8px;
+}
+
+.div-container-sample {
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.div-choose-file {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.div-sample-file {
+  color: #196ECF;
+  font-size: 14px;
+}
+
+.div-sample-file a {
+  text-decoration: none;
+}
+
+.btn-upload {
+  float: left;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.file-upload-note {
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.arrow-right {
+  height: 15px;
+  width: 10px;
+}
+
+.txt-bold {
+  font-weight: bold;
+}
+
+.btn-cancel-upload {
+  margin-left: 15px;
+}
+
+.container-progress-bar {
+  width: 90%;
+}
+
+.btn-cancel {
+  margin-right: 15px;
+}
+
+.txt-msg {
+  margin-bottom: 30px;
+}
+
+.ol-margin-padding {
+  margin-left: -25px;
+}
+
+.btn-proceed{
+  padding-right: 20px;
+}

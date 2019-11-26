@@ -1,0 +1,28 @@
+<span>
+  <ng-container *ngIf="!menus || (menus && !menus.length)">
+    <button type="button" class="btn btn-data-button" (click)="buttonClicked.emit()">
+      <img src="{{'assets/img/'+preIcon}}" *ngIf="preIcon" class="img-pre-icon"/>
+      <span *ngIf="title" class="span-title" [ngClass]="{'span-no-pre-image': !preIcon}">{{title}}</span>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="menus && menus.length">
+    <button type="button" class="btn btn-data-button" mat-button [matMenuTriggerFor]="databutton">
+      <input type="checkbox" *ngIf="selectable" (click)="selectionChanged.emit()"/>
+      <img src="{{'assets/img/'+preIcon}}" *ngIf="preIcon" class="img-pre-icon"/>
+      <span *ngIf="title" class="span-title" [ngClass]="{'span-no-pre-image': !preIcon}">{{title}}</span>
+      <img src="assets/img/caret-down.svg" class="img-post-icon"/>
+    </button>
+    <mat-menu #databutton="matMenu" class="mat-menu-data-button" [overlapTrigger]="false">
+      <ng-container *ngFor="let menu of menus; let j=index;">
+        <button mat-menu-item
+               [disableRipple]="true"
+               *ngIf="menu.kind === MenuItem && menu.isVisible"
+               [disabled]="menu.isDisabled"
+               (click)="menuClicked.emit({menu: menu, index: j})">
+          {{menu.title}}
+        </button>
+        <hr *ngIf="menu.kind === Divider && menu.isVisible">
+      </ng-container>
+    </mat-menu>
+  </ng-container>
+</span>

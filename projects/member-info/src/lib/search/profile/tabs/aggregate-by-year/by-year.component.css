@@ -1,0 +1,84 @@
+.sub-text {
+  color: #333333;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.member-options{
+  padding-left: 20px;
+}
+
+.member-options fox-dropdown select {
+  margin-bottom: 30px;
+}
+
+.opt-team {
+  float: left;
+  margin-right: 20px;
+  padding-bottom: 20px;
+}
+
+.dropdown-label {
+  font-weight: 600;
+  color: #333333;
+  font-size: 12px;
+  line-height: 12px;
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+
+.form-field-team {
+  margin-right: 3px;
+}
+
+.opt-individual {
+  float: left;
+}
+
+.form-field-individual {
+  margin-right: 3px;
+}
+
+.mat-select {
+  background: #F5F5F5;
+}
+
+.no-left-padding {
+  padding-left: 0;
+  padding-right: 15px;
+}
+
+.title-aggregate {
+  color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.btn-maintenance {
+  height: 35px;
+  width: 118px;
+  border: 1px solid #D3D3D3;
+  border-radius: 3px;
+}
+
+.text-modify-button {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 13px;
+  padding-left: 10px;
+}
+
+.btn-edit-value {
+  color: #196ECF;
+  background-color: transparent;
+}
+
+.btn-edit-value-disable {
+  color: #FFFFFF;
+  background-color: #8B8A8A;
+}
+
+.text-weight {
+  font-weight: bold;
+}

@@ -1,0 +1,77 @@
+.container-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  font-weight: 500;
+  top: 7px;
+  cursor: pointer;
+}
+
+.img-return-icon {
+  height: 14px;
+}
+
+.container-card-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.container-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  margin-bottom: 25px;
+}
+
+.input-custom {
+  margin-bottom: 18px;
+}
+
+.row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.row-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-input-and-label {
+  border-bottom: 1px solid #CED3DA;
+  display: block;
+  margin-bottom: 25px;
+  width: 100%
+}
+
+.container-label {
+  margin-bottom: 7px;
+}
+
+.label-for-input {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.container-input {
+  word-wrap: break-word;
+  background-color: #FFFFFF;
+  padding: 6px 10px 7px 0;
+}
+
+.container-display-equal-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}

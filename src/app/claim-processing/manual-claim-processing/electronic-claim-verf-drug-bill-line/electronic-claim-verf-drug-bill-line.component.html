@@ -1,0 +1,62 @@
+<div class="page-title"><span><img class="icon-indicator" focusable="false" src="assets/img/heart.svg"></span>
+  Verification File Maintenance - Drug Bill Lines
+</div>
+<fox-section>
+  <div> <label>Claim: </label> {{screenBean.m49clo1}}</div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <fox-table [tableColumns]="columns" [tableData]="tableData">
+  </fox-table>
+</fox-section>
+
+<fox-section>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="fox-currency" labelText="Total Charged" id="txtM49TCHG"
+               [(ngModel)]="screenBean.map49SavePart.ser9TotalCharg" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-date" labelText="Service From Date" id="txtM49TFRO" placeholder="MM/DD/YYYY"
+               [(ngModel)]="screenBean.map49SavePart.map49FromDate" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="fox-date" labelText="Service To Date" id="txtM49TTOO" placeholder="MM/DD/YYYY"
+               [(ngModel)]="screenBean.map49SavePart.map49ToDate" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="text" labelText="Errors" id="txtM49ERCD"
+               [(ngModel)]="screenBean.m49ercd" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <fox-input type="text" labelText="Insured Errors" id="txtM49IERR"
+               [(ngModel)]="screenBean.m49ierr" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+  </div>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="text" labelText="Reply" id="txtM49REPL"
+               [(ngModel)]="screenBean.m49repl" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+    <label class="form-row-margin-top-40">1-Complete 2-Bypass 4-Manual</label>
+  </div>
+  <div class="col-md-12 no-padding input-claim-data-field">
+    <fox-input type="text" labelText="Note" id="txtM49CLMN"
+               [(ngModel)]="screenBean.m49clmn" class="form-field-wrapper col-md-2 no-padding">
+    </fox-input>
+  </div>
+  <div class="col-md-12 no-padding form-row-margin-top">
+    <div class="form-row text-right">
+      <button type="button" class="btn btn-secondary form-field-margin-right" (click)="pf1EventClick()"
+              foxHotkey="alt+j">Return
+        (J)
+      </button>
+      <button type="button" class="btn btn-secondary form-field-margin-right" (click)="pf4EventClick()"
+              foxHotkey="alt+i">
+        Insured Screen
+        (I)
+      </button>
+    </div>
+  </div>
+</fox-section>
+
+

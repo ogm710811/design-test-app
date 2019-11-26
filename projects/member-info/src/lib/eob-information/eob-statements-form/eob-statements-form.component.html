@@ -1,0 +1,49 @@
+<fox-section [drawRectangle]="false" noPadding="true">
+  <form (ngSubmit)="onSubmit()" [formGroup]="eobStatementSearchFormGroup">
+    <div class="eob-statement">
+      <div class="form-row form-row-first">
+        <mat-form-field class="margin-right-20">
+          <mat-label [ngClass]="{'lbl-text-color': !eobStatementSearchFormGroup.controls['memberNo'].touched}">Member #</mat-label>
+          <input matInput placeholder="123456789 1 1" maxlength="13" formControlName="memberNo" required
+                 [ngModel]="memberIdInput | formatMemberNumber"
+                 (ngModelChange)="memberIdInput=$event">
+          <mat-error
+            *ngIf="(!eobStatementSearchFormGroup.controls['memberNo'].valid || !eobStatementSearchFormGroup.controls['memberNo'].hasError('required'))
+                    && eobStatementSearchFormGroup.controls['memberNo'].touched">
+            Required Field. Please Enter 11-digit member #
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="margin-right-20">
+          <mat-label [ngClass]="{'lbl-text-color': !eobStatementSearchFormGroup.controls['statementDateFrom'].touched}">Statement Date From</mat-label>
+          <input matInput placeholder="MM/DD/YYYY" formControlName="statementDateFrom" maxlength="10"
+                 [ngModel]="dosFromInput | dateFormat" (ngModelChange)="dosFromInput = $event" required>
+          <mat-error
+            *ngIf="(eobStatementSearchFormGroup.controls['statementDateFrom'].hasError('date')) && eobStatementSearchFormGroup.controls['statementDateFrom'].touched">
+            {{eobStatementSearchFormGroup.controls['statementDateFrom'].getError('date')}}
+          </mat-error>
+          <mat-error
+            *ngIf="eobStatementSearchFormGroup.controls['statementDateFrom'].hasError('required') && eobStatementSearchFormGroup.controls['statementDateFrom'].touched">
+            Required field. Please Enter MMDDYYYY
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="margin-right-20">
+          <mat-label [ngClass]="{'lbl-text-color': !eobStatementSearchFormGroup.controls['statementDateTo'].touched}">Statement Date To</mat-label>
+          <input matInput placeholder="MM/DD/YYYY" formControlName="statementDateTo" maxlength="10"
+                 [ngModel]="dosToInput | dateFormat" (ngModelChange)="dosToInput = $event" required>
+          <mat-error
+            *ngIf="eobStatementSearchFormGroup.controls['statementDateTo'].hasError('date') && eobStatementSearchFormGroup.controls['statementDateFrom'].touched">
+            {{eobStatementSearchFormGroup.controls['statementDateTo'].getError('date')}}
+          </mat-error>
+          <mat-error
+            *ngIf="eobStatementSearchFormGroup.controls['statementDateTo'].hasError('required') && eobStatementSearchFormGroup.controls['statementDateFrom'].touched">
+            Required field. Please Enter MMDDYYYY
+          </mat-error>
+        </mat-form-field>
+        <button type="submit" class="btn btn-primary btn-find-eob"
+                foxHotkey="alt+s" [disabled]="!eobStatementSearchFormGroup.valid">
+          Search EOB Statements (S)
+        </button>
+      </div>
+    </div>
+  </form>
+</fox-section>

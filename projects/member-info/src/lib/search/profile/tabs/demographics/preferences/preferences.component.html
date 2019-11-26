@@ -1,0 +1,19 @@
+<fox-section>
+  <fox-section-title>
+    Member Preferences
+  </fox-section-title>
+
+  <div class="member-preference-section">
+    <div class="col-md-2 no-left-padding">
+      <div>
+        <mat-label class="label-text">Explanation of Benefits</mat-label>
+        <div class="value-text"
+             *ngIf="memberPreference && memberPreference.claimDeliveryPreference">
+          {{memberPreference.claimDeliveryPreference == 'Mail'? 'U.S. Mail':
+          memberPreference.claimDeliveryPreference}}
+        </div>
+        <hr class="horizontal-rule">
+      </div>
+    </div>
+  </div>
+</fox-section>

@@ -1,0 +1,60 @@
+<fox-section class="section-search-message">
+  <fox-section-title>
+    Search for a Message
+  </fox-section-title>
+  <fox-section-subheader>
+    Enter Message Code, Message Type, and make a Selection.
+  </fox-section-subheader>
+
+  <form (ngSubmit)="enterEventClick()">
+    <div class="row container-row-small container-inputs">
+      <div class="col-xs-6 col-sm-3 container-message-input">
+        <fox-input [(ngModel)]="screen.m16msg"
+                   type="fox-number"
+                   name="messageCode"
+                   labelText="Message Code"
+                   [length]="5"
+                   [maxlength]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-message-select">
+        <fox-select-single [items]="messageTypes"
+                           labelText="Message Type"
+                           bindValue="value"
+                           placeholder="Select an Option"
+                           [clearable]="true"
+                           (selectEmitter)="screen.m16type = $event">
+        </fox-select-single>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-message-select">
+        <fox-select-single [items]="selections"
+                           labelText="Selection"
+                           bindValue="value"
+                           placeholder="Select an Option"
+                           [clearable]="true"
+                           (selectEmitter)="screen.m16sel = $event">
+        </fox-select-single>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-message-select">
+        <fox-select-single [items]="languages"
+                           labelText="Language"
+                           bindValue="value"
+                           [selected]="languages[0].value"
+                           [clearable]="true"
+                           (selectEmitter)="screen.m16lan = $event">
+        </fox-select-single>
+      </div>
+    </div>
+
+    <div class="row container-row-small container-submit">
+      <div class="col-xs-12">
+        <fox-loading-button buttonValue="Submit (S)"
+                            [buttonStatus]="buttonStatus"
+                            typeValue="submit"
+                            foxHotKeyValue="alt+s"
+                            (buttonClick)="enterEventClick()">
+        </fox-loading-button>
+      </div>
+    </div>
+  </form>
+</fox-section>

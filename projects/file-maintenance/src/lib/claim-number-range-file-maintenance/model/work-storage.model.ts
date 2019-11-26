@@ -1,0 +1,96 @@
+import { BinNumFuncRed } from './bin-num-func-red.model';
+import { BinNumRcodeRed } from './bin-num-rcode-red.model';
+import { EibFn } from './eib-fn.model';
+import { EibRcode } from './eib-rcode.model';
+import { Filler1 } from './filler1.model';
+import { MapLinesI } from './map-lines-i.model';
+import { PgmErrorLine } from './pgm-error-line.model';
+
+/**
+ * Model class WorkStorage
+ * Path: screenbean/clmnbrrngflmnt
+ * Model: com::uhc::aarp::fox::domain::screenbean::clmnbrrngflmnt::WorkStorage
+ */
+export class WorkStorage {
+  funcInd = '';
+  binNumHighByte = 0;
+  filler1 = new Filler1();
+  binNumFunc = 0;
+  binNumFuncRed = new BinNumFuncRed();
+  binNumRcode = 0;
+  binNumRcodeRed = new BinNumRcodeRed();
+  eibFn = new EibFn();
+  eibRcode = new EibRcode();
+  pgmErrorLine = new PgmErrorLine();
+  sub = 0;
+  sub1 = 0;
+  sub2 = 0;
+  sub3 = 0;
+  currSub = 0;
+  prevSub = 0;
+  nextSub = 0;
+  screenPosSub = 0;
+  locCheckSub = 0;
+  rbaFld = 0;
+  totalMic = 0;
+  sortCtr1 = 0;
+  sortCtr2 = 0;
+  locCheckAccum = 0;
+  seqCheckAccum = 0;
+  nonclaimAccum = 0;
+  noNonclaimExisting = 0;
+  commandEnteredInd = '';
+  transCancelledInd = '';
+  endingSeqZeroInd = '';
+  pageNotFullInd = '';
+  screenSaveCompleteInd = '';
+  screenValuedInd = '';
+  readRpdiskcnCompleteInd = '';
+  noExistingMicrofilmInd = '';
+  existingValuesCompleteInd = '';
+  moreExistingValuesInd = '';
+  readRpdiskdmCompleteInd = '';
+  locCheckCompleteInd = '';
+  matchSeqRangesChk1Ind = '';
+  matchSeqRangesChk2Ind = '';
+  screenPosFoundInd = '';
+  journalRecordWrittenInd = '';
+  addlJournalRecordsInd = '';
+  allJournalsWrittenInd = '';
+  historyDefinitelyExistsInd = '';
+  errorInd = '';
+  errorFieldCheck = '';
+  julDate = 0;
+  gregDate = '';
+  compareDate = 0;
+  wsCurrDate = '';
+  dateHold = 0;
+  dateHoldMdy = '';
+  dateHoldYmd = '';
+  dateHoldYmdR = 0;
+  dateCompareYmdR = 0;
+  holdDateEntered = '';
+  interDateKey = 0;
+  wsJulDateFiller = 0;
+  wsJulDate5 = 0;
+  wsTableHold = 0;
+  csnHoldSite = 0;
+  checkEnd = 0;
+  holdLoc = '';
+  siteNum = 0;
+  wsLocationFirstByte = 0;
+  wsLocationMidByte = 0;
+  wsNewSite = 0;
+  dateKeyHold = 0;
+  locationKeyHold = 0;
+  cartridgeKeyHold = 0;
+  mapCommandLine = '';
+  mapLinesIs: MapLinesI[] = [];
+  sortLoc1 = '';
+  sortStart1 = '';
+  sortEnd1 = '';
+  sortLoc2 = '';
+  sortStart2 = '';
+  sortEnd2 = '';
+  locNumR = 0;
+}

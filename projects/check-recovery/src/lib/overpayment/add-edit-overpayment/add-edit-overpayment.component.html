@@ -1,0 +1,155 @@
+<div>
+  <fox-loading-overlay>
+    <div class="col-xs-12 pull-left section-cancel">
+      <span foxHotkey="ctrl+f1" hotkeyAction="click" (click)="cancelLinkClicked()">
+        <img class="arrow-cancel" src="assets/img/arrow-left.svg">
+        <a class="link link-cancel" id="a-cancel-link">Cancel and Return (F1)</a>
+      </span>
+    </div>
+    <div class="col-xs-12 col-md-7">
+      <fox-section class="row margin-bottom-75 section-row">
+        <fox-section-title id="overpayment-details-title">Overpayment Details</fox-section-title>
+        <div class="section-subtitle" id="overpayment-details-subtitle">
+          <span class="subtitle">Tab to navigate and update fields.</span>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-og-claim" labelText="Original O/P Claim" isReadOnly="true" preIconUrl="assets/img/claim-252c37.svg"
+              [(ngModel)]="screen.m15clm1"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input labelText="Status" isReadOnly="true" [(ngModel)]="screen.m15stat" id="overpayment-status">
+            </fox-input>
+          </div>
+
+          <div class="col-xs-12 margin-top-25">
+            <div class="container-half-width padding-right-15">
+              <fox-input type="fox-date" id="overpayment-resolved" placeholder="MM/DD/YYYY" labelText="Date Resolved" isReadOnly="true"
+                [(ngModel)]="screen.m15resd" displayFormat="MM/DD/YYYY" programmaticFormat="MM/DD/YYYY"></fox-input>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-plan-code" labelText="Plan Code" [(ngModel)]="screen.m15pcde"  (keydown.enter)="enterEventClick()"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-select-single id="overpayment-mippa" [items]="mippa" [selected]="screen.m15mipa" (selectEmitter)="screen.m15mipa = $event"
+              bindValue="id" labelText="Mippa">
+            </fox-select-single>
+          </div>
+          <div class="col-xs-12 margin-top-25">
+            <div class="col-sm-6 ovp-select-left">
+              <fox-input id="overpayment-tp-service" labelText="Type of Service" [(ngModel)]="screen.m15tos" (keydown.enter)="enterEventClick()"></fox-input>
+            </div>
+            <div class="col-sm-6 ovp-select-right">
+              <fox-input id="overpayment-tp-error" labelText="Type of Error" [(ngModel)]="screen.m15errt" (keydown.enter)="enterEventClick()"></fox-input>
+            </div>
+          </div>
+
+          <div class="col-xs-12 margin-top-25">
+            <fox-select-single id="overpayment-error-codes" [items]="overpaymentErrors" [selected]="screen.m15erco"
+              (selectEmitter)="screen.m15erco = $event" bindValue="id" labelText="Error Code">
+            </fox-select-single>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-examiner-id" labelText="Examiner ID" isReadOnly="true" preIconUrl="assets/img/member-252c37.svg"
+              [(ngModel)]="screen.m15exid"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-entry-ions" labelText="Entry IONs" isReadOnly="true" preIconUrl="assets/img/member-252c37.svg"
+              [(ngModel)]="screen.m15eion"></fox-input>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-owner-ions" labelText="Owner IONs" preIconUrl="assets/img/member-252c37.svg" [(ngModel)]="screen.m15oion" (keydown.enter)="enterEventClick()">
+            </fox-input>
+          </div>
+
+          <div class="col-xs-12 margin-top-25">
+            <fox-input id="overpayment-notes" type="textarea" largerTextArea="true" labelText="Overpayment Note" length="250"
+              [(ngModel)]="screen.m15not1" (keydown.enter)="enterEventClick()"></fox-input>
+          </div>
+        </div>
+      </fox-section>
+
+      <fox-section class="row margin-bottom-75 section-row">
+        <fox-section-title id="overpayment-provider-title">Provider</fox-section-title>
+        <div class="row">
+          <div class="col-xs-12 margin-top-25">
+            <fox-input id="overpayment-provider-name" labelText="Provider Name" isReadOnly="true" [(ngModel)]="screen.m15pron">
+            </fox-input>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-provider-ssn" labelText="Provider TIN/SSN" isReadOnly="true" [(ngModel)]="screen.m15tin"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-patient-no" labelText="Patient #" isReadOnly="true" [(ngModel)]="screen.m15ptno">
+            </fox-input>
+          </div>
+        </div>
+      </fox-section>
+
+      <fox-section class="row margin-bottom-75 section-row">
+        <fox-section-title id="overpayment-dates-title">Dates</fox-section-title>
+        <div class="section-subtitle">
+          <span id="overpayment-dates-subtitle" class="subtitle">Tab to navigate and update fields.</span>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-date-service-from" type="fox-date" name="txtM75QUDA" #txtM75QUDA="ngModel"
+              labelText="Date of Service From" [(ngModel)]="screen.m15frmd" placeholder="MM/DD/YYYY"
+              displayFormat="MM/DD/YYYY" programmaticFormat="MM/DD/YYYY" (keydown.enter)="enterEventClick()"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-date-service-to" type="fox-date" name="txtM75QUDA" #txtM75QUDA="ngModel"
+              labelText="Date of Service To" [(ngModel)]="screen.m15tod" placeholder="MM/DD/YYYY"
+              displayFormat="MM/DD/YYYY" programmaticFormat="MM/DD/YYYY" (keydown.enter)="enterEventClick()"></fox-input>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 margin-top-25">
+            <fox-input id="overpayment-date-disc" type="fox-date" name="txtM75QUDA" #txtM75QUDA="ngModel"
+              labelText="Date Discovered" [(ngModel)]="screen.m15disc" placeholder="MM/DD/YYYY"
+              displayFormat="MM/DD/YYYY" programmaticFormat="MM/DD/YYYY" (keydown.enter)="enterEventClick()"></fox-input>
+          </div>
+        </div>
+      </fox-section>
+    </div>
+
+    <div class="col-xs-12 col-md-5">
+      <div class="div-container-amounts">
+        <div class="div-input-section">
+          <fox-section-title id="overpayment-amounts-title">
+            <span class="span-op-amounts-circle">
+              <img class="dollar-icon" src="assets/img/Currency-white.svg">
+            </span>Amounts</fox-section-title>
+          <div class="section-subtitle">
+            <span id="overpayment-amounts-subtitle" class="subtitle">Tab to navigate and update fields.</span>
+          </div>
+          <div class="row op-amounts-row">
+            <div class="col-xs-12 col-sm-12 margin-top-25 section-op-amount">
+              <fox-input id="overpayment-amount" type="fox-currency" labelText="Overpayment Amount" class="op-amount"
+                [(ngModel)]="screen.m15amt" (keydown.enter)="enterEventClick()">
+              </fox-input>
+            </div>
+          </div>
+        </div>
+        <div class="div-table-section">
+          <fox-table id="overpayment-amount-table" #inputTable class="test" [tableColumns]="tableColumns" [tableData]="tableData"></fox-table>
+        </div>
+      </div>
+    </div>
+  </fox-loading-overlay>
+
+  <div class="col-xs-12 pull-right button-section row">
+    <!-- BUTTONS -->
+    <button id="clear" name="clear" #clear type="button" class="btn btn-secondary btn-clear margin-right-20"
+      (click)="clearEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)</button>
+    <fox-loading-button id="enter" name="enter" #enter [buttonValue]="'Submit (S)'" [buttonStatus]="loadingStatus"
+      [typeValue]="'button'" [foxHotKeyValue]="'alt+s'" (buttonClick)="enterEventClick()" class="btn-submit"
+      [useSmallerWidth]="true">
+    </fox-loading-button>
+  </div>
+</div>

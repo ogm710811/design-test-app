@@ -1,0 +1,105 @@
+<div class="row">
+  <div id="operator-statistics-return"
+       class="col-xs-12 container-return-prev">
+    <span (click)="PF1EventClick()"
+          foxHotkey="ctrl+f1"
+          hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </span>
+  </div>
+</div>
+<fox-section>
+  <div class="container-title-card">
+    <fox-section-title>Claim Statistics Overview</fox-section-title>
+  </div>
+  <div class="row">
+    <div class="container-row-holder">
+      <div class="col-xs-12 col-sm-3">
+        <div class="container-field-label">Processing Dates</div>
+        <span>{{screen.m95bdat}} - {{screen.m95edat}}</span>
+      </div>
+      <div class="col-xs-6 col-sm-2">
+        <div class="container-field-label">Site</div>
+        <span>{{screen.m95site}}</span>
+      </div>
+      <div class="col-xs-6 col-sm-2">
+        <div class="container-field-label">Division</div>
+        <span>{{screen.m95div}}</span>
+      </div>
+      <div class="col-xs-6 col-sm-2">
+        <div class="container-field-label">Location</div>
+        <span>{{screen.m95loc}}</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="screen.mapAttStaffWeeks.length > 0 || screen.mapProdStaffWeeks.length > 0">
+    <mat-divider class="mat-divider-one"></mat-divider>
+    <div class="row">
+      <div class="col-xs-3">
+        <fox-section-title>Attached Examining Staff</fox-section-title>
+      </div>
+      <div class="col-xs-1" *ngFor="let weeks of screen.mapAttStaffWeeks">
+        {{weeks.mapAttStaffDay}}
+      </div>
+    </div>
+    <mat-divider class="mat-divider-two"></mat-divider>
+    <div class="row">
+      <div class="col-xs-3 container-productive-staff">
+        <fox-section-title>Productive Staff</fox-section-title>
+      </div>
+      <div class="col-xs-1" *ngFor="let weeks of screen.mapProdStaffWeeks">
+        {{weeks.mapProdStaffDay}}
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Statistics Results</fox-section-title>
+  <div class="container-div-fox-sub-title">
+    <fox-section-subheader>Enter line number in "Select Line #" field below. Click "Search" (or Alt + S or Enter) to proceed.</fox-section-subheader>
+  </div>
+  <div class="container-table-op-statistics">
+    <fox-table [baseTableId]="'operator-statistics-'"
+               [noBorderTopHeader]="true"
+               [tableColumns]="columns"
+               [tableData]="results"
+               [tableData]="results | orderBy: {property: tableDataSortKey, direction: tableDataDirection}"
+               [fixedFirstColumn]="true"
+               [lastRowBold]="true"
+               (columnChanged)="tableDataSortKey = $event"
+               (directionChanged)="tableDataDirection = $event"
+               (linkClicked)="navigateTo($event)" >
+    </fox-table>
+  </div>
+  <div class="row container-div-paginator">
+    <fox-paginator-non-material [(pageSize)]="pageSizeSelected"
+                                [dataLengthInput]="dataLengthInput"
+                                *ngIf="!isIndividualSelected"
+                                [pageTotal]="pageTotal"
+                                [(currentPage)]="currentPage"
+                                (currentPageChange)="calculateNewPage();"
+                                (pageSizeChange)="currentPage=0; calculateNewPage();">
+    </fox-paginator-non-material>
+  </div>
+  <mat-divider class="mat-divider-margins"></mat-divider>
+  <div class="container-div-row">
+    <div class="container-div-selection container-div-inline-block">
+      <fox-input type="fox-number"
+                 id="txtM95RVNO"
+                 name="txtM95RVNO"
+                 labelText="Select Line #"
+                 [(ngModel)]="screen.m95rvno">
+      </fox-input>
+    </div>
+    <div class="container-div-button container-div-inline-block">
+      <fox-loading-button [buttonValue] = "'Search (S)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [foxHotKeyValue]="'alt+s'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</fox-section>

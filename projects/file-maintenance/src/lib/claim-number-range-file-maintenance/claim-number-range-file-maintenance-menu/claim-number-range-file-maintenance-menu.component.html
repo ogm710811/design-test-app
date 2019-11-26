@@ -1,0 +1,56 @@
+<fox-section>
+  <fox-section-title>Microfilm Control Number Maintenance</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Date: </mat-label>
+        <input matInput id="txtM25JUL" name="txtM25JUL" placeholder="YDDD" #txtM25JUL maxlength="4" size="4" tabindex=""
+          type="text" [(ngModel)]="screen.m25jul" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Cartridge</mat-label>
+        <input matInput id="txtM25CAR" name="txtM25CAR" #txtM25CAR maxlength="1" size="1" tabindex="" type="text"
+          [(ngModel)]="screen.m25car" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Site</mat-label>
+        <input matInput id="txtM25SIT" name="txtM25SIT" #txtM25SIT maxlength="1" size="1" tabindex="" type="text"
+          [(ngModel)]="screen.m25sit" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Selection:</mat-label>
+        <input matInput id="txtM25SEL" name="txtM25SEL" #txtM25SEL maxlength="1" size="1" tabindex="" type="text"
+          [(ngModel)]="screen.m25sel" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-9">
+      <mat-label class="mat-input-placeholder margin-top-20">Selection Types:
+        <div class="col-sm-12 margin-top-20">
+          <mat-label> 1. Microfilm Record Maintenance, 2. Microfilm Record Delete, 3. Microfilm
+            Record Inquiry</mat-label>
+        </div>
+      </mat-label>
+    </div>
+  </div>
+
+  <div class="form-row col-sm-12 margin-top-20 text-right">
+    <div class="text-right">
+      <button id="enter" name="enter" #enter type="button" class="btn btn-primary" (click)="ENTEREventClick()"
+        foxHotkey="alt+e">Enter
+        (E)
+      </button>
+    </div>
+  </div>
+
+</fox-section>

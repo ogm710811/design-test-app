@@ -1,0 +1,325 @@
+<div class="col-xs-12 container-return-prev">
+  <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+  <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="F1EventClick()">Return to Previous (F1)</span>
+</div>
+
+<form (ngSubmit)="enterEventClick()">
+  <div class="col-xs-12 col-sm-8">
+    <fox-section class="section-message-selection">
+      <fox-section-title>Add Message</fox-section-title>
+      <fox-section-subheader>
+        400 Character limit
+      </fox-section-subheader>
+
+      <div class="row container-row-small container-message-read">
+        <div class="col-xs-6 col-sm-5">
+          <fox-read-only-field
+            id="txtM17MSG"
+            name="txtM17MSG"
+            label="Message #"
+            [value]="screen.m17msg">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 col-sm-5">
+          <fox-read-only-field
+            id="txtM17ELAN"
+            name="txtM17ELAN"
+            label="Language"
+            [value]="screen.m17elan">
+          </fox-read-only-field>
+        </div>
+      </div>
+      <div class="container-message-text">
+        <fox-input
+          type="textarea"
+          labelText="Message Text"
+          [length]="400"
+          [(ngModel)]="screen.m17mln1">
+        </fox-input>
+      </div>
+    </fox-section>
+  </div>
+
+  <div class="col-xs-12 col-sm-8">
+    <fox-section class="section-add-message">
+      <fox-section-title>Add Message</fox-section-title>
+      <div class="container-sub-header">
+        <fox-section-subheader>
+          Section subtitle and other descriptive text
+        </fox-section-subheader>
+      </div>
+      <div>
+        <div class="row container-row-small">
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm17ANSI"
+                       labelText="Related ANSI Code"
+                       [length]="5"
+                       [(ngModel)]="screen.m17ansi">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm17USED"
+                       labelText="Not Used Indicator"
+                       [length]="1"
+                       [(ngModel)]="screen.m17used">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm17QPCT"
+                       labelText="Quality Percent"
+                       [length]="3"
+                       [(ngModel)]="screen.m17qpct">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm17EGEN"
+                       labelText="Electronic RA - GRP Code"
+                       [length]="1"
+                       [(ngModel)]="screen.m17eele">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm17EGEN"
+                       labelText="Reason (CARC)"
+                       [length]="1"
+                       [(ngModel)]="screen.m17erea">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-4 container-inputs">
+            <fox-input type="text"
+                       name="txtm17EGEN"
+                       labelText="Remark Code"
+                       [length]="1"
+                       [(ngModel)]="screen.m17erem">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-6">
+          <div>
+            <div class="container-label-description">Denial</div>
+            <input type="radio"
+                   name="txtm17MIND"
+                   id="txtm17MIND1"
+                   value=""
+                   [(ngModel)]="screen.m17mind">
+            <label class="label-radio-value" for="txtm17MIND1">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm17MIND"
+                   id="txtm17MIND2"
+                   value="D"
+                   [(ngModel)]="screen.m17mind">
+            <label class="label-radio-value" for="txtm17MIND2">Denial</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm17MIND" value="P"
+                   id="txtm17MIND3" value="P"
+                   [(ngModel)]="screen.m17mind">
+            <label class="label-radio-value" for="txtm17MIND3">Possible Denial</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Hold</div>
+            <input type="radio"
+                   name="txtm17EHLD" value=""
+                   id="txtm17EHLD1" value=""
+                   [(ngModel)]="screen.m17ehld">
+            <label class="label-radio-value" for="txtm17EHLD1">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm17EHLD"
+                   id="txtm17EHLD2"
+                   value="1"
+                   [(ngModel)]="screen.m17ehld">
+            <label class="label-radio-value" for="txtm17EHLD2">1</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm17EHLD"
+                   id="txtm17EHLD3"
+                   value="2"
+                   [(ngModel)]="screen.m17ehld">
+            <label class="label-radio-value" for="txtm17EHLD3">2</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm17EHLD"
+                   id="txtm17EHLD4"
+                   value="3"
+                   [(ngModel)]="screen.m17ehld">
+            <label class="label-radio-value" for="txtm17EHLD4">3</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Dup Bill Suppress</div>
+            <input type="radio"
+                   name="txtmEGEN"
+                   id="txtmEGENNA"
+                   value=""
+                   [(ngModel)]="screen.m17edup">
+            <label class="label-radio-value" for="txtmEGENNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtmEGEN"
+                   id="txtmEGENNO"
+                   value="N"
+                   [(ngModel)]="screen.m17edup">
+            <label class="label-radio-value" for="txtmEGENNO">No</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtmEGEN"
+                   id="txtmEGENY"
+                   value="Y"
+                   [(ngModel)]="screen.m17edup">
+            <label class="label-radio-value" for="txtmEGENY">Yes</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Reconsider</div>
+            <input type="radio"
+                   name="txtm17"
+                   id="txtm17ERECNA"
+                   value=""
+                   [(ngModel)]="screen.m17erec">
+            <label class="label-radio-value" for="txtm17ERECNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm17"
+                   id="txtm17ERECN"
+                   value="N"
+                   [(ngModel)]="screen.m17erec">
+            <label class="label-radio-value" for="txtm17ERECN">No</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm17"
+                   id="txtm17ERECY"
+                   value="Y"
+                   [(ngModel)]="screen.m17erec">
+            <label class="label-radio-value" for="txtm17ERECY">Yes</label>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="container-system-generated">
+            <div class="container-label-description">System Generated PP</div>
+            <input type="radio"
+                   name="txtm15ESGE"
+                   id="txtm15ESGENA"
+                   value=""
+                   [(ngModel)]="screen.m17esge">
+            <label class="label-radio-value" for="txtm15ESGENA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm15ESGE"
+                   id="txtm15ESGE1"
+                   value="1"
+                   [(ngModel)]="screen.m17esge">
+            <label class="label-radio-value" for="txtm15ESGE1">1</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm15ESGE"
+                   id="txtm15ESGE2"
+                   value="2"
+                   [(ngModel)]="screen.m17esge">
+            <label class="label-radio-value" for="txtm15ESGE2">2</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm15ESGE"
+                   id="txtm15ESGE3"
+                   value="3"
+                   [(ngModel)]="screen.m17esge">
+            <label class="label-radio-value" for="txtm15ESGE3">3</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">Auto Generated</div>
+            <input type="radio"
+                   name="txtm14EG"
+                   id="txtm14EGNA"
+                   value=""
+                   [(ngModel)]="screen.m17egen">
+            <label class="label-radio-value" for="txtm14EGNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm14EG"
+                   id="txtm14EGB"
+                   value="B"
+                   [(ngModel)]="screen.m17egen">
+            <label class="label-radio-value" for="txtm14EGB">B</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm14EG"
+                   id="txtm14EGC"
+                   value="C"
+                   [(ngModel)]="screen.m17egen">
+            <label class="label-radio-value" for="txtm14EGC">C</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">RA Print</div>
+            <input type="radio"
+                   name="txtm16EGEN"
+                   id="txtm16EGENNA"
+                   value=""
+                   [(ngModel)]="screen.m17erap">
+            <label class="label-radio-value" for="txtm16EGENNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm16EGEN"
+                   id="txtm16EGEN0"
+                   value="0"
+                   [(ngModel)]="screen.m17erap">
+            <label class="label-radio-value" for="txtm16EGEN0">0</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm16EGEN"
+                   id="txtm16EGEN1"
+                   value="1"
+                   [(ngModel)]="screen.m17erap">
+            <label class="label-radio-value" for="txtm16EGEN1">1</label>
+          </div>
+          <div class="container-data-add-message">
+            <div class="container-label-description">EOB Print</div>
+            <input type="radio"
+                   name="txtm18EGEN"
+                   id="txtm18EGENNA"
+                   value=""
+                   [(ngModel)]="screen.m17eeob">
+            <label class="label-radio-value" for="txtm18EGENNA">N/A</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18EGEN"
+                   id="txtm18EGEN1"
+                   value="1"
+                   [(ngModel)]="screen.m17eeob">
+            <label class="label-radio-value" for="txtm18EGEN1">1</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18EGEN"
+                   id="txtm18EGEN2"
+                   value="2"
+                   [(ngModel)]="screen.m17eeob">
+            <label class="label-radio-value" for="txtm18EGEN2">2</label>
+            <input type="radio"
+                   class="input-radio-btn"
+                   name="txtm18EGEN"
+                   id="txtm18EGEN3"
+                   value="3"
+                   [(ngModel)]="screen.m17eeob">
+            <label class="label-radio-value" for="txtm18EGEN3">3</label>
+          </div>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+
+  <div class="col-xs-12 col-sm-8 text-right">
+    <fox-loading-button buttonValue="Submit (S)"
+                        [buttonStatus]="buttonStatus"
+                        typeValue="submit"
+                        foxHotKeyValue="alt+s"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</form>

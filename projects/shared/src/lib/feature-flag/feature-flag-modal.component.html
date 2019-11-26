@@ -1,0 +1,60 @@
+<fox-modal #modal modalTitle="Feature Flags" [(visible)]="visible">
+  <div class="row">
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <h4>Disabled Features</h4>
+      <fox-input labelText="Feature to disable" [(ngModel)]="newDisabledFeature"></fox-input>
+      <div>
+        <button class="btn btn-secondary"
+                type="button"
+                (click)="featureFlagService.addToDisabledList(newDisabledFeature); newDisabledFeature=''">Disable
+          Feature
+        </button>
+      </div>
+      <select name="features"
+              [attr.size]="featureFlagService.disabledFeatures.length"
+              multiple
+              [(ngModel)]="selectedDisabledFeatures">
+        <option *ngFor="let feature of featureFlagService.disabledFeatures" [value]="feature">{{feature}}</option>
+      </select>
+      <div>
+        <button type="button" class="btn btn-secondary" (click)="featureFlagService.disabledFeatures =[]">Enable All
+        </button>
+        <button type="button"
+                class="btn btn-secondary"
+                (click)="featureFlagService.resetDisabled()">
+          Reset Disabled to Server Features
+        </button>
+        <button type="button" class="btn btn-primary" (click)="removeDisableSelection()">Enable Selected</button>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <h4>Enabled Features</h4>
+      <fox-input labelText="Feature to enable" [(ngModel)]="newEnabledFeature"></fox-input>
+      <div>
+        <button class="btn btn-secondary"
+                type="button"
+                (click)="featureFlagService.addToEnabledList(newEnabledFeature); newEnabledFeature=''">Enable
+          Feature
+        </button>
+      </div>
+      <select name="features"
+              [attr.size]="featureFlagService.enabledFeatures.length"
+              multiple
+              [(ngModel)]="selectedEnabledFeatures">
+        <option *ngFor="let feature of featureFlagService.enabledFeatures" [value]="feature">{{feature}}</option>
+      </select>
+      <div>
+        <button type="button" class="btn btn-secondary" (click)="featureFlagService.enabledFeatures =[]">Disable All
+        </button>
+        <button type="button"
+                class="btn btn-secondary"
+                (click)="featureFlagService.resetEnabled()">
+          Reset Enabled to Server Features
+        </button>
+        <button type="button" class="btn btn-primary" (click)="removeEnableSelection()">Disable Selected</button>
+      </div>
+    </div>
+  </div>
+</fox-modal>

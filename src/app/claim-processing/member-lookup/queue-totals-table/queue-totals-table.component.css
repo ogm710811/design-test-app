@@ -1,0 +1,8 @@
+.table {
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+#queue-info tr:first-child {
+  font-weight: bold;
+}

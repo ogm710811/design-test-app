@@ -1,0 +1,76 @@
+
+.table {
+  table-layout: fixed;
+}
+
+.container-component-body{
+  margin-top: -10px;
+  font-weight: bold;
+}
+
+.span-bill-line-bold {
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  position: relative;
+}
+
+.span-bill-line-normal {
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+}
+
+.button-text {
+  color: #FFFFFF;
+  font-family: "UHC Sans";
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 14px;
+  text-align: center;
+}
+
+.container-buttons {
+  margin-top: 20px;
+}
+
+.btn-summary-previous {
+  height: 3em;
+  width: 9em;
+  float: left;
+  margin-right: 15px;
+  border: 1px solid #196ECF;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  color: #196ECF;
+  font-size: 14px;
+  font-weight: 600;
+}
+.btn-summary-submit {
+  height: 3em;
+  width: 9em;
+  float: left;
+  border-radius: 2px;
+  background-color: #196ECF;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.component-title {
+  color: #333333;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.header-summary{
+  height: 18px;
+  width: 363px;
+  color: #333333;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+}

@@ -1,0 +1,238 @@
+<fox-message-box [(visible)]="showNoProviderAlert" messageBoxTitle="No data found">
+  Please adjust search criteria
+</fox-message-box>
+
+<fox-message-box [(visible)]="showTooManyProviderAlert"
+                 messageBoxTitle="More than 100 results found">
+  Please narrow down search criteria
+</fox-message-box>
+
+<fox-message-box [(visible)]="validationAlert" messageBoxTitle="Formatting error">
+  Please review search value.
+</fox-message-box>
+
+<fox-message-box [(visible)]="invalidSearchAlert" messageBoxTitle="No Providers Found">
+  Search criteria must include TIN, NPI, Business Name or First Name and Last Name
+</fox-message-box>
+
+<mat-accordion>
+  <mat-expansion-panel class="border-top-blue provider-search-panel-top"
+                       [expanded]="true" #matExpansionPanel
+                       (opened)="showEnteredParameters=false"
+                       (closed)="showEnteredParameters=true">
+    <mat-expansion-panel-header class="exp-panel-header"
+                                (click)="expandPanel(matExpansionPanel, $event)"
+                                [collapsedHeight]="'81px'">
+      <span class="mat-content-search-param">
+        <div class="container-claim-search-title">
+          <fox-section-title>Search Parameters</fox-section-title>
+        </div>
+        <div class="container-search-parameters" *ngIf="showEnteredParameters">
+          <ng-container *ngFor="let param of parametersUsed; let j = index">
+            <span *ngIf="j >= 1">|</span>&nbsp;<span><b>{{param.paramName}}:</b> {{param.paramValue}}</span>
+          </ng-container>
+        </div>
+        </span>
+    </mat-expansion-panel-header>
+    <form [formGroup]="provSearchFormGrp" novalidate (ngSubmit)=searchData(provSearchFormGrp)>
+      <div class="prov-search-main">
+        <div class="container-left">
+          <div class="container-form-field1">
+            <mat-form-field class="col-search-field">
+              <mat-label>TIN</mat-label>
+              <input matInput maxlength="9" formControlName="tin" [(ngModel)]="tinInput">
+              <mat-error
+                *ngIf="provSearchFormGrp.controls['tin'].hasError('minlength') || provSearchFormGrp.controls['tin'].hasError('pattern')">
+                Please enter a 9 digit TIN
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="container-form-field1">
+            <mat-form-field class="col-search-field">
+              <mat-label>NPI</mat-label>
+              <input matInput maxlength="10" formControlName="npi" [(ngModel)]="npiInput">
+              <mat-error
+                *ngIf="provSearchFormGrp.controls['npi'].hasError('minlength') || provSearchFormGrp.controls['npi'].hasError('pattern')">
+                Please enter a 10 digit NPI
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container-right">
+          <div class="container-form-field2">
+            <mat-form-field class="col-search-field">
+              <mat-label>Last Name</mat-label>
+              <input matInput maxlength="60" formControlName="lastName" [(ngModel)]="lastNameInput">
+              <mat-error *ngIf="provSearchFormGrp.controls['lastName'].hasError('pattern')">
+                Please use letters, hyphens, or apostrophes only
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="container-form-field2">
+            <mat-form-field class="col-search-field">
+              <mat-label>First Name</mat-label>
+              <input matInput maxlength="60" formControlName="firstName"
+                     [(ngModel)]="firstNameInput">
+              <mat-error *ngIf="provSearchFormGrp.controls['firstName'].hasError('pattern')">
+                Please use letters, hyphens, or apostrophes only
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container-right-clear">
+          <div class="container-form-field1">
+            <mat-form-field class="col-search-field">
+              <mat-label>Business Name</mat-label>
+              <input matInput maxlength="60" formControlName="businessName"
+                     [(ngModel)]="bizNameInput">
+              <mat-error *ngIf="provSearchFormGrp.controls['businessName'].hasError('pattern')">
+                Please use letters, hyphens, or apostrophes only
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="container-form-field1">
+            <mat-form-field class="col-search-field">
+              <mat-label>Provider Type</mat-label>
+              <mat-select formControlName="provType" [(ngModel)]="provTypeInput">
+                <mat-option class="fox-dropdown-option"></mat-option>
+                <mat-option class="fox-dropdown-option" value="D">Doctor (D)</mat-option>
+                <mat-option class="fox-dropdown-option" value="H">Hospital (H)</mat-option>
+                <mat-option class="fox-dropdown-option" value="M">Medicaid (M)</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container-right">
+          <div class="container-form-field2">
+            <mat-form-field class="col-search-field">
+              <mat-label>City</mat-label>
+              <input matInput maxlength="60" formControlName="city" [(ngModel)]="cityInput">
+              <mat-error *ngIf="provSearchFormGrp.controls['city'].hasError('pattern')">
+                Please use letters, hyphens, or apostrophes only
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="container-form-field2">
+            <mat-form-field class="col-search-field">
+              <mat-label>State</mat-label>
+              <mat-select formControlName="state" [(ngModel)]="stateInput">
+                <mat-option class="fox-dropdown-option"></mat-option>
+                <mat-option class="fox-dropdown-option" value="AK">AK</mat-option>
+                <mat-option class="fox-dropdown-option" value="AL">AL</mat-option>
+                <mat-option class="fox-dropdown-option" value="AR">AR</mat-option>
+                <mat-option class="fox-dropdown-option" value="AS">AS</mat-option>
+                <mat-option class="fox-dropdown-option" value="AZ">AZ</mat-option>
+                <mat-option class="fox-dropdown-option" value="CA">CA</mat-option>
+                <mat-option class="fox-dropdown-option" value="CO">CO</mat-option>
+                <mat-option class="fox-dropdown-option" value="CT">CT</mat-option>
+                <mat-option class="fox-dropdown-option" value="DC">DC</mat-option>
+                <mat-option class="fox-dropdown-option" value="DE">DE</mat-option>
+                <mat-option class="fox-dropdown-option" value="FL">FL</mat-option>
+                <mat-option class="fox-dropdown-option" value="FOR">FOR</mat-option>
+                <mat-option class="fox-dropdown-option" value="GA">GA</mat-option>
+                <mat-option class="fox-dropdown-option" value="GU">GU</mat-option>
+                <mat-option class="fox-dropdown-option" value="HI">HI</mat-option>
+                <mat-option class="fox-dropdown-option" value="IA">IA</mat-option>
+                <mat-option class="fox-dropdown-option" value="ID">ID</mat-option>
+                <mat-option class="fox-dropdown-option" value="IL">IL</mat-option>
+                <mat-option class="fox-dropdown-option" value="IN">IN</mat-option>
+                <mat-option class="fox-dropdown-option" value="KS">KS</mat-option>
+                <mat-option class="fox-dropdown-option" value="KY">KY</mat-option>
+                <mat-option class="fox-dropdown-option" value="LA">LA</mat-option>
+                <mat-option class="fox-dropdown-option" value="MA">MA</mat-option>
+                <mat-option class="fox-dropdown-option" value="MD">MD</mat-option>
+                <mat-option class="fox-dropdown-option" value="ME">ME</mat-option>
+                <mat-option class="fox-dropdown-option" value="MI">MI</mat-option>
+                <mat-option class="fox-dropdown-option" value="MN">MN</mat-option>
+                <mat-option class="fox-dropdown-option" value="MO">MO</mat-option>
+                <mat-option class="fox-dropdown-option" value="MP">MP</mat-option>
+                <mat-option class="fox-dropdown-option" value="MS">MS</mat-option>
+                <mat-option class="fox-dropdown-option" value="MT">MT</mat-option>
+                <mat-option class="fox-dropdown-option" value="NC">NC</mat-option>
+                <mat-option class="fox-dropdown-option" value="ND">ND</mat-option>
+                <mat-option class="fox-dropdown-option" value="NE">NE</mat-option>
+                <mat-option class="fox-dropdown-option" value="NH">NH</mat-option>
+                <mat-option class="fox-dropdown-option" value="NJ">NJ</mat-option>
+                <mat-option class="fox-dropdown-option" value="NM">NM</mat-option>
+                <mat-option class="fox-dropdown-option" value="NV">NV</mat-option>
+                <mat-option class="fox-dropdown-option" value="NY">NY</mat-option>
+                <mat-option class="fox-dropdown-option" value="OH">OH</mat-option>
+                <mat-option class="fox-dropdown-option" value="OK">OK</mat-option>
+                <mat-option class="fox-dropdown-option" value="OR">OR</mat-option>
+                <mat-option class="fox-dropdown-option" value="PA">PA</mat-option>
+                <mat-option class="fox-dropdown-option" value="PR">PR</mat-option>
+                <mat-option class="fox-dropdown-option" value="RI">RI</mat-option>
+                <mat-option class="fox-dropdown-option" value="SC">SC</mat-option>
+                <mat-option class="fox-dropdown-option" value="SD">SD</mat-option>
+                <mat-option class="fox-dropdown-option" value="TN">TN</mat-option>
+                <mat-option class="fox-dropdown-option" value="TX">TX</mat-option>
+                <mat-option class="fox-dropdown-option" value="UT">UT</mat-option>
+                <mat-option class="fox-dropdown-option" value="VA">VA</mat-option>
+                <mat-option class="fox-dropdown-option" value="VI">VI</mat-option>
+                <mat-option class="fox-dropdown-option" value="VT">VT</mat-option>
+                <mat-option class="fox-dropdown-option" value="WA">WA</mat-option>
+                <mat-option class="fox-dropdown-option" value="WI">WI</mat-option>
+                <mat-option class="fox-dropdown-option" value="WV">WV</mat-option>
+                <mat-option class="fox-dropdown-option" value="WY">WY</mat-option>
+                <!-- <mat-option *ngFor="let selection of stateDropdownValues" [value]="selection.dropdownItemValue">
+                  {{selection.dropdownItemDesc}}
+                </mat-option>-->
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container-right-clear">
+          <div class="container-form-field1">
+          </div>
+          <div class="container-form-field1">
+            <mat-form-field class="col-search-field">
+              <mat-label>Zip</mat-label>
+              <input matInput maxlength="60" formControlName="zip" [(ngModel)]="zipInput">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row col-md-12 txt-instruction-offset-move-top">
+          <span class="txt-instruction-small"><b>Search criteria must include :</b> TIN, NPI, Business Name or First and Last Name</span>
+        </div>
+        <div class="col-md-12 text-right claim-search-btns">
+          <button type="button" class="btn btn-secondary btn-clear-hist padding-btn"
+                  (click)="resetForm()" foxHotkey="alt+r">Clear (R)
+          </button>
+          <button type="submit" class="btn btn-primary submit-btn padding-btn"
+                  [disabled]="!checkIfFormFilled()" foxHotkey="alt+s">Search (S)
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </mat-expansion-panel>
+
+</mat-accordion>
+
+<fox-section [noPadding]="true">
+  <fox-loading-overlay>
+    <fox-section-title class="container-padding">
+      Search Results
+    </fox-section-title>
+    <div class="container-not-found" *ngIf="!isDataDisplay">
+      <i focusable="false" class="fa fa-info-circle"></i>
+      <p class="header-container">There is no active query</p>
+      <p>Enter one or more criteria above and click "Search"</p>
+    </div>
+
+    <ng-container *ngIf="isDataDisplay">
+      <fox-provider-search-results [providerSearchResults]="providerSearchResultsView"
+                                   [(isDesc)]="providerResultIsDesc"
+                                   [(column)]="providerResultSortColumn">
+      </fox-provider-search-results>
+
+      <fox-paginator-non-material [(pageSize)]="providerPageSize" #paginator
+                                 [dataLengthInput]="providerDataLengthInput"
+                                 [pageTotal]="providerPageTotal"
+                                 [(currentPage)]="currentProviderPage"
+                                 (currentPageChange)="calculateResults()"
+                                 (pageSizeChange)="currentProviderPage=0;calculateResults()">
+      </fox-paginator-non-material>
+    </ng-container>
+  </fox-loading-overlay>
+</fox-section>

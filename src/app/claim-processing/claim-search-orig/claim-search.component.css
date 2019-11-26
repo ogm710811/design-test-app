@@ -1,0 +1,138 @@
+.claim-search-main .claim-search-field {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.claim-search-main .claim-search-btns {
+  padding-right: 0;
+}
+
+.claim-search-main .claim-search-btns button {
+  width: 141px;
+  margin-top: 30px;
+}
+
+.claim-search-main .claim-search-btns .btn-clear {
+  background-color: white;
+  color: #000;
+  border: solid 1px #2d2d39;
+  margin-right: 20px;
+}
+
+.claim-search-main .shape-right {
+  width: 1px;
+  height: 405px;
+  background-color: #cccccc;
+  display: block;
+}
+
+.claim-search-table-main {
+  margin-top: 20px;
+}
+
+.col-claim-no {
+  width: 100%;
+  padding-right: 25px;
+}
+
+.col-search-field {
+  width: 50%;
+  float: left;
+  padding-left: 15px;
+}
+
+.left-border {
+  border-left: 1px solid #cccccc;
+}
+
+.claim-search-field .claim-search-member-fields {
+  height: 300px;
+  padding-left: 10px;
+  padding-right: 25px;
+}
+
+.claim-search-field .claim-search-provider-fields {
+  height: 300px;
+  margin-bottom: 15px;
+  padding-left: 10px;
+}
+
+.claim-search-main .mat-input-element:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.claim-search-label {
+  font-size: 19px;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.claim-search-non-mat-table .mat-sort-header-button {
+  align-items: center;
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  outline: 0 none;
+  padding: 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.claim-search-non-mat-table-main {
+  min-width: 1200px;
+}
+
+.container-grey-border.claim-search-table-main {
+  overflow: auto;
+}
+
+.claim-search-main label {
+  margin-bottom: 0;
+}
+
+.mat-form-field {
+  min-height: 80px;
+}
+
+fox-modal .mat-table {
+  max-height: 260px;
+  overflow: auto;
+}
+
+.icon-briefcase,
+.icon-user {
+  color: #196ECF;
+  margin-right: 5px;
+  font-size: 12px;
+  width: 18px;
+  float: left;
+  height: 20px;
+}
+
+.icon-briefcase {
+  padding-top: 8px;
+}
+
+.container-not-found {
+  margin-bottom: 100px;
+}
+
+@media (min-width: 992px) {
+  /*make it to bigger columns*/
+  .col-md-4 {
+    width: 40%;
+  }
+
+  .col-md-2 {
+    width: 20%;
+  }
+}
+
+a.disabled {
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: underline;
+}

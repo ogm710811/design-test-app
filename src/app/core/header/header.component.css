@@ -1,0 +1,326 @@
+.fox-header {
+  background-color: #ffffff;
+  text-align: center;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.container-header {
+  background: #2B6A9C;
+  text-align: right;
+  padding-bottom: 7px;
+  padding-top: 11px;
+  height: 42px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.fox-header-menu-item.btn-user-dropdown {
+  margin-right:4px;
+}
+
+.fox-header-menu-item {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 300;
+  padding-top: 3px;
+  margin-right: 18px;
+  float: right;
+  cursor: pointer;
+  margin-top: -2px;
+  height: 24px;
+}
+
+.fox-header-banner {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  color: white;
+}
+
+.fox-header-logout-link {
+  cursor: pointer;
+}
+
+.text-shortcut {
+  float: right;
+}
+
+.txt-view-workbench {
+  float: left;
+}
+
+.btn-item-menu {
+  padding-right: 13px;
+}
+
+.btn-img {
+  margin-top: 8px;
+  margin-right: 22px;
+  margin-left: 22px;
+  height: 16px;
+  width: 16px;
+}
+
+.txt-menu {
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 3px;
+  margin-bottom: 7px;
+  text-align: center;
+}
+
+.images-and-search .input-group {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  height: 42px;
+}
+
+.images-and-search .input-group .form-control {
+  width: 243px;
+  font-size: 12px;
+  height: 42px;
+}
+
+.images-and-search .input-group .input-group-btn {
+  background-color: #215178;
+  width: 60px;
+  height: 42px;
+}
+
+.images-and-search .input-group .input-group-btn button {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: #215178;
+}
+
+.images-and-search .input-group .input-group-btn .glyphicon {
+  width: 100%;
+  height: 100%;
+  background-color: #215178;
+  color: #ffffff;
+}
+
+.commandbar-label {
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 300;
+  padding-left: 14px;
+  float: left;
+  margin-top: 4px;
+}
+
+.container-header .lbl-white {
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.commandbar-input {
+  height: 20px;
+  width: 110px;
+  max-width: 110px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: inset 0 2px 2px 0 rgba(0,0,0,0.1);
+  margin-left: 5px;
+  background-color: #215178;
+  color: #BADBF6;
+  font-size: 12px;
+  padding-left: 5px;
+  text-transform: uppercase;
+  float: left;
+}
+
+.commandbar-input[disabled] {
+  transform: scaleX(-1);
+  background: repeating-linear-gradient( 45deg, #215178, #215178 6px, #3270A2 7px, #3270A2 8px );
+}
+
+.commandbar:active {
+  background-color: #FFFFFF;
+}
+
+.commandbar-input:focus {
+  background-color: #FFFFFF;
+  color: #333333;
+}
+
+.commandbar-filled {
+  background-color: #0E4C7E;
+  color: #BADBF6;
+}
+
+.fox-icon {
+  height: 16px;
+  margin-top: 2px;
+  float: left;
+  margin-left: 13px;
+  cursor: pointer;
+}
+
+.com1 {
+  width: 40px;
+}
+
+.memid {
+  width: 96px;
+  max-width: 96px;
+}
+
+.command-group {
+  float: left;
+  height: 38px;
+  padding-left: 14px;
+}
+
+.alert-red-text {
+  font-size: 13px;
+  color: #BF3533;
+}
+
+.error-border {
+  border: 1px solid #BF3533 !important;
+}
+
+.fa-caret-down {
+  font-size: 15px;
+  padding-top: 2px;
+}
+
+.error-icon {
+  height: 22px;
+}
+
+.fa-bars {
+  transform: scale(1.3, 1);
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.fa-briefcase {
+  margin-right: 3px;
+}
+
+.btn-menu {
+  margin-top: -4px;
+  margin-right: 15px;
+}
+
+.fox-header-menu-workflow {
+  border-left: none;
+  background-color: #D6E2EA;
+  border-radius: 4px;
+  width: 105px;
+  padding-left: 8px;
+}
+
+.fox-header-menu-workflow .lbl-workflow {
+  color: #333333;
+  float: left;
+}
+
+.txt-work {
+  font-weight: 600;
+  margin-left: 2px;
+  margin-right: 4px;
+}
+
+.fa-user {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.circle {
+  min-width: 15px;
+  height: 15px;
+  line-height: 20px;
+  border-radius: 500px;
+  -moz-border-radius: 500px;
+  -webkit-border-radius: 500px;
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  margin-top: -2px;
+  margin-left: 6px;
+  background-color: #FA69BF;
+  float: left;
+  border: 5px solid #FA69BF;
+}
+
+.fox-header-menu-bumble-bee {
+  background-color: #FFD00D;
+}
+
+.txt-count {
+  margin-top: -7px;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+@media (max-width: 584px) {
+  .hide-small {
+    display: none;
+  }
+}
+
+@media (max-width: 789px) {
+
+  #com1 {
+    width: 38px;
+  }
+
+  .commandbar-input {
+    min-width: 38px;
+    width: calc(33% - 151px);
+  }
+
+  .hide-medium {
+    display: none;
+  }
+}
+
+@media (max-width: 854px) {
+  .hide-medium {
+    display: none;
+  }
+
+  .fox-header-menu-workflow {
+    width: 39px;
+  }
+}
+
+.container-close {
+  margin-top: -14px;
+  margin-right: 0px;
+}
+
+.close-txt {
+  color: #196ECF;
+}
+
+.relative-position {
+  position: relative;
+}
+
+.container-btn-bg {
+  background-color: transparent;
+  border: 0;
+  height: 42px;
+  margin-top: -11px;
+  padding: 0;
+  width: 60px;
+}
+
+.menu-item-last {
+  margin-right: 0;
+}
+
+.container-btn-bg-close {
+  background-color: #FFFFFF;
+}

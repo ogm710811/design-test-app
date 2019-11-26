@@ -1,0 +1,58 @@
+.container-approve-deny {
+  margin: auto;
+  width: 91%;
+  padding: 14px;
+}
+
+.btn-submit-deny {
+  height: 39px;
+  width: 245px;
+  border-radius: 2px;
+  background-color: #BF3533;
+  margin-bottom: 30px;
+  font-size: 14px;
+  border-color: #bf3533;
+}
+
+.btn-submit-approve {
+  height: 39px;
+  width: 245px;
+  border-radius: 2px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.title-approve-deny {
+  color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.section-note {
+  padding-top: 6px;
+  padding-bottom: 15px;
+  color: #818080;
+  line-height: 16px;
+}
+
+.success-note-approve {
+  margin-top: 11px;
+  margin-bottom: 20px;
+  color: #333333;
+  line-height: 20px;
+}
+
+.success-note-deny {
+  margin-top: 11px;
+  margin-bottom: 5px;
+  color: #333333;
+  line-height: 20px;
+}
+
+.denial-reason {
+  color: #333333;
+  line-height: 20px;
+  font-style: italic;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,232 @@
+<fox-message-box [(visible)]="showNoClaimsAlert" messageBoxTitle="No claims found">
+  Please update your search query and try again.
+</fox-message-box>
+
+<fox-message-box [(visible)]="showTooManyClaimsAlert" messageBoxTitle="Too many claims found">
+  Please update your search query and try again.
+</fox-message-box>
+
+<fox-section>
+  <fox-section-title>
+    Search Criteria
+  </fox-section-title>
+  <div class="claim-search-main">
+    <form [formGroup]="claimSearchFormGroup" (ngSubmit)="claimSearchSubmit(claimSearchFormGroup)"
+          novalidate>
+      <div class="col-md-2 claim-search-field">
+        <mat-form-field class="col-claim-no">
+          <mat-label>Claim #</mat-label>
+          <input matInput maxlength="70" formControlName="claimNumber">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 claim-search-field left-border">
+        <div class="claim-search-member-fields">
+          <mat-form-field class="col-search-field">
+            <mat-label>Member #</mat-label>
+            <input matInput maxlength="60" formControlName="memberNumber">
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>Medicare ID</mat-label>
+            <input matInput maxlength="60" formControlName="mediId">
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>First Name</mat-label>
+            <input matInput maxlength="60" formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>Last Name</mat-label>
+            <input matInput maxlength="60" formControlName="lastName">
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>DOB</mat-label>
+            <input matInput maxlength="10" formControlName="dob" placeholder="MM/DD/YYYY">
+            <mat-error *ngIf="dobFormControl.hasError('date')">{{dobFormControl.getError('date')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-4 claim-search-field left-border">
+        <div class="claim-search-provider-fields">
+          <mat-form-field class="col-search-field">
+            <mat-label>Billing Provider TIN</mat-label>
+            <input matInput maxlength="60" formControlName="billTin">
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>Billing Provider NPI</mat-label>
+            <input matInput maxlength="60" formControlName="billNpi">
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>DOS From</mat-label>
+            <input matInput maxlength="10" formControlName="dosFrom" placeholder="MM/DD/YYYY"
+                   (input)="checkIfDosDateFilled()">
+            <mat-error *ngIf="dosFromFormControl.hasError('date')">
+              {{dosFromFormControl.getError('date')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>DOS To</mat-label>
+            <input matInput maxlength="10" formControlName="dosTo" placeholder="MM/DD/YYYY">
+            <mat-error *ngIf="dosToFormControl.hasError('date')">
+              {{dosToFormControl.getError('date')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>Receipt Date From</mat-label>
+            <input matInput maxlength="10" formControlName="recdateFrom" placeholder="MM/DD/YYYY"
+                   (input)="checkIfRecDateFilled()">
+            <mat-error *ngIf="recFromFormControl.hasError('date')">
+              {{recFromFormControl.getError('date')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>Receipt Date To</mat-label>
+            <input matInput maxlength="10" formControlName="recdateTo" placeholder="MM/DD/YYYY">
+            <mat-error *ngIf="recToFormControl.hasError('date')">
+              {{recToFormControl.getError('date')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-search-field">
+            <mat-label>Claim Status</mat-label>
+            <mat-select formControlName="status">
+              <mat-option *ngFor="let selection of claimStatusDescriptions"
+                          [value]="formatClaimCode(selection.code)">
+                {{selection.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <div class="col-md-12 text-right claim-search-btns">
+        <button type="button" class="btn btn-primary btn-clear" (click)="resetForm()"
+                foxHotkey="alt+r">Clear (R)
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!checkIfFormFilled()"
+                foxHotkey="alt+s" [ngClass]="{'btn-disabled': !checkIfFormFilled()}">Search (S)
+        </button>
+      </div>
+    </form>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">
+    Claim Search Results
+  </fox-section-title>
+
+  <div *ngIf="!(isDataDisplay)" class="container-not-found">
+    <i focusable="false" class="fa fa-info-circle"></i>
+    <p class="header-container">There is no active query for claims</p>
+    <p>Search by one of the valid criteria above and select Search (S)</p>
+  </div>
+
+  <div class="row claim-search-table-main" *ngIf="isDataDisplay">
+    <div class="claim-search-non-mat-table-main">
+      <mat-table class="claim-search-non-mat-table" #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="claimNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Claim</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div class="icon-briefcase"><i focusable="false" class="fas fa-briefcase"></i></div>
+            <a id="claim-tracking-id" *ngIf="canViewImage"
+               href="#/ClaimSearchPdfComponent?claimQuery={{element.claimNumber}}" target="_blank">{{element.claimNumber}}
+            </a>
+            <a id="claim-tracking-id" class="disabled" *ngIf="!canViewImage">
+              {{element.claimNumber}}
+            </a>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="memberNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Member #</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div class="icon-user"><i focusable="false" class="fas fa-user-circle"></i></div>
+            {{element.memberNumber}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="memberName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Member Name</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.memberName | titlecase}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="provider">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Provider</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.provider}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div [innerHTML]="element.status | splitValue "></div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="receiptDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Receipt Date</mat-header-cell>
+          <mat-cell *matCellDef="let element" [style.width]="200">
+            <div [innerHTML]="element.receiptDate | splitValue "></div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dos">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> DOS</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div [innerHTML]="element.dos | splitValue "></div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="history">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"> &nbsp;
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a class="link-claim-history" [foxLink]
+               (linkPressed)="claimHistoryModal(element.claimId,element.ppsClaimId)">History</a>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+    </div>
+  </div>
+</fox-section>
+
+<fox-modal [(visible)]="showClaimHistoryModal"
+           modalTitle="Claim History {{claimHistoryPPSClaimId}}">
+  <div class="col-md-12 container-grey-border no-padding" *ngIf="historyDataSource">
+    <div class="claim-history-mat-table-main">
+      <mat-table class="claim-search-non-mat-table" #table [dataSource]="historyDataSource">
+
+        <ng-container matColumnDef="assignedBy">
+          <mat-header-cell *matHeaderCellDef> MS ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.assignedBy}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eventState">
+          <mat-header-cell *matHeaderCellDef> CLAIM STATUS</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{formatClaimStatus(element.eventState)}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eventDispositionReason">
+          <mat-header-cell *matHeaderCellDef> CLAIM STATUS REASON</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.eventStateReason}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusDate">
+          <mat-header-cell *matHeaderCellDef> DATE</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{formatDateToCST(element.claimEventDate)}}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedHistoryColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedHistoryColumns;"></mat-row>
+      </mat-table>
+
+    </div>
+  </div>
+</fox-modal>

@@ -1,0 +1,75 @@
+<div class="table-trc-deposit-result">
+  <table class="table table-trc-search-result">
+    <thead class="thead-default">
+    <tr>
+      <th [foxLink] (linkPressed)="sort('id')"
+          [ngClass]="{'sorted-column-header':(column == 'id'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>TRC #</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('category')"
+          [ngClass]="{'sorted-column-header':(column == 'category'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>TRC Category</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('createdDate')"
+          [ngClass]="{'sorted-column-header':(column == 'createdDate'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Date Created</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('sts')"
+          [ngClass]="{'sorted-column-header':(column == 'status'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>TRC Status</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('createdBy')"
+          [ngClass]="{'sorted-column-header':(column == 'createdBy'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Created By</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('claimHistoryTrcPO.clmNum')"
+          [ngClass]="{'sorted-column-header':(column == 'claimNumber'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Claim #</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('reimbursementDepositDetailPO.checkClaimNumber')"
+          [ngClass]="{'sorted-column-header':(column == 'reimbursementDepositDetailPO.checkClaimNumber'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Deposit Check Claim #</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('lglEnty')"
+          [ngClass]="{'sorted-column-header':(column == 'businessUnit'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Business Unit</fox-table-header-sort>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [id]=" 'deposit-tr-' + idx" *ngFor="let trc of findTrcResults; let idx = index">
+      <td [id]=" 'deposit-tr-' + idx + '-td-0' ">
+        <a [routerLink]="getUrlForDeposit(trc.depositDetailId)"
+           [queryParams]="{trc: trc.treasuryReconciliationId}">
+          <img src="/assets/img/check-blue.svg"/>
+          {{trc.treasuryReconciliationId}}
+        </a>
+      </td>
+      <td [id]=" 'deposit-tr-' + idx + '-td-1' ">
+        {{trc.treasuryReconciliationCategory}}
+      </td>
+      <td [id]=" 'deposit-tr-' + idx + '-td-2' ">
+        {{trc.dateCreated | date: 'MM/dd/yyyy'}}
+      </td>
+      <td [id]=" 'deposit-tr-' + idx + '-td-3' ">
+        {{trc.treasuryReconciliationStatus}}
+      </td>
+      <td [id]=" 'deposit-tr-' + idx + '-td-4' ">
+        {{trc.createdBy}}
+      </td>
+      <td [id]=" 'deposit-tr-' + idx + '-td-5' ">
+        <a [routerLink]="getUrlForClaimDetails(trc.claimId)" *ngIf="trc.claimId">
+          <img src="/assets/img/claim-blue.svg"/>
+          {{trc.claimId}}
+        </a>
+      </td>
+      <td [id]=" 'deposit-tr-' + idx + '-td-6' ">
+        {{trc.depositCheckClaimId}}
+      </td>
+      <td [id]=" 'deposit-tr-' + idx + '-td-7' ">
+        {{trc.businessUnit}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

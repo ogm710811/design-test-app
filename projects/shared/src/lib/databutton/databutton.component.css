@@ -1,0 +1,41 @@
+.btn-data-button {
+  background: #F5F5F5;
+  border: 1px solid #D3D3D3;
+  color: #252C37;
+  font-size: 14px;
+  font-weight: 600;
+  height: 35px;
+  line-height: 12px;
+  padding: 10px;
+  transition: 150ms;
+}
+
+.btn-data-button:hover {
+  background: #ECF4FE;
+}
+
+.img-pre-icon {
+  float: left;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: -2px;
+}
+
+.img-post-icon {
+  float: right;
+  height: 8px;
+  margin-left: 3px;
+  position: relative;
+  top: 3px;
+  width: 8px;
+}
+
+.span-title {
+  float: left;
+  margin: 0 6px;
+}
+
+.span-no-pre-image {
+  margin-left: 0;
+}

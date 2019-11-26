@@ -1,0 +1,12 @@
+<a class="link-member" [routerLink]="getUrlForMember()" [queryParams]="{mp:'true'}" tabindex="0" target="{{target}}">
+  <ng-container *ngIf="!isF4913Enabled">
+    {{itemToFormat | formatMember}}
+  </ng-container>
+  <ng-container *ngIf="isF4913Enabled">
+    {{memberNumber | formatMember}}
+  </ng-container>
+</a>
+<ng-container *ngIf="isF4913Enabled && !!memberName">
+  <br/>
+  {{memberName}}
+</ng-container>

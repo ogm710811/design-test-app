@@ -1,0 +1,201 @@
+<fox-section>
+  <fox-section-title>{{screen.m86hed2f | titlecase}} Set Quality Combinations {{screen.m86headf | titlecase}}</fox-section-title>
+
+  <div class="form-row block-header">
+    <div class="block-header">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">{{screen.m86typlf | titlecase}}</p>
+        <p class="txt-metadata-value">{{screen.m86typef}} </p>
+      </div>
+    </div>
+    <div class="block-header">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Last Maint Date:</p>
+        <p class="txt-metadata-value">{{screen.m86mdatf}} </p>
+      </div>
+    </div>
+    <div class="block-header">
+      <div class="container-metadata-item">
+        <p class="txt-metadata-label">Ions:</p>
+        <p class="txt-metadata-value">{{screen.m86mionf}} </p>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Quality Combinations</fox-section-title>
+  <div class="table-horizontal-scrollable">
+    <table class="table">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Percent</th>
+          <th>State</th>
+          <th>Plan</th>
+          <th>TOS</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Caution</th>
+          <th>Acceptability Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let browseGridVar of viewData; let i = index;">
+          <td class="center-label-row">
+            <mat-label [id]=" 'txtM86NO' + (i+1)">{{browseGridVar.m86tLineNo}}</mat-label>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86PCT' + (i+1)" name="txtM86PCT1" #txtM86PCT1 maxlength="3" size="3" type="text"
+                [(ngModel)]="browseGridVar.m86tPct" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86ST' + (i+1)" name="txtM86ST1" #txtM86ST1 maxlength="2" size="2" type="text"
+                [(ngModel)]="browseGridVar.m86tState" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86PL' + (i+1)" name="txtM86PL1" #txtM86PL1 maxlength="2" size="2" type="text"
+                [(ngModel)]="browseGridVar.m86tPlan" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86TOS' + (i+1)" name="txtM86TOS1" #txtM86TOS1 maxlength="2" size="2" type="text"
+                [(ngModel)]="browseGridVar.m86tTos" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86FD' + (i+1)" name="txtM86FD1" #txtM86FD1 maxlength="6" size="6" type="text"
+                [(ngModel)]="browseGridVar.m86tFromDate" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86TD' + (i+1)" name="txtM86TD1" #txtM86TD1 maxlength="6" size="6" type="text"
+                [(ngModel)]="browseGridVar.m86tToDate" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86CAU' + (i+1)" name="txtM86CAU1" #txtM86CAU1 maxlength="2" size="2" type="text"
+                [(ngModel)]="browseGridVar.m86tCaution" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [id]=" 'txtM86ACP' + (i+1)" name="txtM86ACP1" #txtM86ACP1 maxlength="1" size="1" type="text"
+                [(ngModel)]="browseGridVar.m86tAcceptCode" />
+            </mat-form-field>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <fox-paginator-non-material [(pageSize)]="pageSizeSelected" [dataLengthInput]="dataLengthInput" #paginator
+      [pageTotal]="pageTotal" [(currentPage)]="currentPage" (currentPageChange)="calculateNewPage();" (pageSizeChange)="currentPage=0; calculateNewPage();"></fox-paginator-non-material>
+  </div>
+
+
+  <div class="form-row margin-top-40 text-right">
+    <button id="F1" name="F1" #F1 type="button" class="btn btn-default margin-right-20" (click)="f1EventClick()"
+      foxHotkey="alt+l">Return (L)</button>
+    <button id="enter" name="enter" #enter type="button" class="btn btn-primary " (click)="enterEventClick()" foxHotkey="alt+s">Submit
+      (S)</button>
+  </div>
+</fox-section>
+
+<fox-section *ngIf='screen.m86excTable.m86excts[0].m86tExcNo'>
+  <fox-section-title>Excluded Locations</fox-section-title>
+
+  <div class="form-row">
+    <mat-form-field class="margin-right-20">
+      <input id="txtM86EXC1" matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[0].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[1].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[2].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[4].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[5].m86tExcNo" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <input id="txtM86EXC1" matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[6].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[7].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[8].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[9].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[10].m86tExcNo" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <input id="txtM86EXC1" matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[11].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[12].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[13].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[14].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[15].m86tExcNo" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <input id="txtM86EXC1" matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[16].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[17].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[18].m86tExcNo" />
+    </mat-form-field>
+
+    <mat-form-field class="margin-right-20">
+      <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m86excTable.m86excts[19].m86tExcNo" />
+    </mat-form-field>
+  </div>
+</fox-section>

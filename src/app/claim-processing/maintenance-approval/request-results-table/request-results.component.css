@@ -1,0 +1,37 @@
+.fa-user,
+.fa-heartbeat {
+  margin-right: 5px;
+  color: #196ECF;
+}
+
+.table-request-results {
+  border-collapse: collapse;
+}
+
+.col-request {
+  width: 92px;
+}
+
+.col-status {
+  width: 130px;
+}
+
+.col-link-value {
+  width: 155px;
+}
+
+.col-requester {
+  width: 149px;
+}
+
+.col-verified {
+  width: 142px;
+}
+
+.col-action {
+  width: 200px;
+}
+
+.col-timestamp {
+  width: 178px;
+}

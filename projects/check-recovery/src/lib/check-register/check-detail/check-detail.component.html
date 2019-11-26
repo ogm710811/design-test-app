@@ -1,0 +1,111 @@
+<div class="check-detail-main" *ngIf="state.checkDetails"
+     [ngClass]="{'multiple-checks-main-class': checkId}">
+  <div class="">
+    <label class="col-md-10 check-detail-main-label" *ngIf="isBulk() || !hasCheckNumber()">Check
+      Details <span *ngIf="isBulk()">(This is a Bulk Check)</span></label>
+    <label class="col-md-10 check-detail-main-label" *ngIf="!isBulk() && hasCheckNumber()">Check
+      #{{state.checkDetails.checkNumber}}</label>
+    <button type="button" *ngIf="isBulk()" class="btn btn-primary col-md-2 check-detail-main-button"
+            [routerLink]="getBulkDetailsLink()" foxHotkey="alt+b">
+      Bulk Details (B)
+    </button>
+  </div>
+
+  <div class="check-detail-section row-20px-margin">
+    <div class="col-md-3 border-right">
+      <p><span class="label-detail-item">Series: </span><span>{{state.checkDetails.checkSeries}}</span>
+      </p>
+      <p><span class="label-detail-item">Status: </span><span class="row-details-status">{{state.checkDetails.status | removeUnderscore | titlecase}}</span>
+      </p>
+      <p><span
+        class="label-detail-item">Paypoint Code: </span><span>{{state.checkDetails.paypointCode}}</span>
+      </p>
+      <p><span class="label-detail-item">RHO: </span><span></span></p>
+      <p><span class="label-detail-item">Operator ID: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.actionUserId">{{state.checkDetails?.checkActionDetail?.actionUserId}}</span>
+      </p>
+      <p class="no-margin-bottom"><span class="label-detail-item">Approver ID: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.approverUserId">{{state.checkDetails?.checkActionDetail?.approverUserId}}</span>
+      </p>
+    </div>
+    <div class="col-md-3 border-right">
+      <p><span class="label-detail-item">Check #: </span><span>{{state.checkDetails.checkNumber}}</span>
+      </p>
+      <p><span class="label-detail-item">Claim Amount: </span><span>{{state.checkDetails.claimAmount | currency}}</span>
+      </p>
+      <p><span class="label-detail-item">I/Amount: </span><span>{{state.checkDetails.checkAmount | currency}}</span>
+      </p>
+      <p><span class="label-detail-item">C/Amount: </span><span *ngIf="state.checkDetails.cashAmount">{{state.checkDetails.cashAmount | currency}}</span>
+      </p>
+      <p><span class="label-detail-item">Transaction Date: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.actionTransactionDate">{{state.checkDetails?.checkActionDetail?.actionTransactionDate | date:'MM/dd/yy'}}</span>
+        <span
+          *ngIf="state.checkDetails?.checkActionDetail?.approverTransactionDate">{{state.checkDetails?.checkActionDetail?.approverTransactionDate | date:'MM/dd/yy'}}</span>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p><span
+        class="label-detail-item">Member #: </span><span>{{state.checkDetails.accountNumber}}</span></p>
+      <p><span class="label-detail-item">Claim #: </span><span>{{state.checkDetails.claimNumber}}</span>
+      </p>
+      <p><span class="label-detail-item">I/Date: </span><span>{{state.checkDetails.issueDate | date:'MM/dd/yy'}}</span>
+      </p>
+      <p><span class="label-detail-item">C/Date: </span><span>{{state.checkDetails.cashDate | date:'MM/dd/yy'}}</span>
+      </p>
+    </div>
+  </div>
+  <div class="border-bottom col-md-12"></div>
+
+  <div class="row-20px-margin check-detail-section">
+    <div class="col-md-6 border-right">
+      <p><span class="label-detail-item">Payee: </span><span *ngIf="state.checkDetails.payee">{{state.checkDetails.payee}}</span>
+      </p>
+      <div>
+        <span class="label-detail-item">Payee Address: </span>
+        <div class="long-add-format" *ngIf="state.checkDetails?.payeeAddress?.addressLine1">
+          {{state.checkDetails?.payeeAddress?.addressLine1}} <br
+          *ngIf="state.checkDetails?.payeeAddress?.addressLine2"/>{{state.checkDetails?.payeeAddress?.addressLine2
+          }} <br *ngIf="state.checkDetails?.payeeAddress?.addressLine3"/>{{state.checkDetails?.payeeAddress?.addressLine3}}
+          <br/>{{state.checkDetails?.payeeAddress?.city}} <br/>{{state.checkDetails?.payeeAddress?.state}}
+          &nbsp;{{state.checkDetails?.payeeAddress?.zip}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <p><span class="label-detail-item">TIN: </span><span>{{state.checkDetails.tin | prependZero}}</span></p>
+      <p><span class="label-detail-item">NPI: </span><span>{{state.checkDetails.npi}}</span></p>
+      <p><span class="label-detail-item">Insured: </span><span>{{state.checkDetails.insuredName}}</span>
+      </p>
+    </div>
+  </div>
+  <div class="border-bottom col-md-12"></div>
+
+  <div class="row-20px-margin check-detail-section">
+    <div class="col-md-3">
+      <p><span
+        class="label-detail-item label-detail-item-long">Issued in Lieu of Check #: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.originalCheckNumber">{{state.checkDetails?.checkActionDetail?.originalCheckSeries}} {{state.checkDetails?.checkActionDetail?.originalCheckNumber}}</span>
+      </p>
+      <p><span class="label-detail-item label-detail-item-long">Replacement Check #: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.replacementCheckNumber">{{state.checkDetails?.checkActionDetail?.replacementCheckSeries}} {{state.checkDetails?.checkActionDetail?.replacementCheckNumber}}</span>
+      </p>
+    </div>
+    <div class="col-md-3 border-left">
+      <p><span class="label-detail-item">I/Date: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.originalIssueDate">{{state.checkDetails?.checkActionDetail?.originalIssueDate | date:'MM/dd/yy'}}</span>
+      </p>
+      <p><span class="label-detail-item">I/Date: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.replacementIssueDate">{{state.checkDetails?.checkActionDetail?.replacementIssueDate | date:'MM/dd/yy'}}</span>
+      </p>
+    </div>
+  </div>
+  <div class="border-bottom col-md-12"></div>
+
+  <div class="row-20px-margin border-bottom-notation check-detail-section">
+    <div class="col-md-12">
+      <p><span class="label-detail-item">Notation: </span><span
+        *ngIf="state.checkDetails?.checkActionDetail?.notation">{{state.checkDetails?.checkActionDetail?.notation}}</span>
+      </p>
+    </div>
+  </div>
+</div>

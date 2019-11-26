@@ -1,0 +1,51 @@
+<fox-section [noPadding]="true">
+  <fox-section-title class="use-left-margin use-top-margin">Queue Results</fox-section-title>
+  <fox-loading-overlay tag="queue-results">
+    <div *ngIf="!queues || queues.length === 0" class="container-not-found">
+      <i focusable="false" class="fa fa-info-circle"></i>
+      <p class="header-container">No queues to display</p>
+      <p>Enter criteria above and select Load Queue</p>
+    </div>
+    <ng-container *ngIf="queues && queues.length > 0">
+      <table class="table tbl-results">
+        <thead>
+        <tr>
+          <th>Queue Name</th>
+          <th>Description</th>
+          <th>Total Documents</th>
+          <th>Oldest Document (Days)</th>
+          <th>Queue Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let queue of queues; let i= index">
+          <td>
+            <ng-container *ngIf="queue?.queueId && queue.totalItems !== 0">
+              <a *ngIf="(queue?.type === 'WIP') || (queue?.type === 'FIFO' && hasEnhancedWorkQueueRole)"
+                 [routerLink]="queueDetailsPath"
+                 [queryParams]="{qid: queue!.queueId!.toString()}">{{queue.name}}</a>
+              <a (click)="onStartFifo(queue)" *ngIf="queue?.type === 'FIFO' && !hasEnhancedWorkQueueRole">
+                {{queue.name}}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="queue?.queueId && queue.totalItems === 0">
+              <a class="a-disabled">{{queue.name}}</a>
+            </ng-container>
+            <ng-container *ngIf="!queue || !(queue.queueId)">{{queue.name}}</ng-container>
+          </td>
+          <td>{{queue.description}}</td>
+          <td>{{queue.totalItems}}</td>
+          <td>{{queue.aging}}</td>
+          <td>{{queue.type}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <fox-paginator-non-material [dataLengthInput]="dataSize" [pageTotal]="pageTotal"
+                                  [(pageSize)]="pageSize"
+                                  [(currentPage)]="pageNumber"
+                                 (currentPageChange)="pageNumberChange.emit($event)"
+                                 (pageSizeChange)="pageSizeChange.emit($event)"></fox-paginator-non-material>
+    </ng-container>
+  </fox-loading-overlay>
+</fox-section>
+<fox-queue-selection-confirmation #qSelConfirmModal (confirm)="onConfirmQueueToWork()"></fox-queue-selection-confirmation>

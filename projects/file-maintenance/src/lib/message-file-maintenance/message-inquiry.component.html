@@ -1,0 +1,114 @@
+<div class="container-return-previous col-xs-12">
+  <span (click)="F1EventClick()"
+        class="span-return"
+        foxHotkey="ctrl+f1"
+        hotkeyAction="click">
+    <img class="container-arrow-left"
+         src="assets/img/arrow-left.svg"/>
+    Return to Previous (F1)
+  </span>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <fox-section>
+      <fox-section-title>
+        Message Details
+      </fox-section-title>
+      <div class="row container-row-small">
+        <div class="col-xs-6 col-sm-5">
+          <fox-read-only-field
+            label="Message #"
+            [value]="screen.m20msg">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+          <fox-read-only-field
+            label="Language"
+            [value]="screen.m20elan">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 container-message-text">
+          <div class="container-label-message-text">Message Text</div>
+          <div class="container-value-message-text">{{screen.m20mln1}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <fox-read-only-field
+            label="Related ANSI Code:"
+            [value]="screen.m20ansi || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Not Used Indicator:"
+            [value]="screen.m20used || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Quality Percent:"
+            [value]="screen.m20qpct || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Sys Gen PP:"
+            [value]="screen.m20esge || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Denial:"
+            [value]="screen.m20mind || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Hold:"
+            [value]="screen.m20ehld || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Reconsider:"
+            [value]="screen.m20erec || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <fox-read-only-field
+            label="Auto Gen:"
+            [value]="screen.m20egen || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="EOB Print:"
+            [value]="screen.m20eeob || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="RA Print:"
+            [value]="screen.m20erap || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Elec RA - Grp Code:"
+            [value]="screen.m20eele || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Reason (Carc):"
+            [value]="screen.m20erea || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Remark Code:"
+            [value]="screen.m20erem || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+          <fox-read-only-field
+            label="Dupe Bill Suppress:"
+            [value]="screen.m20edup || '-'"
+            [horizontal]="readOnlyHorizontal">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+</div>

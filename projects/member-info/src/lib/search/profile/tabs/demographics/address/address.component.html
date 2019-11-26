@@ -1,0 +1,72 @@
+<!--Adresses on File Section-->
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">
+    Addresses on File
+  </fox-section-title>
+
+  <div class="member-address-table-main">
+    <div class="member-address-non-mat-table-main">
+      <mat-table class="member-address-non-mat-table" [dataSource]="addressDataSource" #table
+                 matSort
+                 tabindex="0">
+
+        <ng-container matColumnDef="addressType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Address Type</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.addressType | slice:0:20}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="effectiveFrom">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Effective From</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.effectiveFrom | date:'MM/dd/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="effectiveTo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Effective To</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.effectiveTo | date:'MM/dd/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="addressOne">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Address Line 1</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.addressOne | slice:0:55 | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="addressTwo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Address Line 2</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.addressTwo | slice:0:55 | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> City</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.city | slice:0:30 | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> State</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.state | slice:0:2}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="zipCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Zip Code</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.zipCode | zipCode}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="country">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Country</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.country | slice:0:55}}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedAddressColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedAddressColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</fox-section>

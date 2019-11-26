@@ -1,0 +1,98 @@
+<fox-section *ngIf="!hasEligibilityServiceData; else displayData" [noPadding]="true">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 no-left-padding">
+        <div class="section-title">Insurance Plans</div>
+      </div>
+      <div class="col-md-12 no-left-padding container-not-found">
+        <i class="fa fa-info-circle" focusable="false"></i>
+        <p class="header-container">No insurance plans on file</p>
+        <span>This member has no insurance plans in their history</span>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<!--Member Insurance Plan-->
+<ng-template #displayData>
+  <fox-section [noPadding]="true">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 container-col-padding">
+          <div class="section-title">Insurance Plans</div>
+          <table class="table">
+            <thead class="thead-default">
+            <tr>
+              <th class="locator-plan-code"
+                  [foxLink] (linkPressed)="onSort('planCode')"
+                  [ngClass]="{'sorted-column-header':(column === 'planCode'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Plan Code </fox-table-header-sort>
+              </th>
+              <th class="locator-plan-name"
+                  [foxLink] (linkPressed)="onSort('planName')"
+                  [ngClass]="{'sorted-column-header':(column === 'planName'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Plan Name</fox-table-header-sort>
+              </th>
+              <th class="locator-status"
+                  [foxLink] (linkPressed)="onSort('status')"
+                  [ngClass]="{'sorted-column-header':(column === 'status'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Status</fox-table-header-sort>
+              </th>
+              <th class="locator-effective-date"
+                  [foxLink] (linkPressed)="onSort('effectiveDate')"
+                  [ngClass]="{'sorted-column-header':(column === 'effectiveDate'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Effective Date</fox-table-header-sort>
+              </th>
+              <th class="locator-term-date"
+                  [foxLink] (linkPressed)="onSort('termDate')"
+                  [ngClass]="{'sorted-column-header':(column === 'termDate'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Term Date</fox-table-header-sort>
+              </th>
+              <th class="locator-term-reason"
+                  [foxLink] (linkPressed)="onSort('termReason')"
+                  [ngClass]="{'sorted-column-header':(column === 'termReason'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Reason for Term</fox-table-header-sort>
+              </th>
+              <th class="locator-ben-modification"
+                  [foxLink] (linkPressed)="onSort('benModification')"
+                  [ngClass]="{'sorted-column-header':(column === 'benModification'), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>Benefit Modifications</fox-table-header-sort>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr [id]=" 'insurance-plan-tr-' + idx" *ngFor="let item of insurancePlans | orderBy:{property: column, direction: direction}; let idx = index ">
+              <td [id]=" 'insurance-plan-tr-' + idx + '-td-0' " class="locator-plan-code-td">
+                {{item.planCode}}
+              </td>
+              <td [id]=" 'insurance-plan-tr-' + idx + '-td-1' " class="locator-plan-name-td">
+                {{item.planName}}
+              </td>
+              <td [id]=" 'insurance-plan-tr-' + idx + '-td-2' " class="locator-status-td">
+                {{item.status}}
+              </td>
+              <td [id]=" 'insurance-plan-tr-' + idx + '-td-3' " class="locator-effective-date-td">
+                {{item.effectiveDate | date:'MM/dd/yyyy'}}
+              </td>
+              <td [id]=" 'insurance-plan-tr-' + idx + '-td-4' " class="locator-term-date-td">
+                {{item.termDate | date:'MM/dd/yyyy'}}
+              </td>
+              <td [id]=" 'insurance-plan-tr-' + idx + '-td-5' " class="locator-term-reason-td">
+                {{item.reasonForTerm}}
+              </td>
+              <td [id]=" 'insurance-plan-tr-' + idx + '-td-6' " class="locator-ben-modification-td">
+                <a *ngIf="item.benMod?.length > 0" (click)="openBenModModal(idx)"> {{item.benMod?.length}} Benefit Modifications </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+</ng-template>
+
+
+<fox-member-benefit-modification
+  [insurancePlanModificationData]="insurancePlanModificationData">
+</fox-member-benefit-modification>

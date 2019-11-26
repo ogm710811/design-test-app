@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-xs-12 container-div-return-prev">
+    <span (click)="returnEventClick()"
+          foxHotkey="ctrl+f1"
+          hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </span>
+  </div>
+</div>
+<fox-section [overflowDisabled]="true">
+  <div class="container-ions-title">
+    <fox-section-title>Pending Verification</fox-section-title>
+  </div>
+  <div class="row container-fox-inputs">
+    <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM82POS"
+                 name="txtM82POS"
+                 labelText="Maintenance IONS"
+                 inputValue="{{screenBean.sionsD}}">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM82DIV"
+                 name="txtM82DIV"
+                 labelText="Maintenance IONS"
+                 inputValue="{{screenBean.sdivD}}">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM82LOC"
+                 name="txtM82LOC"
+                 labelText="Location"
+                 inputValue="{{screenBean.slocD}}">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-input-left">
+      <div class="container-menu-circle">or</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 container-input-right container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM66TEM"
+                 name="txtM66TEM"
+                 labelText="Template"
+                 inputValue="{{screenBean.stemD}}">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 container-inputs container-fox-inputs-xs">
+      <div class="container-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-4 container-inputs container-fox-inputs-xs">
+      <fox-input type="text"
+                 id="txtM66LEV"
+                 name="txtM66LEV"
+                 labelText="Authority Level"
+                 inputValue="{{screenBean.slevD}}">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-inputs">
+      <fox-input type="text"
+                 id="txtM66POS"
+                 name="txtM66POS"
+                 labelText="Position"
+                 inputValue="{{screenBean.sposD}}">
+      </fox-input>
+    </div>
+  </div>
+  <mat-divider class="mat-divider-margins"></mat-divider>
+  <div class="container-table">
+    <fox-table class="test" [noBorderTopHeader]="true" [tableColumns]="columns"  [tableData]="tableData"></fox-table>
+  </div>
+  <div class="row container-paginator-row" [hidden]="screenBean.mapPendingVerif.mapVerifs.length === 0">
+    <div class="col-xs-12 paginator-material">
+      <fox-paginator-non-material [(pageSize)]="pageSizeSelected"
+                                  [dataLengthInput]="dataLengthInput"
+                                  #paginator
+                                  [pageTotal]="pageTotal"
+                                  [(currentPage)]="currentPage"
+                                  (currentPageChange)="calculateNewPage();"
+                                  (pageSizeChange)="currentPage=0; calculateNewPage();">
+      </fox-paginator-non-material>
+    </div>
+  </div>
+  <mat-divider class="mat-divider-margins-bottom"></mat-divider>
+  <div class="row container-bottom-selectors">
+    <div class="col-xs-12 container-bottom-selectors-column">
+      <div class="container-bottom-input">
+        <fox-input type="text"
+                   id="txtM66VREP"
+                   name="txtM66VREP"
+                   labelText="Select Line #"
+                   [(ngModel)]="screenBean.selectD">
+        </fox-input>
+      </div>
+      <div class="container-button-select">
+        <fox-loading-button [buttonValue] = "'Select (S)'"
+                            [buttonStatus]="continueStatus"
+                            [typeValue]="'button'"
+                            [foxHotKeyValue]="'alt+s'"
+                            (buttonClick)="enterEventClick()">
+        </fox-loading-button>
+      </div>
+    </div>
+  </div>
+</fox-section>

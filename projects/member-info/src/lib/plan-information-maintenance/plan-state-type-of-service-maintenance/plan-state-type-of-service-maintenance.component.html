@@ -1,0 +1,46 @@
+<fox-section>
+  <fox-section-title>Plan and State Information File - {{screen.m11hdr1 | titlecase}}</fox-section-title>
+  <div>
+    <div class="form-row">
+      <mat-form-field class="margin-right-20">
+        <mat-label>Record Type</mat-label>
+        <input id="txtM11RTYP" matInput maxlength="1" size="1" disabled="disabled" type="text" [(ngModel)]="screen.m11rtyp" />
+      </mat-form-field>
+
+      <mat-form-field class="margin-right-20">
+        <mat-label>Type of Service</mat-label>
+        <input id="txtM11TOS" matInput maxlength="2" size="2" disabled="disabled" type="text" [(ngModel)]="screen.m11tos" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row margin-top-40">
+      <mat-form-field class="margin-right-20">
+        <mat-label>Coverage Code</mat-label>
+        <input id="txtM11COV" matInput maxlength="2" size="2" disabled="{{screen.m11hdr1== 'REVIEW'}}" type="text" [(ngModel)]="screen.m11cov"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row margin-top-40">
+      <mat-form-field class="margin-right-20 full-width">
+        <mat-label>Description</mat-label>
+        <input id="txtM11DESC" matInput maxlength="47" size="47" disabled="{{screen.m11hdr1== 'REVIEW'}}" type="text" [(ngModel)]="screen.m11desc"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <div class="form-row margin-right-20 text-right margin-top-40">
+      <button id="btnErrorCancel" type="button" class="btn btn-default margin-right-20" foxHotkey="alt+c" (click)="F1EventClick()">
+          Return (T)
+        </button>
+    <button id="btnErrorCancel" type="button" class="btn btn-default margin-right-20" foxHotkey="alt+c" (click)="CLEAREventClick()">
+      Reset (C)
+    </button>
+    <button id="Enter" name="Enter" #btnLabel5 type="button" class="btn btn-primary" foxHotkey="alt+e" (click)="ENTEREventClick()">
+      Enter (E)
+    </button>
+  </div>
+
+</fox-section>

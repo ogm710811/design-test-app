@@ -1,0 +1,111 @@
+.bd-chip-icon-text {
+  display: inline-block;
+  padding: 0 12px;
+  border-radius: 32px;
+  font-size: 11px;
+  color: white;
+}
+
+.bd-table-filter {
+  display: inline-block;
+  padding: 0 12px;
+  border-radius: 32px;
+  font-size: 11px;
+  color: #252C37;
+  background-color: #F5F5F5;
+  height: 23px;
+  line-height: 23px;
+}
+
+.bd-table-filter:hover {
+  background: #EEEFF2;
+}
+
+.bd-chip-icon-text.bd-chip-hover:hover {
+  background: #CCCCCC;
+}
+
+.bd-chip-icon {
+  display: inline-block;
+  border-radius: 50px;
+  font-size: 12px;
+  color: white;
+}
+
+.bd-chip-icon.bd-chip-hover:hover {
+  background: #CCCCCC;
+}
+
+.bd-chip-icon-before {
+  display: block;
+  float: left;
+  width: 23px;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0 3px 0 -12px;
+}
+
+.bd-chip-icon-after {
+  display: block;
+  float: right;
+  width: 23px;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
+  margin: 0 -12px 0 3px;
+}
+
+.bd-chip-clickable {
+  cursor: pointer;
+}
+
+.bd-chip-icon-text, .bd-chip-icon-before {
+  height: 23px;
+  line-height: 23px;
+}
+
+.bd-chip-icon-text, .bd-chip-icon-after {
+  height: 23px;
+  line-height: 23px;
+}
+
+/* colors */
+.record-locked {
+  background: #EB7560;
+}
+
+.special-hc {
+  background: #E2985A;
+}
+
+.maint-pending {
+  background: #E2985A;
+}
+
+.paper-claim {
+  background: #6790E4;
+}
+
+.queue {
+  background: #505B6F;
+}
+
+.request-denied {
+  background: #EB7560;
+}
+
+.request-approved {
+  background: #6DA76D;
+}
+
+.pending-approval {
+  background: #E2985A;
+}
+
+.member-migrated {
+  background: #30ACBD;
+}
+
+.color-grey {
+  background: #F5F5F5;
+}

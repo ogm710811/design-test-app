@@ -1,0 +1,241 @@
+.verify {
+  width: 1em;
+  height: 1em;
+  color: green;
+  padding-right: 5px;
+}
+
+.reject {
+  width: 1em;
+  height: 1em;
+  color: red;
+  padding-right: 5px;
+}
+
+.mat-column-depositCount {
+  text-align: right;
+}
+
+.mat-column-depositSummaryTotal {
+  text-align: right;
+}
+
+.mat-cell {
+  padding-right: 20px;
+}
+
+.negative-highlight {
+  background-color: red;
+}
+
+.column-amount {
+  text-align: right;
+}
+
+.verify-reject-modal-heading {
+  padding: 0 0 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+}
+
+.rejection-reason-textarea {
+  width: 100%;
+  min-height: 50px;
+  resize: none;
+  color: #252C37;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 15px;
+  height: 128px;
+}
+
+.verify-modal-buttons-float-right {
+  float: right;
+}
+
+.rejection-buttons {
+  float: right;
+  padding-top: 30px;
+}
+
+.no-history-found {
+  margin-top: 100px;
+}
+
+.history-found {
+  padding-top: 115px;
+}
+
+.history-table {
+  padding-top: 15px;
+}
+
+.reject-link {
+  padding-left: 10px;
+}
+
+.non-mat-paginator .page-range > label {
+  display: flex;
+}
+
+.non-mat-paginator .page-range span {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.non-mat-paginator .page-range {
+  padding-left: 0;
+}
+
+.paginator-active {
+  background-color: #e0e0e0;
+}
+
+.page-range > label {
+  display: flex;
+  font-size: 13px;
+  font-weight: 500;
+  padding-top: 26px;
+}
+
+.page-range span {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.page-range {
+  padding-left: 0;
+  float: left;
+}
+
+.paginator-active {
+  background-color: #2B79D3;
+  color: #FFFFFF;
+}
+
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  float: right;
+  margin-top: 16px;
+  margin-bottom: 30px;
+  margin-right: 24px;
+  margin-left: 24px;
+}
+
+.page-link-left,
+.page-link-right {
+  font-size: 10px;
+  padding-top: 10px;
+  height: 34px;
+}
+
+.paginator-show-field label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.non-mat-paginator {
+  margin-top: 13px;
+}
+
+.paginator-show-field {
+  margin-left: 23px;
+  width: 100px;
+  float: left;
+}
+
+.btn-clear {
+  margin-left: 15px;
+}
+
+.container-reject-reason {
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #333333;
+}
+
+.container-reject-description {
+  font-style: italic;
+  line-height: 18px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.container-reject {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 10px;
+}
+
+.container-text-area-hint {
+  color: #333333;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.container-table {
+  margin-left: -20px;
+}
+
+.row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 15px 20px 20px;
+  display: inline-block;
+  width: 100%;
+  width: calc(100% - 120px);
+}
+
+.row-small > div[class*="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-field-source, .form-field-verfication-status {
+  width: 100%;
+}
+
+.btn-find {
+  float: right;
+  margin-top: 25px;
+  margin-right: 20px;
+  width: 120px;
+}
+
+.title-empty-table {
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .row-small {
+    width: 100%;
+    padding-bottom: 0;
+  }
+
+  .row-small > div[class*="col"] {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 25px;
+  }
+
+  .row-small > div[class*="col"]:last-child {
+    margin-bottom: 0;
+  }
+
+  .btn-find {
+    float: unset;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 25px;
+  }
+}

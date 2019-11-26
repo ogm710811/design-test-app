@@ -1,0 +1,305 @@
+.container-navigation {
+  margin-bottom: 10px;
+  border-bottom: solid 1px #E3E3E3;
+  height: 25px;
+}
+
+.btn-navigation {
+  padding: 0px 5px 10px 5px;
+  float: left;
+  height: 25px;
+  margin-right: 20px;
+  cursor: pointer;
+  color: #196ECF;
+}
+
+.btn-navigation-active {
+  border-bottom: solid 3px #196ECF;
+  color: #4E5B71;
+}
+
+.select-action {
+  width: 90%;
+  margin-top: 14px;
+}
+
+.select-history {
+  width: 120%;
+}
+
+.container-left {
+  float: left;
+  max-width: 230px;
+  padding-right: 5px;
+}
+.file-import-button .file-action .mat-form-field {
+  width: 100%;
+}
+.container-right {
+  display: inline-block;
+  padding-left: 15px;
+  width: 74%;
+  border-left: lightgray solid 0.5px;
+  margin-top: 4px;
+}
+
+.container-vendor-report {
+  padding: 0px 10px 10px 10px;
+  width: 30%;
+  margin-bottom: 15px;
+}
+
+.input-import-file {
+  float: left;
+  padding: 0px 10px 10px 10px;
+  width: 70%;
+}
+
+.container-import-file .input-hidden {
+  display: none;
+}
+
+.btn {
+  margin-top: 12px;
+  height: 39px;
+}
+
+.btn-browse {
+  height: 39px;
+}
+
+.container-file-import {
+  margin-top: 3%;
+}
+
+.container-file-import.overpayment-error .mat-form-field mat-select.ng-dirty .mat-select-arrow {
+  color: #f44336;
+}
+
+.container-file-import.overpayment-error .mat-form-field.ng-valid mat-select .mat-select-arrow {
+  color: #196ecf;
+}
+
+.container-file-import.overpayment-error .mat-form-field.ng-dirty .mat-form-field-label-wrapper .mat-form-field-placeholder {
+  color: #f44336;
+}
+
+.container-file-import.overpayment-error .mat-form-field.ng-valid .mat-form-field-label-wrapper .mat-form-field-placeholder {
+  color: #196ecf;
+}
+
+.container-file-import.overpayment-error .mat-form-field:not(.ng-dirty) .mat-form-field-label-wrapper .mat-form-field-placeholder {
+  color: initial;
+}
+
+.container-file-import.overpayment-error .mat-form-field mat-select:not(.ng-dirty) .mat-select-arrow {
+  color: initial;
+}
+
+.text-file-eg {
+  padding: 5px 15px 15px 0px;
+  color: #196ECF;
+}
+
+.text-file-eg a {
+  text-decoration: none;
+}
+
+.container-format-example {
+  margin-top: 4%;
+  padding-left: 12px;
+}
+
+.container-table {
+  margin-top: 3%;
+  width: 100%;
+  overflow: visible;
+}
+
+.file-import-button .btn {
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 12px;
+}
+
+.table-overpayment-recovery {
+  table-layout: initial;
+  margin: 0px;
+}
+@media (max-width:1006px) {
+  .container-right {
+    border-left: none;
+    margin-top: 23px;
+    padding-left: 0;
+    border-top: 0.5px solid lightgray;
+    padding-top: 20px;
+  }
+
+  .input-import-file {
+    padding-left: 0;
+  }
+
+  .container-vendor-report {
+    padding: 0;
+  }
+
+  .select-action {
+    width: 100%;
+  }
+
+  .table-recovery-log, .table-overpayment-recovery {
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 779px) {
+  .container-metadata-item-import {
+    max-width: 1260px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .table-recovery-log {
+    overflow: scroll;
+  }
+
+  .table-overpayment-recovery {
+    overflow: scroll;
+  }
+
+  .container-left {
+    margin-bottom: 25px;
+    position: relative;
+    width: 50%;
+  }
+
+  .container-right {
+    border-left: 0px;
+    border-top: lightgray solid 0.5px;
+    padding-left: 0px;
+    padding-top: 10px;
+    position: relative;
+  }
+
+  .container-import-file {
+    display: flex;
+  }
+}
+
+@media all and (-ms-high-contrast: active) and (max-width: 779px),
+all and (-ms-high-contrast: none) and (max-width: 779px) {
+  .container-metadata-item-import {
+    margin-right: 0px;
+    padding-left: 0px;
+  }
+
+  .table-recovery-log {
+    overflow: scroll;
+    width: 580px;
+  }
+
+  .container-left {
+    margin-bottom: 25px;
+    padding-left: 10px;
+    position: relative;
+    width: 50%;
+  }
+
+  .container-right {
+    border-left: 0px;
+    border-top: lightgray solid 0.5px;
+    padding-left: 0px;
+    padding-top: 10px;
+    margin-top: 0;
+    position: relative;
+  }
+}
+
+.table-header {
+  line-height: 0.8;
+}
+
+.modal-frame {
+  height: 300px;
+  width: 40%;
+  border: 1px solid #CED3DA;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.modal-frame .btn-primary {
+  margin-left: 15px;
+}
+
+.btn-confirm-action {
+  margin-left: 20px;
+  float: right;
+  display: inline-block;
+  width: 50%;
+}
+
+.btn-cancel {
+  display: inline-block;
+  margin-top: 0px;
+  margin-left: 20px;
+}
+
+.text-file-uploading {
+  margin-top: 0px;
+  position: absolute;
+}
+
+.progress-bar {
+ float: left;
+  margin-top: 18px;
+}
+
+.date-picker {
+  height: 20px;
+  width: 20px;
+}
+
+.mat-button-wrapper {
+  width: 100%;
+}
+
+.btn-download {
+  border: 0px;
+  padding: 0px;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.col-status {
+  width: 30px;
+}
+
+.col-report-file {
+  width: 100px;
+}
+
+.file-import-subheader {
+  font-size: 14px;
+  color: #6E7681;
+}
+
+.link-download {
+  text-decoration: none;
+}
+
+.container-top-header {
+  margin: 20px;
+}
+
+.container-file-import-parent {
+  margin: 20px;
+}
+
+.btn-upload-another {
+  margin: 10px;
+}
+
+.container-title-file-upload {
+  margin: 20px;
+}

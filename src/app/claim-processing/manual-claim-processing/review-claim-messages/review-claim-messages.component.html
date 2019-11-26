@@ -1,0 +1,28 @@
+<div class="container-claim-messages">
+  <div class="row">
+    <div class="col-xs-12 container-return-prev">
+      <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+      <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="pf1EventClick()">Return to Previous (F1)</span>
+    </div>
+  </div>
+  <fox-loading-overlay>
+    <fox-section [noPadding]="true">
+      <div class="row container-msg-header">
+        <fox-section-title>
+          Claim Message Text
+        </fox-section-title>
+      </div>
+      <div class="row container-msg-detail" *ngIf="claimMessageArray && claimMessageArray.length > 0">
+        <p *ngFor="let message of claimMessageArray" class="p-msg-content"> {{message}}</p>
+      </div>
+      <div class="row container-no-msg" *ngIf="!claimMessageArray || claimMessageArray.length < 1">
+        <img src="assets/img/undraw_blank_canvas_3rbb.svg" class="img-no-msg" alt="return icon"/>
+        <fox-section-title>
+          No claim messages found
+        </fox-section-title>
+        <span class="span-msg-desc">The claim has no pattern paragraphs and/or special memos</span>
+      </div>
+    </fox-section>
+  </fox-loading-overlay>
+</div>
+

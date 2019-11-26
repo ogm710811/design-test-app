@@ -1,0 +1,117 @@
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow: hidden;
+}
+
+.heading-white {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 50px;
+  margin-bottom: 27px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #F4F5F6;
+  width: 67%;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #182E47;
+  width: 33%;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.right p {
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 21px;
+  margin-bottom: 20px;
+}
+
+.fox-login-left-col {
+  width: 306px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12vh;
+}
+
+.img-fox-logo {
+  width: 100%;
+}
+
+.fox-login-white-container {
+  box-sizing: border-box;
+  height: 306px;
+  width: 363px;
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 35px 20px;
+}
+
+.fox-login-id-header {
+  font-weight: 600;
+}
+
+.fox-login-pw-header {
+  font-weight: bold;
+}
+
+.fox-login-container-header {
+  color: #252C37;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: 0;
+}
+
+.fox-login-container-subtitle {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.fox-login-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.fox-login-input {
+  padding-left: 8px;
+  height: 35px;
+  width: 100%;
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+.fox-login-input:focus {
+  -moz-box-shadow: 0 0 15px #196ecf;
+  -webkit-box-shadow: 0 0 15px #196ecf;
+  box-shadow: 0 0 15px #196ecf;
+}
+
+.btn-fox-login {
+  height: 39px;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #196ECF;
+  margin-top: 15px;
+}
+
+.img-uhc-logo {
+  width: 182px;
+  margin-top: 153px;
+}

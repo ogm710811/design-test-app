@@ -1,0 +1,189 @@
+<fox-section>
+
+  <div class="form-row">
+    <mat-label><strong>Plan/Type of Service File:</strong></mat-label>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <mat-label>Plan:</mat-label>
+      <input matInput id="txtM36PLN" name="txtM36PLN" #txtM36PLN maxlength="3" size="3" type="text" [(ngModel)]="screen.m36pln"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>State:</mat-label>
+      <input matInput id="txtM36ST1" name="txtM36ST1" #txtM36ST1 maxlength="2" size="2" type="text" [(ngModel)]="screen.m36st1"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>Type of Service:</mat-label>
+      <input matInput id="txtM36TOS" name="txtM36TOS" #txtM36TOS maxlength="2" size="2" type="text" [(ngModel)]="screen.m36tos"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>Age Indicator:</mat-label>
+      <input matInput id="txtM36AGE" name="txtM36AGE" #txtM36AGE maxlength="1" size="1" type="text" [(ngModel)]="screen.m36age"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>Stop Date:</mat-label>
+      <input matInput id="txtM36SDT" [formControl]="stopDateTOS" placeholder="(MM/DD/YYYY)" name="txtM36SDT" #txtM36SDT maxlength="10"
+        size="10" type="text" [(ngModel)]="screen.m36sdt" />
+      <mat-error *ngIf="stopDateTOS.errors">Please enter in MM/DD/YYYY format</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-label><strong>Copy from:</strong></mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <mat-label>Plan:</mat-label>
+      <input matInput id="txtM36CPLN" name="txtM36CPLN" #txtM36CPLN maxlength="3" size="3" type="text" [(ngModel)]="screen.m36cpln"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>State:</mat-label>
+      <input matInput id="txtM36CST1" name="txtM36CST1" #txtM36CST1 maxlength="2" size="2" type="text" [(ngModel)]="screen.m36cst1"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>Type of Service:</mat-label>
+      <input matInput id="txtM36CTOS" name="txtM36CTOS" #txtM36CTOS maxlength="2" size="2" type="text" [(ngModel)]="screen.m36ctos"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>Age Indicator:</mat-label>
+      <input matInput id="txtM36CAGE" name="txtM36CAGE" #txtM36CAGE maxlength="1" size="1" type="text" [(ngModel)]="screen.m36cage"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20">
+      <mat-label>Stop Date:</mat-label>
+      <input matInput id="txtM36CSDT" [formControl]="stopDateTOSCopy" placeholder="(MM/DD/YYYY)" name="txtM36CSDT" #txtM36CSDT
+        maxlength="10" size="10" type="text" [(ngModel)]="screen.m36csdt" />
+      <mat-error *ngIf="stopDateTOSCopy.errors">Please enter in MM/DD/YYYY format</mat-error>
+    </mat-form-field>
+  </div>
+</fox-section>
+
+<fox-section>
+
+  <div class="form-row">
+    <mat-label><strong>Medicare Constant File:</strong></mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <mat-label>Record Type:</mat-label>
+      <input matInput id="txtM36TYP" name="txtM36TYP" #txtM36TYP maxlength="1" size="1" type="text" [(ngModel)]="screen.m36typ"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>End Date:</mat-label>
+      <input matInput id="txtM36EDT" [formControl]="endDateMedCare" placeholder="(MM/DD/YYYY)" name="txtM36EDT" #txtM36EDT maxlength="10" size="10" type="text"
+        [(ngModel)]="screen.m36edt" />
+      <mat-error *ngIf="endDateMedCare.errors">Please enter in MM/DD/YYYY format</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-label><strong>Copy From:</strong></mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <mat-label>Record Type:</mat-label>
+      <input matInput id="txtM36CTYP" name="txtM36CTYP" #txtM36CTYP maxlength="1" size="1" type="text" [(ngModel)]="screen.m36ctyp"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>End Date:</mat-label>
+      <input matInput id="txtM36CEDT"  [formControl]="endDateMedCareCopy" placeholder="(MM/DD/YYYY)" name="txtM36CEDT" #txtM36CEDT maxlength="10" size="10" type="text"
+        [(ngModel)]="screen.m36cedt" />
+        <mat-error *ngIf="endDateMedCareCopy.errors">Please enter in MM/DD/YYYY format</mat-error>
+    </mat-form-field>
+  </div>
+
+</fox-section>
+
+<fox-section>
+  <div class="form-row">
+    <mat-label><strong>Plan/State File:</strong></mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <mat-label>State:</mat-label>
+      <input matInput id="txtM36ST2" name="txtM36ST2" #txtM36ST2 maxlength="2" size="2" type="text" [(ngModel)]="screen.m36st2"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type of Service:</mat-label>
+      <input matInput id="txtM36TOS2" name="txtM36TOS2" #txtM36TOS2 maxlength="2" size="2" type="text" [(ngModel)]="screen.m36tos2"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-label><strong>Copy From:</strong></mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-form-field class="margin-right-20">
+      <mat-label>State:</mat-label>
+      <input matInput id="txtM36CST2" name="txtM36CST2" #txtM36CST2 maxlength="2" size="2" type="text" [(ngModel)]="screen.m36cst2"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type of Service:</mat-label>
+      <input matInput id="txtM36CTS2" name="txtM36CTS2" #txtM36CTS2 maxlength="2" size="2" type="text" [(ngModel)]="screen.m36cts2"
+      />
+    </mat-form-field>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Selection:</mat-label>
+      <input matInput id="txtM36SEL" name="txtM36SEL" #txtM36SEL maxlength="1" size="1" type="text" [(ngModel)]="screen.m36sel"
+      />
+    </mat-form-field>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-label>A. Update</mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-label>B. Review</mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-label>C. Copy</mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-label>D. Delete</mat-label>
+  </div>
+  <div class="form-row margin-top-20">
+    <mat-label>E. Create</mat-label>
+  </div>
+  <div class="form-row container-plan-field">
+    <mat-form-field class="margin-right-20">
+      <mat-label>Plan</mat-label>
+      <input matInput id="txtM36PLN2" name="txtM36PLN2" #txtM36PLN2 maxlength="3" size="3" type="text" [(ngModel)]="screen.m36pln2"
+      />
+    </mat-form-field>
+    <mat-form-field class="margin-right-20 margin-top-20">
+      <mat-label>Maintenance Journal Type:</mat-label>
+      <input matInput id="txtM36JRNL" name="txtM36JRNL" #txtM36JRNL maxlength="1" size="1" type="text" [(ngModel)]="screen.m36jrnl"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>DED/AGG Activity Code:</mat-label>
+      <input matInput id="txtM36DED" name="txtM36DED" #txtM36DED maxlength="1" size="1" type="text" [(ngModel)]="screen.m36ded"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-12 margin-top-20 text-right">
+    <button id="clear" name="clear" #clear type="button" class="btn btn-default margin-right-20" (click)="CLEAREventClick()"
+      foxHotkey="alt+c">Clear (C)</button>
+    <button id="enter" name="enter" #enter type="button" class="btn btn-primary " (click)="ENTEREventClick()" foxHotkey="alt+e">Enter
+      (E)
+    </button>
+  </div>
+</fox-section>

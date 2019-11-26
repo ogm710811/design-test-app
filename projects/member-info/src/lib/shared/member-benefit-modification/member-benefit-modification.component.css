@@ -1,0 +1,59 @@
+.container-padding {
+  padding: 0;
+}
+
+.container-height {
+  max-height: 245px;
+  overflow-y: auto;
+}
+
+.row-margin-bottom {
+  margin-bottom: 27px;
+}
+
+.p-benefit-date {
+  color: #333333;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.span-benefit-date {
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: normal;
+}
+
+.table-benefit-modification {
+  width: 97%;
+  max-width: 100%;
+  border: 1px solid #ddd;
+}
+
+.table-benefit-modification > thead > tr > th,
+.table-benefit-modification > tbody > tr > th,
+.table-benefit-modification > thead > tr > td,
+.table-benefit-modification > tbody > tr > td {
+  padding: 8px;
+  border: 0;
+}
+
+.table-benefit-modification > thead > tr > th {
+  vertical-align: bottom;
+  padding-left: 14px;
+  color: #707070;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.table-benefit-modification > tbody > tr > td {
+  vertical-align: middle;
+  padding-left: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+.th-benefit-category {
+  width: 19%;
+}
+

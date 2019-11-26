@@ -1,0 +1,92 @@
+<fox-section>
+  <div>
+    <div class="tab-heading">Alternate Provider Overview</div>
+    <div class="col-md-offset-8 container-alt-provider">
+      <span class="glyphicon glyphicon-new-window"></span>
+      <a class="link-alt-provider" (click)="navigateToProvider(detailsService?.providerDetails?.alternativeProviderId?.idNumber)">
+        View Alternate Provider Profile
+      </a>
+    </div>
+    <div class="row row-provider-header">
+      <div class="col-md-8">Name</div>
+      <div class="col-md-4">Provider Type</div>
+    </div>
+    <div class="row row-provider-value content-end">
+      <div class="col-md-8 container-provider-field">
+        {{detailsService?.altProviderDetails?.providerName?.businessName}}
+      </div>
+      <div class="col-md-4 container-provider-field">
+        {{detailsService?.providerDetails?.alternativeProviderId?.idNumber}}
+      </div>
+    </div>
+    <div class="section-member-payment"></div>
+    <div class="row row-provider-header">
+      <div class="col-md-2">Address Line 1</div>
+      <div class="col-md-2">Address Line 2</div>
+      <div class="col-md-2">City</div>
+      <div class="col-md-2">State</div>
+      <div class="col-md-2">ZIP Code</div>
+      <div class="col-md-2">Country</div>
+    </div>
+    <div class="row row-provider-value content-end">
+      <div class="col-md-2 container-provider-field">{{altProviderAddress?.addressLine1}}</div>
+      <div class="col-md-2 container-provider-field">{{altProviderAddress?.addressLine2}}</div>
+      <div class="col-md-2 container-provider-field">{{altProviderAddress?.city}}</div>
+      <div class="col-md-2 container-provider-field">{{altProviderAddress?.state}}</div>
+      <div class="col-md-2 container-provider-field">{{altProviderAddress?.postalCode}}</div>
+      <div class="col-md-2 container-provider-field">{{altProviderAddress?.country}}</div>
+    </div>
+    <div class="section-member-payment"></div>
+    <div class="row row-provider-header">
+      <div class="col-md-2">Phone Number</div>
+      <div class="col-md-2">Extension</div>
+      <div class="col-md-2">Fax Number</div>
+      <div class="col-md-2">Email</div>
+      <div class="col-md-2">Web Site</div>
+    </div>
+    <div class="row row-provider-value content-end">
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.phone?.contactInfo}}
+      </div>
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.phone?.extension}}
+      </div>
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.fax?.contactInfo}}
+      </div>
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.email?.contactInfo?.includes('@') ?
+        detailsService?.altProviderDetails?.email?.contactInfo : ''}}
+      </div>
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.email?.contactInfo?.includes('@') ? '' :
+        detailsService?.altProviderDetails?.email?.contactInfo}}
+      </div>
+    </div>
+    <div class="section-member-payment"></div>
+    <div class="row row-provider-header">
+      <div class="col-md-2">Provider Start Date</div>
+      <div class="col-md-2">Provider End Date</div>
+      <div class="col-md-2">Modified Date</div>
+      <div class="col-md-2">Modified By</div>
+    </div>
+    <div class="row row-provider-value content-end">
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.providerId?.recordDetail?.startDate | date :
+        'MM/dd/yyyy'}}
+      </div>
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.providerId?.recordDetail?.endDate | date :
+        'MM/dd/yyyy'}}
+      </div>
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.providerId?.recordDetail?.lastUpdateDate | date :
+        'MM/dd/yyyy'}}
+      </div>
+      <div class="col-md-2 container-provider-field">
+        {{detailsService?.altProviderDetails?.providerId?.recordDetail?.lastUpdateUser}}
+      </div>
+    </div>
+  </div>
+</fox-section>
+

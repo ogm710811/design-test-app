@@ -1,0 +1,30 @@
+<fox-modal [(visible)]="suspendClaimModalVisible" class="modal-delete-claim"
+           modalTitle="Suspend Claim Same Day" [closable]="false"
+           (visibleChange)="suspendModalVisibleChange.emit(suspendClaimModalVisible)">
+  <div>
+    <p class="container-delete-details">
+      <span>This action will suspend the previously disbursed Claim #{{claimNumber}}. Once the claim is suspended, you may reprocess it.</span>
+    </p>
+    <p class="container-confirm-msg">
+      <span>Has deductible maintenance been done for Claim #{{claimNumber}}? If deductible has been applied to this claim, selecting "No" will apply a
+special handling code to it.</span>
+    </p>
+  </div>
+  <div class="container-radio-btns">
+    <span>
+      <input type="radio" name="noSuspendRadio" class="radio-btn" (click)="onChangeSuspend()" [checked]="!isSuspendClaim" />
+      <span class="radio-label">No</span>
+    </span>
+    <span class="margin-left-15">
+      <input type="radio" name="yesSuspendRadio" class="radio-btn" (click)="onChangeSuspend()" [checked]="isSuspendClaim" />
+      <span class="radio-label">Yes</span>
+    </span>
+  </div>
+  <div class="col-md-12 text-right container-modal-btns">
+    <button type="button" id="btn-cancel-modal" class="btn btn-secondary btn-clear-modal"
+            (click)="cancelSuspendModal()">Cancel
+    </button>
+    <button type="button" id="btn-confirm-modal" class="btn btn-primary btn-submit-suspend" (click)="suspendClaim()">Suspend
+    </button>
+  </div>
+</fox-modal>

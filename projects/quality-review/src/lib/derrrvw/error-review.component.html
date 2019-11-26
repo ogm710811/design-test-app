@@ -1,0 +1,70 @@
+<fox-section>
+  <fox-section-title>Quality Error Review Screen</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Ions</mat-label>
+        <input matInput id="txtM97IONS" name="txtM97IONS" #txtM97IONS="ngModel" maxlength="6" size="6" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m97ions" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Report Date Range</mat-label>
+        <input matInput id="txtM97RANG" name="txtM97RANG" #txtM97RANG="ngModel" maxlength="19" size="19" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m97rang" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Starting Date</mat-label>
+        <input matInput id="txtM97DATE" name="txtM97DATE" #txtM97DATE="ngModel" maxlength="6" size="6" type="text"
+          [(ngModel)]="screenBean.m97date" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="col-sm-12">
+    <table class="table">
+      <thead class="thead-default">
+        <tr>
+          <th>Claim Number</th>
+          <th>Orig Reasons</th>
+          <th>Orig Errors</th>
+          <th>Completed Date</th>
+          <th>Maint Date</th>
+          <th>Maint Ions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of gridReports">
+          <td>{{ item.field1 }}</td>
+          <td>{{ item.field2 }}</td>
+          <td>{{ item.field3 }}</td>
+          <td>{{ item.field4 }}</td>
+          <td>{{ item.field5 }}</td>
+          <td>{{ item.field6 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <fox-paginator-non-material [(pageSize)]="pageSizeSelected" [dataLengthInput]="dataLengthInput" #paginator
+      [pageTotal]="pageTotal" [(currentPage)]="currentPage" (currentPageChange)="calculateNewPage();" (pageSizeChange)="currentPage=0; calculateNewPage();"></fox-paginator-non-material>
+  </div>
+
+  <div class="col-sm-12 margin-top-20 text-right">
+    <button id="pf1" name="pf1" #pf1 type="button" class="btn btn-default margin-right-20" (click)="pf1EventClick()"
+      foxHotkey="alt+r">Return
+      (R)
+    </button>
+    <button id="clear" name="clear" #clear type="button" class="btn btn-default margin-right-20" (click)="clearEventClick()"
+      foxHotkey="alt+c">Clear (C)</button>
+    <button id="enter" name="enter" #enter type="button" class="btn btn-primary" (click)="enterEventClick()" foxHotkey="alt+e">Enter
+      (E)
+    </button>
+  </div>
+</fox-section>

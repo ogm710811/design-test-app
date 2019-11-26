@@ -1,0 +1,58 @@
+.container-delete-details {
+  max-width: 840px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 15px;
+}
+
+.container-confirm-msg {
+  max-width: 832px;
+  color: #333333;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 20px;
+  margin-bottom: 25px;
+}
+
+.container-modal-btns {
+  padding-right: 0;
+}
+
+.btn-submit-suspend {
+  height: 39px;
+  width: 128px;
+  border-radius: 2px;
+  line-height: 14px;
+  padding: 12px 20px 13px 20px;
+  font-weight: 600;
+}
+
+.btn-clear-modal {
+  height: 39px;
+  width: 128px;
+  background-color: white;
+  color: #196ECF;
+  border: solid 1px #196ECF;
+  margin-right: 15px;
+  border-radius: 2px;
+}
+
+.container-radio-btns {
+  margin-bottom: 25px;
+}
+
+.radio-label {
+  height: 16px;
+  width: 25px;
+  color: #333333;
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 3px;
+}
+
+.radio-btn {
+  height: 13px;
+  width: 13px;
+}

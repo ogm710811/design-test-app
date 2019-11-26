@@ -1,0 +1,31 @@
+.container-content {
+  margin-top: 85px;
+  margin-left: 50px;
+  font-weight: 400;
+}
+
+.txt-error-header {
+  font-size: 44px;
+  margin-bottom: 13px;
+  line-height: 1.1;
+}
+
+.txt-content {
+  font-size: 21px;
+  margin-bottom: 21px;
+  line-height: 1.2;
+}
+
+.img-error {
+  margin-bottom: 39px;
+}
+
+.container-content .adj-list {
+  font-style: oblique;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.txt-attmpt {
+  margin-bottom: 13px;
+}

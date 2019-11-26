@@ -1,0 +1,82 @@
+.container-read-only-field {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.container-field-label {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 10px 0 0 0;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.container-field-value {
+  color: #252C37;
+  min-height: 28px;
+  line-height: 16px;
+  padding: 5px 0 7px 0;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.container-read-only-detail {
+  padding-left: 0;
+  flex: 1;
+}
+
+.img-icon-input {
+  margin-right: 7px;
+  height: 14px;
+}
+
+.container-row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.container-row-small > div[class*="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-field-label-horizontal {
+  color: #333333;
+  font-weight: 600;
+  line-height: 14px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.container-field-value-horizontal {
+  color: #252C37;
+  line-height: 14px;
+}
+
+@media  (max-width: 767px) {
+
+  .container-field-label-horizontal {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .container-field-value-horizontal {
+    text-align: left;
+    margin-bottom: 12px;
+  }
+
+  .container-read-only-detail {
+    padding-right: 0;
+    margin-bottom: 15px;
+  }
+}

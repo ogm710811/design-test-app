@@ -1,0 +1,155 @@
+<div class="row">
+  <div id="medicare-supplement-screen-b-previous"
+       class="col-xs-12 div-return-prev">
+    <span (click)="pf1EventClick()"
+          foxHotkey="ctrl+f1"
+          hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </span>
+  </div>
+</div>
+<fox-section [noPadding]="true">
+  <div class="div-card-title">
+    <fox-section-title>EOB Details</fox-section-title>
+  </div>
+  <div class="div-subheader-padding">
+    <fox-section-subheader class="">Use Alt + K to copy an Assign. Ind value down to the rows below.</fox-section-subheader>
+  </div>
+
+  <div class="div-table-margin">
+    <fox-table *ngIf="results"
+               #inputTable
+               [tableColumns]="columns"
+               [tableData]="results"
+               [fixedFirstColumn]="true"
+               [fixedSecondColumn]="true"
+               [noBorderTopHeader]="true"
+               [baseTableId]="'process-claimMedsupp-eobComponent-'">
+    </fox-table>
+  </div>
+</fox-section>
+<fox-section [drawRectangleNoBottomPadding]="true">
+  <div class="div-margin-bottom-10">
+    <fox-section-title>EOB Summary</fox-section-title>
+  </div>
+  <fox-section-subheader>Tab to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</fox-section-subheader>
+  <div class="row div-eov-summary">
+    <div class="col-xs-12 col-sm-8 div-row-second-card div-between-inputs-top">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 div-between-inputs-top div-input-padding-right">
+          <fox-input type="fox-currency"
+                     labelText="Assign Max Amount"
+                     id="txtM32MAX"
+                     [(ngModel)]="screen.maxAmtAssignee"
+                     [length]="8">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 div-between-inputs-top">
+          <fox-input type="text"
+                     isReadOnly="true"
+                     labelText="IRS"
+                     id="txtM32IRS"
+                     [(ngModel)]="screen.irsBuwAmt"
+                     [length]="8">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 div-between-inputs-top div-input-padding-right">
+          <fox-input type="fox-currency"
+                     labelText="Assign Adjust"
+                     id="txtM32ASS"
+                     [(ngModel)]="screen.assigneeAdj"
+                     [length]="8">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 div-between-inputs-top">
+          <fox-input type="fox-claim"
+                     labelText="Adjusted Claim #"
+                     id="txtM32CLM"
+                     [(ngModel)]="screen.adjClmNum"
+                     [length]="12">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 div-between-inputs-top div-input-padding-right">
+          <fox-input type="fox-currency"
+                     isReadOnly="true"
+                     labelText="Assignee Total Benefit"
+                     id="txtM32ATO"
+                     [(ngModel)]="screen.assgneeTotBene"
+                     [length]="8">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 div-row-second-card-right">
+      <div class="div-between-inputs">
+        <fox-input type="fox-currency"
+                   isReadOnly="true"
+                   labelText="Sub Total"
+                   id="txtM32SUB"
+                   [(ngModel)]="screen.subTotal"
+                   [length]="8">
+        </fox-input>
+      </div>
+      <div class="div-between-inputs">
+        <fox-input type="fox-currency"
+                   labelText="Adjustment"
+                   id="txtM32ADJ"
+                   [(ngModel)]="screen.adjustment"
+                   [length]="8">
+        </fox-input>
+      </div>
+      <div class="div-between-inputs">
+        <fox-input type="fox-currency"
+                   isReadOnly="true"
+                   labelText="Total Benefit"
+                   id="txtM32TOT"
+                   [(ngModel)]="screen.totalBene"
+                   [length]="8">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <div class="row row-caution">
+      <div class="col-xs-2 div-circle">
+        <img class="img-caution" src="assets/img/Flag-white.svg"/>
+      </div>
+      <div class="col-xs-10 div-caution-col-padding">
+        <div class="div-caution color-caution-text">
+          Caution
+        </div>
+        <div class="color-caution-text">
+          Please verify amount med paid
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 div-button-col-padding">
+    <div class="div-float-right margin-bottom-20">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="clear()"
+              foxHotkey="alt+r"
+              hotkeyAction="click">
+        Clear (R)
+      </button>
+      <fox-loading-button class="button-spacing div-margin-left"
+                          [buttonValue] = "'Continue (L)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+l'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</div>
+

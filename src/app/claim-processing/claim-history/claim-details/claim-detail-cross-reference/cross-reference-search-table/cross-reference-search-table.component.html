@@ -1,0 +1,50 @@
+<div class="container-table-claim-search">
+  <table class="table table-search-result">
+    <thead class="thead-default">
+    <tr>
+      <th class="column-checkbox"></th>
+      <th [foxLink] (linkPressed)="sort('clmStat')" class="column-clm-status"
+          [ngClass]="{'sorted-column-header':(column == 'clmStat'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Claim<br>Status</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('clmNum')" class="column-clm-num"
+          [ngClass]="{'sorted-column-header':(column == 'clmNum'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Claim #</fox-table-header-sort>
+      </th>
+      <th class="column-clm-bill-prov">
+        Billing Provider
+      </th>
+      <th [foxLink] (linkPressed)="sort('srvFromDt')" class="column-clm-dos"
+          [ngClass]="{'sorted-column-header':(column == 'srvFromDt'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Dates of Service</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('amtPlanPaid')" class="column-clm-total-benefit"
+          [ngClass]="{'sorted-column-header':(column == 'amtPlanPaid'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>Total Benefit<br>Amount</fox-table-header-sort>
+      </th>
+      <th [foxLink] (linkPressed)="sort('assgnPrvKey')" class="column-clm-aarp-assigned"
+          [ngClass]="{'sorted-column-header':(column == 'assgnPrvKey'), 'asc': !isDesc, 'desc': isDesc}">
+        <fox-table-header-sort>AARP<br>Assigned</fox-table-header-sort>
+      </th>
+    </tr>
+    </thead>
+    <tbody class="container-tbody">
+    <ng-container *ngFor="let dat of claimHistoryResults; let j = index">
+      <tr [id]=" 'result-tr-' + j">
+        <td class="checkbox-column-data">
+          <input type="checkbox" (change)="getClaim(dat['claimNumber'])"
+                 [checked]="claimAddArray.indexOf(dat['claimNumber'])>-1"/>
+        </td>
+        <td class="column-clm-status" [id]=" 'result-tr-' + j + '-td-1'">{{dat['status']}}</td>
+        <td class="column-clm-num" [id]=" 'result-tr-' + j + '-td-2'">{{dat['claimNumber']}}</td>
+        <td class="column-clm-bill-prov" [id]=" 'result-tr-' + j + '-td-3'">{{dat['provider']}}</td>
+        <td class="column-clm-dos" [id]=" 'result-tr-' + j + '-td-4'">{{dat['dos']}}</td>
+        <td class="column-clm-total-benefit currency-column" [id]=" 'result-tr-' + j + '-td-5'">
+          {{dat['totalBenefit'] | currency : 'USD'}}
+        </td>
+        <td class="column-clm-aarp-assigned" [id]=" 'result-tr-' + j + '-td-6'">{{dat['assigned']}}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

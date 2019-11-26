@@ -1,0 +1,106 @@
+<div class="row container-footer">
+
+  <div class="col-lg-2 col-md-3 col-sm-10 col-xs-10 footer-image">
+    <img src="../../../assets/img/uhc-logo.png" class="footer-image-size" />
+  </div>
+
+  <div class="col-lg-9 col-md-8 col-sm-9 col-xs-9 position-div-medium footer-content-margin">
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5 content-size">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-margin-bottom">
+        <span id="fox_inquiry" class="title-link">FOX INQUIRY</span>
+      </div>
+
+      <div class="col-lg-12 footer-margin-10">
+        <div class="content-link">
+          <span id="member" routerLink="/member-information/member-search" class="span-padding-bottom span-no-wrap">Member Search</span>
+        </div>
+      </div>
+
+      <div class="col-lg-12 footer-margin-10">
+        <div class="content-link span-no-wrap">
+          <span id="claim" routerLink="/claim-processing/claim-history" class="span-padding-bottom">Claim History Search</span>
+        </div>
+      </div>
+
+
+      <div class="col-lg-12">
+        <div class="content-link span-no-wrap">
+          <span id="document" routerLink="/document-repository/document-search" class="span-padding-bottom">Document Search</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 content-size">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-margin-bottom">
+        <span id="resrouces" class="title-link">RESOURCES</span>
+      </div>
+      <div class="col-lg-12 footer-margin-10">
+        <div class="content-link">
+          <span id="askkb" tabindex="0" (click)="navigateOutside('http://askkb/')" class="span-padding-bottom">AskKB</span>
+        </div>
+      </div>
+
+      <div class="col-lg-12 footer-margin-10">
+        <div class="content-link span-no-wrap">
+          <span id="training" tabindex="0" (click)="navigateOutside('https://hubconnect.uhg.com/groups/is-operations-training-and-documentation/projects/my-second-project/activity')" class="span-padding-bottom">Training Sharepoint</span>
+        </div>
+      </div>
+
+
+      <div class="col-lg-12">
+        <div class="content-link span-no-wrap">
+          <span class="span-padding-bottom" tabindex="0" (click)="showKeyboardShortcut()">Keyboard Shortcuts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5 position-div-medium-resources container-size">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-margin-bottom">
+        <span class="title-link">APPLICATIONS</span>
+      </div>
+      <div class="col-lg-12 container-app-compas">
+        <div class="content-link">
+          <span id="idLinkCompas" tabindex="0" class="span-padding-bottom" (click)="navigateOutside('https://aarpcompas.uhc.com/')">COMPAS</span>
+        </div>
+      </div>
+
+      <div class="col-lg-12 container-app-fastrieve">
+        <div class="content-link">
+          <span id="idLinkFastrieve" tabindex="0" class="span-padding-bottom" (click)="navigateOutside('https://uhg.fastrieve.com/')">Fastrieve</span>
+        </div>
+      </div>
+
+
+      <div class="col-lg-12">
+        <div class="content-link">
+          <span id="idLinkPch" tabindex="0" class="span-padding-bottom" (click)="navigateOutside('https://pch.sourcehov.com/uhgenrollments/')">PCH</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 container-size">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-margin-bottom">
+        <span class="title-link">SUPPORT</span>
+      </div>
+      <div class="col-lg-12">
+        <div class="content-link">
+          <span id="idLinkHelpDesk" tabindex="0" class="span-padding-bottom" (click)="navigateOutside('http://helpdesk.uhg.com/')">HelpDesk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-line">
+    <div class="footer-line-division"></div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 container-description">
+        <div class="footer-description">&copy;UnitedHealth Group. All rights reserved.</div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right container-environment-screen">
+        <div class="footer-description">
+          <span class="description-environment">{{currentEnvironment}}</span>
+          <span>{{currentScreenOrTabId}}</span>
+        </div>
+      </div>
+  </div>
+</div>

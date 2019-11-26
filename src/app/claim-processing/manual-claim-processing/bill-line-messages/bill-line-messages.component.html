@@ -1,0 +1,41 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="returnEventClick()" class="span-return" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img class="container-arrow-right" src="assets/img/arrow-left.svg">Return to Previous (F1)
+  </span>
+</div>
+<fox-member-dmg-card [screenData]="screenBeanData"></fox-member-dmg-card>
+<fox-section [noPadding]="true">
+  <div class="row container-top-title">
+    <div class="col-xs-12 col-sm-8 container-header">
+      <div class="container-title">Bill Line Details</div>
+      <div class="container-sub-title">Tab or use arrows keys to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</div>
+    </div>
+  </div>
+  <div class="margin-top-30">
+    <fox-table *ngIf="result"
+               #inputTable
+               [tableColumns]="columns"
+               [tableData]="tableData"
+               [fixedFirstColumn]="true">
+    </fox-table>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding">
+  <div class="form-row text-right">
+    <button type="button" class="btn btn-secondary btn-spacing" (click)="clearEventClick()" foxHotkey="alt+r" hotkeyAction="click">
+      Clear (R)
+    </button>
+    <button type="button" class="btn btn-secondary btn-spacing" (click)="blMessagEventClick()" foxHotkey="alt+m" hotkeyAction="click">
+      Review Messages (M)
+    </button>
+    <div class="container-btn">
+      <fox-loading-button [buttonValue] = "'Continue (L)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+l'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</div>

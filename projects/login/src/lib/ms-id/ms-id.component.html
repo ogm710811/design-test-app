@@ -1,0 +1,60 @@
+<div class="fox-login-container">
+  <div id="login-id" class="fox-login">
+
+    <div class="split left">
+      <div class="fox-login-left-col">
+        <span><img class="img-fox-logo" src="assets/img/fox-logo.png"/></span>
+      </div>
+
+      <div class="fox-login-white-container">
+        <h1 class="fox-login-container-header fox-login-id-header">
+          Sign-On Using Enterprise SSO
+        </h1>
+
+        <ng-container *ngIf="showMsid">
+          <div class="fox-login-container-subtitle">
+            Enter your MS ID, then click Sign-On
+          </div>
+          <label id="loginLabel" #loginLabel for="txtLogin" class="fox-login-label">MS ID</label>
+          <input id="txtLogin" name="txtLogin" #txtLogin="ngModel" class="fox-login-input"
+                 [(ngModel)]="username"/>
+          <button id="btnSubmit" name="btnSubmit" class="btn btn-primary btn-fox-login"
+                  (focus)="buttonFocus($event)"
+                  (click)="btnLoginIDEventClick()">Sign-On
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="!showMsid">
+          <div class="fox-login-container-subtitle">
+            Enter your MS Password, then click Submit
+          </div>
+          <label id="loginPwLabel" #loginLabel for="txtPassword" class="fox-login-label">MS
+            Password</label>
+          <input id="txtPassword" name="txtLogin" #txtLogin="ngModel" class="fox-login-input"
+                 type="password"
+                 [(ngModel)]="password"/>
+          <button id="btnLogin" name="btnSubmit" class="btn btn-primary btn-fox-login"
+                  (focus)="buttonFocus($event)"
+                  (click)="btnLoginEventClick()">Submit
+          </button>
+        </ng-container>
+      </div>
+
+    </div>
+
+    <div class="split right">
+      <img id="uhc-logo" class="img-uhc-logo" src="assets/img/uhc-logo.png"/>
+      <div class="heading-white">UnitedHealth Group eSSO</div>
+      <p>Enterprise SSO provides UnitedHealth Group
+        employees and contractors with the ability to access a number of applications using your MS
+        ID and password. This is the ID and Password you use to sign onto UnitedHealth Group's
+        network.
+      </p>
+      <p>Sharing this ID and password potentially allows access to all of the eSSO applications you
+        are entitled to use and is strictly prohibited.</p>
+      <p>If you need help with your MS ID and/or Password, please contact the Technology Support
+        Center.</p>
+    </div>
+
+  </div>
+</div>

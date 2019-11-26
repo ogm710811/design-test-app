@@ -1,0 +1,30 @@
+<fox-modal #modal
+           class="member-benefit-modification-modal"
+           [closable]="true"
+           modalTitle="Plan {{planCode}} Benefit Modifications ({{numberOfBenModifications}})">
+  <div class="container-fluid">
+    <div class="row no-gutters container-height">
+      <div class="col-md-12">
+        <div *ngFor="let item of insurancePlanModificationData.benefitModifications" class="row no-gutters row-margin-bottom">
+          <div class="col-md-12 container-padding">
+            <p class="p-benefit-date">Dates: <span class="span-benefit-date">{{item.startDate | date:'MM/dd/yyyy'}}</span> - <span class="span-benefit-date">{{item.endDate | date:'MM/dd/yyyy'}}</span></p>
+            <table class="table-benefit-modification">
+              <thead>
+                <tr>
+                  <th class="th-benefit-category">Category</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{item.category}}</td>
+                  <td>{{item.description}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-modal>

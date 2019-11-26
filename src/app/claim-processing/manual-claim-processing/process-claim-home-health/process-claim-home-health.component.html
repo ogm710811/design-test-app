@@ -1,0 +1,116 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="pf1EventClick()" class="span-return" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img class="container-arrow-right" src="assets/img/arrow-left.svg">Return to Previous (F1)
+  </span>
+</div>
+<fox-member-dmg-card [screenData]="screenProcclmTos"></fox-member-dmg-card>
+<fox-section [noPadding]="true">
+  <div class="container-margin-icd">
+    <div class="container-icd-label">
+      ICD Codes
+    </div>
+    <div class="row container-icd">
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+          <fox-input
+            id="txtM28ICD1"
+            name="txtM28ICD1"
+            maxlength="7"
+            size="7"
+            labelText="ICD Code 1"
+            [(ngModel)]="screen.m28icd1"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          id="txtM28ICD2"
+          name="txtM28ICD2"
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 2"
+          [(ngModel)]="screen.m28icd2"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          id="txtM28ICD3"
+          name="txtM28ICD3"
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 3"
+          [(ngModel)]="screen.m28icd3"></fox-input>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</fox-section>
+<fox-section [noPadding]="true"
+             [noOverFlowX]="true"
+             class="fox-section-icd">
+  <div class="row container-top-title">
+    <div class="col-xs-12 col-sm-8">
+      <div class="container-title container-margin-left-25">Home Health, Out of Hospital, Foreign Coverage Charge Lines</div>
+      <div class="container-sub-title container-margin-left-25">Tab or use arrows keys to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <span class="span-bill-line">
+        <span class="span-set-bill-line span-set-bill-left ">
+          10
+        </span>
+        <span class="span-set-bill-line span-set-bill-right">
+          Set # of Bill Lines (M)
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="margin-top-30">
+    <fox-table *ngIf="result"
+               #inputTable
+               [tableColumns]="columns"
+               [tableData]="tableData"
+               [fixedFirstColumn]="true">
+    </fox-table>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="margin-input">
+    <div class="row container-icd">
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          id="txtM28XPA1"
+          name="txtM28XPA1"
+          maxlength="2"
+          size="2"
+          labelText="Exclude Payment Under Plans"
+          [(ngModel)]="screen.m28xpa1"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-4 container-ben-date no-padding margin-right-20">
+        <fox-input
+          type="text"
+          id="txtM28ATRM"
+          labelText="Benefits Payable After Termination Date"
+          [(ngModel)]="screen.m28atrm"
+          [length]="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding container-trip-date margin-right-20">
+        <fox-input
+          type="fox-date"
+          id="txtM28TSDT"
+          name="txtM28TSDT"
+          placeholder="MM/DD/YYYY"
+          labelText="Trip Start Date"
+          [(ngModel)]="tripStartDate"
+          [ngModelOptions]="{updateOn: 'blur'}"></fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding">
+  <div class="form-row text-right">
+    <button type="button" class="btn btn-secondary div-margin-right-15" (click)="clearEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)</button>
+    <fox-loading-button [buttonValue] = "'Continue (L)'"
+                        [buttonStatus]="continueStatus"
+                        [typeValue]="'button'"
+                        [hasChevron]="true"
+                        [foxHotKeyValue]="'alt+l'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

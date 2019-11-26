@@ -1,0 +1,162 @@
+<fox-message-box messageBoxTitle="Deletion Failed" messageType="error"
+                 [(visible)]="deleteFailedMsg">
+  Failed to Delete TRC # {{trcDeletionNumber}}.
+</fox-message-box>
+<fox-message-box messageBoxTitle="TRC Creation Failed" messageType="error"
+                 [(visible)]="trcCreationFailed">
+  Failed to Create New TRC
+</fox-message-box>
+<fox-message-box messageBoxTitle="TRC Update Failed" messageType="error"
+                 [visible]="!!trcUpdateFailedNumber"
+                 (visibleChange)="trcUpdateFailedNumber =  undefined">
+  Failed to Update TRC # {{trcUpdateFailedNumber}}
+</fox-message-box>
+<fox-message-box messageBoxTitle="Error" messageType="error" [(visible)]="sumNotEqualMsg">
+  The sum total of amounts on all TRCs do not equal the deposit amount
+</fox-message-box>
+
+<div *ngIf="saveModifySuccessMsg">
+  <fox-message-box [(visible)]="saveModifySuccessMsg" messageBoxTitle="Saved TRC Modifications"
+                   messageType="success" timeOutLength="5000">
+    The changes to TRC #{{savedTrc}} have been saved
+  </fox-message-box>
+</div>
+<div *ngIf="saveAddSuccessMsg">
+  <fox-message-box [(visible)]="saveAddSuccessMsg" messageBoxTitle="Added & Saved TRC"
+                   messageType="success" timeOutLength="5000">
+    Created TRC #{{savedTrc}} and saved information. It has not yet been completed for processing
+  </fox-message-box>
+</div>
+<div *ngIf="completeModifySuccessMsg">
+  <fox-message-box [(visible)]="completeModifySuccessMsg" messageBoxTitle="Success"
+                   messageType="success" timeOutLength="10000">
+    All TRCs for this deposit were submitted successfully for GL processing
+  </fox-message-box>
+</div>
+<div *ngIf="completeAddSuccessMsg">
+  <fox-message-box [(visible)]="completeAddSuccessMsg" messageBoxTitle="Success"
+                   messageType="success" timeOutLength="10000">
+    All TRCs for this deposit were submitted successfully for GL processing
+  </fox-message-box>
+</div>
+
+<div *ngIf="deleteSuccessMsg">
+  <fox-message-box [(visible)]="deleteSuccessMsg" messageBoxTitle="Deleted TRC"
+                   messageType="success" timeOutLength="5000">
+    TRC #{{trcDeletionNumber}} has been deleted
+  </fox-message-box>
+</div>
+
+<div class="go-back-link">
+  <a [foxLink] (linkPressed)="goBack()">
+    <i focusable="false" aria-hidden="true" class="fa fa-chevron-left"></i> Return to Search Result
+  </a>
+</div>
+<fox-section class="deposit-detail-top">
+  <fox-section-title>Deposit Information</fox-section-title>
+  <div>
+    <div class="deposit-date-container">
+      <div class="bold-header">Deposit Date</div>
+      <div>{{depositDate}}</div>
+      <hr class="horizontal-rule">
+    </div>
+    <div class="deposit-information-container">
+      <div class="bold-header">Check Claim #</div>
+      <div>{{checkClaimNumber}}</div>
+      <hr class="horizontal-rule">
+    </div>
+    <div class="deposit-information-container">
+      <div class="bold-header">Check #</div>
+      <div>{{checkNumber}}</div>
+      <hr class="horizontal-rule">
+    </div>
+    <div class="deposit-information-container">
+      <div class="bold-header">Source</div>
+      <div>{{source}}</div>
+      <hr class="horizontal-rule">
+    </div>
+    <div class="deposit-information-container">
+      <div class="bold-header">Deposit Amount</div>
+      <div>{{depositAmount | currency}}</div>
+      <hr class="horizontal-rule">
+    </div>
+  </div>
+
+</fox-section>
+
+<fox-deposit-image-accordion [base64]="theDocument" [downloadLink]="downloadLink"></fox-deposit-image-accordion>
+
+<fox-section class="deposit-detail-bottom">
+  <fox-section-title>TRCs</fox-section-title>
+  <div class="container-deposit-detail-bottom-left">
+    <span class="label-trc">TRCs Associated to this Deposit</span>
+    <form>
+      <fieldset class="container-trc-selection">
+        <ng-container *ngIf="trcDetails.action === Empty">
+          <input type="radio" id="empty" name="selectedTrc" value="N/A"
+                 [checked]="'N/A' === selectedTrc"
+                 (change)="selectedTrc = 'N/A'; onSelectionChange('N/A')"/>
+          <label for="empty">(None)</label>
+        </ng-container>
+        <ng-container *ngFor="let trc of trcList">
+          <ng-container *ngIf="trcList.length !== 0">
+            <input type="radio" [id]="trc" [value]="trc" [checked]="trc === selectedTrc"
+                   (change)="onSelectionChange(trc)"/>
+            <label [for]="trc">{{trc}}</label>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="trcDetails.action === Add || trcDetails.action === Copy">
+          <input type="radio" id="new" name="selectedTrc" value="new"
+                 [checked]="'New' === selectedTrc"/>
+          <label for="new">New TRC...</label>
+        </ng-container>
+      </fieldset>
+    </form>
+    <button type="button" id="btn-add-trc" class="btn btn-secondary" foxHotkey="alt+a" [foxLink]
+            (linkPressed)="onPressAddTrc()"
+            [disabled]="isVouchered || trcDetails.action === Add || trcDetails.action === Modify || trcDetails.action === Copy">
+      Add New TRC (A)
+    </button>
+    <button type="button" id="btn-copy-trc" class="btn btn-secondary" foxHotkey="alt+c" [foxLink]
+            (linkPressed)="onPressCopyTrc()" [disabled]="isVouchered || trcDetails.action !== View">
+      Copy TRC (C)
+    </button>
+    <button type="button" id="btn-delete-trc" class="btn btn-secondary" foxHotkey="alt+d" [foxLink]
+            (linkPressed)="onPressDeleteTrc()"
+            [disabled]="isVouchered || trcDetails.action !== View">Delete (D)
+    </button>
+    <div class="container-trc-difference">
+      <div>
+        <div class="label-trc-difference">Deposit Amount</div>
+        <div class="value-sum-text">{{depositAmount | currency}}</div>
+        <hr class="horizontal-rule">
+      </div>
+      <div>
+        <div class="label-trc-difference">Total $ of Pending TRCs</div>
+        <div class="value-sum-text">{{totalPendingTrcAmount | currency}}</div>
+        <hr class="horizontal-rule">
+      </div>
+      <div>
+        <div class="label-trc-difference">Difference</div>
+        <div class="value-difference-text"><span class="space-class"><i focusable="false"
+                                                                        class="fas fa-minus-circle"></i></span><span
+          [ngClass]="{'zero-diff': depositAmount === totalPendingTrcAmount}">
+          {{depositAmount - totalPendingTrcAmount | currency}}
+        </span></div>
+        <hr class="horizontal-rule">
+      </div>
+    </div>
+  </div>
+  <div class="container-deposit-detail-bottom-right">
+    <fox-trc-detail [trcDetails]="trcDetails" [isVouchered]="isVouchered" [isPending]="isPending"
+                    (cancelTrc)="onCancelTrc()" (viewToModifyTransition)="onModify()"
+                    (saveTrc)="onSaveTrc($event)"
+                    (completeTrc)="onCompleteTrc($event)"></fox-trc-detail>
+  </div>
+</fox-section>
+<fox-deposit-detail-cancel-modal #cancelModal [cancelModalVisible]="showCancelDialog"
+                                 (abortCancellation)="onAbortCancellation()"
+                                 (confirmCancellation)="onConfirmCancellation()"></fox-deposit-detail-cancel-modal>
+<fox-confirm-delete [(trcNumber)]="trcToDelete" (abortDeletion)="onAbortDeletion()"
+                    (confirmDeletion)="onConfirmDeletion()"></fox-confirm-delete>
+

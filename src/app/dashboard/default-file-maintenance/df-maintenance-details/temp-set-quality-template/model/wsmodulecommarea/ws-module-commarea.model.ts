@@ -1,0 +1,102 @@
+import {CommComm} from '@fox/shared';
+import {ComSqtHoldCombinations} from './com-sqt-hold-combinations.model';
+import {ComSqtOrigCautions} from './com-sqt-orig-cautions.model';
+import {ComSqtOrigCombinations} from './com-sqt-orig-combinations.model';
+import {ComSqtOrigLetterTable} from './com-sqt-orig-letter-table.model';
+import {ComSqtOrigMessage} from './com-sqt-orig-message.model';
+import {OperDfltCmnArea} from './oper-dflt-cmn-area.model';
+
+/**
+ * Model class WsModuleCommarea
+ * Path: screenbean/setqltytmpltservice/wsmodulecommarea
+ * Model: com::uhc::aarp::fox::domain::screenbean::setqltytmpltservice::wsmodulecommarea::WsModuleCommarea
+ * Legacy Mapping: WS-MODULE-COMMAREA
+ */
+export class WsModuleCommarea {
+  commComm = new CommComm();
+  dfhMapSaveArea: any = undefined;
+  dfhLinkageSwitch = '';
+  operdefCommareaMiscFields = new OperDfltCmnArea();
+  comSetQualComboOrig = '';
+  firstMapChangesSw = '';
+  maintTermId = '';
+  verifyChangesSwitch = '';
+  pf8VerifySwitch = '';
+  ioErrorSw = '';
+  updateType = '';
+  deleteInd = '';
+  commareaPos = 0;
+  filler20 = '';
+  comSqtOrigMessages: ComSqtOrigMessage[] = [];
+  comSqtOrigCautions: ComSqtOrigCautions[] = [];
+  comSqtOrigLetterTables: ComSqtOrigLetterTable[] = [];
+  comSqtOrigIons = 0;
+  comSqtOrigMdate = 0;
+  comSqtOrigTemplateNum = 0;
+  comSqtOrigAdminHist = 0;
+  comSqtOrigSpecPayee = 0;
+  comSqtOrigCorporate = 0;
+  comSqtOrigPays = 0;
+  comSqtOrigNopays = 0;
+  comSqtOrigSpecMemo = 0;
+  comSqtOrigNewDoc = 0;
+  comSqtOrigNewHosp = 0;
+  comSqtOrigSplitClaim = 0;
+  comSqtOrigBenExt = 0;
+  comSqtOrigPdn1stpay = 0;
+  comSqtOrigAsdHpct = 0;
+  comSqtOrigAsdHamt = 0;
+  comSqtOrigAsdPct = 0;
+  comSqtOrigAsdAmt = 0;
+  comSqtOrigNonasdHpct = 0;
+  comSqtOrigNonasdHamt = 0;
+  comSqtOrigNonasdPct = 0;
+  comSqtOrigNonasdAmt = 0;
+  comSqtOrigException = 0;
+  comSqtOrigLettersPct = 0;
+  comSqtOrigCommPct = 0;
+  comSqtOrigRevalDisb = 0;
+  comSqtOrigRevalSusp = 0;
+  comSqtOrigRevalAmt = 0;
+  comSqtOrigDeceased = 0;
+  comSqtOrigPayAdjust = 0;
+  comSqtOrigLtrExh = 0;
+  filler18 = '';
+  comSqtOrigCombinations: ComSqtOrigCombinations[] = [];
+  comSqtHoldIons = 0;
+  comSqtHoldMdate = 0;
+  comSqtHoldTemplateNum = 0;
+  comSqtHoldAdminHist = 0;
+  comSqtHoldSpecPayee = 0;
+  comSqtHoldCorporate = 0;
+  comSqtHoldPays = 0;
+  comSqtHoldNopays = 0;
+  comSqtHoldSpecMemo = 0;
+  comSqtHoldNewDoc = 0;
+  comSqtHoldNewHosp = 0;
+  comSqtHoldSplitClaim = 0;
+  comSqtHoldBenExt = 0;
+  comSqtHoldPdn1stpay = 0;
+  comSqtHoldAsdHpct = 0;
+  comSqtHoldAsdHamt = 0;
+  comSqtHoldAsdPct = 0;
+  comSqtHoldAsdAmt = 0;
+  comSqtHoldNonasdHpct = 0;
+  comSqtHoldNonasdHamt = 0;
+  comSqtHoldNonasdPct = 0;
+  comSqtHoldNonasdAmt = 0;
+  comSqtHoldException = 0;
+  comSqtHoldLettersPct = 0;
+  comSqtHoldCommPct = 0;
+  comSqtHoldRevalDisb = 0;
+  comSqtHoldRevalSusp = 0;
+  comSqtHoldRevalAmt = 0;
+  comSqtHoldDeceased = 0;
+  comSqtHoldPayAdjust = 0;
+  comSqtHoldLtrExh = 0;
+  filler19 = '';
+  comSqtHoldCombinations: ComSqtHoldCombinations[] = [];
+  comSqtHoldCautions: ComSqtOrigCautions[] = [];
+  comSqtHoldLetterTables: ComSqtOrigLetterTable[] = [];
+  comSqtHoldMessages: ComSqtOrigMessage[] = [];
+}

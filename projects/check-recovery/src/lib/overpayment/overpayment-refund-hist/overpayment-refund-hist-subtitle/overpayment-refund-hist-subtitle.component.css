@@ -1,0 +1,39 @@
+.span-header {
+  color: #252C37;
+  font-weight: 600;
+}
+
+.span-user-no {
+  color: #252C37;
+}
+
+.span-user-info {
+  margin: 0 20px 0 5px;
+  white-space: nowrap;
+}
+
+.img-claim {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 5px;
+}
+
+.container-claim-member {
+  margin-bottom: 0;
+  clear: both;
+}
+
+.span-member-name {
+  font-weight: 400;
+}
+
+.span-dash-color {
+  color: #CED3DA;
+}
+
+@media screen and (max-width:767px) {
+  .container-claim-member {
+    display: flex;
+    flex-direction: column;
+  }
+}

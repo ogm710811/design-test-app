@@ -1,0 +1,20 @@
+<div *ngIf="visible" @fadeInOut class="fox-modal" [ngClass]="{'fox-modal-md': !isMinWidth,'fox-modal-small': isMinWidth, 'fox-modal-larger-max-width': largerMaxWidth, 'fox-modal-no-horizontal-scroll': noHorizontalScroll}">
+  <p [ngClass]="hideBorder ? 'modal__title-hide-border' : 'modal__title'">
+    {{modalTitle}}
+
+    <a *ngIf="showPdfLink" href="assets/pdf/keyboard-shortcut.pdf" type="application/pdf" class="a-pdf-link" target="_blank"  tabindex="-1">
+      <img src="assets/img/pdf-fill.svg" class="img-pdf" tabindex="-1">
+      View as PDF
+    </a>
+
+  </p>
+  <div [ngClass]="{'modal__content':enableContentPadding}">
+    <ng-content></ng-content>
+  </div>
+  <button type="button" *ngIf="closable" (click)="closeModal('x')" aria-label="Close"
+          class="modal__close-btn"
+          tabindex="-1">
+    <i focusable="false" class="fas fa-times"></i>
+  </button>
+</div>
+<div *ngIf="visible" @fadeInOut class="overlay" (click)="closable ? closeModal('overlay') : null"></div>

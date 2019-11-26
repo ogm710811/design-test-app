@@ -1,0 +1,11 @@
+.mat-select-arrow {
+  color: #515151;
+  margin-right: 5px;
+}
+
+mat-select:focus:not(.mat-select-disabled) {
+  outline-style: solid;
+  outline-color: #196ecf;
+  outline-width: 2px;
+  overflow: visible;  
+}

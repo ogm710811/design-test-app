@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 container-end-of-claim">
+    <fox-section [noPadding]="true">
+      <div class="container-procclm-card-title">Processed Claim Details</div>
+      <div class="container-procclm-subtitle">Review Claim details below.</div>
+      <div class="no-padding">
+        <fox-table class="col-xs-12 col-sm-12 table-processed-claim-details"
+                   [tableColumns]="processedclaimtablecolumns"
+                   [tableData]="processedclaimtabledata | orderBy: {property: resultCurrentSortKey, direction: resultSortDirection}"
+                   (columnChanged)="resultCurrentSortKey = $event"
+                   (directionChanged)="resultSortDirection = $event">
+        </fox-table>
+      </div>
+      <div id="Row14" class="default">
+        <label id="txtM37REM1" #txtM37REM1>{{screen.m37rem1}}</label>
+      </div>
+      <div id="Row15" class="default">
+        <label id="txtM37REM2" #txtM37REM2>{{screen.m37rem2}}</label>
+      </div>
+    </fox-section>
+  </div>
+
+  <div class="col-xs-12 col-sm-4 container-end-of-claim">
+    <fox-section>
+      <div class="card-title">Current Statistics</div>
+      <div class="row-small container-bill-first-label container-display-equal-height">
+        <div class="col-xs-6 container-bill-label">Total Pays</div>
+        <div class="col-xs-6 container-member-value">{{screen.m37pays}}</div>
+      </div>
+      <div class="row-small container-display-equal-height">
+        <div class="col-xs-6 container-bill-label">Total To QR</div>
+        <div class="col-xs-6 container-member-value">{{screen.m37qual}}</div>
+      </div>
+      <div class="row-small container-display-equal-height">
+        <div class="col-xs-6 container-bill-label">Total No Pays</div>
+        <div class="col-xs-6 container-member-value">{{screen.m37npay}}</div>
+      </div>
+      <div class="row-small container-display-equal-height">
+        <div class="col-xs-6 container-bill-label container-bill-last-label">Total Suspended</div>
+        <div class="col-xs-6 container-member-value">{{screen.m37susp}}</div>
+      </div>
+    </fox-section>
+  </div>
+</div>
+
+<div class="col-md-12 no-padding">
+  <div class="form-row pull-right">
+    <button type="button" class="btn btn-secondary" (click)="exitEventClick()"
+            foxHotkey="ctrl+f2" hotkeyAction="click">Exit (F2)
+    </button>
+    <button type="button" class="btn btn-secondary btn-end-of-claim" (click)="splitEventClick()"
+            foxHotkey="ctrl+f8" hotkeyAction="click">Split Claim (F8)
+    </button>
+    <button type="button" class="btn btn-primary btn-end-of-claim" (click)="nextEventClick()"
+            foxHotkey="alt+l" hotkeyAction="click">Next Claim (L)
+    </button>
+  </div>
+</div>
+
+

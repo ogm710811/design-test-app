@@ -1,0 +1,54 @@
+.provider-header {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  color: #252C37;
+}
+
+.provider-value {
+  font-size: 14px;
+  line-height: 16px;
+  color: #252C37;
+}
+
+.table-provider  {
+  width: 100%;
+}
+
+.table-row-fifty {
+  width: 49%;
+}
+
+.table-row-quarter {
+  width: 23%;
+}
+
+.table-row-separation {
+  width: 3%;
+}
+
+.table-row-value {
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.table-transparent {
+  background-color: transparent;
+}
+
+.padding-bottom-ten {
+  padding-bottom: 10px;
+}
+
+.padding-bottom-five {
+  padding-bottom: 5px;
+}
+
+.padding-bottom-three {
+  padding-bottom: 3px;
+}
+
+.image-icon {
+  margin-right: 10px;
+  margin-bottom: 4px;
+}
+

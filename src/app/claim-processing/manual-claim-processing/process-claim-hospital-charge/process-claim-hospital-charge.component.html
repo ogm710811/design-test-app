@@ -1,0 +1,188 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 container-return-prev">
+    <a class="link-decoration" href="#" (click)="returnEventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </a>
+  </div>
+</div>
+<fox-member-dmg-card [screenData]="screenBeanData"></fox-member-dmg-card>
+<fox-section>
+  <div class="container-card-title">
+    ICD Codes
+  </div>
+  <div class="row container-margin-top">
+    <div class="col-xs-12 col-sm-3">
+      <fox-input type="text"
+                 labelText="ICD Code 1"
+                 [(ngModel)]="screen.icd"
+                 [length]="7"
+                 maxlength="7">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-icd-code">
+      <fox-input class="col-sm-12 input-icd"
+                 type="text"
+                 labelText="ICD Code 2"
+                 [(ngModel)]="screen.icd2"
+                 [length]="7"
+                 maxlength="7">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3">
+      <fox-input type="text"
+                 labelText="ICD Code 3"
+                 [(ngModel)]="screen.icd3"
+                 [length]="7"
+                 maxlength="7">
+      </fox-input>
+    </div>
+  </div>
+</fox-section>
+<fox-section class="section-icd">
+  <div class="row div-top-title">
+    <div class="col-xs-12 col-sm-8">
+      <div class="container-title-table">Providers</div>
+      <div class="container-sub-title">Use Tab or arrow keys to navigate and update fields.</div>
+    </div>
+  </div>
+  <div class="container-margin-top provider-table">
+    <fox-table #providerInputTable
+               [tableColumns]="providerInputColumns"
+               [tableData]="providerTableData">
+    </fox-table>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="container-title-table">Hospitals</div>
+      <div class="container-sub-title">Use Tab or arrow keys to navigate and update fields.</div>
+    </div>
+  </div>
+  <div class="container-margin-top">
+    <fox-table #hospitalInputTable
+               [tableColumns]="hospitalInputColumns"
+               [parentHeaderColumns]="columnsHeader"
+               [isParentHeader]="true"
+               [tableData]="hospitalTableData">
+    </fox-table>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="row div-top-title">
+    <div class="col-xs-12 col-sm-8">
+      <div class="container-title-table">Plans</div>
+    </div>
+  </div>
+  <div class="container-margin-top planTable">
+    <fox-table class="col-xs-12 col-sm-12 no-padding"
+               [tableColumns]="planTableColumns"
+               [tableData]="planTableData">
+    </fox-table>
+    <mat-divider></mat-divider>
+  </div>
+</fox-section>
+<div *ngIf="container.isLinesRelated" class="no-padding claim-margin-main">
+  <fox-section-title>Provider Details</fox-section-title>
+  <table class="table">
+    <tr *ngIf="screen?.m23lne1?.length > 0" class="no-padding">
+      <td class="col-prov1-row-width ">
+        {{screen.m23lne1}}
+      </td>
+      <td class="col-prov1-row1a-width ">
+        {{screen.m23ln1a}}
+        <input class="col-prov1-row2-width input-style margin-left-15" *ngIf="container.m23Res1" id="txtM23RES1"
+               name="txtM23RES1" #txtM23RES1 maxlength="1"
+               size="1" [(ngModel)]="screen.m23res1"/>
+      </td>
+    </tr>
+    <tr *ngIf="screen?.m23lne2?.length > 0">
+      <td class="col-prov1-row-width ">
+        {{screen.m23lne2}}
+      </td>
+      <td class="col-prov1-row1a-width ">
+        {{screen.m23ln2a}}
+      </td>
+      <td class="col-prov1-row2-width ">
+        {{screen.m23res2}}
+      </td>
+    </tr>
+    <tr *ngIf="screen?.m23ln3a?.length > 0">
+      <td class="col-prov1-row-width ">
+        {{screen.m23lne3}}
+      </td>
+      <td class="col-prov1-row1a-width ">
+        {{screen.m23ln3a}}
+      </td>
+      <td class="col-prov1-row2-width ">
+        {{screen.m23res3}}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-prov1-row-width ">
+        {{screen.m23lne4}}
+      </td>
+      <td class="col-prov1-row1a-width ">
+        {{screen.m23ln4a}}
+      </td>
+      <td class="col-prov1-row2-width ">
+        {{screen.m23res4}}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-prov1-row-width ">
+        {{screen.m23lne5}}
+      </td>
+      <td class="col-prov1-row1a-width ">
+      </td>
+      <td class="col-prov1-row2-width">
+        {{screen.m23res5}}
+      </td>
+    </tr>
+    <tr *ngIf="screen?.m23lne6?.trim()?.length > 0">
+      <td class="col-prov1-row-width ">
+        {{screen.m23lne6}}
+      </td>
+      <td class="col-prov1-row1a-width ">
+        <input class="col-prov1-row2-width input-style" *ngIf="container.m23Res6" id="txtM23RES6"
+               name="txtM23RES6" #txtM23RES6 maxlength="1"
+               size="1" [(ngModel)]="screen.m23res6"/>
+      </td>
+    <tr>
+  </table>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <div class="row row-caution">
+      <div class="col-xs-2 container-circle">
+        <img class="img-caution" src="assets/img/Flag-white.svg"/>
+      </div>
+      <div class="col-xs-10">
+        <div class="container-caution color-caution-text">
+          Additional Benefits for ICU May Apply
+        </div>
+        <div class="color-caution-text">
+          Review the entered information before continuing
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 container-position-button">
+    <div class="container-position margin-bottom-20">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="clearEventClick()"
+              foxHotkey="alt+r"
+              hotkeyAction="click">
+        Clear (R)
+      </button>
+      <fox-loading-button class="button-position"
+                          [buttonValue] = "'Continue (L)'"
+                          [buttonStatus]="buttonStatus"
+                          [typeValue]="'button'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+l'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</div>

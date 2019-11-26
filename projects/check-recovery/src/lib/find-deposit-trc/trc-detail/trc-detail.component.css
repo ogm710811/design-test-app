@@ -1,0 +1,221 @@
+#txt-amt {
+  width: 216px;
+}
+
+#sel-cat {
+  width: 216px;
+}
+
+#txt-int {
+  width: 168px;
+}
+
+#txt-name {
+  width: 420px;
+}
+
+#txt-addr1 {
+  width: 420px;
+}
+
+#txt-addr2 {
+  width: 420px;
+}
+
+#txt-city {
+  width: 294px;
+}
+
+#txt-state {
+  width: 112px;
+}
+
+#txt-zip {
+  width: 132px;
+}
+
+#txt-act-note {
+  width: 420px;
+}
+
+#claim-note-no-border {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  width: 678px;
+  height: 70px;
+}
+
+.btn-submit-trc {
+  background-color: #007000;
+}
+
+.text-bold-acp-note {
+  font-weight: bold;
+}
+
+.unlink-icon {
+  padding-right: 10px;
+}
+
+textarea {
+  resize: none;
+}
+
+.icon-search {
+  color: #196ECF;
+  padding-right: 5px;
+  padding-left: 10px;
+}
+
+.icon-active {
+  color: #21B01E;
+  margin-right: 5px;
+  font-size: 12px;
+  height: 20px;
+}
+
+.icon-class {
+  margin-left: 20px;
+}
+
+#sel-pri-yr,
+#sel-rsn-cd,
+#sel-buw,
+#sel-bus-unit,
+#sel-prv-ins {
+  width: 132px;
+}
+
+#sel-overpay {
+  width: 103px;
+}
+
+#sel-bulk {
+  width: 89px;
+}
+
+.mat-input-element, .mat-select {
+  height: 35px;
+  margin: 0;
+}
+
+.txt-note {
+  width: 426px;
+}
+
+.txt-note .no-padding {
+  color: #333333;
+  height: 90px;
+  background: white;
+  border-bottom: 1px solid #CED3DA;
+  margin: 0;
+}
+
+.mat-form-field.no-border-class {
+  border: none;
+  border-bottom: 1px solid #CED3DA;
+}
+
+.no-border-class .white-bg {
+  background: white;
+  color: #333333;
+}
+
+.form-section {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 31px;
+  padding-top: 19px;
+}
+
+.form-section.form-section-top {
+  padding-top: 0;
+}
+
+.form-section .form-section-header {
+  color: #333333;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.form-section .form-section-sub-header {
+  color: #333333;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.form-row {
+  margin-top: 20px;
+  padding-top: 12px;
+  padding-bottom: 13px;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-section .form-row:last-child {
+  padding-bottom: 0;
+}
+
+.form-row .mat-form-field {
+  margin-right: 15px;
+}
+
+.form-row .mat-form-field:last-child {
+  margin-right: 0;
+}
+
+.-form-field-wide {
+  width: 216px;
+}
+
+.container-not-found {
+  margin-top: 40px;
+  margin-left: 265px;
+  margin-bottom: 0;
+}
+
+.btn {
+  min-width: 102px;
+  height: 41px;
+  padding: 12px 23px 13px 22px;
+  margin-right: 15px;
+}
+
+.dollar-prefix {
+  padding: 8px 0 8px 8px;
+  margin: 0;
+}
+
+.mat-form-field input.mat-input-element:focus:not([disabled]) {
+  animation: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  overflow: inherit;
+  border: none;
+  outline: inherit;
+}
+
+mat-form-field.mat-focused:not(.mat-form-field-disabled):not(.mat-form-field-type-mat-select) {
+  overflow: visible;
+  border: 1px solid #196ecf;
+  outline: none;
+}
+
+::ng-deep .mat-form-field-flex.mat-form-field-flex {
+  align-items: flex-end;
+}
+
+::ng-deep .mat-form-field-disabled .mat-form-field-flex.mat-form-field-flex {
+  background-color: #ededed;
+}
+
+::ng-deep .mat-form-field-prefix + .mat-form-field-infix .mat-form-field-label-wrapper {
+  margin-left: -15px;
+}

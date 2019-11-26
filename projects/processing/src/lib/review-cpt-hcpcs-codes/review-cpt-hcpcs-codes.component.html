@@ -1,0 +1,204 @@
+<div class="row">
+  <div class="col-xs12 col-sm-8">
+    <fox-section>
+      <fox-section-title>CPT/HCPCS Inquiry</fox-section-title>
+      <div class="container-revw-cpthpcs-subtitle">Enter criteria below</div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 containter-revw-first-input">
+          <fox-input type="text"
+                     labelText="CPT/HCPCS Code"
+                     id="txtCptHcpsCode"
+                     [length]="5"
+                     [size]="5"
+                     (keyup.enter)="enterEventClick()"
+                     [(ngModel)]="rpdmb20.m20code">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 containter-revw-cpthcpcs-input">
+          <fox-input type="text"
+                     labelText="Modifier Code"
+                     id="txtModifierCode1"
+                     [length]="2"
+                     [size]="2"
+                     (keyup.enter)="enterEventClick()"
+                     [(ngModel)]="rpdmb20.m20mod1">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 containter-revw-cpthcpcs-input">
+          <fox-input type="text"
+                     labelText="Modifier Code"
+                     id="txtModifierCode2"
+                     [length]="2"
+                     [size]="2"
+                     (keyup.enter)="enterEventClick()"
+                     [(ngModel)]="rpdmb20.m20mod2">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 containter-revw-last-input">
+          <fox-input type="text"
+                     labelText="Modifier Code"
+                     id="txtModifierCode13"
+                     [length]="2"
+                     [size]="2"
+                     (keyup.enter)="enterEventClick()"
+                     [(ngModel)]="rpdmb20.m20mod3">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row pull-right">
+        <div class="col-sm-12 container-revwcpthcpcs-btn-section">
+          <button type="button"
+                  class="btn btn-secondary btn-clear-revw-cpthcpcs"
+                  foxHotkey="alt+r"
+                  (click)="clearEventClick()"
+                  hotkeyAction="click">Clear (R)
+          </button>
+          <fox-loading-button [buttonValue]="'Submit (S)'"
+                              [buttonStatus]="buttonStatus"
+                              [typeValue]="'button'"
+                              [foxHotKeyValue]="'alt+s'"
+                              (buttonClick)="enterEventClick()">
+          </fox-loading-button>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <fox-section>
+      <fox-section-title>CPT/HCPCS Inquiry Results</fox-section-title>
+      <div *ngIf="controlVisibility" class="container-section-padding">
+        <img class="img-section-shape" src="assets/img/no-active-query.svg">
+        <p class="para-section-header">No active query</p>
+        <p class="para-section-description">Enter valid criteria above and select Search (S)</p>
+      </div>
+      <div *ngIf="!controlVisibility">
+        <div class="row">
+          <div class="col-sm-3 col-xs-6 container-revwcpt-first-readonly">
+            <fox-read-only-field
+              [label]="'CPT/HCPS Code'"
+              [value]="rpdmb20.m20code">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-3 col-xs-6 container-revwcpt-read-only">
+            <fox-read-only-field
+              [label]="'TOS'"
+              [value]="rpdmb20.m20tos">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-3 col-xs-6 container-revwcpt-read-only">
+            <fox-read-only-field
+              [label]="'Percent'"
+              [value]="rpdmb20.m20per">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-3 col-xs-6 container-revwcpt-last-readonly">
+            <fox-read-only-field
+              [label]="'CPT Flag'"
+              [value]="rpdmb20.m20flg">
+            </fox-read-only-field>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-3 col-xs-6 container-revwcpt-first-readonly">
+            <fox-read-only-field
+              [label]="'Copay Indicator'"
+              [value]="rpdmb20.m20cop">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-3 col-xs-6 container-revwcpt-read-only">
+            <fox-read-only-field
+              [label]="'Start Date'"
+              [value]="rpdmb20.m20stad">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-3 col-xs-6 container-revwcpt-read-only">
+            <fox-read-only-field
+              [label]="'Stop Date'"
+              value="{{rpdmb20.m20stod}}">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-3 col-xs-6 container-revwcpt-last-readonly">
+            <fox-read-only-field
+              [label]="'Preventive Care'"
+              [value]="rpdmb20.m20pvc">
+            </fox-read-only-field>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="container-revw-cpthcpcs-label">Description</div>
+            <div class="container-revw-cpthcpcs-value">{{rpdmb20.m20dl1}} {{rpdmb20.m20dl2}} {{rpdmb20.m20dl3}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="container-revw-cpthcpcs-label">Short Description for EOB</div>
+            <div class="container-revw-cpthcpcs-value">{{rpdmb20.m20eob}}</div>
+          </div>
+        </div>
+        <mat-divider class="divider-revw-cpthcpcs-codes"></mat-divider>
+        <fox-section-title>Modifiers</fox-section-title>
+        <div class="row">
+          <div class="col-sm-3 col-xs-3">
+            <fox-read-only-field
+              [label]="'Modifier Code'"
+              [value]="rpdmb20.m20mcl1">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-9 col-xs-9">
+            <fox-read-only-field
+              [label]="'Modifier Code Description'"
+              [value]="rpdmb20.m20mdl1">
+            </fox-read-only-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 col-xs-3">
+            <fox-read-only-field
+              [label]="'Modifier Code'"
+              [value]="rpdmb20.m20mcl2">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-9 col-xs-9">
+            <fox-read-only-field
+              [label]="'Modifier Code Description'"
+              [value]="rpdmb20.m20mdl2">
+            </fox-read-only-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 col-xs-3">
+            <fox-read-only-field
+              [label]="'Modifier Code'"
+              [value]="rpdmb20.m20mcl3">
+            </fox-read-only-field>
+          </div>
+          <div class="col-sm-9 col-xs-9">
+            <fox-read-only-field
+              [label]="'Modifier Code Description'"
+              [value]="rpdmb20.m20mdl3">
+            </fox-read-only-field>
+          </div>
+        </div>
+        <mat-divider class="divider-revw-cpthcpcs-codes"></mat-divider>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="container-revw-cpthcpcs-label">State Variations</div>
+            <div class="container-revw-cpthcpcs-value">{{rpdmb20.m20st1 ? rpdmb20.m20st1 : '-'}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="container-revw-cpthcpcs-label">Utilization Review</div>
+            <div class="container-revw-cpthcpcs-value">{{rpdmb20.m20utr1 ? rpdmb20.m20utr1 : '-'}}</div>
+          </div>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+</div>

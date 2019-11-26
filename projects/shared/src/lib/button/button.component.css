@@ -1,0 +1,82 @@
+.btn-success {
+  height: 39px;
+  font-size: 14px;
+  background-color: #21B01E;
+  color: #ffffff;
+  transition: 300ms
+}
+
+.btn-danger {
+  height: 39px;
+  font-size: 14px;
+  background-color: #BF3533;
+  color: #ffffff;
+  transition: 300ms
+}
+
+.btn-primary-loading {
+  height: 39px;
+  background-color: #196ECF;
+  border-color: transparent;
+  color: #ffffff;
+  transition: 300ms;
+}
+
+.btn-secondary-loading {
+  height: 39px;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: solid 1px #196ecf;
+  color: #196ecf;
+  transition: 150ms;
+}
+
+.btn-secondary-success {
+  height: 39px;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: solid 1px #21B01E;
+  color: #21B01E;
+  transition: 150ms;
+}
+
+.btn-secondary-failed {
+  height: 39px;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: solid 1px #BF3533;
+  color: #BF3533;
+  transition: 150ms;
+}
+
+.loader {
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.button-class {
+  position: relative;
+}
+
+.i-chevron {
+  position: absolute;
+  left: -2px;
+  top: -1px;
+}
+
+.span-chevron-text {
+  margin-right: 10px;
+  margin-left: -10px;
+}
+
+.span-no-chevron-text {
+  margin-left: 5px;
+}
+
+.smaller-width {
+  width: 120px;
+  padding-left: 25px;
+}

@@ -1,0 +1,13 @@
+<fox-table
+  #historyResultTable
+  [tableColumns]="tableColumns"
+  [tableData]="claimHistoryResults"
+  (columnChanged)="sortByColumn($event)"
+  (directionChanged)="sortByDirection($event)"
+  [expandable]="true"
+  [isRowExpandableKey]="'hasBillLines'"
+  [selectable]="true"
+  (selectionChanged)="selectionChanged($event)"
+  (linkClicked)="linkClicked($event)"
+  [isSelectDisabled]="isSelectDisabled">
+</fox-table>

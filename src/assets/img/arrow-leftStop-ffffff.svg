@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="557px" height="520px" viewBox="0 0 557 520" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Document-Detail-(DOC-DTLS)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-285.000000, -43.000000)" fill="#FFFFFF">
+            <g id="Group" transform="translate(285.000000, 43.000000)">
+                <path d="M365.55,449.45 L343.35,471.65 C333.95,481.05 318.75,481.05 309.45,471.65 L115.05,277.35 C105.65,267.95 105.65,252.75 115.05,243.45 L309.45,49.05 C318.85,39.65 334.05,39.65 343.35,49.05 L365.55,71.25 C375.05,80.75 374.85,96.25 365.15,105.55 L244.65,220.35 L532.05,220.35 C545.35,220.35 556.05,231.05 556.05,244.35 L556.05,276.35 C556.05,289.65 545.35,300.35 532.05,300.35 L244.65,300.35 L365.15,415.15 C374.95,424.45 375.15,439.95 365.55,449.45 Z" id="Path" fill-rule="nonzero"></path>
+                <rect id="Rectangle" x="0" y="0" width="80" height="520" rx="20"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

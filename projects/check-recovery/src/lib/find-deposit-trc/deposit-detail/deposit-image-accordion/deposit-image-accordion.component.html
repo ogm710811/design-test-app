@@ -1,0 +1,17 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <hr class="horizontal-rule">
+    <mat-expansion-panel-header class="exp-panel-header">
+      <mat-panel-title class="mat-panel-title">
+        <i class="far fa-image"></i>Deposit Image
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="container-check-img">
+      <fox-pdf [pdf]="base64" [downloadLink]="downloadLink" *ngIf="!!base64"></fox-pdf>
+      <div *ngIf="!base64">
+        <div class="fas fa-info-circle info-icon" focusable="false"></div>
+        <div class="primary-message"><br/>No image associated with this deposit</div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

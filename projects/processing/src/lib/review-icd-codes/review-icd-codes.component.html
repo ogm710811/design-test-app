@@ -1,0 +1,59 @@
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-revicdcode-card-title">Search ICD Codes</fox-section-title>
+  <div class="container-revicdcode-card-subtitle">
+    <fox-section-subheader>Enter an ICD code below</fox-section-subheader>
+  </div>
+  <div class="container-revwicd-input-btn">
+    <div class="container-review-icd-input">
+      <fox-input type="text"
+                 labelText="ICD Code"
+                 id="txtIcdCode"
+                 [length]="7"
+                 [size]="7"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="rpdmb73.m73code">
+      </fox-input>
+    </div>
+    <button type="button"
+            class="btn btn-primary btn-review-icd-code"
+            foxHotkey="alt+s"
+            (click)="enterEventClick()"
+            hotkeyAction="click">Search (S)
+    </button>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-revicdcode-card-title">ICD Codes Results</fox-section-title>
+  <div class="container-revicdcode-card-subtitle">
+    <fox-section-subheader>Search for a different code</fox-section-subheader>
+  </div>
+  <div *ngIf="controlVisibility" class="container-section-padding">
+    <img class="img-section-shape" src="assets/img/no-active-query.svg">
+    <p class="para-section-header">No ICD Codes found</p>
+    <p class="para-section-description">Enter valid criteria above and select Search (S)</p>
+  </div>
+  <div *ngIf="!controlVisibility">
+    <fox-loading-overlay>
+      <fox-table *ngIf="viewData"
+                 [tableColumns]="revwIcdCodeColumn"
+                 [parentHeaderColumns]="columnsHeader"
+                 [isParentHeader]="true"
+                 [tableData]="revwIcdCodeTableData | orderBy: {property: resultCurrentSortKey, direction: resultSortDirection}"
+                 (columnChanged)="resultCurrentSortKey = $event"
+                 (directionChanged)="resultSortDirection = $event"
+                 [sortByColumn]="'ICD Code'">
+      </fox-table>
+    </fox-loading-overlay>
+  </div>
+  <div [hidden]="controlVisibility" class="row container-revwicd-code-paginator">
+    <fox-paginator-non-material #paginator
+                                [(pageSize)]="pageSizeSelected"
+                                [dataLengthInput]="dataLengthInput"
+                                [pageTotal]="pageTotal"
+                                [(currentPage)]="currentPage"
+                                (currentPageChange)="calculateNewPage();"
+                                (pageSizeChange)="currentPage=0;
+                                calculateNewPage();">
+    </fox-paginator-non-material>
+  </div>
+</fox-section>

@@ -1,0 +1,145 @@
+<fox-message-box [(visible)]="specialHandlingCode" messageBoxTitle="Special Handling Code Active"
+                 messageType="active">
+  Claims Examiners: please check Enrollment Information tab for additional information (12345)
+</fox-message-box>
+
+<fox-message-box [(visible)]="isIwriteFailure"
+                 messageBoxTitle="Failed to Open Letter Writing Application" messageType="error">
+  The Letter Writing service is unavailable at this time
+</fox-message-box>
+
+<fox-message-box [(visible)]="insuredNoteNotFound" messageBoxTitle="Insured Note Not Found">
+  Member not found on Account Info
+</fox-message-box>
+
+<fox-section *ngIf="memberProfile" class="main-member-profile">
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="row no-gutters">
+        <div class="col-md-7 div-member-number">
+          <span class="text-member">
+            <span class="icon-user-detail-item">
+              <span class="icon-member">
+                <i class="fas fa-user-circle" focusable="false"></i>
+              </span>
+              Member #
+              {{getMemberNumber()}}
+              {{getAssocId()}}
+              {{getInsuredCode()}}
+            </span>
+          </span>
+          <span *ngIf="isMemberMigrated" class="span-badge-member-migrated"><fox-badge [badgeParams]="memberMigrated"></fox-badge></span>
+          <span *ngIf="isRecordLocked"><fox-badge [badgeParams]="recordLocked"></fox-badge></span>
+        </div>
+        <div class="col-md-5">
+          <div class="menu-maintenance text-right">
+            <span class="span-button-maintenance">
+              <button class="btn-maintenance button-margin-left button-margin-top" type="button" mat-button [matMenuTriggerFor]="dropDownRP">
+                <i focusable="false" class="fas fa-cog i-fa-cog"></i>
+                <span class="span-margin-8">Related Pages</span>
+                <i focusable="false" class="fas fa-caret-down i-caret"></i>
+              </button>
+              <span class="dropdown-divider-line"></span>
+            </span>
+            <mat-menu class="mat-menu-maintenance" #dropDownRP="matMenu">
+              <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] (click)="searchLetter()">Find a Letter</button>
+              <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] (click)="generateLetter()">Write a Letter</button>
+            </mat-menu>
+
+            <span *ngIf="isF4275Enabled()" class="span-button-maintenance">
+              <button class="btn-maintenance button-margin-left button-margin-top" type="button" mat-button [matMenuTriggerFor]="dropDownMA">
+                <i focusable="false" class="fas fa-cog i-fa-cog"></i>
+                <span class="span-margin-8">Maintenance</span>
+                <i focusable="false" class="fas fa-caret-down i-caret"></i>
+              </button>
+              <span class="dropdown-divider-line"></span>
+            </span>
+            <mat-menu class="mat-menu-maintenance" #dropDownMA="matMenu">
+              <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] [disabled]="!hasTransferMemberMaintAvailable"
+                      (click)="onGetMemberMaintenanceAvail('account_transfer')">Transfer Member...</button>
+              <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] [disabled]="!hasSHCodeMaintAvailable"
+                      (click)="onGetMemberMaintenanceAvail('special_handling_codes'); updateSpecialHandlingCodeForEnrollment(false)">Special Handling Codes...</button>
+              <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] [disabled]="!hasAggregateMaintAvailable"
+                      (click)="onGetMemberMaintenanceAvail('aggregate')">Edit Aggregates...</button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+
+      <div class="row no-gutters member-profile-title">
+        <div class="no-left-padding col-md-10 container-line-height">
+          <span class="member-profile-title-name">
+            {{memberProfile?.memberDetails?.memberName?.firstName | titlecase}}
+            {{memberProfile?.memberDetails?.memberName?.middleName | titlecase}}
+            {{memberProfile?.memberDetails?.memberName?.lastName | titlecase}}
+          </span>
+
+          <span class="circle-icon"><i focusable="false" class="fas fa-circle"></i></span>
+          <span *ngIf="memberDateOfBirth" class="span-text">Born:</span>{{memberProfile?.memberDetails?.dateOfBirth | date:'MM/dd/yyyy'}}
+
+          <ng-container *ngIf="memberProfile?.insuredPlan?.length !== undefined && memberProfile?.insuredPlan?.length > 0 ">
+            <span class="circle-icon"><i focusable="false" class="fas fa-circle"></i></span>
+            <span class="span-text">Plan:</span>
+          </ng-container>
+
+          <span>
+            <ng-container *ngFor="let item of filterActiveInsuredPlans(); let isLast=last">
+              <span>{{item.planCode}}{{isLast ? '' : ', '}}</span>
+            </ng-container>
+          </span>
+
+          <ng-container *ngIf="specHandling">
+            <span class="circle-icon"><i focusable="false" class="fas fa-circle"></i></span>
+            <span class="span-text">Special Handling Code:</span>
+            {{specHandling}}
+          </ng-container>
+
+          <ng-container>
+            <span class="circle-icon"><i focusable="false" class="fas fa-circle"></i></span>
+            <span class="span-text">Status:<i class="fas" [ngClass]=" isInsuredPlanStatusActive ? 'fa-check-circle icon-active' : 'fa-times-circle icon-inactive' " focusable="false"></i></span>
+            {{displayStatus}}
+          </ng-container>
+
+          <ng-container *ngIf="memberProfile?.memberDetails?.email">
+            <span class="circle-icon"><i focusable="false" class="fas fa-circle"></i></span>
+            <span class="span-text">Email Address:</span>
+            {{memberProfile?.memberDetails?.email}}
+          </ng-container>
+        </div>
+        <div class="no-left-padding container-member-search-back col-md-2">
+          <a class="link-member-search-back" [routerLink]="url"><i class="fas fa-chevron-left" focusable="false"></i>
+            Back to Search Results
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-member-profile-tabs (insuredNoteNotFound)="displayInsuredNoteNotFoundMsg($event)"
+                         (specialHandlingCode)="displayActiveMsg($event)"
+                         [isSpecialHCUpdated]="isSpecialHCUpdated"
+                         [membershipNumber]="membershipNumber">
+</fox-member-profile-tabs>
+
+<fox-transfer-account-number [showTransferAccountNumberModal]="showTransferAccountNumberModal"
+                             [modalTitle]="'Account Transfer'"
+                             [membershipNumber]="membershipNumber"
+                             (onClose)="onCloseTransferAccountNumberForm()">
+</fox-transfer-account-number>
+
+<fox-special-handling-modal [visibleModal]="showSpecialHandlingModal"
+                            [modalTitle]="'Special Handling Code'"
+                            [membershipNumber]="membershipNumber"
+                            (updateMemberProfileEmitter)="specialHandlingCodeForMemberProfile(); updateSpecialHandlingCodeForEnrollment(true)"
+                            (visibleModalEmitter)="onSpecialHandlingModalClose($event)">
+</fox-special-handling-modal>
+
+<fox-aggregate-year-selection-modal (aggregateYear)="selectedAggregateYear($event)" [memberProfile]="memberProfile"
+                                    [aggregateYearArr]="aggregateYears">
+</fox-aggregate-year-selection-modal>
+
+<fox-edit-aggregate-value-modal [editAggregateYear]="aggregateYear" [memberProfile]="memberProfile"
+                                (openYrSelectionModal)="openYearSelectionModal($event)"
+                                (updateAggregateTable)="getAggregateNewValuesOnTable($event)">
+</fox-edit-aggregate-value-modal>

@@ -1,0 +1,54 @@
+.table-dupe-claims tr:hover {
+  background-color: #F5FBFE;
+}
+
+.table-dupe-claims tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+.table-dupe-claims a {
+  text-decoration: none;
+}
+
+.table-dupe-claims  tr {
+  border-top: 1px solid #EEEFF2;
+}
+
+.table-dupe-claims tr td {
+  padding: 20px;
+}
+
+.table-dupe-claims tr td:nth-child(1) {
+  font-weight: 600;
+}
+
+.table-dupe-claims {
+  border-right: 2px solid #EEEFF2;
+  border-bottom: 1px solid #EEEFF2;
+}
+
+.table-left {
+  float: left;
+  display: block;
+}
+
+.table-dupe-claims tr td:first-child {
+  padding-left: 40px;
+  text-align: right;
+}
+
+.table-dupe-claims tr td:nth-child(2) {
+  padding-right: 20px;
+}
+
+.icon-qr-dup-claim-no {
+  height: 15px;
+  width: 15px;
+  position: relative;
+  margin-right: 7px;
+  bottom: 1px;
+}
+
+.table-dupe-claims tbody .tr-first td {
+  padding-bottom: 19px;
+}

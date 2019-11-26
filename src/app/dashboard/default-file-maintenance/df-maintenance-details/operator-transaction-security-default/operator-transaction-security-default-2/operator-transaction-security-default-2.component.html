@@ -1,0 +1,368 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="f1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Return to Previous (F1)
+  </span>
+</div>
+<form (ngSubmit)="enterEventClick()">
+  <fox-section>
+    <div class="container-title">
+      <fox-section-title>Overview</fox-section-title>
+    </div>
+    <div class="row container-row-small container-display-equal-height">
+      <div class="col-xs-6 col-sm-3 container-display-equal-height container-readonly-row-xs">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Authority Level</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{screen2.m88alev}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-display-equal-height container-readonly-row-xs">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Last Maintenance Date</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{lastMaintenanceDate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-display-equal-height">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Position</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{screen2.m88pos}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-display-equal-height">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Maintenance IONs</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{screen2.m88mion}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section>
+    <div class="container-title">
+      <fox-section-title>Electronic Claim</fox-section-title>
+      <div *ngIf="screen2.m88utyp === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="row container-row-small">
+      <div class="col-xs-6 col-sm-3 container-last-row-sm">
+        <fox-input type="text"
+                   id="txtSuspendProcessing"
+                   name="txtSuspendProcessing"
+                   labelText="Suspend Processing"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts01 && screen2.m88ts01.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts01"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-last-row-sm">
+        <fox-input type="text"
+                   id="txtVerificationMaintenance"
+                   name="txtVerificationMaintenance"
+                   labelText="Verification Maintenance"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts02 && screen2.m88ts02.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts02"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-last-row">
+        <fox-input type="text"
+                   id="txtTransactionController"
+                   name="txtTransactionController"
+                   labelText="Transaction Controller"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts03 && screen2.m88ts03.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts03"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-last-row">
+        <fox-input type="text"
+                   id="txtCarrierConversion"
+                   name="txtCarrierConversion"
+                   labelText="Carrier Conversion"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts04 && screen2.m88ts04.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts04"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+
+
+  <fox-section>
+    <div class="container-title">
+      <fox-section-title>Other</fox-section-title>
+      <div *ngIf="screen2.m88utyp === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="row container-row-small">
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtHelpFile"
+                   name="txtHelpFile"
+                   labelText="Help File"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts05 && screen2.m88ts05.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts05"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtOperatorAuthLimiits"
+                   name="txtOperatorAuthLimiits"
+                   labelText="Operator Auth Limiits"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts06 && screen2.m88ts06.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts06"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtAuthLimitDefaults"
+                   name="txtAuthLimitDefaults"
+                   labelText="Auth Limit Defaults"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts07 && screen2.m88ts07.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts07"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtProviderFile"
+                   name="txtProviderFile"
+                   labelText="Provider File"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts08 && screen2.m88ts08.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts08"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtOperatorSetQuality"
+                   name="txtOperatorSetQuality"
+                   labelText="Operator Set Quality"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts09 && screen2.m88ts09.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts09"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtSetQualityDefaults"
+                   name="txtSetQualityDefaults"
+                   labelText="Set Quality Defaults"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts10 && screen2.m88ts10.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts10"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtMessageFile"
+                   name="txtMessageFile"
+                   labelText="Message File"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts11 && screen2.m88ts11.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts11"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtOperatorTransSecurity"
+                   name="txtOperatorTransSecurity"
+                   labelText="Operator Trans Security"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts12 && screen2.m88ts12.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts12"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtTransSecurityDefaults"
+                   name="txtTransSecurityDefaults"
+                   labelText="Trans Security Defaults"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts13 && screen2.m88ts13.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts13"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtMicrofilmRangeFile"
+                   name="txtMicrofilmRangeFile"
+                   labelText="Microfilm Range File"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts14 && screen2.m88ts14.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts14"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtProviderQualityFile"
+                   name="txtProviderQualityFile"
+                   labelText="Provider Quality File"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts15 && screen2.m88ts15.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts15"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtAuthLimitOverrides"
+                   name="txtAuthLimitOverrides"
+                   labelText="Auth Limit Overrides"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts16 && screen2.m88ts16.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts16"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtOperatorInfo"
+                   name="txtOperatorInfo"
+                   labelText="Operator Info"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts17 && screen2.m88ts17.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts17"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtMessageQuality"
+                   name="txtMessageQuality"
+                   labelText="Message Quality"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts18 && screen2.m88ts18.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts18"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtSetQualityOverrides"
+                   name="txtSetQualityOverrides"
+                   labelText="Set Quality Overrides"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts19 && screen2.m88ts19.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts19"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtHicNumber"
+                   name="txtHicNumber"
+                   labelText="HIC Number"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts20 && screen2.m88ts20.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts20"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-last-row">
+        <fox-input type="text"
+                   id="txtHicAcfInd"
+                   name="txtHicAcfInd"
+                   labelText="HIC ACF IND"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts21 && screen2.m88ts21.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts21"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-last-row">
+        <fox-input type="text"
+                   id="txtIcdCodeTable"
+                   name="txtIcdCodeTable"
+                   labelText="ICD Code Table"
+                   [isReadOnly]="screen2.m88utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen2.m88utyp !== 'UPDATE'"
+                   [isWarningState]="screen2.m88ts22 && screen2.m88ts22.toUpperCase() === 'N'"
+                   [(ngModel)]="screen2.m88ts22"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <div class="container-btns">
+    <div class="">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="f4EventClick()"
+              foxHotkey="alt+m"
+              hotkeyAction="click">
+        Page Backward (M)
+      </button>
+      <button type="button"
+              *ngIf="screen2.m88utyp === 'UPDATE'"
+              class="btn btn-secondary btn-left-margin"
+              (click)="clearButtonClick()"
+              foxHotkey="alt+r"
+              hotkeyAction="click">
+        Clear (R)
+      </button>
+      <fox-loading-button class="btn-left-margin"
+                          *ngIf="screen2.m88utyp === 'UPDATE'"
+                          [buttonValue] = "'Submit (S)'"
+                          [buttonStatus]="buttonStatus"
+                          [typeValue]="'submit'"
+                          [foxHotKeyValue]="'alt+s'">
+      </fox-loading-button>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,525 @@
+<mat-tab-group disableRipple="true" [formGroup]="documentSearchForm" [@.disabled]="true">
+  <mat-tab formGroupName="member">
+    <ng-template mat-tab-label>
+      <div class="div-tab-member">
+        <i focusable="false" class="fas fa-user" aria-hidden="true"></i> Member
+        <span *ngIf="documentSearchForm?.get(['member'])?.valid">*</span>
+      </div>
+    </ng-template>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Member #</mat-label>
+        <input matInput maxlength="60" formControlName="memberNo" foxNumbers>
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('memberNo')?.hasError('required') else memberNoElseError ">
+          This field is required
+        </mat-error>
+        <ng-template #memberNoElseError>
+          <mat-error>
+            Member # length should be 9 or 11 digits
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Last Name</mat-label>
+        <input matInput maxlength="60" formControlName="lastName">
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('lastName')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>First Name</mat-label>
+        <input matInput maxlength="60" formControlName="firstName">
+        <mat-error
+          *ngIf="documentSearchForm?.get('member')?.get('firstName')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Middle Name</mat-label>
+        <input matInput maxlength="60" formControlName="middleName">
+        <mat-error
+          *ngIf="documentSearchForm?.get('member')?.get('middleName')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Member State</mat-label>
+        <mat-select formControlName="memberState">
+          <mat-option> </mat-option>
+          <mat-option *ngFor="let selection of memberStateDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm!.get('member')!.get('memberState')!.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Zip Code</mat-label>
+        <input matInput maxlength="60" formControlName="zipCode" foxNumbers>
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('zipCode')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput maxlength="60" formControlName="dob">
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('dob')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('dob')?.hasError('date')">
+          {{documentSearchForm?.get('member')?.get('dob')?.getError('date')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field gender">
+        <mat-label>Gender</mat-label>
+        <mat-select id="gender" formControlName="gender">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let selection of genderDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('gender')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>MBI</mat-label>
+        <input matInput maxlength="60" formControlName="mbi">
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('mbi')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>Plan Type</mat-label>
+        <mat-select formControlName="planType">
+          <mat-option> </mat-option>
+          <mat-option *ngFor="let selection of planTypeDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('planType')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Plan Code</mat-label>
+        <input matInput maxlength="60" formControlName="planCode">
+        <mat-error *ngIf="documentSearchForm?.get('member')?.get('planCode')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Plan Effective Date</mat-label>
+        <input matInput maxlength="60" formControlName="planEffectiveDate">
+        <mat-error
+          *ngIf="documentSearchForm?.get('member')?.get('planEffectiveDate')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error
+          *ngIf="documentSearchForm?.get('member')?.get('planEffectiveDate')?.hasError('date')">
+          {{documentSearchForm?.get('member')?.get('planEffectiveDate')?.getError('date')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </mat-tab>
+  <mat-tab formGroupName="claim">
+    <ng-template mat-tab-label>
+      <div class="div-tab-claim">
+        <i focusable="false" class="fas fa-heartbeat" aria-hidden="true"></i> Claim
+        <span *ngIf="documentSearchForm?.get(['claim'])?.valid">*</span>
+      </div>
+
+    </ng-template>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Claim #</mat-label>
+        <input matInput maxlength="60" formControlName="claimNo" foxNumbers>
+        <mat-error *ngIf="documentSearchForm?.get('claim')?.get('claimNo')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error *ngIf="documentSearchForm?.get('claim')?.get('claimNo')?.hasError('pattern')">
+          Claim # must be numeric only
+        </mat-error>
+        <mat-error *ngIf="documentSearchForm?.get('claim')?.get('claimNo')?.hasError('maxlength')">
+          Claim # must be numeric maximum of 12 digits
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Date of Service From</mat-label>
+        <input matInput maxlength="60" formControlName="dosFrom">
+        <mat-error *ngIf="documentSearchForm?.get('claim')?.get('dosFrom')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error *ngIf="documentSearchForm?.get('claim')?.get('dosFrom')?.hasError('date')">
+          {{documentSearchForm?.get('claim')?.get('dosFrom')?.getError('date')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Date of Service To</mat-label>
+        <input matInput maxlength="60" formControlName="dosTo">
+        <mat-error *ngIf="documentSearchForm?.get('claim')?.get('dosTo')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error *ngIf="documentSearchForm?.get('claim')?.get('dosTo')?.hasError('date')">
+          {{documentSearchForm?.get('claim')?.get('dosTo')?.getError('date')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Provider Name</mat-label>
+        <input matInput maxlength="60" formControlName="providerName">
+        <mat-error
+          *ngIf="documentSearchForm?.get('claim')?.get('providerName')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Provider TIN</mat-label>
+        <input matInput maxlength="60" formControlName="providerTIN" foxNumbers>
+        <mat-error
+          *ngIf="documentSearchForm?.get('claim')?.get('providerTIN')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Claim Julian Date</mat-label>
+        <input matInput maxlength="5" formControlName="claimJulianDate" foxNumbers>
+        <mat-error
+          *ngIf="documentSearchForm?.get('claim')?.get('claimJulianDate')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>UB Type of Bill</mat-label>
+        <input matInput maxlength="3" formControlName="ubTypeOfBill">
+        <mat-error>
+          <span *ngIf="documentSearchForm?.get('claim')?.get('ubTypeOfBill')?.hasError('required') else ubTypeOfBillElseError">
+          This field is required
+          </span>
+          <ng-template #ubTypeOfBillElseError>
+            <span>
+            UB Type of Bill must be numeric
+            </span>
+          </ng-template>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab formGroupName="check">
+    <ng-template mat-tab-label>
+      <div class="div-tab-check">
+        <i focusable="false" class="fas fa-balance-scale"></i> Check
+        <span *ngIf="documentSearchForm?.get(['check'])?.valid">*</span>
+      </div>
+    </ng-template>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Check Claim #</mat-label>
+        <input matInput maxlength="60" [disabled]="true">
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Deposit Date</mat-label>
+        <input matInput maxlength="60" [disabled]="true">
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Check Date</mat-label>
+        <input matInput maxlength="60" formControlName="checkDate">
+        <mat-error *ngIf="documentSearchForm?.get('check')?.get('checkDate')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error *ngIf="documentSearchForm?.get('check')?.get('checkDate')?.hasError('date')">
+          {{documentSearchForm?.get('check')?.get('checkDate')?.getError('date')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Check Amount </mat-label>
+        <input matInput maxlength="60" formControlName="checkAmount" >
+        <mat-error
+          *ngIf="documentSearchForm?.get('check')?.get('checkAmount')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error
+          *ngIf="documentSearchForm?.get('check')?.get('checkAmount')?.errors">
+          Check Amount in numbers only
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Check #</mat-label>
+        <input matInput maxlength="60" formControlName="checkNo" foxNumbers>
+        <mat-error *ngIf="documentSearchForm?.get('check')?.get('checkNo')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Film Locator #</mat-label>
+        <input matInput maxlength="60" [disabled]="true">
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Check Control #</mat-label>
+        <input matInput maxlength="60" [disabled]="true">
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field gender">
+        <mat-label>Overpayment Collection Type</mat-label>
+        <mat-select [disabled]="true">
+          <mat-option value="Y">Yes</mat-option>
+          <mat-option value="N">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Refund Party</mat-label>
+        <input matInput maxlength="60" [disabled]="true">
+      </mat-form-field>
+    </div>
+  </mat-tab>
+  <mat-tab formGroupName="document">
+    <ng-template mat-tab-label>
+      <div class="div-tab-document">
+        <i focusable="false" class="fas fa-file" aria-hidden="true"></i> Document<span
+        *ngIf="documentSearchForm?.get(['document'])?.valid">*</span>
+      </div>
+    </ng-template>
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>DCN</mat-label>
+        <input matInput maxlength="60" formControlName="dcn" foxNumbers>
+        <mat-error *ngIf="documentSearchForm?.get('document')?.get('dcn')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error  *ngIf="documentSearchForm?.get('document')?.get('dcn')?.hasError('pattern')">
+          No characters or decimals
+        </mat-error>
+        <mat-error  *ngIf="documentSearchForm?.get('document')?.get('dcn')?.hasError('maxlength')">
+          DCN # must be numeric maximum of 22 digits
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>Feedback Code</mat-label>
+        <mat-select formControlName="feedbackCode">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let selection of feedbackInfoDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('feedbackCode')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>Document Type</mat-label>
+        <mat-select formControlName="documentType">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let selection of docTypeDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('documentType')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>Form Type</mat-label>
+        <mat-select formControlName="formType">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let selection of formTypeDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('formType')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>ASI Mail</mat-label>
+        <mat-select formControlName="asiMail">
+          <mat-option></mat-option>
+          <mat-option value="Y">Yes</mat-option>
+          <mat-option value="N">No</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('asiMail')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>Employer Business</mat-label>
+        <mat-select formControlName="employerBusiness">
+          <mat-option></mat-option>
+          <mat-option value="Y">Yes</mat-option>
+          <mat-option value="N">No</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('employerBusiness')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>Health Allies</mat-label>
+        <mat-select formControlName="healthAllies">
+          <mat-option></mat-option>
+          <mat-option value="Y">Yes</mat-option>
+          <mat-option value="N">No</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('healthAllies')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>FEK Pull Reason</mat-label>
+        <mat-select formControlName="fekPullReason">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let selection of fekPullReasonDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('fekPullReason')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>RNF Status</mat-label>
+        <mat-select formControlName="rnfStatus">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let selection of rnfStatusDropdownValues"
+                      [value]="selection.dropdownItemValue">
+            {{selection.dropdownItemDesc}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('rnfStatus')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field search-type">
+        <mat-label>Routing Error</mat-label>
+        <mat-select formControlName="routingError">
+          <mat-option></mat-option>
+          <mat-option value="Y">Yes</mat-option>
+          <mat-option value="N">No</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="documentSearchForm?.get('document')?.get('routingError')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+      <mat-form-field class="col-search-field">
+        <mat-label>Customer DCN</mat-label>
+        <input matInput maxlength="60" [disabled]="true">
+      </mat-form-field>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<ng-container *ngIf="checkIfFormFilled()"></ng-container>

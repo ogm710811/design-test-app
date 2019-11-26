@@ -1,0 +1,67 @@
+.container-btn {
+  float: right;
+  margin-top: 22px;
+}
+
+.button-margin {
+  margin-right: 20px;
+}
+
+.container-div-or {
+  padding-top: 24px;
+}
+
+.container-circle {
+  height: 27px;
+  width: 27px;
+  background-color: #EEEFF2;
+  border-radius: 50%;
+  margin: auto;
+  padding: 7px;
+  color: #5A616D;
+  font-weight: 500;
+}
+
+.container-div-fox-sub-title {
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+.container-padding-first {
+  padding-right: 10px;
+}
+
+.container-padding-middle {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-padding-last {
+  padding-left: 10px;
+}
+
+.container-sub-title {
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 767px) {
+  .container-div-or {
+    padding-top: 13px;
+  }
+
+  .container-padding-first {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .container-padding-last {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .container-padding-middle {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

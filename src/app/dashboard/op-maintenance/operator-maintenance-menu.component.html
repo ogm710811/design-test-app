@@ -1,0 +1,101 @@
+<fox-section>
+  <div class="container-oprtmaint-card-title">Search Parameters</div>
+  <fox-section-subheader>Enter an IONs ID -or- a first and last name. Then select a Maintenance Action and click Submit (Alt + S).</fox-section-subheader>
+  <form  class="container-oprtmaint-menu-form" [formGroup]="operatorFileFormGroup" novalidate>
+    <div class="col-xs-12 col-sm-3 container-optrmaint-form-ionsid">
+      <fox-input type="text"
+                 id="txtIonsId"
+                 name="txtIonsId"
+                 [length]="6"
+                 [size]="6"
+                 labelText="IONs ID"
+                 class="col-xs-12 col-sm-12 no-padding"
+                 (keyup.enter)="EnterEventClick()"
+                 [formControl]="ionsIdFormControl"
+                 [(ngModel)]="screenBean.m70ions">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1">
+      <div class="container-oprtmaint-menu-circle">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-optrmaint-form-firstname">
+      <fox-input type="text"
+                 id="txtFirstName"
+                 name="txtFirstName"
+                 [length]="20"
+                 [size]="20"
+                 labelText="First Name"
+                 class="col-xs-12 col-sm-12 no-padding"
+                 (keyup.enter)="EnterEventClick()"
+                 [formControl]="firstNameFormControl"
+                 [(ngModel)]="screenBean.m70fnam">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-5 no-padding">
+      <fox-input type="text"
+                 id="txtLastName"
+                 name="txtLastName"
+                 [length]="14"
+                 [size]="14"
+                 labelText="Last Name"
+                 class="col-xs-12 col-sm-12 no-padding input-oprtrmaint-menu-lastname"
+                 (keyup.enter)="EnterEventClick()"
+                 [formControl]="lastNameFormControl"
+                 [(ngModel)]="screenBean.m70lnam">
+      </fox-input>
+    </div>
+  </form>
+  <mat-divider class="divider-oprt-maint-menu"></mat-divider>
+  <div class="col-xs-12 col-sm-5 no-padding">
+    <div class="container-input-and-label">
+      <label class="label-operator-maint-action">Maintenance Action</label>
+      <div class="input-dropdown-selection">
+        <mat-select #txtSelection
+                    class="container-drop-down-menu"
+                    id="txtSelection"
+                    [(value)]="screenBean.m70sel"
+                    (selectionChange)="onChangeSelectedAction($event.value)">
+          <mat-option value="1">Add Operator Record</mat-option>
+          <mat-option value="2">Copy Operator Record IONS IDs</mat-option>
+          <mat-option value="3">Update/Review Operator Information</mat-option>
+          <mat-option value="4">Update/Review Authority Limits</mat-option>
+          <mat-option value="5">Update/Review Authority Combinations</mat-option>
+          <mat-option value="6">Update/Review Transaction Security</mat-option>
+          <mat-option value="7">Update/Review Set Quality</mat-option>
+          <mat-option value="8">Update/Review Set Quality Combinations</mat-option>
+        </mat-select>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-3 no-padding">
+    <fox-input type="text"
+               #txtM70CION="ngModel"
+               id="txtCopyIonsId"
+               name="txtCopyIonsId"
+               [length]="6"
+               [size]="6"
+               labelText="Copy IONS IDs"
+               class="col-xs-12 col-sm-12 no-padding input-optrmaint-copy-ionsid"
+               (keyup.enter)="EnterEventClick()"
+               [disabled]="disableCopyIonsId"
+               [ngModelOptions]="{updateOn: 'blur'}"
+               [(ngModel)]="screenBean.m70cion">
+    </fox-input>
+  </div>
+</fox-section>
+<div class="col-md-12 container-oprtmaint-button-section">
+  <div class="form-row pull-right">
+    <button type="button"
+            class="btn btn-secondary btn-clear-oprtmaint-menu"
+            foxHotkey="alt+r"
+            hotkeyAction="click"
+            (click)="ClearEventClick()">Clear (R)
+    </button>
+    <fox-loading-button [buttonValue] = "'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="EnterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

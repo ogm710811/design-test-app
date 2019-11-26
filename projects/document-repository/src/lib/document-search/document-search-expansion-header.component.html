@@ -1,0 +1,8 @@
+<h1 class="container-heading">Search Parameters</h1>
+<div class="container-search-parameters" *ngIf="showEnteredParameters && searchResult.length > 0">
+  <ng-container *ngFor="let param of parametersUsed; let j = index">
+    <div class="label-param"><span class="label-bold">{{param.paramName}}:</span>
+      {{param.paramValue}}
+    </div>
+  </ng-container>
+</div>

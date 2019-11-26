@@ -1,0 +1,53 @@
+.container-revicdcode-card-subtitle {
+  padding: 0 20px 10px 20px;
+  margin-top: -9px;
+}
+
+.container-revwicd-input-btn {
+  display: inline-flex;
+  padding: 0 20px 23px 20px;
+}
+
+.container-revicdcode-card-title {
+  padding: 20px 20px 0 20px;
+}
+
+.img-section-shape {
+  margin-top: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 133px;
+  width: 143px;
+  margin-bottom: 18px;
+}
+
+.para-section-header {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  margin: 0 auto;
+  width: 260px
+}
+
+.para-section-description {
+  font-size: 13px;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  padding-top: 5px;
+}
+
+.container-review-icd-input {
+  width: 200px;
+}
+
+.btn-review-icd-code {
+  margin-left: 20px;
+  margin-top: 13px;
+}
+
+.container-revwicd-code-paginator {
+  margin: -20px 0 0 0;
+}

@@ -1,0 +1,13 @@
+.table {
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+.queue-stat-table {
+  margin-top: 10px;
+  border-bottom: solid 1px #dddddd;
+}
+
+.queue-stat-table tr:first-child {
+  font-weight: bold;
+}

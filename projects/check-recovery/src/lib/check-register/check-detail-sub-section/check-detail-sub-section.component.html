@@ -1,0 +1,127 @@
+<div class="row row-small" *ngIf="checkDetails">
+  <div class="col-xs-12 col-sm-4">
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">
+        Series
+      </div>
+      <div class="col-xs-12 col-sm-7 container-value">
+        {{checkDetails?.checkSeries}}
+      </div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">
+        Status
+      </div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.status | removeUnderscore | titlecase}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">
+        Paypoint Code
+      </div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.paypointCode}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">
+        RHO
+      </div>
+      <div class="col-xs-12 col-sm-5 container-value"></div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">
+        Operator ID
+      </div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.actionUserId}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Approver ID</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.approverUserId}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Check #</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkNumber}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Claim Amount</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.claimAmount | currency}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">I/Amount</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkAmount | currency}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">C/Amount</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.cashAmount | currency}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Transaction Date</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.approverTransactionDate | date:'MM/dd/yy'}}</div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Member #</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.accountNumber}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Claim #</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.claimNumber}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">I/Date</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.issueDate | date:'MM/dd/yy'}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">C/Date</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.cashDate | date:'MM/dd/yy'}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Issued in Lieu of Check #</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.originalCheckSeries}} {{checkDetails?.checkActionDetail?.originalCheckNumber}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Replacement Check #</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.replacementCheckSeries}} {{checkDetails?.checkActionDetail?.replacementCheckNumber}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">I/Date</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.originalIssueDate | date:'MM/dd/yy'}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">C/Date</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.replacementIssueDate | date:'MM/dd/yy'}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Notation:</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.checkActionDetail?.notation}}</div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Payee</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.payee}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Payee Address</div>
+      <div class="col-xs-12 col-sm-7 container-value">
+        <div>{{checkDetails?.payeeAddress?.addressLine1}}</div>
+        <div>{{checkDetails?.payeeAddress?.addressLine2}}</div>
+        <div>{{checkDetails?.payeeAddress?.addressLine3}}</div>
+        <div>{{checkDetails?.payeeAddress?.city}}</div>
+        <div>{{checkDetails?.payeeAddress?.state}}</div>
+        <div>{{checkDetails?.payeeAddress?.zip}}</div>
+      </div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">TIN</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.tin}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">NPI</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.npi}}</div>
+    </div>
+    <div class="row row-small">
+      <div class="col-xs-12 col-sm-5 container-label">Insured</div>
+      <div class="col-xs-12 col-sm-7 container-value">{{checkDetails?.insuredName}}</div>
+    </div>
+  </div>
+</div>

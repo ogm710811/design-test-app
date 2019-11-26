@@ -1,0 +1,70 @@
+.table-set-quality input.mat-input-element {
+  border: solid 1px #DCE4E8;
+  padding: 1px;
+  height: 25px;
+  margin-top: 0;
+  background-color: #ffffff;
+}
+
+.col-width-50 {
+  width: 50px;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.container-value {
+  font-size: 17px;
+}
+
+.container-value-1 {
+  font-size: 17px;
+  text-align: center;
+  padding-bottom: 7px;
+  width: 100px;
+  height: 25px;
+  line-height: 22px;
+}
+
+.container-label-1 {
+  text-align: center;
+  width: 100px;
+}
+
+.container-value-2 {
+  font-size: 17px;
+  text-align: center;
+  padding-bottom: 7px;
+  width: 180px;
+  height: 25px;
+  line-height: 22px;
+}
+
+.container-label-2 {
+  text-align: center;
+  width: 180px;
+}
+
+.section-field-1 {
+  width: 100px;
+}
+
+.section-field-2 {
+  width: 180px;
+}
+
+.left-border {
+  border-left: 1px solid #cccccc;
+}
+
+.col-number {
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  width: 50px;
+}

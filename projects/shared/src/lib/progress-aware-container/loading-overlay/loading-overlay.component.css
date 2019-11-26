@@ -1,0 +1,11 @@
+.content {
+  overflow: hidden;
+  /* this makes the overlay appear over the entirety of the content. this is confusing and has to do
+                        with minutia of the DOM rendering spec
+
+                        https://stackoverflow.com/questions/9273016/why-is-this-inline-block-element-pushed-downward */
+}
+
+.content-or-overlay {
+  position: relative;
+}

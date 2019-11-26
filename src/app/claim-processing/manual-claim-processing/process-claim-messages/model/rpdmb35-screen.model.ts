@@ -1,0 +1,47 @@
+import {MapCommandLine} from './map-command-line.model';
+import {M35MsgTab} from './m35-msg-tab.model';
+import {M35PpSel01} from './m35-pp-sel01.model';
+import {M35SmTab1} from './m35-sm-tab1.model';
+import {M35PpSel02} from './m35-pp-sel02.model';
+import {M35SmTab2} from './m35-sm-tab2.model';
+import {M35XrefTab} from './m35-xref-tab.model';
+import {M35ClrtTab} from './m35-clrt-tab.model';
+
+export class Rpdmb35Screen {
+  mapCommandLine = new MapCommandLine();
+  m35ScreenHdr = '';
+  m35MbrName = '';
+  m35Pln01 = '';
+  m35PlnEff01 = '';
+  m35PlnTrm01 = '';
+  m35MbrId = '';
+  m35MbrAssc = '';
+  m35MbrInsr = '';
+  m35Pln02 = '';
+  m35PlnEff02 = '';
+  m35PlnTrm02 = '';
+  m35MbrDob = '';
+  m35MbrSt = '';
+  m35Pln03 = '';
+  m35PlnEff03 = '';
+  m35PlnTrm03 = '';
+  m35DenlPmptL = 0;
+  m35DenlPmptA = '';
+  m35DenlPmpt = '';
+  m35DenlResp = '';
+  m35Pln04 = '';
+  m35PlnEff04 = '';
+  m35PlnTrm04 = '';
+  m35PatntId = '';
+  m35MsgTabs: M35MsgTab[] = [];
+  m35PpSel01 = new M35PpSel01();
+  m35SmTab1s: M35SmTab1[] = [];
+  m35PpSel02 = new M35PpSel02();
+  m35SmTab2s: M35SmTab2[] = [];
+  m35ClmNote = '';
+  m35XrefTabs: M35XrefTab[] = [];
+  m35ClrtTabs: M35ClrtTab[] = [];
+  m35ErrMsg = '';
+  m35Pf5i = '';
+  m35Pf6i = '';
+}

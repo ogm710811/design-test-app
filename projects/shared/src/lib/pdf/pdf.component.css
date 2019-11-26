@@ -1,0 +1,49 @@
+.viewer-container {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+.pdf-container {
+  background-color: #707070;
+  height: calc(100vh - 195px);
+  overflow: auto;
+  padding-top: 32px;
+  width: 100%;
+  z-index: 1;
+}
+
+.page-overlay {
+  background-color: black;
+  color: white;
+  height: 32px;
+  padding: 5px;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.btn-overlay {
+  background-color: black;
+  border: none;
+  margin: 1px;
+}
+
+pdf-viewer ::ng-deep .ng2-pdf-viewer-container {
+  overflow-x: visible;
+}
+
+.input-page-number {
+  color: black;
+  width: 30px;
+  text-align: center;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-top: 2px;
+  border-bottom: 2px;
+}
+
+.img-arrow-stop {
+  height: 14px;
+}

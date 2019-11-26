@@ -1,0 +1,109 @@
+<fox-section>
+  <fox-section-title>
+    Insured Notes
+  </fox-section-title>
+  <button type="button" (click)="displayAddNote()"
+          class="btn btn-primary pull-right btn-note"
+          [disabled]="addNoteToggler">
+    Add Note
+  </button>
+  <div class="no-left-padding col-md-12">
+    <form [formGroup]="addNewNoteForm">
+      <div *ngIf="displayAddNoteblock">
+        <label class="label-insured-note">Post New Note</label>
+        <mat-form-field class="col-sm-12 no-left-padding form-group">
+          <textarea matInput id="addNote" maxlength="200" formControlName="addNewPost" #addNote
+                    class="txtarea-note locator-class"
+                    required></textarea>
+          <div class="note-btn-div">
+            <mat-hint><span class="text-bold-insured-note">{{maxNotationText - addNote.value?.length}}</span>
+              characters left
+            </mat-hint>
+            <button type="button" class="btn btn-primary pull-right btn-note locator-class"
+                    [disabled]="!addNewNoteForm.valid"
+                    (click)="add()">Add
+            </button>
+            <button type="button"
+                    class="btn btn-secondary pull-right btn-note btn-cancel locator-class"
+                    (click)="cancel()">Cancel
+            </button>
+          </div>
+        </mat-form-field>
+
+      </div>
+      <br/>
+      <ng-container>
+        <div class="col-sm-12 add-post" *ngFor="let item of insuredNote; let i = index">
+          <div>
+            <p class="locator-class" *ngIf="!item.hideEditItemNote" id="{{'showNote-' + i}}">
+              {{item.insuredNote}}
+              <a *ngIf="displayActionButton && displayAddNoteblock" [matMenuTriggerFor]="menu"
+                 class="pull-right action-btn locator-class"><i
+                class="fas fa-ellipsis-h" focusable="false"></i></a>
+              <mat-menu *ngIf="displayAddNoteblock" #menu="matMenu" class="menu-layout locator-class" [overlapTrigger]="false">
+                <button type="button" mat-menu-item [disableRipple]="true"
+                        (click)="editItemNote(i)">Edit Note
+                </button>
+                <button type="button" mat-menu-item [disableRipple]="true"
+                        (click)="deleteItemNote(item.insuredNoteKey)">Delete Note
+                </button>
+              </mat-menu>
+            </p>
+            <span *ngIf="item.hideEditItemNote">
+              <label class="label-insured-note">Edit Note</label>
+              <textarea matInput id="{{'editNote-' + i}}" #editNote maxlength="200"
+                        class="txtarea-note locator-class "
+                        required
+                        (change)="contentValueChange($event,i)">{{item.insuredNote}}</textarea>
+              <div class="note-btn-div">
+                <mat-hint><span class="text-bold-insured-note">{{maxNotationText - editNote.value.length}}</span> characters left</mat-hint>
+                <button type="button" class="btn btn-primary pull-right btn-note locator-class"
+                        (click)="updateNote(i)" [disabled]="!editNote.value">Save
+                </button>
+                <button type="button"
+                        class="btn btn-primary pull-right btn-note btn-cancel locator-class"
+                        (click)="cancelEditNote(i)">Cancel</button>
+              </div>
+            </span>
+          </div>
+          <div [ngClass]="{'avatar-name-posted-date': item.hideEditItemNote}">
+            <span id="avatar" class="col-sm-1"></span>
+            <div class="name-posted-date">
+              <span class="col-sm-2 name-element locator-class">{{item.createdBy}}&nbsp;</span>
+              <span class="posted-date-element locator-class"><small>Posted {{item.creationDate}}</small></span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <br/>
+    </form>
+  </div>
+
+  <ng-container *ngIf="insuredNote.length > 0">
+    <fox-paginator-non-material [(pageSize)]="notePageSize"
+                               [dataLengthInput]="noteDataLengthInput" [pageTotal]="notePageTotal"
+                               [(currentPage)]="currentNotePage"
+                               (currentPageChange)="getDisplayNotes()"
+                               (pageSizeChange)="currentNotePage=0;getDisplayNotes()">
+    </fox-paginator-non-material>
+  </ng-container>
+
+  <!--Delete Confirmation Modal Starts here-->
+  <fox-modal [(visible)]="showDeleteDialog" modalTitle="Delete Note">
+    <div>
+      <p>You are about to delete this insured note, which cannot be undone. Are you sure you wish to
+        delete this note?</p>
+    </div>
+    <div class="note-btn-div">
+      <button type="button" class="btn btn-primary pull-right btn-note locator-class"
+              (click)="confirmDeleteNote()">Delete
+      </button>
+      <button type="button" class="btn btn-secondary pull-right btn-note btn-cancel locator-class"
+              (click)="cacelDeletedialog()">Cancel
+      </button>
+    </div>
+  </fox-modal>
+  <!--Delete Confirmation Modal Ends here-->
+
+</fox-section>

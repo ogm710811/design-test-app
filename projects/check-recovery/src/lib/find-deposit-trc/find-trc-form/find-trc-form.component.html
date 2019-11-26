@@ -1,0 +1,68 @@
+<fox-section [drawRectangle]="false" noPadding="true">
+  <form (ngSubmit)="onSubmit()" [formGroup]="trcFormGroup">
+    <div>
+      <div class="row-small row-eq-height">
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <fox-input type="fox-number"
+                   placeholder="123456789"
+                   labelText="TRC Number:"
+                   [length]="9"
+                   [formControl]="num"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <fox-input type="fox-date"
+                     placeholder="MM/DD/YYYY"
+                     labelText="TRC Date Created:"
+                     [formControl]="dateCreated">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <mat-form-field class="form-field-status">
+            <mat-label>TRC Status:</mat-label>
+            <mat-select class="dropdown-status" placeholder="Select an option" [formControl]="status">
+              <mat-option class="fox-dropdown-placeholder" value="" selected>-- Select an Option --
+              </mat-option>
+              <mat-option class="fox-dropdown-option" value="VOUCHERED">Vouchered</mat-option>
+              <mat-option class="fox-dropdown-option" value="NONVOUCHERED">Non-Vouchered</mat-option>
+              <mat-option class="fox-dropdown-option" value="COMPLETED">Completed</mat-option>
+              <mat-option class="fox-dropdown-option" value="PENDING">Pending</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <fox-input placeholder="SMITH, JOE"
+                     labelText="TRC Created By:"
+                      [formControl]="createdBy"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <mat-form-field class="form-field-category">
+            <mat-label>TRC Category:</mat-label>
+            <mat-select class="dropdown-status" placeholder="Select an option" [formControl]="category">
+              <mat-option class="fox-dropdown-placeholder" value="" selected>-- Select an Option --
+              </mat-option>
+              <mat-option *ngFor="let selection of trcCategoryDescriptions" [value]="selection.code">
+                {{selection.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row-small row-eq-height">
+        <div class="col-xs-12 text-right">
+          <button type="button" class="btn btn-secondary btn-clear"
+                  foxHotkey="alt+r"
+                  (click)="trcFormGroup.reset()">
+            Clear (R)
+          </button>
+          <button type="submit"
+                  class="btn btn-primary btn-find"
+                  [disabled]="!trcFormGroup.valid"
+                  foxHotkey="alt+s">
+            Search (S)
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</fox-section>
+

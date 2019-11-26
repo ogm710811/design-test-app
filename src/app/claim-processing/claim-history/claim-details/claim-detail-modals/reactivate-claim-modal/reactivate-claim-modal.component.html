@@ -1,0 +1,30 @@
+<fox-modal [(visible)]="reactivateModalVisible" class="modal-delete-claim"
+           modalTitle="Reactivate Claim" [closable]="false"
+           (visibleChange)="reactivateModalVisibleChange.emit(reactivateModalVisible)">
+  <div>
+    <p class="container-reactivate-details">
+      <span>This action will reactivate the deleted Claim #{{ claimNumber }} to a disbursed status.
+      </span>
+    </p>
+    <p class="container-confirm-msg">
+      <span>Has deductible maintenence been done for this claim? If deductible has been applied to this claim, selecting "No" will apply a special handling code to it.</span>
+    </p>
+  </div>
+  <div class="container-radio-btns">
+    <span>
+      <input type="radio" name="noReactiveRadio" class="radio-btn" (click)="onChangeReactive()" [checked]="!isReactiveClaim" />
+      <span class="radio-label">No</span>
+    </span>
+    <span class="margin-left-15">
+      <input type="radio" name="yesReactiveRadio" class="radio-btn" (click)="onChangeReactive()" [checked]="isReactiveClaim" />
+      <span class="radio-label">Yes</span>
+    </span>
+  </div>
+  <div class="col-md-12 text-right container-modal-btns">
+    <button type="button" id="btn-cancel-modal" class="btn btn-secondary btn-clear-modal"
+            (click)="cancelReactivateModal()">Cancel
+    </button>
+    <button type="button" id="btn-confirm-modal" class="btn btn-primary button-primary-submit" (click)="reactivateClaim()">Reactivate
+    </button>
+  </div>
+</fox-modal>

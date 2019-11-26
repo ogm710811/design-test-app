@@ -1,0 +1,17 @@
+/*Provider Summary Card */
+
+.backClaimSearchLink {
+  text-decoration: none;
+  color: #196ECF;
+  font-size: 14px;
+}
+
+.fa-chevron-left {
+  font-size: 11px;
+}
+
+.claimSearchBack {
+  text-align: right;
+  padding-left: 165px;
+}
+

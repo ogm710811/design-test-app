@@ -1,0 +1,119 @@
+<fox-section>
+  <div class="row container-title-rx no-padding">
+    <fox-section-title> Rx Search </fox-section-title>
+    <div class="col-xs-12 container-sub-title">
+      Section subtitle and other descriptive text
+    </div>
+  </div>
+  <div class="row container-rx-search">
+    <div class="col-xs-12 col-sm-3 container-input-padding">
+      <fox-input type="fox-date"
+                 id="txtM02DDOS"
+                 name="txtReceivedDate"
+                 displayFormat="MM/DD/YYYY"
+                 programmaticFormat="MMDDYY"
+                 labelText="Initial Date of Service" [(ngModel)]="screenBean.m02ddos">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-input-last">
+      <fox-select-single id="txtSearchBy"
+                         [items]="searchByList"
+                         [selected]="searchType"
+                         (selectEmitter)="searchEvent($event)"
+                         bindValue="id"
+                         labelText="Search By">
+      </fox-select-single>
+    </div>
+  </div>
+  <div class="row container-rx-params">
+    <div *ngIf="searchType === 1" class="col-xs-12 col-sm-6 container-input-padding">
+      <fox-input type="text"
+                 id="txtM02DNAM"
+                 labelText="Drug Name"
+                 length="30"
+                 [(ngModel)]="screenBean.m02dnam">
+      </fox-input>
+    </div>
+    <div *ngIf="searchType === 1" class="col-xs-12 col-sm-3 container-input-padding">
+      <fox-input type="text"
+                 id="txtM02DSTR"
+                 labelText="Drug Strength (Optional)"
+                 length="12"
+                 [(ngModel)]="screenBean.m02dstr">
+      </fox-input>
+      <div class="container-input-caption">I. E. 100.0</div>
+    </div>
+    <div *ngIf="searchType === 1" class="col-xs-12 col-sm-3 container-input-last">
+      <fox-input type="text"
+                 id="txtM02DUNT"
+                 labelText="Drug Units (Optional)"
+                 length="10"
+                 [(ngModel)]="screenBean.m02dunt">
+      </fox-input>
+      <div class="container-input-caption">Values: MG, G, U</div>
+    </div>
+    <div *ngIf="searchType === 2" class="col-xs-12 col-sm-5 container-input-padding">
+      <fox-input type="text"
+                 id="txtM02DNDC"
+                 labelText="NDC Number"
+                 [(ngModel)]="screenBean.m02dndc">
+      </fox-input>
+    </div>
+  </div>
+  <div class="row container-buttons">
+    <button type="button"
+            class="btn btn-primary btn-margin-right-15"
+            (click)="enterEventClick()"
+            foxHotkey="alt+s"
+            hotkeyAction="click">
+      Search (S)
+    </button>
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+  </div>
+</fox-section>
+<fox-loading-overlay>
+  <fox-section [noPadding]="true">
+    <div class="row container-title">
+      <fox-section-title> Search Result </fox-section-title>
+      <div *ngIf="hasTableData" class="col-xs-12 container-sub-title-search">
+        <span class="span-multiple-benefit">Multiple benefits exist:</span>
+        <span *ngIf="screanBeanTable.multiBenExist === 'N'"><img src="assets/img/deny-red.svg" class="img-flag"/>No</span>
+        <span *ngIf="screanBeanTable.multiBenExist === 'Y'"><img src="assets/img/confirm-green.svg" class="img-flag"/>Yes</span>
+      </div>
+    </div>
+    <div *ngIf="searchError" class="col-xs-12 container-no-search">
+      <img src="assets/img/undraw_blank_canvas_3rbb.svg" class="img-no-msg" alt="return icon"/>
+      <fox-section-title>No results found</fox-section-title>
+      <span class="span-msg-desc">Please change your search criteria and try again.</span>
+    </div>
+    <div *ngIf="!searchError && !results" class="col-xs-12 container-no-search">
+      <img src="assets/img/no-active-query.svg" class="img-no-msg" alt="return icon"/>
+      <fox-section-title>No active query</fox-section-title>
+      <span class="span-msg-desc">Enter valid criteria above and select Search (S)</span>
+    </div>
+    <div *ngIf="!searchError" class="col-xs-12 container-table-search">
+      <fox-table [tableColumns]="columns"
+                 [noBottomMargin]="true"
+                 [noBorderTopHeader]="true"
+                 [tableData]="results | orderBy: {property: tableDataSortKey, direction: tableDataDirection}"
+                 (columnChanged)="tableDataSortKey = $event"
+                 (directionChanged)="tableDataDirection = $event">
+      </fox-table>
+    </div>
+    <div [hidden]="!hasTableData" class="col-xs-12 container-div-paginator">
+      <fox-paginator-non-material [(pageSize)]="pageSizeSelected"
+                                  [dataLengthInput]="dataLengthInput"
+                                  [pageTotal]="pageTotal"
+                                  [(currentPage)]="currentPage"
+                                  (currentPageChange)="calculateNewPage();"
+                                  (pageSizeChange)="currentPage=0; calculateNewPage();">
+      </fox-paginator-non-material>
+    </div>
+  </fox-section>
+</fox-loading-overlay>

@@ -1,0 +1,88 @@
+::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
+  opacity: 0;
+}
+
+::ng-deep .mat-sort-header-pointer-left.ng-trigger.ng-trigger-leftPointer {
+  transform: rotate(-45deg);
+}
+
+::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer {
+  transform: rotate(45deg);
+}
+
+.btn-maintenance {
+  height: 35px;
+  width: 108px;
+  border: 1px solid #D3D3D3;
+  border-radius: 3px;
+  background-color: transparent;
+  color: #196ECF;
+}
+
+.text-modify-button {
+  line-height: 13px;
+  color: #196ECF;
+}
+
+.btn-maintenance-spec {
+  border: 1px solid #D3D3D3;
+  border-radius: 3px;
+  background-color: #F5F5F5;
+  color: #333;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 10px;
+}
+
+.special-handling-top-bottom-border {
+  border-bottom: solid 1px #E3E3E3;
+  border-top: solid 1px #E3E3E3;
+}
+
+.special-handling-top-bottom-border > .vertical-td {
+  vertical-align: middle;
+}
+
+.special-handling-text {
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.locator-description-td {
+  width: 835px;
+}
+
+.text-special-handling-desc-main {
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.btn-prvs {
+  margin-right: 8px;
+}
+
+.btn-prvs:disabled {
+  color: #989B9F;
+  background-color: #F5F5F5;
+}
+
+.table.special-handling-table-main tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.circle-icon {
+  font-size: 6px;
+  vertical-align: middle;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #7A7A7A;
+}
+
+.special-handling-table-main > tbody > tr > .text-special-handling-pagination {
+  vertical-align: bottom;
+  padding-bottom: 15px;
+}
+
+.menu-maintenance.text-right {
+  padding-bottom: 10px;
+}

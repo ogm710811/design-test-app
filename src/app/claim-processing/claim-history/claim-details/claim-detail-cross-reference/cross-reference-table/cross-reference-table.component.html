@@ -1,0 +1,61 @@
+<div class="container-grey-border no-padding table-border-cross-reference">
+<table class="table table-cross-ref">
+  <thead class="thead-default">
+  <tr>
+  <th class="col-remove-width"></th>
+    <th class="column-claim-cross-ref-header">
+      <span class="table-column-name ">Claim #</span>
+    </th>
+    <th class="column-dos-cross-ref-header">
+      <span class="table-column-name">Dates of Service</span>
+    </th>
+    <th class="column-clm-sts-cross-ref-header">
+      <span class="table-column-name ">Claim Status</span>
+    </th>
+    <th class="column-clm-nopay-cross-ref-header">
+      <span class="table-column-name">No Pay</span>
+    </th>
+    <th class="column-clm-nopay-cross-ref-header">
+      <span class="table-column-name">Primary ICD</span>
+    </th>
+    <th class="column-clm-nopay-cross-ref-header">
+      <span class="table-column-name">Claim Type</span>
+    </th>
+    <th class="column-clm-nopay-cross-ref-header">
+      <span class="table-column-name">AARP Assigned</span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let dat of crossReferenceResultSet; let j = index">
+    <tr [id]="'cross-ref-result-tr-' + j" class="cross-ref-result-table-border">
+      <div *ngIf="isToggleClaimNoteEditFeature && !isLocked">
+        <td [id]="'cross-ref-result-tr-' + j + '-td-1'">
+          <mat-icon (click)="deleteCrossReference(dat.crossReferenceId, dat.crossReferenceNumber)"
+                    class="link-remove-cros-ref">
+            <span><img class="icon-deny" src="assets/img/deny-blue.svg"></span>
+          </mat-icon>
+          <a [foxLink] (linkPressed)="deleteCrossReference(dat.crossReferenceId, dat.crossReferenceNumber)">Remove</a>
+        </td>
+      </div>
+      <div *ngIf="!isToggleClaimNoteEditFeature || isLocked">
+        <td [id]="'cross-ref-result-tr-' + j + '-td-1'">
+          <mat-icon class="link-remove-cros-ref-disabled">
+            <span><img class="icon-deny" src="assets/img/deny-grey.svg"></span>
+          </mat-icon>
+          <a class="link-remove-cros-ref-disabled">Remove</a>
+        </td>
+      </div>
+      <td [id]="'cross-ref-result-tr-' + j + '-td-2'" class="column-claim-cross-ref-header"><span>
+        {{dat['crossReferenceNumber']}}</span></td>
+      <td [id]="'cross-ref-result-tr-' + j + '-td-3'" class="column-dos-cross-ref-header"></td>
+      <td [id]="'cross-ref-result-tr-' + j + '-td-4'" class="column-clm-sts-cross-ref-header"></td>
+      <td [id]="'cross-ref-result-tr-' + j + '-td-5'" class="column-clm-nopay-cross-ref-header"></td>
+      <td [id]="'cross-ref-result-tr-' + j + '-td-6'" class="column-clm-nopay-cross-ref-header"></td>
+      <td [id]="'cross-ref-result-tr-' + j + '-td-7'" class="column-clm-nopay-cross-ref-header"></td>
+      <td [id]="'cross-ref-result-tr-' + j + '-td-8'" class="column-clm-nopay-cross-ref-header"></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+</div>

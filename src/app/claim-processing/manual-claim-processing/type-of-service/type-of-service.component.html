@@ -1,0 +1,135 @@
+<form (ngSubmit)="submitEventClick()">
+  <fox-member-dmg-card [screenData]="screenBean"></fox-member-dmg-card>
+  <fox-section>
+    <mat-accordion>
+      <div class="div-section-title">Select Services</div>
+      <span class="div-section-subtitle">Enter one or more service types and click “Continue” (or use Alt + L or Enter) to proceed.</span>
+      <table class="table-main">
+        <tr>
+          <td class="td-type-of-services">
+            <fox-loading-overlay>
+              <div class="col-sm-12 text-left div-available-types">
+                <h5 class="div-subtitle-copy">Available Types</h5>
+              </div>
+              <div class="row div-row-num-container">
+                <div class="col-xs-12 text-left div-serial-number-container div-first-element">
+                  <mat-label id="txtM22TYP1"><span class="container-font-weight-bold">1. </span>{{screenBean.m22typ1}}</mat-label>
+                </div>
+                <div class="col-xs-12 text-left div-serial-number-container">
+                  <mat-label id="txtM22TYP3"><span class="container-font-weight-bold">3. </span>{{screenBean.m22typ3}}</mat-label>
+                </div>
+                <div class="col-xs-12 text-left div-serial-number-container">
+                  <mat-label id="txtM22TYP4"><span class="container-font-weight-bold">4. </span>{{screenBean.m22typ4}}</mat-label>
+                </div>
+                <div class="col-xs-12 text-left div-serial-number-container">
+                  <mat-label id="txtM22TYP5"><span class="container-font-weight-bold">5. </span>{{screenBean.m22typ5}}</mat-label>
+                </div>
+                <div class="col-xs-12 text-left div-serial-number-container">
+                  <mat-label id="txtM22TYP6"><span class="container-font-weight-bold">6. </span>{{screenBean.m22typ6}}</mat-label>
+                </div>
+                <div class="col-xs-12 text-left div-serial-number-container">
+                  <mat-label id="txtM22TYP7"><span class="container-font-weight-bold">7. </span>{{screenBean.m22typ7}}</mat-label>
+                </div>
+                <div class="col-xs-12 text-left div-serial-number-container">
+                  <mat-label id="txtM22TYP8"><span class="container-font-weight-bold">8. </span>{{screenBean.m22typ8}}</mat-label>
+                </div>
+                <div class="col-xs-12 text-left div-serial-number-container">
+                  <mat-label id="txtM22TYP9"><span class="container-font-weight-bold">9. </span>{{screenBean.m22typ9}}</mat-label>
+                </div>
+              </div>
+            </fox-loading-overlay>
+          </td>
+          <td class="td-dates">
+            <div class="row div-service-row-padding">
+              <div class="col-xs-12 col-md-6 div-type-service-padding">
+                <fox-input type="text"
+                           autoFocus="true"
+                           id="txtM22CHG1"
+                           name="txtM22CHG1"
+                           labelText="Types of Service"
+                           length="9"
+                           [(ngModel)]="screenBean.m22chg">
+                </fox-input>
+                <label class="lbl-service-input-subtext">You may enter multiple values without spaces</label>
+              </div>
+              <div class="col-xs-12 col-md-3 div-service-from-date-padding">
+                <fox-input type="fox-date"
+                           id="txtM22SRV1"
+                           name="txtM22SRV1"
+                           placeholder="MM/YY"
+                           labelText="Service from Date"
+                           displayFormat="MM/YY"
+                           programmaticFormat="MMYY"
+                           [(ngModel)]="screenBean.m22srv1">
+                </fox-input>
+              </div>
+              <div class="col-xs-12 col-md-3 div-service-to-date-padding">
+                <fox-input type="fox-date"
+                           id="txtM22SRV2"
+                           name="txtM22SRV2"
+                           placeholder="MM/YY"
+                           displayFormat="MM/YY"
+                           programmaticFormat="MMYY"
+                           labelText="Service to Date"
+                           [(ngModel)]="screenBean.m22srv2">
+                </fox-input>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-md-3 div-type-service-padding">
+                <fox-input type="fox-date"
+                           id="txtM22DEAD"
+                           name="txtM22DEAD"
+                           placeholder="MM/YY"
+                           displayFormat="MM/YY"
+                           programmaticFormat="MMYY"
+                           labelText="Deceased Date"
+                           [(ngModel)]="screenBean.m22dead">
+                </fox-input>
+              </div>
+              <div class="col-xs-12 col-md-3 div-service-to-date-padding">
+                <fox-input type="fox-date"
+                           id="txtM22PURG"
+                           name="txtM22PURG"
+                           placeholder="MM/DD/YYYY"
+                           labelText="Purged Date"
+                           [(ngModel)]="screenBean.m22purg">
+                </fox-input>
+              </div>
+            </div>
+            <div class="row" *ngIf="screenBean.m22icpqVisible">
+              <fox-input type="text"
+                         id="txtM22ICPA"
+                         name="txtM22ICPA"
+                         foxAutoFocus
+                         labelText="screenBean.m22icpq"
+                         maxlength="1"
+                         size="1"
+                         [(ngModel)]="screenBean.m22icpa">
+              </fox-input>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </mat-accordion>
+  </fox-section>
+
+  <div class="div-button-margin">
+    <div class="div-float-right margin-bottom-20">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="clearForm()"
+              foxHotkey="alt+r"
+              hotkeyAction="click">
+        Clear (R)
+      </button>
+      <fox-loading-button class="div-margin-left"
+                          [buttonValue] = "'Continue (L)'"
+                          [buttonStatus]="buttonStatus"
+                          [typeValue]="'submit'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+l'">
+      </fox-loading-button>
+    </div>
+  </div>
+</form>

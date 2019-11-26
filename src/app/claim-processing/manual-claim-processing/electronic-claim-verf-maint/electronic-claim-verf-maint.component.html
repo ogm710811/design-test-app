@@ -1,0 +1,87 @@
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-title">Insured Demographics</div>
+    <div class="row container-small no-padding" *ngIf="screenBean">
+      <div class="col-xs-12 col-sm-4 no-padding">
+        <div class="row container-small container-demography" *ngFor="let demoInfo of demographicInfo">
+          <div class="col-xs-4 col-sm-4 no-padding container-indicator-label">
+            {{demoInfo.key}}
+          </div>
+          <div class="col-xs-8 col-sm-8 no-padding container-member-value">
+            {{demoInfo.value}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 no-padding">
+        <div class="row container-small container-demography" *ngFor="let demoAdd of demographicAddress">
+          <div class="col-xs-4 col-sm-4 no-padding container-indicator-label">
+            {{demoAdd.key}}
+          </div>
+          <div class="col-xs-8 col-sm-8 no-padding container-member-value">
+            {{demoAdd.value}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 no-padding">
+        <div class="row container-small container-demography" *ngFor="let demoDetais of demographicDetails">
+          <div class="col-xs-4 col-sm-4 no-padding container-indicator-label">
+            {{demoDetais.key}}
+          </div>
+          <div class="col-xs-8 col-sm-8 no-padding container-member-value">
+            {{demoDetais.value}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-sm-8 no-padding">
+  <fox-section>
+    <div class="container-actions">
+      <div class="container-title">
+        Actions
+      </div>
+      <div class="container-subtitle">
+        Select a reply and add notes if applicable. Click "Submit" (or use Alt + S or Enter) to proceed.
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 no-padding">
+      <label class="label-reply">Reply </label>
+      <div class="container-select-border">
+        <ng-select [items]="replyItems"
+                   bindLabel="name"
+                   bindValue="id"
+                   [virtualScroll]="true"
+                   [clearable]="false"
+                   [searchable]="false"
+                   [(ngModel)]="replyItemsId">
+        </ng-select>
+      </div>
+    </div>
+    <div class="container-note col-xs-12 col-sm-12 no-padding">
+      <div class="container-notes">Note</div>
+      <textarea id="textarea" class="container-textarea" [(ngModel)]="screenBean.m44clmn" maxlength="200" (onChange)="countCharacters($event)"></textarea>
+      <div class="container-textarea-hint">
+        <span id="charactersRemaining">
+          {{(screenBean.m44clmn)?.length == 0 ? 200 : (200-(screenBean.m44clmn)?.length)}}
+        </span>
+        characters left
+      </div>
+    </div>
+    <div class="col-xs-12 no-padding container-op-info container-last-row">
+      <div class="form-row text-right">
+        <button type="submit" class="btn btn-secondary button-clr">
+          Cancel
+        </button>
+        <fox-loading-button [buttonValue] = "'Submit (S)'"
+                            [buttonStatus]="buttonStatus"
+                            [typeValue]="'button'"
+                            [foxHotKeyValue]="'alt+s'"
+                            (buttonClick)="enterEventClick()"
+                            class="btn-submit">
+        </fox-loading-button>
+      </div>
+    </div>
+  </fox-section>
+</div>
+

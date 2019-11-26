@@ -1,0 +1,113 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="pf1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Return to Previous (F1)
+  </span>
+</div>
+<fox-member-dmg-card [screenData]="screeBeanData"></fox-member-dmg-card>
+<fox-section [noPadding]="true">
+  <div class="container-margin-icd">
+    <div class="container-icd-label">
+      ICD Codes
+    </div>
+    <div class="row container-icd">
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 1"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 2"></fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input
+          maxlength="7"
+          size="7"
+          labelText="ICD Code 3"></fox-input>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</fox-section>
+<fox-section [noPadding]="true"
+             [noOverFlowX]="true"
+             class="fox-section-icd">
+  <div class="row container-top-title">
+    <div class="col-xs-12 col-sm-8">
+      <div class="container-title container-margin-left-25">Drug Charge Line</div>
+      <div class="span-sub-title container-margin-left-25">Tab or use arrows keys to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.</div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <span class="span-bill-line">
+        <span class="span-set-bill-line span-set-bill-left">
+          10
+        </span>
+        <span class="span-set-bill-line span-set-bill-right">
+          Set # of Bill Lines (M)
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="margin-top-30">
+    <fox-table *ngIf="result"
+               #inputTable
+               [tableColumns]="columns"
+               [tableData]="tableData"
+               [fixedFirstColumn]="true">
+    </fox-table>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="margin-input">
+    <div class="row container-icd">
+      <div class="col-xs-12 col-sm-3 no-padding margin-right-20">
+        <fox-input type="text"
+                   labelText="Exclude Payment Under Plans"
+                   [length]="2"
+                   maxlength="2">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-4 container-ben-date no-padding margin-right-20">
+        <fox-input type="text"
+                   id="txtM29ATRM"
+                   labelText="Benefits Payable After Termination Date"
+                   [(ngModel)]="screen.screenAfterTerm"
+                   [length]="2"
+                   maxlength="2">
+        </fox-input>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 container-misc-plan">
+          <div class="container-legends-bottom-inside">
+            <span class="span-label span-bold">Pharmacy Types:</span>
+            <span *ngFor="let select of selections">
+              <span class="span-bold">{{select.id}}</span>
+              - <span class="span-padding-20">{{select.value}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding">
+  <div class="form-row text-right margin-bottom-20">
+    <button type="button"
+            class="btn btn-secondary button-margin-right-15"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button [buttonValue] = "'Continue (L)'"
+                        [buttonStatus]="continueStatus"
+                        [typeValue]="'button'"
+                        [hasChevron]="true"
+                        [foxHotKeyValue]="'alt+l'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

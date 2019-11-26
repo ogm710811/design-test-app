@@ -1,0 +1,624 @@
+<div class="modal-quick-edit" [@slideInOut]="menuState">
+  <p class="modal__title">Document #{{dcn}}</p>
+  <button type="button" *ngIf="closable && visible" (click)="close()" aria-label="Close"
+          class="modal__close-btn">
+    <i focusable="false" class="fas fa-times"></i>
+  </button>
+
+  <form [formGroup]="docMetaFormGroup" (ngSubmit)="updateDocMeta()" *ngIf="visible">
+    <div *ngIf="isF4914Enabled" class="sidebar">
+      <button type="submit" class="btn btn-primary btn-update"
+              [disabled]="!docMetaFormGroup.dirty || docMetaFormGroup.invalid" foxHotkey="alt+u">
+        Update Attributes (U)
+      </button>
+      <p *ngIf="!docMetaFormGroup.dirty" class="txt-no-changes">There are no pending changes</p>
+      <p *ngIf="docMetaFormGroup.invalid" class="txt-form-invalid">Please fix the error below</p>
+
+      <div formGroupName="member">
+        <div class="header-group">
+          <i focusable="false" class="fas fa-user icon-margin-right"></i>Member Attributes
+        </div>
+        <mat-form-field>
+          <mat-label>Member #</mat-label>
+          <input matInput formControlName="accountNumber" foxNumbers>
+        </mat-form-field>
+        <div class="form-field-linked">
+          <p class="txt-link-to-member">Linked to Member?</p>
+          {{matchedIndicatorValue}}
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-last-name" labelText="Last Name" formControlName="lastName"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('lastName')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-first-name" labelText="First Name" formControlName="firstName"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('firstName')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-middle-name" labelText="Middle Name" formControlName="middleName"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('middleName')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-state">
+            <mat-label>Member State</mat-label>
+            <mat-select formControlName="state" class="dropdown-width">
+              <mat-option [value]=""></mat-option>
+              <mat-option *ngFor="let state of memberStates" [value]="state.dropdownItemValue">
+                {{state.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('member.state')?.valid" class="field-error">
+              State is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-zip-code" type="fox-number" labelText="Zip Code" formControlName="zipCode"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('zipCode')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-dob" type="fox-date" displayFormat="MM/DD/YYYY" programmaticFormat="MM/DD/YYYY" labelText="Date of Birth" formControlName="dateOfBirth"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('dateOfBirth')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-gender">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" class="dropdown-width">
+              <mat-option *ngFor="let gender of genders" [value]="gender.dropdownItemValue">
+                {{gender.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('member.gender')?.valid" class="field-error">
+              Gender is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-mbi" labelText="MBI" formControlName="medicareBeneficiaryId"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('medicareBeneficiaryId')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-plan-type">
+            <mat-label>Plan Type</mat-label>
+            <mat-select formControlName="planType" class="dropdown-width">
+              <mat-option *ngFor="let planType of planTypes" [value]="planType.dropdownItemValue">
+                {{planType.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('member.planType')?.valid" class="field-error">
+              Plan Type is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-plan-code" labelText="Plan Code" formControlName="planCode"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('planCode')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-plan-effective-date" type="fox-date" displayFormat="MM/DD/YYYY" programmaticFormat="MM/DD/YYYY" labelText="Plan Effective Date"
+                     formControlName="planEffectiveDate"
+                     [inputValue]="docMetaFormGroup.get('member')?.get('planEffectiveDate')?.value"></fox-input>
+        </div>
+      </div>
+
+      <div formGroupName="claim">
+        <div class="header-group">
+          <i focusable="false" class="fas fa-heartbeat icon-margin-right"></i>Claim Attributes
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-claim-no" type="fox-claim"
+                     labelText="Claim #"
+                     formControlName="claimNumber"
+                     [inputValue]="docMetaFormGroup.get('claim')?.get('claimNumber')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-dos"
+                     type="text"
+                     placeholder="MMYY"
+                     labelText="Date of Service From"
+                     formControlName="dosFrom"
+                     [inputValue]="docMetaFormGroup.get('claim')?.get('dosFrom')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-dos-to"
+                     type="text"
+                     placeholder="MMYY"
+                     labelText="Date of Service To"
+                     formControlName="dosTo"
+                     [inputValue]="docMetaFormGroup.get('claim')?.get('dosTo')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-provider-name"
+                     labelText="Provider Name"
+                     formControlName="providerName"
+                     [inputValue]="docMetaFormGroup.get('claim')?.get('providerName')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-provider-tin"
+                     type="text"
+                     labelText="Provider TIN"
+                     formControlName="providerTin"
+                     [inputValue]="docMetaFormGroup.get('claim')?.get('providerTin')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-julian-date"
+                     type="text"
+                     labelText="Claim Julian Date"
+                     formControlName="claimJulianDate"
+                     [inputValue]="docMetaFormGroup.get('claim')?.get('claimJulianDate')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-ub-type-of-bill"
+                     type="text"
+                     labelText="UB Type of Bill"
+                     formControlName="ubTypeOfBill"
+                     [inputValue]="docMetaFormGroup.get('claim')?.get('ubTypeOfBill')?.value"></fox-input>
+        </div>
+      </div>
+
+      <div formGroupName="check">
+        <div class="header-group">
+          <i focusable="false" class="fas fa-balance-scale icon-margin-right"></i>Check Attributes
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-check-claim-no" type="fox-claim"
+                     labelText="Check Claim #"
+                     formControlName="checkClaimNumber"
+                     [inputValue]="docMetaFormGroup.get('check')?.get('checkClaimNumber')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-deposite-date" type="fox-date"
+                     displayFormat="MM/DD/YYYY"
+                     programmaticFormat="MM/DD/YYYY"
+                     placeholder="MM/DD/YYYY"
+                     labelText="Deposit Date"
+                     formControlName="depositDate"
+                     [inputValue]="docMetaFormGroup.get('check')?.get('depositDate')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-check-date" type="fox-date"
+                     displayFormat="MM/DD/YYYY"
+                     programmaticFormat="MM/DD/YYYY"
+                     placeholder="MM/DD/YYYY"
+                     labelText="Check Date"
+                     formControlName="checkDate"
+                     [inputValue]="docMetaFormGroup.get('check')?.get('checkDate')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-check-amount" type="fox-currency"
+                     labelText="Check Amount"
+                     formControlName="checkAmount"
+                     [inputValue]="docMetaFormGroup.get('check')?.get('checkAmount')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-check-no" type="fox-number"
+                     labelText="Check #"
+                     formControlName="checkNumber"
+                     [inputValue]="docMetaFormGroup.get('check')?.get('checkNumber')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-film-locator-no" type="fox-number"
+                     labelText="Film Locator #"
+                     formControlName="filmLocatorNumber"
+                     [inputValue]="docMetaFormGroup.get('check')?.get('filmLocatorNumber')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-check-control-no" type="fox-number"
+                     labelText="Check Control #"
+                     formControlName="checkControlNumber"
+                     [inputValue]="docMetaFormGroup.get('check')?.get('checkControlNumber')?.value"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-op-collect-type">
+            <mat-label>Overpayment Collection Type</mat-label>
+            <mat-select formControlName="overpaymentCollectionType" class="dropdown-width">
+              <mat-option *ngFor="let overpaymentCollectionType of overpaymentCollectionTypes"
+                          [value]="overpaymentCollectionType.dropdownItemValue">
+                {{overpaymentCollectionType.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-refund-party" labelText="Refund Party"
+                     formControlName="refundParty"></fox-input>
+        </div>
+      </div>
+
+      <div>
+        <div class="header-group">
+          <i focusable="false" class="fas fa-file icon-margin-right"></i>Document Attributes
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-dcn" type="fox-number"
+                     labelText="DCN"
+                     formControlName="docControlNumber"
+                     disabled="true"></fox-input>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-feedback-info">
+            <mat-label>Feedback Code</mat-label>
+            <mat-select formControlName="feedbackInfo" class="dropdown-width">
+              <mat-option *ngFor="let feedbackInformation of feedbackInformations"
+                          [value]="feedbackInformation.dropdownItemValue">
+                {{feedbackInformation.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('feedbackInfo')?.valid" class="field-error">
+              Feedback Code is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-doc-type">
+            <mat-label>Document Type</mat-label>
+            <mat-select formControlName="documentType" class="dropdown-width">
+              <mat-option *ngFor="let documentType of documentTypes" [value]="documentType.dropdownItemValue">
+                {{documentType.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('documentType')?.valid" class="field-error">
+              Document Type is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-form-type">
+            <mat-label>Form Type</mat-label>
+            <mat-select formControlName="formType" class="dropdown-width">
+              <mat-option *ngFor="let formType of formTypes" [value]="formType.dropdownItemValue">
+                {{formType.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('formType')?.valid" class="field-error">
+              Form Type is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-asi-mail">
+            <mat-label>ASI Mail</mat-label>
+            <mat-select formControlName="asiMailIndicator" class="dropdown-width">
+              <mat-option value="Y">Yes</mat-option>
+              <mat-option value="N">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-emp-buss">
+            <mat-label>Employer Business</mat-label>
+            <mat-select formControlName="employerBusinessIndicator" class="dropdown-width">
+              <mat-option value="Y">Yes</mat-option>
+              <mat-option value="N">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-health-allies">
+            <mat-label>Health Allies</mat-label>
+            <mat-select formControlName="healthAlliesIndicator" class="dropdown-width">
+              <mat-option value="Y">Yes</mat-option>
+              <mat-option value="N">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-fek-pull-reason">
+            <mat-label>FEK Pull Reason</mat-label>
+            <mat-select formControlName="fekPullReason" class="dropdown-width">
+              <mat-option *ngFor="let fekPullReason of fekPullReasons" [value]="fekPullReason.dropdownItemValue">
+                {{fekPullReason.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('fekPullReason')?.valid" class="field-error">
+              FEK Pull Reason is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-rnf-status">
+            <mat-label>RNF Status</mat-label>
+            <mat-select formControlName="rnfStatus" class="dropdown-width">
+              <mat-option *ngFor="let rnfStatus of rnfStatuses" [value]="rnfStatus.dropdownItemValue">
+                {{rnfStatus.dropdownItemDesc}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!docMetaFormGroup.get('rnfStatus')?.valid" class="field-error">
+              RNF Status is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <mat-form-field class="select-routing-error">
+            <mat-label>Routing Error</mat-label>
+            <mat-select formControlName="routingErrorIndicator" class="dropdown-width">
+              <mat-option value="Y">Yes</mat-option>
+              <mat-option value="N">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="container-input-field">
+          <fox-input class="input-customer-dcn" type="fox-number"
+                     labelText="Customer DCN"
+                     formControlName="customerDCN"
+                     docControlNumberdisabled="true"
+                     [inputValue]="docMetaFormGroup.get('customerDCN')?.value"></fox-input>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isF4914Enabled" class="sidebar">
+      <button type="submit" class="btn btn-primary btn-update"
+              [disabled]="!docMetaFormGroup.dirty || docMetaFormGroup.invalid" foxHotkey="alt+u">
+        Update Attributes (U)
+      </button>
+      <p *ngIf="!docMetaFormGroup.dirty" class="txt-no-changes">There are no pending changes</p>
+      <p *ngIf="docMetaFormGroup.invalid" class="txt-form-invalid">Please fix the error below</p>
+
+      <div formGroupName="member">
+        <div class="header-group">
+          <i focusable="false" class="fas fa-user icon-margin-right"></i>Member Attributes
+        </div>
+        <mat-form-field>
+          <mat-label>Member #</mat-label>
+          <input matInput formControlName="accountNumber" foxNumbers>
+        </mat-form-field>
+        <div class="form-field-linked">
+          <p class="txt-link-to-member">Linked to Member?</p>
+          {{matchedIndicatorValue}}
+        </div>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Middle Name</mat-label>
+          <input matInput formControlName="middleName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Member State</mat-label>
+          <mat-select formControlName="state" class="dropdown-width">
+            <mat-option [value]="">
+            </mat-option>
+            <mat-option *ngFor="let state of memberStates" [value]="state.dropdownItemValue">
+              {{state.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Zip Code</mat-label>
+          <input matInput formControlName="zipCode" foxNumbers>
+          <mat-error class="field-error">
+            Zip Code must be 5 or 9 digits
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date of Birth</mat-label>
+          <input matInput formControlName="dateOfBirth">
+          <mat-error class="field-error">
+            Enter date as MM/DD/YYYY
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender" class="dropdown-width">
+            <mat-option *ngFor="let gender of genders" [value]="gender.dropdownItemValue">
+              {{gender.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>MBI</mat-label>
+          <input matInput formControlName="medicareBeneficiaryId">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Plan Type</mat-label>
+          <mat-select formControlName="planType" class="dropdown-width">
+            <mat-option *ngFor="let planType of planTypes" [value]="planType.dropdownItemValue">
+              {{planType.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Plan Code</mat-label>
+          <input matInput formControlName="planCode">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Plan Effective Date</mat-label>
+          <input matInput formControlName="planEffectiveDate">
+          <mat-error class="field-error">
+            Enter date as MM/DD/YYYY
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="claim">
+        <div class="header-group">
+          <i focusable="false" class="fas fa-heartbeat icon-margin-right"></i>Claim Attributes
+        </div>
+        <mat-form-field>
+          <mat-label>Claim #</mat-label>
+          <input matInput formControlName="claimNumber" foxNumbers>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date of Service From</mat-label>
+          <input matInput formControlName="dosFrom">
+          <mat-error>Enter date as MMYY</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date of Service To</mat-label>
+          <input matInput formControlName="dosTo">
+          <mat-error>Enter date as MMYY</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Provider Name</mat-label>
+          <input matInput formControlName="providerName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Provider TIN</mat-label>
+          <input matInput formControlName="providerTin">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Claim Julian Date</mat-label>
+          <input matInput formControlName="claimJulianDate"
+                 foxNumbers maxlength="5">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>UB Type of Bill</mat-label>
+          <input matInput formControlName="ubTypeOfBill" foxNumbers maxlength="3">
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="check">
+        <div class="header-group">
+          <i focusable="false" class="fas fa-balance-scale icon-margin-right"></i>Check Attributes
+        </div>
+        <mat-form-field>
+          <mat-label>Check Claim #</mat-label>
+          <input matInput formControlName="checkClaimNumber" foxNumbers>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Deposit Date</mat-label>
+          <input matInput formControlName="depositDate">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Check Date</mat-label>
+          <input matInput formControlName="checkDate">
+          <mat-error class="field-error">Enter date
+            as MM/DD/YYYY
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Check Amount</mat-label>
+          <input matInput formControlName="checkAmount">
+          <mat-error class="field-error">
+            Check Amount must formatted as ###.##
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Check #</mat-label>
+          <input matInput formControlName="checkNumber" foxNumbers>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Film Locator #</mat-label>
+          <input matInput formControlName="filmLocatorNumber"
+                 foxNumbers>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Check Control #</mat-label>
+          <input matInput formControlName="checkControlNumber"
+                 foxNumbers>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Overpayment Collection Type</mat-label>
+          <mat-select formControlName="overpaymentCollectionType" class="dropdown-width">
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Refund Party</mat-label>
+          <input matInput formControlName="refundParty">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <div class="header-group">
+          <i focusable="false" class="fas fa-file icon-margin-right"></i>Document Attributes
+        </div>
+        <mat-form-field disabled="true">
+          <mat-label>DCN</mat-label>
+          <input matInput formControlName="docControlNumber">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Feedback Code</mat-label>
+          <mat-select formControlName="feedbackInfo"
+                      class="dropdown-width">
+            <mat-option *ngFor="let feedbackInformation of feedbackInformations"
+                        [value]="feedbackInformation.dropdownItemValue">
+              {{feedbackInformation.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Document Type</mat-label>
+          <mat-select formControlName="documentType"
+                      class="dropdown-width">
+            <mat-option *ngFor="let documentType of documentTypes"
+                        [value]="documentType.dropdownItemValue">
+              {{documentType.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Form Type</mat-label>
+          <mat-select formControlName="formType" class="dropdown-width">
+            <mat-option *ngFor="let formType of formTypes" [value]="formType.dropdownItemValue">
+              {{formType.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>ASI Mail</mat-label>
+          <mat-select formControlName="asiMailIndicator"
+                      class="dropdown-width">
+            <mat-option value="Y">Yes</mat-option>
+            <mat-option value="N">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Employer Business</mat-label>
+          <mat-select formControlName="employerBusinessIndicator"
+                      class="dropdown-width">
+            <mat-option value="Y">Yes</mat-option>
+            <mat-option value="N">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Health Allies</mat-label>
+          <mat-select formControlName="healthAlliesIndicator"
+                      class="dropdown-width">
+            <mat-option value="Y">Yes</mat-option>
+            <mat-option value="N">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>FEK Pull Reason</mat-label>
+          <mat-select formControlName="fekPullReason"
+                      class="dropdown-width">
+            <mat-option *ngFor="let fekPullReason of fekPullReasons"
+                        [value]="fekPullReason.dropdownItemValue">
+              {{fekPullReason.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>RNF Status</mat-label>
+          <mat-select formControlName="rnfStatus" class="dropdown-width">
+            <mat-option *ngFor="let rnfStatus of rnfStatuses" [value]="rnfStatus.dropdownItemValue">
+              {{rnfStatus.dropdownItemDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Routing Error</mat-label>
+          <mat-select formControlName="routingErrorIndicator"
+                      class="dropdown-width">
+            <mat-option value="Y">Yes</mat-option>
+            <mat-option value="N">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field disabled="true">
+          <mat-label>Customer DCN</mat-label>
+          <input matInput formControlName="customerDCN">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>
+
+

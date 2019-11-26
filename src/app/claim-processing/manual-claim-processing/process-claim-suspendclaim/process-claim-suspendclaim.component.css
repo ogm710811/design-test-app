@@ -1,0 +1,170 @@
+.page-title {
+  margin-top: 0px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.text-alignment {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+.col-claim-no {
+  width: 100%;
+  padding-right: 5px;
+}
+
+.input-box-width{
+  width: 28px;
+}
+
+.roles-row-heading-ptsusp {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 0;
+}
+
+.label-detail-item-ptsusp {
+  font-size: 14px;
+  height: 14px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.roles-row-ptsusp {
+  display: inline-block;
+  padding-bottom: 30px;
+}
+
+.container-bill-card {
+  padding-top: 10px;
+}
+
+
+.container-bill-label {
+  position: relative;
+  width: 140px;
+}
+
+.label-container-bill-content {
+  height: 14px;
+  width: 100px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+
+}
+
+.container-member-value {
+  height: 14px;
+  width: 55px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.container-op-info {
+  margin-top: 15px;
+}
+
+.container-last-row {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.container-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  font-weight: 500;
+  top: 7px;
+  cursor: pointer;
+}
+
+.img-return-icon {
+  height: 14px;
+}
+
+.container-card-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.container-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  margin-bottom: 25px;
+}
+
+.input-custom {
+  margin-bottom: 18px;
+}
+
+.row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.row-small > div[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-communication-last-row {
+  margin-bottom: -7px;
+}
+
+.container-input-and-label {
+  display: block;
+  margin-bottom: 7px;
+  width: 100%
+}
+
+.container-label {
+  margin-bottom: 7px;
+}
+
+.label-for-input {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.btn-margin {
+  margin-right: 15px;
+}
+
+@media (max-width: 768px) {
+  .input-communication {
+    margin-bottom: 18px;
+  }
+
+  .ng-select-reason {
+    margin-bottom: 25px;
+  }
+}

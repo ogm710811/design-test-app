@@ -1,0 +1,6 @@
+<ng-container *ngIf="toggleMemberSearchVersionFeature; else memberSearchOldVersion">
+  <fox-member-search-new-version></fox-member-search-new-version>
+</ng-container>
+<ng-template #memberSearchOldVersion>
+  <fox-member-search-old-version></fox-member-search-old-version>
+</ng-template>

@@ -1,0 +1,49 @@
+<div class="container-table-result-details">
+  <table class="table table-member-result">
+    <thead class="thead-default">
+    <tr class="table-header">
+      <th class="column-radio-btns">
+      </th>
+      <th class="column-search-result">
+        <span>Member #</span>
+      </th>
+      <th class="column-medi-claim">
+        <span>Medicare #</span>
+      </th>
+      <th class="column-search-result">
+        <span>Last Name</span>
+      </th>
+      <th class="column-search-result">
+        <span>First Name</span>
+      </th>
+      <th class="column-middle-name">
+        <span>Middle Name</span>
+      </th>
+    </tr>
+    </thead>
+    <tbody class="container-tbody">
+    <ng-container *ngFor="let dat of transferClaimResult; let j = index">
+      <tr [id]=" 'member-result-tr-' + j">
+        <td [id]=" 'member-result-tr-' + j + '-td-1'" class="column-radio-btns">
+          <input type="radio" name="memberRadio" (click)="selectMember(dat)"/>
+        </td>
+        <td [id]=" 'member-result-tr-' + j + '-td-2'" class="column-search-result">
+          {{dat['memberNum']}}
+        </td>
+        <td [id]=" 'member-result-tr-' + j + '-td-3'" class="column-medi-claim">
+          {{dat['medicareId']}}
+        </td>
+        <td [id]=" 'member-result-tr-' + j + '-td-4'" class="column-search-result">
+          {{dat['lastName']}}
+        </td>
+        <td [id]=" 'member-result-tr-' + j + '-td-5'" class="column-search-result">
+          {{dat['firstName']}}
+        </td>
+        <td [id]=" 'member-result-tr-' + j + '-td-6'" class="column-middle-name">
+          {{dat['middleName']}}
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

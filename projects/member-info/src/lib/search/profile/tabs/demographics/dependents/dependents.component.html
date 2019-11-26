@@ -1,0 +1,60 @@
+<!--Dependents Section-->
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">
+    Dependents
+  </fox-section-title>
+
+  <div class="member-search-table-main">
+    <div class="member-search-non-mat-table-main">
+      <mat-table class="member-search-non-mat-table" #table matSort
+                 tabindex="0">
+
+        <ng-container matColumnDef="memberAccountNo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Member #</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="medicareId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Medicare #</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div [innerHTML]="element.lastName"></div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> First Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="middleName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dateOfBirth">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Birth</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="isActive">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedMemberColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedMemberColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</fox-section>

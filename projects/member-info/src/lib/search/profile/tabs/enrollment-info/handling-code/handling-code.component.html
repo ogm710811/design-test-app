@@ -1,0 +1,58 @@
+<!--Special Handling Codes-->
+<fox-section [noPadding]="true" class="section-special-handling">
+  <fox-section-title class="container-padding">
+    Special Handling Codes
+  </fox-section-title>
+
+  <table class="table special-handling-table-main">
+    <tbody>
+    <tr>
+      <td colspan="2" class="text-special-handling-pagination">{{handlingDataSource.length ?
+        'Showing 1-'+ handlingDataSource.length + ' of ' + handlingDataSource.length + ' Special
+        Handling Codes' :
+        'No Special Handling Codes to display'}}
+      </td>
+      <td>
+        <div class="menu-maintenance text-right">
+          <button class="btn-maintenance-spec" type="button" mat-button>
+            <span class="sort-by"></span>&nbsp;&nbsp;&nbsp;Sort: Newest to Oldest&nbsp;&nbsp;<i
+            focusable="false" class="fas fa-caret-down"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr class="special-handling-top-bottom-border" [id]=" 'special-handling-code-tr-' + idx"
+        *ngFor="let item of handlingDataSource; let idx = index">
+      <td [id]=" 'special-handling-code-tr-' + idx + '-td-0' "
+          class="locator-special-handling-code-td vertical-td"><span class="special-handling-text">{{item.specialHandlingCode}}</span>
+      </td>
+      <td [id]=" 'special-handling-code-tr-' + idx + '-td-1' "
+          class="locator-description-td vertical-td">
+        <span class="text-special-handling-desc-main">{{item.description}}</span>
+      </td>
+      <td [id]=" 'special-handling-code-tr-' + idx + '-td-2' "
+          class="locator-member-account-number-td vertical-td">
+        <button class="btn-maintenance pull-right" type="button">
+          <i focusable="false" class="fas fa-edit"></i>&nbsp;&nbsp;<span class="text-modify-button">Modify</span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>
+        <div class="pull-right">
+          <button class="btn-maintenance btn-prvs" type="button" disabled>
+            <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Previous
+          </button>
+          <button class="btn-maintenance" type="button">
+            Next&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></button>
+        </div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+
+</fox-section>

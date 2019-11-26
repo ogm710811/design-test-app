@@ -1,0 +1,72 @@
+<fox-section>
+  <fox-section-title>Search Criteria</fox-section-title>
+  <p class="fox-section-description">Enter search criteria below and select Search (S) to find members. First Name and Last Name fields must both be valued if used.</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 container-not-padding">
+        <form class="non-mat-form-field" [formGroup]="memberSearchFormGroup">
+          <div class="row container-input-row container-row-gutter-width">
+            <div class="col-xs-12 col-sm-3 col-md-3 mat-form-field-xxs">
+              <fox-input type="fox-membership"
+                         placeholder="123456789 1 1"
+                         labelText="Member #"
+                         labelExtraText="(9- or 11-digit)"
+                         formControlName="memberFormControl"
+                         class="txtbox-member-no"></fox-input>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 mat-form-field-xxs">
+              <fox-input type="text"
+                         labelText="First Name"
+                         formControlName="memberFirstNameFormControl"
+                         class="txtbox-fn"></fox-input>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 mat-form-field-xxs">
+              <fox-input type="text"
+                         labelText="Last Name"
+                         formControlName="memberLastNameFormControl"></fox-input>
+            </div>
+          </div>
+          <div class="row pull-right">
+            <div class="col-xs-12 col-sm-12 col-md-12 container-member-buttons">
+              <span class="span-clear-button-xxs">
+                <button type="button" class="btn btn-secondary btn-search"
+                        foxHotkey="alt+r"
+                        (click)="resetForm()">Clear (R)
+                </button>
+              </span>
+              <span class="span-search-btn">
+                <button type="submit" class="btn btn-primary btn-search"
+                        [disabled]="!memberSearchFormGroup.valid"
+                        foxHotkey="alt+s"
+                        (click)="memberResultTable()">Search (S)
+                </button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true" class="fox-section-member-search-result">
+  <div class="title-section-result">
+    <fox-section-title>Member Search Result</fox-section-title>
+    <p class="fox-section-result">Click a Member # to view the member profile page.</p>
+  </div>
+  <fox-table
+    [tableColumns]="tableColumns"
+    [tableData]="memberDataSource | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+    (columnChanged)="tableColumnCurrentSortKey = $event"
+    (directionChanged)="tableColumnCurrentSortDirection = $event">
+  </fox-table>
+  <div [ngClass]="{'hide':!isDataDisplay}">
+    <fox-paginator-non-material [(pageSize)]="memberSearchPageSize" #paginator
+                                [dataLengthInput]="memberSearchResultsDataLengthInput"
+                                [pageTotal]="memberSearchPageTotal"
+                                [(currentPage)]="currentMemberSearchPage"
+                                (currentPageChange)="calculateResults()"
+                                (pageSizeChange)="currentMemberSearchPage=0;calculateResults()">
+    </fox-paginator-non-material>
+  </div>
+</fox-section>

@@ -1,0 +1,34 @@
+<fox-modal #modal
+           class="aggregate-year-selection-modal"
+           [closable]="true"
+           (visibleChange)="modalVisibleChange($event)"
+           modalTitle="Edit Aggregates - Year Selection">
+  <div class="container-fluid">
+    <div class="row no-gutters">
+      <div class="col-md-12">
+        <div class="row no-gutters">
+          <div class="col-md-12 container-padding container-margin">
+            <p>Select a year for aggregate edits. Choose <strong>Lifetime</strong> for any values that are not year-specific.</p>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-md-12 container-padding container-margin">
+            <mat-form-field>
+              <mat-select name="yearControl" [formControl]="selectedYearControl" placeholder="Year">
+                <mat-option *ngFor="let year of aggregateYears" [value]="year">
+                  {{year}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-md-12 container-padding text-right">
+            <button type="button" class="btn btn-secondary btn-agg-cancel btn-padding" (click)="closeAggregateModal()">Cancel</button>
+            <button type="button" class="btn btn-primary btn-padding" (click)="selectedAggregateYear()"><span class="span-next-button">Next</span><img class="img-arrow-right" focusable=false src="assets/img/arrow-right-white.svg"/></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-modal>

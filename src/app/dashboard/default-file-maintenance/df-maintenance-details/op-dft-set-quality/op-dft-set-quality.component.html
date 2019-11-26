@@ -1,0 +1,573 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="cancelEventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Cancel and Return (F1)
+  </span>
+</div>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Set Quality Template Details</fox-section-title>
+      <div *ngIf="screenBean.m96auth === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96AUTH"
+                     name="txtM96AUTH"
+                     labelText="Authority Level"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [(ngModel)]="screenBean.m96type"
+                     [length]="6">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96MDAT"
+                     name="txtM96MDAT"
+                     labelText="Last Maintenance Date"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [(ngModel)]="screenBean.m96mdat"
+                     [length]="8">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96MPOS"
+                     name="txtM96MPOS"
+                     labelText="Position"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [(ngModel)]="screenBean.m96mpos"
+                     [length]="15">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96MION"
+                     name="txtM96MION"
+                     labelText="Ions"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [(ngModel)]="screenBean.m96mion"
+                     [length]="6">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Update Set Quality Template</fox-section-title>
+      <div *ngIf="screenBean.m96auth === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96PAY"
+                     name="txtM96PAY"
+                     labelText="Payments"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96pay"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96NPAY"
+                     name="txtM96NPAY"
+                     labelText="No Payments"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96npay"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96CORP"
+                     name="txtM96CORP"
+                     labelText="Corporate"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96corp"
+                     [length]="4">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96NDOC"
+                     name="txtM96NDOC"
+                     labelText="New Doctor"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96ndoc"
+                     [length]="3">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96NHOS"
+                   name="txtM96NHOS"
+                   labelText="New Hospital"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96nhos"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96SPEC"
+                   name="txtM96SPEC"
+                   labelText="Spec Pay/Alt Addr"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96spec"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96SCLM"
+                   name="txtM96SCLM"
+                   labelText="Split Claim"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96sclm"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96BEN"
+                   name="txtM96BEN"
+                   labelText="Benefit Extension"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96ben"
+                   [length]="3">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96ADMH"
+                   name="txtM96ADMH"
+                   labelText="Compas History"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96admh"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96PDN"
+                   name="txtM96PDN"
+                   labelText="PDN - 1st Pay"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96pdn"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96LTRS"
+                   name="txtM96LTRS"
+                   labelText="Letters"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96ltrs"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96REVD"
+                   name="txtM96REVD"
+                   labelText="Reval Disb"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96revd"
+                   [length]="4">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96EXS"
+                   name="txtM96EXS"
+                   labelText="Exception Screen"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96exs"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96COMM"
+                   name="txtM96COMM"
+                   labelText="Communications"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96comm"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96REVS"
+                   name="txtM96REVS"
+                   labelText="Reval Susp"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96revs"
+                   [length]="4">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96PAYA"
+                   name="txtM96PAYA"
+                   labelText="Payment Adjust"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96paya"
+                   [length]="3">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96DECI"
+                   name="txtM96DECI"
+                   labelText="Deceased Insureds"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96deci"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96REVP"
+                   name="txtM96REVP"
+                   labelText="Reval Payment > $"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96revp"
+                   [length]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96SMEM"
+                   name="txtM96SMEM"
+                   labelText="Special Memo"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96smem"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM96VER1"
+                   name="txtM96VER1"
+                   labelText="EC Verification"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96ver1"
+                   [length]="5">
+        </fox-input>
+      </div>
+    </div>
+      <div class="row container-row">
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM96VER2"
+                     name="txtM96VER2"
+                     labelText="EC Mult Verif"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96ver2"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input">
+          <fox-input type="text"
+                     id="txtM96MLTR"
+                     name="txtM96MLTR"
+                     labelText="Med Supp when Letter Days Exhausted"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96mltr"
+                     [length]="3">
+          </fox-input>
+        </div>
+      </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Assign Information</fox-section-title>
+      <div *ngIf="screenBean.m96auth === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div class="col-xs-12 col-sm-4 container-input">
+          <fox-input type="text"
+                     id="txtM96ASNA"
+                     name="txtM96ASNA"
+                     labelText="Assign > $"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96asna"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input">
+          <fox-input type="text"
+                     id="txtM96ASNP"
+                     name="txtM96ASNP"
+                     labelText="Assign %"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96asnp"
+                     [length]="3">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input">
+          <fox-input type="text"
+                     id="txtM96ASHA"
+                     name="txtM96ASHA"
+                     labelText="Assign Hosp > $"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96asha"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input">
+          <fox-input type="text"
+                     id="txtM96ASHP"
+                     name="txtM96ASHP"
+                     labelText="Assign Hosp %"
+                     [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                     [(ngModel)]="screenBean.m96ashp"
+                     [length]="3">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-12 col-sm-4 container-input">
+        <fox-input type="text"
+                   id="txtM96NASA"
+                   name="txtM96NASA"
+                   labelText="Non Assign > $"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96nasa"
+                   [length]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-2 container-input">
+        <fox-input type="text"
+                   id="txtM96NASP"
+                   name="txtM96NASP"
+                   labelText="Non Assign %"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96nasp"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-4 container-input">
+        <fox-input type="text"
+                   id="txtM96NAHA"
+                   name="txtM96NAHA"
+                   labelText="Non Assign Hosp > $"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96naha"
+                   [length]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-2 container-input">
+        <fox-input type="text"
+                   id="txtM96NAHP"
+                   name="txtM96NAHP"
+                   labelText="Non Assign Hosp %"
+                   [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                   [(ngModel)]="screenBean.m96nahp"
+                   [length]="3">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Message</fox-section-title>
+      <div *ngIf="screenBean.m96auth === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div *ngFor="let msg of screenBean.mapMessagesList; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input">
+            <fox-input type="text"
+                       id="txtM96MES"
+                       name="txtM96MES"
+                       labelText="Message {{idx + 1}}"
+                       [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                       [(ngModel)]="msg.m96mes"
+                       [inputValue]="msg.m96mes"
+                       [length]="5">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input">
+            <fox-input type="text"
+                       id="txtM96MSP"
+                       name="txtM96MSP"
+                       [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                       labelText="Message {{idx + 1}}%"
+                       [(ngModel)]="msg.m96msp"
+                       [inputValue]="msg.m96msp"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Cautions</fox-section-title>
+      <div *ngIf="screenBean.m96auth === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div *ngFor="let msg of screenBean.mapCautionsList; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input">
+            <fox-input type="text"
+                       id="txtM96CM"
+                       name="txtM96CM"
+                       [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                       labelText="Caution {{idx + 1}}"
+                       [(ngModel)]="msg.m96cm"
+                       [inputValue]="msg.m96cm"
+                       [length]="2">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input">
+            <fox-input type="text"
+                       id="txtM96CP"
+                       name="txtM96CP"
+                       [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                       labelText="Caution {{idx + 1}}%"
+                       [(ngModel)]="msg.m96cp"
+                       [inputValue]="msg.m96cp"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Letters</fox-section-title>
+      <div *ngIf="screenBean.m96auth === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div *ngFor="let msg of screenBean.mapLtrsList; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input">
+            <fox-input type="text"
+                       id="txtM96LT"
+                       name="txtM96LT"
+                       [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                       labelText="Letter {{idx + 1}}"
+                       [(ngModel)]="msg.m96lt"
+                       [inputValue]="msg.m96lt"
+                       [length]="8">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input">
+            <fox-input type="text"
+                       id="txtM96LP"
+                       name="txtM96LP"
+                       [isReadOnly]="screenBean.m96auth !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screenBean.m96auth !== 'UPDATE'"
+                       labelText="Letter {{idx + 1}}%"
+                       [(ngModel)]="msg.m96lp"
+                       [inputValue]="msg.m96lp"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding">
+  <div class="form-row text-right">
+    <button type="button"
+            class="btn btn-secondary button-margin-right-15"
+            *ngIf="screenBean.m96auth === 'UPDATE'"
+            (click)="resetEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button [buttonValue]="'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        *ngIf="screenBean.m96auth === 'UPDATE'"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

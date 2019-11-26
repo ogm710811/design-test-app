@@ -1,0 +1,63 @@
+.container-reactivate-details {
+  max-width: 840px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 15px;
+}
+
+.container-confirm-msg {
+  height: 40px;
+  max-width: 832px;
+  color: #333333;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 20px;
+  margin-bottom: 17px;
+}
+
+.container-modal-btns {
+  padding-right: 0;
+}
+
+.btn-submit-delete {
+  height: 39px;
+  width: 128px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+.button-primary-submit {
+  height: 39px;
+  width: 128px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+.btn-clear-modal {
+  height: 39px;
+  width: 128px;
+  border: solid 1px #196ECF;
+  font-size: 14px;
+  margin-right: 15px;
+  border-radius: 2px;
+}
+
+.container-radio-btns {
+  margin-bottom: 25px;
+}
+
+.radio-label {
+  height: 16px;
+  width: 25px;
+  color: #333333;
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 3px;
+}
+
+.radio-btn {
+  height: 13px;
+  width: 13px;
+}

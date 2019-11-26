@@ -1,0 +1,254 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev" (click)="pf1EventClick()">
+    <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+    <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0">Return to Previous (F1)</span>
+  </div>
+</div>
+<fox-member-dmg-card [screenData]="memberDemographicsBean"></fox-member-dmg-card>
+<form #messagesForm="ngForm">
+  <fox-section [noPadding]="true" class="col-xs-12 col-sm-8 no-padding">
+    <div class="col-xs-12 container-patient-topic">
+      <div class="container-patient-topic-title">{{patientTitle}}</div>
+      <div class="container-patient-topic-sub-title">{{patientSubTitle}}</div>
+      <div class="col-xs-12 col-sm-5 container-patient-details">
+        <fox-input id="txtPatientNumnber"
+                   name="txtPatientNumnber"
+                   length="22"
+                   labelText="Patient #"
+                   class="col-xs-12 no-padding"
+                   [(ngModel)]="screen.m35patn"></fox-input>
+      </div>
+    </div>
+    <div class="col-xs-12 container-divider"></div>
+    <div class="col-xs-12 container-pattern-topic">
+      <div class="container-topic-title">{{patternTitle}}</div>
+      <div class="container-topic-sub-title">{{patternSubTitle}}</div>
+      <div class="col-xs-12 container-pattern-details">
+        <div class="row row-small container-pattern-first-row">
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtPatternParagraph1"
+                       name="txtPatternParagraph1"
+                       length="5"
+                       labelText="PP Code #1"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35mes1"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtPatternParagraph2"
+                       name="txtPatternParagraph2"
+                       length="5"
+                       labelText="PP Code #2"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35mes2"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtPatternParagraph3"
+                       name="txtPatternParagraph3"
+                       length="5"
+                       labelText="PP Code #3"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35mes3"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtPatternParagraph4"
+                       name="txtPatternParagraph4"
+                       length="5"
+                       labelText="PP Code #4"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35mes4"></fox-input>
+          </div>
+        </div>
+        <div class="row row-small container-pattern-second-row">
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtPatternParagraph5"
+                       name="txtPatternParagraph5"
+                       length="5"
+                       labelText="PP Code #5"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35mes5"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtPatternParagraph6"
+                       name="txtPatternParagraph6"
+                       length="5"
+                       labelText="PP Code #6"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35mes6"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtPatternParagraph7"
+                       name="txtPatternParagraph7"
+                       length="5"
+                       labelText="PP Code #7"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35mes7"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <div class="container-view-message" (click)="pf6EventClick()" foxHotkey="ctrl+f6" hotkeyAction="click" tabindex="0">
+              <span class="span-view-message">View Message Text (F6)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 container-divider"></div>
+    <div class="col-xs-12 container-memo-topic">
+      <div class="container-topic-title">{{memoTitle}}</div>
+      <div class="container-topic-sub-title">{{memoSubTitle}}</div>
+      <div class="container-memo-details">
+        <div class="row row-small container-memo-first-row">
+          <div class="col-xs-12 col-sm-2">
+            <fox-input id="txtPatternParagraphLine1"
+                       name="txtPatternParagraphLine1"
+                       length="1"
+                       labelText="PP Line #"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35ppi1"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-10">
+            <fox-input type="textarea"
+                       id="txtPatternParagraphMemo1"
+                       name="txtPatternParagraphMemo1"
+                       length="316"
+                       labelText="Special Memo"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="specialMemo1"></fox-input>
+          </div>
+        </div>
+        <div class="row row-small container-memo-second-row">
+          <div class="col-xs-12 col-sm-2">
+            <fox-input id="txtPatternParagraphLine2"
+                       name="txtPatternParagraphLine2"
+                       length="1"
+                       labelText="PP Line #"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35ppi2"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-10">
+            <fox-input type="textarea"
+                       id="txtPatternParagraphMemo2"
+                       name="txtPatternParagraphMemo2"
+                       length="316"
+                       labelText="Special Memo"
+                       class="col-xs-12 no-padding"
+                       [(ngModel)]="specialMemo2"></fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 container-divider"></div>
+    <div class="col-xs-12 container-claimnote-topic">
+      <div class="container-topic-title">{{claimNoteTitle}}</div>
+      <div class="container-topic-sub-title">{{claimNoteSubTitle}}</div>
+      <div class="container-claimnote-details">
+        <div class="col-xs-12 col-sm-12 no-padding">
+          <fox-input type="textarea"
+                     id="txtClaimNote"
+                     name="txtClaimNote"
+                     length="77"
+                     labelText="Claim Note"
+                     class="col-xs-12 no-padding"
+                     [(ngModel)]="screen.m35clnt"></fox-input>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 container-claim-note-divider"></div>
+    <div class="col-xs-12 container-crossreference-topic">
+      <div class="container-topic-title">{{crossReferenceTitle}}</div>
+      <div class="container-topic-sub-title">{{crossReferenceSubTitle}}</div>
+      <div class="container-crossreference-details">
+        <div class="row row-small container-communication-first-row">
+          <div class="col-xs-12 col-sm-3">
+            <fox-input type="fox-claim"
+                       id="txtCrossReference1"
+                       name="txtCrossReference1"
+                       isCrossReferenceField=true
+                       length="12"
+                       labelText="Cross Reference Code #1"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="crossRefNum1"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input type="fox-claim"
+                       id="txtCrossReference2"
+                       name="txtCrossReference2"
+                       isCrossReferenceField=true
+                       length="12"
+                       labelText="Cross Reference Code #2"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="crossRefNum2"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input type="fox-claim"
+                       id="txtCrossReference3"
+                       name="txtCrossReference3"
+                       isCrossReferenceField=true
+                       length="12"
+                       labelText="Cross Reference Code #3"
+                       class="col-xs-12 no-padding"
+                       [(ngModel)]="crossRefNum3"></fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 container-divider"></div>
+    <div class="col-xs-12 container-communication-topic">
+      <div class="container-topic-title">{{communicationTitle}}</div>
+      <div class="container-topic-sub-title">{{communicationSubTitle}}</div>
+      <div class="container-communication-details">
+        <div class="row row-small container-communication-first-row">
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtCommnicationLetter1"
+                       name="txtCommnicationLetter1"
+                       length="6"
+                       labelText="Communication Letter #1"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35cn1a"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtCommnicationLetter2"
+                       name="txtCommnicationLetter2"
+                       length="5"
+                       labelText="Communication Letter #2"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35cn1b"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtCommnicationLetter3"
+                       name="txtCommnicationLetter3"
+                       length="6"
+                       labelText="Communication Letter #3"
+                       class="col-xs-12 no-padding fox-input-custom"
+                       [(ngModel)]="screen.m35cn2a"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <fox-input id="txtCommnicationLetter4"
+                       name="txtCommnicationLetter4"
+                       length="5"
+                       labelText="Communication Letter #4"
+                       class="col-xs-12 no-padding"
+                       [(ngModel)]="screen.m35cn2b"></fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+  <div class="col-xs-12 col-sm-8 no-padding text-right margin-bottom-20">
+    <button type="button"
+            class="btn btn-secondary btn-margin"
+            (click)="messagesForm.resetForm()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">Clear (R)</button>
+    <button type="button"
+            class="btn btn-secondary btn-margin"
+            (click)="pf5EventClick()"
+            foxHotkey="alt+m"
+            hotkeyAction="click">Review BL Messages (M)</button>
+    <fox-loading-button [buttonValue]="'Continue (L)'"
+                        [buttonStatus]="buttonStatus"
+                        [hasChevron]="true"
+                        typeValue="submit"
+                        [foxHotKeyValue]="'alt+l'"
+                        (buttonClick)="enterEventClick()"></fox-loading-button>
+  </div>
+</form>

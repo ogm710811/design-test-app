@@ -1,0 +1,333 @@
+<fox-section>
+  <fox-section-title id="lblLabel1">
+    Medicare Constant File - {{screen.m28titl | titlecase }}
+  </fox-section-title>
+
+  <div class="col-sm-12 margin-bottom-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>End Date:</mat-label>
+        <input matInput id="txtM28EDDT" maxlength="8" size="8" disabled="disabled" type="text" disabled="disabled" [(ngModel)]="screen.m28eddt"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Start Date:</mat-label>
+        <input id="txtM28STDT" matInput maxlength="8" size="8" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28stdt"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="form-row margin-bottom-40">
+    <mat-label class="container-heading">Part A</mat-label>
+    <div class="col-sm-12 margin-top-20 margin-bottom-40">
+      <div class="col-sm-3">
+        <mat-form-field>
+          <mat-label>Deductible:</mat-label>
+          <input matInput id="txtM28ADED" maxlength="7" size="7" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28aded"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-sm-3">
+        <mat-form-field>
+          <mat-label>Message:</mat-label>
+          <input matInput id="txtM28AMSG" maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28amsg"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row margin-top-20">
+    <mat-label class="container-heading">Part B</mat-label>
+    <div class="col-sm-12 margin-top-20">
+      <div class="col-sm-3">
+        <mat-form-field>
+          <mat-label>Deductible:</mat-label>
+          <input matInput id="txtM28BDED" maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28bded"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-sm-3">
+        <mat-form-field>
+          <mat-label>Message:</mat-label>
+          <input matInput id="txtM28BMSG" maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28bmsg"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Copay</fox-section-title>
+
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>ER:</mat-label>
+        <input id="txtM28CPER" matInput maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28cper"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input id="txtM28CPEM" matInput maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28cpem"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Visit:</mat-label>
+        <input id="M28CPVS" matInput maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28cpvs"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input id="M28CPVM" matInput maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28cpvm"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Benefit Period</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Days:</mat-label>
+        <input matInput id="txtM28BDAY" name="txtM28BDAY" #txtM28BDAY maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}"
+          [(ngModel)]="screen.m28bday" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12" *ngIf="screen.hospPrdInfoList.length > 0 ;">
+    <fox-section-title class="fox-section-title">Hospital Periods</fox-section-title>
+    <div class="col-sm-12">
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <th>#</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Co-Ins</th>
+            <th>Message</th>
+            <th>Cov</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="screen.hospPrdInfoList;">
+          <tr *ngFor="let hospInfo of screen.hospPrdInfoList; let idh=index;">
+            <td class="center-label-row">
+              <div>
+                <label class="mat-input-placeholder ">{{idh+1}}</label>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28HST1" matInput maxlength="3" size="3" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="hospInfo.m28hst"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28HED1" matInput maxlength="3" size="3" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="hospInfo.m28hed"
+                  />
+
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28HCO1" matInput maxlength="7" size="7" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="hospInfo.m28hco"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28HMS1" matInput maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="hospInfo.m28hms"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28HCV1" matInput maxlength="1" size="1" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="hospInfo.m28hcv"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>SNF Periods</fox-section-title>
+  <div class="col-sm-12" *ngIf="screen.snfPrdInfoList.length > 0">
+    <div class="col-sm-12">
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <th>#</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Co-Ins</th>
+            <th>Message</th>
+            <th>Cov</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="screen.snfPrdInfoList;">
+          <tr *ngFor="let snfInfo of screen.snfPrdInfoList; let idh=index;">
+            <td class="center-label-row">
+              <div>
+                <label class="mat-input-placeholder">{{idh+1}}</label>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28SST1" matInput maxlength="3" size="3" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="snfInfo.m28sst"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28SED1" matInput maxlength="3" size="3" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="snfInfo.m28sed"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28SCO1" matInput maxlength="7" size="7" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="snfInfo.m28sco"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28SMS1" matInput maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="snfInfo.m28sms"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28SCV1" matInput maxlength="1" size="1" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="snfInfo.m28scv"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>LTR Periods</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-12">
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <th>#</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Co-Ins</th>
+            <th>Message</th>
+            <th>Cov</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center-label-row">
+              <div>
+                <label class="mat-input-placeholder">1.</label>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28LST3" matInput maxlength="3" size="3" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28lst3"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28LED3" matInput maxlength="3" size="3" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28led3"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28LCO3" matInput maxlength="7" size="7" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28lco3"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28LMS3" matInput maxlength="5" size="5" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28lms3"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                <mat-form-field>
+                  <input id="txtM28LCV3" matInput maxlength="1" size="1" type="text" disabled="{{screen.m28titl == 'REVIEW'}}" [(ngModel)]="screen.m28lcv3"
+                  />
+                </mat-form-field>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-sm-12 text-right margin-top-40">
+    <button id="F1" name="F1" #F1 type="button" class="btn btn-default margin-right-20" foxHotkey="alt+r" (click)="f1EventClick()">Return
+      (R)
+    </button>
+    <button id="CLEAR" type="button" class="btn btn-default margin-right-20" foxHotkey="alt+t" *ngIf="hideButton" (click)="clearEventClick()">Reset
+      (T)
+    </button>
+    <button id="ENTER" type="button" class="btn btn-primary" foxHotkey="alt+e" *ngIf="hideButton" (click)="enterEventClick()">Enter
+      (E)
+    </button>
+  </div>
+</fox-section>

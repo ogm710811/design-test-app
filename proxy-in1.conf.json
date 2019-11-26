@@ -1,0 +1,56 @@
+{
+  "/api/operator/services/**": {
+    "target": "https://foxin1-clmop.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/manual/adjudication/services/**": {
+    "target": "https://foxin1-manadj.ocp-elr-core-nonprod.optum.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/docmanagement/**": {
+    "target": "https://foxin1-docmgmt.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/overpayment/services/**": {
+    "target": "https://foxin1-clmfin.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/qualityrvw/services/**": {
+    "target": "https://foxin1-clmqltyrvw.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/quality/services/**": {
+    "target": "https://foxin1-clmqlty.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/**": {
+    "target": "https://foxin1-apig.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/uaa/**": {
+    "target": "https://foxin1-foxui.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/uiapi/**": {
+    "target": "https://foxin1-foxui.ocp-elr-core-nonprod.optum.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

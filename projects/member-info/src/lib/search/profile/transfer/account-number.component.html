@@ -1,0 +1,86 @@
+<fox-modal [visible]="showTransferAccountNumberModal"
+           [modalTitle]="modalTitle"
+           (visibleChange)="onCancel()"
+           class="modal-account fox-modal">
+<div class="row">
+  <div class="col-xs-12">
+    <span class="span-descriptive-text">Search for a member within FOX to transfer this member to. This action may require approval.</span>
+  </div>
+</div>
+<form novalidate
+      (ngSubmit)="onTransfer()"
+      [formGroup]="accountTransferForm">
+  <div class="row div-originating-number">
+    <mat-form-field class="col-xs-3 padding-right-one">
+      <mat-label>Originating Member #</mat-label>
+      <input matInput
+             formControlName="originatingMemberControl">
+    </mat-form-field>
+    <mat-form-field class="col-xs-3 padding-right-one">
+      <mat-label class="letter-black">
+        Recipient Member # (11-Digit)*
+        <span *ngIf="(RecipientMemberControl?.touched && RecipientMemberControl?.hasError('memberNumberLengthValidator') || RecipientMemberControl?.hasError('pattern'))"
+              class="span-i-exclamation-small">
+          <i focusable="false" class="fas fa-exclamation-circle icon-fa-exclamation-small"></i>
+        </span>
+      </mat-label>
+      <input placeholder="Recipient Member #" matInput
+             formControlName="recipientMemberControl"
+             type="text"
+             maxlength="13"
+             [ngModel]="recipentMemberValue | formatMemberNumber"
+             (ngModelChange)="recipentMemberValue=$event"
+
+             [ngClass]="{'border-red ' : (RecipientMemberControl?.touched && RecipientMemberControl?.hasError('memberNumberLengthValidator') || RecipientMemberControl?.hasError('pattern'))}">
+    </mat-form-field>
+    <mat-form-field class="col-xs-6">
+      <mat-label class="letter-black">Insured Note*</mat-label>
+      <input placeholder="" matInput
+             formControlName="insuredNoteControl"
+             type="text"
+             [ngClass]="{'border-red ' : (InsuredNoteControl?.touched && InsuredNoteControl?.hasError('required'))
+                                         || (InsuredNoteControl?.touched && InsuredNoteControl?.hasError('pattern'))}">
+    </mat-form-field>
+  </div>
+  <div class="row" class="div-error-message">
+    <div class="col-md-7">
+      <div *ngIf="(RecipientMemberControl?.touched && RecipientMemberControl?.hasError('memberNumberLengthValidator') || RecipientMemberControl?.hasError('pattern'))
+                  || ((InsuredNoteControl?.touched && InsuredNoteControl?.hasError('pattern'))
+                       || (InsuredNoteControl?.touched && InsuredNoteControl?.hasError('required')))" class="row">
+        <div class="col-sm-2 div-fa-exclamation-big" >
+          <i focusable="false" class="fas fa-exclamation-circle i-fa-exclamation-big"></i>
+        </div>
+        <div class="col-sm-10 span-error-transferring">
+          <span class="span-error-transferring-member">Error Transferring to this Member</span>
+          <br>
+          <span class="span-error-text">
+            <span *ngIf="RecipientMemberControl?.hasError('memberNumberLengthValidator') || RecipientMemberControl?.hasError('pattern')" >Member number must be 11 digits </span>
+            <span *ngIf="checkInsuredAndRecipient()">
+              and
+            </span>
+            <span *ngIf="checkInsured()"> Insured Note cannot be blank.</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="row div-cancel-button-row">
+        <div class="col-xs-8 div-cancel-column">
+          <button type="button"
+                  class="btn btn-secondary button-cancel"
+                  (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary div-submit"
+                  [disabled]="accountTransferForm.invalid">
+            Transfer
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+</form>
+</fox-modal>

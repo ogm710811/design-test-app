@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev">
+    <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+    <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="F1EventClick()">Return to Previous (F1)</span>
+  </div>
+</div>
+<fox-section class="section-ions-selection">
+  <fox-section-title>
+    <b>IONs Selection Results</b>
+  </fox-section-title>
+  <fox-section-subheader>
+    Click on an Action link for additional details or enter a line # and click Submit (Alt + S) to proceed.
+  </fox-section-subheader>
+  <div class="container-overpayment-table">
+    <fox-table [tableColumns]="displayedColumns"
+               [tableData]="viewData | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+               (columnChanged)="tableColumnCurrentSortKey = $event"
+               (directionChanged)="tableColumnCurrentSortDirection = $event"
+               (linkClicked)="linkClicked($event)">
+    </fox-table>
+  </div>
+  <div class="container-overpayment-paginator">
+    <fox-paginator-non-material [(pageSize)]="pageSizeSelected" [dataLengthInput]="dataLengthInput"
+                                #paginator
+                                [pageTotal]="pageTotal" [(currentPage)]="currentPage"
+                                (currentPageChange)="getPageEvent($event); calculateNewPage();"
+                                (pageSizeChange)="currentPage=0; getPageEvent($event); calculateNewPage();"
+                                [pageSizeDropdownOption]="pageSizeDropdownOption">
+    </fox-paginator-non-material>
+  </div>
+  <hr class="hr-operator">
+  <div>
+    <div class="container-line-number">
+      <fox-input class="container-input-label"
+                 [(ngModel)]="screen.m71seli"
+                 type="fox-number"
+                 maxlength="3"
+                 labelText="Select Line #"
+                 (keyup.enter)="EnterEventClick()">
+      </fox-input>
+    </div>
+    <div class="container-continue-button">
+      <fox-loading-button [buttonValue] = "'Submit (S)'"
+                          [buttonStatus]="buttonStatus"
+                          [typeValue]="'button'"
+                          [foxHotKeyValue]="'alt+s'"
+                          (buttonClick)="EnterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</fox-section>

@@ -1,0 +1,59 @@
+[
+  {
+    "msid": "swhite",
+    "claimcount": 4,
+    "reassignTo": [
+      "Main Queue",
+      "67890",
+      "54321",
+      "98765",
+      "34567"
+    ]
+  },
+  {
+    "msid": "swhite",
+    "claimcount": 3,
+    "reassignTo": [
+      "Main Queue",
+      "12345",
+      "54321",
+      "98765",
+      "34567"
+    ]
+  },
+  {
+    "msid": "jjensen",
+    "claimcount": 4,
+    "reassignTo": [
+      "Main Queue",
+      "12345",
+      "67890",
+      "98765",
+      "34567"
+    ]
+  },
+  {
+    "msid": "jjensen",
+    "claimcount": 2,
+    "reassignTo": [
+      "Main Queue",
+      "12345",
+      "67890",
+      "54321",
+      "34567"
+    ]
+  },
+  {
+    "msid": "jjensen",
+    "claimcount": 2,
+    "reassignTo": [
+      "Main Queue",
+      "12345",
+      "67890",
+      "54321",
+      "98765"
+    ]
+  }
+]
+
+

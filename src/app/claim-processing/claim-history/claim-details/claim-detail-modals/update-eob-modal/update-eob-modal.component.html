@@ -1,0 +1,130 @@
+<fox-modal class="modal-update-eob" [(visible)]="isUpdateEobModalVisible" modalTitle="Update EOB"
+           [closable]="false"
+           (visibleChange)="updateEobVisibleChange.emit(isUpdateEobModalVisible)">
+  <p class="container-eob-modal-txt">
+    <span>This action will update the EOB for <b>Claim #{{claimNumber}}</b>. Dates of service (claim level or bill level) cannot be changed permanently</span>
+  </p>
+  <div class="container-modal-div">
+    <div class="col-md-12 update-eob-upper-div">
+      <mat-form-field class="col-md-3 col-md-padding input-update-eob-field">
+        <mat-label>Date of Service From*</mat-label>
+        <input matInput readonly value="{{claimDetails?.claimDosFromDate | date : 'MM/dd/yyyy' }}">
+      </mat-form-field>
+      <mat-form-field class="col-md-3 col-md-padding input-update-eob-field">
+        <mat-label>Date of Service To*</mat-label>
+        <input matInput readonly value="{{claimDetails?.claimDosToDate | date : 'MM/dd/yyyy' }}">
+      </mat-form-field>
+      <mat-form-field class="col-md-3 col-md-padding input-update-eob-field">
+        <mat-label>Primary ICD*</mat-label>
+        <input matInput value="{{eobUpdateReqBody?.primaryIcd?.newValue}}">
+      </mat-form-field>
+      <mat-form-field class="col-md-3 col-md-padding input-update-eob-field">
+        <mat-label>Exception Indicator</mat-label>
+        <mat-select [(ngModel)]="exceptionInd">
+          <mat-option value="N" >No</mat-option>
+          <mat-option value="Y" >Yes</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="col-md-12 update-eob-table-div">
+      <table class="table table-update-eob">
+        <thead class="thead-default">
+        <th nowrap="true"><span>&nbsp;</span></th>
+        <th nowrap="true"><span>Bill Line</span></th>
+        <th nowrap="true"><span>Service Type</span></th>
+        <th nowrap="true"><span>Type Code</span></th>
+        <th nowrap="true"><span>Date of Service From</span></th>
+        <th nowrap="true"><span>Date of Service To</span></th>
+        <th nowrap="true"><span>#1</span></th>
+        <th nowrap="true"><span>#2</span></th>
+        <th nowrap="true"><span>Benefit Period Number</span></th>
+        <th nowrap="true"><span>Benefit Period Days</span></th>
+        <th *ngIf="isEobHos" nowrap="true"><span>Date Of Accident</span></th>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let dat of eobUpdateReqBody?.items;let j = index">
+          <tr [id]=" 'update-eob-tr-' + j">
+            <td [id]=" 'update-eob-tr-' + j + '-td-0'"
+                [ngClass]="{'col-edit-icon-update-eob': isRowBeingEdited(j)}">
+              <div *ngIf="!isRowBeingEdited(j)" class="edit-icon"
+                   (click)="editInProgress(j);">
+                <span><img class="icon-edit" focusable="false" src="assets/img/Edit.svg"></span>
+              </div>
+              <div *ngIf="isRowBeingEdited(j)" class="update-eob-icons">
+                <mat-icon (click)="isEditInProgress=false;resetRow(j)" class="update-eob-mat-icon">
+                  <span><img class="icon-reset" src="assets/img/deny-red.svg"></span>
+                </mat-icon>
+                <mat-icon (click)="isEditInProgress=false;updateRow(j)" class="update-eob-mat-icon">
+                  <span><img class="icon-confirm" src="assets/img/confirm-green.svg"></span>
+                </mat-icon>
+              </div>
+            </td>
+            <td [id]=" 'update-eob-tr-' + j + '-td-1'"><span>{{dat.billLineNum}}</span></td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-2'" [ngClass]="{'col-value-change' : (dat.billLineServiceCode.newValue !== dat.billLineServiceCode.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [(ngModel)]="dat.billLineServiceCode.newValue">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineServiceCode.newValue}}</span>
+            </td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-3'" [ngClass]="{'col-value-change' : (dat.billLineTypeCode.newValue !== dat.billLineTypeCode.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [(ngModel)]="dat.billLineTypeCode.newValue">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineTypeCode.newValue}}</span>
+            </td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-4'" [ngClass]="{'col-value-change' : (dat.billLineDosFrom.newValue !== dat.billLineDosFrom.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [ngModel]="dat.billLineDosFrom.newValue | date : 'MM/dd/yyyy'" (change)="dat.billLineDosFrom.newValue = $event.target.value" type="text">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineDosFrom.newValue | date : 'MM/dd/yyyy' }}</span>
+            </td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-5'" [ngClass]="{'col-value-change' : (dat.billLineDosTo.newValue !== dat.billLineDosTo.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [ngModel]="dat.billLineDosTo.newValue | date : 'MM/dd/yyyy'" (change)="dat.billLineDosTo.newValue = $event.target.value" type="text">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineDosTo.newValue | date : 'MM/dd/yyyy' }}</span>
+            </td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-7'" [ngClass]="{'col-value-change' : (dat.billLineSrvAccum1.newValue !== dat.billLineSrvAccum1.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [(ngModel)]="dat.billLineSrvAccum1.newValue">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineSrvAccum1.newValue}}</span>
+            </td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-8'" [ngClass]="{'col-value-change' : (dat.billLineSrvAccum2.newValue !== dat.billLineSrvAccum2.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [(ngModel)]="dat.billLineSrvAccum2.newValue">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineSrvAccum2.newValue}}</span>
+            </td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-9'" [ngClass]="{'col-value-change' : (dat.billLineBenefitPeriodNum.newValue !== dat.billLineBenefitPeriodNum.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [(ngModel)]="dat.billLineBenefitPeriodNum.newValue">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineBenefitPeriodNum.newValue}}</span>
+            </td>
+
+            <td [id]=" 'update-eob-tr-' + j + '-td-10'" [ngClass]="{'col-value-change' : (dat.billLineBenefitPeriodDays.newValue !== dat.billLineBenefitPeriodDays.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [(ngModel)]="dat.billLineBenefitPeriodDays.newValue">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineBenefitPeriodDays.newValue}}</span>
+            </td>
+
+            <td *ngIf="isEobHos" [id]=" 'update-eob-tr-' + j + '-td-11'" [ngClass]="{'col-value-change' : (dat.billLineDateOfAccident.newValue !== dat.billLineDateOfAccident.oldValue)}">
+              <input matInput *ngIf="isRowBeingEdited(j);" [ngModel]="dat.billLineDateOfAccident.newValue | date:'MM/dd/yyyy'" (change)="dat.billLineDateOfAccident.newValue = $event.target.value" type="text">
+              <span *ngIf="!isRowBeingEdited(j);">{{dat.billLineDateOfAccident.newValue | date : 'MM/dd/yyyy'}}</span>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12 bottom-div">
+      <div class="container-buttons">
+        <button type="button" id="btn-cancel-modal" class="btn btn-secondary btn-clear-modal"
+                (click)="cancelUpdateEobModal()">Cancel
+        </button>
+        <button type="button" id="btn-confirm-modal" class="btn btn-primary btn-update-eob"
+                [disabled]="isEditInProgress" (click)="updateRecord()">Update EOB
+          <span class="span-next-page">
+            <span>
+              <img class="icon-next-page" focusable="false" src="assets/img/arrow-right-white.svg">
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</fox-modal>

@@ -1,0 +1,98 @@
+<div class="drug-summary-date-search-table-main">
+  <div class="drug-summary-date-search-non-mat-table-main">
+    <mat-table class="table table-drug-summary-date-search-result" #table
+               [dataSource]="drugSummaryDateAndActionDataSource">
+
+      <ng-container matColumnDef="serviceFromDate">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border"> <span
+          class="modal-header-text"> Date of Service From</span></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.serviceFromDate"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="serviceToDate">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border"><span
+          class="modal-header-text">Date of Service To</span></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div [innerHTML]="element.serviceToDate"></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="modal-header-border drug-action-column"><span
+          class="modal-header-text ">Action</span></mat-header-cell>
+        <mat-cell *matCellDef="let element" class="drug-action-column">
+          <div><span class="report-action-icon"><i class="fas fa-file-alt" focusable="false"></i></span>
+            <a *ngIf="downloadLink" [href]="downloadLink" download="RX_Drug_Summary.csv">Download Report</a>
+            <a *ngIf="downloadLinkIE" [foxLink] (linkPressed)="exportCSVIE()">Download Report</a>
+            <span class="common-action-icon"><i class="fab fa-telegram-plane" focusable="false"></i></span><a [foxLink] (linkPressed)="generateLetter()">Write Letter</a>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedDrugSummaryDateAndActionColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedDrugSummaryDateAndActionColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="thead-default">
+  <tr>
+    <th [foxLink] (linkPressed)="sortDrugSummary('dateOfService')"
+        [ngClass]="{'sorted-column-header':(column == 'dateOfService'), 'asc': !isDesc, 'desc': isDesc}"
+        class="locator-date-of-service">
+      <fox-table-header-sort>Date of Service</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sortDrugSummary('prescriptionName')"
+        [ngClass]="{'sorted-column-header':(column == 'prescriptionName'), 'asc': !isDesc, 'desc': isDesc}"
+        class="locator-prescription-name">
+      <fox-table-header-sort>Prescription Name</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sortDrugSummary('paidAmount')"
+        [ngClass]="{'sorted-column-header':(column == 'paidAmount'), 'asc': !isDesc, 'desc': isDesc}"
+        class="locator-amount-approved">
+      <fox-table-header-sort>Amount Approved</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sortDrugSummary('totalBenfAmount')"
+        [ngClass]="{'sorted-column-header':(column == 'totalBenfAmount'), 'asc': !isDesc, 'desc': isDesc}"
+        class="locator-total-benefit-amt">
+      <fox-table-header-sort>Total Benefit Amt</fox-table-header-sort>
+    </th>
+    <th [foxLink] (linkPressed)="sortDrugSummary('deductibleAmount')"
+        [ngClass]="{'sorted-column-header':(column == 'deductibleAmount'), 'asc': !isDesc, 'desc': isDesc}"
+        class="locator-deductible-amount">
+      <fox-table-header-sort>Deductible Amount</fox-table-header-sort>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr [id]=" 'drug-summary-tr-' + idx" *ngFor="let item of drugSummaryResults; let idx = index">
+    <td [id]=" 'drug-summary-tr-' + idx + '-td-0' " class="locator-date-of-service-td">
+      {{item.dateOfService}}
+    </td>
+    <td [id]=" 'drug-summary-tr-' + idx + '-td-1' " class="locator-prescription-name-td">
+      {{item.prescriptionName}}
+    </td>
+    <td [id]=" 'drug-summary-tr-' + idx + '-td-2' " class="locator-amount-approved-td">
+      {{item.paidAmount | currency}}
+    </td>
+    <td [id]=" 'drug-summary-tr-' + idx + '-td-3' " class="locator-total-benefit-amt-td">
+      {{item.totalBenfAmount | currency}}
+    </td>
+    <td [id]=" 'drug-summary-tr-' + idx + '-td-4' " class="locator-deductible-amount-td">
+      {{item.deductibleAmount | currency}}
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr class="sum-class">
+    <td>&nbsp;</td>
+    <td>Subtotals (All Pages)</td>
+    <td>{{totalAmt | currency}}</td>
+    <td>{{totalBenAmt | currency}}</td>
+    <td>{{totalDedAmt | currency}}</td>
+  </tr>
+  </tfoot>
+</table>

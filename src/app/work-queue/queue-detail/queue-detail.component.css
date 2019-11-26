@@ -1,0 +1,207 @@
+.queue-detail-metadata {
+  overflow:hidden;
+  width: 100%;
+  border: 1px solid #DDDBDA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 18px;
+}
+
+.queue-detail-title {
+  width: 100%;
+  background-color: #F6F8F9;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px 19px;
+}
+
+.container-metadata-item {
+  float: left;
+  padding-left: 20px;
+  margin-top: 15px;
+  margin-right: 40px;
+}
+
+.txt-metadata-label {
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.txt-metadata-value {
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.border-left-grey {
+  border-left: solid 1px #E6E6E6;
+  padding-left: 25px;
+}
+
+.backClaimSearchLink {
+  font-size: 14px;
+  text-decoration: none;
+  float: right;
+  margin-top: 9px;
+  font-weight: normal;
+}
+
+.backClaimSearchLink .fa-chevron-left {
+  margin-right: 5px;
+}
+
+.queue-icon {
+  height: 25px;
+  margin-right: 9px;
+  margin-top: -5px;
+}
+
+.page-title {
+  margin-top: 0;
+}
+
+.table > tbody > tr > td,
+.table > thead > tr > th {
+  padding-right: 20px;
+  white-space: nowrap;
+}
+
+.table > tbody > tr > td.table-column-queue-item,
+.table > thead > tr > th.table-column-queue-item {
+  padding-right: 12px;
+}
+
+.table-column-queue-item {
+  width: 174px;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.fa-briefcase {
+  color: #196ECF;
+  margin-right: 5px;
+}
+
+.btn-more {
+  float: right;
+  height: 19px;
+  width: 19px;
+  border: 1px solid #D0D0D0;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  padding-top: 1px;
+  padding-left: 4px;
+}
+
+.btn-lock {
+  float: right;
+  height: 19px;
+  width: 19px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.fa-caret-down {
+  color: #4E5B71;
+}
+
+.fa-lock {
+  color: #b10c00;
+}
+
+.locked_font {
+  height: 16px;
+  width: 52px;
+  color: #4E5B71;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.locked_font_small {
+  height: 32px;
+  width: 250px;
+  color: #4E5B71;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.container-table {
+  overflow-x: scroll;
+  margin-left: 225px;
+}
+
+.table-column-sticky {
+  width: 226px;
+  float: left;
+}
+
+.link-queue-item {
+  float: left;
+}
+
+input[type="checkbox"] {
+  margin: 0;
+}
+
+.ribbon-menu {
+  background-color: #264578;
+  color: #EDEDF4;
+  font-size: 14px;
+  height: 45px;
+  padding-top: 15px;
+  padding-right: 20px;
+  width: 100%;
+  position: absolute;
+  top: 15px;
+}
+
+.ribbon-right {
+  float: right;
+}
+
+.ribbon-left {
+  float: left;
+}
+
+.link-ribbon {
+  margin-left: 20px;
+  text-decoration: underline;
+  float: left;
+  cursor: pointer;
+}
+
+.label-selected {
+  float: left;
+}
+
+.table-delete-list {
+  margin: 20px auto 30px auto;
+  width: 420px;
+  border: 1px solid #DCE4E8;
+}
+
+.table-header-document {
+  width: 150px;
+}
+
+.btn-delete {
+  width: 100px;
+  float: right;
+}
+
+.btn-cancel {
+  width: 100px;
+  margin-right: 15px;
+  float: right;
+}
+
+.container-pdf {
+  width: 77%;
+  float: right;
+}

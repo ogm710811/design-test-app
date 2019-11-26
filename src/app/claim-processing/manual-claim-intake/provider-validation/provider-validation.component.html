@@ -1,0 +1,243 @@
+<fox-section>
+  <fox-section-title class="section-title">
+    Validation Parameters
+  </fox-section-title>
+  <span class="span-helper-text">Minimum valid searches (*) include Provider Type and either Business or Last Name. Successful searches return a single matching provider.</span>
+  <form class="form-provider-validation" [formGroup]="providerValidationFormGroup">
+    <div>
+      <div class="div-benefits-assigned">
+        <div class="div-benefits-assigned-label">Benefits Assigned</div>
+        <div>
+          <label class="switch">
+            <input type="checkbox" #benefitsAssigned checked (click)="toggleBenefitsAssigned()">
+            <span class="slider round">
+              <span id="container-toggle">
+                <i focusable="false" class="fas fa-check img-toggle-check"></i>
+              </span>
+            </span>
+          </label>
+          <span class="span-benefits-assigned-yes" *ngIf="benefitsAreAssigned">Yes</span>
+        </div>
+      </div>
+      <div class="vertical-rule"></div>
+      <div class="div-right-container">
+        <div class="div-row-one">
+          <div class="div-inline-block div-provider-container">
+            <div class="div-provider-type-label">Provider Type *</div>
+            <div class="div-provider-type-container">
+              <mat-button-toggle-group class="toggle-group-provider-type" #toggleGroup="matButtonToggleGroup" [(formControlName)]="selectedValue">
+                <mat-button-toggle class="btn-toggle-border" value="O" #doctorButton="matButtonToggle">
+                  Doctor
+                </mat-button-toggle>
+                <mat-button-toggle class="btn-toggle-border" value="I" #hospitalButton="matButtonToggle">
+                  Hospital
+                </mat-button-toggle>
+                <mat-button-toggle value="M" #medicaidButton="matButtonToggle">
+                  Medicaid
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+          <mat-form-field class="form-field-tin">
+            <mat-label>TIN #<span class="icon-container" *ngIf="!providerValidationFormGroup.get('tin')?.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+            <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('tin')?.valid)}" matInput formControlName="tin" #input placeholder="000-00-0000" [pattern]="tinPattern" maxlength="11" onkeydown="this.value = this.value.replace(/^(\d\d\d)(\d)$/g,'$1-$2').replace(/^(\d\d\d-\d\d)(\d+)$/g,'$1-$2').replace(/[^\d\-]/g,'')">
+            <mat-error>
+              Invalid TIN #
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field-npi">
+            <mat-label>NPI #<span class="icon-container" *ngIf="!providerValidationFormGroup.get('npi')?.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+            <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('npi')?.valid)}" matInput formControlName="npi" #input minlength="10" maxlength="10" foxNumbers>
+            <mat-error>
+              Invalid NPI
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field-business">
+            <mat-label>Business Name *<span class="icon-container" *ngIf="!providerValidationFormGroup.get('business')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+            <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('business')!.valid)}" matInput formControlName="business" #input maxlength="35">
+          </mat-form-field>
+        </div>
+        <div class="div-row-margin-top">
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-first-name">
+              <mat-label>First Name<span class="icon-container" *ngIf="!providerValidationFormGroup.get('firstName')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+              <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('firstName')!.valid)}" matInput formControlName="firstName" #input maxlength="25">
+            </mat-form-field>
+          </div>
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-middle-initial">
+              <mat-label>Middle Initial<span class="icon-container" *ngIf="!providerValidationFormGroup.get('middleInitial')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+              <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('middleInitial')!.valid)}" matInput formControlName="middleInitial" #input maxlength="25">
+            </mat-form-field>
+          </div>
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-last-name">
+              <mat-label>Last Name *<span class="icon-container" *ngIf="!providerValidationFormGroup.get('lastName')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+              <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('lastName')!.valid)}" matInput formControlName="lastName" #input maxlength="35">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="div-row-margin-top">
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-margin-right form-field-addr">
+              <mat-label>Address Line 1<span class="icon-container" *ngIf="!providerValidationFormGroup.get('addrLine1')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+              <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('addrLine1')!.valid)}" matInput formControlName="addrLine1" #input maxlength="55">
+            </mat-form-field>
+          </div>
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-margin-right form-field-addr">
+              <mat-label>Address Line 2<span class="icon-container" *ngIf="!providerValidationFormGroup.get('addrLine2')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+              <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('addrLine2')!.valid)}" matInput formControlName="addrLine2" #input maxlength="55">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="div-row-margin-top">
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-margin-right form-field-city">
+              <mat-label>City<span class="icon-container" *ngIf="!providerValidationFormGroup.get('city')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+              <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('city')!.valid)}" matInput formControlName="city" #input maxlength="30">
+            </mat-form-field>
+          </div>
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-margin-right form-field-state">
+              <mat-select placeholder="State" formControlName="state" class="dropdown-width">
+                <mat-option [value]="">
+                </mat-option>
+                <mat-option *ngFor="let state of states" [value]="state.code">
+                  {{state.description}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="div-inline-block">
+            <mat-form-field class="form-field-margin form-field-margin-right form-field-zip">
+              <mat-label>Zip Code (5- or 9-digit)<span class="icon-container" *ngIf="!providerValidationFormGroup.get('zip')!.valid"><i focusable="false" class="fa fa-exclamation-circle"></i></span></mat-label>
+              <input [ngClass]="{'input-border-red':(!providerValidationFormGroup.get('zip')!.valid)}" matInput formControlName="zip" #input minlength="5" maxlength="9" foxNumbers [pattern]="zipPattern">
+              <mat-error>
+                Invalid ZIP
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div-float-right container-button">
+      <button type="button" class="btn btn-secondary btn-clear" foxHotkey="alt+r" (click)="clearForm()">Clear (R)</button>
+      <button type="button" class="btn btn-primary" foxHotkey="alt+s" (click)="onClickSearch()" [disabled]="checkIfFormFilled()">Search (S)</button>
+    </div>
+  </form>
+
+  <div class="div-provider-match"><span class="span-provider-match-label">Provider Match</span><hr class="hr"/></div>
+  <div *ngIf="isSearchFlagDisable">
+    <span class="div-float-left"><div class="div-circle-flag"><i focusable="false" class="fas fa-flag img-flag"></i></div></span>
+    <span class="div-float-left div-margin-left">
+      <div class="div-no-provider-label">No Provider to Display</div>
+      <div class="div-search-using-label">Search using the fields above to assign a provider</div>
+    </span>
+  </div>
+
+  <div>
+    <div *ngIf="providerValidationManualResponseVO?.providerValidationResult==='NO_MATCH_NO_ADD'">
+      <div class="div-float-left div-margin-top"><i focusable="false" class="fas fa-exclamation-circle img-error-color" ></i></div>
+      <div class="div-float-left div-margin-left div-margin-bottom">
+        <div class="span-no-match-no-add">No Match No Add</div>
+      </div>
+    </div>
+
+    <div *ngIf="providerValidationManualResponseVO?.providerValidationResult==='NOT_ASSIGNED_TO_PROVIDER'">
+      <div class="div-float-left div-margin-top"><i focusable="false" class="fas fa-exclamation-circle img-error-color" ></i></div>
+      <div class="div-float-left div-margin-left div-margin-bottom">
+        <div class="span-error-result-label">Not Assigned to a Provider</div>
+      </div>
+    </div>
+
+    <div *ngIf="providerValidationManualResponseVO?.providerValidationResult==='NOT_ENOUGH_DATA'">
+      <div class="div-float-left div-margin-top"><i focusable="false" class="fas fa-exclamation-circle img-error-color" ></i></div>
+      <div class="div-float-left div-margin-left div-margin-bottom">
+        <div class="span-not-enough-data">Not Enough Data</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="div-business-lastname-firstname-label">
+    <div class="div-float-left">
+      <div *ngIf="providerValidationManualResponseVO?.providerName" class="div-float-left background-provider-circle"><i focusable="false" class="fas fa-ambulance icon-ambulance img-ambulance"></i></div>
+      <span class="span-underline" *ngIf="providerValidationManualResponseVO?.providerName?.businessName">
+        {{providerValidationManualResponseVO?.providerName?.businessName}}
+      </span>
+      <span class="span-underline" *ngIf="providerValidationManualResponseVO?.providerName?.lastName">
+        {{providerValidationManualResponseVO?.providerName?.lastName}}
+      </span>
+      <span class="span-underline" *ngIf="providerValidationManualResponseVO?.providerName?.firstName">
+        {{providerValidationManualResponseVO?.providerName?.firstName}}
+      </span>
+    </div>
+  </div>
+
+  <div class="div-address-label" *ngIf="providerValidationManualResponseVO?.providerAddress">
+    <span>
+      {{providerValidationManualResponseVO?.providerAddress?.addressLine1}}
+      {{providerValidationManualResponseVO?.providerAddress?.addressLine2}}
+      {{providerValidationManualResponseVO?.providerAddress?.city}}
+      {{providerValidationManualResponseVO?.providerAddress?.state}}
+      {{providerValidationManualResponseVO?.providerAddress?.postalCode}}
+    </span>
+  </div>
+  <div class="div-tin-npi-label" *ngIf="providerValidationManualResponseVO?.providerIdentifier?.tin">
+    <span>
+      <span class="span-bold-label">TIN:</span> <span class="span-tin-value">{{providerValidationManualResponseVO?.providerIdentifier?.tin}}</span>
+    </span>
+  </div>
+  <div class="div-tin-npi-label" *ngIf="providerValidationManualResponseVO?.providerIdentifier?.npi">
+    <span>
+      <span class="span-bold-label">NPI:</span> <span class="span-npi-value">{{providerValidationManualResponseVO?.providerIdentifier?.npi}}</span>
+    </span>
+  </div>
+
+  <div class="div-margin-top-label" *ngIf="providerValidationManualResponseVO?.providerValidationResult==='MATCH' || providerValidationManualResponseVO?.providerValidationResult==='MATCH_NO_ACCEPTABILITY_CODE' || providerValidationManualResponseVO?.providerValidationResult==='PROVIDER_FRAUD_WASTE_ABUSE' || providerValidationManualResponseVO?.providerValidationResult==='MATCH_FWA_NO_ACC_CODE'">
+
+    <div *ngIf="providerValidationManualResponseVO?.providerValidationResult==='MATCH'">
+      <div class="div-float-left"><i focusable="false" class="fas fa-check-circle img-check-color"></i></div>
+      <div class="div-float-left div-margin-left div-margin-bottom">
+        <div class="span-provider-match-result-label">Provider match successful</div>
+      </div>
+    </div>
+
+    <div *ngIf="providerValidationManualResponseVO?.providerValidationResult==='MATCH_NO_ACCEPTABILITY_CODE'">
+      <div class="div-float-left"><i focusable="false" class="fas fa-exclamation-circle img-error-color" ></i></div>
+      <div class="div-float-left div-margin-left div-margin-bottom">
+        <div class="span-error-result-label">Missing Acceptability Code</div>
+      </div>
+    </div>
+
+    <div *ngIf="providerValidationManualResponseVO?.providerValidationResult==='PROVIDER_FRAUD_WASTE_ABUSE'">
+      <div class="div-float-left"><i focusable="false" class="fas fa-exclamation-circle img-error-color" ></i></div>
+      <div class="div-float-left div-margin-left div-margin-bottom">
+        <div class="span-fwa-single-error-result-label">Provider Match - Possible Fraud, Waste or Abuse</div>
+      </div>
+    </div>
+
+    <div *ngIf="providerValidationManualResponseVO?.providerValidationResult==='MATCH_FWA_NO_ACC_CODE'">
+      <div class="div-float-left"><i focusable="false" class="fas fa-exclamation-circle img-error-color" ></i></div>
+      <div class="div-float-left div-margin-left div-margin-bottom">
+        <div class="span-fwa-multi-error-result-label">Multiple Errors Returned</div>
+        <div class="div-multi-error-result-label">1. Missing Acceptability Code</div>
+        <div class="div-multi-error-result-label">2. Possible Fraud, Waste and Abuse</div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngClass]="{'container-button-bottom':(providerValidationManualResponseVO?.providerValidationResult==='MATCH')
+  , 'container-button-bottom-short':(!providerValidationManualResponseVO?.providerValidationResult)
+  , 'container-button-bottom-medium':(providerValidationManualResponseVO?.providerValidationResult==='NO_MATCH_NO_ADD')
+                                      || (providerValidationManualResponseVO?.providerValidationResult==='NOT_ASSIGNED_TO_PROVIDER')
+                                      || (providerValidationManualResponseVO?.providerValidationResult==='NOT_ENOUGH_DATA')
+  , 'container-button-bottom-tall':(providerValidationManualResponseVO?.providerValidationResult==='MATCH_FWA_NO_ACC_CODE')
+                                      || (providerValidationManualResponseVO?.providerValidationResult==='PROVIDER_FRAUD_WASTE_ABUSE')
+                                      || (providerValidationManualResponseVO?.providerValidationResult==='MATCH_NO_ACCEPTABILITY_CODE')
+  }">
+    <button type="button" class="btn btn-secondary btn-suspend btn-float-left btn-suspend">Suspend</button>
+    <button type="button" class="btn btn-primary btn-float-left btn-continue" foxHotkey="alt+l" [disabled]="checkSearchFlagDisable() || isContinueButtonDisable" (click)="onClickContinue()">Continue (L)</button>
+    <button type="button" class="btn btn-secondary btn-float-right" [disabled]="benefitsAreAssigned" (click)="onClickContinue()">Skip Provider Match</button>
+  </div>
+</fox-section>

@@ -1,0 +1,590 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="f1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Cancel and Return (F1)
+  </span>
+</div>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Set Quality Template Details</fox-section-title>
+      <div *ngIf="screen.m85hed2 === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-padding-card">
+      <div class="row container-row">
+        <div class="col-xs-6 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM85TYPE"
+                     name="txtM85TYPE"
+                     labelText="{{screen.m85typl.slice(0,-1) | titlecase}}"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [(ngModel)]="screen.m85type"
+                     [length]="6">
+          </fox-input>
+        </div>
+        <div class="col-xs-6 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM85MDAT"
+                     name="txtM85MDAT"
+                     labelText="Last Maintenance Date"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [(ngModel)]="screen.m85mdat"
+                     [length]="8">
+          </fox-input>
+        </div>
+        <div class="col-xs-6 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM85MION"
+                     name="txtM85MION"
+                     labelText="Maintenance IONs"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [(ngModel)]="screen.m85mion"
+                     [length]="6">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Update Set Quality Template</fox-section-title>
+      <div *ngIf="screen.m85hed2 === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div class="col-xs-6 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM85PAY"
+                     name="txtM85PAY"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="Payments"
+                     [(ngModel)]="screen.m85pay"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-6 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM85NPAY"
+                     name="txtM85NPAY"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="No Payments"
+                     [(ngModel)]="screen.m85npay"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-6 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM85CORP"
+                     name="txtM85CORP"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="Corporate"
+                     [(ngModel)]="screen.m85corp"
+                     [length]="3">
+          </fox-input>
+        </div>
+        <div class="col-xs-6 col-sm-3 container-input">
+          <fox-input type="text"
+                     id="txtM85NDOC"
+                     name="txtM85NDOC"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="New Doctor"
+                     [(ngModel)]="screen.m85ndoc"
+                     [length]="3">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85NHOS"
+                   name="txtM85NHOS"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="New Hospital"
+                   [(ngModel)]="screen.m85nhos"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85SPEC"
+                   name="txtM85SPEC"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Spec Pay/Alt Addr"
+                   [(ngModel)]="screen.m85spec"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85SCLM"
+                   name="txtM85SCLM"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Split Claim"
+                   [(ngModel)]="screen.m85sclm"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85BEN"
+                   name="txtM85BEN"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Benefit Extension"
+                   [(ngModel)]="screen.m85ben"
+                   [length]="3">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85ADMH"
+                   name="txtM85ADMH"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Compas History"
+                   [(ngModel)]="screen.m85admh"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85PDN"
+                   name="txtM85PDN"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="PDN - 1st Pay"
+                   [(ngModel)]="screen.m85pdn"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85LTRS"
+                   name="txtM85LTRS"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Letters"
+                   [(ngModel)]="screen.m85ltrs"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85REVD"
+                   name="txtM85REVD"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Reval Disb"
+                   [(ngModel)]="screen.m85revd"
+                   [length]="4">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85EXS"
+                   name="txtM85EXS"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Exception Screen"
+                   [(ngModel)]="screen.m85exs"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85COMM"
+                   name="txtM85COMM"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Communications"
+                   [(ngModel)]="screen.m85comm"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85REVS"
+                   name="txtM85REVS"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Reval Susp"
+                   [(ngModel)]="screen.m85revs"
+                   [length]="4">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85PAYA"
+                   name="txtM85PAYA"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Payment Adjust"
+                   [(ngModel)]="screen.m85paya"
+                   [length]="3">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85DECI"
+                   name="txtM85DECI"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Deceased Insureds"
+                   [(ngModel)]="screen.m85deci"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85REVP"
+                   name="txtM85REVP"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Reval Payment > $"
+                   [(ngModel)]="screen.m85revp"
+                   [length]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85SMEM"
+                   name="txtM85SMEM"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Special Memo"
+                   [(ngModel)]="screen.m85smem"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85VER1"
+                   name="txtM85VER1"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="EC Verification"
+                   [(ngModel)]="screen.m85ver1"
+                   [length]="5">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-12 col-sm-3 container-input">
+        <fox-input type="text"
+                   id="txtM85VER2"
+                   name="txtM85VER2"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="EC Mult Verif"
+                   [(ngModel)]="screen.m85ver2"
+                   [length]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-6 container-input">
+        <fox-input type="text"
+                   id="txtM85MLTR"
+                   name="txtM85MLTR"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Med Supp when Letter Days Exhausted"
+                   [(ngModel)]="screen.m85mltr"
+                   [length]="3">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Assign Information</fox-section-title>
+      <div *ngIf="screen.m85hed2 === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div class="col-xs-12 col-sm-4 container-input">
+          <fox-input type="text"
+                     id="txtM85ASNA"
+                     name="txtM85ASNA"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="Assign > $"
+                     [(ngModel)]="screen.m85asna"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input">
+          <fox-input type="text"
+                     id="txtM85ASNP"
+                     name="txtM85ASNP"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="Assign %"
+                     [(ngModel)]="screen.m85asnp"
+                     [length]="3">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input">
+          <fox-input type="text"
+                     id="txtM85ASHA"
+                     name="txtM85ASHA"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="Assign Hosp > $"
+                     [(ngModel)]="screen.m85asha"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input">
+          <fox-input type="text"
+                     id="txtM85ASHP"
+                     name="txtM85ASHP"
+                     [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                     labelText="Assign Hosp %"
+                     [(ngModel)]="screen.m85ashp"
+                     [length]="3">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+    <div class="row container-row">
+      <div class="col-xs-12 col-sm-4 container-input">
+        <fox-input type="text"
+                   id="txtM85NASA"
+                   name="txtM85NASA"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Non Assign > $"
+                   [(ngModel)]="screen.m85nasa"
+                   [length]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-2 container-input">
+        <fox-input type="text"
+                   id="txtM85NASP"
+                   name="txtM85NASP"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Non Assign %"
+                   [(ngModel)]="screen.m85nasp"
+                   [length]="3">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-4 container-input">
+        <fox-input type="text"
+                   id="txtM85NAHA"
+                   name="txtM85NAHA"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Non Assign Hosp > $"
+                   [(ngModel)]="screen.m85naha"
+                   [length]="5">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-2 container-input">
+        <fox-input type="text"
+                   id="txtM85NAHP"
+                   name="txtM85NAHP"
+                   [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                   labelText="Non Assign Hosp %"
+                   [(ngModel)]="screen.m85nahp"
+                   [length]="3">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Message</fox-section-title>
+      <div *ngIf="screen.m85hed2 === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div *ngFor="let msg of screen.m85msgts; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input">
+            <fox-input type="text"
+                       id="txtM85MES"
+                       name="txtM85MES"
+                       [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                       labelText="Message {{idx + 1}}"
+                       [inputValue]="msg.m85tMsgNo"
+                       [(ngModel)]="msg.m85tMsgNo"
+                       [length]="5">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input">
+            <fox-input type="text"
+                       id="txtM85MSP"
+                       name="txtM85MSP"
+                       [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                       labelText="Message {{idx + 1}}%"
+                       [(ngModel)]="msg.m85tMsgPct"
+                       [inputValue]="msg.m85tMsgPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Cautions</fox-section-title>
+      <div *ngIf="screen.m85hed2 === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div *ngFor="let msg of screen.m85cmsgts; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input">
+            <fox-input type="text"
+                       id="txtM85CM"
+                       name="txtM85CM"
+                       [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                       labelText="Caution {{idx + 1}}"
+                       [(ngModel)]="msg.m85tCmsgNo"
+                       [inputValue]="msg.m85tCmsgNo"
+                       [length]="2">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input">
+            <fox-input type="text"
+                       id="txtM85CP"
+                       name="txtM85CP"
+                       [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                       labelText="Caution {{idx + 1}}%"
+                       [(ngModel)]="msg.m85tCmsgPct"
+                       [inputValue]="msg.m85tCmsgPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Letters</fox-section-title>
+      <div *ngIf="screen.m85hed2 === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div *ngFor="let msg of screen.m85ltrsts; let idx = index">
+          <div class="col-xs-12 col-sm-4 container-input">
+            <fox-input type="text"
+                       id="txtM85LT"
+                       name="txtM85LT"
+                       [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                       labelText="Letter {{idx + 1}}"
+                       [(ngModel)]="msg.m85tLtrs"
+                       [inputValue]="msg.m85tLtrs"
+                       [length]="8">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input">
+            <fox-input type="text"
+                       id="txtM85LP"
+                       name="txtM85LP"
+                       [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                       labelText="Letter {{idx + 1}}%"
+                       [(ngModel)]="msg.m85tLtrsPct"
+                       [inputValue]="msg.m85tLtrsPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-padding-block">
+    <div class="container-title-details">
+      <fox-section-title>Excluded Locations</fox-section-title>
+      <div *ngIf="screen.m85hed2 === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row">
+        <div *ngFor="let msg of screen.m85excts; let idx = index">
+          <div class="col-xs-12 col-sm-2 container-input">
+            <fox-input type="text"
+                       id="txtM85EXC"
+                       name="txtM85EXC"
+                       [isReadOnly]="screen.m85hed2 !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m85hed2 !== 'UPDATE'"
+                       labelText="Location {{idx + 1}}"
+                       [(ngModel)]="msg.m85tExcNo"
+                       [inputValue]="msg.m85tExcNo"
+                       [length]="8">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding">
+  <div class="form-row text-right">
+    <button type="button"
+            class="btn btn-secondary button-margin-right-15"
+            *ngIf="screen.m85hed2 === 'UPDATE'"
+            (click)="clearEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button [buttonValue]="'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        *ngIf="screen.m85hed2 === 'UPDATE'"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="enterEventClick()">
+    </fox-loading-button>
+  </div>
+</div>

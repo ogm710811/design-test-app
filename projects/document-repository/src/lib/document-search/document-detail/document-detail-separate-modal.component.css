@@ -1,0 +1,42 @@
+.container-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-buttons .btn-primary {
+  margin-left: 15px;
+}
+
+.txt-separate-verbiage {
+  height: 20px;
+  width: 100%;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.separate-document-title {
+  height: 18px;
+  width: 95px;
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 18px;
+}
+
+.modal-separate-container {
+  height: 19px;
+  width: 100%;
+  margin-bottom: 35px;
+}
+
+.modal-field-label-highlight {
+  height: 14px;
+  width: 158.7px;
+  color: #333333;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+}
+

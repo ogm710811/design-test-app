@@ -1,0 +1,270 @@
+<div class="row col-xs-12 pull-left container-cancel-return">
+  <a class="link-cancel-return"
+     [routerLink]="url"
+     foxHotkey="alt+f1"
+     hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-cancel-return">
+    Cancel and Return (F1)
+  </a>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <fox-section class="container-quality-member-info">
+      <fox-section-title>
+        <span class="span-mem-circle">
+          <img src="assets/img/Member_White.svg">
+        </span>
+        <span>Member Information</span>
+      </fox-section-title>
+      <fox-section-subheader>
+        <span class="subtitle">Click on Member # to view additional details.</span>
+      </fox-section-subheader>
+      <div class="row row-small container-equal-height">
+        <div class="col-xs-12 col-sm-4 container-member-label">Name</div>
+        <div class="col-xs-12 col-sm-8 container-member-value">
+          <div>{{screen?.m87ins1}}</div>
+          <div *ngIf="memberMigrated && memberMigrated.text"><fox-badge [badgeParams]="memberMigrated"></fox-badge></div>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-member-label">Member #</div>
+        <div class="col-xs-12 col-sm-8 container-member-value">
+          <img src="assets/img/member-blue.svg" class="img-member-number">
+          <a [routerLink]="getUrl()" target="_blank"  >{{memberNumber | formatMember}}</a>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-member-label">Address</div>
+        <div class="col-xs-12 col-sm-8 container-member-value">
+          <span>{{screen?.m87ins2}}</span>
+          <span>{{screen?.m87ins3}}</span>
+          <span>{{screen?.m87ins4}}</span>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+  <div class="col-xs-12 col-sm-8">
+    <fox-section>
+      <div class="container-communication-details-title">
+        Communication Details
+      </div>
+      <div class="container-subtitle">
+        <fox-section-subheader>Click on a Claim # to view additional details.</fox-section-subheader>
+      </div>
+      <div class="row row-small container-equal-height">
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Date Recieved
+            </div>
+            <div class="container-value-read-only">
+              <img src="assets/img/calendar-252c37.svg" class="img-communication">
+              <span>{{screen?.m87recv | dateFormat}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Initiator
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87init}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Last Accessed by
+            </div>
+            <div class="container-value-read-only">
+              <img src="assets/img/member-252c37.svg" class="img-communication">
+              <span>{{screen?.m87ltac}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Sent to ID
+            </div>
+            <div class="container-value-read-only">
+              <img src="assets/img/member-252c37.svg" class="img-communication">
+              <span>{{screen?.m87stto}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Location
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87loca}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Caller / Writer
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87call}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Phone#, Extension
+            </div>
+            <div class="container-value-read-only">
+              <img src="assets/img/Phone-252c37.svg" class="img-communication">
+              <span *ngIf="!!screen?.m87phn1?.trim()">{{screen?.m87phn1 + '-' + screen?.m87phn2 + '-' + screen?.m87phn3}}</span>
+              <span *ngIf="!!screen?.m87extn">,{{screen?.m87extn}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Concern Codes
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87cc01}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Call By
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87clby}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Claims
+            </div>
+            <div class="container-value-read-only">
+              <ng-container *ngIf="screen?.m87clmn">
+                <img src="assets/img/claim-252c37.svg" class="img-communication">
+                <a [routerLink]="claimUrl+'/'+screen?.m87clmn" target="_blank">{{screen?.m87clmn | formatClaim}}</a>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Microfilm
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87micr}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Problem / Concern
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87prb1}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 container-equal-height">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Resolution
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87res1 + screen?.m87res2 + screen?.m87res3 + screen?.m87res4}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </fox-section>
+    <fox-section>
+      <div class="container-quality-review-title">
+        Quality Review
+      </div>
+      <div class="row row-small">
+        <div class="col-xs-12">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Quality Reasons
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87qtyp}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Quality Type
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87rea1 + screen?.m87rea2 + screen?.m87rea3}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="container-read">
+            <div class="container-label-read-only">
+              Original Error Codes
+            </div>
+            <div class="container-value-read-only">
+              {{screen?.m87orig}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </fox-section>
+    <fox-section class="container-quality-reply">
+      <fox-section-title class="container-quality-reply-title">
+        <span class="span-rep-circle">
+          <img src="assets/img/Flag-white.svg">
+        </span>
+        Quality Reply
+      </fox-section-title>
+      <div class="section-subtitle">
+        <fox-section-subheader>Select a reply option and enter error codes if applicable. Click “Submit” or use Alt + S or Enter to proceed.</fox-section-subheader>
+      </div>
+      <div class="row row-small">
+        <div class="col-xs-12 col-sm-6 container-quality-replies">
+          <fox-select-single [items]="qualityReplies"
+                             (selectEmitter)="screen.m87repl = $event"
+                             bindValue="id"
+                             labelText="Reply"
+                             [selected]="qualityReplies[0].id" >
+          </fox-select-single>
+        </div>
+        <div class="col-xs-12 col-sm-6 container-error-codes">
+          <fox-input type="text"
+                     [(ngModel)]="screen.m87orig"
+                     labelText="Error Codes"
+                     maxlength="2">
+          </fox-input>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+  <div class="col-xs-12">
+    <fox-loading-button [buttonValue] = "'Submit (S)'"
+                        [buttonStatus]="continueStatus"
+                        [typeValue]="'submit'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="replyEventClick()"
+                        class="btn-submit">
+    </fox-loading-button>
+  </div>
+</div>

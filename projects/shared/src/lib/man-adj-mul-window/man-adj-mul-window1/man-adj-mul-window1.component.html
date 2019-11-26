@@ -1,0 +1,10 @@
+<div *ngIf="!active">
+<fox-section  *ngFor="let item of Screens;let i = index">
+    <fox-section-title>{{item.value}}</fox-section-title>
+    <button class="btn btn-primary" (click)="nextScreen(item.value)">Next</button>
+</fox-section>
+</div>
+<div *ngIf="active">
+    <h4>Request Denied.</h4>
+    <h5>Please close window. </h5>
+</div>

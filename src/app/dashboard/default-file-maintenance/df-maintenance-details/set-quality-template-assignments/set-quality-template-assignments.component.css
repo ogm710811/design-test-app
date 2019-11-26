@@ -1,0 +1,54 @@
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+}
+
+.container-arrow-right {
+  height: 14px;
+  width: 14px;
+  margin-right: 7px;
+}
+
+.span-return {
+  cursor: pointer;
+}
+
+.container-last-assignment {
+  padding-top: 10px;
+}
+
+.fox-section-site-info {
+  padding: 20px 0 5px 20px;
+}
+
+.container-assignment {
+  margin-top: -5px;
+  margin-bottom: 23px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.button-spacing {
+  margin-right: 15px;
+}
+
+.container-alignment {
+  display: inline;
+  margin-left: 15px;
+}
+
+@media (max-width: 576px) {
+  .button-spacing {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .button-template {
+    margin-bottom: 15px;
+  }
+}

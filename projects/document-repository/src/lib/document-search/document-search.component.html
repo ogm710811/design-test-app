@@ -1,0 +1,248 @@
+<fox-section [drawRectangle]="false" noPadding="true">
+  <mat-accordion (keydown)="keyDownFunction($event)">
+    <mat-expansion-panel class="border-top-blue document-search-panel-top" [expanded]="true" #matExpansionPanel
+                         (opened)="showEnteredParameters=false" (keydown)="expandPanelOnKeyPress(matExpansionPanel, $event)" (closed)="showEnteredParameters=true">
+      <mat-expansion-panel-header class="exp-panel-header" (click)="expandPanel(matExpansionPanel, $event)" [collapsedHeight]="'81px'" focusable="false">
+        <mat-panel-title class="mat-panel-title">
+          <fox-document-search-expansion-header [parametersUsed]="parametersUsed" [searchResult]="searchResult" [showEnteredParameters]="showEnteredParameters"></fox-document-search-expansion-header>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="container-left">
+        <mat-form-field class="search-type">
+          <mat-label>Search Type</mat-label>
+          <mat-select [(value)]="selectedType">
+            <mat-option value="correspondence">Correspondence</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button type="submit" class="btn btn-primary btn-search"
+                foxHotkey="alt+s" [disabled]="!formValid" (click)="getForm=true">Search (S)
+        </button>
+        <button type="button" class="btn btn-secondary btn-clear" foxHotkey="alt+r" (click)="resetForm=true">Clear (R)
+        </button>
+      </div>
+      <div class="container-right">
+        <fox-document-form [(resetForm)]="resetForm" [(formValid)]="formValid" [(getForm)]="getForm" (formValues)="processSearch($event)"></fox-document-form>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</fox-section>
+
+<fox-section *ngIf="isNewVersion" [noPadding]="true" class="section-document-search-result">
+  <fox-section-title class="container-padding">Search Results
+    <span *ngIf="numberOfElements > 0 && numberOfElements < 101">
+      {{numberOfElements}} Correspondence Documents Found
+    </span>
+  </fox-section-title>
+
+  <div class="container-not-found" *ngIf="numberOfElements < 1 || numberOfElements > 100">
+    <i focusable="false" class="fa fa-info-circle"></i>
+    <p class="header-container">There is no active query</p>
+    <p>Enter one or more criteria above and click "Search"</p>
+  </div>
+
+  <div class="ribbon-menu" *ngIf="selectedDocList.length>0">
+    <div class="ribbon-left">
+      <div class="link-ribbon" *ngIf="selectedDocList.length == 1" [foxPdfDownloadUrls]="selectedDocListDownloadUrls">Download as Single PDF</div>
+      <div class="link-ribbon" *ngIf="selectedDocList.length > 1" [foxPdfDownloadUrls]="selectedDocListDownloadUrls">Download Selected Documents as PDF</div>
+      <ng-container *ngIf="isUnlockedInSelected">
+        <div class="link-ribbon" (click)="showDeleteDialog=true" *ngIf="hasOpDeleteDocument && !isLockBadgeInTheList">Delete Document(s)</div>
+        <div class="link-ribbon" (click)="sendToWorkbenchModalOpen()" *ngIf="!isWQStatusComplete">Send to Workbench...</div>
+        <div class="link-ribbon" (click)="routeToQueueModalOpen()" *ngIf="!isWQStatusComplete">Route to Queue...</div>
+      </ng-container>
+    </div>
+    <div class="ribbon-right">
+      <div class="label-selected">{{selectedDocList.length}} item<span *ngIf="selectedDocList.length > 1">s</span> selected</div>
+      <div class="link-ribbon" (click)="clearSelection()">Cancel</div>
+    </div>
+  </div>
+
+  <div *ngIf="numberOfElements > 0 && numberOfElements < 101">
+    <fox-table #documentsTable
+               [tableColumns]="tableHeadersFoxTable"
+               [tableData]="documents | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+               (columnChanged)="tableColumnCurrentSortKey = $event"
+               (directionChanged)="tableColumnCurrentSortDirection = $event"
+               [selectable]="true"
+               (selectionChanged)="selectionChanged($event)"
+               (linkClicked)="linkClicked($event)"
+               (menuClicked)="menuClicked($event)"
+               [sortByColumn]="'docControlNumber'"> </fox-table>
+  </div>
+
+  <fox-paginator-non-material [(pageSize)]="docPageSize"
+                              [dataLengthInput]="numberOfElements" [pageTotal]="docPageTotal" [(currentPage)]="currentDocPage"
+                              (currentPageChange)="searchDocument()" (pageSizeChange)="currentDocPage=0;searchDocument()"
+                              *ngIf="numberOfElements > 0 && numberOfElements < 101">
+  </fox-paginator-non-material>
+</fox-section>{{checkRefresh}}
+
+<!--new version start-->
+<fox-section *ngIf="!isNewVersion" [noPadding]="true" class="section-document-search-result">
+  <fox-section-title class="container-padding">Search Results<span *ngIf="numberOfElements > 0 && numberOfElements < 101">: {{numberOfElements}} Correspondence Documents Found</span></fox-section-title>
+
+  <div class="container-not-found" *ngIf="numberOfElements < 1 || numberOfElements > 100">
+    <i focusable="false" class="fa fa-info-circle"></i>
+    <p class="header-container">There is no active query</p>
+    <p>Enter one or more criteria above and click "Search"</p>
+  </div>
+
+  <div class="ribbon-menu" *ngIf="selectedDocList.length>0">
+    <div class="ribbon-left">
+      <div class="link-ribbon"  *ngIf="selectedDocList.length == 1" [foxPdfDownloadUrls]="selectedDocListDownloadUrls">Download as Single PDF</div>
+      <div class="link-ribbon"  *ngIf="selectedDocList.length > 1" [foxPdfDownloadUrls]="selectedDocListDownloadUrls">Download Selected Documents as PDF</div>
+      <ng-container *ngIf="isUnlockedInSelected">
+        <div class="link-ribbon" (click)="showDeleteDialog=true" *ngIf="hasOpDeleteDocument && !isLockBadgeInTheList">Delete Document(s)</div>
+        <div class="link-ribbon" (click)="sendToWorkbenchModalOpen()" *ngIf="!isWQStatusComplete">Send to Workbench...</div>
+        <div class="link-ribbon" (click)="routeToQueueModalOpen()" *ngIf="!isWQStatusComplete">Route to Queue...</div>
+      </ng-container>
+    </div>
+    <div class="ribbon-right">
+      <div class="label-selected">{{selectedDocList.length}} item<span *ngIf="selectedDocList.length > 1">s</span> selected</div>
+      <div class="link-ribbon" (click)="selectedDocList=[];allChecked=false">Cancel</div>
+    </div>
+  </div>
+
+  <div class="container-table" *ngIf="numberOfElements > 0 && numberOfElements < 101">
+    <table class="table table-document-search-result">
+      <thead class="thead-default">
+      <tr>
+        <th class="table-column-radio" *ngIf="hasOpMaintainWq">
+          <span class="table-column-name"><input type="checkbox" id="all" [value]="false" [(ngModel)]="allChecked"
+                                                 (change)="changeAllSelection()"/></span>
+        </th>
+        <th class="table-column-download th-width">
+        </th>
+        <ng-container *ngFor="let header of tableHeaders; let j = index">
+          <th [foxLink] (linkPressed)="sort(header.HeaderPO)" class="table-header table-header-{{j}}"
+              [ngClass]="{'sorted-column-header':(column == header.HeaderPO), 'asc': !isDesc, 'desc': isDesc}">
+            <fox-table-header-sort>{{header.headerName}} </fox-table-header-sort>
+          </th>
+        </ng-container>
+
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let data of searchResult; let j = index; trackBy: trackByDcn">
+        <tr>
+          <td *ngIf="hasOpMaintainWq">
+            <input type="checkbox" id="select-{{data?.member?.accountNumber}}" (change)="onSelectionChange(data)" [checked]="isSelected(data)"/></td>
+          <td>
+            <div class="row">
+              <div *ngIf="data.onQueue && !data.wqStatusComplete" class="col-xs-1 col-xs-offset-1 div-content-badges div-queue"  tooltip="{{data.queueName}}">
+                <img class="img-svg-icon-queue" src="assets/img/queue-icon.svg">
+              </div>
+              <div *ngIf="!data.onQueue && !data.wqStatusComplete" class="col-xs-1 col-xs-offset-1 div-content-badges " >
+              </div>
+              <div *ngIf="data.lockBadge && !data.wqStatusComplete" class="col-xs-1 col-xs-offset-1 div-content-badges div-content-badges-lock-color div-lock-badge" tooltip="This document is locked.">
+                <img class="img-svg-icon-lock-badge"  src="assets/img/lock-icon.svg">
+              </div>
+              <div *ngIf="!data.lockBadge && !data.wqStatusComplete" class="col-xs-1 col-xs-offset-1 div-content-badges ">
+              </div>
+            </div>
+          </td>
+          <td><a [routerLink]="getUrlForDocument(data.docControlNumber)" [queryParams]="{dcn: data.docControlNumber, isStatusComplete: data.wqStatusComplete}">{{data.docControlNumber}}</a>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-more">
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </button>
+            <mat-menu #menu="matMenu" [overlapTrigger]="false">
+              <button mat-menu-item [disableRipple]="true" (click)="showQuickEdit=true;quickEditDcn=data.docControlNumber" *ngIf="hasOpMaintainWq && !isLocked(data.docControlNumber)">Quick Edit Document</button>
+              <button mat-menu-item [disableRipple]="true" (click)="deleteItemDoc(data)" *ngIf="hasOpDeleteDocument && !isLocked(data.docControlNumber) && data.docControlNumber !=currentWorkQueueBusinessId">Delete Document</button>
+              <hr *ngIf="((hasOpDeleteDocument || hasOpMaintainWq) && !isLocked(data.docControlNumber))">
+              <button mat-menu-item [disableRipple]="true" [foxPdfDownloadUrl]="downloadUrl(data.docControlNumber, data.documentType)">Download as PDF</button>
+              <ng-container *ngIf="hasOpMaintainWq && !isLocked(data.docControlNumber)">
+                <hr>
+                <button mat-menu-item [disableRipple]="true" (click)="sendToWorkbench(data)" [disabled]="data.wqStatusComplete">Send to Workbench...</button>
+                <button mat-menu-item [disableRipple]="true" (click)="routeToQueue(data)" [disabled]="data.wqStatusComplete">Route to Queue...</button>
+              </ng-container>
+            </mat-menu>
+          </td>
+          <td>{{data?.member?.accountNumber}}</td>
+          <td>{{data?.member?.lastName}}</td>
+          <td>{{data?.member?.firstName}}</td>
+          <td>{{data?.member?.middleName}}</td>
+          <td>{{getDropdownDescription(data?.member?.state, memberStateDropdownValues)}}</td>
+          <td>{{data?.member?.zipCode}}</td>
+          <td>{{data?.member?.dateOfBirth}}</td>
+          <td>{{getDropdownDescription(data?.member?.gender, genderDropdownValues)}}</td>
+          <td>{{data?.member?.medicareBeneficiaryId}}</td>
+          <td>{{getDropdownDescription(data?.member?.planType, planTypeDropdownValues)}}</td>
+          <td>{{data?.member?.planCode}}</td>
+          <td>{{data?.member?.planEffectiveDate}}</td>
+          <td>{{data?.claim?.claimNumber}}</td>
+          <td>{{data?.claim?.dosFrom}}</td>
+          <td>{{data?.claim?.dosTo}}</td>
+          <td>{{data?.claim?.providerName}}</td>
+          <td>{{data?.claim?.providerTin}}</td>
+          <td>{{data?.claim?.claimJulianDate}}</td>
+          <td>{{data?.claim?.ubTypeOfBill}}</td>
+          <td>Check Claim Number</td>
+          <td>Deposit Date</td>
+          <td>{{data?.check?.checkDate}}</td>
+          <td>{{data?.check?.checkAmount}}</td>
+          <td>{{data?.check?.checkNumber}}</td>
+          <td>Film Locator Number</td>
+          <td>Check Control Number</td>
+          <td>Overpayment Collection Type</td>
+          <td>{{data?.docControlNumber}}</td>
+          <td>{{getDropdownDescription(data?.feedbackInfo, feedbackInfoDropdownValues)}}</td>
+          <td>{{getDropdownDescription(data?.documentType, docTypeDropdownValues)}}</td>
+          <td>{{getDropdownDescription(data?.formType, formTypeDropdownValues)}}</td>
+          <td>{{convertYN(data?.asiMailIndicator)}}</td>
+          <td>{{convertYN(data?.employerBusinessIndicator)}}</td>
+          <td>{{convertYN(data?.healthAlliesIndicator)}}</td>
+          <td>{{getDropdownDescription(data?.fekPullReason, fekPullReasonDropdownValues)}}</td>
+          <td>{{getDropdownDescription(data?.rnfStatus, rnfStatusDropdownValues)}}</td>
+          <td>{{convertYN(data?.routingErrorIndicator)}}</td>
+          <td>Customer DCN</td>
+          <td>{{getDropdownDescription(data?.queueInformation, queueInfoDropdownValues)}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <fox-paginator-non-material [(pageSize)]="docPageSize"
+                             [dataLengthInput]="numberOfElements" [pageTotal]="docPageTotal" [(currentPage)]="currentDocPage"
+                             (currentPageChange)="searchDocument()" (pageSizeChange)="currentDocPage=0;searchDocument()"
+                             *ngIf="numberOfElements > 0 && numberOfElements < 101">
+  </fox-paginator-non-material>
+</fox-section>{{checkRefresh}}
+<!--new version ends-->
+
+<fox-modal [(visible)]="showDeleteDialog" modalTitle="Delete Document(s)" [closable]="false">
+  <div>
+    <p>You are about to delete the below document(s), which cannot be undone. Are you sure you want to submit this change?</p>
+    <mat-error *ngIf="selectedDocList.length>10">More than 10 document checked. Please refine your selection</mat-error>
+  </div>
+
+  <table class="table table-delete-list">
+    <thead class="thead-default">
+    <tr>
+      <th class="table-header-document">Document</th>
+      <th class="table-header-type">Type</th>
+    </tr>
+    </thead>
+    <tbody>
+      <ng-container>
+        <tr *ngFor="let doc of selectedDocList">
+          <td>{{doc?.docControlNumber}}</td>
+          <td>Correspondence</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <div class="container-buttons">
+    <button type="button" class="btn btn-primary btn-delete" (click)="confirmDeleteDoc()" *ngIf="selectedDocList.length<11" [disabled]="selectedDocListNumbers.indexOf(currentWorkQueueBusinessId) > -1">
+      Delete
+    </button>
+    <button type="button" class="btn btn-secondary btn-cancel" (click)="showDeleteDialog=!showDeleteDialog">
+      Cancel
+    </button>
+  </div>
+</fox-modal>
+
+<fox-document-quick-edit [(visible)]="showQuickEdit" [dcn]="quickEditDcn" (visibleChange)="searchDocument()"></fox-document-quick-edit>

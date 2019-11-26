@@ -1,0 +1,291 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev">
+    <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+    <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="returnEventClick()">Return to Previous (F1)</span>
+  </div>
+</div>
+<fox-section class="col-xs-12 col-sm-12 no-padding">
+  <fox-section-title> {{operatorInformationCardTitle}} </fox-section-title>
+  <div class="row container-row-small container-info-row-alignment">
+    <div class="col-xs-12 col-sm-4 container-section-last-row">
+      <fox-input id="txtIonsId"
+                 name="txtIonsId"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 labelText="IONs ID"
+                 class="col-xs-12 no-padding input-xs-custom"
+                 [(ngModel)]="screen.m72ions"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4 container-section-last-row">
+      <fox-input id="txtLastMaintenance"
+                 name="txtLastMaintenance"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 labelText="Last Maintenance"
+                 class="col-xs-12 no-padding input-xs-custom"
+                 [(ngModel)]="screen.m72mdat"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4 container-maintainence-ions">
+      <fox-input id="txtMaintenanceIons"
+                 name="txtMaintenanceIons"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 labelText="Maintenance IONs"
+                 class="col-xs-12 no-padding"
+                 [(ngModel)]="screen.m72mion"></fox-input>
+    </div>
+  </div>
+</fox-section>
+<fox-section class="col-xs-12 no-padding">
+  <fox-section-title> {{operatorDetailsCardTitle}} </fox-section-title>
+  <div [ngClass]="isReadOnlyMode ? 'container-display-none' : 'container-display-block'"  class="container-subtitle"> {{operatorDetailsSubTitle}} </div>
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtLastName"
+                 name="txtLastName"
+                 isReadOnly="{{elementsObj.lastName.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.lastName.readOnly}}"
+                 labelText="Last Name"
+                 length="20"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72lnam"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtFirstName"
+                 name="txtFirstName"
+                 isReadOnly="{{elementsObj.firstName.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.firstName.readOnly}}"
+                 labelText="First Name"
+                 length="14"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72fnam"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtEmployeeNumber"
+                 name="txtEmployeeNumber"
+                 isReadOnly="{{elementsObj.employeeNumber.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.employeeNumber.readOnly}}"
+                 labelText="Employee Number"
+                 length="9"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72empn"></fox-input>
+    </div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-4">
+      <fox-input type="fox-date"
+                 id="txtAppointDate"
+                 name="txtAppointDate"
+                 displayFormat="MM/DD/YYYY"
+                 programmaticFormat="YYYY-MM-DD"
+                 isReadOnly="{{elementsObj.appointDate.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.appointDate.readOnly}}"
+                 labelText="Appoint Date"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="appointDate"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fox-input type="fox-date"
+                 id="txtTermDate"
+                 name="txtTermDate"
+                 displayFormat="MM/DD/YYYY"
+                 programmaticFormat="YYYY-MM-DD"
+                 isReadOnly="{{elementsObj.termDate.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.termDate.readOnly}}"
+                 labelText="Term Date"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="termDate"></fox-input>
+    </div>
+  </div>
+  <div class="row container-row-small container-second-block-alignment">
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtLocation"
+                 name="txtLocation"
+                 length="3"
+                 isReadOnly="{{elementsObj.location.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.location.readOnly}}"
+                 labelText="Location"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72loc"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtDivision"
+                 name="txtDivision"
+                 isReadOnly="{{elementsObj.division.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.division.readOnly}}"
+                 labelText="Division"
+                 length="3"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72div"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtSalaryLevel"
+                 name="txtSalaryLevel"
+                 length="2"
+                 isReadOnly="{{elementsObj.salaryLevel.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.salaryLevel.readOnly}}"
+                 labelText="Salary Level"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72levl"></fox-input>
+    </div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-4">
+      <div [ngClass]="isReadOnlyMode ? 'container-display-block' : 'container-display-none'">
+        <fox-input id="txtAuthLevelReadonly"
+                   name="txtAuthLevelReadonly"
+                   isReadOnly="true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   labelText="Auth Level"
+                   length="2"
+                   class="col-xs-12 no-padding input-custom"
+                   [(ngModel)]="screen.m72alvl"></fox-input>
+      </div>
+      <div [ngClass]="isReadOnlyMode ? 'container-display-none' : 'container-display-block'">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Auth Level</label>
+          </div>
+          <div class="container-input">
+            <div class="container-input-text">{{screen.m72alvl}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="isReadOnlyMode ? 'container-display-block' : 'container-display-none'" class="col-xs-12 col-sm-4">
+      <fox-input id="txtPositionReadonly"
+                 name="txtPositionReadonly"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 labelText="Position"
+                 length="15"
+                 class="col-xs-12 no-padding input-custom"
+                 [(ngModel)]="screen.m72posl"></fox-input>
+    </div>
+    <div [ngClass]="isReadOnlyMode ? 'container-display-none' : 'container-display-block'" class="col-xs-12 col-sm-2">
+      <fox-input id="txtPosition"
+                 name="txtPosition"
+                 isReadOnly="{{elementsObj.position.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.position.readOnly}}"
+                 labelText="Position"
+                 length="1"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72posc"></fox-input>
+    </div>
+    <div [ngClass]="isReadOnlyMode ? 'container-display-none' : 'container-display-block'" class="col-xs-12 col-sm-2">
+      <div class="container-input-and-label">
+        <div class="container-label">
+          <label class="label-for-input">Position Detail</label>
+        </div>
+        <div class="container-input">
+          <div class="container-input-text">{{screen.m72posl}}</div>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="isReadOnlyMode ? 'container-display-block' : 'container-display-none'" class="col-xs-12 col-sm-4">
+      <fox-input id="txtTitleReadonly"
+                 name="txtTitleReadonly"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 labelText="Title"
+                 length="26"
+                 class="col-xs-12 no-padding input-custom"
+                 [(ngModel)]="screen.m72titl"></fox-input>
+    </div>
+    <div [ngClass]="isReadOnlyMode ? 'container-display-none' : 'container-display-block'" class="col-xs-12 col-sm-2">
+      <fox-input id="txtTitle"
+                 name="txtTitle"
+                 isReadOnly="{{elementsObj.title.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.title.readOnly}}"
+                 labelText="Title"
+                 length="2"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72titc"></fox-input>
+    </div>
+    <div [ngClass]="isReadOnlyMode ? 'container-display-none' : 'container-display-block'" class="col-xs-12 col-sm-2">
+      <div class="container-input-and-label">
+        <div class="container-label">
+          <label class="label-for-input">Title Detail</label>
+        </div>
+        <div class="container-input">
+          <div class="container-input-text">{{screen.m72titl}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtCollegeDegree"
+                 name="txtCollegeDegree"
+                 isReadOnly="{{elementsObj.collegeDegree.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.collegeDegree.readOnly}}"
+                 labelText="College Degree"
+                 length="1"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72colg"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-8">
+      <fox-input id="txtOther"
+                 name="txtOther"
+                 isReadOnly="{{elementsObj.other.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.other.readOnly}}"
+                 length="1"
+                 labelText="Other"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72othr"></fox-input>
+    </div>
+  </div>
+  <div class="row container-row-small container-third-block-alignment">
+    <div class="col-xs-12 col-sm-4 container-section-last-row">
+      <fox-input id="txtFullTime"
+                 name="txtFullTime"
+                 isReadOnly="{{elementsObj.fullTime.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.fullTime.readOnly}}"
+                 labelText="Full-Time"
+                 length="1"
+                 class="col-xs-12 no-padding input-xs-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72full"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4 container-section-last-row">
+      <fox-input id="txtElevatedQuality"
+                 name="txtElevatedQuality"
+                 length="1"
+                 isReadOnly="{{elementsObj.elevatedQuality.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.elevatedQuality.readOnly}}"
+                 labelText="Elevated Quality"
+                 class="col-xs-12 no-padding input-xs-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m72elqa"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4 container-processing-date">
+      <fox-input type="fox-date"
+                 id="txtProcessingDate"
+                 name="txtProcessingDate"
+                 displayFormat="MM/DD/YYYY"
+                 programmaticFormat="YYYY-MM-DD"
+                 isReadOnly="{{elementsObj.processingDate.readOnly}}"
+                 isReadOnlyNoPaddingLeftRight="{{elementsObj.processingDate.readOnly}}"
+                 labelText="Processing Date (Req for Process Claim / QR)"
+                 class="col-xs-12 no-padding"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="processingDate"></fox-input>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 no-padding text-right container-button-alignment" [ngClass]="isReadOnlyMode ? 'container-display-none' : 'container-display-block'">
+  <button type="button" class="btn btn-secondary btn-margin" (click)="clearEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)</button>
+  <fox-loading-button [buttonValue]="'Submit (S)'" [buttonStatus]="buttonStatus" [typeValue]="'button'" [foxHotKeyValue]="'alt+s'" (buttonClick)="enterEventClick()"></fox-loading-button>
+</div>

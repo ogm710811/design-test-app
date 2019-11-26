@@ -1,0 +1,95 @@
+.page-title {
+  margin-top: 0;
+}
+
+.member-dtls{
+ width: 110px;
+}
+
+.addr-dtls{
+  padding-left: 20px;
+  width: 500px;
+}
+
+.dtls-label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dtls-value {
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+.left-border {
+  border-left: 1px solid #cccccc;
+}
+
+.container-replace-eob {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+.replace-eob-input {
+  margin-top: 0;
+  padding: 6px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.replace-to-note {
+  padding-left: 5px;
+  font-size: 14px;
+}
+
+.replace-all {
+  width: 30%;
+  float: left;
+  margin-right: 20px;
+}
+
+.replace-to {
+  width: 30%;
+  float: right;
+  text-align: right;
+}
+
+.replace-label {
+  font-weight: 600;
+  color: #333333;
+  font-size: 14px;
+  line-height: 20px;
+  padding-right: 10px;
+}
+
+.table-replace-eob {
+  margin-bottom: 0;
+}
+
+.section-btn {
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.col-number {
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  width: 50px;
+
+}
+
+.table-replace-eob > tbody > tr > td {
+  padding-top: 10px;
+}
+
+.table-replace-eob input.mat-input-element {
+  border: solid 1px #DCE4E8;
+  padding: 1px;
+  height: 25px;
+  margin-top: 0;
+  background-color: #ffffff;
+}

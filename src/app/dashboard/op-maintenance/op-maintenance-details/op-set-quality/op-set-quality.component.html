@@ -1,0 +1,688 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="cancelEventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Cancel and Return (F1)
+  </span>
+</div>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Overview</fox-section-title>
+    </div>
+    <div class="container-overview-padding">
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77IONS"
+                     name="txtM77IONS"
+                     labelText="IONs ID"
+                     [length]=6
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screen.m77ions"
+                     [(ngModel)]="screen.m77ions"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtyM77NAME"
+                     name="txtM77NAME"
+                     labelText="Name"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screen.m77name"
+                     [(ngModel)]="screen.m77name"
+                     [length]="34"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77ALVL"
+                     name="txtM77ALVL"
+                     labelText="Authority Level"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screen.m77alvl"
+                     [(ngModel)]="screen.m77alvl"
+                     [length]="3"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77POSL"
+                     name="txtM77POSL"
+                     labelText="Position"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screen.m77posl"
+                     [(ngModel)]="screen.m77posl"
+                     [length]="15"></fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77MDAT"
+                     name="txtM77MDAT"
+                     labelText="Last Maintenance Date"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screen.m77mdat"
+                     [(ngModel)]="screen.m77mdat"
+                     [length]="8"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77MIONS"
+                     name="txtM77MIONS"
+                     labelText="Maintenance IONs"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeftRight="true"
+                     [inputValue]="screen.m77mion"
+                     [(ngModel)]="screen.m77mion"
+                     [length]="6"></fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>
+        Quality Details
+      </fox-section-title>
+      <div *ngIf="screen.m77titl === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77PAY"
+                     name="txtM77PAY"
+                     labelText="Payments"
+                     [length]=5
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77pay"
+                     [isWarningState]="screen.m77payInd === 'N'"
+                     (input)="onEventChange('m77pay', $event, 'm77payInd')"
+                     [(ngModel)]="screen.m77pay"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77NPAY"
+                     name="txtM77NPAY"
+                     labelText="No Payments"
+                     [length]=5
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77npay"
+                     [isWarningState]="screen.m77npayInd === 'N'"
+                     (input)="onEventChange('m77npay', $event, 'm77npayInd')"
+                     [(ngModel)]="screen.m77npay"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77CORP"
+                     name="txtM77CORP"
+                     labelText="Corporate"
+                     [length]=4
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77corp"
+                     [isWarningState]="screen.m77corpInd === 'N'"
+                     (input)="onEventChange('m77corp', $event, 'm77corpInd')"
+                     [(ngModel)]="screen.m77corp"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77NDOC"
+                     name="txtM77NDOC"
+                     labelText="New Doctor"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77ndoc"
+                     [isWarningState]="screen.m77ndocInd === 'N'"
+                     (input)="onEventChange('m77ndoc', $event, 'm77ndocInd')"
+                     [(ngModel)]="screen.m77ndoc"></fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77NHOS"
+                     name="txtM77NHOS"
+                     labelText="New Hospital"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77nhos"
+                     [isWarningState]="screen.m77nhosInd === 'N'"
+                     (input)="onEventChange('m77nhos', $event, 'm77nhosInd')"
+                     [(ngModel)]="screen.m77nhos"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77SPEC"
+                     name="txtM77SPEC"
+                     labelText="Spec Pay/Alt Addr"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77spec"
+                     [isWarningState]="screen.m77specInd === 'N'"
+                     (input)="onEventChange('m77spec', $event, 'm77specInd')"
+                     [(ngModel)]="screen.m77spec"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77SCLM"
+                     name="txtM77SCLM"
+                     labelText="Split Claim"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77sclm"
+                     [isWarningState]="screen.m77sclmInd === 'N'"
+                     (input)="onEventChange('m77sclm', $event, 'm77sclmInd')"
+                     [(ngModel)]="screen.m77sclm"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77BEN"
+                     name="txtM77BEN"
+                     labelText="Benefit Extension"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77ben"
+                     [isWarningState]="screen.m77benInd === 'N'"
+                     (input)="onEventChange('m77ben', $event, 'm77benInd')"
+                     [(ngModel)]="screen.m77ben"></fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77ADMH"
+                     name="txtM77ADMH"
+                     labelText="Compas History"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77admh"
+                     [isWarningState]="screen.m77admhInd === 'N'"
+                     (input)="onEventChange('m77admh', $event, 'm77admhInd')"
+                     [(ngModel)]="screen.m77admh"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77PDN"
+                     name="txtM77PDN"
+                     labelText="PDN - 1st Pay"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77pdn"
+                     [isWarningState]="screen.m77pdnInd === 'N'"
+                     (input)="onEventChange('m77pdn', $event, 'm77pdnInd')"
+                     [(ngModel)]="screen.m77pdn"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77LETR"
+                     name="txtM77LETR"
+                     labelText="Letters"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77letr"
+                     [isWarningState]="screen.m77letrInd === 'N'"
+                     (input)="onEventChange('m77letr', $event, 'm77letrInd')"
+                     [(ngModel)]="screen.m77letr"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77RDIS"
+                     name="txtM77RDIS"
+                     labelText="Reval Disb"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=4
+                     [inputValue]="screen.m77rdis"
+                     [isWarningState]="screen.m77rdisInd === 'N'"
+                     (input)="onEventChange('m77rdis', $event, 'm77rdisInd')"
+                     [(ngModel)]="screen.m77rdis"></fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77EXS"
+                     name="txtM77EXS"
+                     labelText="Exception Screen"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77exs"
+                     [isWarningState]="screen.m77exsInd === 'N'"
+                     (input)="onEventChange('m77exs', $event, 'm77exsInd')"
+                     [(ngModel)]="screen.m77exs"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77COMM"
+                     name="txtM77COMM"
+                     labelText="Communications"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77comm"
+                     [isWarningState]="screen.m77commInd === 'N'"
+                     (input)="onEventChange('m77comm', $event, 'm77commInd')"
+                     [(ngModel)]="screen.m77comm"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77RSUS"
+                     name="txtM77RSUS"
+                     labelText="Reval SUSP"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=4
+                     [inputValue]="screen.m77rsus"
+                     [isWarningState]="screen.m77rsusInd === 'N'"
+                     (input)="onEventChange('m77rsus', $event, 'm77rsusInd')"
+                     [(ngModel)]="screen.m77rsus"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77PAYA"
+                     name="txtM77PAYA"
+                     labelText="Payment Adjust"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77paya"
+                     [isWarningState]="screen.m77payaInd === 'N'"
+                     (input)="onEventChange('m77paya', $event, 'm77payaInd')"
+                     [(ngModel)]="screen.m77paya"></fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77DINS"
+                     name="txtM77DINS"
+                     labelText="Deceased Insureds"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77dins"
+                     [isWarningState]="screen.m77dinsInd === 'N'"
+                     (input)="onEventChange('m77dins', $event, 'm77dinsInd')"
+                     [(ngModel)]="screen.m77dins"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77RPAY"
+                     name="txtM77RPAY"
+                     labelText="Reval Payment > $"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=5
+                     [inputValue]="screen.m77rpay"
+                     [isWarningState]="screen.m77rpayInd === 'N'"
+                     (input)="onEventChange('m77rpay', $event, 'm77rpayInd')"
+                     [(ngModel)]="screen.m77rpay"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77SMEM"
+                     name="txtM77SMEM"
+                     labelText="Special Memo"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77smem"
+                     [isWarningState]="screen.m77smemInd === 'N'"
+                     (input)="onEventChange('m77smem', $event, 'm77smemInd')"
+                     [(ngModel)]="screen.m77smem"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77VER1"
+                     name="txtM77VER1"
+                     labelText="EC Verification"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=5
+                     [inputValue]="screen.m77ver1"
+                     [isWarningState]="screen.m77ver1Ind === 'N'"
+                     (input)="onEventChange('m77ver1', $event, 'm77ver1Ind')"
+                     [(ngModel)]="screen.m77ver1"></fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-3 container-input-field">
+          <fox-input type="text"
+                     id="txtM77VER2"
+                     name="txtM77VER2"
+                     labelText="EC Mult Verif"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=5
+                     [inputValue]="screen.m77ver2"
+                     [isWarningState]="screen.m77ver2Ind === 'N'"
+                     (input)="onEventChange('m77ver2', $event, 'm77ver2Ind')"
+                     [(ngModel)]="screen.m77ver2"></fox-input>
+
+        </div>
+        <div class="col-xs-12 col-sm-6 container-input-field">
+          <fox-input type="text"
+                     id="txtM77MLTR"
+                     name="txtM77MLTR"
+                     labelText="Med Supp When LTR Days Exhausted"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [length]=3
+                     [inputValue]="screen.m77mltr"
+                     [isWarningState]="screen.m77mltrInd === 'N'"
+                     (input)="onEventChange('m77mltr', $event, 'm77mltrInd')"
+                     [(ngModel)]="screen.m77mltr"></fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Assign Information</fox-section-title>
+      <div *ngIf="screen.m77titl === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM77ASNA"
+                     name="txtM77ASNA"
+                     labelText="Assign > $"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77aamt"
+                     [(ngModel)]="screen.m77aamt"
+                     [isWarningState]="screen.m77aamtInd === 'N'"
+                     (input)="onEventChange('m77aamt', $event, 'm77aamtInd')"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM77ASNP"
+                     name="txtM77ASNP"
+                     labelText="Assign %"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77apct"
+                     [(ngModel)]="screen.m77apct"
+                     [isWarningState]="screen.m77apctInd === 'N'"
+                     (input)="onEventChange('m77apct', $event, 'm77apctInd')"
+                     [length]="3">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM77ASHA"
+                     name="txtM77ASHA"
+                     labelText="Assign Hosp > $"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77asha"
+                     [(ngModel)]="screen.m77asha"
+                     [isWarningState]="screen.m77ashaInd === 'N'"
+                     (input)="onEventChange('m77asha', $event, 'm77ashaInd')"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM77ASHP"
+                     name="txtM77ASHP"
+                     labelText="Assign Hosp %"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77ashp"
+                     [(ngModel)]="screen.m77ashp"
+                     [isWarningState]="screen.m77ashpInd === 'N'"
+                     (input)="onEventChange('m77ashp', $event, 'm77ashpInd')"
+                     [length]="3">
+          </fox-input>
+        </div>
+      </div>
+      <div class="row container-row-small">
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM77NASA"
+                     name="txtM77NASA"
+                     labelText="Non Assign > $"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77nasa"
+                     [(ngModel)]="screen.m77nasa"
+                     [isWarningState]="screen.m77nasaInd === 'N'"
+                     (input)="onEventChange('m77nasa', $event, 'm77nasaInd')"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM77NASP"
+                     name="txtM77NASP"
+                     labelText="Non Assign %"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77nasp"
+                     [(ngModel)]="screen.m77nasp"
+                     [isWarningState]="screen.m77naspInd === 'N'"
+                     (input)="onEventChange('m77nasp', $event, 'm77naspInd')"
+                     [length]="3">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-4 container-input-field">
+          <fox-input type="text"
+                     id="txtM77NAHA"
+                     name="txtM77NAHA"
+                     labelText="Non Assign Hosp > $"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77naha"
+                     [(ngModel)]="screen.m77naha"
+                     [isWarningState]="screen.m77nahaInd === 'N'"
+                     (input)="onEventChange('m77naha', $event, 'm77nahaInd')"
+                     [length]="5">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-2 container-input-field">
+          <fox-input type="text"
+                     id="txtM77NAHP"
+                     name="txtM77NAHP"
+                     labelText="Non Assign Hosp %"
+                     [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                     [inputValue]="screen.m77nahp"
+                     [(ngModel)]="screen.m77nahp"
+                     [isWarningState]="screen.m77nahpInd === 'N'"
+                     (input)="onEventChange('m77nahp', $event, 'm77nahpInd')"
+                     [length]="3">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Message</fox-section-title>
+      <div *ngIf="screen.m77titl === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-input">
+        <div *ngFor="let dat of msgTableData; let idx=index">
+          <div class="col-xs-12 col-sm-4 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM77MES"
+                       name="txtM77MES"
+                       labelText="Message {{idx + 1}}"
+                       [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                       [inputValue]="dat.m77tMsgNo"
+                       [(ngModel)]="dat.m77tMsgNo"
+                       [length]="5">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM96MSP"
+                       name="txtM96MSP"
+                       labelText="Message {{idx + 1}}%"
+                       [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                       [inputValue]="dat.m77tMsgPct"
+                       [(ngModel)]="dat.m77tMsgPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Cautions</fox-section-title>
+      <div *ngIf="screen.m77titl === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-input">
+        <div *ngFor="let dat of cmsgTableData; let idx=index">
+          <div class="col-xs-12 col-sm-4 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM77CM"
+                       name="txtM77CM"
+                       labelText="Caution {{idx + 1}}"
+                       [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                       [inputValue]="dat.m77tCmsgNo"
+                       [(ngModel)]="dat.m77tCmsgNo"
+                       [length]="2">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM77CP"
+                       name="txtM77CP"
+                       labelText="Caution {{idx + 1}}%"
+                       [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                       [inputValue]="dat.m77tCmsgPct"
+                       [(ngModel)]="dat.m77tCmsgPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Letters</fox-section-title>
+      <div *ngIf="screen.m77titl === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-input">
+        <div *ngFor="let dat of palsTableData; let idx=index">
+          <div class="col-xs-12 col-sm-4 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM77LT"
+                       name="txtM77LT"
+                       labelText="Letter {{idx + 1}}"
+                       [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                       [inputValue]="dat.m77tPals"
+                       [(ngModel)]="dat.m77tPals"
+                       [length]="8">
+            </fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-2 container-input-field" *ngIf="idx < 10">
+            <fox-input type="text"
+                       id="txtM77LP"
+                       name="txtM77LP"
+                       labelText="Letter {{idx + 1}}%"
+                       [isReadOnly]="screen.m77titl !== 'UPDATE'"
+                       [isReadOnlyNoPaddingLeftRight]="screen.m77titl !== 'UPDATE'"
+                       [inputValue]="dat.m77tPalsPct"
+                       [(ngModel)]="dat.m77tPalsPct"
+                       [length]="3">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<fox-section [noPadding]="true" *ngIf="screen.m77titl !== 'UPDATE'">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Excluded Locations</fox-section-title>
+    </div>
+    <div class="container-info-padding">
+      <div class="row container-row-input">
+        <div *ngFor="let dat of cmsgTableData; let idx=index">
+          <div class="col-xs-12 col-sm-2 container-input-field" *ngIf="idx < 12">
+            <fox-input type="text"
+                       id="txtM77Loc"
+                       name="txtM77Loc"
+                       labelText="Location {{idx + 1}}"
+                       [isReadOnly]="true"
+                       [isReadOnlyNoPaddingLeftRight]="true"
+                       [inputValue]="dat.m77tPals"
+                       [(ngModel)]="dat.m77tPals"
+                       [length]="8">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-md-12 no-padding" *ngIf="screen.m77titl === 'UPDATE'">
+  <div class="form-row text-right">
+    <button type="button"
+            class="btn btn-secondary button-clear"
+            (click)="resetEventClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">Clear (R)
+    </button>
+    <fox-loading-button [buttonValue]="'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="processTrans()"
+                        class="btn-submit">
+    </fox-loading-button>
+  </div>
+</div>

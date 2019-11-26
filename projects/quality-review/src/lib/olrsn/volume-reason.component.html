@@ -1,0 +1,195 @@
+<fox-section>
+  <fox-section-title>Quality Review Reason Volumes By Site</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <mat-label>Site:</mat-label>
+        <input matInput id="txtM99SITC" name="txtM99SITC" #txtM99SITC="ngModel" maxlength="1" size="1" type="text"
+          [(ngModel)]="screenBean.m99sitc" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field class="full-width">
+        <input matInput id="txtM99FTWA" name="txtM99FTWA" #txtM99FTWA="ngModel" maxlength="3" size="3" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m99ftwa" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-10">
+      <mat-form-field class="full-width">
+        <mat-label>Top Five:</mat-label>
+        <input matInput id="txtM99TFR1" name="txtM99TFR1" #txtM99TFR1="ngModel" maxlength="77" size="77" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m99tfr1" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Site:</mat-label>
+        <input matInput id="txtM99SITN" name="txtM99SITN" #txtM99SITN="ngModel" maxlength="16" size="16" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m99sitn" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Quality Reasons for:</mat-label>
+        <input matInput id="txtM99DATE" name="txtM99DATE" #txtM99DATE="ngModel" maxlength="8" size="8" disabled="disabled"
+          type="text" [(ngModel)]="screenBean.m99date" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-1">
+      <mat-label class="mat-input-placeholder">Reason</mat-label>
+    </div>
+    <div class="col-sm-1">
+      <mat-label class="mat-input-placeholder">Volume</mat-label>
+    </div>
+    <div class="col-sm-1">
+      <mat-label class="mat-input-placeholder">Reason</mat-label>
+    </div>
+    <div class="col-sm-1">
+      <mat-label class="mat-input-placeholder">Volume</mat-label>
+    </div>
+    <div class="col-sm-1">
+      <mat-label class="mat-input-placeholder">Reason</mat-label>
+    </div>
+    <div class="col-sm-1">
+      <mat-label class="mat-input-placeholder">Volume</mat-label>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq01">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq01" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq02">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq02" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq03">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq03" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq04">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq04" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq05">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq05" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq06">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq06" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq07">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq07" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq08">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq08" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq09">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq09" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq10">
+    <div class="col-sm-8">
+      <mat-form-field class="full-width">
+        <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+          size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq10" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 " *ngIf="screenBean.m99rq11">
+      <div class="col-sm-8">
+        <mat-form-field class="full-width">
+          <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+            size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq11" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-sm-12 " *ngIf="screenBean.m99rq12">
+        <div class="col-sm-8">
+          <mat-form-field class="full-width">
+            <input id="txtM98LC01" class="no-background" matInput name="txtM98LC01" #txtM98LC01="ngModel" maxlength="78"
+              size="78" disabled="disabled" type="text" [(ngModel)]="screenBean.m99rq12" />
+          </mat-form-field>
+        </div>
+      </div>
+
+  <div class="col-sm-12 margin-top-20 text-right">
+
+    <button id="pf3" name="pf3" #pf3 type="button" class="btn btn-default margin-right-20" (click)="pf1EventClick()"
+      foxHotkey="alt+p">Return
+      (T)
+    </button>
+    <button id="pf3" name="pf3" #pf3 type="button" [disabled]="!screenBean.m99pf3" class="btn btn-default margin-right-20"
+      (click)="pf3EventClick()" foxHotkey="alt+p">Previous
+      (P)
+    </button>
+    <button id="pf4" name="pf4" [disabled]="!screenBean.m99pf4" #pf4 type="button" class="btn btn-default margin-right-20"
+      (click)="pf4EventClick()" foxHotkey="alt+n">Next
+      (N)
+    </button>
+    <button id="enter" name="enter" #enter type="button" class="btn btn-primary" (click)="enterEventClick()" foxHotkey="alt+e">Enter
+      (E)
+    </button>
+  </div>
+</fox-section>

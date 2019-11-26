@@ -1,0 +1,22 @@
+<fox-section class="row container-table-cautions">
+  <div class="text-sub-title">
+    <fox-section-title class="text-header">Cautions</fox-section-title>
+    <fox-section-subheader class="text-sub-header">Review the cautions displayed to the examiner.</fox-section-subheader>
+  </div>
+
+  <fox-table *ngIf = "viewData && viewData.length > 0" class="fox-table-cautions"
+             [tableColumns]="headers"
+             [tableData]="viewData | orderBy: {property: columnDataCurrentSortKey, direction: columnDataSortDirection}"
+             (columnChanged)="columnDataCurrentSortKey = $event"
+             (directionChanged)="columnDataSortDirection = $event">
+  </fox-table>
+
+
+  <fox-paginator-non-material
+                              [(pageSize)]="pageSizeSelected"
+                              [dataLengthInput]="dataLengthInput" [pageTotal]="pageTotal"
+                              [(currentPage)]="currentPage"
+                              (currentPageChange)="calculateNewPage();"
+                              (pageSizeChange)="currentPage=0; calculateNewPage();" #paginator>
+  </fox-paginator-non-material>
+</fox-section>

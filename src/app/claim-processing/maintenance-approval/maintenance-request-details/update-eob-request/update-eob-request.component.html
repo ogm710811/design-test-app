@@ -1,0 +1,101 @@
+<div class="container-goto col-md-12">
+  <div class="container-link-1 col-md-8">
+    <a class="link-back-search" [routerLink]="url"><i class="fas fa-arrow-left"></i>
+      Back to Search Results</a>
+  </div>
+  <div class="container-link-2 col-md-4">
+    <div class="containers-links">
+      <a class="link-prev-result"><i class="fas fa-chevron-left"></i> Prev Result (I)</a>
+      <a class="link-next-result">Next Result (J)<i class="fas fa-chevron-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="container-main-section col-md-12">
+  <div class="container-left-box col-md-9">
+    <fox-loading-overlay>
+      <fox-section [noPadding]="true">
+        <div class="title-card">Overview</div>
+        <div class="section-note-1">
+          <span class="content-note-1">EOB modifications apply to</span>
+          <span class="content-note-2">Claim is associated to </span>
+        </div>
+        <div class="section-note-2">
+          <span class="content-note-3">Claim #{{requestDetails?.claimNum}}</span>
+          <span><i class="fas fa-external-link-square-alt"></i>&nbsp;
+          <a class="link-claim-detail" [routerLink]="getRedirectUrl(requestDetails?.claimNum, 'Claim')">View Claim</a></span>
+          <span class="section-note-3"><span class="content-note-4">{{empName?.firstName}}&nbsp;{{empName?.lastName}}</span>
+        <span><i class="fas fa-user" aria-hidden="true"></i>&nbsp;
+          <a class="link-claim-detail" [routerLink]="getRedirectUrl(requestDetails?.memberNum, 'Member')">{{requestDetails?.aarpMembrshipNum}}</a></span>
+        </span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="title-card container-change-table">Changes from Original EOB</div>
+        <div class="section-subtitle">
+          <p>Any values that have been updated from the Original EOB are highlighted in red </p>
+        </div>
+        <div class="container-eob-info">
+          <div class="col-md-12 no-padding">
+            <div class="container-section-info col-md-2 no-padding" [ngClass]="{'col-value-change' : isUpdatedClaimDosFrom}">
+              <div class="section-info-label">Date of Service From</div>
+              <div class="section-info-value">{{ claimDosFrom | date: 'MM/dd/yyyy'}}</div>
+            </div>
+            <div class="container-section-info col-md-2 no-padding" [ngClass]="{'col-value-change' : isUpdatedClaimDosTo}">
+              <div class="section-info-label">Date of Service To</div>
+              <div class="section-info-value">{{ claimDosTo | date: 'MM/dd/yyyy'}}</div>
+            </div>
+            <div class="container-section-info col-md-2 no-padding" [ngClass]="{'col-value-change' : isUpdatedPrimaryIcd}">
+              <div class="section-info-label">Primary ICD</div>
+              <div class="section-info-value">{{ claimPrimaryIcd}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 update-eob-table-div">
+          <table class="table table-update-eob">
+            <thead class="thead-default">
+              <tr>
+                <th>Bill Line</th>
+                <th>Service Type</th>
+                <th>Type Code</th>
+                <th>Date of Service From</th>
+                <th>Date of Service To</th>
+                <th>Processed on Exception Screen?</th>
+                <th>#1</th>
+                <th>#2</th>
+                <th>Benefit Period Number</th>
+                <th>Benefit Period Days</th>
+                <th>Date of Accident</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let dat of updateEobResults; let j = index">
+                <tr [id]=" 'update-eob-tr-' + j">
+                  <td [id]=" 'update-eob-tr-' + j + '-td-1'">{{dat['billLineNum']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-2'" [ngClass]="{'col-value-change' : dat['isUpdatedServiceCode']}">{{dat['billLineServiceCode']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-3'" [ngClass]="{'col-value-change' : dat['isUpdatedTypeCode']}">{{dat['billLineTypeCode']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-4'" [ngClass]="{'col-value-change' : dat['isUpdatedDosFrom']}">{{dat['billLineDosFrom'] | date : 'MM/dd/yyyy'}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-5'" [ngClass]="{'col-value-change' : dat['isUpdatedDosTo']}">{{dat['billLineDosTo'] | date : 'MM/dd/yyyy'}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-6'" [ngClass]="{'col-value-change' : dat['isUpdatedExceptionInd']}">{{dat['billLineExceptionInd']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-7'" [ngClass]="{'col-value-change' : dat['isUpdatedSrvAccum1']}">{{dat['billLineSrvAccum1']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-8'" [ngClass]="{'col-value-change' : dat['isUpdatedSrvAccum2']}">{{dat['billLineSrvAccum2']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-9'" [ngClass]="{'col-value-change' : dat['isUpdatedBenefitPeriodNum']}">{{dat['billLineBenefitPeriodNum']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-10'" [ngClass]="{'col-value-change' : dat['isUpdatedBenefitPeriodDays']}">{{dat['billLineBenefitPeriodDays']}}</td>
+                  <td [id]=" 'update-eob-tr-' + j + '-td-11'" [ngClass]="{'col-value-change' : dat['isUpdatedDateOfAccident']}">{{dat['billLineDateOfAccident'] | date : 'MM/dd/yyyy'}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </fox-section>
+    </fox-loading-overlay>
+  </div>
+
+  <div class="container-right-box col-md-3">
+    <fox-approve-deny-request [reqInfo]="reqInfo" [denialRsn]="denialRsn" [reviewTimeStmp]="reviewTimeStmp"
+                              [approverMsid]="approverMsId"
+                              [isPending]="isPending" [isApproved]="isApproved" [isDeny]="isDeny"
+                              (isPendingChange)="isPending=$event" (isApprovedChange)="isApproved=$event"
+                              (isDeniedChange)="isDeny=$event" (statusChange)="statusText=$event">
+    </fox-approve-deny-request>
+  </div>
+</div>

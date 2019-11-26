@@ -1,0 +1,267 @@
+.left-padding{
+  padding-left: 0px;
+}
+
+.page-title {
+  margin-top: 15px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.mat-form-input-field-claim {
+  margin-right: 15px;
+  margin: 0;
+  margin-bottom: 0;
+  padding-bottom: 17px;
+}
+
+.col-claim-no {
+  width: 100%;
+  padding-right: 5px;
+}
+
+.mat-form-input-field {
+  margin-left: 15px;
+  margin: 0;
+  margin-bottom: 0;
+  padding-bottom: 17px;
+}
+
+.container-bill-card {
+  padding-top: 10px;
+}
+
+.container-bill-card {
+  padding-top: 10px;
+}
+
+.container-bill-label {
+  position: relative;
+  width: 140px;
+}
+
+.container-bill-content-label {
+  height: 14px;
+  width: 130px;
+  color: #333333;
+  font-family: "UHC Sans";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.container-member-value {
+  height: 14px;
+  width: 55px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.header-text {
+  height: 18px;
+  width: 94.4px;
+  color: #4E5B71;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: left;
+}
+
+.left-border {
+  border-left: 1px solid #cccccc;
+  height: 140px;
+}
+
+.text-upper{
+  text-transform: uppercase;
+}
+
+.text-style {
+  text-transform: uppercase;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+  padding-left: 5px;
+  padding-right: 8px;
+}
+
+.container-op-info {
+  margin-top: 15px;
+}
+
+.container-last-row {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.container-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+}
+
+.container-drugeob-nopadding {
+  padding: 0;
+}
+
+.container-summary-row-padding {
+  margin-bottom: 20px;
+}
+
+.container-drugeob-summary {
+  padding: 0 20px 0 0;
+}
+
+.container-drugeobsum-firstcol {
+  padding: 0 7px 0 0;
+}
+
+.container-drugeobsum-thirdcol {
+  padding: 0 0 0 45px;
+}
+
+.fox-input-padding-right {
+  padding: 0 30px 0 0;
+}
+
+.fox-input-padding-left, .container-read-only-irs {
+  padding: 0 0 0 30px;
+}
+
+.container-irs-height {
+  height: 50px;
+}
+
+.fox-input-custom {
+  margin-bottom: 13px;
+}
+
+.container-divider {
+  padding: 0 10px 0 50px;
+}
+
+.container-left-border {
+  border-left: 1px solid #CED3DA;
+  height: 197px;
+  width: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container-bottom-border {
+  border-bottom: 1px solid #CED3DA;
+  width: 100%;
+}
+
+.container-drugeob-read-only {
+  border-bottom: 1px solid #E5EAEE;
+  width: 100%;
+  word-break: break-word;
+}
+
+.container-drugeob-read-only .drugeob-title-readonly {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.drugeob-value-readonly {
+  margin-bottom: 5px;
+  margin-top: 18px;
+}
+
+.container-sub-total-value {
+  margin-top: 16px;
+}
+
+.container-sub-total-read-only {
+  margin-bottom: 20px;
+}
+
+.container-details-card-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  margin: 20px 0 0 20px;
+}
+
+.container-details-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  margin: 0 0 30px 20px;
+}
+
+.container-summary-card-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.container-summary-subtitle {
+  color: #6E7681;
+  line-height: 16px;
+  margin: 0 0 25px 0;
+}
+
+.container-assign-total-benefit {
+  margin-left: 0;
+  padding-right: 30px;
+}
+
+@media (max-width: 768px) {
+  .fox-input-padding-right,
+  .fox-input-padding-left,
+  .container-read-only-irs,
+  .container-drugeob-summary,
+  .container-drugeobsum-firstcol,
+  .container-drugeobsum-thirdcol {
+    padding: 0;
+  }
+
+  .row-small > div[class^="col"] {
+    padding-left: 10px;
+  }
+
+  .container-summary-row-padding {
+    margin-bottom: 20px;
+  }
+
+  .container-divider {
+    margin-bottom: 20px;
+    padding: 0;
+  }
+  .container-assign-total-benefit {
+    margin-left: 0;
+    padding-right: 30px;
+  }
+
+  .container-read-only-irs {
+    margin-bottom: 20px;
+  }
+
+}

@@ -1,0 +1,79 @@
+<div class="row container-return-previous">
+  <span (click)="PF1EventClick()" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img src="assets/img/arrow-left.svg" class="img-arrow-left"/>
+    Return to Previous (F1)
+  </span>
+</div>
+<div class="row">
+  <fox-section>
+    <div class="container-title-details">
+      <fox-section-title>Overview</fox-section-title>
+    </div>
+    <div class="row container-row">
+      <div class="container-row-holder">
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-read-only-field
+            label="Processing Dates"
+            value="{{screen.m98bgn}} - {{screen.m98end}}">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-read-only-field
+            label="Site"
+            [value]="screen.m98site">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-read-only-field
+            label="Division"
+            [value]="screen.m98div">
+          </fox-read-only-field>
+        </div>
+        <div class="col-xs-12 col-sm-3 container-input">
+          <fox-read-only-field
+            label="Location"
+            [value]="screen.m98loc">
+          </fox-read-only-field>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+</div>
+<div class="row">
+  <fox-section [drawRectangleNoBottomPadding]="true">
+    <fox-section-title class="fox-section-header">Results: Process Claim</fox-section-title>
+    <div class="container-table-op-statistics">
+      <fox-table [baseTableId]="'operator-statistics-totals-process-'"
+                 [noBorderTopHeader]="true"
+                 [tableColumns]="columnsProcessClaim"
+                 [tableData]="resultsProcessClaim"
+                 [lastRowBold]="true">
+      </fox-table>
+    </div>
+  </fox-section>
+</div>
+<div class="row">
+  <fox-section [drawRectangleNoBottomPadding]="true">
+    <fox-section-title class="fox-section-header">Results: Quality Review</fox-section-title>
+    <div class="container-table-op-statistics">
+      <fox-table [baseTableId]="'operator-statistics-totals-quality'"
+                 [noBorderTopHeader]="true"
+                 [tableColumns]="columnsQualityReview"
+                 [tableData]="resultsQualityReview"
+                 [lastRowBold]="true">
+      </fox-table>
+    </div>
+  </fox-section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

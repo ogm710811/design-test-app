@@ -1,0 +1,102 @@
+import { RelatedPruTable } from './related-pru-table.model';
+import { Tab1 } from './tab1.model';
+import { Tab2 } from './tab2.model';
+import { WsMsgFoundIndtors } from './ws-msg-found-indtors.model';
+import { WsSaveTextData } from './ws-save-text-data.model';
+
+/**
+ * Model class WorkStorage
+ * Path: screenbean/messagemnt
+ * Model: com::uhc::aarp::fox::domain::screenbean::messagemnt::WorkStorage
+ * Legacy Mapping: WS-DUMMY-DATE
+ */
+export class WorkStorage {
+  wsDummyDate = '';
+  sub = 0;
+  sub1 = 0;
+  sub2 = 0;
+  wsTempCnt = 0;
+  pruSub = 0;
+  wsCallingPgm = '';
+  wsTempAttrHdr = '';
+  wsTempAttrVar = '';
+  wsTempTxt = '';
+  wsTxtStart = 0;
+  wsTxtLen = 0;
+  messageHold = '';
+  ansiHold = '';
+  commandEnteredInd = '';
+  errorInd = '';
+  eofSw = '';
+  doneSw = '';
+  doneLoop2Sw = '';
+  wsMsgFoundIndtors = new WsMsgFoundIndtors();
+  respCode = 0;
+  stateDenialInd = '';
+  wsTsqItemD = 0;
+  relatedPruTable = new RelatedPruTable();
+  jansiMessageInd = '';
+  jansiMessageNo = '';
+  jpruMessageInd = '';
+  jpruMessageNo = '';
+  wsTempMm = '';
+  wsTempDd = '';
+  wsTempYy = '';
+  wsMsgCc = '';
+  wsMsgYy = '';
+  wsMsgMm = '';
+  wsMsgDd = '';
+  wsCurrentCc = 0;
+  wsCurrentYy = 0;
+  wsCurrentMm = 0;
+  wsCurrentDd = 0;
+  wsTransFrom = '';
+  wsTransTo = '';
+  wsSaveSelection = '';
+  wsSaveMsgType = '';
+  wsSaveRelatedAnsi = '';
+  wsSaveAnsiGroupCode = '';
+  wsSaveRsnCode = '';
+  wsSaveRaRemarkCode = '';
+  wsSaveMsgNum = '';
+  wsSaveLangInd = '';
+  wsSavePctNum = 0;
+  wsSaveAutoGenLvl = '';
+  wsSaveSysGenInd = '';
+  wsSaveNotUsed = '';
+  wsSaveDenialInd = '';
+  wsSaveEobPrintInd = '';
+  wsSaveRaPrintInd = '';
+  wsSaveHoldInd = '';
+  wsSaveDupBillInd = '';
+  wsSaveReconsiderInd = '';
+  wsSaveVarExistsInd = '';
+  t1PlanCode = '';
+  t1PlanLtcDays = '';
+  t1BlDosCcyy = '';
+  t1PlanYtdVisits = '';
+  t1PlanYtdDedAmt = '';
+  t1ClDosCcyy = '';
+  t1ClTotDedAmt = '';
+  t1PlanMaxDedAmt = '';
+  t1BlOopAmt = '';
+  t1PlanOopYtdAmt = '';
+  t1PlanOopCalMax = '';
+  t1BlTripDedAmt = '';
+  t1ClaimNumber = '';
+  t1PlanMaxVisits = '';
+  t1BlIhdPercent = '';
+  t1Var16 = '';
+  t1Var17 = '';
+  t1Var18 = '';
+  t1Var19 = '';
+  t1Var20 = '';
+  tab1 = new Tab1();
+  t2Sub = 0;
+  tab2s: Tab2[] = [];
+  wsLocalTsqTermid = '';
+  tsqCallingPgm = '';
+  messageTypeInd = '';
+  lkMsgProtAttr = '';
+  wsSaveTextData = new WsSaveTextData();
+}

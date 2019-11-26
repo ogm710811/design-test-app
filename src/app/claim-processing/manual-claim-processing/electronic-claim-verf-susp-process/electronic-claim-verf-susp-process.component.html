@@ -1,0 +1,68 @@
+<fox-section>
+  <div class="container-card-title"> {{cardTitle}} </div>
+  <div class="container-subtitle"> {{cardSubTitle}} </div>
+  <div class="row row-small">
+    <div class="col-xs-12 col-sm-3 container-input-location">
+      <fox-input type="text"
+                 id="txtM43LOC"
+                 name="txtM43LOC"
+                 labelText="Location"
+                 [(ngModel)]="screen.m43loc"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 [length]="3">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-input-padding">
+      <fox-input type="fox-date"
+                 id="txtM43DATE"
+                 name="txtM43DATE"
+                 placeholder="MM/DD/YYYY"
+                 labelText="Date"
+                 [(ngModel)]="serviceDate"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 [length]="10">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-2 container-input-padding">
+      <fox-input type="text"
+                 id="txtM43QUE"
+                 name="txtM43QUE"
+                 labelText="Work Queue"
+                 [(ngModel)]="screen.m43que"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 [length]="3">
+      </fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 no-padding">
+      <div class="container-label-or">or</div>
+    </div>
+    <div class="col-xs-12 col-sm-3 container-input-ion">
+      <fox-input type="text"
+                 id="txtM43IONS"
+                 name="txtM43IONS"
+                 labelText="IONs ID"
+                 [(ngModel)]="screen.m43ions"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 [length]="6">
+      </fox-input>
+    </div>
+  </div>
+  <div class="form-row text-right">
+    <div class="col-md-12 container-btn-margin no-padding">
+      <button type="button"
+              class="btn btn-secondary margin-right-20"
+              (click)="btnClearClick()"
+              foxHotkey="alt+r"
+              hotkeyAction="click">
+        Clear (R)
+      </button>
+      <fox-loading-button [buttonValue] = "'Submit (S)'"
+                          [buttonStatus]="buttonStatus"
+                          [typeValue]="'button'"
+                          [foxHotKeyValue]="'alt+s'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</fox-section>
+

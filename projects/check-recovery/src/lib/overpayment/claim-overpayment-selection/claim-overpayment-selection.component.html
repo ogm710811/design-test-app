@@ -1,0 +1,47 @@
+<fox-section>
+  <fox-section-title>
+    <b>Overpayment Details</b>
+  </fox-section-title>
+  <fox-section-subheader>
+    Enter a line # below and Click “Continue” or use Alt + L or Enter to proceed.
+  </fox-section-subheader>
+  <div class="container-overpayment-table">
+    <fox-table [tableColumns]="displayedColumns"
+               [tableData]="overpaymentResult | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+               (columnChanged)="tableColumnCurrentSortKey = $event"
+               (directionChanged)="tableColumnCurrentSortDirection = $event"
+               (linkClicked)="linkClicked($event)">
+    </fox-table>
+  </div>
+  <div class="container-overpayment-paginator">
+    <fox-paginator-non-material #paginator
+                                [(pageSize)]="pageSizeSelected"
+                                [dataLengthInput]="dataLengthInput"
+                                [pageTotal]="pageTotal"
+                                [(currentPage)]="currentPage"
+                                (currentPageChange)="calculateNewPage();">
+    </fox-paginator-non-material>
+  </div>
+  <hr class="hr-overpayment">
+  <div>
+    <div class="container-line-number">
+      <fox-input class="container-input-label"
+                 [(ngModel)]="screenBean.m14sel"
+                 type="fox-number"
+                 maxlength="3"
+                 (keyup.enter)="enterKeyUpEventClick()"
+                 labelText="Select Line #">
+      </fox-input>
+    </div>
+    <div class="container-continue-button">
+      <button id="btnEnter"
+              type="button"
+              class="btn btn-primary"
+              foxHotkey="alt+l"
+              hotkeyAction='click'
+              (click)="enterKeyUpEventClick()">
+        Continue (L)
+      </button>
+    </div>
+  </div>
+</fox-section>

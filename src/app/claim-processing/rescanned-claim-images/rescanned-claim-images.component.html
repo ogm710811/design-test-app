@@ -1,0 +1,78 @@
+<fox-section *ngIf="!importDetailsSwitch">
+  <fox-section-title class="section-title">
+    <div class="div-title">Upload a Batch Processing File</div>
+  </fox-section-title>
+  <div class="div-subtitle">Choose a file below that can be imported for batch processing of rescanned claim images.
+    Your file must adhere to the predefined format for import; this can be viewed by downloading the file format
+    example. Once a file is selected, use the <span class="txt-bold">Upload (U)</span> button to proceed. You will be
+    presented with a downloadable report on which rows succeeded and/or failed to import.
+  </div>
+  <div class="content-callout-base">
+    <div class="subtitle-copy">Upon successful import:</div>
+    <div class="div-rescan-dcn">
+      <ol class="ol-margin-padding">
+        <li>The rescan Document Control Number is associated to the original DCN #</li>
+        <li>An email is sent to the email address listed, notifying the user that rescan data has been associated to
+          the original DCN #
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="div-container-upload">
+    <span class="span-choose-file">Choose File</span>
+    <div class="file-upload">
+      <input id="hidden-file-2" #fileInput type="file" accept=".csv" (change)="onFileChange($event.target.files)">
+      <button type="button" class="btn btn-secondary btn-browse" (click)="fileInput.click()" foxHotkey="alt+b">
+        Browse (B)
+      </button>
+      <div class="div-file">
+        <div class="div-selected-file">{{localFileLocation}}</div>
+        <div class="file-upload-note">Max filesize: 10 megabytes (MB) ; Acceptable file types: .CSV</div>
+      </div>
+    </div>
+  </div>
+  <div class="div-container-sample">
+    <div class="div-choose-file">File format example:</div>
+    <p class="div-sample-file">
+      <a download="csv-excel-example-file.csv" [href]="fileDownloadUrl">csv-excel-example-file.csv</a>
+    </p>
+  </div>
+  <div>
+    <button type="button" class="btn btn-primary btn-upload" foxHotkey="alt+u" [disabled]="!isFileSelected"
+            (click)="onClickConfirm()">Upload (U) <img class="arrow-right" src="assets/img/arrow-right-white.svg">
+    </button>
+  </div>
+</fox-section>
+
+<fox-modal [(visible)]="isUploadConfirmed" modalTitle="File Upload">
+  <div>
+    <p class="txt-msg">You are about to perform an action that cannot be undone. Are you sure you want to proceed?</p>
+  </div>
+  <div class="col-md-12 text-right">
+    <button type="button" class="btn btn-secondary btn-cancel" (click)="cancelUpload()">Cancel</button>
+    <button type="submit" class="btn btn-primary btn-proceed" (click)="onClickUpload()" autofocus>Proceed</button>
+  </div>
+</fox-modal>
+
+<fox-modal class="progress-modal" [(visible)]="isUploading" modalTitle="Uploading...{{progressBarValue}}%"
+           [closable]="false" [hideBorder]="true">
+  <span>
+    <span class="container-progress-bar">
+      <mat-progress-bar
+        [color]="progressBarColor"
+        [mode]="progressBarMode"
+        [value]="progressBarValue"
+        [bufferValue]="progressBarBufferValue">
+      </mat-progress-bar>
+    </span>
+    <button type="button" class="btn btn-secondary btn-cancel-upload" (click)="cancelUpload()">Cancel</button>
+  </span>
+  <div>{{uploadDetailText}}</div>
+</fox-modal>
+<fox-import-details *ngIf="importDetailsSwitch"
+                    (importDetailsSwitch)="importDetailsSwitch=$event"
+                    [importSummary]="importSummary"
+                    [importDetails]="importDetails"
+                    (localFileLocation)="localFileLocation=$event"
+                    (isFileSelected)="isFileSelected=$event">
+</fox-import-details>

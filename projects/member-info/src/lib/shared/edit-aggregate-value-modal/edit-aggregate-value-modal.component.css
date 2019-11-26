@@ -1,0 +1,142 @@
+.container-padding {
+  padding: 0;
+}
+
+.container-top-description {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.container-bottom {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.container-info-text {
+  margin-bottom: 15px;
+  letter-spacing: 0.04em;
+  line-height: 20px;
+}
+
+.container-info-plans {
+  margin-bottom: 20px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.span-info-plans {
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.container-multi-select {
+  width: 383px;
+  height: 52px;
+  margin-bottom: 15px;
+}
+
+.container-filter-plans {
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+}
+
+.container-filter-info {
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.container-filter-info-underline {
+  font-weight: 800;
+}
+
+.form-row-margin {
+  margin: 0;
+}
+
+.btn-modal-agg-year {
+  padding-left: 16px;
+  padding-top: 30px;
+}
+
+.btn-modal-agg-cancel-submit {
+  padding-right: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.container-buttons {
+  height: 39px;
+  width: 130px;
+  margin-left: 10px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.container-change-button {
+  height: 39px;
+  width: 130px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 15px;
+}
+
+.tbl-alert-icon {
+  padding: 11px 16px;
+}
+
+.tbl-alert-text {
+  color: #BF3533;
+  display: flex;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.img-validation-error {
+  width: 30px;
+  height: 30px;
+}
+
+.tbl-alert-text-font {
+  font-size: 16px;
+  margin-top: 5px;
+  padding-left: 0;
+  line-height: 18px;
+}
+
+.tbl-alert-text-font-weight {
+  font-weight: 600;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 12px solid rgba(255,0,0,0.1);
+  border-right: 12px solid rgba(255,0,0,0.1);
+  border-bottom: 7px solid rgba(255,0,0,0.1);
+  border-top: 7px solid rgba(255,0,0,0.1);
+}
+
+.container-diff-value-null {
+   color: #333333;
+ }
+
+.container-diff-value-positive {
+  color: #21B01E;
+}
+
+.container-diff-value-negative {
+  color: #BF3533;
+}
+
+.img-arrow-left {
+  width: 10px;
+  height: 10px;
+}
+
+.span-change-button {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+

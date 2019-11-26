@@ -1,0 +1,50 @@
+<fox-section class="margin-top-25">
+  <fox-section-title>Communication Details</fox-section-title>
+  <div class="container-div-fox-sub-title">
+    <fox-section-subheader>Enter a line # below and click “Submit” or use Alt + S or Enter to proceed.</fox-section-subheader>
+  </div>
+  <div class="container-table-communication-history">
+    <fox-table *ngIf="viewData && viewData.length > 0"
+               [baseTableId]="'list-communication-'"
+               [tableColumns]="columns"
+               [tableData]="results | orderBy: {property: tableDataSortKey, direction: tableDataDirection}"
+               (columnChanged)="tableDataSortKey = $event"
+               (directionChanged)="tableDataDirection = $event"
+               [fixedFirstColumn]="true"
+               (linkClicked)="navigateTo($event)" >
+    </fox-table>
+  </div>
+  <div class="row container-div-paginator">
+    <fox-paginator-non-material [(pageSize)]="pageSizeSelected"
+                                [dataLengthInput]="dataLengthInput"
+                                *ngIf="!isIndividualSelected"
+                                [pageTotal]="pageTotal"
+                                [(currentPage)]="currentPage"
+                                (currentPageChange)="calculateNewPage();"
+                                (pageSizeChange)="currentPage=0; calculateNewPage();">
+    </fox-paginator-non-material>
+  </div>
+  <mat-divider class="mat-divider-margins"></mat-divider>
+  <div class="container-div-row">
+    <div class="container-div-selection container-div-inline-block">
+      <fox-input type="fox-number"
+                 id="txtEnterSelection"
+                 name="txtEnterSelection"
+                 labelText="Select Line #"
+                 [(ngModel)]="screen.m40sel">
+      </fox-input>
+    </div>
+    <div class="container-div-button container-div-inline-block">
+      <fox-loading-button [buttonValue] = "'Submit (S)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [foxHotKeyValue]="'alt+s'"
+                          (buttonClick)="btnLabel1EventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</fox-section>
+
+
+
+

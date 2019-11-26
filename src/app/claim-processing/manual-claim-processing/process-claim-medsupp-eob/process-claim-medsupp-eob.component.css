@@ -1,0 +1,252 @@
+.mat-label-provider-name {
+  text-transform: uppercase
+}
+
+.page-title {
+  margin-top: 0px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.col-plan-width {
+  width: 50px;
+}
+
+.col-Prov-width {
+  width: 80px;
+}
+
+.col-tos-width {
+  width: 50px;
+}
+
+.col-ser-dates-width {
+  width:60px;
+}
+
+.col-ser-fromDate-width {
+  width:80px;
+}
+
+.col-ser-toDate-width {
+  width:80px;
+  margin-left: 20px;
+}
+
+.col-assign-width {
+  width:50px;
+}
+
+.col-charge-width {
+  width: 70px;
+}
+
+.container-op-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.container-last-row {
+  padding-bottom: 20px;
+}
+
+.container-upper{
+  text-transform: uppercase;
+}
+
+.container-center{
+  text-align: center;
+}
+
+.col-eff-width {
+   width: 100px;
+}
+
+.col-type3-width {
+  width: 40px;
+}
+
+.container-bill-label {
+  position: relative;
+  width: 140px;
+}
+
+.container-bill-content-label {
+  height: 14px;
+  width: 130px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.container-member-value {
+  height: 14px;
+  width: 55px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.header-text {
+  height: 18px;
+  width: 94.4px;
+  color: #4E5B71;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: left;
+}
+
+.assign-width{
+  width: 100px;
+  margin-top: 0;
+}
+
+.div-row-second-card {
+  border-right: 1px solid #CED3DA;
+  padding-right: 75px;
+  padding-left: 20px;
+}
+
+.div-row-second-card-right {
+  padding-left: 75px;
+  padding-right: 37px;
+}
+
+.div-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+}
+
+.div-button-margin {
+  margin-top: 25px;
+  margin-right: -15px;
+}
+
+.div-float-right {
+  float: right;
+}
+
+.button-spacing {
+  margin: 15px;
+}
+
+.div-margin-left {
+  margin-left: 15px;
+}
+
+.div-button-col-padding {
+  padding-right: 0;
+}
+
+.div-circle {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: #92A7C2;
+  position: relative;
+}
+
+.div-caution {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.color-caution-text {
+  color: #3F5A7A;
+}
+
+.row-caution {
+  margin-left: 0;
+}
+
+.img-caution {
+  position: absolute;
+  left: 7px;
+  top: 7px;
+}
+
+.div-caution-col-padding {
+  padding-top: 3px;
+}
+
+.div-subheader-padding {
+  padding-left: 20px;
+}
+
+.div-eov-summary {
+  margin-top: 25px;
+}
+
+.div-card-title {
+  margin: 20px 0 -10px 20px;
+}
+
+.div-table-margin {
+  margin-top: 8px;
+}
+
+.div-margin-bottom-10 {
+  margin-bottom: -10px;
+}
+
+.div-between-inputs {
+  margin-bottom: 20px;
+}
+
+.div-between-inputs-top {
+  margin-bottom: 13px;
+}
+
+.div-input-padding-right {
+  padding-right: 30px;
+}
+
+.div-input-padding-left {
+  padding-left: 30px;
+}
+
+@media (max-width: 767px) {
+  .div-row-second-card {
+    border-right: none;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .div-row-second-card-right {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .div-input-padding-right {
+    padding-right: 15px;
+  }
+
+  .div-input-padding-left {
+    padding-left: 15px;
+  }
+}

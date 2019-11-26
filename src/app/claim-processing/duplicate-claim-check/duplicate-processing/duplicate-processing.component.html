@@ -1,0 +1,298 @@
+<fox-section [noPadding]="true">
+  <fox-section-title class="dup-processing-comp-title">
+    <span class="txt-title-component-container">Duplicate Processing</span>
+    <span class="txt-title-bill-lines-container">Examining Bill Line #{{billLineNum+1}} of {{billLineLength}}</span>
+  </fox-section-title>
+  <div *ngIf="isProf">
+    <div class="container-incoming-bill-line">
+      <table class="table table-container-incoming-bill-line">
+        <thead class="thread-default th-table-container-incoming-bill-line">
+        <tr class="row-dupe-check">
+          <th class="header-empty-header empty-t1-table"></th>
+          <th class="header-incoming-header header-t1-table">This Claim</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-icn-number">ICN Number</td>
+          <td class="table-column-row row-icn-number_incoming">{{incomingBillLine.icn ? incomingBillLine.icn : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-from-date">Date of Service From</td>
+          <td class="table-column-row row-from-date_incoming">{{incomingBillLine.dateOfServiceFrom ? incomingBillLine.dateOfServiceFrom.substring(0,10) : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-to-date">Date of Service To</td>
+          <td class="table-column-row row-to-date_incoming">{{incomingBillLine.dateOfServiceTo ? incomingBillLine.dateOfServiceTo.substring(0,10) : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-bill-amount">Billed Amount</td>
+          <td class="table-column-row row-bill-amount_incoming">{{incomingBillLine.chargeAmount ? incomingBillLine.chargeAmount : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-coinsurance-amount">Coinsurance Amount</td>
+          <td class="table-column-row row-coinsurance-amount_incoming">{{incomingBillLine.medicareCoinsurance ? incomingBillLine.medicareCoinsurance : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-deductible-amount">Deductible Amount</td>
+          <td class="table-column-row row-deductible-amount_incoming">{{incomingBillLine.medicareDeductible ? incomingBillLine.medicareDeductible : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-cpt-code">CPT Code</td>
+          <td class="table-column-row row-cpt-code_incoming">{{incomingBillLine.cptCode ? incomingBillLine.cptCode : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-mod-1">Modifier 1</td>
+          <td class="table-column-row row-mod-1_incoming">{{incomingBillLine.modifier1 ? incomingBillLine.modifier1 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-mod-2">Modifier 2</td>
+          <td class="table-column-row row-mod-2_incoming">{{incomingBillLine.modifier2 ? incomingBillLine.modifier2 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-mod-3">Modifier 3</td>
+          <td class="table-column-row row-mod-3_incoming">{{incomingBillLine.modifier3 ? incomingBillLine.modifier3 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-mod-4">Modifier 4</td>
+          <td class="table-column-row row-mod-4_incoming">{{incomingBillLine.modifier4 ? incomingBillLine.modifier4 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td></td>
+          <td>Duplicate:</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container-historical-bill-line">
+      <ng-container *ngFor="let duplicateBillLine of duplicateBillLineFunction; index as i">
+      <table class="table table-historical-bill-line-container">
+        <thead class="thread-default th-table-historical-billline-container">
+        <tr class="row-dupe-check">
+          <th class="header-historical-header header-table-historical-billline-container">
+            <a class="button-claimdetail-for-{{duplicateBillLine.claimNumber}}"
+               (click)="goToClaimDetail(duplicateBillLine.claimNum)">
+              Claim #{{duplicateBillLine.claimNum ? duplicateBillLine.claimNum : ""}}
+            </a>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row-dupe-check">
+          <td class="row-icn-number_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.clmIcn ? duplicateBillLine.clmIcn : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-from-date_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilDosFromDt ? (duplicateBillLine.bilDosFromDt.substring(0,10) | date : "MM/dd/yyyy") : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-to-date_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilDosToDt ? (duplicateBillLine.bilDosToDt.substring(0,10) | date : "MM/dd/yyyy") : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-bill-amount_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilChargeAmt ? duplicateBillLine.bilChargeAmt : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-coinsurance-amount_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilCoinsAmt ? duplicateBillLine.bilCoinsAmt : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-deductible-amount_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilPartBDedAmt ? duplicateBillLine.bilPartBDedAmt : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-cpt-code_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilCptCd ? duplicateBillLine.bilCptCd : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-mod-1_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilModCd1 ? duplicateBillLine.bilModCd1 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-mod-2_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilModCd2 ? duplicateBillLine.bilModCd2 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-mod-3_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilModCd3 ? duplicateBillLine.bilModCd3 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-mod-4_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilModCd4 ? duplicateBillLine.bilModCd4 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check processing-indicator-row">
+          <td class="processing-indicator-row-ngFor">
+            <label class="btn-toggle-switch btn-dup-processing-toggle-switch" for="switch_{{i}}">
+              <input #switch name="checkbox-bill-lines" id="switch_{{i}}" [value]='duplicateBillLine.chKey' type="checkbox" (change)="uniqueToggle(switch)" [checked]="this.uniqueToggles.indexOf(switch.id) > -1">
+              <span class="txt-slider round processing-slider"></span>
+            </label>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      </ng-container>
+    </div>
+  </div>
+  <div *ngIf="isHosp">
+    <div class="container-incoming-bill-line">
+      <table class="table table-container-incoming-bill-line">
+        <thead class="thread-default th-table-container-incoming-bill-line">
+        <tr class="row-dupe-check">
+          <th class="header-empty-header empty-t1-table"></th>
+          <th class="header-incoming-header header-t1-table">This Claim</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-icn-number">ICN Number</td>
+          <td class="table-column-row row-icn-number_incoming">{{incomingBillLine.icn ? incomingBillLine.icn : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-from-date">Date of Service From</td>
+          <td class="table-column-row row-from-date_incoming">{{incomingBillLine.dateOfServiceFrom ? incomingBillLine.dateOfServiceFrom.substring(0,10) : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-to-date">Date of Service To</td>
+          <td class="table-column-row row-to-date_incoming">{{incomingBillLine.dateOfServiceTo ? incomingBillLine.dateOfServiceTo.substring(0,10) : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-facility-code">Facility Code</td>
+          <td class="table-column-row row-facility-code_incoming">{{incomingBillLine.facilityCode ? incomingBillLine.facilityCode : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-frequency-code">Frequency Code</td>
+          <td class="table-column-row row-frequency-code_incoming">{{incomingBillLine.frequencyCode ? incomingBillLine.frequencyCode : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-coinsurance-amount">Coinsurance Amount</td>
+          <td class="table-column-row row-coinsurance-amount_incoming">{{incomingBillLine.medicareCoinsurance ? incomingBillLine.medicareCoinsurance : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-deductible-amount">Deductible Amount</td>
+          <td class="table-column-row row-deductible-amount_incoming">{{incomingBillLine.deductibleIhd ? incomingBillLine.deductibleIhd : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td></td>
+          <td>Duplicate:</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container-historical-bill-line">
+      <ng-container *ngFor="let duplicateBillLine of duplicateBillLineFunction; index as i">
+      <table class="table table-historical-bill-line-container">
+        <thead class="thread-default th-table-historical-billline-container">
+        <tr class="row-dupe-check">
+          <th class="header-historical-header header-table-historical-billline-container">
+            <a class="button-claimdetail-for-{{duplicateBillLine.claimNumber}}"
+               (click)="goToClaimDetail(duplicateBillLine.claimNum)">
+              Claim #{{duplicateBillLine.claimNum ? duplicateBillLine.claimNum : ""}}
+            </a>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row-dupe-check">
+          <td class="row-icn-number_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.clmIcn ? duplicateBillLine.clmIcn : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-from-date_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilDosFromDt ? (duplicateBillLine.bilDosFromDt.substring(0,10) | date : "MM/dd/yyyy") : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-to-date_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilDosToDt ? (duplicateBillLine.bilDosToDt.substring(0,10) | date : "MM/dd/yyyy") : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-facility-code_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilFacilityCd ? duplicateBillLine.bilFacilityCd : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-frequency-code_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilFrequencyCd ? duplicateBillLine.bilFrequencyCd : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-coinsurance-amount_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilMcareHospDays2 ? duplicateBillLine.bilMcareHospDays2 : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="row-deductible-amount_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilMcareHospIhd ? duplicateBillLine.bilMcareHospIhd : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check processing-indicator-row">
+          <td class="processing-indicator-row-ngFor">
+            <label class="btn-toggle-switch btn-dup-processing-toggle-switch" for="switch2_{{i}}">
+              <input #switch name="checkbox-bill-lines" id="switch2_{{i}}" [value]='duplicateBillLine.chKey' type="checkbox" (change)="uniqueToggle(switch)" [checked]="this.uniqueToggles.indexOf(switch.id) > -1">
+              <span class="txt-slider round processing-slider"></span>
+            </label>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      </ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="isDrug">
+    <div class="container-incoming-bill-line">
+      <table class="table table-container-incoming-bill-line">
+        <thead class="thread-default th-table-container-incoming-bill-line">
+        <tr class="row-dupe-check">
+          <th class="header-empty-header empty-t1-table"></th>
+          <th class="header-incoming-header header-t1-table">This Claim</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-from-date">Date of Service From</td>
+          <td class="table-column-row row-from-date_incoming">{{incomingBillLine.dateOfServiceFrom ? incomingBillLine.dateOfServiceFrom.substring(0,10) : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-to-date">Date of Service To</td>
+          <td class="table-column-row row-to-date_incoming">{{incomingBillLine.dateOfServiceTo ? incomingBillLine.dateOfServiceTo.substring(0,10) : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-charge-amount">Charge Amount</td>
+          <td class="table-column-row row-charge-amount_incoming">{{incomingBillLine.chargeAmount ? incomingBillLine.chargeAmount : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td class="table-column-row row-ndc-number">NDC Number</td>
+          <td class="table-column-row row-ndc-number_incoming">{{incomingBillLine.ndcNum ? incomingBillLine.ndcNum : ""}}</td>
+        </tr>
+        <tr class="row-dupe-check">
+          <td></td>
+          <td>Duplicate:</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container-historical-bill-line">
+      <ng-container *ngFor="let duplicateBillLine of duplicateBillLineFunction; index as i">
+      <table class="table table-historical-bill-line-container">
+          <thead class="thread-default th-table-historical-billline-container">
+          <tr class="row-dupe-check">
+            <th class="header-historical-header header-table-historical-billline-container">
+              <a class="button-claimdetail-for-{{duplicateBillLine.claimNumber}}"
+                 (click)="goToClaimDetail(duplicateBillLine.claimNum)">
+                Claim #{{duplicateBillLine.claimNum ? duplicateBillLine.claimNum : ""}}
+              </a>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="row-dupe-check">
+            <td class="row-from-date_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilDosFromDt ? (duplicateBillLine.bilDosFromDt.substring(0,10) | date : "MM/dd/yyyy") : ""}}</td>
+          </tr>
+          <tr class="row-dupe-check">
+            <td class="row-to-date_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilDosToDt ? (duplicateBillLine.bilDosToDt.substring(0,10) | date : "MM/dd/yyyy") : ""}}</td>
+          </tr>
+          <tr class="row-dupe-check">
+            <td class="row-charge-amount_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilChargeAmt ? duplicateBillLine.bilChargeAmt : ""}}</td>
+          </tr>
+          <tr class="row-dupe-check">
+            <td class="row-ndc-number_{{duplicateBillLine.claimNumber}}">{{duplicateBillLine.bilNdcNum ? duplicateBillLine.bilNdcNum : ""}}</td>
+          </tr>
+          <tr class="row-dupe-check processing-indicator-row">
+            <label class="btn-toggle-switch btn-dup-processing-toggle-switch" for="switch3_{{i}}">
+              <input #switch name="checkbox-bill-lines" id="switch3_{{i}}" [value]='duplicateBillLine.chKey' type="checkbox" (change)="uniqueToggle(switch)" [checked]="this.uniqueToggles.indexOf(switch.id) > -1">
+              <span class="txt-slider round processing-slider"></span>
+            </label>
+          </tr>
+          </tbody>
+      </table>
+      </ng-container>
+    </div>
+  </div>
+  <div class="container-buttons processing-container-buttons">
+    <button class="btn-primary btn-duplicate-processing-save" (click)="showSummary()">Save & Next (S)</button>
+    <button class="btn-secondary btn-duplicate-processing-previous" (click)="previousButton()">Previous (P)</button>
+  </div>
+</fox-section>

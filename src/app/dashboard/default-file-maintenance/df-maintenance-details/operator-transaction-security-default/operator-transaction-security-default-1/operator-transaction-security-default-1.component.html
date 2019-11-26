@@ -1,0 +1,511 @@
+<div class="row">
+  <div class="col-xs-12 container-div-return-prev">
+      <img src="assets/img/arrow-left.svg"/>
+      <span foxHotkey="ctrl+f1" hotkeyAction="click" (click)="f1EventClick()" class="span-return-prev">Return to Previous (F1)</span>
+  </div>
+</div>
+<form (ngSubmit)="enterEventClick()">
+  <fox-section>
+    <div class="container-title">
+      <fox-section-title>Overview</fox-section-title>
+    </div>
+    <div class="row container-row-small container-display-equal-height">
+      <div class="col-xs-6 col-sm-3 container-display-equal-height container-readonly-row-xs">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Authority Level</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{screen1.m87alev}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-display-equal-height container-readonly-row-xs">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Last Maintenance Date</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{lastMaintenanceDate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-display-equal-height">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Position</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{screen1.m87pos}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-display-equal-height">
+        <div class="container-input-and-label">
+          <div class="container-label">
+            <label class="label-for-input">Maintenance IONs</label>
+          </div>
+          <div class="container-input container-select-border">
+            {{screen1.m87mion}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section>
+    <div class="container-title">
+      <fox-section-title>Main Transactions</fox-section-title>
+      <div *ngIf="screen1.m87utyp === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="row container-row-small">
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtProcessClaim"
+                   name="txtProcessClaim"
+                   labelText="Process Claim"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts01 && screen1.m87ts01.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts01"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtM75TS02"
+                   name="txtM75TS02"
+                   labelText="Resolved Claim #"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts02 && screen1.m87ts02.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts02"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtReferralApproval"
+                   name="txtReferralApproval"
+                   labelText="Referral/Approval"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts03 && screen1.m87ts03.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts03"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtOperatorStatsMaintainence"
+                   name="txtOperatorStatsMaintainence"
+                   labelText="Oper Stats Maint"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts04 && screen1.m87ts04.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts04"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-last-row">
+        <fox-input type="text"
+                   id="txtClaimAssign"
+                   name="txtClaimAssign"
+                   labelText="Claim # Assign"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts05 && screen1.m87ts05.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts05"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+
+  <fox-section>
+    <div class="container-title">
+      <fox-section-title>Quality Review</fox-section-title>
+      <div *ngIf="screen1.m87utyp === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="row container-row-small">
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtQualityReview"
+                   name="txtQualityReview"
+                   labelText="Quality Review"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts06 && screen1.m87ts06.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts06"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtQualityRevalidation"
+                   name="txtQualityRevalidation"
+                   labelText="Quality Revalidation"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts07 && screen1.m87ts07.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts07"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtQualityInformation"
+                   name="txtQualityInformation"
+                   labelText="Quality Information"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts08 && screen1.m87ts08.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts08"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-custom">
+        <fox-input type="text"
+                   id="txtQualityVolume"
+                   name="txtQualityVolume"
+                   labelText="Quality Volume"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts09 && screen1.m87ts09.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts09"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-last-row">
+        <fox-input type="text"
+                   id="txtUnreviewedQualityClaim"
+                   name="txtUnreviewedQualityClaim"
+                   labelText="Unreviewed Quality Claim"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts10 && screen1.m87ts10.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts10"
+                   length="1">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 container-input-last-row">
+        <fox-input type="text"
+                   id="txtQualityErrorInquiry"
+                   name="txtQualityErrorInquiry"
+                   labelText="Quality Error Inquiry"
+                   [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                   [isWarningState]="screen1.m87ts11 && screen1.m87ts11.toUpperCase() === 'N'"
+                   [(ngModel)]="screen1.m87ts11"
+                   length="1">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section>
+    <div class="container-title">
+      <fox-section-title>Claim History Maintenance</fox-section-title>
+      <div *ngIf="screen1.m87utyp === 'UPDATE'" class="container-subtitle">
+        <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+      </div>
+    </div>
+    <div class="row container-row-small">
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtNotesCommLetter"
+                 name="txtNotesCommLetter"
+                 labelText="Notes/Comm-LETR REF #"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts12 && screen1.m87ts12.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts12"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtDeleteClaim"
+                 name="txtDeleteClaim"
+                 labelText="Delete Claim #"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts13 && screen1.m87ts13.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts13"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtTransfer"
+                 name="txtTransfer"
+                 labelText="Transfer"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts14 && screen1.m87ts14.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts14"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtYearlyDedAggr"
+                 name="txtYearlyDedAggr"
+                 labelText="Yearly DED/AGGR"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts15 && screen1.m87ts15.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts15"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtAltAddr"
+                 name="txtAltAddr"
+                 labelText="Alt Addr/Payee/Dec Date"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts16 && screen1.m87ts16.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts16"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtSpecHandlingCode"
+                 name="txtSpecHandlingCode"
+                 labelText="Spec Handling Code"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts17 && screen1.m87ts17.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts17"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtCrossReference"
+                 name="txtCrossReference"
+                 labelText="Cross Reference #"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts18 && screen1.m87ts18.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts18"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtEobMaintainance"
+                 name="txtEobMaintainance"
+                 labelText="EOB Maintenance"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts19 && screen1.m87ts19.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts19"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-last-row-sm">
+      <fox-input type="text"
+                 id="txtSecureAccountAccess"
+                 name="txtSecureAccountAccess"
+                 labelText="Secured Account Access"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87tvip && screen1.m87tvip.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87tvip"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-last-row-sm">
+      <fox-input type="text"
+                 id="txtDeleteOverpayments"
+                 name="txtDeleteOverpayments"
+                 labelText="Delete Overpayments"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts20 && screen1.m87ts20.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts20"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-last-row">
+      <fox-input type="text"
+                 id="txtReactivate"
+                 name="txtReactivate"
+                 labelText="Reactivate"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts21 && screen1.m87ts21.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts21"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-last-row">
+      <fox-input type="text"
+                 id="txtOverpayment"
+                 name="txtOverpayment"
+                 labelText="Overpayment"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87tsop && screen1.m87tsop.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87tsop"
+                 length="1">
+      </fox-input>
+    </div>
+  </div>
+  </fox-section>
+  <fox-section>
+  <div class="container-title">
+    <fox-section-title>Letters/Communications</fox-section-title>
+    <div *ngIf="screen1.m87utyp === 'UPDATE'" class="container-subtitle">
+      <fox-section-subheader>Tab to navigate and update fields.</fox-section-subheader>
+    </div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtCommunicationDelete"
+                 name="txtCommunicationDelete"
+                 labelText="Communication Delete"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts25 && screen1.m87ts25.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts25"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtCommLetterQualReview"
+                 name="txtCommLetterQualReview"
+                 labelText="Comm/Letter Qual Review"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts26 && screen1.m87ts26.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts26"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtLibraryFunctions"
+                 name="txtLibraryFunctions"
+                 labelText="Library Functions"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts24 && screen1.m87ts24.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts24"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtLetterwithMembership"
+                 name="txtLetter with Membership"
+                 labelText="Letter with Memberships #"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts28 && screen1.m87ts28.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts28"
+                 length="1">
+      </fox-input>
+    </div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtReprint"
+                 name="txtReprint"
+                 labelText="Reprint"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts29 && screen1.m87ts29.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts29"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtSendToIonsChange"
+                 name="txtSendToIonsChange"
+                 labelText="Send To Ions Change"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts27 && screen1.m87ts27.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts27"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtLetterWithoutMembership"
+                 name="txtLetterWithoutMembership"
+                 labelText="Letter Without Membership #"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]=" screen1.m87ts31 && screen1.m87ts31.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts31"
+                 length="1">
+      </fox-input>
+    </div>
+    <div class="col-xs-6 col-sm-3 container-input-custom">
+      <fox-input type="text"
+                 id="txtCommunicationInformation"
+                 name="txtCommunicationInformation"
+                 labelText="Communication Information"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts32 && screen1.m87ts32.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts32"
+                 length="1">
+      </fox-input>
+    </div>
+  </div>
+  <div class="row container-row-small">
+    <div class="col-xs-6 col-sm-3 container-input-last-row">
+      <fox-input type="text"
+                 id="txtEobReplacement"
+                 name="txtEobReplacement"
+                 labelText="EOB Replacement"
+                 [isReadOnly]="screen1.m87utyp !== 'UPDATE'"
+                 [isReadOnlyNoPaddingLeftRight]="screen1.m87utyp !== 'UPDATE'"
+                 [isWarningState]="screen1.m87ts30 && screen1.m87ts30.toUpperCase() === 'N'"
+                 [(ngModel)]="screen1.m87ts30"
+                 length="1">
+      </fox-input>
+    </div>
+  </div>
+</fox-section>
+  <div class="container-btns">
+  <div class="">
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="f3EventClick()"
+            foxHotkey="alt+n"
+            hotkeyAction="click">
+      Page Forward (N)
+    </button>
+    <button type="button"
+            *ngIf="screen1.m87utyp === 'UPDATE'"
+            class="btn btn-secondary btn-left-margin"
+            (click)="clearButtonClick()"
+            foxHotkey="alt+r"
+            hotkeyAction="click">
+      Clear (R)
+    </button>
+    <fox-loading-button class="btn-left-margin"
+                        *ngIf="screen1.m87utyp === 'UPDATE'"
+                        [buttonValue] = "'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'submit'"
+                        [foxHotKeyValue]="'alt+s'">
+    </fox-loading-button>
+  </div>
+</div>
+</form>
+

@@ -1,0 +1,159 @@
+<fox-loading-overlay>
+  <div class="col-xs-12 col-sm-5 col-md-4">
+    <fox-member-info [memberInfo]="memberInfo"></fox-member-info>
+    <fox-section class="row">
+      <fox-section-title id="member-info-title">
+        <span class="span-section-title">Claim & Quality</span>
+      </fox-section-title>
+      <p class="subhead">
+        Click Claim # link for details.
+      </p>
+      <div class="div-field-label-container row">
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Claim #</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <span><img class="img-claim-number" src="assets/img/claim-blue.svg" /></span>
+          <a tabindex="'-1'" id="claim-number" class="no-underline" (click)="goToClaimNumber()">{{screenBean.m76cn}}</a>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Examiner IONs</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p class="">{{screenBean.m76exam}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Bill Line Special Memo</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <a *ngIf="isValid(screenBean.m76blsm)" class="no-underline" [foxLink] (linkPressed)="goToBillsTab()">
+            <img src="assets/img/confirm-green.svg" class="img-claim-number">Yes
+          </a>
+          <p *ngIf="!isValid(screenBean.m76blsm)">
+            <img src="assets/img/deny-red.svg" class="img-claim-number">No
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Claim Special Memo</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <a *ngIf="isValid(screenBean.m76clsm)" class="no-underline" [foxLink] (linkPressed)="goToClaimsTab()">
+            <img src="assets/img/confirm-green.svg" class="img-claim-number">Yes
+          </a>
+          <p *ngIf="!isValid(screenBean.m76clsm)">
+            <img src="assets/img/deny-red.svg" class="img-claim-number">No
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Bill Line Messages</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <a *ngIf="isValid(screenBean.m76blms)" class="no-underline" [foxLink] (linkPressed)="goToBillsTab()">
+            <img src="assets/img/confirm-green.svg" class="img-claim-number">Yes
+          </a>
+          <p *ngIf="!isValid(screenBean.m76blms)">
+            <img src="assets/img/deny-red.svg" class="img-claim-number">No
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Claim Messages</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <a *ngIf="isValid(screenBean.m76clms)" class="no-underline" [foxLink] (linkPressed)="goToClaimsTab()">
+            <img src="assets/img/confirm-green.svg" class="img-claim-number">Yes
+          </a>
+          <p *ngIf="!isValid(screenBean.m76clms)">
+            <img src="assets/img/deny-red.svg" class="img-claim-number">No
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Assigned</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p *ngIf="isValid(screenBean.m76assg)">
+            <img src="assets/img/confirm-green.svg" class="img-claim-number">Yes
+          </p>
+          <p *ngIf="!isValid(screenBean.m76assg)">
+            <img src="assets/img/deny-red.svg" class="img-claim-number">No
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Quality Errors Orig</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p class="">{{qualityErrors}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Most Recent</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p class="">{{mostRecent}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Quality Reasons</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p *ngFor="let reason of qualityReasons">{{reason}}<br /></p>
+        </div>
+      </div>
+    </fox-section>
+
+    <fox-section class="row" id="current-statistics-container">
+      <fox-section-title id="member-info-title">
+        <span class="span-section-title">Current Statistics</span>
+      </fox-section-title>
+      <div class="div-field-label-container row">
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">QR Examiner</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p class="">{{statisticIons}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Total Reviewed</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p class="">{{totalReviewed}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">Total Suspended</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p class="">{{totalSuspended}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <p class="fox-label">QR Action</p>
+        </div>
+        <div class="col-xs-12 col-sm-7 fox-value">
+          <p class="">{{screenBean.m76qlit}}</p>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+
+  <div class="col-xs-12 col-sm-7 xs-screen-form" *ngIf="pageHeaderService.currentNav === 1">
+    <fox-miscinfo-form [screenBean]="screenBean" [isReval]="isReval" [useLoadingButton]="true"
+      [loadingStatus]="submitStatus" (submit)="enterEventClick()" (clear)="clearEventClick()"></fox-miscinfo-form>
+  </div>
+</fox-loading-overlay>
+
+  <!-- <div class="form-row col-sm-12 text-right margin-top-20" *ngIf="pageHeaderService.currentNav===1">
+    <button id="pf1" name="pf1" #pf1 type="button" class="btn btn-default margin-right-20" [disabled]="!screenBean.m76pf1"
+      (click)="pf1EventClick()">CANCEL</button>
+    <button id="pf2" name="pf2" #pf2 type="button" class="btn btn-default margin-right-20 " [disabled]="!screenBean.m76pf2"
+      (click)="pf2EventClick()">CAUT</button>
+    <button id="pf3" name="pf3" #pf3 type="button" class="btn btn-default margin-right-20 " [disabled]="!screenBean.m76pf3"
+      (click)="pf3EventClick()">DUP</button>
+    <button id="pf5" name="pf5" #pf5 type="button" class="btn btn-default margin-right-20 " [disabled]="!screenBean.m76pf5"
+      (click)="pf5EventClick()">BL-MG</button>
+    <button id="pf7" name="pf7" #pf7 type="button" class="btn btn-default margin-right-20 " [disabled]="!screenBean.m76pf7"
+      (click)="pf7EventClick()">CLM-MG</button>
+    <button id="pf8" name="pf8" #pf8 type="button" class="btn btn-default margin-right-20 " [disabled]="!screenBean.m76pf8"
+      (click)="pf8EventClick()">BEN
+      MOD
+    </button>
+    <button id="pf9" name="pf9" #pf9 type="button" class="btn btn-default margin-right-20 " [disabled]="!screenBean.m76pf9"
+      (click)="pf9EventClick()">APP</button>
+    <button id="eob" name="eob" #eob type="button" class="btn btn-default margin-right-20 "
+            (click)="eobEventClick()">EOB</button>
+  </div> -->

@@ -1,0 +1,474 @@
+.border-bottom {
+  border-bottom: 1px solid #D8D8D8;
+  margin-top: 20px;
+  margin-bottom: 20px
+}
+
+.border-bottom-notation {
+  border: none;
+  margin-top: 5px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.label-detail-item {
+  width: 140px;
+  display: block;
+  float: left;
+  font-weight: 600;
+}
+
+.check-detail-main {
+  padding: 0;
+}
+
+.check-detail-main .check-detail-main-label {
+  padding: 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.check-detail-main .check-detail-main-label span {
+  font-size: 19px;
+}
+
+.check-detail-main p {
+  height: 14px;
+}
+
+.check-detail-main .check-detail-main-button {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  padding-left: 5px;
+}
+
+.check-detail-main .check-detail-main-button a {
+  color: #ffffff;
+}
+
+.check-detail-main .check-detail-main-button:hover {
+  background-color: #196ecf;
+}
+
+.bulk-detail-main .border-bottom {
+  padding-bottom: 25px;
+}
+
+.mat-input-element {
+  vertical-align: baseline;
+}
+
+.span-validation-message {
+  font-weight: 600;
+}
+
+.extend-check-detail-form-payee {
+  padding-left: 65px;
+  padding-right: 19px;
+}
+
+.extend-check-detail-form-payee label {
+  padding-top: 40px;
+  text-align: left;
+  padding-right: 0;
+  padding-left: 2px;
+  font-size: 14px;
+}
+
+.extend-check-detail-form-payee .reason-label {
+  padding-top: 28px;
+}
+
+.extend-check-detail-form-payee .notation-select {
+  padding-top: 20px;
+  padding-right: 5px;
+}
+
+.extend-check-detail-form-payee .mat-primary {
+  margin-bottom: 20px;
+}
+
+.extend-check-detail-form-address {
+  padding-left: 33px;
+  padding-right: 33px;
+}
+
+.extend-check-detail-form-address label {
+  padding-top: 40px;
+  text-align: left;
+  padding-right: 0;
+  padding-left: 2px;
+  font-size: 14px;
+}
+
+.extend-check-detail-form-address .reason-label {
+  padding-top: 28px;
+}
+
+.extend-check-detail-form-address .notation-select {
+  padding-top: 20px;
+  padding-right: 5px;
+}
+
+.extend-check-detail-form-address .mat-primary {
+  margin-bottom: 20px;
+}
+
+.extend-check-detail-form-reason {
+  padding-left: 19px;
+  padding-right: 65px;
+}
+
+.extend-check-detail-form-reason label {
+  padding-top: 40px;
+  text-align: left;
+  padding-right: 0;
+  padding-left: 2px;
+  font-size: 14px;
+}
+
+.extend-check-detail-form-reason .reason-label {
+  padding-top: 28px;
+}
+
+.extend-check-detail-form-reason .notation-select {
+  padding-top: 20px;
+  padding-right: 5px;
+}
+
+.extend-check-detail-form-reason textarea:disabled {
+  background-color: #EDEDED;
+  cursor: not-allowed;
+}
+
+.extend-check-detail-form-reason .mat-primary {
+  margin-bottom: 20px;
+}
+
+.container-replace-reason {
+  margin-left: 17px;
+}
+
+.extend-check-detail-form-bordered {
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+}
+
+.non-mat-field-input input:disabled {
+  cursor: not-allowed;
+  color: #000000;
+}
+
+.approve-deny-button {
+  padding-right: 0;
+  padding-top: 10px;
+  margin-left: 484px;
+}
+
+.approve-deny-button .btn-deny {
+  width: 130px;
+}
+
+.approve-deny-button .btn-approve {
+  width: 130px;
+  margin-left: 15px;
+}
+
+.reason-textarea textarea {
+  margin-top: 10px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  min-height: 90px;
+  padding: 10px;
+}
+
+.row-details-status {
+  display: flex;
+}
+
+.notation-textarea textarea {
+  margin-top: 10px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  min-height: 90px;
+  padding: 10px;
+}
+
+.non-mat-select {
+  background-color: white;
+}
+
+.same-provider-btn {
+  position: relative;
+}
+
+div.mat-row {
+  padding: 0;
+}
+
+.replace-void-main {
+  margin-top: 25px;
+}
+
+.replace-void-main .error-text {
+  color: #f44336;
+  text-align: left;
+  font-size: 75%;
+  position: relative;
+  top: 55px;
+  right: 563px;
+}
+
+.mat-input-element.mat-form-field-autofill-control:focus, textarea:focus {
+  -moz-box-shadow: 0 0 5px #196ecf;
+  -webkit-box-shadow: 0 0 5px #196ecf;
+  box-shadow: 0 0 5px #196ecf;
+  border: 1px solid #196ecf;
+}
+
+.autofocus-select .mat-select:focus {
+  -moz-box-shadow: 0 0 5px #196ecf;
+  -webkit-box-shadow: 0 0 5px #196ecf;
+  box-shadow: 0 0 5px #196ecf;
+  border: 1px solid #196ecf;
+}
+
+.multiple-checks-main-class {
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+.check-register-table .mat-sort-header-button {
+  align-items: center;
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  outline: 0 none;
+  text-align: left;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.confirmation-detail-section p {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.confirmation-detail-section p span {
+  font-weight: 300;
+}
+
+.clear-btn-provider {
+  background-color: white;
+  color: #000;
+  border: solid 1px #2d2d39;
+  margin-right: 5px;
+}
+
+.btn-clear {
+  background-color: white;
+  color: #000;
+  border: solid 1px #2d2d39;
+  margin-right: 10px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.text-size {
+  font-size: 15px;
+}
+
+.provider-btn {
+  position: relative;
+  left: 35px;
+  margin-top: 30px;
+}
+
+.alt-provider-btn {
+  position: relative;
+  left: 188px;
+  margin-top: 30px;
+}
+
+.alt-provider-btn .btn, .provider-btn .btn {
+  padding: 6px 12px;
+}
+
+.header-text {
+  color: #921a11;
+  font-weight: bold;
+}
+
+.left-icon {
+  float: left;
+  margin-right: 20px;
+  font-size: 29px;
+  height: 42px;
+}
+
+.block-override {
+  color: #921a11;
+  margin-top: 20px;
+  min-width: 415px;
+}
+
+.text-blank-column {
+  font-size: 18px;
+}
+
+mat-cell.mat-cell.cdk-column-blank.mat-column-blank {
+  background: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+mat-header-cell.modal-header-border.mat-header-cell.cdk-column-blank.mat-column-blank {
+  background: white;
+}
+
+.alt-modal-table mat-header-cell.modal-header-border.mat-header-cell.cdk-column-providerName.mat-column-providerName,
+.alt-modal-table mat-header-cell.modal-header-border.mat-header-cell.cdk-column-tin.mat-column-tin,
+.alt-modal-table mat-header-cell.modal-header-border.mat-header-cell.cdk-column-npi.mat-column-npi,
+.alt-modal-table mat-header-cell.modal-header-border.mat-header-cell.cdk-column-address.mat-column-address,
+.alt-modal-table mat-header-cell.modal-header-border.mat-header-cell.cdk-column-addressType.mat-column-addressType {
+  border: 1px solid #DCE4E8;
+}
+
+.alt-modal-table .mat-header-row {
+  border: none !important;
+}
+
+.btn-from-select {
+  margin-top: 15px;
+}
+
+.ra-checkbox-text {
+  color: #ff0000;
+}
+
+.col-md-3,
+.col-md-6 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.label-detail-item-long {
+  width: 165px;
+}
+
+.non-mat-field-input {
+  width: 100%;
+}
+
+.confirmation-table-main {
+  overflow: auto;
+}
+
+.confirmation-table {
+  width: 1215px;
+}
+
+::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
+  opacity: 0;
+}
+
+::ng-deep .mat-sort-header-pointer-left.ng-trigger.ng-trigger-leftPointer {
+  transform: rotate(-45deg);
+}
+
+::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer {
+  transform: rotate(45deg);
+}
+
+.margin-right-20 {
+  margin-right: 20px;
+}
+
+.long-add-format {
+  display: table;
+}
+
+.border-right {
+  border-right: 1px solid #D8D8D8;
+}
+
+.mat-form-notation-select {
+  margin-top: 20px;
+}
+
+.container-first-column {
+  padding-left: 0;
+}
+
+.container-last-column {
+  padding-right: 0;
+}
+
+.form-field-replacement {
+  padding: 0;
+  margin-top: 25px;
+}
+
+.row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.row-small > mat-form-field[class^="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn-bulk-action {
+  float: right;
+  margin-top: 30px;
+}
+
+.btn-find {
+  margin-top: 9px;
+}
+
+@media (max-width: 991px) {
+  .container-first-column, .container-second-column, .container-last-column {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-find {
+    margin-top: 25px;
+  }
+
+  .container-first-column, .container-second-column, .container-last-column {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .row-small {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .container-state-zip {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  .form-field-member-account {
+    margin-top: 0;
+  }
+}

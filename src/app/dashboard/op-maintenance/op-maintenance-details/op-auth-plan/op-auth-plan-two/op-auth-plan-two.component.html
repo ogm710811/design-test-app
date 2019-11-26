@@ -1,0 +1,231 @@
+<fox-loading-overlay>
+  <div class="container-plans-auth row">
+    <div class="col-xs-12 container-return-prev">
+      <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+      <span class="span-return-pre" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0" (click)="cancelEventClick()">Return to Previous (F1)</span>
+    </div>
+  </div>
+  <fox-section [noPadding]="true">
+    <div class="row container-overview">
+      <div class="col-xs-12 container-overview-title">
+        <fox-section-title class="margin-top-20 margin-bottom-20">Overview</fox-section-title>
+      </div>
+      <div class="col-xs-12 container-overview-content">
+        <div class="col-xs-12 col-sm-6 col-md-3 container-read-only-custom">
+          <fox-input type="text"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeft="true"
+                     labelText="{{screen.map90Literal | titlecase}}"
+                     inputValue="{{screen.map90Value}}">
+          </fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 container-read-only-custom container-read-small">
+          <fox-input type="text"
+                     isReadOnly="true"
+                     isReadOnlyNoPaddingLeft="true"
+                     labelText="{{screen.map90Position | titlecase}}"
+                     inputValue="{{screen.map90PosDesc}}">
+          </fox-input>
+        </div>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [noPadding]="true" [overflowDisabled]="true">
+    <div class="row container-info">
+      <div class="col-xs-12 container-top-title" [ngClass]="screen.map90Title1 === 'UPDATE' ? 'container-top-title': 'container-top-title-default'">
+        <fox-section-title class="margin-top-20">Long Term Care Plans</fox-section-title>
+        <div *ngIf="screen.map90Title1 === 'UPDATE'" class="container-sub-title">
+          <fox-section-subheader>Check box to grant Operator access.</fox-section-subheader>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'UPDATE'" class="col-xs-12 container-plans-list">
+        <div *ngFor="let ltcInfoList of longTermPlans; let i = index"
+             [ngClass]="{ 'container-info-group' : ltcInfoList.length > 0}">
+          <div *ngFor="let ltcInfo of ltcInfoList; let i = index; let last = last" class="container-info-value" [ngClass]="{'container-last-cell' : last && i === 12}">
+            <div class="container-vertical-align"
+                 [ngClass]="{ 'container-vertical-selected' : ltcInfo.map90LtcAuth === '', 'container-vertical-unselected' : ltcInfo.map90LtcAuth === 'N', 'container-last-cell' : last && i === 12}">
+            <span class="span-checkbox-value">
+            <input type="checkbox" [checked]="ltcInfo.map90LtcAuth === ''"
+                   (change)="changeSingleLtcSelect($event, ltcInfo)"
+                   [attr.name]="'msPlan' + i"/>
+            </span>
+              <span class="span-ckeckbox-label">{{ltcInfo.map90LtcPlan}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && longTermReadOnlyPermissions.length > 0" class="col-xs-12 container-description">
+        <span class="span-icon-permission"><img src="assets/img/confirm-green.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">PERMISSIONS</span>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && longTermReadOnlyPermissions.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let ltcInfoList of longTermReadOnlyPermissions; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : ltcInfoList.length > 0}">
+          <div *ngFor="let ltcInfo of ltcInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{ltcInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && longTermReadOnlyDenials.length > 0" class="col-xs-12 container-description"
+           [ngClass]="{'margin-top-30': longTermReadOnlyPermissions.length > 0}">
+        <span class="span-icon-permission"><img src="assets/img/deny-red.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">DENIALS</span>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && longTermReadOnlyDenials.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let ltcInfoList of longTermReadOnlyDenials; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : ltcInfoList.length > 0}">
+          <div *ngFor="let ltcInfo of ltcInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{ltcInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'UPDATE'" class="col-xs-12 container-select-all">
+        <input type="checkbox" [checked]="allLtcSelect" (change)="changeAllLtcSelect($event, allLtcSelect)"/>
+        <span class="span-select-label">Select/Unselect All</span>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [noPadding]="true" [overflowDisabled]="true">
+    <div class="row container-info">
+      <div class="col-xs-12 container-top-title">
+        <fox-section-title class="margin-top-20">CPG Wrap Plans/CPG Service Plans/CPG HIP Plans</fox-section-title>
+        <div *ngIf="screen.map90Title1 === 'UPDATE'" class="container-sub-title">
+          <fox-section-subheader>Check box to grant Operator access.</fox-section-subheader>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'UPDATE'" class="col-xs-12 container-plans-list">
+        <div *ngFor="let cpgInfoList of cpgWrapPlans; let i = index"
+             [ngClass]="cpgInfoList.length > 0 ? 'container-info-group': 'container-info-group-noBorder'">
+          <div *ngFor="let cpgInfo of cpgInfoList; let i = index; let last = last" class="container-info-value"
+               [ngClass]="{'container-last-cell' : last && i === 12}">
+            <div class="container-vertical-align"
+                 [ngClass]="{ 'container-vertical-selected' : cpgInfo.map90CpgAuth === '', 'container-vertical-unselected' : cpgInfo.map90CpgAuth === 'N', 'container-last-cell' : last && i === 12}">
+            <span class="span-checkbox-value">
+            <input type="checkbox" [checked]="cpgInfo.map90CpgAuth === ''"
+                   (change)="changeSingleCpgSelect($event, cpgInfo)"
+                   [attr.name]="'hsPlan' + i"/>
+            </span>
+              <span class="span-ckeckbox-label">{{cpgInfo.map90CpgPlan}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && cpgWrapReadOnlyPermissions.length > 0" class="col-xs-12 container-description">
+        <span class="span-icon-permission"><img src="assets/img/confirm-green.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">PERMISSIONS</span>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && cpgWrapReadOnlyPermissions.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let cpgInfoList of cpgWrapReadOnlyPermissions; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : cpgInfoList.length > 0}">
+          <div *ngFor="let cpgInfo of cpgInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{cpgInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && cpgWrapReadOnlyDenials.length > 0" class="col-xs-12 container-description"
+           [ngClass]="{'margin-top-30': cpgWrapReadOnlyPermissions.length > 0}">
+        <span class="span-icon-permission"><img src="assets/img/deny-red.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">DENIALS</span>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && cpgWrapReadOnlyDenials.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let cpgInfoList of cpgWrapReadOnlyDenials; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : cpgInfoList.length > 0}">
+          <div *ngFor="let cpgInfo of cpgInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{cpgInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'UPDATE'" class="col-xs-12 container-select-all">
+        <input type="checkbox" [checked]="allcpgWrapSelect" (change)="changeAllCpgSelect($event, allcpgWrapSelect)"/>
+        <span class="span-select-label">Select/Unselect All</span>
+      </div>
+    </div>
+  </fox-section>
+  <fox-section [noPadding]="true" [overflowDisabled]="true">
+    <div class="row container-info">
+      <div class="col-xs-12 container-top-title">
+        <fox-section-title class="margin-top-20">Riders</fox-section-title>
+        <div *ngIf="screen.map90Title1 === 'UPDATE'" class="container-sub-title">
+          <fox-section-subheader>Check box to grant Operator access.</fox-section-subheader>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'UPDATE'" class="col-xs-12 container-plans-list">
+        <div *ngFor="let ridInfoList of riderPlans; let i = index"
+             [ngClass]="ridInfoList.length > 0 ? 'container-info-group': 'container-info-group-noBorder'">
+          <div *ngFor="let ridInfo of ridInfoList; let i = index; let last = last" class="container-info-value"
+               [ngClass]="{'container-last-cell' : last && i === 12}">
+            <div class="container-vertical-align"
+                 [ngClass]="{ 'container-vertical-selected' : ridInfo.map90RiderAuth === '', 'container-vertical-unselected' : ridInfo.map90RiderAuth === 'N', 'container-last-cell' : last && i === 12}">
+            <span class="span-checkbox-value">
+            <input type="checkbox" [checked]="ridInfo.map90RiderAuth === ''"
+                   (change)="changeSingleRidersSelect($event, ridInfo)"
+                   [attr.name]="'hsPlan' + i"/>
+            </span>
+              <span class="span-ckeckbox-label">{{ridInfo.map90Rider}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && ridersReadOnlyPermissions.length > 0" class="col-xs-12 container-description">
+        <span class="span-icon-permission"><img src="assets/img/confirm-green.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">PERMISSIONS</span>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && ridersReadOnlyPermissions.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let ridInfoList of ridersReadOnlyPermissions; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : ridInfoList.length > 0}">
+          <div *ngFor="let ridInfo of ridInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{ridInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && ridersReadOnlyDenials.length > 0" class="col-xs-12 container-description"
+           [ngClass]="{'margin-top-30' : ridersReadOnlyPermissions.length > 0}">
+        <span class="span-icon-permission"><img src="assets/img/deny-red.svg" class="img-icon-confirm" alt="confirm icon"/></span>
+        <span class="span-label-permission">DENIALS</span>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'REVIEW' && ridersReadOnlyDenials.length > 0" class="col-xs-12 container-plans-list">
+        <div *ngFor="let ridInfoList of ridersReadOnlyDenials; let i = index; let last = last" class="container-med-readOnly"
+             [ngClass]="{ 'container-med-read-only' : ridInfoList.length > 0}">
+          <div *ngFor="let ridInfo of ridInfoList; let i = index; let last = last" class="container-read-only-value">
+            <div class="container-vertical-align">
+              <span class="span-read-only-label">{{ridInfo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="screen.map90Title1 === 'UPDATE'" class="col-xs-12 container-select-all">
+        <input type="checkbox" [checked]="allridersSelect" (change)="changeAllRidersSelect($event, allridersSelect)"/>
+        <span class="span-select-label">Select/Unselect All</span>
+      </div>
+    </div>
+  </fox-section>
+  <div class="container-button-margin" *ngIf="screen.map90Title1 === 'UPDATE'">
+    <div class="container-float-right margin-bottom-20">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="previousScreenEventClick()"
+              foxHotkey="alt+n"
+              hotkeyAction="click">
+        Previous Screen (N)
+      </button>
+      <fox-loading-button class="button-margin-left"
+                          [buttonValue] = "'Submit (S)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'button'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+s'"
+                          (buttonClick)="enterEventClick()">
+      </fox-loading-button>
+    </div>
+  </div>
+</fox-loading-overlay>

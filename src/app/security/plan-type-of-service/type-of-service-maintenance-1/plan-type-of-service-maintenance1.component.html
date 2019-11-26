@@ -1,0 +1,504 @@
+<fox-section>
+  <fox-section-title>Plan And Type of Service Information File - {{screenBean.m37titl | titlecase}}</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Plan:</mat-label>
+        <input matInput id="txtM37PLN" name="txtM37PLN" #txtM37PLN="ngModel" maxlength="3" size="3" type="text" [(ngModel)]="screenBean.m37pln"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>State:</mat-label>
+        <input matInput id="txtM37STE" name="txtM37STE" #txtM37STE="ngModel" maxlength="2" size="2" type="text" [(ngModel)]="screenBean.m37ste"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Type of Service:</mat-label>
+        <input matInput id="txtM37TOS" name="txtM37TOS" #txtM37TOS="ngModel" maxlength="2" size="2" type="text" [(ngModel)]="screenBean.m37tos"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Age Indicator:</mat-label>
+        <input matInput id="txtM37AGE" name="txtM37AGE" #txtM37AGE="ngModel" maxlength="1" size="1" type="text" [(ngModel)]="screenBean.m37age"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Stop Date:</mat-label>
+        <input matInput id="txtM37SDT" name="txtM37SDT" #txtM37SDT="ngModel" maxlength="8" size="8" type="text" [(ngModel)]="screenBean.m37sdt"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Start Date:</mat-label>
+        <input matInput id="txtM37SRDT" name="txtM37SRDT" #txtM37SRDT="ngModel" maxlength="8" [disabled]="screenBean.isReview" size="8"
+          type="text" [(ngModel)]="screenBean.m37srdt" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Plan Type:</mat-label>
+        <input matInput id="txtM37PTYP" name="txtM37PTYP" #txtM37PTYP="ngModel" maxlength="2" [disabled]="screenBean.isReview" size="2"
+          type="text" [(ngModel)]="screenBean.m37ptyp" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Pece Period:</mat-label>
+        <input matInput id="txtM37PECE" name="txtM37PECE" #txtM37PECE="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37pece" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Waiver Days:</mat-label>
+        <input matInput id="txtM37WAIV" name="txtM37WAIV" #txtM37WAIV="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37waiv" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Lag Per:</mat-label>
+        <input matInput id="txtM37LAGP" name="txtM37LAGP" #txtM37LAGP="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37lagp" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM37LMSG" name="txtM37LMSG" #txtM37LMSG="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37lmsg" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Processing Screen</mat-label>
+        <input matInput id="txtM37PRCS" name="txtM37PRCS" #txtM37PRCS="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+          type="text" [(ngModel)]="screenBean.m37prcs" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Enroll Change Date</mat-label>
+        <input matInput id="txtM37EFDT" name="txtM37EFDT" #txtM37EFDT="ngModel" maxlength="8" [disabled]="screenBean.isReview" size="8"
+          type="text" [(ngModel)]="screenBean.m37efdt" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Acceptability Code:</mat-label>
+        <input matInput id="txtM37ACDE" name="txtM37ACDE" #txtM37ACDE="ngModel" maxlength="10" [disabled]="screenBean.isReview" size="10"
+          type="text" [(ngModel)]="screenBean.m37acde" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM37RMK" name="txtM37RMK" #txtM37RMK="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37rmk" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM37MSG" name="txtM37MSG" #txtM37MSG="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37msg" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Benefit Fields</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Period:</mat-label>
+        <input matInput id="txtM37BPRD" name="txtM37BPRD" #txtM37BPRD="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37bprd" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Calc Indicator:</mat-label>
+        <input matInput id="txtM37BCLC" name="txtM37BCLC" #txtM37BCLC="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+          type="text" [(ngModel)]="screenBean.m37bclc" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Rate:</mat-label>
+        <input matInput id="txtM37BRTE" name="txtM37BRTE" #txtM37BRTE="ngModel" maxlength="7" [disabled]="screenBean.isReview" size="7"
+          type="text" [(ngModel)]="screenBean.m37brte" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Adjustment Fields</fox-section-title>
+  <div class="col-sm-12 ">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Percent:</mat-label>
+        <input matInput id="txtM37APCT" name="txtM37APCT" #txtM37APCT="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37apct" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Indicator:</mat-label>
+        <input matInput id="txtM37BIND" name="txtM37BIND" #txtM37BIND="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+          type="text" [(ngModel)]="screenBean.m37bind" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Waiting Period Fields</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Period:</mat-label>
+        <input matInput id="txtM37WPRD" name="txtM37WPRD" #txtM37WPRD="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37wprd" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM37WRMK" name="txtM37WRMK" #txtM37WRMK="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37wrmk" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM37WMSG" name="txtM37WMSG" #txtM37WMSG="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37wmsg" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Benefit Extension Fields</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Period:</mat-label>
+        <input matInput id="txtM37EPRD" name="txtM37EPRD" #txtM37EPRD="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37eprd" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM37EMSG" name="txtM37EMSG" #txtM37EMSG="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37emsg" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Out of Pocket Fields</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>Percent:</mat-label>
+        <input matInput id="txtM37OPPC" name="txtM37OPPC" #txtM37OPPC="ngModel" maxlength="3" [disabled]="screenBean.isReview" size="3"
+          type="text" [(ngModel)]="screenBean.m37oppc" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2 margin-right-20">
+      <mat-form-field>
+        <mat-label>OOP Max:</mat-label>
+        <input matInput id="txtM37OPMX" name="txtM37OPMX" #txtM37OPMX="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37opmx" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Message:</mat-label>
+        <input matInput id="txtM37OPMN" name="txtM37OPMN" #txtM37OPMN="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+          type="text" [(ngModel)]="screenBean.m37opmn" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Deductible Fields:</fox-section-title>
+
+  <div class="col-sm-12 margin-bottom-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Copay Indicator</mat-label>
+        <input matInput id="txtM37COPA" name="txtM37COPA" #txtM37COPA="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+          type="text" [(ngModel)]="screenBean.m37copa" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="col-sm-11">
+      <table>
+        <thead>
+          <tr>
+            <th class="column-header-small"> Indicator 1 </th>
+            <th class="column-header-small"> Indicator 2</th>
+            <th class="column-header-small"> Indicator 3 </th>
+            <th class="column-header-small"> Amount </th>
+            <th class="column-header-small"> Carryover </th>
+            <th class="column-header-small"> Message </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DI11" name="txtM37DI11" #txtM37DI11="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37di11" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DI12" name="txtM37DI12" #txtM37DI12="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37di12" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DI13" name="txtM37DI13" #txtM37DI13="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37di13" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DAM1" name="txtM37DAM1" #txtM37DAM1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.m37dam1" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DCR1" name="txtM37DCR1" #txtM37DCR1="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37dcr1" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DMS1" name="txtM37DMS1" #txtM37DMS1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.m37dms1" />
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DI21" name="txtM37DI21" #txtM37DI21="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37di21" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DI22" name="txtM37DI22" #txtM37DI22="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37di22" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DI23" name="txtM37DI23" #txtM37DI23="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37di23" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DAM2" name="txtM37DAM2" #txtM37DAM2="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.m37dam2" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DCR2" name="txtM37DCR2" #txtM37DCR2="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.m37dcr2" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37DMS2" name="txtM37DMS2" #txtM37DMS2="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.m37dms2" />
+              </mat-form-field>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <fox-section-title>Aggregate Maximum Fields</fox-section-title>
+
+  <div class="col-sm-12">
+    <div class="col-sm-11">
+      <table>
+        <thead>
+          <tr>
+            <th class="column-header-small"> Indicator 1 </th>
+            <th class="column-header-small"> Indicator 2</th>
+            <th class="column-header-small"> Indicator 3 </th>
+            <th class="column-header-small"> Amount </th>
+            <th class="column-header-small"> Message </th>
+            <th class="column-header-small"> PTD Message </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI11" name="txtM37MI11" #txtM37MI11="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[0].m37mi1" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI12" name="txtM37MI12" #txtM37MI12="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[0].m37mi2" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI13" name="txtM37MI13" #txtM37MI13="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[0].m37mi3" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MAM1" name="txtM37MAM1" #txtM37MAM1="ngModel" maxlength="9" [disabled]="screenBean.isReview" size="9"
+                  type="text" [(ngModel)]="screenBean.planAggregate[0].m37mam" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MMS1" name="txtM37MMS1" #txtM37MMS1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.planAggregate[0].m37mms" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37PDM1" name="txtM37PDM1" #txtM37PDM1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.planAggregate[0].m37pdm" />
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI11" name="txtM37MI11" #txtM37MI11="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[1].m37mi1" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI12" name="txtM37MI12" #txtM37MI12="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[1].m37mi2" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI13" name="txtM37MI13" #txtM37MI13="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[1].m37mi3" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MAM1" name="txtM37MAM1" #txtM37MAM1="ngModel" maxlength="9" [disabled]="screenBean.isReview" size="9"
+                  type="text" [(ngModel)]="screenBean.planAggregate[1].m37mam" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MMS1" name="txtM37MMS1" #txtM37MMS1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.planAggregate[1].m37mms" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37PDM1" name="txtM37PDM1" #txtM37PDM1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.planAggregate[1].m37pdm" />
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI11" name="txtM37MI11" #txtM37MI11="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[2].m37mi1" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI12" name="txtM37MI12" #txtM37MI12="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[2].m37mi2" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MI13" name="txtM37MI13" #txtM37MI13="ngModel" maxlength="1" [disabled]="screenBean.isReview" size="1"
+                  type="text" [(ngModel)]="screenBean.planAggregate[2].m37mi3" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MAM1" name="txtM37MAM1" #txtM37MAM1="ngModel" maxlength="9" [disabled]="screenBean.isReview" size="9"
+                  type="text" [(ngModel)]="screenBean.planAggregate[2].m37mam" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37MMS1" name="txtM37MMS1" #txtM37MMS1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.planAggregate[2].m37mms" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput id="txtM37PDM1" name="txtM37PDM1" #txtM37PDM1="ngModel" maxlength="5" [disabled]="screenBean.isReview" size="5"
+                  type="text" [(ngModel)]="screenBean.planAggregate[2].m37pdm" />
+              </mat-form-field>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-sm-12 text-right margin-top-40">
+    <button id="cancel" name="cancel" #cancel type="button" class="btn btn-default margin-right-20" (click)="f1EventClick()"
+      foxHotkey="alt+c">Cancel (C)</button>
+    <button id="enter" name="enter" #enter type="button" class="btn btn-default margin-right-20" (click)="f3EventClick()" foxHotkey="alt+n">Next
+      Screen (N)</button>
+    <button id="Reset" name="Reset" #Reset type="button" class="btn btn-default margin-right-20" (click)="resetEventClick()"
+      foxHotkey="alt+r">Reset (R)</button>
+    <button id="Submit" name="Submit" #Submit type="button" class="btn btn-primary " [disabled]="screenBean.isReview" (click)="submitEventClick()"
+      foxHotkey="alt+e">Enter (E)</button>
+  </div>
+</fox-section>

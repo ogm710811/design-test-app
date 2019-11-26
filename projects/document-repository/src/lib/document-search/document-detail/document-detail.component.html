@@ -1,0 +1,668 @@
+<div class="row container-doc-detail">
+  <div *ngIf="pageHeaderService.currentNav===1" class="container-left-panel container-attributes">
+    <div class="navigation-section" *ngIf="currentWorkQueueBusinessId !== documentControlNumber">
+      <div class="menu-top-right">
+        <a class="back-to-search back-to-search-old" [foxLink] (linkPressed)="goBack(false)">
+          <img  class="lock-icon" src="assets/img/arrow-left.svg" placement="center"> Back to Search Results
+        </a>
+      </div>
+    </div>
+    <form [formGroup]="docMetaFormGroup" (ngSubmit)="updateDocMeta()" class="form-container">
+      <div class="row container-buttons-update-reset-new">
+        <button *ngIf="!hasDocumentLocked"
+                (click)="onReset()"
+                [disabled]="hasDocumentLocked || !docMetaFormGroup.dirty"
+                foxHotkey="alt+y"
+                type="button"
+                class="btn btn-secondary btn-reset-new">
+          Reset (Y)
+        </button>
+        <button *ngIf="!hasDocumentLocked"
+                (click)="showClearDialog = true"
+                [disabled]="hasDocumentLocked"
+                foxHotkey="alt+r"
+                type="button"
+                class="btn btn-secondary btn-clear-new">
+          Clear (R)
+        </button>
+        <button *ngIf="!hasDocumentLocked"
+                type="submit"
+                class="btn btn-primary btn-update-new"
+                [disabled]="docMetaFormGroup.invalid || hasDocumentLocked || docMetaFormGroup.pristine"
+                foxHotkey="alt+k">
+          Update (K)
+        </button>
+      </div>
+
+      <fox-section class="container-btn-link-unlink" [formGroup]="docMetaFormGroup.get('member')">
+        <fox-loading-overlay tag="doc-update">
+          <fox-loading-overlay tag="get-doc-meta">
+
+            <div class="div-link-unlink">
+              <div class="container-membership-number-input">
+                <fox-input type="fox-membership"
+                           placeholder="123456789 1 1"
+                           labelText="Member #"
+                           formControlName="accountNumber"
+                           [inputValue]="docMetaFormGroup.get('member')?.get('accountNumber')?.value">
+                </fox-input>
+              </div>
+              <ng-container *ngIf="!hasDocumentLocked" class="container-btn-link">
+                <button type="button"
+                        class="btn btn-primary btn-link-unlink-member"
+                        (click)="processLinkingRequest()"
+                        [disabled]="hasDocumentLocked"
+                        (focus)="isButtonFocused = true"
+                        (blur)= "isButtonFocused = false">
+                  <span *ngIf="matchedIndicatorValue === 'N'">
+                    <img class="img-link-member" *ngIf="isButtonFocused" src="assets/img/link-196ecf.svg"/>
+                    <img class="img-link-member" *ngIf="!isButtonFocused" src="assets/img/link-ffffff.svg"/>
+                    Link
+                  </span>
+                  <span *ngIf="matchedIndicatorValue === 'Y'">
+                    <img class="img-unlink-member" *ngIf="isButtonFocused" src="assets/img/unlink-196ecf.svg"/>
+                    <img class="img-unlink-member" *ngIf="!isButtonFocused" src="assets/img/unlink-ffffff.svg"/>
+                    Unlink
+                  </span>
+                </button>
+              </ng-container>
+            </div>
+          </fox-loading-overlay>
+        </fox-loading-overlay>
+      </fox-section>
+
+      <fox-section class="container-left-doc-detail">
+        <div class="container-btn-nav">
+          <button (click)="setCurrentNav(1, $event)" type="button" [ngClass]="{'active':leftCurrentNav===1}" class="btn btn-default btn-nav-doc-detail">Member</button>
+          <button (click)="setCurrentNav(2, $event)" type="button" [ngClass]="{'active':leftCurrentNav===2}" class="btn btn-default btn-nav-doc-detail">Claim</button>
+          <button (click)="setCurrentNav(3, $event)" type="button" [ngClass]="{'active':leftCurrentNav===3}" class="btn btn-default btn-nav-doc-detail">Check</button>
+          <button (click)="setCurrentNav(4, $event)" type="button" [ngClass]="{'active':leftCurrentNav===4}" class="btn btn-default btn-nav-doc-detail">Doc</button>
+        </div>
+
+        <div [formGroup]="docMetaFormGroup.get('member')"
+             [ngClass]="{'div-display': leftCurrentNav === 1}"
+             class="div-container-member">
+          <fox-loading-overlay tag="doc-update">
+            <fox-loading-overlay tag="get-doc-meta">
+              <div class="container-input-field">
+                <fox-input class="input-last-name" labelText="Last Name" formControlName="lastName" [inputValue]="docMetaFormGroup.get('member')?.get('lastName')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-first-name" labelText="First Name" formControlName="firstName" [inputValue]="docMetaFormGroup.get('member')?.get('firstName')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-middle-name" labelText="Middle Name" formControlName="middleName" [inputValue]="docMetaFormGroup.get('member')?.get('middleName')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-state">
+                  <mat-label>Member State</mat-label>
+                  <mat-select formControlName="state" class="dropdown-width">
+                    <mat-option [value]=""></mat-option>
+                    <mat-option *ngFor="let state of memberStates" [value]="state.code">
+                      {{state.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('member.state')?.valid" class="field-error">
+                    State is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-zip-code" type="fox-number" labelText="Zip Code" formControlName="zipCode" [inputValue]="docMetaFormGroup.get('member')?.get('zipCode')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-dob"
+                           type="fox-date"
+                           displayFormat="MM/DD/YYYY"
+                           programmaticFormat="MM/DD/YYYY"
+                           labelText="Date of Birth"
+                           formControlName="dateOfBirth"
+                           [inputValue]="docMetaFormGroup.get('member')?.get('dateOfBirth')?.value">
+
+                </fox-input>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-gender">
+                  <mat-label>Gender</mat-label>
+                  <mat-select formControlName="gender" class="dropdown-width">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.code">
+                      {{gender.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('member.gender')?.valid" class="field-error">
+                    Gender is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-mbi" labelText="MBI" formControlName="medicareBeneficiaryId" [inputValue]="docMetaFormGroup.get('member')?.get('medicareBeneficiaryId')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-plan-type">
+                  <mat-label>Plan Type</mat-label>
+                  <mat-select formControlName="planType" class="dropdown-width">
+                    <mat-option *ngFor="let planType of planTypes" [value]="planType.code">
+                      {{planType.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('member.planType')?.valid" class="field-error">
+                    Plan Type is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-plan-code" labelText="Plan Code" formControlName="planCode" [inputValue]="docMetaFormGroup.get('member')?.get('planCode')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-plan-effective-date"
+                           type="fox-date"
+                           displayFormat="MM/DD/YYYY"
+                           programmaticFormat="MM/DD/YYYY"
+                           labelText="Plan Effective Date"
+                           formControlName="planEffectiveDate"
+                           [inputValue]="docMetaFormGroup.get('member')?.get('planEffectiveDate')?.value">
+                </fox-input>
+              </div>
+            </fox-loading-overlay>
+          </fox-loading-overlay>
+        </div>
+
+        <div [formGroup]="docMetaFormGroup.get('claim')"
+             [ngClass]="{'div-display': leftCurrentNav === 2}"
+             class="div-container-claim">
+          <fox-loading-overlay tag="doc-update">
+            <fox-loading-overlay tag="get-doc-meta">
+              <div class="container-input-field">
+                <fox-input class="input-claim-no" type="fox-claim"
+                           labelText="Claim #"
+                           formControlName="claimNumber" [inputValue]="docMetaFormGroup.get('claim')?.get('claimNumber')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-dos"
+                           type="text"
+                           placeholder="MMYY"
+                           labelText="Date of Service From"
+                           formControlName="dosFrom" [inputValue]="docMetaFormGroup.get('claim')?.get('dosFrom')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-dos-to"
+                           type="text"
+                           placeholder="MMYY"
+                           labelText="Date of Service To"
+                           formControlName="dosTo" [inputValue]="docMetaFormGroup.get('claim')?.get('dosTo')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-provider-name"
+                           labelText="Provider Name"
+                           formControlName="providerName" [inputValue]="docMetaFormGroup.get('claim')?.get('providerName')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-provider-tin"
+                           type="text"
+                           labelText="Provider TIN"
+                           formControlName="providerTin" [inputValue]="docMetaFormGroup.get('claim')?.get('providerTin')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-julian-date"
+                           type="text"
+                           labelText="Claim Julian Date"
+                           formControlName="claimJulianDate" [inputValue]="docMetaFormGroup.get('claim')?.get('claimJulianDate')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-ub-type-of-bill"
+                           type="text"
+                           labelText="UB Type of Bill"
+                           formControlName="ubTypeOfBill" [inputValue]="docMetaFormGroup.get('claim')?.get('ubTypeOfBill')?.value"></fox-input>
+              </div>
+            </fox-loading-overlay>
+          </fox-loading-overlay>
+        </div>
+
+        <div [formGroup]="docMetaFormGroup.get('check')"
+             [ngClass]="{'div-display': leftCurrentNav === 3}"
+             class="div-container-check">
+          <fox-loading-overlay tag="doc-update">
+            <fox-loading-overlay tag="get-doc-meta">
+              <div class="container-input-field">
+                <fox-input class="input-check-claim-no" type="fox-claim"
+                           labelText="Check Claim #"
+                           formControlName="checkClaimNumber"
+                           [inputValue]="docMetaFormGroup.get('check')?.get('checkClaimNumber')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-deposite-date"
+                           type="fox-date"
+                           displayFormat="MM/DD/YYYY"
+                           programmaticFormat="MM/DD/YYYY"
+                           labelText="Deposit Date"
+                           formControlName="depositDate"
+                           [inputValue]="docMetaFormGroup.get('check')?.get('depositDate')?.value">
+                </fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-check-date"
+                           type="fox-date"
+                           displayFormat="MM/DD/YYYY"
+                           programmaticFormat="MM/DD/YYYY"
+                           labelText="Check Date"
+                           formControlName="checkDate"
+                           [inputValue]="docMetaFormGroup.get('check')?.get('checkDate')?.value">
+                </fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-check-amount"
+                           type="fox-currency"
+                           labelText="Check Amount"
+                           formControlName="checkAmount"
+                           [inputValue]="docMetaFormGroup.get('check')?.get('checkAmount')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-check-no" type="fox-number"
+                           labelText="Check #"
+                           formControlName="checkNumber"
+                           [inputValue]="docMetaFormGroup.get('check')?.get('checkNumber')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-film-locator-no" type="fox-number"
+                           labelText="Film Locator #"
+                           formControlName="filmLocatorNumber"
+                           [inputValue]="docMetaFormGroup.get('check')?.get('filmLocatorNumber')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-check-control-no" type="fox-number"
+                           labelText="Check Control #"
+                           formControlName="checkControlNumber"
+                           [inputValue]="docMetaFormGroup.get('check')?.get('checkControlNumber')?.value"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-op-collect-type">
+                  <mat-label>Overpayment Collection Type</mat-label>
+                  <mat-select formControlName="overpaymentCollectionType" class="dropdown-width">
+                    <mat-option *ngFor="let overpaymentCollectionType of overpaymentCollectionTypes"
+                                [value]="overpaymentCollectionType.code">
+                      {{overpaymentCollectionType.description}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-refund-party" labelText="Refund Party"
+                           formControlName="refundParty"></fox-input>
+              </div>
+            </fox-loading-overlay>
+          </fox-loading-overlay>
+        </div>
+
+        <div [ngClass]="{'div-display': leftCurrentNav === 4}"
+             class="div-container-doc">
+          <fox-loading-overlay tag="doc-update">
+            <fox-loading-overlay tag="get-doc-meta">
+              <div class="container-input-field">
+                <fox-input class="input-dcn" type="text"
+                           labelText="DCN"
+                           formControlName="docControlNumber"
+                           disabled="true"></fox-input>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-feedback-info">
+                  <mat-label>Feedback Code</mat-label>
+                  <mat-select formControlName="feedbackInfo" class="dropdown-width">
+                    <mat-option *ngFor="let feedbackInformation of feedbackInformations"
+                                [value]="feedbackInformation.code">
+                      {{feedbackInformation.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('feedbackInfo')?.valid" class="field-error">
+                    Feedback Code is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-doc-type">
+                  <mat-label>Document Type</mat-label>
+                  <mat-select formControlName="documentType" class="dropdown-width">
+                    <mat-option *ngFor="let documentType of documentTypes" [value]="documentType.code">
+                      {{documentType.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('documentType')?.valid" class="field-error">
+                    Document Type is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-form-type">
+                  <mat-label>Form Type</mat-label>
+                  <mat-select formControlName="formType" class="dropdown-width">
+                    <mat-option *ngFor="let formType of formTypes" [value]="formType.code">
+                      {{formType.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('formType')?.valid" class="field-error">
+                    Form Type is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-asi-mail">
+                  <mat-label>ASI Mail</mat-label>
+                  <mat-select formControlName="asiMailIndicator" class="dropdown-width">
+                    <mat-option value="Y">Yes</mat-option>
+                    <mat-option value="N">No</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-emp-buss">
+                  <mat-label>Employer Business</mat-label>
+                  <mat-select formControlName="employerBusinessIndicator" class="dropdown-width">
+                    <mat-option value="Y">Yes</mat-option>
+                    <mat-option value="N">No</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-health-allies">
+                  <mat-label>Health Allies</mat-label>
+                  <mat-select formControlName="healthAlliesIndicator" class="dropdown-width">
+                    <mat-option value="Y">Yes</mat-option>
+                    <mat-option value="N">No</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-fek-pull-reason">
+                  <mat-label>FEK Pull Reason</mat-label>
+                  <mat-select formControlName="fekPullReason" class="dropdown-width">
+                    <mat-option *ngFor="let fekPullReason of fekPullReasons" [value]="fekPullReason.code">
+                      {{fekPullReason.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('fekPullReason')?.valid" class="field-error">
+                    FEK Pull Reason is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-rnf-status">
+                  <mat-label>RNF Status</mat-label>
+                  <mat-select formControlName="rnfStatus" class="dropdown-width">
+                    <mat-option *ngFor="let rnfStatus of rnfStatuses" [value]="rnfStatus.code">
+                      {{rnfStatus.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="!docMetaFormGroup.get('rnfStatus')?.valid" class="field-error">
+                    RNF Status is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <mat-form-field class="select-routing-error">
+                  <mat-label>Routing Error</mat-label>
+                  <mat-select formControlName="routingErrorIndicator" class="dropdown-width">
+                    <mat-option value="Y">Yes</mat-option>
+                    <mat-option value="N">No</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="container-input-field">
+                <fox-input class="input-customer-dcn" type="fox-number"
+                           labelText="Customer DCN"
+                           formControlName="customerDCN"
+                           docControlNumberdisabled="true"
+                           [inputValue]="docMetaFormGroup.get('customerDCN')?.value"></fox-input>
+              </div>
+            </fox-loading-overlay>
+          </fox-loading-overlay>
+        </div>
+      </fox-section>
+    </form>
+  </div>
+  <div *ngIf="pageHeaderService.currentNav===1" class="col-xs-12 col-sm-10 col-md-8 container-pdf">
+    <fox-section [noPadding]="true" class="section-doc-pdf">
+      <fox-loading-overlay tag="pdf-loading">
+        <fox-pdf *ngIf="!!theDocument" [pdf]="theDocument" [downloadLink]="downloadLink"
+                 (totalPagesChange)="pdfTotalPages=$event"></fox-pdf>
+        <div class="container-not-found" *ngIf="!theDocument">
+          <div class="fa fa-info-circle" focusable="false"></div>
+          <div class="header-container"><br/><span
+            *ngIf="!isImageAsssociated">No image associated with this document</span></div>
+        </div>
+      </fox-loading-overlay>
+    </fox-section>
+  </div>
+</div>
+
+<fox-link-member-modal [showLinkMemberModal]=showLinkMemberModal
+                       (showLinkMemberModalChange)="onLinkMemberVisibleChange($event)"
+                       (memberMatchChange)="onMemberMatchChange($event)"
+                       [dcn]="dcn"
+                       [memberNumber]="memberNumber"
+                       [firstName]="firstName"
+                       [lastName]="lastName"
+                       [dateOfBirth]="dateOfBirth"
+                       [memberState]="memberState">
+</fox-link-member-modal>
+
+<div class="row container-doc-notes" *ngIf="pageHeaderService.currentNav === 2">
+  <fox-section class="col-sm-8" [noPadding]="true">
+    <fox-section-title class="container-padding">
+      Document Notes
+    </fox-section-title>
+
+    <div class="container-notes">
+      <div *ngFor="let note of documentNotes; let i = index" [ngClass]="{'highlight-note': note.editing}" class="note-area">
+        <div class="container-note-header">
+          <span class="text-field-underline">
+            <span class="name">{{note.noteCreatedBy ? (userNameMap[note.noteCreatedBy] || note.noteCreatedBy) : 'Unknown User'}}</span>
+            <span class="dt-created">{{note.noteCreatedDt | regexpReplace: '^(.*)Z$' : '$1' | date: 'short'}}</span>
+          </span>
+          <ng-container *ngIf="(note.noteCreatedBy === username) || hasEnhancedRole">
+            <a class="edit-text" (click)="editItemNoteOld(i)">
+              <i focusable="false" class="fas fa-edit icon-margin-left icon-margin-right"></i><span class="span-text">Edit</span>
+            </a>
+            <a class="delete-text" [ngClass]="{ 'lnk-disabled': isEditing}" (click)="deleteItemNote(note)">
+              <i focusable="false" class="fas fa-times-circle icon-margin-left icon-margin-right"></i><span class="span-text">Delete</span>
+            </a>
+          </ng-container>
+        </div>
+        <div class="doc-list-note-content">{{note.note}}</div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="documentNotes.length > 0">
+      <fox-paginator-non-material [(pageSize)]="notePageSize"
+                                  [dataLengthInput]="noteDataLengthInput"
+                                  [pageTotal]="notePageTotal" [(currentPage)]="currentNotePage"
+                                  (currentPageChange)="getDocNotes()"
+                                  (pageSizeChange)="currentNotePage=0;getDocNotes()" class="paginator-doc-notes">
+      </fox-paginator-non-material>
+    </ng-container>
+
+  </fox-section>
+
+  <fox-section class="col-sm-4">
+    <fox-section-title class="doc-notes-title" *ngIf="!isEditing">
+      Add Note
+    </fox-section-title>
+    <fox-section-title class="doc-notes-title" *ngIf="isEditing">
+      Edit Note
+    </fox-section-title>
+    <br/>
+    <mat-form-field class="textarea-note-content">
+      <mat-label class="note-field-label">Note Text*</mat-label>
+      <textarea class="note-text-area " matInput #textarea [(ngModel)]="noteContent"></textarea>
+      <mat-hint class="characters-left" align="end">{{200 - textarea.value.length}} characters
+        left
+      </mat-hint>
+    </mat-form-field>
+    <button type="button" *ngIf="!isEditing" class="btn btn-primary btn-add-note" [foxLink]
+            (linkPressed)="showAddNoteModal = true"
+            [disabled]="textarea.value.length === 0 || textarea.value.length > 200">Add
+    </button>
+    <p class="col-md-12 text-right manual-entry-conf-btns" *ngIf="isEditing">
+      <button type="button" class="btn btn-secondary"
+              (click)="resetNoteScreen()">Cancel
+      </button>
+      <button type="submit" class="btn btn-primary btn-edit-note" (click)="showUpdateModal = !showUpdateModal"
+              [disabled]="textarea.value.length === 0 || textarea.value.length > 200">
+        Confirm
+      </button>
+    </p>
+  </fox-section>
+</div>
+
+<div class="row" class="container-audit-log" *ngIf="pageHeaderService.currentNav === 3">
+
+  <fox-section class="col-xs-12">
+
+    <div class="row row-audit-log">
+      <h1 class="h1-audit-overview">Audit Overview</h1>
+    </div>
+
+    <div class="row row-audit-log container-grey-border-search-param">
+      <div class="col-xs-6 col-md-3 container-metadata-item">
+        <p class="txt-metadata-label ">Document #</p>
+        <p class="p-underline">{{documentControlNumberStr}}</p>
+      </div>
+      <div class="col-xs-6 col-md-2 container-metadata-item">
+        <p class="txt-metadata-label">Member #</p>
+        <p class="p-underline p-member-number">
+          <img src="assets/img/member-blue.svg" class="img-member">
+          <span>{{memberNumber}}</span>
+        </p>
+      </div>
+      <div class="col-xs-6 col-md-2 container-metadata-item padding-left">
+        <p class="txt-metadata-label">Member First Name</p>
+        <p class="p-underline">{{firstName}}</p>
+      </div>
+      <div class="col-xs-6 col-md-2 container-metadata-item border-left-grey">
+        <p class="txt-metadata-label">Member Last Name</p>
+        <p class="p-underline">{{lastName}}</p>
+      </div>
+    </div>
+  </fox-section>
+
+  <fox-section class="col-sm-12" [noPadding]=true>
+    <fox-loading-overlay>
+
+      <h1 class="doc-audit-title">Audit Log</h1>
+
+      <br/>
+      <div class="container-table table-document-detail">
+        <table class="table table-document-search-result audit-table">
+          <thead class="thead-default">
+          <tr>
+            <ng-container *ngFor="let header of tableHeaders; let j = index">
+              <th [foxLink] (linkPressed)="sortData(header.HeaderPO)" class="table-header table-header-{{j}}"
+                  [ngClass]="{'sorted-column-header':(column === header.HeaderPO), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>{{header.headerName}}</fox-table-header-sort>
+              </th>
+            </ng-container>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let data of currentTableData">
+            <tr>
+              <td>{{data.createDate}}</td>
+              <td>{{data.createdBy ? (userNameMap[data.createdBy] || data.createdBy) : 'Unknown User'}}</td>
+              <td>{{data.eventNote}}</td>
+              <td>{{data.eventDetails}}</td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-container *ngIf="auditData.length > 0">
+        <fox-paginator-non-material [pageSize]="itemsPerPage"
+                                    [dataLengthInput]="numberOfElements"
+                                    [pageTotal]="totalPages"
+                                    (currentPageChange)="setPage($event)"
+                                    (pageSizeChange)="perPageItemsChange($event)">
+        </fox-paginator-non-material>
+      </ng-container>
+
+    </fox-loading-overlay>
+
+  </fox-section>
+</div>
+
+<fox-link-member-modal [showLinkMemberModal]=showLinkMemberModal
+                       (showLinkMemberModalChange)="onLinkMemberVisibleChange($event)"
+                       (memberMatchChange)="onMemberMatchChange($event)"
+                       [dcn]="dcn"
+                       [memberNumber]="memberNumber"
+                       [firstName]="firstName"
+                       [lastName]="lastName"
+                       [dateOfBirth]="dateOfBirth"
+                       [memberState]="memberState">
+</fox-link-member-modal>
+
+<fox-modal [(visible)]="showAddNoteModal"
+           modalTitle="Add Note"
+           [closable]="false"
+           class="modal-frame"
+           *ngIf="showAddNoteModal">
+
+  <div>
+    <p>Do you want to add the notes below to the document?</p>
+
+    <p class="col-md-12 text-right manual-entry-conf-btns">
+      <button type="button" class="btn btn-secondary"
+              (click)="showAddNoteModal = !showAddNoteModal">
+        Cancel
+      </button>
+      <button type="submit"
+              class="btn btn-primary btn-edit-note"
+              (click)="confirmAddNote()">
+        Confirm
+      </button>
+    </p>
+
+  </div>
+
+</fox-modal>
+
+<fox-modal [(visible)]="showUpdateModal" modalTitle="Update Note" [closable]="false">
+  <div>
+    <p>Do you want to edit the note below in the document?</p>
+    <p class="col-md-12 text-right manual-entry-conf-btns">
+      <button type="button" class="btn btn-secondary"
+              (click)="updateModalCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary btn-edit-note"
+              (click)="confirmUpdateNote();">
+        Confirm
+      </button>
+    </p>
+  </div>
+</fox-modal>
+
+<!-- todo: the delete document modal used to be here; confirm whether it was necessary -->
+
+<ng-container *ngIf="deleteModalVisible">
+  <fox-document-detail-delete-modal [deleteModalVisible]="deleteModalVisible"
+                                    (abortDeletion)="onAbortDeletion()"
+                                    (confirmDeletion)="onConfirmDeletion()">
+  </fox-document-detail-delete-modal>
+</ng-container>
+
+<fox-modal [(visible)]="showClearDialog" modalTitle="Confirmation" [closable]="true" class="modal-frame"
+           *ngIf="showClearDialog">
+  <div>
+    <p>Are you sure you wish to clear document metadata? This action cannot be undone.</p>
+  </div>
+  <div class="container-clear-buttons">
+    <button type="button" class="btn btn-secondary btn-clear-modal-cancel"
+            (click)="showClearDialog =! showClearDialog">
+      Cancel
+    </button>
+    <button type="button" class="btn btn-danger btn-clear-modal-clear"
+            (click)="onClear()">
+      Clear Fields
+    </button>
+  </div>
+</fox-modal>
+

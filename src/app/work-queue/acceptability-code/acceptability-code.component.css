@@ -1,0 +1,197 @@
+.span-information {
+  height: 16px;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.div-value {
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.background-provider-circle {
+  background-color: #003DA1;
+  border-radius: 50px;
+  color: white;
+  margin-right:10px;
+  padding: 4px;
+}
+
+.section-title {
+  height: 18px;
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 18px;
+}
+
+.icon-ambulance {
+  width: 16px;
+}
+
+.hr-field {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.div-tin {
+  margin-top: -8px;
+}
+
+.div-npi {
+  margin-top: -8px;
+}
+
+.div-label {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.input-field {
+  font-size: 16px;
+  border: 0;
+}
+
+.div-if-copied {
+  margin-top: -11px;
+  color: #268324;
+  font-size: 11px;
+}
+
+.span-provider-org {
+  height: 22px;
+  width: 446px;
+  color: #333333;
+  font-size: 22px;
+  line-height: 22px;
+  border-bottom: gray dashed 1px;
+}
+
+.span-value {
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+.div-address-line-1 {
+  display:inline-block;
+  width: 204px;
+  height: 66px;
+}
+
+.div-fields {
+  margin-top: 10px;
+}
+
+.span-label {
+  border-bottom: gray dashed 1px;
+  font-weight: 600;
+}
+
+.div-address-line-1 {
+  display:inline-block;
+  width: 275px;
+  height: 66px;
+}
+
+
+.div-address-line-2 {
+  display:inline-block;
+  width: 275px;
+  height: 66px;
+  margin-left: 20px;
+}
+
+.div-city {
+  display:inline-block;
+  width: 210px;
+  height: 66px;
+  margin-left: 20px;
+}
+
+.div-state {
+  display:inline-block;
+  width: 130px;
+  height: 66px;
+  margin-left: 20px;
+}
+
+.div-zip {
+  display:inline-block;
+  width: 130px;
+  height: 66px;
+  margin-left: 20px;
+}
+
+.icon-check {
+  margin-right: 3px;
+  margin-left: 5px;
+}
+
+.hr-line {
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 10px;
+}
+
+.background-claim-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right:10px;
+  padding: 4px;
+}
+
+.div-claim-details {
+  margin-top: 15px;
+}
+
+.div-claim-details {
+  font-weight: 600;
+}
+
+.span-claim-value {
+  font-weight: normal;
+}
+
+.div-pai {
+  font-weight: 600;
+}
+
+.span-nocopy-label {
+  font-weight: 600;
+}
+
+.span-claim-number {
+  line-height: 30px;
+  font-size: 22px;
+}
+
+.span-if-copied {
+  margin-top: -11px;
+  color: #268324;
+  font-size: 11px;
+}
+
+.span-suspense-value {
+  font-weight: normal;
+}
+
+.div-suspense-reason {
+  margin-top: 10px;
+}
+
+.span-tin {
+  margin-left: 8px;
+  width: 104px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.span-npi {
+  margin-left: 8px;
+  width: 104px;
+  font-size: 14px;
+  line-height: 18px;
+}

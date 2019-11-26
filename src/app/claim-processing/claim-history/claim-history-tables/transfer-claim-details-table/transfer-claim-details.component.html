@@ -1,0 +1,52 @@
+<div class="container-table-claim-details">
+  <table class="table table-claim-details">
+    <thead class="thead-default">
+    <tr class="table-header">
+      <th class="column-claim-num">
+        <span>Claim #</span>
+      </th>
+      <th class="column-dos">
+        <span>Dates of Service</span>
+      </th>
+      <th class="column-status">
+        <span>Claim Status</span>
+      </th>
+      <th class="column-primary-icd">
+        <span>Primary ICD</span>
+      </th>
+      <th class="column-type">
+        <span>Claim Type</span>
+      </th>
+      <th class="column-aarp">
+        <span>AARP Assigned</span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="column-claim-num">
+        <div>
+          <mat-icon class="link-delete-cross-ref" aria-disabled="true" [ngClass]="{'disable': true}">
+            <span><img class="icon-position-align" focusable="false" src="assets/img/deny-grey.svg"></span>
+          </mat-icon>
+          <span>{{claimNumber}}</span>
+        </div>
+      </td>
+      <td class="column-dos">{{dos}}</td>
+      <td class="column-status">{{claimDetails?.claimHistoryStatusCode}}</td>
+      <td class="column-primary-icd">{{claimDetails?.primaryIcdCode}}</td>
+      <td class="column-type">{{claimDetails?.claimTypeIndicator}}</td>
+      <td class="column-aarp">
+        <span *ngIf="claimDetails?.assignedIndicator === 'Y'">
+          <img class="icon-right icon-position-align" src="assets/img/confirm-green.svg">
+          <span class="span-icon-value">Yes</span>
+        </span>
+        <span *ngIf="claimDetails?.assignedIndicator === 'N'">
+          <img class="icon-right icon-position-align" src="assets/img/deny-red.svg">
+          <span class="span-icon-value">No</span>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

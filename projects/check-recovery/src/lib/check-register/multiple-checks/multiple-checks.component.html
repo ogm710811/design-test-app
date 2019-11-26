@@ -1,0 +1,49 @@
+<div class="go-back-link">
+  <a tabindex="0" (keyup.enter)="goBack()" (keyup.space)="goBack()" (click)="goBack()">
+    <i focusable="false" aria-hidden="true" class="fa fa-chevron-left"></i>Return to Check Register
+  </a>
+</div>
+
+<fox-section [noPadding]="true">
+  <fox-section-title *ngIf="checkIds?.checkid" class="container-padding">Viewing
+    {{checkIds?.checkid?.length}} Checks
+  </fox-section-title>
+  <div class="check-register-main" [ngClass]="{'hide':!dataSource.data}">
+    <div class="check-register-table-main">
+      <fox-table [tableColumns]="displayedColumns" [tableData]="tableData" [expandable]="true" (linkClicked)="linkClicked($event)" ></fox-table>
+
+      <mat-paginator #paginator
+                     [length]="dataLength"
+                     [pageIndex]="currentPage"
+                     [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 20]" class="hide">
+      </mat-paginator>
+      <div>
+        <fox-paginator [(paginatorInput)]="paginatorObj" [pageSizeInput]="pageSize"
+                       [dataLengthInput]="dataLength"></fox-paginator>
+      </div>
+
+    </div>
+  </div>
+</fox-section>
+
+<!--New form design component name: fox-check-replacement-->
+<ng-container *ngIf="toggleCheckReplacementVersionFeature; else checkReplacementOldVersion">
+  <ng-container *ngIf="grantedAccessToRVScreen()">
+    <fox-check-replacement [checkDetails]="checkDetails"></fox-check-replacement>
+  </ng-container>
+</ng-container>
+
+<!--Old form design component name fox-mc-replace-void-->
+<ng-template #checkReplacementOldVersion>
+  <fox-section *ngIf="grantedAccessToRVScreen()">
+    <fox-section-title *ngIf="checkIds?.checkid?.length >= 1">
+      Bulk Actions to Apply to {{checkIds?.checkid?.length}} Checks
+    </fox-section-title>
+    <div *ngIf="checkIds?.checkid && checkIds?.checkid?.length >= 1">
+      <fox-mc-replace-void [checkDetails]="checkDetails" [checkedItems]="dataSource"
+                           [checkIds]="checkIds" (statusChange)="statusChange($event)">
+      </fox-mc-replace-void>
+    </div>
+  </fox-section>
+</ng-template>

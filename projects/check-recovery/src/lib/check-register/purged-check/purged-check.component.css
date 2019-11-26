@@ -1,0 +1,84 @@
+.purged-check-main-label {
+  border-bottom: 1px solid #cccccc;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.container-grey-border.purged-table {
+  margin-top: 150px;
+}
+
+.purged-check-main .border-bottom {
+  padding-left: 0;
+}
+
+.purged-check-main .border-bottom div {
+  padding-left: 0;
+  width: 119px;
+}
+
+.result-space.no-width {
+  padding-left: 17px !important;
+  width: 112px !important;
+}
+
+.result-space.no-width-series {
+  padding-left: 16px !important;
+  width: 75px !important;
+}
+
+.result-space.no-width-issue-date {
+  width: 110px !important;
+}
+
+.result-space > span {
+  line-height: 2;
+}
+
+.result-space > span > .result-line-height {
+  line-height: 1;
+}
+
+.purged-check-main-label > label {
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.fa-user-circle {
+  color: #196ECF;
+  margin-right: 5px;
+}
+
+.container-summary {
+  padding: 10px 20px 20px 20px;
+  background-color: #F2F5F8;
+}
+
+.container-summary-values {
+  margin-bottom: 25px;
+}
+
+.container-summary-content {
+  margin-top: 5px;
+  color: #252C37;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.container-color {
+  background-color: #FFFFFF;
+  margin-left: 2px;
+  margin-bottom: 20px;
+}
+
+.label-read-only {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+}
+
+.title-purge-check {
+  padding-top: 20px;
+  padding-left: 20px;
+}

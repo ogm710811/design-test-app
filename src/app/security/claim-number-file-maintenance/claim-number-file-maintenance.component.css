@@ -1,0 +1,88 @@
+.container-claim-file-section {
+  padding: 0;
+  margin: 0;
+}
+
+.container-claim-file {
+  padding: 0;
+  margin: 0;
+}
+
+.container-input {
+  margin: 13px 0 0 0;
+  padding: 0;
+}
+
+.section-details {
+  margin-top: -27px;
+}
+
+.title-status {
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.title-value {
+  color: #252C37;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.container-details {
+  padding-top: 12px;
+}
+
+.container-input-top {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.container-input-top-xs {
+  margin: 13px 0 0 0;
+  padding: 0;
+}
+
+.section-title {
+  margin-bottom: -9px;
+}
+
+.container-submit-button {
+  margin: 0;
+  padding: 0;
+}
+
+.container-member-info {
+  margin: 25px -20px 0 -20px;
+  border-top: 1px solid #E3E6E8;
+}
+
+.container-member {
+  padding: 17px 20px 0 20px;
+}
+
+.container-status {
+  padding: 12px 20px 0 20px;
+}
+
+@media (max-width: 768px) {
+
+  .container-input-top-xs {
+    margin: 10px 0 0 0;
+    padding: 0 0 0 10px;
+  }
+
+  .container-input-top {
+    padding-right: 10px;
+  }
+
+  .container-left-xs {
+    padding-right: 10px;
+  }
+
+  .container-right-xs {
+    padding-left: 10px;
+  }
+
+}

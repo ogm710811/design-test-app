@@ -1,0 +1,62 @@
+<fox-section>
+  <fox-section-title>File & Attributes</fox-section-title>
+  <fox-loading-overlay>
+  <form>
+    <div class="doc-file-container">
+      <mat-form-field>
+        <mat-label>File</mat-label>
+        <input matInput type="text" [(ngModel)]="localFileLocation" [ngModelOptions]="{standalone:true}">
+      </mat-form-field>
+      <input id="hidden-file" #fileInput type="file" (change)="onFileChange($event.target.files)">
+      <button type="button" class="btn btn-secondary" (click)="fileInput.click()" foxHotkey="alt+b">
+        Browse (B)
+      </button>
+      <div>
+        Max filesize: 3 megabytes (MB)
+        <br/>
+        Acceptable filetypes: .PDF
+      </div>
+    </div>
+
+    <div class="doc-meta-container">
+      <div class="container-left">
+        <mat-form-field class="doc-type">
+          <mat-label>Queue Name</mat-label>
+          <mat-select [formControl]="queueFc">
+            <mat-option [value]=""></mat-option>
+            <mat-option *ngFor="let selection of docQueueDropdownValues" [value]="selection.code">
+              {{selection.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="container-right document-search-panel-top">
+        <fox-document-form #docForm [(getForm)]="getFormFlag"
+                           [resetForm]="resetFormFlag"
+                           (formValues)="onFormOutputReceived($event)">
+        </fox-document-form>
+      </div>
+    </div>
+
+    <div class="doc-upload-btn-container">
+      <button type="submit"
+              class="btn btn-primary"
+              foxHotkey="alt+u"
+              hotkeyAction = 'click'
+              (click)="onClickUpload()"
+              [disabled]="formMember?.get('memberNo')?.hasError('pattern')
+                         ||formMember?.get('dob')?.hasError('date')
+                         ||formMember?.get('planEffectiveDate')?.hasError('date')
+                         ||formClaim?.get('ubTypeOfBill')?.hasError('pattern')
+                         ||formClaim?.get('claimNo')?.hasError('pattern')
+                         ||formClaim?.get('dosFrom')?.hasError('date')
+                         ||formClaim?.get('dosTo')?.hasError('date')
+                         ||formCheck?.get('checkDate')?.hasError('date')
+                         ||formCheck?.get('checkAmount')?.hasError('pattern')
+                         ||formDocument?.get('dcn')?.hasError('pattern')">
+        Upload Document (U)
+      </button>
+    </div>
+  </form>
+  </fox-loading-overlay>
+</fox-section>

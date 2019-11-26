@@ -1,0 +1,122 @@
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <fox-section>
+      <fox-section-title class="fox-section-title">Import Overview
+      </fox-section-title>
+      <div class="container-subtitle">Overview data for the important can be viewed below</div>
+      <div class="container-summary-info" *ngIf="!allResult">
+        <span class="span-svg-error">
+          <img alt="warning" src="assets/img/warning-icon.svg">
+        </span>
+        <span class="span-rows-imported">Some rows imported, others failed</span>
+        <div class="container-investigate">Investigate which rows failed and why to retry failed rows</div>
+      </div>
+      <div class="container-summary-info" *ngIf="!succeededResult">
+        <span class="span-svg-error">
+          <img alt="confirm" src="assets/img/confirm-green.svg">
+        </span>
+        <span class="span-rows-imported">All rows imported successfully</span>
+        <div class="container-investigate">A new upload may be performed below</div>
+      </div>
+      <div class="container-summary-info" *ngIf="!failedResult">
+        <span class="span-svg-error">
+          <img alt="deny" src="assets/img/deny-red.svg">
+        </span>
+        <span class="span-rows-imported">All rows failed to import</span>
+        <div class="container-investigate">Investigate the data and retry failed rows</div>
+      </div>
+      <div class="container-rows-group">
+        <div id="progress" class="container-rows-ngx">
+          <ngx-charts-bar-horizontal-stacked
+            class="container-ngx-graph"
+            [scheme]="colorScheme"
+            [results]="multi"
+            [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel">
+          </ngx-charts-bar-horizontal-stacked>
+        </div>
+        <div class="margin-bottom-25 container-info">
+          <div><span class="txt-green"></span><span class="txt-succeeded">Succeeded</span></div>
+          <div><span class="txt-red"></span><span class="txt-failed">Failed</span></div>
+        </div>
+      </div>
+      <div class="container-total-summary">
+        <div class="form-row col-md-12 no-padding">
+          <div class="col-md-6 container-bill-card no-padding">
+            <div>
+              <label class="lbl-total-rows">Total Rows:</label>
+              <span class="txt-values">{{totalRecords}}</span>
+            </div>
+            <div>
+              <label class="lbl-succeeded">Succeeded:</label>
+              <span class="txt-values">{{importSummary.successful}}</span>
+            </div>
+            <div>
+              <label class="lbl-failed">Failed:</label>
+              <span class="txt-values-failed">{{importSummary.failed}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-divider-top"></div>
+      <div class="container-summary-info container-link-bottom">
+        <span class="txt-add-sign">
+          <a [foxLink] (linkPressed)="routeUpload()" class="text-decoration">
+            <img alt="upload" src="assets/img/add.svg">
+          </a>
+        </span>
+        <span class="txt-link">
+          <a [foxLink] (linkPressed)="routeUpload()" class="text-decoration">Perform New Upload</a>
+        </span>
+      </div>
+    </fox-section>
+  </div>
+  <div class="col-xs-12 col-md-8">
+    <fox-section>
+      <fox-section-title class="fox-section-details-title">Import Details
+      </fox-section-title>
+      <div class="fox-section-details-subtitle">Output of all rows can be sorted and exported with the below table</div>
+      <div class="row container-top">
+        <div class="col-xs-6">
+          <div class="container-status">Status</div>
+          <div class="container-status-options">
+            <mat-form-field class="form-field">
+              <mat-select id="select-status" [(value)]="selectedStatus"
+                          (selectionChange)="onChangeSelectedStatus($event.value)">
+                <mat-option class="fox-dropdown-option" value="all" selected>All</mat-option>
+                <mat-option class="fox-dropdown-option" value="succeeded">Succeeded</mat-option>
+                <mat-option class="fox-dropdown-option" value="failed">Failed
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <fox-databutton [preIcon]="preIcon" [title]="title" class="btn-export"
+                          (buttonClicked)="exportCSVIE()"></fox-databutton>
+        </div>
+      </div>
+      <div class="container-top table-import-dtls" *ngIf="noResult">
+        <fox-table [tableColumns]="tableColumns"
+                   [tableData]="importDetailDataSource | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+                   (columnChanged)="tableColumnCurrentSortKey = $event"
+                   (directionChanged)="tableColumnCurrentSortDirection = $event">
+        </fox-table>
+        <fox-paginator-non-material [childIdBase]="childIdBase" [(pageSize)]="pageSizeSelected" #paginator
+                                    *ngIf="!isIndividualSelected"
+                                    [dataLengthInput]="dataLengthInput" [pageTotal]="pageTotal"
+                                    [(currentPage)]="currentPage"
+                                    (currentPageChange)="calculateNewPage();"
+                                    (pageSizeChange)="currentPage=0; calculateNewPage();">
+        </fox-paginator-non-material>
+      </div>
+      <div *ngIf="!noResult">
+        <div class="container-divider-bottom"></div>
+        <img class="img-no-result" src="assets/img/no-results.svg">
+        <p class="txt-header">No results match criteria</p>
+        <p class="txt-description">Broaden filters and try again</p>
+      </div>
+    </fox-section>
+  </div>
+</div>

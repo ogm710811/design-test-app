@@ -1,0 +1,11 @@
+.border-left-blue {
+  border-left: solid 3px #60A1EB;
+}
+
+.border-top-blue {
+  border-top: solid 3px #60A1EB;
+}
+
+.container-grey-no-scroll {
+  overflow-x: hidden;
+}

@@ -1,0 +1,152 @@
+<fox-modal #modal
+           class="edit-aggregate-modal"
+           [closable]="true"
+           (visibleChange)="modalVisibleChange($event)"
+           modalTitle="Edit Aggregates - {{editAggregateYear}}">
+  <fox-loading-overlay>
+    <div class="container-fluid container-padding">
+      <div class="row no-gutters container-top-description">
+        <div class="col-md-12 container-padding">
+          <p class="container-info-text">Make edits to this year. Changes may require approval.
+            When editing for Med Supp plan aggregates, remember to select Med Supp + all other MS plan codes for the year.</p>
+        </div>
+        <div *ngIf="effectivePlans.length > 0" class="col-md-12 container-padding">
+          <p class="container-info-plans">Effective plans for this selection:
+            <span *ngFor="let item of effectivePlans; let isLast=last" class="span-info-plans">
+              {{item}}{{isLast ? '' : ','}}
+            </span>
+          </p>
+        </div>
+        <div class="col-md-12 container-padding" *ngIf="multiSelectPlanDataSource?.length > 0">
+          <div class="container-multi-select">
+            <p class="container-filter-plans">Filter Plans</p>
+            <fox-select-dropdown [selectDropdownDataSource]="multiSelectPlanDataSource"
+                                 [selectDropdownParams]=multiSelectPlanSettings
+                                 (selectedItemsEmitter)=onMultiSelectPlan($event)>
+            </fox-select-dropdown>
+          </div>
+          <p class="container-filter-info">Please Note: Any changes made to aggregate information will <span class="container-filter-info-underline">not</span> be saved until submitted.</p>
+        </div>
+      </div>
+      <form #form="ngForm" novalidate [ngFormOptions]="{updateOn: 'blur'}">
+        <div class="row no-gutters form-row-margin">
+          <div class="col-md-12 container-padding">
+            <div>
+              <table class="table tbl-aggregate-result">
+                <thead class="thead-default">
+                <tr>
+                  <th class="locator-member-plan"
+                      [foxLink] (linkPressed)="onSort('Plan')"
+                      [ngClass]="{'sorted-column-header':(column === 'Plan'), 'asc': !isDesc, 'desc': isDesc}">
+                    <fox-table-header-sort>Plan</fox-table-header-sort>
+                  </th>
+                  <th class="locator-effective-date"
+                      [foxLink] (linkPressed)="onSort('Date')"
+                      [ngClass]="{'sorted-column-header':(column === 'Date'), 'asc': !isDesc, 'desc': isDesc}">
+                    <fox-table-header-sort>Effective Date</fox-table-header-sort>
+                  </th>
+                  <th class="locator-field-name"
+                      [foxLink] (linkPressed)="onSort('field')"
+                      [ngClass]="{'sorted-column-header':(column === 'field'), 'asc': !isDesc, 'desc': isDesc}">
+                    <fox-table-header-sort>Field</fox-table-header-sort>
+                  </th>
+                  <th class="locator-current-value"
+                      [foxLink] (linkPressed)="onSort('currentValue')"
+                      [ngClass]="{'sorted-column-header':(column === 'currentValue'), 'asc': !isDesc, 'desc': isDesc}">
+                    <fox-table-header-sort>Current Value</fox-table-header-sort>
+                  </th>
+                  <th [foxLink] class="locator-new-value">
+                    <span>New Value</span>
+                  </th>
+                  <th class="locator-difference-value">
+                    <span>Difference</span>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                  <!-- special aggregates table starts here -->
+                  <ng-container *ngIf="!isFilteredPayeeAggregateMemberPlan" >
+                    <tr [id]=" 'ytd-tr-' + idx" *ngFor="let item of specialAggregateDataSource; let idx = index">
+                      <td [id]=" 'ytd-tr-' + idx + '-td-1' " class="locator-plan-td">
+                        Member
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-2' " class="locator-date-td">
+                        -
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-3' " class="locator-field-td">
+                        Special Payee
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-4' " class="locator-current-value-td">
+                        {{item.oldValue | wholeNumber}}
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-5' ">
+                        <input class="locator-new-value-input" [name]=" 'payeeAggregate ' + idx " [(ngModel)]="specialAggregateDataSource[idx].newValue" #payeeAggregateNewValueInput="ngModel" placeholder="0" (blur)="inputValueChange()" [pattern]="validationPattern" [foxAggregateCurrentValue]="specialAggregateDataSource[idx].oldValue">
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-6' " class="locator-diff-td">
+                        <ng-container *ngIf="specialAggregateDataSource[idx]?.newValue && form.valid else nullValue">
+                          <p #specialAggregateDifferenceValue [ngClass]="getContainerDiffValueClass(specialAggregateDataSource[idx])">{{ positiveDifferenceValue ? '+' : '' }}{{getContainerDiff(specialAggregateDataSource[idx]) | wholeNumber}}</p>
+                        </ng-container>
+                        <ng-template #nullValue>
+                          0
+                        </ng-template>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  <!-- aggregates table starts here -->
+                  <ng-container *ngIf="aggregateDataSource.length > 0">
+                    <tr [id]=" 'edit-agg-current-value-tr-' + idx" *ngFor="let item of aggregateDataSource | orderBy:{property: column, direction: direction}; let idx = index ">
+                      <td [id]=" 'ytd-tr-' + idx + '-td-1' " class="locator-plan-td">
+                        Plan {{item.plan}}
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-2' " class="locator-date-td">
+                        <ng-container *ngIf="item?.effectiveDate else noDate">{{item?.effectiveDate | date:'MM/dd/yyyy'}}</ng-container>
+                        <ng-template #noDate>-</ng-template>
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-3' " class="locator-field-td">
+                        {{item.field | fieldFormat}}
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-4' + idx + '-td-4' " class="locator-current-value-td">
+                        {{item.oldValue | wholeNumber}}
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-5' ">
+                        <input class="locator-new-value-input" [name]="getIndexAsString(idx)" [(ngModel)]="aggregateDataSource[idx].newValue" #aggregateNewValueInput="ngModel" placeholder="0" (blur)="inputValueChange()" [pattern]="validationPattern" [foxAggregateCurrentValue]="aggregateDataSource[idx].oldValue">
+                      </td>
+                      <td [id]=" 'ytd-tr-' + idx + '-td-6' " class="locator-diff-td">
+                        <ng-container *ngIf="aggregateDataSource[idx]?.newValue && form.valid else nullValue">
+                          <p #aggregateDifferenceValue [ngClass]="getContainerDiffValueClass(aggregateDataSource[idx])">{{ positiveDifferenceValue ? '+' : '' }}{{(getContainerDiff(aggregateDataSource[idx]).toFixed(2))| wholeNumber}}</p>
+                        </ng-container>
+                        <ng-template #nullValue>
+                          0
+                        </ng-template>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters tbl-alert-text" *ngIf="form.invalid">
+          <div class="col tbl-alert-icon">
+            <img class="img-validation-error" focusable="false" src="assets/img/error-icon.svg"/>
+          </div>
+          <div class="col-md-11 tbl-alert-text-font">
+            <p class="tbl-alert-text-font-weight">There are errors in one or more highlighted input fields</p>
+            <p>Please correct the errors and try to save again</p>
+          </div>
+        </div>
+        <div class="row no-gutters container-bottom">
+          <div class="col-md-4 btn-modal-agg-year">
+            <button type="button" class="btn-secondary container-change-button" (click)="openYearSelectionModal()">
+              <img class="img-arrow-left" focusable=false src="assets/img/arrow-left.svg"/><span class="span-change-button" >Change Year</span>
+            </button>
+          </div>
+          <div class="col-md-8 text-right btn-modal-agg-cancel-submit">
+            <button type="button" class="btn btn-secondary container-buttons" (click)="cancelForm()">Cancel</button>
+            <button type="submit" class="btn btn-primary container-buttons" [disabled]="form.invalid || emptyInputField" (click)="onSubmit(form.value)">Submit Change</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </fox-loading-overlay>
+</fox-modal>

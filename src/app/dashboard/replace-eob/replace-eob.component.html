@@ -1,0 +1,90 @@
+<div class="page-title" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">{{ titleName}}</div>
+<fox-section>
+  <div class="col-md-2 no-padding member-dtls">
+    <div class="dtls-label">Member #</div>
+    <div class="dtls-value"><span>{{screen.m35acct}}{{screen.m35ass}}{{screen.m35ins}}</span></div>
+  </div>
+  <div class="col-md-10 addr-dtls left-border">
+    <div class="dtls-label">Address</div>
+    <div class="dtls-value" >
+      <span *ngIf="screen.m35name != ''">{{screen.m35name | titlecase}}</span>
+      <span *ngIf="screen.m35add1 != ''">,{{screen.m35add1 | titlecase}}</span>
+      <span *ngIf="screen.m35add2 != ''">,{{screen.m35add2 | titlecase}}</span>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="col-md-12 container-replace-eob margin-top-20">
+    <div class="replace-all">
+      <label class="replace-label">{{replAll}} </label>
+      <input matInput class="replace-eob-input" maxlength="1"  size="1" type="text" [(ngModel)]="screen.m35repa"/>
+    </div>
+    <div class="replace-to">
+      <label class="replace-label">Replace To </label>
+      <input matInput class="replace-eob-input" maxlength="1"  size="1" type="text" [(ngModel)]="screen.m35rplt"/>
+      <span class="replace-to-note">*(I=INS,P=PROV)</span>
+    </div>
+  </div>
+    <table class="table table-replace-eob">
+      <thead class="thead-default">
+      <tr>
+          <th>Replace?</th>
+          <th>Claim Number</th>
+          <th>EOB Type</th>
+          <th>ST</th>
+          <th>Status Date</th>
+          <th>Service From</th>
+          <th>Dates To</th>
+          <th>Benefit</th>
+          <th>Asgn</th>
+          <th>Comb</th>
+      </tr>
+      </thead>
+      <tbody class="container-tbody-eob">
+      <ng-container *ngFor="let item of viewData; let j = index">
+        <tr [id]=" 'replace-eob-tr-' + j">
+          <td [id]=" 'replace-eob-tr' + j + '-td-1'" class="col-number">
+            <input matInput class="replace-eob-input" maxlength="1"  size="1" type="text" [(ngModel)]="item.repInd"/>
+          </td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-2'" >{{ item.claimNumberA }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-3'" >{{ item.eobType }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-4'" >{{ item.clStatus }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-5'" >{{ item.stDate }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-6'" >{{ item.serviceFromDate }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-7'" >{{ item.serviceToDate }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-8'" >{{ item.benAmount }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-9'" >{{ item.assigned }}</td>
+          <td [id]=" 'replace-eob-tr' + j + '-td-10'" >{{ item.combined }}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+
+      <fox-paginator-non-material [(pageSize)]="pageSizeSelected" [dataLengthInput]="dataLengthInput"  #paginator
+                                 [pageTotal]="pageTotal" [(currentPage)]="currentPage"
+                                 (currentPageChange)="calculatePage();"
+                                 (pageSizeChange)="currentPage=0; calculatePage();"
+                                 [pageSizeDropdownOption]="pageSizeDropdownOption">
+      </fox-paginator-non-material>
+
+  <div id="Row14" class="col-md-12 no-padding">
+    <mat-divider></mat-divider>
+  </div>
+  <div class="col-md-12 section-btn no-padding">
+    <div class="text-right">
+      <button type="button" class="btn btn-default margin-right-20" foxHotkey="alt+r"
+              (click)="CancelEventClick()">
+        Cancel (R)
+      </button>
+      <button type="button" class="btn btn-default margin-right-20" foxHotkey="alt+k"
+              (click)="ClearEventClick()">
+        Clear (K)
+      </button>
+      <button type="button" class="btn btn-primary margin-right-20" foxHotkey="alt+s"
+              (click)="EnterEventClick()">
+        Submit (S)
+      </button>
+    </div>
+  </div>
+</fox-section>

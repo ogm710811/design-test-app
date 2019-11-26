@@ -1,0 +1,287 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="ReturnEventClick()" class="span-return" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img class="container-arrow-right" src="assets/img/arrow-left.svg">Return to Previous (F1)
+  </span>
+</div>
+
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>Operator Information (IONS)</fox-section-title>
+    </div>
+    <div class="row container-small">
+      <div class="col-xs-6 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="IONs ID"
+                   id="txtM73IONS"
+                   name="txtM73IONS"
+                   isReadOnly="true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   [(ngModel)]="screenBean.m73ionso">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Name"
+                   id="txtM73NAME"
+                   name="txtM73NAME"
+                   isReadOnly="true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   [(ngModel)]="screenBean.m73nameo">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Position"
+                   id="txtM73POST"
+                   name="txtM73POST"
+                   isReadOnly="true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   [(ngModel)]="screenBean.m73posto">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Authority Level"
+                   id="txtM73AUTH"
+                   name="txtM73AUTH"
+                   isReadOnly="true"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   [(ngModel)]="screenBean.m73autho">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Last Maintenance"
+                   isReadOnly="true"
+                   id="txtM73MDAT"
+                   name="txtM73MDAT"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   [(ngModel)]="screenBean.m73mdato">
+        </fox-input>
+      </div>
+      <div class="col-xs-6 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Maintenance IONs"
+                   isReadOnly="true"
+                   id="txtM73MION"
+                   name="txtM73MION"
+                   isReadOnlyNoPaddingLeftRight="true"
+                   [(ngModel)]="screenBean.m73miono">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <fox-section-title>
+      Operator Details
+    </fox-section-title>
+    <div class="container-sub-title">
+      <fox-section-subheader>Tab to navigate and update fields. Click "Submit" (Alt + S) to proceed.</fox-section-subheader>
+    </div>
+    <div class="row container-small container-insured-details">
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Deceased Insureds"
+                   id="txtM73DECI"
+                   name="txtM73DECI"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73decInd === 'N'"
+                   (input) = "onEventChange('m73decio', $event, 'm73decInd')"
+                   [(ngModel)]="screenBean.m73decio">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Exception Screens"
+                   id="txtM73EXCP"
+                   name="txtM73EXCP"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73excInd === 'N'"
+                   (input) = "onEventChange('m73excpo', $event, 'm73excInd')"
+                   [(ngModel)]="screenBean.m73excpo">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Foreign Provider"
+                   id="txtM73FOPR"
+                   name="txtM73FOPR"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73foprInd === 'N'"
+                   (input) = "onEventChange('m73fopro', $event, 'm73foprInd')"
+                   [(ngModel)]="screenBean.m73fopro">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Payment Adjustments"
+                   id="txtM73PAYA"
+                   name="txtM73PAYA"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73payaInd === 'N'"
+                   (input) = "onEventChange('m73payao', $event, 'm73payaInd')"
+                   [(ngModel)]="screenBean.m73payao">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Waiver of Premium"
+                   id="txtM73WAPR"
+                   name="txtM73WAPR"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73waprInd === 'N'"
+                   (input) = "onEventChange('m73wapro', $event , 'm73waprInd')"
+                   [(ngModel)]="screenBean.m73wapro">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-6 no-padding">
+        <fox-input type="text"
+                   labelText="Med Supp. when Ltr Days are exhausted"
+                   id="txtM73MSEX"
+                   name="txtM73MSEX"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73msexaInd === 'N'"
+                   (input) = "onEventChange('m73msexo', $event, 'm73msexaInd')"
+                   [(ngModel)]="screenBean.m73msexo">
+        </fox-input>
+      </div>
+    </div>
+
+    <div class="row container-small " [ngClass]="{'container-claim-details': (screenBean.dfhms1s).length > 0}">
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Claim Aggregate"
+                   id="txtM73CLAG"
+                   name="txtM73CLAG"
+                   [length]="6"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73clagInd === 'N'"
+                   (input) = "onEventChange('m73clago', $event, 'm73clagInd')"
+                   [(ngModel)]="screenBean.m73clago">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="Period of Stay (In Days)"
+                   id="txtM73STAY"
+                   name="txtM73STAY"
+                   [length]="3"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73stayInd === 'N'"
+                   (input) = "onEventChange('m73stayo', $event,'m73stayInd')"
+                   [(ngModel)]="screenBean.m73stayo">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="SNF Confinement (In Days)"
+                   id="txtM73SNFD"
+                   name="txtM73SNFD"
+                   [length]="3"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73snfdInd === 'N'"
+                   (input) = "onEventChange('m73snfdo', $event, 'm73snfdInd')"
+                   [(ngModel)]="screenBean.m73snfdo">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="PDN – 1st Payment"
+                   id="txtM73PDNF"
+                   name="txtM73PDNF"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73pdnfInd === 'N'"
+                   (input) = "onEventChange('m73pdnfo', $event,'m73pdnfInd')"
+                   [(ngModel)]="screenBean.m73pdnfo">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="PDN – U and P Benefits"
+                   id="txtM73PUPB"
+                   name="txtM73PUPB"
+                   [length]="6"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73pupbInd === 'N'"
+                   (input) = "onEventChange('m73pupbo', $event, 'm73pupbInd')"
+                   [(ngModel)]="screenBean.m73pupbo">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="PDN Shifts"
+                   id="txtM73SHIF"
+                   name="txtM73SHIF"
+                   [length]="3"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73shifInd === 'N'"
+                   (input) = "onEventChange('m73shifo', $event, 'm73shifInd')"
+                   [(ngModel)]="screenBean.m73shifo">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <fox-input type="text"
+                   labelText="All Plans"
+                   id="txtM73PLAN"
+                   name="txtM73PLAN"
+                   [length]="1"
+                   [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                   [isWarningState]="screenBean.m73planInd === 'N'"
+                   (input) = "onEventChange('m73plano', $event, 'm73planInd')"
+                   [(ngModel)]="screenBean.m73plano">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row container-small" *ngIf="(screenBean.dfhms1s).length > 0">
+        <div class="col-xs-12 col-sm-3 no-padding" *ngFor="let dfhms1s of screenBean.dfhms1s ; let idx = index">
+          <fox-input type="text"
+                     labelText="Caution {{idx + 1}}"
+                     id="txtM73CTIT"
+                     name="txtM12PL01"
+                     [length]="3"
+                     [isReadOnly] = "screenBean.m73titlo !== 'UPDATE'"
+                     [isReadOnlyNoPaddingLeftRight]="screenBean.m73titlo !== 'UPDATE'"
+                     [inputValue]="dfhms1s.m73cauto"
+                     [(ngModel)]="dfhms1s.m73cauto">
+          </fox-input>
+        </div>
+    </div>
+  </div>
+</fox-section>
+
+<div class="col-xs-12 col-md-12 no-padding" *ngIf="screenBean.m73titlo === 'UPDATE'">
+  <div class="form-row text-right">
+    <button type="button" class="btn btn-secondary button-clear" (click)="ClearEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)</button>
+    <fox-loading-button [buttonValue] = "'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="EnterEventClick()"
+                        class="btn-submit">
+    </fox-loading-button>
+  </div>
+</div>

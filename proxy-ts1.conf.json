@@ -1,0 +1,26 @@
+{
+  "/api/overpayment/**": {
+    "target": "https://foxts1-clmfin.ocp-elr-core-nonprod.optum.com/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/**": {
+    "target": "https://foxts1-apig.ocp-elr-core-nonprod.optum.com/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/uaa/**": {
+    "target": "https://foxts1-foxui.ocp-elr-core-nonprod.optum.com/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/uiapi/**": {
+    "target": "https://foxts1-foxui.ocp-elr-core-nonprod.optum.com/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

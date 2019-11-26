@@ -1,0 +1,32 @@
+<table id="queue-info" class="table">
+  <thead class="thead-default">
+  <tr>
+    <th></th>
+    <th>Queue Total</th>
+    <th>
+      <span *ngIf="user">{{(user || '') + '\'s '}}</span>
+      Bypass Queue
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let age of [
+          {id: 'total', display: 'Total'},
+          {id: 'age>6', display: 'Age > 6'},
+          {id: 'age6', display: 'Age 6'},
+          {id: 'age5', display: 'Age 5'},
+          {id: 'age4', display: 'Age 4'},
+          {id: 'age3', display: 'Age 3'},
+          {id: 'age2', display: 'Age 2'},
+          {id: 'age1', display: 'Age 1'},
+          {id: 'age0', display: 'Age 0'}]; let i = index"
+      [id]="'queue-info-tr-' + i">
+    <td>{{age.display}}</td>
+    <td *ngFor="let type of ['main', 'bypass']; let j = index"
+        [id]="'queue-info-tr-' + i + '-td-' + j">
+      {{queueTotalsForQueueTypeAndAge(type, age.id)}}
+    </td>
+  </tr>
+  </tbody>
+</table>
+

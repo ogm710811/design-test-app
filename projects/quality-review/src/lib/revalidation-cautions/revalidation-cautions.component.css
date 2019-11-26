@@ -1,0 +1,11 @@
+.text-section-title {
+  margin-left: 20px;
+}
+
+.member-info {
+  margin-right: 20px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}

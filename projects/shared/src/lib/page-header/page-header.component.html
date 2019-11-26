@@ -1,0 +1,62 @@
+<fox-section class="container-section" [ngClass]="pageTitle === 'Workbench' ? 'remove-margin' : 'margin' ">
+  <div>
+    <div class="menu-list container-header-breadcrumbs">
+      <div class="col-lg-12 no-padding">
+        <fox-breadcrumbs [links]="links"></fox-breadcrumbs>
+      </div>
+    </div>
+    <div class="row menu-list container-header-title-badges">
+      <div class="container-header-left no-padding">
+        <div class="row no-padding no-margin">
+          <div class="col-xs-12 container-page-title">
+            <span class="page-title">{{pageHeaderService.customTitle && pageHeaderService.customTitle.length > 0 ? pageHeaderService.customTitle : pageTitle}}</span>
+          </div>
+          <div *ngIf="badgeParams.length > 0" class="container-page-badges col-xs-12 no-padding">
+              <ng-container *ngFor="let badgeParam of badgeParams">
+                <fox-badge [badgeParams]="badgeParam" class="badge-header"></fox-badge>
+              </ng-container>
+          </div>
+        </div>
+        <div class="row container-header-sub-title">
+          <div class="col-xs-12 no-padding">
+            <ng-template foxHeaderSubtitle></ng-template>
+          </div>
+        </div>
+        <div class="row" *ngIf="hasMaintApprovalDetails">
+          <div class="col-sm-12 header container-approval-details">
+            <span class="container-page-details">
+              <span class="section-status">
+                <span [ngClass]="maintenanceApprovalHeaderDetails?.maintApprovalDetails?.iconStatus">
+                  <i focusable="false" class="fas fa-circle"></i>
+                </span>
+                <span [ngClass]="maintenanceApprovalHeaderDetails?.maintApprovalDetails?.textColorStatus">
+                  {{maintenanceApprovalHeaderDetails?.maintApprovalDetails?.requestStatus}}
+                </span>
+              </span>
+              <span class="section-from">
+                <span class="circle-icon"><i focusable="false" class="fas fa-circle"></i></span>
+                <strong class="section-from-text">From</strong>
+                <span class="section-details">{{maintenanceApprovalHeaderDetails?.requesterInfo?.requester}} on {{maintenanceApprovalHeaderDetails?.requesterInfo?.timeStamp | date: 'MM/dd/yyyy'}}</span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="container-header-right">
+          <span class="span-pill-button">
+            <ng-template foxHeaderRight></ng-template>
+          </span>
+      </div>
+    </div>
+    <div class="row container-header-tabs no-padding" *ngIf="config?.tabTitles && config?.tabTitles?.length">
+      <div class="col-xs-12 no-padding no-margin">
+        <fox-page-header-tabs
+          [tabs]="config.tabTitles"
+          [hiddenTabs]="config.hiddenTabs"
+          [xsPrimaryTabCount]="config.xsPrimaryTabCount"
+          [smPrimaryTabCount]="config.smPrimaryTabCount">
+        </fox-page-header-tabs>
+      </div>
+    </div>
+  </div>
+</fox-section>

@@ -1,0 +1,56 @@
+.container-invalid-params {
+  padding-left: 89px;
+  padding-top: 25px;
+}
+
+.span-error-msg {
+  color: #252C37;
+  font-size: 44px;
+  line-height: 47px;
+  margin-bottom: 13px
+}
+
+.span-error-msg-strong {
+  font-weight: 600;
+}
+.span-error-description {
+  color: #252C37;
+  font-size: 21px;
+  line-height: 26px;
+}
+
+.img-return-icon {
+  height: 13px;
+  margin-right: 5px;
+}
+
+.img-parameter-error {
+  height: 206px;
+  margin-bottom: 39px;
+}
+
+.container-return-prev {
+  padding: 20px 20px 20px 28px;
+  position: relative;
+}
+
+.span-return-pre {
+  color: #196ECF;
+  font-size: 13px;
+  line-height: 13px;
+  cursor: pointer
+}
+
+.span-return-pre:focus {
+  border: none;
+  text-decoration: none;
+  outline: none;
+}
+
+@media (max-width: 767px) {
+
+  .container-invalid-params {
+    padding: 20px;
+  }
+
+}

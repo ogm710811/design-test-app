@@ -1,0 +1,110 @@
+<div id="main" class="container">
+  <div id="content" class="panel panel-default">
+
+    <div id="panelBody" class="panel-body">
+      <div id="Row0" class="default">
+        <label id="lblLabel0" #lblLabel0>COMMAND</label>
+        <input id="txtM55CMND" name="txtM55CMND" #txtM55CMND="ngModel" maxlength="2" size="2"
+               type="text" [(ngModel)]="screen.m55cmnd"
+        />
+        <label id="lblLabel1" #lblLabel1> </label>
+        <label id="lblLabel2" #lblLabel2>MEM#</label>
+        <input id="txtM55MEM1" name="txtM55MEM1" #txtM55MEM1="ngModel" maxlength="9" size="9"
+               type="text" [(ngModel)]="screen.m55mem1"
+        />
+        <input id="txtM55MEM2" name="txtM55MEM2" #txtM55MEM2="ngModel" maxlength="1" size="1"
+               type="text" [(ngModel)]="screen.m55mem2"
+        />
+        <input id="txtM55MEM3" name="txtM55MEM3" #txtM55MEM3="ngModel" maxlength="1" size="1"
+               type="text" [(ngModel)]="screen.m55mem3"
+        />
+        <label id="lblLabel3" #lblLabel3> CLAIM#</label>
+        <input id="txtM55CNO1" name="txtM55CNO1" #txtM55CNO1="ngModel" maxlength="1" size="1"
+               type="text" [(ngModel)]="screen.m55cno1"
+        />
+        <input id="txtM55CNO2" name="txtM55CNO2" #txtM55CNO2="ngModel" maxlength="3" size="3"
+               type="text" [(ngModel)]="screen.m55cno2"
+        />
+        <input id="txtM55CNO3" name="txtM55CNO3" #txtM55CNO3="ngModel" maxlength="1" size="1"
+               type="text" [(ngModel)]="screen.m55cno3"
+        />
+        <input id="txtM55CNO4" name="txtM55CNO4" #txtM55CNO4="ngModel" maxlength="3" size="3"
+               type="text" [(ngModel)]="screen.m55cno4"
+        />
+        <input id="txtM55CNO5" name="txtM55CNO5" #txtM55CNO5="ngModel" maxlength="3" size="3"
+               type="text" [(ngModel)]="screen.m55cno5"
+        />
+        <input id="txtM55CNO6" name="txtM55CNO6" #txtM55CNO6="ngModel" maxlength="1" size="1"
+               type="text" [(ngModel)]="screen.m55cno6"
+        />
+        <label id="lblLabel4" #lblLabel4> </label>
+        <label id="lblLabel5" #lblLabel5>COMM#</label>
+        <input id="txtM55COM1" name="txtM55COM1" #txtM55COM1="ngModel" maxlength="6" size="6"
+               type="text" [(ngModel)]="screen.m55com1"
+        />
+        <input id="txtM55COM2" name="txtM55COM2" #txtM55COM2="ngModel" maxlength="5" size="5"
+               type="text" [(ngModel)]="screen.m55com2"
+        />
+        <label id="lblLabel6" #lblLabel6> </label>
+      </div>
+
+      <div id="Row4" class="default">
+        <div class="col-sm-12 container-communication">
+          <div class="col-sm-3 text-right">
+            <label id="lblLabel12" #lblLabel12>COMMUNICATION NUMBER:</label>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label id="txtM55COMN" #txtM55COMN>{{screen.m55comn}}</label>
+          </div>
+        </div>
+      </div>
+      <div id="Row5" class="default">
+        <div class="col-sm-12">
+          <div class="col-sm-3 text-right">
+            <label id="lblLabel13" #lblLabel13>STATUS:</label>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label id="txtM55STAT" #txtM55STAT>{{screen.m55stat}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="Row5" class="default" *ngIf="screen.isSent">
+        <div class="col-sm-12">
+          <div class="col-sm-3 text-right">
+            <label id="lblLabel131" #lblLabel131>TO LOCATION:</label>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label id="txtM5LOCATION" #txtM5LOCATION>{{screen.m55lloc}}</label>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="Row7" class="default">
+        <!-- <div id="Row7" class="default" *ngIf="screen.isDate"> the If was not working because screen.isDate is not available -->
+        <div class="col-sm-12">
+          <div class="col-sm-3 text-right">
+            <label id="lblLabel15" #lblLabel15>QUALITY NUMBER:</label>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label id="txtM55LQUA" #txtM55LQUA>{{screen.m55lqua}}</label>
+          </div>
+          <div class="col-sm-3 text-right">
+            <label id="txtM55QUAL" #txtM55QUAL>{{screen.m55qual}}</label>
+          </div>
+        </div>
+      </div>
+      <div id="Row8" class="default">
+        <div class="col-sm-12">
+          <label id="txtM55ERR1" #txtM55ERR1>{{screen.m55err1}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div id="RowFooter" class="panel-footer text-right">
+      <button id="btnLabel1" name="btnLabel1" #next type="button" class="btn btn-default"
+              (click)="reviewCommunicationEventClick()">ENTER
+      </button>
+    </div>
+  </div>

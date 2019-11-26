@@ -1,0 +1,151 @@
+<div *ngIf="manualDepositSuccessMsg">
+  <fox-message-box [visible]="manualDepositSuccessMsg"
+                   messageBoxTitle="Successfully added new deposit"
+                   messageType="success" timeOutLength="3000">
+    Additional manual entries may be made below
+  </fox-message-box>
+</div>
+
+<div *ngIf="isError">
+  <fox-message-box [visible]="isError" messageBoxTitle="Error Processing Request"
+                   messageType="error">
+    {{errorMsg}}
+  </fox-message-box>
+</div>
+
+<fox-section>
+  <fox-section-title>Deposit Entry</fox-section-title>
+  <div class="manual-entry-main">
+    <form [formGroup]="manualDepositEntryFormGroup" #formDirective="ngForm" novalidate>
+
+      <div class="manual-entry-member-fields" formGroupName="depositDatesForm">
+
+        <mat-form-field class="col-date">
+          <mat-label>Date Received</mat-label>
+          <input matInput maxlength="10" formControlName="dateReceived" placeholder="MM/DD/YYYY"
+                 required>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('depositDatesForm')!.get('dateReceived')!.hasError('required')">
+            Date Received is a required field
+          </mat-error>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('depositDatesForm')!.get('dateReceived')!.hasError('date')">
+            {{manualDepositEntryFormGroup!.get('depositDatesForm')!.get('dateReceived')!.getError('date')}}
+          </mat-error>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('depositDatesForm')!.get('dateReceived')!.hasError('dateIsGreaterThanCurrentDate')">
+            Error: Date Received may not be greater than the current date
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-date">
+          <mat-label>Deposit Date</mat-label>
+          <input matInput maxlength="10" formControlName="depositDate" placeholder="MM/DD/YYYY"
+                 required>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('depositDatesForm')!.get('depositDate')!.hasError('required')">
+            Deposit date is a required field
+          </mat-error>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('depositDatesForm')!.get('depositDate')!.hasError('date')">
+            {{manualDepositEntryFormGroup!.get('depositDatesForm')!.get('depositDate')!.getError('date')}}
+          </mat-error>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('depositDatesForm')!.get('depositDate')!.hasError('dateIsGreaterThanCurrentDate')">
+            Error: Deposit Date may not be greater than the current date
+          </mat-error>
+          <mat-error
+            *ngIf="!manualDepositEntryFormGroup!.get('depositDatesForm')!.get('depositDate')!.valid && manualDepositEntryFormGroup!.get('depositDatesForm')!.get('depositDate')!.hasError('depositDateIsBeforeDateReceived')">
+            Error: Deposit Date may not be less than the Date Received
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="manual-entry-member-fields manual-entry-deposit-fields">
+        <mat-form-field class="col-sm-3 col-deposit">
+          <mat-label>Deposit Amount</mat-label>
+          <input matInput maxlength="13" formControlName="depositAmount" placeholder="$ XX.00"
+                 required>
+          <mat-error *ngIf="manualDepositEntryFormGroup!.get('depositAmount')!.hasError('dollar')">
+            Error: Deposit Amount must be entered the following format XX.XX
+          </mat-error>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('depositAmount')!.hasError('required')">
+            Deposit Amount is a required field
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-sm-3 col-deposit">
+          <mat-label>Deposit Category</mat-label>
+          <mat-select formControlName="depositCategory" required>
+            <mat-option value="" selected>- Select an Option -</mat-option>
+            <mat-option class="fox-dropdown-option" value="APIF">APIF</mat-option>
+            <mat-option class="fox-dropdown-option" value="AP Void">AP Void</mat-option>
+            <mat-option class="fox-dropdown-option" value="BIE">BIE</mat-option>
+            <mat-option class="fox-dropdown-option" value="Benefits">Benefits</mat-option>
+            <mat-option class="fox-dropdown-option" value="Buddy">Buddy</mat-option>
+            <mat-option class="fox-dropdown-option" value="Bulk">Bulk</mat-option>
+            <mat-option class="fox-dropdown-option" value="Check Only">Check Only</mat-option>
+            <mat-option class="fox-dropdown-option" value="Med Adjust">Med Adjust</mat-option>
+            <mat-option class="fox-dropdown-option" value="Duplicate">Duplicate</mat-option>
+            <mat-option class="fox-dropdown-option" value="Requested OP">Requested OP</mat-option>
+            <mat-option class="fox-dropdown-option" value="PRS Transfers">PRS Transfers</mat-option>
+            <mat-option class="fox-dropdown-option" value="Refund">Refund</mat-option>
+            <mat-option class="fox-dropdown-option" value="UHC transfers">UHC transfers</mat-option>
+            <mat-option class="fox-dropdown-option" value="Prem Wire Transfers">Prem Wire
+              Transfers
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="!manualDepositEntryFormGroup!.get('depositCategory')!.valid && manualDepositEntryFormGroup!.get('depositCategory')!.touched">
+            Category is a required field
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-sm-3 col-deposit">
+          <mat-label>Check Number</mat-label>
+          <input matInput maxlength="10" formControlName="checkNumber" required>
+          <mat-error
+            *ngIf="manualDepositEntryFormGroup!.get('checkNumber')!.hasError('required')">
+            Check Number is a required field
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="manual-entry-member-fields">
+        <p class="text-left manual-entry-btns">
+          <button type="button" class="btn btn-primary" [disabled]="!checkIfFormFilled()"
+                  [ngClass]="{'btn-disabled': !checkIfFormFilled()}"
+                  (click)="showConfirmationModalFn()"
+                  foxHotkey="alt+s">
+            Submit (S)
+          </button>
+        </p>
+      </div>
+
+      <fox-modal [(visible)]="showConfirmationModal" modalTitle="Create Deposit Confirmation"
+                 [closable]="false">
+
+        <div>
+          <p>You are about to create a new deposit. This action cannot be undone. Are you sure you
+            want
+            to save this information?</p>
+
+          <p class="col-md-12 text-right manual-entry-conf-btns">
+            <button type="button" class="btn manual-entry-btns btn-clear"
+                    (click)="showConfirmationModal = !showConfirmationModal">Cancel
+            </button>
+            <button type="submit" class="btn btn-primary confirm-btn" (click)="confirmSubmit()">
+              Confirm
+            </button>
+          </p>
+
+        </div>
+
+      </fox-modal>
+
+    </form>
+  </div>
+</fox-section>

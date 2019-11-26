@@ -1,0 +1,125 @@
+<fox-section>
+  <fox-section-title>Quality Error Review</fox-section-title>
+  <div class="col-sm-12">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Ions:</mat-label>
+        <input matInput id="txtM96IONS" name="txtM96IONS" #txtM96IONS="ngModel" maxlength="6" size="6" [(ngModel)]="screenBean.m96ions" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Quality or Revalidation:</mat-label>
+        <input matInput id="txtM96TYPE" name="txtM96TYPE" #txtM96TYPE="ngModel" maxlength="1" size="1" [(ngModel)]="screenBean.m96type" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>All:</mat-label>
+        <input matInput id="txtM96ALL" name="txtM96ALL" #txtM96ALL="ngModel" maxlength="1" size="1" [(ngModel)]="screenBean.m96all" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Report Number:</mat-label>
+        <input matInput id="txtM96REPN" name="txtM96REPN" #txtM96REPN="ngModel" maxlength="2" size="2" [(ngModel)]="screenBean.m96repn" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="col-sm-12">
+    <div class="col-sm-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Monthly</th>
+            <th>Weekly</th>
+            <th>Weekly</th>
+            <th>Weekly</th>
+            <th>Weekly</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <mat-label>1 - {{screenBean.m96mon1}}</mat-label>
+            </td>
+            <td>
+              <mat-label>4 - {{screenBean.m96wk1}}</mat-label>
+            </td>
+            <td>
+              <mat-label>8 - {{screenBean.m96wk5}}</mat-label>
+            </td>
+            <td>
+              <mat-label>12 - {{screenBean.m96wk9}}</mat-label>
+            </td>
+            <td>
+              <mat-label>16 - {{screenBean.m96wk13}}</mat-label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-label>2 - {{screenBean.m96mon2}}</mat-label>
+            </td>
+            <td>
+              <mat-label>5 - {{screenBean.m96wk2}}</mat-label>
+            </td>
+            <td>
+              <mat-label>9 - {{screenBean.m96wk6}}</mat-label>
+            </td>
+            <td>
+              <mat-label>13 - {{screenBean.m96wk10}}</mat-label>
+            </td>
+            <td>
+              <mat-label>17 - {{screenBean.m96wk14}}</mat-label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-label>3 - {{screenBean.m96mon3}}</mat-label>
+            </td>
+            <td>
+              <mat-label>6 - {{screenBean.m96wk3}}</mat-label>
+            </td>
+            <td>
+              <mat-label>10 - {{screenBean.m96wk7}}</mat-label>
+            </td>
+            <td>
+              <mat-label>14 - {{screenBean.m96wk11}}</mat-label>
+            </td>
+            <td>
+              <mat-label>18 - {{screenBean.m96wk15}}</mat-label>
+            </td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td>
+              <mat-label>7 - {{screenBean.m96wk4}}</mat-label>
+            </td>
+            <td>
+              <mat-label>11 - {{screenBean.m96wk8}}</mat-label>
+            </td>
+            <td>
+              <mat-label>15 - {{screenBean.m96wk12}}</mat-label>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20 text-right">
+    <button id="clear" name="clear" #clear type="button" class="btn btn-default margin-right-20" (click)="clearEventClick()"
+      foxHotkey="alt+c">Clear (C)
+    </button>
+    <button id="enter" name="enter" #enter type="button" class="btn btn-primary" (click)="enterEventClick()" foxHotkey="alt+e">Enter
+      (E)
+    </button>
+  </div>
+</fox-section>

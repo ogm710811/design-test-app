@@ -1,0 +1,28 @@
+<div class="row container-duplicate-qr">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <fox-section class="row" >
+      <div class="container-sub-title">
+        <fox-section-title class="text-sub-title">Claims Reviewed For Duplicates</fox-section-title>
+        <p class="p-sub-title">Examining Bill Line #0 0f 0</p>
+      </div>
+      <fox-duplicates-left-panel [claimNumber]="claimNumber" [leftPanelCount]="count" [incomingChargeData]="incomingChargeData">
+      </fox-duplicates-left-panel>
+      <fox-duplicates-right-panel [claimNumber]="claimNumber" [tableData]="tableData">
+      </fox-duplicates-right-panel>
+
+
+      <div class="container-btn">
+        <button class="btn btn-secondary btn-arrow" [disabled]="incomingChargeData?.length === 0  || (incomingChargeData?.length>0 && count === 0)" (click)="preIncmgData()">
+          <img *ngIf="!(incomingChargeData?.length === 0  || (incomingChargeData?.length>0 && count === 0))" class="icon-qr-dup-claim-no icon-arrow" src="assets/img/arrow-left.svg"/>
+          <img *ngIf="incomingChargeData?.length === 0  || (incomingChargeData?.length>0 && count === 0)" class="icon-qr-dup-claim-no icon-arrow" src="assets/img/arrow-left-grey.svg"/>
+          Previous Bill Line
+        </button>
+        <button class="btn btn-secondary btn-arrow" [disabled]="incomingChargeData?.length === 0  || incomingChargeData?.length-1 === count"  (click)="nextIncmgData()">
+          Next Bill Line
+          <img *ngIf="!(incomingChargeData?.length === 0  || incomingChargeData?.length-1 === count)" class="icon-qr-dup-claim-no icon-arrow" src="assets/img/arrow-right-blue.svg">
+          <img *ngIf="incomingChargeData?.length === 0  || incomingChargeData?.length-1 === count" class="icon-qr-dup-claim-no icon-arrow" src="assets/img/arrow-right.svg">
+        </button>
+      </div>
+    </fox-section>
+  </div>
+</div>

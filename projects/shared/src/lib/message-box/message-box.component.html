@@ -1,0 +1,10 @@
+<div *ngIf="visible" @fadeInOut class="fox-message-box" [ngClass]="{'fox-success-box': messageType === 'success', 'fox-active-box': messageType === 'active'}">
+  <i focusable="false" class="fa fa-info-circle left-icon" *ngIf="messageType === 'active'"></i>
+  <i focusable="false" class="fa fa-exclamation-circle left-icon" *ngIf="messageType !== 'success' && messageType !== 'active'"></i>
+  <i focusable="false" class="fa fa-check-circle left-icon" *ngIf="messageType === 'success'"></i>
+  <p class="fox-message__title">{{messageBoxTitle}}</p>
+  <ng-content></ng-content>
+  <button type="button" *ngIf="closable" (click)="close()" aria-label="Close" class="fox-message__close-btn">
+    <img [src]="closeButtonImage"/>
+  </button>
+</div>

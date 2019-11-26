@@ -1,0 +1,82 @@
+<span class="span-information">Use the information below to create a new provider in <strong>COMPAS</strong>.</span>
+<hr/>
+<fox-section class="section-provider-validation">
+  <div>
+    <span class="background-provider-circle"><i focusable="false" class="fas fa-ambulance icon-ambulance"></i></span>
+    <input [ngxClipboard]="name" (cbOnSuccess)="copyName()" tooltip="Copy to Clipboard" class="span-provider-org input-field" #name [value]="'Provider Organization or First Name / Last Name'" readonly>
+    <span *ngIf="isNameCopied" class="span-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</span>
+  </div>
+  <div class="div-value div-pai"><span class="span-nocopy-label">Payment Assignment Indicator:</span>
+    <span class="span-value">Value</span>
+  </div>
+  <div [ngxClipboard]="tin" (cbOnSuccess)="copyTin()" class="div-value div-tin"><span class="span-label" tooltip="Copy to Clipboard">TIN:</span>
+    <input class="span-tin input-field" #tin [value]="'123456789123'" readonly>
+    <span *ngIf="isTinCopied" class="span-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</span>
+  </div>
+  <div [ngxClipboard]="npi" (cbOnSuccess)="copyNpi()" class="div-value div-npi"><span class="span-label" tooltip="Copy to Clipboard">NPI:</span>
+    <input class="span-npi input-field" #npi [value]="'987654321987'" readonly>
+    <span *ngIf="isNpiCopied" class="span-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</span>
+  </div>
+  <div class="div-fields">
+    <div class="div-address-line-1">
+      <div [ngxClipboard]="addr1" (cbOnSuccess)="copyAddr1()">
+        <div class="div-label div-addr1-label"><span class="span-label" tooltip="Copy to Clipboard">Address Line 1</span></div>
+        <div>
+          <input class="input-field" #addr1 [value]="'Addr1 Goes Here'" readonly>
+        </div>
+        <hr class="hr-field">
+      </div>
+      <div *ngIf="isAddrLine1Copied" class="div-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</div>
+    </div>
+    <div class="div-address-line-2">
+      <div [ngxClipboard]="addr2" (cbOnSuccess)="copyAddr2()">
+        <div class="div-label div-addr2-label"><span class="span-label" tooltip="Copy to Clipboard">Address Line 2</span></div>
+        <div>
+          <input class="input-field" #addr2 [value]="'Addr2 Goes Here'" readonly>
+        </div>
+        <hr class="hr-field">
+      </div>
+      <div *ngIf="isAddrLine2Copied" class="div-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</div>
+    </div>
+    <div class="div-city">
+      <div [ngxClipboard]="city" (cbOnSuccess)="copyCity()">
+        <div class="div-label div-city-label"><span class="span-label" tooltip="Copy to Clipboard">City</span></div>
+        <div>
+          <input class="input-field" #city [value]="'City Goes Here'" readonly>
+        </div>
+        <hr class="hr-field">
+      </div>
+      <div *ngIf="isCityCopied" class="div-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</div>
+    </div>
+    <div class="div-state">
+      <div [ngxClipboard]="state" (cbOnSuccess)="copyState()">
+        <div class="div-label div-state-label"><span class="span-label" tooltip="Copy to Clipboard">State</span></div>
+        <div>
+          <input class="input-field" #state [value]="'State Goes Here'" readonly>
+        </div>
+        <hr class="hr-field">
+      </div>
+      <div *ngIf="isStateCopied" class="div-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</div>
+    </div>
+    <div class="div-zip">
+      <div [ngxClipboard]="zip" (cbOnSuccess)="copyZip()">
+        <div class="div-label div-zip-label"><span class="span-label" tooltip="Copy to Clipboard">ZIP Code</span></div>
+        <div>
+          <input class="input-field" #zip [value]="'ZIP Goes Here'" readonly>
+        </div>
+        <hr class="hr-field">
+      </div>
+      <div *ngIf="isZipCopied" class="div-if-copied"><i focusable="false" class="fas fa-check-circle icon-check"></i>Copied to clipboard</div>
+    </div>
+  </div>
+  <hr class="hr-line">
+  <div class="div-claim-header">
+    <span class="background-claim-circle"><i focusable="false" class="fas fa-heartbeat"></i></span>
+    <span class="span-claim-number">Claim #123456789123</span>
+  </div>
+  <div class="div-claim-details">
+    <div>
+      <span class="span-claim-type">Claim Type: <span class="span-claim-value">Value</span></span>
+    </div>
+  </div>
+</fox-section>

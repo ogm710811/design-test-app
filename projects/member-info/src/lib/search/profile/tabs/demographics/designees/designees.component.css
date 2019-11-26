@@ -1,0 +1,91 @@
+fox-section .member-designee-table-main {
+  overflow: auto;
+}
+
+.member-designee-non-mat-table-main {
+  width: 2700px;
+}
+
+.roles-row {
+  display: inline-block;
+  padding-bottom: 30px;
+}
+
+.label-detail-item {
+  font-size: 12px;
+}
+
+.roles-row-heading {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 0;
+}
+
+.icon-user-detail-item {
+  margin-right: 5px;
+  font-size: 14px;
+  width: 18px;
+  float: left;
+  height: 20px;
+}
+
+.icon-demographics {
+  margin-right: 15px;
+  font-size: 15px;
+  float: left;
+}
+
+.txt-role-types {
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.txt-role-type {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.container-role-type {
+  height: 30px;
+}
+
+.img-icon-size {
+  height: 15px;
+  width: 13px;
+  display: inline-block;
+}
+
+.container-inline {
+  display: inline-block;
+}
+
+.container-no-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.container-margin {
+  margin-top: 5px;
+  margin-right: 0;
+  margin-left: 5px;
+}
+
+.container-margin-bottom {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .container-margin {
+    margin-top: 0;
+  }
+
+  .container-no-margin {
+    margin-bottom: 5px;
+  }
+
+  .txt-role-type {
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+}

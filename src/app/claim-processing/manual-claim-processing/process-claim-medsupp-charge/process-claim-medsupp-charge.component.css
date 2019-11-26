@@ -1,0 +1,260 @@
+.col-eff-width {
+  width: 110px;
+}
+
+.col-todt-width{
+  width: 60px;
+}
+
+.big-label-width {
+  width: 300px;
+  margin-left: 15px;
+}
+
+.label-width {
+  width: 220px;
+  padding-left: 20px
+}
+
+.col-ser-dates-width {
+  width:150px;
+}
+
+.col-type-width {
+  width: 80px;
+}
+
+.col-type1-width {
+  width: 80px;
+}
+
+.col-type2-width {
+  width: 50px;
+}
+
+.col-type3-width {
+  width: 40px;
+}
+
+.btn-standard {
+  background-color: white;
+  color: #196ECF;
+  border: solid 1px #196ECF;
+  margin-right: 15px;
+}
+
+.container-bill-card {
+  padding-top: 10px;
+}
+
+.container-bill-label {
+  position: relative;
+  width: 140px;
+}
+
+.container-bill-content-label {
+  height: 14px;
+  width: 130px;
+  color: #333333;
+  font-family: "UHC Sans";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+
+}
+
+.container-member-value {
+  height: 14px;
+  width: 55px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.div-new-line{
+  margin-top: 10px;
+}
+
+.page-title {
+  margin-top: 0px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.left-border {
+  border-left: 1px solid #cccccc;
+  height: 111px;
+}
+
+.text-style {
+  text-transform: uppercase;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+  padding-left: 5px;
+  padding-right: 8px;
+}
+
+.container-op-info {
+  margin-top: 20px;
+}
+
+.container-last-row {
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.table-medicare {
+  overflow: auto;
+  display: block;
+}
+
+.text-upper{
+  text-transform: uppercase;
+}
+
+.header-text {
+  height: 18px;
+  width: 94.4px;
+  color: #4E5B71;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: left;
+}
+
+.div-set-bill-line {
+  display: inline-flex;
+  height: 35px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.div-set-bill-left {
+  color: #252C37;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-left: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+.div-set-bill-right {
+  color: #ffffff;
+  background-color: #196ECF;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+.fox-section-icd {
+  margin-top: -27px;
+}
+
+.div-top-title {
+  padding-top: 20px;
+}
+
+.span-sub-title {
+  color: #6E7681;
+  padding-left: 20px;
+}
+
+.span-bill-line {
+  float: right;
+  padding-right: 20px;
+}
+
+.div-bill-line {
+  padding-top: 15px;
+}
+
+.div-misc-plan {
+  padding: 25px 20px 20px 20px;
+}
+
+.div-legends-bottom {
+  padding: 20px 30px;
+}
+
+.div-legends-bottom-inside {
+  width: 100%;
+  background-color: #F4F5F6;
+  padding: 25px 20px
+}
+
+.span-bold {
+  font-weight: 600;
+}
+
+.span-padding-20 {
+  padding-right: 20px;
+}
+
+.div-input-bottom {
+  padding-left: 5px;
+}
+
+.div-button-margin {
+  margin-top: 25px;
+}
+
+.div-float-right {
+  float: right;
+}
+
+.div-margin-left {
+  margin-left: 15px;
+  position: relative;
+}
+
+.div-return-prev {
+  padding: 5px 15px 25px 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.span-return-prev {
+  color: #196ECF;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+}
+
+.i-chevron {
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  font-size: 18px;
+}
+
+.mat-top-margin {
+  margin-top: -31px;
+}
+
+.div-row-icd-code-top {
+  margin-top: 25px;
+}
+
+@media (max-width: 767px) {
+  .span-bill-line {
+    float: left;
+    padding-left: 15px;
+  }
+}

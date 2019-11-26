@@ -1,0 +1,137 @@
+.container-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 20px 0 20px;
+}
+
+.btn-update {
+  margin-left: 0;
+  margin-right: 7px;
+  margin-bottom: 20px;
+  width: 48%;
+}
+
+.btn-clear {
+  background-color: white;
+  color: #196ecf;
+  border: solid 1px #196ecf;
+  margin-right: 0;
+  width: 10%;
+  float: right;
+}
+
+.btn-link-search-clear {
+  background-color: white;
+  color: #000;
+  border: solid 1px #2d2d39;
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 10%;
+  float: inherit;
+  vertical-align: text-bottom;
+}
+
+.btn-link-member {
+  background-color: #196ecf;
+  color: white;
+}
+
+.icon-margin-right {
+  margin-right: 5px;
+}
+
+.icon-margin-left {
+  margin-left: 5px;
+}
+
+.dropdown-width {
+  width: 180px;
+}
+
+.page-title {
+  margin-top: 15px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.field-error {
+  color: #f44336;
+}
+
+.link-member-no-color {
+  color: #196ecf;
+}
+
+.link-member-mbr-no-underline {
+  text-decoration: underline;
+}
+
+.container-link-member-mbr-results {
+  overflow: auto;
+  min-height: 50px;
+  max-height: 250px;
+  margin-bottom: 30px;
+}
+
+.form-search-member {
+  margin: 20px 20px 0 20px;
+}
+
+.txt-search-member {
+  margin: 0 20px 0 20px;
+}
+
+.link-member-mbr-cell-padding {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  text-align: left;
+  align-items: center;
+}
+
+.link-member-form-row .form-row {
+  margin-top: 0;
+}
+
+.link-member-modal-button-container .container-buttons {
+  float: right;
+  color: #196ecf;
+}
+
+.link-member-buttons {
+  margin-right: 0;
+  margin-left: +11px;
+}
+
+.container-link-member-modal-bottom-right .btn-secondary {
+  margin-top: 10px;
+  width: 200px;
+}
+
+.mat-form-field {
+  float: left;
+}
+
+.dropdown-state {
+  padding-top: 5px;
+}
+
+.link-member-form-field {
+  margin-top: -5px;
+}
+
+.search-button-form-button {
+  margin-top: 5px;
+}
+
+.form-row-height {
+  height: 90px;
+}
+
+.container-table {
+  width: 100%;
+  overflow: hidden;
+}

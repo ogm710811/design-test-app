@@ -1,0 +1,121 @@
+<fox-loading-overlay tag="dash-init" *ngIf="productionInfoTab">
+  <div class="member-options">
+    <div class="opt-team">
+      <span class="dropdown-label">Team </span>
+      <mat-form-field class="form-field-team">
+        <mat-select id="select-team" [(value)]="selectedTeam" (selectionChange)="onChangeSelectedTeam($event.value)">
+          <ng-container *ngFor="let team of teamList">
+            <mat-option value="{{team}}">{{team}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="opt-individual">
+      <span class="dropdown-label">Individual </span>
+      <mat-form-field class="form-field-individual">
+        <mat-select id="select-user" [(value)]="selectedUser" (selectionChange)="onChangeSelectedUser($event.value)">
+          <ng-container *ngFor="let user of individualList">
+            <mat-option value="{{user}}">{{user}}</mat-option>
+          </ng-container>
+        </mat-select>
+
+      </mat-form-field>
+    </div>
+  </div>
+  <hr class="hr-margin-top">
+
+</fox-loading-overlay>
+
+
+<div class="div-current-stats" *ngIf="productionInfoTab">
+  <div>
+    <fox-stat-box statBoxTitle="Current Day" [statBoxSubtitle]="currentDate"
+                  [statBoxValue]="currentDayProcessed"
+                  [bypassBoxValue]="bypassCD"
+                  [hasSupervisorRole]="hasSupervisorRole"></fox-stat-box>
+  </div>
+  <div>
+    <fox-stat-box statBoxTitle="Week to Date" [statBoxSubtitle]="currentWeek"
+                  [statBoxValue]="weekToDateProcessed"
+                  [bypassBoxValue]="bypassWTD"
+                  [hasSupervisorRole]="hasSupervisorRole"></fox-stat-box>
+  </div>
+  <div>
+    <fox-stat-box statBoxTitle="Month to Date" [statBoxSubtitle]="currentMonth"
+                  [statBoxValue]="monthToDateProcessed"
+                  [bypassBoxValue]="bypassMTD"
+                  [hasSupervisorRole]="hasSupervisorRole"></fox-stat-box>
+  </div>
+</div>
+
+<fox-section [noPadding]="true" *ngIf="productionInfoTab">
+
+  <div class="container-padding">
+    <fox-section-title>
+      Production Breakdown
+    </fox-section-title>
+
+    <mat-form-field class="opt-timeframe float-left">
+      <mat-label>Timeframe:</mat-label>
+      <mat-select id="select-timeframe" [(value)]="selectedTimeframe"
+                  (selectionChange)="onChangeSelectedTimeFrame($event.value)">
+        <mat-option value="Custom">Custom Timeframe</mat-option>
+        <mat-option value="CurrentDay">Current Day</mat-option>
+        <mat-option value="WeekToDate">Week to Date</mat-option>
+        <mat-option value="MonthToDate">Month to Date</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <div class="float-left" *ngIf="isCustomTimeframe">
+        <form [formGroup]="customDateFormGroup" #formDirective="ngForm" novalidate>
+          <mat-form-field class="col-sm-3 custom-timeframe-date-field">
+            <mat-label>Start Date</mat-label>
+            <input id="input-start-dt" matInput placeholder="MM/DD/YYYY" maxlength="10" [formControl]="customDateStart" required>
+            <mat-error>
+              <span *ngIf="customDateStart!.hasError('date')">Please enter in MM/DD/YYYY format</span>
+              <span *ngIf="customDateStart!.hasError('invalidStartDate') && !customDateStart!.hasError('date')">Invalid Start Date</span>
+              <span *ngIf="customDateStart!.hasError('dateIsGreaterThanCurrentDate')">Date cannot be in the future</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-sm-3 custom-timeframe-date-field custom-date-no-padding-left">
+            <mat-label>End Date</mat-label>
+            <input id="input-end-dt" matInput placeholder="MM/DD/YYYY" maxlength="10" [formControl]="customDateEnd" required>
+            <mat-error>
+              <span *ngIf="customDateEnd!.hasError('date')">Please enter in MM/DD/YYYY format</span>
+              <span *ngIf="customDateEnd!.hasError('dateIsGreaterThanCurrentDate')">Date cannot be in the future</span>
+              <span class="span-invalid-end-date" *ngIf="!customDateFormGroup!.get('customDateEnd').valid && !customDateEnd!.hasError('dateIsGreaterThanCurrentDate')">Invalid end date</span>
+            </mat-error>
+          </mat-form-field>
+
+        <div class="container-div-width">
+          <button id="btn-update-timeframe" type="button" class="btn btn-secondary update-btn-custom-timeframe"
+                  (click)="onClickUpdateTimeFrame()" [disabled]="!customDateFormGroup.valid">Update
+          </button>
+        </div>
+      </form>
+
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+  <fox-loading-overlay tag="dash-productivity">
+    <fox-team-productivity-table childIdBase="dash"
+                                 [timeFrame]="selectedTimeframe"
+                                 [teamMemberList]="teamMemberList"
+                                 [selectedTeam]="selectedTeam"
+                                 [isIndividualSelected]="isIndividualSelected"
+                                 [selectedUser]="selectedUser"
+                                 [customDateStart]="customDateStartParam"
+                                 [customDateEnd]="customDateEndParam"></fox-team-productivity-table>
+  </fox-loading-overlay>
+</fox-section>
+
+<fox-section *ngIf="queueStatisticsTab" [noPadding]="true">
+  <fox-section-title class="container-padding">Member Lookup Queue Statistics</fox-section-title>
+  <fox-queue-info-table></fox-queue-info-table>
+</fox-section>
+
+<fox-reports [reportModalVisible]="reportModalVisible"
+             (reportModalVisibleChange)="reportModalVisible=$event" [msReports]="msReports"
+             [nasReports]="nasReports"></fox-reports>

@@ -1,0 +1,147 @@
+<div #header [id]="headerId" class="fox-header">
+  <div [id]="headerId + '-login'" class="container-header">
+    <img class="fox-icon" focusable="false" src="assets/img/fox-icon.svg"
+         (click)="navigateToRoute(homeUrl[0], homeUrl[1])">
+    <fox-section [drawRectangle]="false">
+      <label for="com1" class="commandbar-label">Cmd</label>
+      <input #cmd id="com1" [(ngModel)]="commandInputVal" name="commandlbl" maxlength="2" class="com1 commandbar-input"
+             size="2" foxHotkey="home" (keypress)="onKeyPress($event)" (click)="menuToggleFalse()"
+             [ngClass]="{'error-border': unknownCommandError, 'commandbar-filled': commandInputVal.length === 2}"/>
+
+      <label for="memid" class="commandbar-label hide-small">Mem</label>
+      <input id="memid" [(ngModel)]="memberInputVal" name="commlbl" class="memid commandbar-input hide-small"
+             (keypress)="onKeyPress($event)" [disabled]="!checkEnableMemberInput()"/>
+
+      <label for="claimid" class="commandbar-label hide-small">Rec</label>
+      <input id="claimid" [(ngModel)]="recordInputVal" name="claimlbl" class="commandbar-input hide-small"
+             (keypress)="onKeyPress($event)"
+             [disabled]="!checkEnableRecordInput()"/>
+
+      <label for="commid" class="commandbar-label hide-small">Comm</label>
+      <input id="commid" [(ngModel)]="commInputVal" name="commlbl" (keypress)="onKeyPress($event)"
+             class="commandbar-input hide-small"
+             [disabled]="!checkEnableCommInput()"/>
+
+      <div class="command-group alert-red-text" *ngIf="unknownCommandError">
+        <img class="error-icon" focusable="false" src="assets/img/error-triangle-icon.svg" tooltip="Invalid Command"
+             placement="bottom">
+      </div>
+      <div class="command-group alert-red-text" *ngIf="noAccessError">
+        <img class="error-icon" focusable="false" src="assets/img/error-triangle-icon.svg"
+             tooltip="Insufficient privileges to access page"
+             placement="bottom">
+      </div>
+
+      <button type="button"
+              tabindex="-1"
+              [id]="headerId + '-login-username-label'"
+              class="fox-header-menu-item menu-item-last container-btn-bg"
+              [ngClass]="{
+                'btn-menu': !showMenu,
+                'container-btn-bg-open': !showMenu,
+                'container-btn-bg-close': showMenu
+              }"
+              foxhotkey="alt+`"
+              (click)="menuToggle()">
+        <img class="btn-img" [src]="'assets/img/' + (!showMenu ? 'menu-white.svg' : 'close-blue.svg')"/>
+        <div class="txt-menu col-sm-12" [ngClass]="{ 'close-txt': showMenu }">{{!showMenu ? 'Menu' : 'Close'}}</div>
+      </button>
+
+      <div [id]="headerId + '-login-username-label'" (click)="menuToggleFalse()" class="fox-header-menu-item btn-user-dropdown"
+           [matMenuTriggerFor]="menu">
+        <span class="lbl-white">
+          <i class="fas fa-user" focusable="false"></i>
+          <i focusable="false" class="fas fa-caret-down"></i>
+        </span>
+      </div>
+
+      <div *ngIf="hasReleaseEnableWQ && !isSecurityAdmin && hasMaintainWorkQueueRole"
+           [id]="headerId + '-work-menu-label'"
+           (click)="onRefreshCallWqmUserCount()"
+           class="fox-header-menu-item fox-header-menu-workflow"
+           [ngClass]="{'fox-header-menu-bumble-bee':(hasWorkQueueSession)}"
+           [matMenuTriggerFor]="workMenu"
+           [hidden]="disableOrHideWorkItems" >
+        <span class="lbl-workflow">
+          <i class="fas fa-briefcase" focusable="false"></i>
+          <span class="hide-medium txt-work" *ngIf="!hasWorkQueueSession">Work Items</span>
+          <span class="hide-medium txt-work" *ngIf="hasWorkQueueSession">Active Item</span>
+          <i focusable="false" class="fas fa-caret-down"></i>
+        </span>
+      </div>
+
+      <mat-menu #menu="matMenu" [overlapTrigger]="false" class="menu-profile">
+        <button mat-menu-item [disableRipple]="true" disabled>Logged in as <span class="font-weight-bold lbl-username">{{fullname}}</span>
+        </button>
+        <button mat-menu-item
+                [disableRipple]="true"
+                [matMenuTriggerFor]="maintMenu"
+                class="btn-maint-menu"
+                *ngIf="isF4898Enabled">IT Maintenance</button>
+        <button class="link-logout" (click)="btnLogoutEventClick()" mat-menu-item [disableRipple]="true">Logout
+        </button>
+      </mat-menu>
+
+      <mat-menu #workMenu="matMenu" [overlapTrigger]="false" class="menu-work-session">
+        <button mat-menu-item [disableRipple]="true" [matMenuTriggerFor]="itemMenu" [disabled]="!hasWorkQueueSession"
+                class="btn-item-menu">
+          <span *ngIf="!hasWorkQueueSession">No Active Item</span>
+          <span *ngIf="hasWorkQueueSession"><span class="font-weight-bold">{{currentWorkQueueType}}</span>
+            #{{currentWorkQueueBusinessId}}</span>
+        </button>
+        <hr>
+        <button mat-menu-item [routerLink]="workbenchTarget" routerLinkActive="lnk-active" id="btn-view-workbench"
+                [disableRipple]="true"><div class="txt-view-workbench">View My Workbench</div>
+          <div class="circle"><div class="txt-count">{{wqItemCountByUserId}} Items</div>
+        </div>
+        </button>
+        <button mat-menu-item [routerLink]="queueSelectTarget" routerLinkActive="lnk-active" id="btn-view-all-queues"
+                [disableRipple]="true">View All Queues
+        </button>
+        <button mat-menu-item [disableRipple]="true" disabled>Work Settings</button>
+        <hr>
+        <button mat-menu-item [disableRipple]="true" [disabled]='!hasWorkQueueSession' (click)="endSession()">Exit Working Session</button>
+      </mat-menu>
+
+      <mat-menu #itemMenu="matMenu" [overlapTrigger]="false" class="menu-work-queue-item">
+        <button mat-menu-item routerLinkActive="lnk-active" [disableRipple]="true" (click)="goToDetailPage(1)">
+          {{currentWorkQueueType}}
+          Detail Page
+        </button>
+        <button mat-menu-item routerLinkActive="lnk-active"
+                [disableRipple]="true" (click)="goToDetailPage(3)">Audit Log
+        </button>
+        <button mat-menu-item routerLinkActive="lnk-active" [disableRipple]="true" (click)="goToDetailPage(2)"
+                [disabled]="currentWorkQueueType != 'Document'">Notes
+          <ng-container *ngIf="currentWorkQueueType == 'Document'">({{documentNotesCount}})</ng-container>
+        </button>
+        <hr>
+        <button mat-menu-item routerLinkActive="lnk-active"
+                [disableRipple]="true" (click)="sendToWorkBench()">Send to Workbench
+        </button>
+        <button mat-menu-item routerLinkActive="lnk-active"
+                [disableRipple]="true" (click)="routeToQueue()" [disabled]="currentWorkQueueType === 'Claim'">
+          Route to Different Queue
+        </button>
+        <hr>
+        <button mat-menu-item routerLinkActive="lnk-active"
+                [disableRipple]="true" (click)="completeWorkQueue(true)">Complete & Exit
+        </button>
+        <button mat-menu-item routerLinkActive="lnk-active"
+                [disableRipple]="true" (click)="completeWorkQueue(false)" [disabled]="currentSessionQueueType !== 'FIFO' || fromWorkBench">Complete & Get Next<span class="text-shortcut">Alt + G</span>
+        </button>
+
+      </mat-menu>
+
+      <mat-menu #maintMenu="matMenu" [overlapTrigger]="false" class="menu-work-queue-item">
+        <button mat-menu-item [routerLink]="planInfoMaintMenuTarget" routerLinkActive="lnk-active" id="btn-plan-info-maintenance-menu"
+                [disableRipple]="true">Plan Information Maintenance
+        </button>
+        <button mat-menu-item [routerLink]="claimNumberFileMaintaince" routerLinkActive="lnk-active" id="btn-claim-number-file-maintenance-menu"
+                [disableRipple]="true">Claim Number File Maintenance
+        </button>
+      </mat-menu>
+
+    </fox-section>
+  </div>
+</div>

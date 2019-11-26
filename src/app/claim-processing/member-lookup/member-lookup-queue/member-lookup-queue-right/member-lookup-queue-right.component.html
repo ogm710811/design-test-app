@@ -1,0 +1,9 @@
+<fox-potential-matches-actions #potentialMatchesActions [user]="''" queueType="MAIN" [trackingId]="''"></fox-potential-matches-actions>
+<span *ngIf="data.reportsBtn">
+  <button type="button" id="btn-reports" class="btn btn-pill-header button-visible"
+          (click)="clickBtn(data.reportsBtn.identifier)"
+          [disabled]="data.reportsBtn.disabled">
+    <img src="assets/img/Report-blue.svg" class="img-reports">
+    {{data.reportsBtn.display}}
+  </button>
+</span>

@@ -1,0 +1,66 @@
+<div class="col-xs-12 col-sm-4 col-md-4" [formGroup]="parent">
+  <div class="row" formGroupName="checkReplaceReason">
+    <div class="col-xs-12 container-input">
+      <div class="container-label">
+        <label class="label-for-select" for="checkReason">Replace Reason -  Required</label>
+      </div>
+      <ng-select class="ng-select-bottom"
+                 [items]="dropdownOptionsForReplaceReason"
+                 [selectOnTab]="true"
+                 [clearable]="false"
+                 (ngModelChange)="onOptionsForReplaceReasonChange($event)"
+                 bindValue="value"
+                 labelForId="checkReason"
+                 placeholder="Select Replace Reason"
+                 formControlName="checkReason">
+      </ng-select>
+      <div *ngIf="isOtherReasonSelected" class="fox-input-other-reason">
+        <fox-input formControlName="checkReasonOtherDesc"
+                   type="textarea"
+                   labelText="Other Reason"
+                   length="120">
+        </fox-input>
+      </div>
+      <div *ngIf="isProvider" class="col-xs-12 container-checkbox-top container-input-reason-right">
+        <span class="">
+          <input type="checkbox" value="" formControlName="checkReplaceRaMessage" (ngModelChange)="checkReplaceNotation($event)"/>
+        </span>
+        <span class="span-checkbox-reason-label">Replacement RA Message on Check</span>
+        <p class="text-checkbox-reason-label">(This will override existing text in Notation Field.)</p>
+      </div>
+      <div class="col-xs-12 container-input-reason-right" [ngClass]="checkboxClass">
+        <div class="container-label">
+          <label class="label-for-select" for="check">Include Notation on Check</label>
+        </div>
+        <ng-select class="ng-select-bottom"
+                   [items]="dropdownOptionsForCheck"
+                   [selectOnTab]="true"
+                   [clearable]="false"
+                   bindValue="value"
+                   labelForId="check"
+                   formControlName="checkReplaceIncludeNotation">
+        </ng-select>
+      </div>
+      <div class="col-xs-12 container-input-reason-return-top container-input-reason-right">
+        <div class="container-label">
+          <label class="label-for-select" for="check">Returned Check</label>
+        </div>
+        <ng-select class="ng-select-bottom"
+                   [items]="dropdownOptionsForCheck"
+                   [selectOnTab]="true"
+                   [clearable]="false"
+                   bindValue="value"
+                   labelForId="check"
+                   formControlName="checkReplaceReturn">
+        </ng-select>
+      </div>
+      <div class="col-xs-12 container-input-notation-top container-input-reason-right">
+        <fox-input formControlName="checkReplaceNotation" class="fox-input-check-notation-textarea"
+                type="textarea"
+                labelText="Notation"
+                length="120">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</div>

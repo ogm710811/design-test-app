@@ -1,0 +1,17 @@
+.input-claim {
+  width: 15%;
+  margin: 0 15px 0 15px;
+}
+
+.table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.btn-next {
+  float: right;
+}
+
+.modal-body {
+  height: 60px;
+}

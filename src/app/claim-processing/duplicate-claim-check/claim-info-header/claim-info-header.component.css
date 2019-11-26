@@ -1,0 +1,62 @@
+.header-with-heart {
+  color: #196ECF;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.container-service-dates {
+  margin-right: 1em;
+  float: left;
+}
+
+.container-billed-amount {
+  margin-right: 1em;
+  float: left;
+}
+
+.container-plans {
+  max-width: 6em;
+  margin-right: 1em;
+  float: left;
+}
+
+.container-effective-date {
+  max-width: 6em;
+  margin-right: 1em;
+  float: left;
+}
+
+.container-claim-type {
+  margin-right: 1em;
+  float: left;
+}
+
+.container-member-name {
+  max-width: 28em;
+  margin-right: 1em;
+  float: left;
+}
+
+.container-member-number {
+  margin-right: 1em;
+  float: left;
+}
+
+.div-info-title {
+  float: left;
+  color: #333333;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.div-info-body {
+  float: left;
+  color: #333333;
+  font-size: 16px;
+  line-height: 18px;
+  width: 100%;
+}

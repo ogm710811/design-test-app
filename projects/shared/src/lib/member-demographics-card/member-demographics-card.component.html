@@ -1,0 +1,69 @@
+<fox-section [noPadding]="true">
+  <div class="row no-padding row-title-holder">
+    <div class="col-xs-12 section-title-container">
+      <div class="div-section-title">Member Demographics</div>
+      <span class="div-section-subtitle">Click “Show all plan details” to expand or use Alt + P. Click Member # link to view Member details.</span>
+    </div>
+  </div>
+
+  <div class="row row-holder div-member-details-container">
+
+    <div class="col-xs-12 div-member-holder" [ngClass]="state? 'col-sm-4': 'col-sm-2'">
+      <div class=" div-member-details container-read-only">
+        <div class="col-xs-12 field-label">Name</div>
+        <div class="col-xs-12 field-value">{{memberDmg?.m22nam}}</div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 div-member-holder">
+      <div class="div-member-details container-read-only">
+        <div class="col-xs-12 field-label">Member #</div>
+        <div class="col-xs-12 field-value field-value-link">
+          <img *ngIf="memberDmg.m22nam" class="img-link-icon" alt="member icon" src="/assets/img/member-blue.svg"/>
+          <fox-member-profile-format-table [itemToFormat]="memberDmg?.m22memn" [target]="'_blank'"></fox-member-profile-format-table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 div-member-holder" *ngIf="isDisplayed" [ngClass]="state? 'col-sm-2': 'col-sm-4'">
+      <div class="div-member-details container-read-only">
+        <div class="col-xs-12 field-label">{{state? 'State': 'Address'}}</div>
+        <div class="col-xs-12 field-value">{{state? state: memberDmg?.m22addr + ' ' + memberDmg?.m22city}}</div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 div-member-holder">
+      <div class="div-member-details container-read-only">
+        <div class="col-xs-12 field-label">Date of Birth</div>
+        <div class="col-xs-12 field-value">{{memberDmg?.m22dob}}</div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 div-member-holder" *ngIf="isDisplayed">
+      <div class="div-active-plans container-read-only">
+        <div class="col-xs-12 field-label">Active Plans During DOS</div>
+        <div class="col-xs-12 field-value"><img *ngIf="memberDmg.m22nam" class="img-plan-icon" alt="plan icon" src="/assets/img/plan.svg"/>{{memberDmg?.activePlans}}</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row no-padding row-table-holder" *ngIf="isDisplayed">
+    <div class="col-xs-12" [ngClass]="showTable ? 'div-link-container-opened' : 'div-link-container'">
+      <span foxHotkey="alt+p" hotkeyAction="click" (click)="openPlansTable(showTable)" class="span-link-txt" tabindex="0">
+        <span class="span-plans-switch-text" *ngIf="!showTable"><img class="img-caret-icon" alt="caret right" src="/assets/img/caret-right-blue.svg"/>Show all plan details (P)</span>
+        <span class="span-plans-switch-text" *ngIf="showTable"><img class="img-caret-icon" alt="caret down" src="/assets/img/caret-down-blue.svg"/>Hide all plan details (P)</span>
+      </span>
+    </div>
+    <div class="col-xs-12 no-padding" *ngIf="showTable">
+      <fox-loading-overlay>
+        <fox-table [tableColumns]="columns"
+                   [tableData]="planPicked | orderBy: {property: resultCurrentSortKey, direction: resultSortDirection}"
+                   (columnChanged)="resultCurrentSortKey = $event"
+                   (directionChanged)="resultSortDirection = $event">
+        </fox-table>
+      </fox-loading-overlay>
+    </div>
+  </div>
+
+</fox-section>

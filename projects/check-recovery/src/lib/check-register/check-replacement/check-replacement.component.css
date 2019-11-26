@@ -1,0 +1,73 @@
+.container-fluid-select-action {
+   padding: 0;
+}
+
+.container-select-action {
+  padding-bottom: 30px;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.container-select-single {
+  padding-left: 19px;
+}
+
+.container-label {
+  margin-bottom: 7px;
+}
+
+.label-for-select {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}
+
+.input-disabled {
+  height: 39px;
+  width: 132px;
+}
+
+.container-select-button {
+  padding-top: 13px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container-select-form {
+  border-top: 1px solid #E3E6E8;
+  padding-top: 30px;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.container-institution-radio-group {
+  background-color: #F2F5F8;
+  margin-top: 20px;
+  padding: 23px 15px;
+}
+
+.span-institution-label {
+  height: 21px;
+  width: 77px;
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.span-institution-radio {
+  padding-left: 20px;
+}
+
+.span-institution-radio-label {
+  padding-left: 10px;
+}
+
+@media (max-width: 990px) {
+  .span-button-search {
+    float: right;
+    margin-right: 15px;
+  }
+}

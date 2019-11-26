@@ -1,0 +1,38 @@
+::ng-deep .exp-panel-header > .mat-expansion-indicator:after {
+  color: #196ECF;
+}
+
+.exp-panel-header, .mat-panel-title {
+  color: #196ECF;
+}
+
+.horizontal-rule {
+  margin-top: -15px;
+}
+
+.fa-image {
+  margin-right: 7px;
+}
+
+.container-check-img {
+  height: 300px;
+  margin-left: 110px;
+  overflow: hidden;
+}
+
+.info-icon {
+  height: 80px;
+  width: 80px;
+  color: #E0E0E0;
+  margin-left: 465px;
+  margin-top: 20px;
+}
+
+.primary-message {
+  height: 18px;
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "group": "Total # of Claims",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Bypass",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Age 6",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Age 5",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Age 4",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Age 3",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Age 2",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Age 1",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  },
+  {
+    "group": "Age 0",
+    "crossover": 0,
+    "clearinghouse": 0,
+    "paper": 0,
+    "nonClaims": 0,
+    "total": 0
+  }
+]

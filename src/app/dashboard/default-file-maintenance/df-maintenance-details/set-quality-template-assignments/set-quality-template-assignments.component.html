@@ -1,0 +1,61 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="f1EventClick()" class="span-return" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img class="container-arrow-right" src="assets/img/arrow-left.svg">Cancel and Return (F1)
+  </span>
+</div>
+
+<div class="col-xs-12 col-sm-8 no-padding">
+  <fox-section [paddingBottom23px]="true">
+    <fox-section-title>Template Assignment Info</fox-section-title>
+    <div class="col-xs-12 col-sm-6 no-padding container-last-assignment">
+      <fox-input type="text"
+                 labelText="Last Assignment Date:"
+                 isReadOnly="true"
+                 isReadOnlyNoPaddingLeftRight="true"
+                 [(ngModel)]="lastMaintenanceDate">
+      </fox-input>
+    </div>
+  </fox-section>
+
+  <fox-section [noPadding]="true">
+    <div class="fox-section-site-info">
+      <fox-section-title>Site Assignment Info</fox-section-title>
+    </div>
+    <div>
+      <fox-table class="col-xs-12 col-sm-12 no-padding"
+                 #inputTable
+                 [tableColumns]="mutipleMemTableColumns"
+                 [tableData]="mutipleMemTableData">
+      </fox-table>
+    </div>
+    <div class="col-xs-12 col-sm-8 no-padding" *ngIf="screen.m42ntam === ''"
+         [ngClass]="{'container-assignment': screen.m42ntam === ''}">
+      <fox-input
+        labelText="Apply NT - Assignment Immediately (Y or N)"
+        length="1"
+        size="1">
+      </fox-input>
+    </div>
+  </fox-section>
+  <div class="col-xs-12 col-md-12 no-padding">
+    <div class="form-row text-right">
+      <button type="button" id="F3" name="F3" class="btn btn-secondary button-template" (click)="f3EventClick()"
+              foxHotkey="alt+k" hotkeyAction="click">Template Exclusion (K)
+      </button>
+      <div *ngIf="screen.m42ntam === ''" class="container-alignment">
+        <button type="button" id="CLEAR" name="CLEAR" class="btn btn-secondary button-spacing"
+                (click)="clearEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)
+        </button>
+        <fox-loading-button [buttonValue]="'Submit (S)'"
+                            id="ENTER"
+                            name="ENTER"
+                            [buttonStatus]="buttonStatus"
+                            [typeValue]="'button'"
+                            [foxHotKeyValue]="'alt+s'"
+                            (buttonClick)="enterEventClick()"
+                            class="btn-submit">
+        </fox-loading-button>
+      </div>
+    </div>
+  </div>
+</div>

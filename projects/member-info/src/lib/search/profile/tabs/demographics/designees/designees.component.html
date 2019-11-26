@@ -1,0 +1,172 @@
+<!--3rd Party Designees Section-->
+<fox-section [noPadding]="true">
+  <fox-section-title class="container-padding">
+    3rd Party Designees
+  </fox-section-title>
+
+  <div class="member-designee-table-main">
+    <div class="member-designee-non-mat-table-main">
+      <mat-table class="member-designee-non-mat-table" [dataSource]="designeesDataSource" #table matSort tabindex="0">
+
+        <ng-container matColumnDef="designeeType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Designee Type</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.designeeType | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> First Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.firstName | slice:0:25}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.lastName | slice:0:35}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="roles">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Roles</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div class="icon-demographics" *ngIf="element.roles == 'RELEASE OF CLAIM AND COVERAGE PAYMENT INFO'"><i
+                class="fas fa-dollar-sign" focusable="false"></i></div>
+            <div class="icon-demographics" *ngIf="element.roles == 'RELEASE MEDICAL INFO ONLY'"><i class="fas fa-medkit"
+                focusable="false"></i></div>
+            <div class="icon-demographics" *ngIf="element.roles == 'ENTER INTO CONTRACT'"><i class="fas fa-file"
+                focusable="false"></i></div>
+            <div class="icon-demographics" *ngIf="element.roles == 'RELEASE ALL INFO'"><i class="fas fa-briefcase"
+                focusable="false"></i></div>
+            <div class="icon-demographics" *ngIf="element.roles == 'RELEASE NO INFO'"><i class="fas fa-times-circle"
+                focusable="false"></i></div>
+            <div class="icon-demographics" *ngIf="element.roles == 'COPY ON DELINQUENCY NOTICES'"><i
+                class="fas fa-envelope" focusable="false"></i></div>
+            <div class="icon-demographics" *ngIf="element.roles == 'RELEASE OF COVERAGE PAYMENT INFO'"><i
+                class="fas fa-file-invoice-dollar" focusable="false"></i></div>
+            <div class="icon-demographics" *ngIf="element.roles == 'RELEASE NO MEDICAL INFO'"><i
+                class="fas fa-hospital-symbol" focusable="false"></i></div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="addressOne">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Address Line 1</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.addressOne | slice:0:55 | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="addressTwo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Address Line 2</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.addressTwo | slice:0:55 | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> City</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.city | slice:0:30 | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> State</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.state | slice:0:2}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="zipCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ZIP Code</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.zipCode | slice:0:9}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="country">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Country</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.country | slice:0:55}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.phoneNumber}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumberType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number Type</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="emailAddress">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email Address</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.emailAddress}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="effectiveFrom">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Effective From</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.effectiveFrom | slice:0:10 | date:'MM/dd/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="effectiveTo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Effective To</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.effectiveTo | slice:0:10 | date:'MM/dd/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedDesigneesColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedDesigneesColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+  <mat-paginator #paginator [length]="dataLength" [pageIndex]="currentPage" [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]" class="hide">
+  </mat-paginator>
+  <fox-paginator *ngIf="dataLength>0" [(paginatorInput)]="paginatorObj" [pageSizeInput]="pageSize"
+    [dataLengthInput]="dataLength"></fox-paginator>
+
+  <div class="container-no-margin no-padding row">
+    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+      <span class="txt-role-types">Role Types:</span>
+    </div>
+  </div>
+
+  <div class="container-margin row">
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i><img src="assets/img/document-black.svg" class="img-icon-size"></i>
+      <span class="txt-role-type">Enter Info Contract</span>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i class="fa fa-medkit"></i>
+      <span class="txt-role-type">Release Medical Info Only</span>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i><img src="assets/img/currency-black.svg" class="img-icon-size"></i>
+      <span class="txt-role-type">Release of Claim and Coverage Payment Info (financial)</span>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i class="fas fa-envelope"></i>
+      <span class="txt-role-type">Copy on Delinquency Notices</span>
+    </div>
+  </div>
+
+  <div class="container-margin container-margin-bottom row">
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i><img src="assets/img/work-item-black.svg" class="img-icon-size"></i>
+      <span class="txt-role-type">Release All Info</span>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i class="fas fa-times-circle"></i>
+      <span class="txt-role-type">Release No Info</span>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i class="fas fa-file-invoice-dollar"></i>
+      <span class="txt-role-type">Release of Coverage Payment Info</span>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <i class="fas fa-hospital-symbol"></i>
+      <span class="txt-role-type">Release No Medical Info</span>
+    </div>
+  </div>
+</fox-section>

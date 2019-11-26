@@ -1,0 +1,111 @@
+.section-status {
+  height: 14px;
+  width: 108px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.section-details{
+  font-weight: 400;
+}
+
+.circle-icon-status {
+  font-size: 9px;
+  vertical-align: middle;
+  padding-right: 3px;
+  color: #FCD7AB;
+}
+
+.section-from {
+  height: 12px;
+  width: 228px;
+  color: #4E5B71;
+  font-size: 14px;
+  line-height: 12px;
+}
+
+.circle-icon {
+  font-size: 4px;
+  vertical-align: middle;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.section-divider {
+  height: 12px;
+  width: 10px;
+  color: #4E5B71;
+  line-height: 12px;
+}
+
+.page-title {
+  margin-top: 0;
+}
+
+.title-card {
+  width: 590px;
+  color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  padding-top: 16px;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.section-note-1 {
+  padding-left: 20px;
+  margin-bottom: 7px;
+}
+
+.section-card {
+  width: 43%;
+  margin-left: 20px;
+}
+
+.container-details {
+  margin-bottom: 20px;
+}
+
+.request-approved {
+  height: 14px;
+  width: 114px;
+  color: #007000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.circle-icon-status-pending {
+  font-size: 9px;
+  vertical-align: middle;
+  padding-right: 3px;
+  color: #FCD7AB;
+}
+
+.circle-icon-status-approved {
+  font-size: 9px;
+  vertical-align: middle;
+  padding-right: 3px;
+  color: #BBEABB;
+}
+
+.circle-icon-status-denied {
+  font-size: 9px;
+  vertical-align: middle;
+  padding-right: 3px;
+  color: #F46967;
+}
+
+.section-text-pending {
+  color: #9E6116;
+}
+
+.section-text-approved {
+  color: #007000;
+}
+
+.section-text-deny {
+  color: #BF3533;
+}

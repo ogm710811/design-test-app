@@ -1,0 +1,98 @@
+.container-buttons {
+  width: 100%;
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+.container-side-margin {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+}
+
+.container-buttons .btn {
+  float: right;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+.fld-q-sel {
+  width: 25%;
+  float: left;
+  padding-right: 20px;
+}
+
+.fld-q-name {
+  width: 50%;
+  float: left;
+}
+
+.input-msid {
+  padding-left: 20px;
+  border-left: 1px solid #CED3DA;
+}
+
+.textarea-note-content {
+  margin-top: 25px;
+  width: 100%;
+}
+
+textarea.mat-input-element {
+  resize: none;
+  height: 110px;
+  margin-bottom: 20px;
+}
+
+.mat-hint {
+  color: #333333;
+}
+
+.btn-search {
+  margin-top: 11px;
+}
+
+.container-table {
+  margin-top: 20px;
+  margin-bottom: 0;
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.column-radio {
+  width: 55px;
+  padding-left: 25px;
+}
+
+.textarea-reason {
+  float: left;
+  width: 55%;
+  padding-right: 20px;
+  resize: none;
+}
+
+.dropdown-urgency {
+  width: 20%;
+  padding-right: 20px;
+}
+
+input-follow-up-date {
+  width: 20%;
+  padding-right: 0;
+}
+
+.container-bottom {
+  margin-top: 20px;
+  height: 126px;
+}
+
+.container-bottom-toggle {
+  height: 50px;
+}
+
+.container-table-workbench {
+  height: 100px;
+}
+
+.container-bottom-toggle .container-buttons .btn {
+  margin-top: 20px;
+}

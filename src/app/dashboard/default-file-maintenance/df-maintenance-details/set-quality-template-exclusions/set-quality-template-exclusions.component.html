@@ -1,0 +1,66 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="returnEventClick()" class="span-return" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img class="container-arrow-right" src="assets/img/arrow-left.svg"/>Cancel and Return (F1)
+  </span>
+</div>
+
+<fox-section [noPadding]="true" >
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>
+        Excluded Divisions
+      </fox-section-title>
+    </div>
+    <div class="row container-small">
+      <div class="col-xs-12 col-sm-3 no-padding" *ngFor="let divisionTables of screen.divisionTables ; let idx = index">
+        <fox-input type="text"
+                   id="txtM91DV01"
+                   name="txtM91DV01"
+                   [length]="3"
+                   [isReadOnly] = "screen.m91head !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m91head !== 'UPDATE'"
+                   [inputValue]="divisionTables.divNumber"
+                   [(ngModel)]="divisionTables.divNumber">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true">
+  <div class="container-fox-section">
+    <div class="container-spacing">
+      <fox-section-title>
+        Excluded Locations
+      </fox-section-title>
+    </div>
+    <div class="row container-small">
+      <div class="col-xs-12 col-sm-3 no-padding" *ngFor="let locationTables of screen.locationTables ; let idx = index">
+        <fox-input type="text"
+                   id="txtM91LOC01"
+                   name="txtM91LOC01"
+                   [length]="3"
+                   [isReadOnly] = "screen.m91head !== 'UPDATE'"
+                   [isReadOnlyNoPaddingLeftRight]="screen.m91head !== 'UPDATE'"
+                   [inputValue]="locationTables.locNumber"
+                   [(ngModel)]="locationTables.locNumber">
+        </fox-input>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<div class="col-xs-12 col-md-12 no-padding" *ngIf="headerValue === 'UPDATE'">
+  <div class="form-row text-right">
+    <button type="button" class="btn btn-secondary button-clear" (click)="ClearEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)</button>
+    <fox-loading-button [buttonValue] = "'Submit (S)'"
+                        [buttonStatus]="buttonStatus"
+                        [typeValue]="'button'"
+                        [foxHotKeyValue]="'alt+s'"
+                        (buttonClick)="EnterEventClick()"
+                        class="btn-submit">
+    </fox-loading-button>
+  </div>
+</div>
+
+

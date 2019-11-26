@@ -1,0 +1,10 @@
+<fox-queue-selection-search (searchResults)="setResults($event)" [(pageNumber)]="currentPage"
+                            [(pageSize)]="currentPageSize"></fox-queue-selection-search>
+
+<fox-queue-selection-results [queues]="searchResults && searchResults.content ? searchResults.content : []"
+                             [dataSize]="dataSize"
+                             [(pageSize)]="currentPageSize"
+                             [pageTotal]="pageTotal"
+                             [(pageNumber)]="currentPage"
+                             (pageNumberChange)="setCurrentPage($event)"
+                             (pageSizeChange)="setPageSize($event)"></fox-queue-selection-results>

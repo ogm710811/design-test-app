@@ -1,0 +1,55 @@
+<fox-modal [visible]="visibleModal"
+           [modalTitle]="'Keyboard Shortcuts'"
+           [showPdfLink] = "showPdfLink"
+           (visibleChange)="onCancel()"
+           class="modal-keyboard-shortcuts">
+  <div class="row" >
+
+    <div class="col-xs-12" >
+      <p class="modal-sub-title">Global Shortcuts</p>
+
+      <div *ngFor="let gs of globalShortcuts">
+        <div class="row" *ngIf="gs.modifier.length === 0">
+          <div class="col-xs-9"><span class="div-line-height">{{gs.name}}</span></div>
+          <div class="col-xs-3"><div class="button button-right">{{gs.key}}</div></div>
+        </div>
+        <div class="row div-line" *ngIf="gs.modifier.length === 0"></div>
+
+        <div class="row" *ngIf="gs.modifier.length > 0">
+          <div class="col-xs-7"><span class="div-line-height">{{gs.name}}</span></div>
+          <div class="col-xs-5 div-padding-right">
+            <div class="row div-row-margin-right">
+              <div class="col-xs-6 div-col-margin-right"><div class="button button-right">{{gs.modifier}}</div></div>
+              <div class="col-xs-1 div-plus-col">+</div>
+              <div class="col-xs-5"><div class="button button-right">{{gs.key}}</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="row div-line" *ngIf="gs.modifier.length > 0"></div>
+      </div>
+
+      <p class="modal-sub-title modal-sub-title-margin-top">Page-Specific Shortcuts</p>
+      <div *ngFor="let ps of pageSpecificShortcuts">
+        <div class="row" *ngIf="ps.modifier.length === 0">
+          <div class="col-xs-9"><span class="div-line-height">{{ps.name}}</span></div>
+          <div class="col-xs-3"><div class="button button-right">{{ps.key}}</div></div>
+        </div>
+        <div class="row div-line" *ngIf="ps.modifier.length === 0"></div>
+
+        <div class="row" *ngIf="ps.modifier.length > 0">
+          <div class="col-xs-7"><span class="div-line-height">{{ps.name}}</span></div>
+          <div class="col-xs-5 div-padding-right">
+            <div class="row div-row-margin-right">
+              <div class="col-xs-6 div-col-margin-right"><div class="button button-right">{{ps.modifier}}</div></div>
+              <div class="col-xs-1 div-plus-col">+</div>
+              <div class="col-xs-5"><div class="button button-right">{{ps.key}}</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="row div-line" *ngIf="ps.modifier.length > 0"></div>
+      </div>
+    </div>
+
+  </div>
+
+</fox-modal>

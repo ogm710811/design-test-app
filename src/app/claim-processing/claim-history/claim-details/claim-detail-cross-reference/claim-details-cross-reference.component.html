@@ -1,0 +1,250 @@
+<fox-message-box [(visible)]="crossRefDeleteFailedMsg" messageType="error"
+                 messageBoxTitle="Cross Reference Deletion unsuccessful.">
+  # {{crossReferenceNumber}} clould not be removed.
+</fox-message-box>
+<fox-message-box [(visible)]="crossRefAddFailedMsg" messageType="error"
+                 messageBoxTitle="Below Claim(s) could not be added as a cross-reference.">
+  <ul class="list-fail-msg">
+    <li *ngFor="let clmNum of failArray">{{ clmNum }}</li>
+  </ul>
+</fox-message-box>
+<fox-section class="container-cros-ref" [noPadding]="true">
+  <fox-loading-overlay>
+    <div class="col-md-12 container-cross-ref-heading">
+      <div class="container-cross-ref-title">
+        Maintain Cross-References
+      </div>
+      <div class="container-cross-ref-note">
+        <span>There are <span class="text-bold">{{crossRefLength}} cross-references configured for
+          this claim</span>.
+          <span *ngIf="!isCrossRefDataDisplay">You may add up to <span class="text-bold">3</span> cross-reference.</span>
+          <span *ngIf="crossRefLength < 3 && crossRefLength !==0">You may add up to <span class="text-bold">{{3 - crossRefLength}} additional cross-reference</span>.</span>
+          <span
+            *ngIf="crossRefLength === 3">You may <span class="text-bold">not add</span> more prior to removal.</span>Modifications may require  approval before going into effect.
+        </span>
+      </div>
+    </div>
+    <div *ngIf="!isCrossRefDataDisplay">
+      <div class="container-not-found cros-ref-container-not-found">
+      <span>
+        <img class="img-info" src="assets/img/information.svg"/>
+      </span>
+        <div class="section-note-1">There are no cross-references</div>
+        <div class="section-note-2">Select the Add New button to create new cross references</div>
+      </div>
+    </div>
+    <div class="container-table-cross-ref" *ngIf="isCrossRefDataDisplay">
+      <fox-claim-cross-reference-table [crossReferenceResultSet]="crossReferenceResultSet"
+                                       (isDeleteModal)="isDeleteModalOpen($event)"
+                                       (crossReferecnceId)="crossReferenceId=$event"
+                                       (crossReferenceNumber)="crossReferenceNumber = $event"
+                                       [isLocked]="isLocked"
+                                       [isToggleClaimNoteEditFeature]="toggleClaimNoteEditFeature">
+      </fox-claim-cross-reference-table>
+    </div>
+    <div class="col-md-12 btn-add-new">
+      <button class="btn btn-primary " type="button" mat-button [matMenuTriggerFor]="dropDown"
+              [disabled]="checkIfAddNewDisabled()">
+        Add New Cross-Reference(s)
+        <span><img class="icon-caret-down" focusable="false" src="assets/img/CaretDown-white.svg"></span>
+      </button>
+      <mat-menu class="cros-ref-add" #dropDown="matMenu">
+        <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] (click)="addByClmNum()">Add By Claim Number...
+        </button>
+        <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] (click)="addBySearch()">Search & Add...
+        </button>
+        <button class="mat-menu-item-maintenance" mat-menu-item [foxLink] [disabled]="!isGenerateClaimPlcHolder">Generate
+          Placeholder Claim #
+        </button>
+      </mat-menu>
+    </div>
+  </fox-loading-overlay>
+</fox-section>
+
+<fox-modal [(visible)]="isDeleteModal" class="modal-delete-cross-ref" modalTitle="Remove Cross Reference">
+  <p class="container-del-txt-cross-ref">
+    Are you sure you wish to remove <b>Claim #{{crossReferenceNumber}}</b> as a cross-reference?
+  </p>
+  <div class="container-buttons">
+    <button type="button" id="btn-cancel-modal-cancel" class="btn btn-secondary btn-cancel-delete"
+            (click)="cancelDeleteCrossReference()">Cancel
+    </button>
+    <button type="button" id="btn-cancel-modal-confirm" class="btn btn-primary btn-submit-delete"
+            (click)="confirmDeleteCrossReference()">Remove
+    </button>
+  </div>
+</fox-modal>
+
+<fox-modal [(visible)]="isAddbyClmNum" class="modal-add-clmNum" modalTitle="Add by Claim Number"
+           [closable]="true">
+  <div class="container-add-new-search-txt container-note-2">
+    Enter up to <b>{{3 - crossRefLength}} claim numbers</b> below and select Add to add them as
+    cross-reference
+  </div>
+  <div class="container-clm-add-fields">
+    <form [formGroup]="claimAddFormGroup" novalidate>
+      <mat-form-field class="col-md-3 col-search-field">
+        <mat-label>Claim #</mat-label>
+        <input matInput minlength="11" maxlength="12" formControlName="claimNumFormControl1"
+               [(ngModel)]="clmInput1">
+        <mat-error *ngIf="claimAddFormGroup.controls['claimNumFormControl1'].hasError('pattern')">
+          Enter numbers only
+        </mat-error>
+        <mat-error *ngIf="claimAddFormGroup.controls['claimNumFormControl1'].hasError('minlength')">
+          Minimum of 11 digits required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3 col-search-field">
+        <mat-label>Claim #</mat-label>
+        <input matInput minlength="11" maxlength="12" formControlName="claimNumFormControl2"
+               [(ngModel)]="clmInput2">
+        <mat-error *ngIf="claimAddFormGroup.controls['claimNumFormControl2'].hasError('pattern')">
+          Enter numbers only
+        </mat-error>
+        <mat-error *ngIf="claimAddFormGroup.controls['claimNumFormControl2'].hasError('minlength')">
+          Minimum of 11 digits required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3 col-search-field">
+        <mat-label>Claim #</mat-label>
+        <input matInput minlength="11" maxlength="12" formControlName="claimNumFormControl3"
+               [(ngModel)]="clmInput3">
+        <mat-error *ngIf="claimAddFormGroup.controls['claimNumFormControl3'].hasError('pattern')">
+          Enter numbers only
+        </mat-error>
+        <mat-error *ngIf="claimAddFormGroup.controls['claimNumFormControl3'].hasError('minlength')">
+          Minimum of 11 digits required
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="col-md-12 text-right container-modal-btns">
+    <button type="button" id="btn-add-modal-cancel" class="btn btn-secondary btn-clear-modal"
+            (click)="cancelAddCrossReference()">Cancel
+    </button>
+    <button type="button" id="btn-add-modal-confirm" class="btn btn-primary btn-search-modal"
+            [disabled]="!checkIfFormFilled(claimAddFormGroup)"
+            [ngClass]="{'btn-disabled': !checkIfFormFilled(claimAddFormGroup)}"
+            (click)="addClaim()">Add
+    </button>
+  </div>
+</fox-modal>
+
+<fox-modal [(visible)]="isAddbySearchModal" class="modal-add-search" modalTitle="Search & Add Claims">
+  <div class="container-add-new-search-txt container-note-1">
+    Enter search criteria for claims below. Click Search to find up to 25 matching claims.
+  </div>
+  <fox-message-box [(visible)]="showNoClaimsAlert" messageBoxTitle="No results found for search">
+    Please update your search query and try again.
+  </fox-message-box>
+  <form [formGroup]="claimSearchFormGroup" novalidate>
+    <mat-form-field class="col-md-3 col-search-field">
+      <mat-label>11-Digit Member #</mat-label>
+      <input matInput minlength="9" maxlength="11" formControlName="memberNumFormControl"
+             [(ngModel)]="memberIdInput">
+      <mat-error *ngIf="claimSearchFormGroup.controls['memberNumFormControl'].hasError('pattern')">
+        Enter numbers only
+      </mat-error>
+      <mat-error
+        *ngIf="claimSearchFormGroup.controls['memberNumFormControl'].hasError('minlength')">
+        Minimum of 9 digits required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-3 col-search-field">
+      <mat-label>Dates of Service From</mat-label>
+      <input matInput maxlength="10" formControlName="dosFromFormControl" placeholder="MM/DD/YYYY"
+             [(ngModel)]="dosFromInput">
+      <mat-error *ngIf="claimSearchFormGroup.controls['dosFromFormControl'].hasError('pattern')">
+        Enter in MM/DD/YYYY
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-3 col-search-field">
+      <mat-label>Dates of Service To</mat-label>
+      <input matInput maxlength="10" formControlName="dosToFormControl" placeholder="MM/DD/YYYY"
+             [(ngModel)]="dosToInput">
+      <mat-error *ngIf="claimSearchFormGroup.controls['dosToFormControl'].hasError('pattern')">
+        Enter in MM/DD/YYYY
+      </mat-error>
+    </mat-form-field>
+
+      <mat-form-field class="col-md-3 col-search-field">
+        <mat-label>Claim Status</mat-label>
+        <mat-select formControlName="status" [(ngModel)]="statusInput">
+          <mat-option value="" selected>ALL</mat-option>
+          <mat-option class="fox-dropdown-option" value="D">DISBURSED</mat-option>
+          <mat-option class="fox-dropdown-option" value="Q">AWAITING QUALITY REVIEW</mat-option>
+          <mat-option class="fox-dropdown-option" value="R">POINT OF SALE DRUG CLAIM</mat-option>
+          <mat-option class="fox-dropdown-option" value="S">SUSPENDED</mat-option>
+          <mat-option class="fox-dropdown-option" value="X">DELETED</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3 col-search-field">
+        <mat-label>Type of Service</mat-label>
+        <input matInput maxlength="60" formControlName="serviceType"
+               [(ngModel)]="typeOfServiceInput">
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3 col-search-field">
+        <mat-label>Billing Provider NPI</mat-label>
+        <input matInput maxlength="60" formControlName="billNpiFormControl" [(ngModel)]="billInput">
+        <mat-error *ngIf="claimSearchFormGroup.controls['billNpiFormControl'].hasError('pattern')">
+          Enter numbers only
+        </mat-error>
+      </mat-form-field>
+  </form>
+
+  <div class="col-md-12 text-right container-modal-btns">
+    <button type="button" id="btn-cancel-modal" class="btn btn-secondary btn-clear-modal"
+            (click)="cancelAddSearch()">Cancel
+    </button>
+    <button type="button" id="btn-confirm-modal" class="btn btn-primary btn-search-cross-ref"
+            (click)="searchClaim()"
+            [ngClass]="{'btn-disabled': !checkIfSearchFormFilled(claimSearchFormGroup)}"
+            [disabled]="!checkIfSearchFormFilled(claimSearchFormGroup)">Search
+      <span class="span-next-page">
+        <span><img class="icon-next-page" focusable="false" src="assets/img/arrow-right-white.svg"></span>
+      </span>
+    </button>
+  </div>
+
+</fox-modal>
+
+<fox-modal [(visible)]="isSearchResultModal" class="modal-select-claim"
+           modalTitle="Search & Add Claims" [closable]="true">
+  <div class="container-add-new-search-txt container-note-3">
+    Check up to <b>{{3 - crossRefLength}} claims</b> to add from below. Select Add to add them as
+    cross-references.
+  </div>
+  <fox-cross-reference-search-table [claimHistoryResults]="claimHistoryResults"
+                                      [claimAddArray]="claimAddArray"
+                                      [(isDesc)]="historyResultIsDesc"
+                                      [(column)]="historyResultSortColumn"
+                                      (columnChange)="getHistory()"
+                                      (selectEvent)="onSelectionChange($event)">
+  </fox-cross-reference-search-table>
+  <div class="col-md-12 container-modal-btn">
+    <div class="col-md-6 container-btn-left text-left">
+      <button type="button" id="btn-modal-new-search" class="btn btn-secondary btn-previous-page"
+              (click)="addBySearch()">
+          <span class="span-previous-page">
+            <span><img class="icon-previous-page" focusable="false" src="assets/img/arrow-left.svg"></span>New Search
+          </span>
+      </button>
+    </div>
+    <div class="col-md-6 container-btn-right text-right">
+      <button type="button" id="btn-modal-cancel" class="btn btn-secondary btn-clear-modal"
+              (click)="cancelAddModel()">Cancel
+      </button>
+      <button type="button" id="btn-modal-confirm" class="btn btn-primary btn-search-modal"
+              (click)="addClmNumSearch()"
+              [ngClass]="{'btn-disabled': !checkIfResultFormFilled()}"
+              [disabled]="!checkIfResultFormFilled()">Add
+      </button>
+    </div>
+  </div>
+</fox-modal>

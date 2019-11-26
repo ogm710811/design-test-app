@@ -1,0 +1,20 @@
+{
+  "/api/**": {
+    "target": "https://foxqa1-apig.ocp-elr-core-nonprod.optum.com/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/uaa/**": {
+    "target": "https://foxqa1-foxui.ocp-elr-core-nonprod.optum.com/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/uiapi/**": {
+    "target": "https://foxqa1-foxui.ocp-elr-core-nonprod.optum.com/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

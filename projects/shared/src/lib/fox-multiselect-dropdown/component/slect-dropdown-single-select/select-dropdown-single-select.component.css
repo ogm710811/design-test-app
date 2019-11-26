@@ -1,0 +1,11 @@
+.container-label {
+  margin-bottom: 7px;
+}
+
+.label-for-select {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+}

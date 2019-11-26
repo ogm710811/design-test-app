@@ -1,0 +1,132 @@
+<div class="container-return-previous col-xs-12 col-md-12">
+  <span (click)="f1EventClick()" class="span-return" foxHotkey="ctrl+f1" hotkeyAction="click">
+    <img class="container-arrow-right" src="assets/img/arrow-left.svg">Return to Previous (F1)
+  </span>
+</div>
+
+<div class="col-xs-12 col-sm-8 no-padding">
+  <fox-section>
+    <fox-section-title class="fox-section-icd">Maintain ICD Code Table</fox-section-title>
+    <fox-section-subheader>Enter ICD Code and Indicator and Click Load button</fox-section-subheader>
+    <div class="row container-small container-icdcode">
+      <div class="col-xs-12 col-sm-4 no-padding">
+        <fox-input type="text"
+                   labelText="Update Type"
+                   id="txtM22UPD"
+                   name="txtM22UPD"
+                   [length]="6"
+                   [(ngModel)]="screen.m22upd">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-4 no-padding">
+        <fox-input type="text"
+                   labelText="ICD Code"
+                   id="txtM22ICD"
+                   name="txtM22ICD"
+                   [length]="7"
+                   [(ngModel)]="screen.m22icd">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-4 no-padding">
+        <fox-select-single id="txtM22ICI"
+                           labelText="ICD Indicator"
+                           [items]="items"
+                           [clearable]="true"
+                           bindValue="id"
+                           (selectEmitter)="screen.m22ici = $event">
+        </fox-select-single>
+      </div>
+    </div>
+    <button type="button"
+            class="btn btn-primary btn-load-message"
+            (click)="enterEventClick()"
+            foxHotkey="alt+l"
+            hotkeyAction="click">
+      Load Message (L)
+    </button>
+  </fox-section>
+  <fox-section>
+    <fox-section-title class="fox-section-icd">ICD Code Table Details</fox-section-title>
+    <div *ngIf="!screen.m22upd" class="container-empty-table">
+      <img class='img-no-active-query' src="assets/img/no-active-query.svg"/>
+      <p class="title-empty-table">
+        <span>No active query</span>
+      </p>
+      <p class="subtitle-empty-table">
+        <span>Enter valid criteria above and select Load Message (L)</span>
+      </p>
+    </div>
+    <div *ngIf="screen.m22upd">
+      <fox-loading-overlay>
+        <div class="container-short-desc">
+          <fox-input type="textarea"
+                     #inputField
+                     labelText="Short Description"
+                     [(ngModel)]="screen.m22sd1"
+                     [inputValue]="screen.m22sd1"
+                     textAreaWidth="75"
+                     length="80"></fox-input>
+        </div>
+        <div class="container-spacing">
+          <fox-input type="textarea"
+                     labelText="Long Description"
+                     textAreaWidth="125"
+                     [(ngModel)]="screen.m22ld1"
+                     [inputValue]="screen.m22ld1"
+                     length="256"></fox-input>
+        </div>
+        <div class="container-main">
+          <div class="container-title">Is ICD Map Plan?</div>
+          <div>
+            <input type="checkbox" [(ngModel)]="screen.m22ehi"
+                   (change)="changeSingleSelect($event,'screen.m22ehi')"/> <span class="span-option">Yes</span>
+          </div>
+        </div>
+        <div class="container-main">
+          <div class="container-title">Is ICD Mental Health Other?</div>
+          <div>
+            <input type="checkbox" [(ngModel)]="screen.m22mhi"
+                   (change)="changeSingleSelect($event,'screen.m22mhi')"/> <span class="span-option">Yes</span>
+          </div>
+        </div>
+        <div class="container-main">
+          <div class="container-title">Is ICD For Drug/Alcohol Facility Eligibility?</div>
+          <div>
+            <input type="checkbox" [(ngModel)]="screen.m22dai"
+                   (change)="changeSingleSelect($event,'screen.m22dai')"
+                   [attr.name]="'Yes'"/> <span class="span-option">Yes</span>
+          </div>
+        </div>
+        <div class="container-main">
+          <div class="container-icdsubject">Is ICD Subject to Contestability?</div>
+          <div class="container-icdoptions">
+            <input type="radio" [(ngModel)]="screen.m22cti" value="E"/> <span class="span-option">ESRD</span>
+          </div>
+          <div class="container-icdoptions">
+            <input type="radio" [(ngModel)]="screen.m22cti" value="Y"/> <span class="span-option">Yes</span>
+          </div>
+          <div>
+            <input type="radio" [(ngModel)]="screen.m22cti" value=""/> <span class="span-option">No</span>
+          </div>
+        </div>
+        <div class="container-main">
+          <div class="container-title">Is ICD Subject to Subrogation?</div>
+          <div>
+            <input type="checkbox" [(ngModel)]="screen.m22sbi"
+                   (change)="changeSingleSelect($event,'screen.m22sbi')"/> <span class="span-option">Yes</span>
+          </div>
+        </div>
+        <div class="container-spacing">
+          <button type="button" class="btn btn-primary button-submit" (click)="enterEventClick()" foxHotkey="alt+l"
+                  hotkeyAction="click">
+            Submit Updates (S)
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="clearEventClick()" foxHotkey="alt+r"
+                  hotkeyAction="click">
+            Clear (R)
+          </button>
+        </div>
+      </fox-loading-overlay>
+    </div>
+  </fox-section>
+</div>

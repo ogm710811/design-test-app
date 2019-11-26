@@ -1,0 +1,46 @@
+<div class="container-goto col-md-12">
+  <div class="container-link-1 col-md-8">
+    <a class="link-back-search"  [routerLink]="url"><i class="fas fa-arrow-left"></i>
+      Back to Search Results</a>
+  </div>
+  <div class="container-link-2 col-md-4">
+    <div class="containers-links">
+      <a class="link-prev-result"><i class="fas fa-chevron-left"></i> Prev Result (I)</a>
+      <a class="link-next-result">Next Result (J)<i class="fas fa-chevron-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="container-main-section col-md-12">
+  <div class="container-left-box col-md-9">
+    <fox-loading-overlay>
+      <fox-section [noPadding]="true">
+        <div class="title-card">Overview</div>
+        <div class="col-md-12 no-padding container-emp-details">
+          <div class="col-md-6 no-padding section-card">
+            <div class="section-title-1">Reactivating the following claim</div>
+            <span class="content-note-3">Claim #{{requestDetails?.claimNum}}</span>
+            <span><i class="fas fa-external-link-square-alt"></i>&nbsp;
+            <a class="link-claim-detail" [routerLink]="getRedirectUrl(requestDetails?.claimNum, 'Claim')">View Claim</a></span>
+          </div>
+          <div class="col-md-6 no-padding section-member">
+            <div class="section-title-1">Claim is associated to member</div>
+            <span><span class="content-note-4">{{empName?.firstName}}&nbsp;{{empName?.lastName}}</span>
+            <span><i class="fas fa-user" aria-hidden="true"></i>&nbsp;
+            <a class="link-claim-detail" [routerLink]="getRedirectUrl(requestDetails?.memberNum, 'Member')">{{requestDetails?.aarpMembrshipNum}}</a></span>
+            </span>
+          </div>
+        </div>
+      </fox-section>
+    </fox-loading-overlay>
+  </div>
+
+  <div class="container-right-box col-md-3">
+    <fox-approve-deny-request [reqInfo]="reqInfo" [denialRsn]="denialRsn"
+                              [reviewTimeStmp]="reviewTimeStmp" [approverMsid]="approverMsId"
+                              [isPending]="isPending" [isApproved]="isApproved" [isDeny]="isDeny"
+                              (isPendingChange)="isPending=$event" (isApprovedChange)="isApproved=$event"
+                              (isDeniedChange)="isDeny=$event" (statusChange)="statusText=$event">
+    </fox-approve-deny-request>
+  </div>
+</div>

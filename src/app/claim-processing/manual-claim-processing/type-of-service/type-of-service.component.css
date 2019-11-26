@@ -1,0 +1,316 @@
+.page-title {
+  margin-top: 0px;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 600;
+  border-bottom: solid 1px #E3E3E3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.background-circle {
+  background-color: #FFAA25;
+  border-radius: 50px;
+  color: white;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+.column-header-pln {
+  width: 3px;
+}
+
+.column-header-effDate {
+  width: 5px;
+}
+
+.column-header-termDate {
+  width: 10px;
+}
+
+.float-right {
+  float: right;
+}
+
+.column-header-srv1 {
+  width: 20px;
+}
+
+.column-header-srv2 {
+  width: 20px;
+  margin-left: 20px;
+}
+
+.deceased-date {
+  margin-bottom: 20px;
+  width: 186px;
+}
+
+.div-address-line-1 {
+  width: 350px;
+  margin-right: 20px;
+}
+
+.field-dash {
+  padding-top: 25px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 20px;
+}
+
+.srv-date-first {
+  width: 192px;
+  padding-left: 20px;
+}
+
+.data-lookup {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin: 0;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
+.srv-date {
+  width: 189px;
+  padding-right: 20px;
+}
+
+.section-dash {
+  color: #CED3DA;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.container-op-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.container-last-row {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.col-div-colon {
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.servicedatecol-width {
+  width: 200px;
+}
+
+.container-bill-card {
+  padding-top: 10px;
+}
+
+.cell-text {
+  height: 18px;
+  width: 101.45px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.container-bill-content-label {
+  height: 14px;
+  width: 130px;
+  color: #333333;
+  font-family: "UHC Sans";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.container-member-value {
+  height: 14px;
+  width: 55px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 14px;
+}
+
+.left-border-tos {
+  border-left: 1px solid #cccccc;
+  height: 140px;
+}
+
+.btn-standard {
+  background-color: white;
+  color: #196ECF;
+  border: solid 1px #196ECF;
+  margin-right: 20px;
+}
+
+.lbl-service-input-subtext {
+  font-size: 12px;
+  font-weight: normal;
+  color: #252C37;
+  margin-bottom: 0;
+}
+
+.padding-bottom-ten {
+  padding-bottom: 10px;
+}
+
+.container-font-weight-bold {
+  font-weight: 600;
+}
+
+.div-services-fixed-width {
+  width: 293px;
+  margin-left: 0;
+}
+
+.div-section-subtitle {
+  height: 16px;
+  color: #6E7681;
+  line-height: 16px;
+}
+
+.div-section-title {
+  height: 21px;
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.div-subtitle-copy {
+  height: 22px;
+  color: #252C37;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  padding-left: 20px;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+.div-main-row-holder {
+  padding-top: 25px;
+  margin: 0;
+}
+
+.div-row-num-container {
+  padding: 3px 20px 20px 20px;
+  margin: 0;
+  background-color: #F2F5F8;
+}
+
+.div-serial-number {
+  padding: 0;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.div-serial-number-container {
+  margin: 0;
+  padding-bottom: 10px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.div-available-types {
+  padding-top: 15px;
+  padding-left: 0;
+  background-color: #F2F5F8;
+}
+
+.div-type-service-padding {
+  padding-right: 10px;
+}
+
+.margin-right-15 {
+  margin-right: 15px;
+}
+
+.div-service-from-date-padding {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.div-service-to-date-padding {
+  padding-left: 10px;
+}
+
+.div-service-row-padding {
+  padding-bottom: 25px;
+  margin-top: -60px;
+}
+
+.td-type-of-services {
+  width: 275px;
+  padding-top: 25px;
+}
+
+.td-dates {
+  padding: 0 10px 0 30px;
+}
+
+.div-button-margin {
+  margin-top: 25px;
+}
+
+.div-float-right {
+  float: right;
+}
+
+.button-spacing {
+  margin: 10px;
+}
+
+.div-margin-left {
+  margin-left: 15px;
+  position: relative;
+}
+
+.table-main {
+  width: 95%;
+}
+
+.div-first-element {
+  padding-top: 0;
+}
+
+@media (max-width: 992px){
+  .div-type-service-padding {
+    padding-right: 10px;
+    padding-left: 20px;
+    margin-bottom: 18px;
+  }
+
+  .div-service-from-date-padding {
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 18px;
+  }
+
+  .div-service-to-date-padding {
+    padding-right: 10px;
+    padding-left: 20px;
+    margin-bottom: 18px;
+  }
+
+  .div-service-row-padding {
+     padding-bottom: 0;
+     margin-top: 0;
+  }
+
+  .div-available-types {
+    margin-bottom: -10px;
+  }
+
+  .td-type-of-services {
+    padding-top: 0;
+  }
+
+  .div-first-element {
+    padding-top: 10px;
+  }
+}

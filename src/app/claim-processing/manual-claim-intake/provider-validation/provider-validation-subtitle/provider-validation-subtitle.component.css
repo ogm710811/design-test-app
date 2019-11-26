@@ -1,0 +1,50 @@
+.span-header {
+  color: #252C37;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.span-member-data {
+  color: #196ECF;
+}
+
+.span-member-number {
+  color: #252C37;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: 600;
+}
+
+.container-claim {
+  margin-right: 25px;
+}
+
+.img-claim {
+  width: 16px;
+  height: 16px;
+  color: #6e7681;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width:767px) {
+  .container-claim-member {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-claim-member .container-member {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .container-claim-member .text {
+    width: 100%;
+    display: block;
+    margin-bottom: 12px;
+    margin-left: 0;
+  }
+
+  .btn-text {
+    margin: 0;
+  }
+}

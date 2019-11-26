@@ -1,0 +1,54 @@
+<div class="member-profile-tabs">
+  <mat-tab-group [(selectedIndex)]="lastPressed" [disableRipple]="true" [@.disabled]="true" [dynamicHeight]="true"
+                 class="profile-tab">
+    <mat-tab foxHotkey="alt+1" hotkeyAction="emit" (hotkeyPressed)="changePosition(0)">
+      <ng-template mat-tab-label>
+        <span>Demographics (1)</span>
+      </ng-template>
+      <fox-member-demographics [membershipNumber]="membershipNumber"></fox-member-demographics>
+    </mat-tab>
+    <mat-tab foxHotkey="alt+2" hotkeyAction="emit" (hotkeyPressed)="changePosition(1)">
+      <ng-template mat-tab-label>
+        <span>Enrollment (2)</span>
+      </ng-template>
+      <!--Enrollment-->
+      <fox-member-enrollment-information (specialHandlingCode)="displayActiveMsg($event)"
+                                         [isSpecialHCUpdated]="isSpecialHCUpdated"
+                                         (insuredNoteNotFound)="displayInsuredNoteNotFoundMsg($event)"
+                                         [membershipNumber]="membershipNumber">
+      </fox-member-enrollment-information>
+    </mat-tab>
+    <mat-tab *ngIf="hasFeatureEnableTabs" foxHotkey="alt+3" hotkeyAction="emit" (hotkeyPressed)="changePosition(2)">
+      <ng-template mat-tab-label>
+        <span>Aggregates (3)</span>
+      </ng-template>
+      <!--Aggregate-->
+      <fox-member-aggregate-by-year [membershipNumber]="membershipNumber"></fox-member-aggregate-by-year>
+    </mat-tab>
+    <mat-tab *ngIf="hasFeatureEnableTabs" foxHotkey="alt+4" hotkeyAction="emit" (hotkeyPressed)="changePosition(3)">
+      <ng-template mat-tab-label>
+        <span>Correspondence (4)</span>
+      </ng-template>
+      <h1>Coming soon!</h1>
+    </mat-tab>
+    <mat-tab foxHotkey={{foxHotKey}} hotkeyAction="emit" (hotkeyPressed)="changePosition(4)">
+      <ng-template mat-tab-label>
+        <span>Notes ({{tabNumber}})</span>
+      </ng-template>
+      <!--Insured Notes-->
+      <fox-member-enrollment-info-insured-note (insuredNoteNotFound)="displayInsuredNoteNotFoundMsg($event)"
+                                               [membershipNumber]="membershipNumber"></fox-member-enrollment-info-insured-note>
+    </mat-tab>
+    <mat-tab *ngIf="hasFeatureEnableTabs">
+      <ng-template mat-tab-label>
+        <button mat-icon-button [matMenuTriggerFor]="Menu" class="btn-more">
+          More
+        </button>
+      </ng-template>
+      <mat-menu #Menu="matMenu">
+        <button mat-menu-item>Correspondence (4)</button>
+        <button mat-menu-item>Notes (5)</button>
+      </mat-menu>
+    </mat-tab>
+  </mat-tab-group>
+</div>

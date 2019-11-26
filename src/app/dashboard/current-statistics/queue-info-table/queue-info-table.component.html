@@ -1,0 +1,35 @@
+<table id="queue-info" class="queue-stat-table table">
+  <thead class="thead-default">
+  <tr>
+    <th id="queue-info-th-0"></th>
+    <th id="queue-info-th-1">Crossover</th>
+    <th id="queue-info-th-2">Clearinghouse</th>
+    <th id="queue-info-th-3">Paper</th>
+    <th id="queue-info-th-4">Non-Claims</th>
+    <th id="queue-info-th-5">Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr
+    *ngFor="let age of [
+        {id:'total', display:'Total # of Claims'},
+        {id:'bypass', display:'Bypass'},
+        {id:'>6', display: 'Age > 6'},
+        {id: 6, display: 'Age 6'},
+        {id: 5, display: 'Age 5'},
+        {id:4, display: 'Age 4'},
+        {id:3, display: 'Age 3'},
+        {id: 2, display: 'Age 2'},
+        {id:1, display: 'Age 1'},
+        {id: 0, display: 'Age 0'}]; let j =  index"
+    [id]="'queue-info-tr-' + j">
+    <td>{{age.display}}</td>
+    <td
+      *ngFor="let source of ['cms', 'clearinghouse', 'paper', 'nonclaims', 'all']; let k = index"
+      [id]="'queue-info-tr-' + j + '-td-' + k">
+      {{claimCountForSourceAndAge(source, age.id)}}
+    </td>
+  </tr>
+  </tbody>
+</table>
+

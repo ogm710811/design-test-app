@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-secondary btn-reports" (click)="reportModalVisible = true">
+  <i focusable="false" class="fas fa-chart-pie img-margin-right"></i>Reports
+</button>
+<div class="page-title">Member Lookup Queue</div>
+
+<fox-potential-matches-original [user]="''" queueType="MAIN">
+  <fox-potential-matches-table-title-original>
+    Member Lookup Queue Items
+  </fox-potential-matches-table-title-original>
+</fox-potential-matches-original>
+<div class="row">
+  <fox-section [noPadding]="true" class="col-sm-7">
+    <fox-section-title class="container-padding">Queue Totals</fox-section-title>
+    <fox-queue-totals-table></fox-queue-totals-table>
+  </fox-section>
+</div>
+
+<fox-reports [reportModalVisible]="reportModalVisible"
+             (reportModalVisibleChange)="reportModalVisible=$event" [msReports]="msReports"
+             [nasReports]="nasReports"></fox-reports>

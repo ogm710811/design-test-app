@@ -1,0 +1,251 @@
+<div id="not-found-panel">
+  <div *ngIf="trcDetails.action === Empty" class="container-not-found">
+    <i focusable="false" class="fa fa-info-circle"></i>
+    <p class="header-container">No TRCs associated to this deposit</p>
+    <p>Select Add New TRC (A) to associate a new TRC to this deposit</p>
+  </div>
+</div>
+
+<form *ngIf="trcDetails.action !== Empty" class="non-mat-form-field" (ngSubmit)="onPressSave()"
+      [formGroup]="trcFormGroup">
+  <div class="form-section form-section-top">
+    <span *ngIf="trcDetails.action === Add || trcDetails.action === Copy"
+          class="form-section-header">Adding New TRC</span>
+    <ng-container *ngIf="trcDetails.action === View || trcDetails.action === Modify">
+      <span class="form-section-header">TRC #{{currentTreasuryReconciliationId || 'New TRC'}}</span>
+      <span class="form-section-sub-header icon-class"><span class="icon-active"><i
+        class="fas fa-check-circle" focusable="false"></i></span>{{currentTreasuryReconciliationStatus || 'N/A' | titlecase}}</span>
+    </ng-container>
+    <div class="form-row">
+      <mat-form-field id="sel-amt" class="-form-field-wide">
+        <mat-label>TRC Amount</mat-label>
+        <div class="dollar-prefix" matPrefix>$</div>
+        <input matInput formControlName="amount" (blur)="formatAmount()" required>
+        <mat-error *ngIf="trcFormGroup.controls['amount'].hasError('dollar')">
+          {{trcFormGroup.controls['amount'].getError('dollar')}}
+        </mat-error>
+        <mat-error *ngIf="trcFormGroup.controls['amount'].hasError('required')">TRC Amount field can not be empty or blank</mat-error>
+      </mat-form-field>
+      <mat-form-field id="sel-rsn-cd">
+        <mat-label>Reason Code</mat-label>
+        <mat-select formControlName="reasonCd" required>
+          <mat-option class="fox-dropdown-placeholder" value="" selected>Select an option
+          </mat-option>
+          <mat-option *ngFor="let selection of checkReasonDescriptions" [value]="selection.code">
+            {{selection.description}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Please choose a reason code</mat-error>
+      </mat-form-field>
+      <mat-form-field id="sel-cat" class="-form-field-wide">
+        <mat-label>TRC Category</mat-label>
+        <mat-select placeholder="Select an option" formControlName="category"
+                    class="non-mat-select" (selectionChange)="onSelectClearFields()" required>
+          <mat-option class="fox-dropdown-placeholder" value="" selected>Select an option
+          </mat-option>
+          <mat-option *ngFor="let selection of trcCategoryDescriptions" [value]="selection.code">
+            {{selection.description}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Please choose a category</mat-error>
+      </mat-form-field>
+      <mat-form-field id="sel-pri-yr">
+        <mat-label>Pay for Prior Year</mat-label>
+        <mat-select formControlName="isPriorYear" (selectionChange)="onPriorYearSelection()">
+          <mat-option [value]="false">No</mat-option>
+          <mat-option [value]="true">Yes</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field id="sel-prv-ins">
+        <mat-label>Provider/Insured</mat-label>
+        <mat-select formControlName="providerOrInsured">
+          <mat-option value="Provider">Provider</mat-option>
+          <mat-option value="Insured">Insured</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field id="sel-overpay">
+        <mat-label>Overpayment</mat-label>
+        <mat-select formControlName="isOverpayment">
+          <mat-option [value]="false">No</mat-option>
+          <mat-option [value]="true">Yes</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field id="sel-bulk">
+        <mat-label>Bulk</mat-label>
+        <mat-select formControlName="isBulk">
+          <mat-option [value]="false">No</mat-option>
+          <mat-option [value]="true">Yes</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field id="txt-int">
+        <mat-label>Interest Amount</mat-label>
+        <div class="dollar-prefix" matPrefix>$</div>
+        <input matInput formControlName="interest" (blur)="formatInterest()">
+        <mat-error *ngIf="trcFormGroup.controls['interest'].hasError('dollar')">
+          {{trcFormGroup.controls['interest'].getError('dollar')}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field id="sel-buw">
+        <mat-label>BUW</mat-label>
+        <mat-select formControlName="isBuw">
+          <mat-option [value]="false">No</mat-option>
+          <mat-option [value]="true">Yes</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field id="sel-bus-unit">
+        <mat-label>Business Unit</mat-label>
+        <mat-select formControlName="businessUnit">
+          <mat-option value="UHC">UHC</mat-option>
+          <mat-option value="UHC NY">UHC NY</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="form-section form-section-mid">
+    <span class="form-section-header">Claim Information</span>
+    <span><span class="icon-search"><i class="fas fa-search" focusable="false"></i></span>
+      <span class="form-section-sub-header">
+        <a target="_blank" routerLink="/claim-processing/claim-history" (click)="openInNewTab()">Claim History Search</a>
+      </span>
+    </span>
+
+    <div class="form-row">
+      <mat-form-field class="-form-field-wide">
+        <mat-label>Claim #</mat-label>
+        <input matInput formControlName="claimNum">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <button *ngIf="!showUnlinkBtn" type="button" class="btn btn-secondary"
+              (click)="linkClaimOnClick()"><span class="unlink-icon"><i
+        class="fas fa-link" focusable="false" data-fa-transform="rotate-100"></i></span><span>Link {{trcFormGroup.controls['claimNum'].value}}</span>
+      </button>
+      <button *ngIf="showUnlinkBtn && trcFormGroup.controls['claimNum'].value !== ''" type="button"
+              class="btn btn-secondary" (click)="unLinkClaimBtn()"><span class="unlink-icon"><i
+        class="fas fa-unlink" focusable="false" data-fa-transform="rotate-100"></i></span><span>Unlink From {{trcFormGroup.controls['claimNum'].value}}</span>
+      </button>
+    </div>
+
+    <ng-container>
+      <div class="form-row">
+        <mat-form-field class="no-border-class">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" class="white-bg">
+          <mat-error></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="no-border-class">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" class="white-bg">
+          <mat-error></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="no-border-class">
+          <mat-label>Member #</mat-label>
+          <input matInput formControlName="linkedMemberNumber" class="white-bg">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+    <div class="form-row">
+      <mat-form-field class="txt-note" id="claim-note-no-border">
+        <mat-label>Claim Note</mat-label>
+        <textarea matInput formControlName="claimNote" class="no-padding"></textarea>
+        <mat-error></mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <ng-container *ngIf="trcFormGroup.controls['category'].value == 'ACP'">
+    <div class="form-section form-section-bottom">
+      <span class="form-section-header">Demographic Information</span>&nbsp;<span
+      class="form-section-sub-header">(Only needed for Accounts Payable TRCs)</span>
+
+      <div class="form-row">
+        <mat-form-field class="-form-field-wide" id="txt-name">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="demoName">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field class="-form-field-wide" id="txt-addr1">
+          <mat-label>Address Line 1</mat-label>
+          <input matInput formControlName="addr1">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field class="-form-field-wide" id="txt-addr2">
+          <mat-label>Address Line 2</mat-label>
+          <input matInput formControlName="addr2">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field class="-form-field-wide" id="txt-city">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field class="-form-field-wide" id="txt-state">
+          <mat-label>State</mat-label>
+          <mat-select formControlName="state">
+            <mat-option class="fox-dropdown-placeholder" value="" selected>State</mat-option>
+            <mat-option *ngFor="let selection of trcMemberState" [value]="selection.code">
+              {{selection.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="-form-field-wide" id="txt-zip">
+          <mat-label>Zip</mat-label>
+          <input matInput formControlName="zip">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field class="txt-note" id="txt-act-note">
+          <mat-label>Accounts Payable Note</mat-label>
+          <textarea matInput id="acpNote" maxlength="256" formControlName="acctPayableNote"
+                    #acpNote></textarea>
+          <mat-hint><span
+            class="text-bold-acp-note">{{maxNotationText - acpNote.value?.length}}</span> characters
+            left
+          </mat-hint>
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="trcFormGroup.controls['category'].value == 'UHR'">
+    <div class="form-section form-section-bottom">
+      <span class="form-section-header">Demographic Information</span>
+
+      <div class="form-row">
+        <mat-form-field class="-form-field-wide" id="txt-name-2">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="demoName">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="trcDetails.action !== View">
+    <button type="button" id="btn-cancel-trc" class="btn btn-secondary" [foxLink]
+            (linkPressed)="onPressCancel()">Cancel
+    </button>
+    <button type="submit" id="btn-save-trc" class="btn btn-primary" [disabled]="!trcFormGroup.valid">Save
+    </button>
+  </ng-container>
+  <button *ngIf="trcDetails.action !== View || isPending" type="button"
+          class="btn btn-primary btn-submit-trc" [foxLink] (linkPressed)="onPressComplete()" [disabled]="!trcFormGroup.valid">Submit for Processing
+  </button>
+</form>

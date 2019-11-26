@@ -1,0 +1,73 @@
+.container-input {
+  padding-top: 15px;
+  padding-bottom: 5px;
+}
+
+.div-container-read-only {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.div-container-institution {
+  padding-bottom: 10px;
+}
+
+.container-input-and-label {
+  display: block;
+  margin-bottom: 7px;
+  width: 100%
+}
+
+.label-for-input {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin-bottom: 7px;
+}
+
+.img-invalid-field {
+  height: 13px;
+  float: right;
+  width: 13px;
+}
+
+.container-input-box {
+  border: 1px solid #CED3DA;
+  padding: 6px 9px 6px;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+.container-input-box.focus-within {
+  border: 2px solid #196ECF;
+}
+
+.container-input-box.container-input-box-error {
+  border: 2px solid #BF3533;
+}
+
+.container-error-text {
+  color: #BF3533;
+  max-width: 100%;
+}
+
+.container-error-text {
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.container-input-box > input {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  color: #252C37;
+  font-size: 14px;
+  line-height: 14px;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+

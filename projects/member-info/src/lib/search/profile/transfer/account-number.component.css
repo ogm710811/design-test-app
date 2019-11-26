@@ -1,0 +1,79 @@
+.border-red {
+  border-color: #BF3533;
+}
+
+.padding-right-one {
+  padding-right: 1px;
+}
+
+.letter-black {
+  color: #333333;
+}
+
+.icon-fa-exclamation-small {
+  color: #BF3533;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.i-fa-exclamation-big {
+  color: #BF3533;
+  font-size: 30px;
+}
+
+.span-i-exclamation-small {
+  margin-left: 9%;
+}
+
+.div-error-message {
+  margin-top: 30px;
+}
+
+.div-fa-exclamation-big {
+  margin-right: -5%;
+  margin-left: -3%;
+}
+
+.span-error-transferring {
+  padding-top: 3px;
+  padding-left: 1px;
+  color: #BF3533;
+}
+
+.span-error-transferring-member {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.span-error-text {
+  font-weight: 300;
+}
+
+.div-cancel-button-row {
+  width: 357px;
+}
+
+.div-cancel-column {
+  padding-right: 7%;
+}
+
+.div-submit {
+  height: 39px;
+  width: 128px;
+  float: right;
+}
+
+.div-originating-number {
+  margin-top: 20px;
+}
+
+.button-cancel {
+  height: 39px;
+  width: 128px;
+  float: right;
+  margin-right: 13px;
+}
+
+.span-descriptive-text {
+  font-size: 14px;
+}

@@ -1,0 +1,73 @@
+<fox-request-page-header [reqInfo]="reqInfo" [statusText]="statusText" [pageTitle]="pageTitle"
+                         [isPending]="isPending" [isApproved]="isApproved" [isDeny]="isDeny">
+</fox-request-page-header>
+
+<div class="container-goto col-md-12">
+  <div class="container-link-1 col-md-8">
+    <a class="link-back-search" [routerLink]="url"><i focusable="false" class="fas fa-arrow-left"></i>
+      Back to Search Results</a>
+  </div>
+  <div class="container-link-2 col-md-4">
+    <div class="containers-links">
+      <a class="link-prev-result"><i focusable="false" class="fas fa-chevron-left"></i> Prev Result (I)</a>
+      <a class="link-next-result">Next Result (J)<i focusable="false" class="fas fa-chevron-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="container-main-section col-md-12">
+  <div class="container-left-box col-md-9">
+    <fox-loading-overlay>
+      <fox-section [noPadding]="true">
+        <div class="title-card">Overview</div>
+        <div class="section-note-1">
+          <span class="content-note-1">Special Handling Code updates apply to Member.</span>
+        </div>
+        <div class="section-note-2">
+          <span><span class="content-note-4">{{memberName?.firstName}} {{memberName?.lastName}}</span>
+          <span><i focusable="false" class="fas fa-user margin-right-6" aria-hidden="true"></i>
+          <a class="link-claim-detail" [routerLink]="getRedirectUrl(requestDetails?.memberNum, 'Member')">{{requestDetails?.aarpMembrshipNum}}</a></span>
+          </span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="title-card container-change-table">Changes to Special Handling Codes</div>
+        <div class="section-subtitle">
+          <p>Any changed values are shown in the table below </p>
+        </div>
+        <table class="table table-sph">
+          <thead class="thead-default">
+          <tr class="table-header">
+            <th class="col-header-actn-width">
+              <span class="column-header-action">Action</span>
+            </th>
+            <th class="col-header-code-width">
+              <span class="column-header-code">Code</span>
+            </th>
+            <th class="col-header-desc-width">
+              <span class="column-header-des">Description</span>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let dat of sphUpdateResults; let j = index">
+            <tr [id]=" 'sph-tr-' + j">
+              <td [id]=" 'sph-tr-' + j + '-td-1'" class="column-action-val">{{dat['action']}}</td>
+              <td [id]=" 'sph-' + j + '-td-2'" class="column-code-val">{{dat['code']}}</td>
+              <td [id]=" 'sph-' + j + '-td-3'" class="column-des-val">{{dat['description']}}</td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </fox-section>
+    </fox-loading-overlay>
+  </div>
+
+  <div class="container-right-box col-md-3">
+    <fox-approve-deny-request [reqInfo]="reqInfo" [denialRsn]="denialRsn"
+                              [reviewTimeStmp]="reviewTimeStmp" [approverMsid]="approverMsId"
+                              [isPending]="isPending" [isApproved]="isApproved" [isDeny]="isDeny"
+                              (isPendingChange)="isPending=$event" (isApprovedChange)="isApproved=$event"
+                              (isDeniedChange)="isDeny=$event" (statusChange)="statusText=$event">
+    </fox-approve-deny-request>
+  </div>
+</div>

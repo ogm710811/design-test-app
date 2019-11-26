@@ -1,0 +1,56 @@
+{
+  "currentDayProcessed": 123,
+  "weekToDateProcessed": "1,234",
+  "monthToDateProcessed": "12,345",
+  "currentDayUnworked": "4,321",
+  "currentDayBypass": 321,
+  "teamProductivity": [
+    {
+      "team": 202,
+      "name": "Doe, Joe",
+      "lookupsPerHour": "TBD",
+      "hours": "TBD",
+      "totalMatched": 120,
+      "totalNotMatched": 120,
+      "total": 240
+    },
+    {
+      "team": 202,
+      "name": "Bedelia, Amelia",
+      "lookupsPerHour": "TBD",
+      "hours": "TBD",
+      "totalMatched": 50,
+      "totalNotMatched": 16,
+      "total": 66
+    },
+    {
+      "team": 202,
+      "name": "Doe, Jane",
+      "lookupsPerHour": "TBD",
+      "hours": "TBD",
+      "totalMatched": 90,
+      "totalNotMatched": 23,
+      "total": 113
+    },
+    {
+      "team": 202,
+      "name": "Starks, Tony",
+      "lookupsPerHour": "TBD",
+      "hours": "TBD",
+      "totalMatched": 378,
+      "totalNotMatched": 42,
+      "total": 420
+    },
+    {
+      "team": 202,
+      "name": "Diana, Prince",
+      "lookupsPerHour": "TBD",
+      "hours": "TBD",
+      "totalMatched": 98,
+      "totalNotMatched": 34,
+      "total": 132
+    }
+  ]
+}
+
+

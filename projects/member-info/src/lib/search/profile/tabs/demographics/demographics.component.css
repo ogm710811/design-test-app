@@ -1,0 +1,30 @@
+.label-detail-item {
+  width: 140px;
+  display: block;
+  float: left;
+  font-weight: 600;
+}
+
+.label-detail-item-grs {
+  width: 193px;
+  display: block;
+  float: left;
+  font-weight: 600;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.txt-data-member {
+  font-size: 14px;
+  font-weight: 600;
+  width: 140px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.container-inline-name {
+  white-space: nowrap;
+}

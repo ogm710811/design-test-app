@@ -1,0 +1,150 @@
+.check-register-table-main mat-table div.mat-row {
+  padding: 0;
+}
+
+.mat-row {
+  background-color: white;
+}
+
+.check-register-table .mat-sort-header-button {
+  align-items: center;
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  outline: 0 none;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.non-mat-button {
+  position: relative;
+  display: inline-block;
+}
+
+mat-table {
+  max-height: 375px;
+  overflow-y: auto;
+}
+
+.non-mat-button button.btn.btn-primary {
+  top: 15px;
+  position: relative;
+}
+
+.check-register-table .mat-cell, .mat-header-cell {
+  flex: 0 1 14%;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+
+mat-cell {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.header-cell {
+  background-color: white;
+  border: 0;
+}
+
+.member-number-cell {
+  display: flex;
+  min-width: 130px;
+}
+
+.member-row {
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  max-width: 1300px;
+  width: 100%;
+  min-width: 1225px;
+}
+
+.member-header {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: white;
+  max-width: 1300px;
+  width: 100%;
+  min-width: 1225px;
+}
+
+.span-member {
+  margin-left: 5px
+}
+
+.img-member-number {
+  height: 14px;
+  width: 14px;
+}
+
+.subtitle-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cell-small {
+  max-width: 100px;
+  min-width: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.span-cell {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cell-medium {
+  max-width: 150px;
+  min-width: 150px;
+  display: flex;
+  flex-direction: row;
+}
+
+.cell-lg {
+  max-width: 200px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: row;
+}
+
+.table-member {
+  width: 100%;
+}
+
+.mat-table-section {
+  margin-left: -20px;
+  display: inline-block;
+  overflow-x: auto;
+  max-width: 1350px;
+  width: 100%;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-radio {
+  text-decoration: none;
+}
+
+.btn-cancel {
+  margin-left: auto;
+  margin-top: 25px;
+}
+
+.btn-submit {
+  margin-top: 25px;
+}
+
+.span-select-header {
+  margin-top: 12px;
+}

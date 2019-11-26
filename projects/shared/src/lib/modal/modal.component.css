@@ -1,0 +1,77 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.fox-modal {
+  z-index: 1000;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #CED3DA;
+  font-size: 14px;
+  border-radius: 4px;
+  overflow-y: auto;
+  max-height: 80%;
+}
+
+.fox-modal-small {
+  max-width: 400px;
+  max-height: 90%;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    top: 40px;
+  }
+}
+
+.modal__close-btn {
+  border: 0;
+  background: none;
+  color: #4E5B71;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+}
+
+.modal__title {
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: solid 1px #e0e0e0;
+  padding: 20px 0 15px 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 22px;
+}
+
+.modal__title-hide-border {
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 20px;
+  margin: 0 20px 0 20px;
+}
+
+.a-pdf-link {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.img-pdf {
+  margin: auto 8px 5px 8px;
+}
+
+.fox-modal-no-horizontal-scroll {
+  overflow-x: hidden;
+}

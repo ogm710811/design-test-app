@@ -1,0 +1,9 @@
+<button [type]='typeValue' [ngClass]="buttonClass" [disabled]="disable" (click)="onClickButton($event)"
+          [foxHotkey]='foxHotKeyValue'
+          hotkeyAction="click">
+  <img [src]='iconImg' [ngClass]="loader ? 'loader' : ''" [hidden]="isHidden" >
+  <span [ngClass]="{'span-chevron-text':isNormalText, 'span-no-chevron-text' : !isNormalText}">{{buttonStatusValue}}</span>
+  <span class="button-class" *ngIf="isNormalText">
+    <img class="i-chevron" src="assets/img/arrow-right-white.svg">
+  </span>
+</button>

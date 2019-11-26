@@ -1,0 +1,18 @@
+<fox-potential-matches [user]="''" queueType="MAIN" (eventClicked)="childEventClicked($event)">
+  <fox-potential-matches-table-title>
+    Member Lookup Queue Items
+    <div class="div-subheader">Enter the matching option number if possible, or enter no match.<span *ngIf="hasNoMatches"> You may bypass or cancel lookup.</span></div>
+  </fox-potential-matches-table-title>
+</fox-potential-matches>
+<div class="row">
+  <fox-section [noPadding]="true" class="col-sm-7">
+    <fox-section-title class="container-padding">Queue Totals</fox-section-title>
+    <fox-queue-totals-table></fox-queue-totals-table>
+  </fox-section>
+</div>
+
+<fox-potential-matches-actions #potentialMatchesActions queueType="MAIN" [showButtons]="false"></fox-potential-matches-actions>
+
+<fox-reports [reportModalVisible]="reportModalVisible"
+             (reportModalVisibleChange)="reportModalVisible=$event" [msReports]="msReports"
+             [nasReports]="nasReports"></fox-reports>

@@ -1,0 +1,28 @@
+<fox-modal [(visible)]="deleteClaimModalVisible" class="modal-delete-claim"
+           modalTitle="Delete Claim" [closable]="false"
+           (visibleChange)="deleteModalVisibleChange.emit(deleteClaimModalVisible)">
+  <div>
+    <p class="container-delete-details">
+      <span>You are about to delete <strong>Claim #{{claimNumber}}</strong>. This action may not be able to be undone. To delete this claim, click the Delete button below.</span>
+    </p>
+    <p class="container-confirm-msg">
+      <span>Please make sure to perform all appropriate aggregate maintenance adjustments for this account upon deletion.</span>
+    </p>
+  </div>
+  <div>
+    <mat-form-field class="textarea-claim-note-content">
+      <mat-label class="label-note-field">Claim Note</mat-label>
+      <textarea matInput #textarea maxlength="256" [(ngModel)]="noteContent"></textarea>
+      <mat-hint class="container-textarea-hint" align="end">{{256 - textarea.value.length}}
+        characters left
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="col-md-12 text-right container-modal-btns">
+    <button type="button" id="btn-cancel-modal" class="btn btn-secondary btn-clear-modal"
+            (click)="cancelDeleteModal()">Cancel
+    </button>
+    <button type="button" id="btn-confirm-modal" class="btn btn-primary btn-submit-delete" (click)="deleteClaim()">Delete
+    </button>
+  </div>
+</fox-modal>

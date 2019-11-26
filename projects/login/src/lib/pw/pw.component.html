@@ -1,0 +1,26 @@
+<div class="fox-login-container">
+  <div id="login-pw" class="fox-login">
+    <img id="uhc-logo" class="img-uhc-logo" src="assets/img/uhc-logo.png"/>
+    <div id="login-pw-divider" class="fox-login-whole-page-divider"></div>
+    <div id="login-pw-left-col" class="fox-login-left-col">
+      <h1><img class="img-fox-logo" src="assets/img/fox-logo.png"/></h1>
+    </div>
+    <div id="login-pw-right-col" class="fox-login-right-col-container">
+      <h1 id="login-pw-right-col-header" class="fox-login-right-col-header fox-login-pw-header">
+        Enter your MS Password </h1>
+      <div id="login-pw-right-col-divider" class="fox-login-right-col-divider">
+      </div>
+      <div id="login-pw-right-col-body" class="fox-login-right-col-body">
+        <p> Enter your MS Password, then click Submit</p>
+      </div>
+      <label id="passwordLabel" #passwordLabel for="txtPassword" class="fox-login-label">MS
+        Password:</label>
+      <input id="txtPassword" name="txtPassword" #txtPassword="ngModel" class="fox-login-input"
+             type="password" [(ngModel)]="password"/>
+      <button id="btnLogin" name="btnLogin" type="button" class="btn btn-primary btn-fox-login"
+              (focus)="buttonFocus($event)" (click)="btnLoginEventClick()">Submit
+      </button>
+    </div>
+    <img id="fox-tail" class="img-fox-tail" src="assets/img/fox-tail.png"/>
+  </div>
+</div>

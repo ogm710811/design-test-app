@@ -1,0 +1,36 @@
+.container-label {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: right;
+  margin-bottom: 6px;
+}
+
+.container-value {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 6px;
+}
+
+.row-small {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.row-small > div[class*="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media (max-width: 767px) {
+  .container-label {
+    text-align: left;
+    margin-bottom: 2px;
+  }
+
+  .container-value {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+}

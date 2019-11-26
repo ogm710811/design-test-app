@@ -1,0 +1,52 @@
+.title-section {
+  margin: 15px 20px 20px 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.test {
+  margin-bottom: 30px;
+}
+
+.container-ribbon {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.ribbon-menu {
+  background-color: #264578;
+  color: #EDEDF4;
+  font-size: 14px;
+  height: 45px;
+  padding-top: 15px;
+  padding-right: 20px;
+  width: 100%;
+}
+
+.ribbon-right {
+  float: right;
+}
+
+.ribbon-left {
+  float: left;
+}
+
+.link-ribbon {
+  margin-left: 20px;
+  text-decoration: underline;
+  float: left;
+  cursor: pointer;
+}
+
+.label-selected {
+  float: left;
+}
+
+.section-selectable {
+  position: relative;
+}
+
+.section-narrow {
+  width: 50%;
+}

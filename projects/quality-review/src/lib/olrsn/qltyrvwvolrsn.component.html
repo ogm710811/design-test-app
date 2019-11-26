@@ -1,0 +1,118 @@
+<!-- <fox-section>
+  <mat-label id="lblmat-label0" #lblmat-label0>>>> * QUALITY REVIEW REASON VOLUMES BY SITE *</mat-label> -->
+  <!-- <router-outlet></router-outlet> -->
+
+  <!-- <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-2">
+      <mat-form-field>
+        <mat-label>Site:</mat-label>
+        <input matInput id="txtM99SITC" name="txtM99SITC" #txtM99SITC="ngModel" maxlength="1" size="1" type="text" [(ngModel)]="screenBean.m99sitc"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput id="txtM99FTWA" name="txtM99FTWA" #txtM99FTWA="ngModel" maxlength="3" size="3" disabled="disabled" type="text"
+          [(ngModel)]="screenBean.m99ftwa" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-10">
+      <mat-form-field class="full-width">
+        <mat-label>Top Five:</mat-label>
+        <input matInput id="txtM99TFR1" name="txtM99TFR1" #txtM99TFR1="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+          [(ngModel)]="screenBean.m99tfr1" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Site:</mat-label>
+        <input matInput id="txtM99SITN" name="txtM99SITN" #txtM99SITN="ngModel" maxlength="16" size="16" disabled="disabled" type="text"
+          [(ngModel)]="screenBean.m99sitn" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Quality Reasons for:</mat-label>
+        <input matInput id="txtM99DATE" name="txtM99DATE" #txtM99DATE="ngModel" maxlength="8" size="8" disabled="disabled" type="text"
+          [(ngModel)]="screenBean.m99date" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div id="Row5" class="default">
+    <mat-label>Reason</mat-label>
+    <mat-label>Volume</mat-label>
+    <mat-label>Reason</mat-label>
+    <mat-label>Volume</mat-label>
+    <mat-label>Reason</mat-label>
+    <mat-label>Volume</mat-label>
+  </div>
+  <div id="Row6" class="default">
+    <input matInput id="txtM99RQ01" name="txtM99RQ01" #txtM99RQ01="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq01" />
+  </div>
+  <div id="Row7" class="default">
+    <input matInput id="txtM99RQ02" name="txtM99RQ02" #txtM99RQ02="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq02" />
+  </div>
+  <div id="Row8" class="default">
+    <input matInput id="txtM99RQ03" name="txtM99RQ03" #txtM99RQ03="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq03" />
+  </div>
+  <div id="Row9" class="default">
+    <input matInput id="txtM99RQ04" name="txtM99RQ04" #txtM99RQ04="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq04" />
+  </div>
+  <div id="Row10" class="default">
+    <input matInput id="txtM99RQ05" name="txtM99RQ05" #txtM99RQ05="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq05" />
+  </div>
+  <div id="Row11" class="default">
+    <input matInput id="txtM99RQ06" name="txtM99RQ06" #txtM99RQ06="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq06" />
+  </div>
+  <div id="Row12" class="default">
+    <input matInput id="txtM99RQ07" name="txtM99RQ07" #txtM99RQ07="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq07" />
+  </div>
+  <div id="Row13" class="default">
+    <input matInput id="txtM99RQ08" name="txtM99RQ08" #txtM99RQ08="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq08" />
+  </div>
+  <div id="Row14" class="default">
+    <input matInput id="txtM99RQ09" name="txtM99RQ09" #txtM99RQ09="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq09" />
+  </div>
+  <div id="Row15" class="default">
+    <input matInput id="txtM99RQ10" name="txtM99RQ10" #txtM99RQ10="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq10" />
+  </div>
+  <div id="Row16" class="default">
+    <input matInput id="txtM99RQ11" name="txtM99RQ11" #txtM99RQ11="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq11" />
+  </div>
+  <div id="Row17" class="default">
+    <input matInput id="txtM99RQ12" name="txtM99RQ12" #txtM99RQ12="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99rq12" />
+  </div>
+  <div id="Row18" class="default">
+    <input matInput id="txtM99ERR1" name="txtM99ERR1" #txtM99ERR1="ngModel" maxlength="77" size="77" disabled="disabled" type="text"
+      [(ngModel)]="screenBean.m99err1" />
+  </div>
+ 
+  </div>
+
+  <div class="col-sm-12 margin-top-20 text-right">
+    <button id="anyKey" name="anyKey" #anyKey type="button" class="btn " (click)="anyKeyEventClick()" foxHotkey="alt+a">AnyKey (A)</button>
+    <button id="pf3" name="pf3" #pf3 type="button" class="btn " (click)="pf3EventClick()" foxHotkey="alt+p">Previous (P)</button>
+    <button id="pf4" name="pf4" #pf4 type="button" class="btn " (click)="pf4EventClick()" foxHotkey="alt+n">Next (N)</button>
+    <button id="clear" name="clear" #clear type="button" class="btn " (click)="clearEventClick()" foxHotkey="alt+c">Clear (C)</button>
+    <button id="enter" name="enter" #enter type="button" class="btn " (click)="enterEventClick()" foxHotkey="alt+e">Enter (E)</button>
+  </div>
+</fox-section> -->

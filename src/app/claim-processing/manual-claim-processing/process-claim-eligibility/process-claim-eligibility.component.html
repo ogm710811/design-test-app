@@ -1,0 +1,189 @@
+<fox-section [noPadding]="true">
+  <div class="div-card-title"> {{cardTitle}} </div>
+  <div class="div-subtitle"> {{cardSubTitle}} </div>
+  <div class="div-claim-search-main row row-small">
+    <div class="col-xs-12 col-sm-2 div-claim-search-field">
+      <fox-input type="fox-claim"
+                 id="txtM21CNM"
+                 name="txtM21CNM"
+                 placeholder="12345-123456-1"
+                 labelText="Claim #"
+                 class="col-xs-12 col-sm-12 input-claim no-padding"
+                 (keyup.enter)="btnSubmitEventClick()"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 [(ngModel)]="procClmElig.m21cnm"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-1 div-divider">
+      <div class="visible-sm visible-md visible-lg hidden-xs div-left-border"></div>
+      <div class="hidden-sm visible-xs div-bottom-border"></div>
+    </div>
+    <div class="col-xs-12 col-sm-9 div-claim-search-field">
+
+      <div class="col-sm-12 div-claim-search-field div-claim-aside-padding">
+        <div class=" col-xs-12 col-sm-4 no-padding">
+          <fox-input type="fox-number"
+                     id="txtM21MEMN"
+                     name="txtM21MEMN"
+                     length="9"
+                     size="9"
+                     placeholder="123456789"
+                     labelText="Member #"
+                     class="col-xs-12 col-sm-12 fox-input-custom input-padding-left"
+                     (keyup.enter)="btnSubmitEventClick()"
+                     [ngModelOptions]="{updateOn: 'blur'}"
+                     [(ngModel)]="procClmElig.m21memn"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-3 no-padding">
+          <fox-input
+            id="txtM21ASSC"
+            name="txtM21ASSC"
+            length="1"
+            size="1"
+            labelText="Association"
+            class="col-xs-12 col-sm-12 fox-input-custom"
+            (keyup.enter)="btnSubmitEventClick()"
+            [ngModelOptions]="{updateOn: 'blur'}"
+            [(ngModel)]="procClmElig.m21assc"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-1 no-padding">
+          <div class="div-circle div-circle-margin">or</div>
+        </div>
+        <div class="col-xs-12 col-sm-4 div-claim-search-field">
+          <fox-input
+            id="txtM21HIC"
+            name="txtM21HIC"
+            #txtM21HIC="ngModel"
+            length="12"
+            size="12"
+            labelText="Medicare ID"
+            class="col-xs-12 col-sm-12 fox-input-custom div-claim-aside-padding"
+            (keyup.enter)="btnSubmitEventClick()"
+            [ngModelOptions]="{updateOn: 'blur'}"
+            [(ngModel)]="procClmElig.m21hic"></fox-input>
+        </div>
+      </div>
+      <div class="col-md-12 div-claim-search-field div-claim-aside-padding">
+
+        <div class="col-xs-12 col-sm-4 div-claim-search-field">
+          <div class="col-xs-12 col-sm-7 no-padding">
+            <fox-input
+              id="txtM21LNAM"
+              name="txtM21LNAM"
+              #txtM21LNAM="ngModel"
+              length="4"
+              size="4"
+              labelText="Last Name"
+              class="col-xs-12 col-sm-12 fox-input-custom input-padding-left"
+              (keyup.enter)="btnSubmitEventClick()"
+              [ngModelOptions]="{updateOn: 'blur'}"
+              [(ngModel)]="procClmElig.m21lnam"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-5 no-padding">
+            <fox-input
+              id="txtM21FINT"
+              name="txtM21FINT"
+              #txtM21FINT="ngModel"
+              length="1"
+              size="1"
+              labelText="First Initial"
+              class="col-xs-12 col-sm-12 fox-input-custom"
+              (keyup.enter)="btnSubmitEventClick()"
+              [ngModelOptions]="{updateOn: 'blur'}"
+              [(ngModel)]="procClmElig.m21fint"></fox-input>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 div-claim-search-field">
+          <fox-input
+            id="txtM21SEX"
+            name="txtM21SEX"
+            #txtM21SEX="ngModel"
+            length="1"
+            size="1"
+            labelText="Gender"
+            class="col-xs-12 col-sm-12 fox-input-custom"
+            (keyup.enter)="btnSubmitEventClick()"
+            [ngModelOptions]="{updateOn: 'blur'}"
+            [(ngModel)]="procClmElig.m21sex"></fox-input>
+        </div>
+        <div class="col-xs-12 col-sm-5 div-claim-search-field">
+          <div class="col-xs-12 col-sm-6 div-claim-search-field">
+            <fox-input type="fox-date"
+                       id="txtM21SRV1"
+                       name="txtM21SRV1"
+                       placeholder="MM/YY"
+                       displayFormat="MM/YY"
+                       programmaticFormat="MMYY"
+                       labelText="Service from Date"
+                       class="col-xs-12 col-sm-12 fox-input-custom input-service-start"
+                       (keyup.enter)="btnSubmitEventClick()"
+                       [ngModelOptions]="{updateOn: 'blur'}"
+                       [(ngModel)]="procClmElig.m21srv1"></fox-input>
+          </div>
+          <div class="col-xs-12 col-sm-6 div-claim-search-field">
+            <fox-input type="fox-date"
+                       id="txtM21SRV2"
+                       name="txtM21SRV2"
+                       placeholder="MM/YY"
+                       displayFormat="MM/YY"
+                       programmaticFormat="MMYY"
+                       labelText="Service to Date"
+                       class="col-xs-12 col-sm-12 fox-input-custom input-service-end div-claim-aside-padding"
+                       (keyup.enter)="btnSubmitEventClick()"
+                       [ngModelOptions]="{updateOn: 'blur'}"
+                       [(ngModel)]="procClmElig.m21srv2"></fox-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="Row19" class="col-xs-12 col-sm-12 no-padding" *ngIf="setDisplay">
+    <div class="col-xs-12 col-sm-12 div-multiple-members-found">
+      <div class="col-xs-12 col-sm-12 div-multiple-members-found-header">{{multipleMembersHeader}}</div>
+      <div class="col-xs-12 col-sm-12 div-multiple-members-found-subtitle">{{multipleMembersSub}}</div>
+    </div>
+    <div id="Row7" class="col-xs-12 col-sm-12 div-address-main">
+      <div class="col-xs-12 col-sm-5 div-address">
+        <div class="col-xs-12 col-sm-4 div-address-header">Address:</div>
+        <div class="col-xs-12 col-sm-12 div-address-content">
+          <div id="txtM21ADD1" #txtM21ADD1 maxlength="44" size="44">{{procClmElig.m21add1 | titlecase}}</div>
+        </div>
+        <div id="Row8" class="col-xs-12 col-sm-12 div-address-content">
+          <div id="txtM21ADD2" #txtM21ADD2 maxlength="29" size="29">{{procClmElig.m21add2 | titlecase}}</div>
+        </div>
+      </div>
+    </div>
+    <div id="Row9" class="col-xs-12 col-sm-12 margin-top-20 no-padding">
+      <fox-table class="col-xs-12 col-sm-12 no-padding" [tableColumns]="mutipleMemTableColumns" [tableData]="mutipleMemTableData" >
+      </fox-table>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="col-xs-12 col-sm-5 div-selection-no-padding">
+      <div *ngIf="procClmEligLines?.length >0" class="col-xs-6 col-sm-2 div-claim-search-selection div-selection-no-padding">
+        <fox-input
+          id="txtM21SEL"
+          name="txtM21SEL"
+          autoFocus = true
+          labelText="Selection #"
+          length="1"
+          size="1"
+          class="col-xs-12 col-sm-12 fox-input-custom div-selection-no-padding"
+          (keyup.enter)="btnSubmitEventClick()"
+          [(ngModel)]="procClmElig.m21sel"></fox-input>
+      </div>
+      <div *ngIf="showErrorMessage" class="col-xs-12 col-sm-12 div-selection-no-padding">
+        <div class="col-xs-2 col-sm-1 no-padding"><img src="assets/img/error-icon.svg" class="icon-error-symbol" /> </div>
+        <div id = "divErrorMessage" class="col-xs-10 col-sm-11 error-Message no-padding">
+          <div *ngIf="divError1" class="col-xs-12 col-md-12 div-error-header no-padding">{{this.procClmElig.m21err1}}</div>
+          <div *ngIf="divError2" class="col-xs-12 col-md-12 div-error-header no-padding">{{this.procClmElig.m21err2}}</div>
+          <div class="col-xs-12 col-md-12 div-error-description no-padding">{{errorMessageSubTitle}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 container-op-info div-selection-no-padding form-row text-right div-claim-search-btn">
+      <button type="button" class="btn btn-secondary btn-clear" (click)="btnClearClick()" foxHotkey="alt+r">Clear (R)
+      </button>
+      <fox-loading-button [buttonValue] = "'Submit (S)'" [buttonStatus]="buttonStatus" [typeValue]="'button'" [foxHotKeyValue]="'alt+s'" (buttonClick)="buttonClick($event)" class="btn-submit"></fox-loading-button>
+    </div>
+  </div>
+</fox-section>

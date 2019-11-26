@@ -1,0 +1,10 @@
+<ng-container *ngIf="toggleMemberEnrollmentVersionFeature; else memberEnrollmentInfoInsuranceOldVersion">
+  <fox-member-enrollment-info-insurance
+    [membershipNumber]="membershipNumber">
+  </fox-member-enrollment-info-insurance>
+</ng-container>
+<ng-template #memberEnrollmentInfoInsuranceOldVersion>
+  <fox-member-enrollment-info-insurance-old-version
+    [membershipNumber]="membershipNumber">
+  </fox-member-enrollment-info-insurance-old-version>
+</ng-template>

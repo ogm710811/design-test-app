@@ -1,0 +1,31 @@
+<fox-modal [(visible)]="separateModalVisible" modalTitle="Separate Document" [closable]="false"
+           (visibleChange)="separateModalVisibleChange.emit(separateModalVisible)">
+  <fox-loading-overlay>
+    <form (ngSubmit)="onSubmit()" [formGroup]="docSeparateFormGroup">
+      <div class="modal-separate-container">
+        <p class="txt-separate-verbiage">
+          Please enter starting page from which to split the document. All pages beginning on the
+          entered page and onward to the end of the document will be <b>removed</b> from this document
+          and assigned to a new document.
+        </p>
+      </div>
+      <div class="modal-separate-container">
+        <mat-form-field class="col-search-field">
+          <mat-label>Page to Begin Separation*</mat-label>
+          <input matInput  maxlength="3" formControlName="pageNo" foxNumbers placeholder="e.g., 12" [(ngModel)]="page">
+          <mat-error *ngIf = "!docSeparateFormGroup.controls['pageNo'].valid">
+            Page number should be greater than 1.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="container-buttons">
+        <button type="button" id="btn-cancel-modal-cancel" class="btn btn-secondary"
+            (click)="onSeparatelModalCancelPressed()">Cancel
+        </button>
+        <button type="submit" id="btn-cancel-modal-confirm" class="btn btn-primary"
+            [disabled]="!checkIfFormFilled() || !docSeparateFormGroup.controls['pageNo'].valid">Separate
+        </button>
+      </div>
+    </form>
+  </fox-loading-overlay>
+</fox-modal>

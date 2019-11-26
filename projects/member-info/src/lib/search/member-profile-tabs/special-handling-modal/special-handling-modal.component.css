@@ -1,0 +1,110 @@
+
+.border-red {
+  border-color: #BF3533;
+}
+
+.hr-field {
+  margin-top: 5px;
+  margin-bottom: -4px;
+}
+
+.input-field {
+  font-size: 16px;
+  border: 0;
+}
+
+.span-label {
+  font-weight: 600;
+}
+
+.div-label {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.div-read-only {
+  display:inline-block;
+  width: 130px;
+  height: 66px;
+  margin-left: 20px;
+}
+
+.icon-fa-exclamation-small {
+  color: #BF3533;
+  font-size: 14px;
+  line-height: 14px;
+  margin-left: 33%;
+}
+
+.p-codes {
+  margin-top: 22px;
+}
+
+.p-codes > span {
+  font-weight: bold;
+}
+
+.mat-f-field-input {
+  margin-right: -5%;
+}
+
+.input-code {
+  width: 85px;
+}
+
+.input-description {
+  width: 310px;
+}
+
+.div-read-only-cover {
+  padding-top: 25px;
+}
+
+.link-remove-code {
+  margin-left: 25px;
+  text-decoration: none;
+  position: relative;
+}
+
+.link-add-special-handling-code {
+  margin-left: -3px;
+}
+
+.icon-fa-times-circle {
+  margin-right: 5px;
+}
+
+.span-remove-code {
+  border-bottom: 1px solid #196ECF;
+  padding-bottom: 2px;
+  position: absolute;
+  top: -3px;
+  width: 85px;
+}
+
+.span-add-special-handling-code {
+  border-bottom: 1px solid #196ECF;
+  padding-bottom: 2px;
+}
+
+.button-submit {
+  float: right;
+  height: 39px;
+  width: 128px;
+  margin-right: 20px;
+  margin-left: 2%;
+}
+
+.button-cancel {
+  float: right;
+  height: 39px;
+  width: 128px;
+}
+
+.p-descriptive-text {
+  font-size: 14px;
+}
+
+.mat-error-margin {
+  margin-left: 10px;
+}

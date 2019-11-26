@@ -1,0 +1,40 @@
+<fox-modal [visible]="reportModalVisible" [closable]="false" (visibleChange)="changeVisible($event)"
+           modalTitle="Member Lookup Reports">
+  The below reports may be available for viewing - based on your permission levels
+  <br/>
+  <br/>
+  <div>
+    <span class="box-report-type">
+      <div class="header-report-type">Report Type</div>
+      <div foxLink class="report-type" (linkPressed)="reportType = 'ms'">Microstrategy <span
+        *ngIf="reportType === 'ms'" class="margin-left-8"><i class="fas fa-caret-right"></i></span></div>
+      <div foxLink class="report-type" (linkPressed)="reportType = 'nas'">NAS Folder <span
+        *ngIf="reportType === 'nas'" class="margin-left-8"><i class="fas fa-caret-right"></i></span></div>
+    </span>
+    <span class="box-report-name">
+      <div class="header-report-name">Report Name</div>
+      <div *ngIf="reportType === 'ms'">
+        <ng-container *ngFor="let msReport of msReports;">
+          <label class="label-report"><input type="radio" name="report"
+                                             class="report-name input-field {{msReport.reportId}}"
+                                             [(ngModel)]="model" [value]="msReport.url"> <span
+            class="report-title">{{msReport.reportName}}</span></label><br/>
+        </ng-container>
+      </div>
+      <div *ngIf="reportType === 'nas'">
+        <ng-container *ngFor="let nasReport of nasReports;">
+          <label class="label-report"><input type="radio" name="report"
+                                             class="report-name input-field {{nasReport.reportId}}"
+                                             [(ngModel)]="model" [value]="nasReport.url"> <span
+            class="report-title">{{nasReport.reportName}}</span></label><br/>
+        </ng-container>
+      </div>
+    </span>
+  </div>
+  <button type="button" class="btn btn-primary btn-view" (click)="onNavigation(); model = ''"
+          [disabled]="!model"><i focusable="false" class="fas fa-file-alt"></i>View
+  </button>
+  <button type="button" class="btn btn-secondary btn-cancel"
+          (click)="changeVisible(false); reportType = 'ms'; model = ''"><i focusable="false"></i>Cancel
+  </button>
+</fox-modal>

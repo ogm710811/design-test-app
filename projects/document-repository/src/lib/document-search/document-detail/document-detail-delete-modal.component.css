@@ -1,0 +1,26 @@
+.container-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-buttons .btn-primary {
+  margin-left: 15px;
+}
+
+.you-are-about-to-del {
+  height: 20px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.delete-note-title {
+  height: 18px;
+  width: 95px;
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 18px;
+}
+

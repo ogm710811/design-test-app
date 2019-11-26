@@ -1,0 +1,77 @@
+<div class="row container-claim-file-section">
+  <div class="col-xs-12 col-sm-8 container-claim-file-section">
+    <fox-section>
+      <div class="row container-claim-file">
+        <div class="col-xs-12 container-claim-file">
+          <fox-section-title class="section-title">Enter the following criteria</fox-section-title>
+          <fox-section-subheader>Tab to navigate and update fields. Click "Submit" (or Alt + S or Enter) to proceed.</fox-section-subheader>
+          <div class="col-xs-6 col-sm-7 container-input-top">
+            <fox-input type="text"
+                       id="txtM39CNO1"
+                       name="txtM39CNO1"
+                       labelText="Claim #"
+                       [(ngModel)]="screenBean.m39cno1"
+                       [length]="12">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-7 container-input-top-xs">
+            <fox-input type="text"
+                       id="txtM39OME1"
+                       name="txtM39OME1"
+                       labelText="Old Membership #"
+                       [(ngModel)]="screenBean.m39ome1"
+                       [length]="11">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-7 container-input container-left-xs">
+            <fox-input type="text"
+                       id="txtM39NME1"
+                       name="txtM39NME1"
+                       labelText="New Membership #"
+                       [(ngModel)]="screenBean.m39nme1"
+                       [length]="11">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-7 container-input container-right-xs">
+            <fox-input type="text"
+                       id="txtM39STAT"
+                       name="txtM39STAT"
+                       labelText="New Status"
+                       [(ngModel)]="screenBean.m39stat"
+                       [length]="1">
+            </fox-input>
+          </div>
+          <div class="col-xs-6 col-sm-7 container-input container-left-xs">
+            <fox-input type="text"
+                       id="txtM39DELI"
+                       name="txtM39DELI"
+                       labelText="Delete Indicator"
+                       [(ngModel)]="screenBean.m39deli"
+                       [length]="1">
+            </fox-input>
+          </div>
+        </div>
+      </div>
+      <div class="row container-submit-button">
+        <div class="col-xs-6 col-sm-7 container-input">
+          <fox-loading-button [buttonValue]="'Submit (S)'"
+                              [buttonStatus]="buttonStatus"
+                              [typeValue]="'button'"
+                              [foxHotKeyValue]="'alt+s'"
+                              (buttonClick)="enterEventClick()">
+          </fox-loading-button>
+        </div>
+      </div>
+      <div class="row container-member-info">
+        <div class="col-xs-12 container-member">
+            <span class="title-status">Membership #:  </span>
+            <span class="title-value">{{screenBean.m39mem1 + screenBean.m39mea1 + screenBean.m39mei1}}</span>
+        </div>
+        <div class="col-xs-12 container-status">
+            <span class="title-status">Status:  </span>
+            <span class="title-value">{{screenBean.m39sta1}} </span>
+        </div>
+      </div>
+    </fox-section>
+  </div>
+</div>

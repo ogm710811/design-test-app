@@ -1,0 +1,45 @@
+<div class="div-member-info-section row">
+  <div class="div-member-text-section">
+    <fox-section-title id="member-info-title">
+      <span class="span-mem-circle"><img class="span-member-img" src="assets/img/Member_White.svg" /></span>
+      <span class="span-section-title">Member Information</span>
+    </fox-section-title>
+    <p class="subhead">
+      Plan overviews listed below. Click Member # link to view details.
+    </p>
+    <div class="div-field-label-container row">
+      <div class="col-xs-12 col-sm-5">
+        <p class="fox-label">Name</p>
+      </div>
+      <div class="col-xs-12 col-sm-7 fox-value">
+        <p class="">{{memberInfo?.name}}</p>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <p class="fox-label">Member #</p>
+      </div>
+      <div class="col-xs-12 col-sm-7 fox-value">
+        <span><img class="img-claim-number" src="assets/img/member-blue.svg" /></span>
+        <a class="no-underline" [foxLink] (linkPressed)="getMemberProfile()">{{memberInfo?.memberNumber}}</a>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <p class="fox-label">Address</p>
+      </div>
+      <div class="col-xs-12 col-sm-7 fox-value">
+        <p class="">{{memberInfo?.addressInfoStreet}}</p>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <p class="fox-label"></p>
+      </div>
+      <div class="col-xs-12 col-sm-7 fox-value">
+        <p class="">{{memberInfo?.addressInfoCity}}</p>
+      </div>
+    </div>
+  </div>
+
+    <div class="div-table-section">
+      <fox-table id="member-info-table"
+        [tableData]="memberInfo?.memberInfoRows | orderBy: {property: tableColumnCurrentSortKey, direction: tableColumnCurrentSortDirection}"
+        [tableColumns]="cols" [noBottomMargin]="true" (columnChanged)="tableColumnCurrentSortKey = $event"
+        [noWhiteSpace]="true" (directionChanged)="tableColumnCurrentSortDirection = $event"></fox-table>
+    </div>
+</div>

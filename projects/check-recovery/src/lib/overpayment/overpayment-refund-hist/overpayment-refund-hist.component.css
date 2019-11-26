@@ -1,0 +1,79 @@
+.container-cancel-return {
+  margin-bottom: 25px;
+}
+
+.link-cancel-return {
+  text-decoration: none;
+}
+
+.img-cancel-return, .img-member-number {
+  margin-right: 7px;
+  width: 14px;
+  height: 14px;
+}
+
+.row-small {
+  margin: 0 -10px;
+}
+
+.row-small > div[class*="col"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-equal-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-read {
+  border-bottom: 1px solid #E5EAEE;
+  width: 100%;
+  word-break: break-word;
+  margin-top: 15px;
+}
+
+.container-read .container-label-read-only {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.container-read .container-value-read-only {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 5px;
+  min-height: 16px;
+}
+
+.img-refund {
+  margin-right: 6px;
+  width: 14px;
+  height: 14px;
+}
+
+.btn-submit {
+  float: right;
+}
+
+.container-refund-table {
+  margin: 15px -20px 0;
+}
+
+.container-refund-paginator {
+  margin: -18px 0 0 -23px;
+}
+
+@media  (max-width: 767px) {
+  .container-read {
+    margin-top: 25px;
+  }
+
+  .container-refund-status {
+    margin-top: 15px;
+  }
+}

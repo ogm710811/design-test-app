@@ -1,0 +1,600 @@
+<fox-section>
+  <div class="col-sm-12 margin-bottom-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>Date:</mat-label>
+        <input matInput id="txtM95DATE" name="txtM95DATE" #txtM95DATE="ngModel" maxlength="8" size="8" disabled="disabled"
+          type="text" [(ngModel)]="screen.m95date" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="col-sm-12">
+    <div class="col-sm-11">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Seq#</th>
+            <th>Loc</th>
+            <th>Or Claim Number</th>
+            <th>Examiner Name</th>
+            <th>Ions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq01" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc01" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[0]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex01" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io01" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq02" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc02" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[1]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex02" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io02" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq03" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc03" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[2]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex03" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io03" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq04" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc04" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[3]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex04" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io04" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq05" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc05" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[4]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex05" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io05" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq06" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc06" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[5]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex06" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io06" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq07" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc07" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[6]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex07" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io07" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq08" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc08" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[7]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex08" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io08" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq09" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc09" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[8]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex09" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io09" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq10" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc10" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[9]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex10" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io10" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq11" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc11" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[10]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex11" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io11" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq12" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc12" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[11]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex12" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io12" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq13" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc13" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[12]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex13" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io13" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq14" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc14" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[13]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex14" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io14" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq15" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc15" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[14]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex15" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io15" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq16" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc16" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[15]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex16" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io16" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq17" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc17" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[16]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex17" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io17" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq18" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc18" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[17]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex18" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io18" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq19" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc19" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[18]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex19" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io19" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="4" size="4" type="text" [(ngModel)]="screen.m95sq20" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="3" size="3" type="text" [(ngModel)]="screen.m95lc20" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="12" size="12" type="text" [(ngModel)]="reference[19]" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="25" size="25" disabled="disabled" type="text" [(ngModel)]="screen.m95ex20" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput maxlength="6" size="6" disabled="disabled" type="text" [(ngModel)]="screen.m95io20" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-sm-12 margin-top-20 text-right">
+    <button id="Clear" name="Clear" #Clear type="button" class="btn btn-default margin-right-20" (click)="clearEventClick()"
+      foxHotkey="alt+c">Clear (C)
+    </button>
+    <button id="Enter" name="Enter" #Enter type="button" class="btn btn-primary" (click)="enterEventClick()" foxHotkey="alt+e">Enter
+      (E)
+    </button>
+  </div>
+</fox-section>

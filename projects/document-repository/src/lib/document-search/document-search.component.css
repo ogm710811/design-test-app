@@ -1,0 +1,235 @@
+.container-left .btn,
+.container-left .mat-form-field {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.container-left {
+  float: left;
+  width: 18%;
+  padding-right: 20px;
+  padding-left: 5px;
+}
+
+.container-right {
+  float: left;
+  width: 82%;
+  border-left: 1px solid #CFCFCF;
+  padding-left: 20px;
+  height: 275px;
+}
+
+.container-not-found {
+  margin-bottom: 70px;
+}
+
+.border-top-blue {
+  border-top: solid 4px #196ecf;
+}
+
+.section-document-search-result {
+  margin-top: 30px;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+  cursor: default;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-panel-header-title {
+  display: block;
+}
+
+.document-search-panel-top .mat-expansion-panel-header-title {
+  padding-top: 0;
+}
+
+.container-heading {
+  margin-bottom: 6px;
+}
+
+.table-header {
+  white-space: nowrap;
+  min-width: 200px;
+}
+
+.table-header-27 {
+  min-width: 250px;
+}
+
+.table > thead > tr > .table-column-radio,
+.table > thead > tr > table-column-download {
+  padding-right: 20px;
+}
+
+.fa-tag, .fa-tags {
+  color: #4E5B71;
+}
+
+.table-document-search-result {
+  margin-bottom: 0;
+}
+
+.btn-more {
+  margin-right: 20px;
+  float: right;
+  border: none;
+  background-color: transparent;
+}
+
+.mat-expansion-panel-header-title {
+  color: #333333;
+}
+
+.ribbon-menu {
+  background-color: #264578;
+  color: #EDEDF4;
+  font-size: 14px;
+  height: 45px;
+  padding-top: 15px;
+  padding-right: 20px;
+  max-width: 1168px;
+}
+
+.ribbon-right {
+  float: right;
+}
+
+.ribbon-left {
+  float: left;
+}
+
+.link-ribbon {
+  margin-left: 20px;
+  text-decoration: underline;
+  float: left;
+  cursor: pointer;
+}
+
+.label-selected {
+  float: left;
+}
+
+.container-table {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.label-param {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: normal;
+  float: left;
+}
+
+.label-bold {
+  font-weight: 600;
+}
+
+.btn-cancel {
+  width: 100px;
+  margin-right: 15px;
+  float: right;
+}
+
+.btn-delete {
+  width: 100px;
+  float: right;
+}
+
+.table-header-document {
+  width: 150px;
+}
+
+.table-delete-list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 420px;
+  margin-top: 20px;
+  border: 1px solid #DCE4E8;
+}
+
+.padding-button {
+  width: 1px;
+  height: 10px;
+}
+
+.div-content-badges {
+  height: 21px;
+  width: 21px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.table-inner {
+  margin-top: 10px;
+  margin-left: 11px;
+}
+
+.td-empty {
+  width: 8px;
+}
+
+.th-width {
+  min-width: 80px;
+}
+
+.td-content-badges-queue-color {
+  background-color: #4E5B71;
+}
+
+.div-content-badges-lock-color {
+  background-color: #EB7560;
+}
+
+.img-svg-icon-lock-badge {
+  height: 11px;
+  width: 11px;
+  padding-right: 2px;
+}
+
+.img-svg-icon-queue {
+  height: 21px;
+}
+
+.div-queue {
+  padding-left: 0;
+  cursor: pointer;
+}
+
+.div-lock-badge {
+  padding-left: 7px;
+  cursor: pointer;
+}
+
+.fa-user-member {
+  color: #60A1EB;
+  margin-right: 5px;
+}
+
+.span-document {
+  padding-right: 50px;
+}
+
+.space-nowrap {
+  white-space: nowrap;
+}
+
+.td-member {
+  position: relative;
+}
+
+.td-member > button {
+  position: absolute;
+  right: 0;
+  border: 1px solid rgb(207, 207, 207);
+}
+
+.div-clear {
+  text-align: right;
+  margin-right: -3px;
+}
+
+.div-margin {
+  margin-right: 15px;
+}

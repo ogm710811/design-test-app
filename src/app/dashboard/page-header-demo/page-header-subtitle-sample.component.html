@@ -1,0 +1,44 @@
+<div *ngIf="detailMember || detailClaim" class="container-claim-member">
+  <span *ngIf="detailClaim" class="container-text container-claim">
+    <span>
+      <img class="claim-img" src="/assets/img/claim.svg"/>
+      <span class="text-header">Claim #: </span>
+      <span class="text-user-no">{{detailClaim.claimNumber}}</span>
+    </span>
+  </span>
+  <span *ngIf="detailMember" class="container-text container-member">
+    <span>
+      <img class="img-claim" src="/assets/img/member.svg"/>
+        <span class="header-member-no">Member #:</span>
+        <span class="text-user-no">{{detailMember.accountNumber}}</span>
+    </span>
+  </span>
+
+  <mat-menu #dropDownMember="matMenu" class="mat-menu-member">
+    <div class="container-dropdown">
+      <p><span><img src="/assets/img/member.svg"/></span><span class="header-dropdown"> Member: </span> {{detailMember.accountNumber}}</p>
+      <p><span class="header-dropdown">Last Name:</span> {{detailMember?.lastName}}</p>
+      <p><span class="header-dropdown">First Name:</span> {{detailMember?.firstName}}</p>
+      <p><span class="header-dropdown">Middle Name:</span> {{detailMember?.middleName}}</p>
+      <p><span class="header-dropdown">Zip Code: </span>{{detailMember?.zipCode}}</p>
+      <p><span class="header-dropdown">Date Of Birth:</span> {{detailMember?.dateOfBirth}}</p>
+      <p><span class="header-dropdown">Gender:</span> {{detailMember?.gender}}</p>
+      <p><span class="header-dropdown">MBN:</span> {{detailMember?.medicareBeneficiaryId}}</p>
+      <p><span class="header-dropdown">Plan Type:</span> {{detailMember?.planType}}</p>
+      <p><span class="header-dropdown">Plan Code:</span> {{detailMember?.planCode}}</p>
+      <p><span class="header-dropdown">Plan Effective Date:</span> {{detailMember?.planEffectiveDate}}</p>
+    </div>
+  </mat-menu>
+
+  <mat-menu #dropDownClaim="matMenu" class="mat-menu-claim">
+    <div class="container-dropdown">
+      <p><img src="/assets/img/claim.svg"/><span class="header-dropdown">Claim:</span> {{detailClaim.claimNumber}}</p>
+      <p><span class="header-dropdown">Date Of Service From:</span> {{detailClaim.dosFrom}}</p>
+      <p><span class="header-dropdown">Date Of Service To:</span> {{detailClaim.dosTo}}</p>
+      <p><span class="header-dropdown">provider Name:</span> {{detailClaim.providerName}}</p>
+      <p><span class="header-dropdown">provider Tin: </span>{{detailClaim.providerTin}}</p>
+      <p><span class="header-dropdown">claim Julian Date:</span> {{detailClaim.claimJulianDate}}</p>
+      <p><span class="header-dropdown">UB Type Of Bill: </span>{{detailClaim.ubTypeOfBill}}</p>
+    </div>
+  </mat-menu>
+</div>

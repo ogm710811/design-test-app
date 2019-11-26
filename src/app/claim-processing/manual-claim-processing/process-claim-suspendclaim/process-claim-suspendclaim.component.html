@@ -1,0 +1,144 @@
+<div class="row">
+  <div class="col-xs-12 container-return-prev" (click)="pf1EventClick()">
+    <img src="assets/img/arrow-left.svg" class="img-return-icon" alt="return icon"/>
+    <span class="span-return-prev" foxHotkey="ctrl+f1" hotkeyAction="click" tabindex="0">Return to Previous (F1)</span>
+  </div>
+</div>
+<fox-section class="col-xs-12 col-sm-8 no-padding">
+  <div class="container-card-title"> {{suspensionCardTitle}} </div>
+  <div class="container-subtitle"> {{suspensionCardSubTitle}} </div>
+  <div class="row row-small">
+    <div class="col-xs-12 col-sm-4">
+      <fox-input id="txtLocation"
+                 name="txtLocation"
+                 length="1"
+                 labelText="Location"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m39loc"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="container-input-and-label">
+        <div class="container-label">
+          <label class="label-for-input">Reason</label>
+        </div>
+        <div class="container-input container-select-border">
+          <ng-select [items]="selectReasonItems"
+                     class="ng-select-reason"
+                     [virtualScroll]="true"
+                     bindLabel="name"
+                     bindValue="id"
+                     [clearable]="false"
+                     [(ngModel)]="selectReasonItemsId">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row row-small">
+    <div class="col-xs-12 no-padding">
+      <fox-input type="textarea"
+                 id="txtClaimNote"
+                 name="txtClaimNote"
+                 length="77"
+                 labelText="Claim Note"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m39cn1"></fox-input>
+    </div>
+  </div>
+  <div class="row row-small">
+    <div class="col-xs-12 no-padding">
+      <fox-input type="textarea"
+                 id="txtInsuredNote"
+                 name="txtInsuredNote"
+                 length="154"
+                 labelText="Insured Note"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="insuredNote"></fox-input>
+    </div>
+  </div>
+  <div class="row row-small">
+    <div class="col-xs-12 col-sm-4">
+      <fox-input type="fox-claim"
+                 id="txtCrossReference1"
+                 name="txtCrossReference1"
+                 isCrossReferenceField=true
+                 length="12"
+                 labelText="Cross-Reference"
+                 class="col-xs-12 no-padding input-custom"
+                 (keydown)="getCrossReferenceNumber()"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="crossRefNum1"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fox-input type="fox-claim"
+                 id="txtCrossReference2"
+                 name="txtCrossReference2"
+                 isCrossReferenceField=true
+                 length="12"
+                 labelText="Cross-Reference"
+                 class="col-xs-12 no-padding input-custom"
+                 (keydown)="getCrossReferenceNumber()"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="crossRefNum2"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fox-input type="fox-claim"
+                 id="txtCrossReference3"
+                 name="txtCrossReference3"
+                 isCrossReferenceField=true
+                 length="12"
+                 labelText="Cross-Reference"
+                 class="col-xs-12 no-padding input-custom"
+                 (keydown)="getCrossReferenceNumber()"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="crossRefNum3"></fox-input>
+    </div>
+  </div>
+  <div class="row row-small">
+    <div class="col-xs-12 col-sm-6">
+      <fox-input id="txtCommunicationLetter1"
+                 name="txtCommunicationLetter1"
+                 length="6"
+                 labelText="Comm-Letter"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m39cm11"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <fox-input id="txtCommunicationLetter2"
+                 name="txtCommunicationLetter2"
+                 length="5"
+                 labelText="Comm-Letter"
+                 class="col-xs-12 no-padding input-custom"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m39cm21"></fox-input>
+    </div>
+  </div>
+  <div class="row row-small container-communication-last-row">
+    <div class="col-xs-12 col-sm-6">
+      <fox-input id="txtCommunicationLetter3"
+                 name="txtCommunicationLetter3"
+                 length="6"
+                 labelText="Comm-Letter"
+                 class="col-xs-12 no-padding input-communication"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m39cm12"></fox-input>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <fox-input id="txtCommunicationLetter4"
+                 name="txtCommunicationLetter4"
+                 length="5"
+                 labelText="Comm-Letter"
+                 class="col-xs-12 no-padding"
+                 (keyup.enter)="enterEventClick()"
+                 [(ngModel)]="screen.m39cm22"></fox-input>
+    </div>
+  </div>
+</fox-section>
+<div class="col-xs-12 col-sm-8 no-padding text-right">
+  <button type="button" class="btn btn-secondary btn-margin" (click)="clearBtnEventClick()" foxHotkey="alt+r" hotkeyAction="click">Clear (R)</button>
+  <fox-loading-button [buttonValue]="'Submit (S)'" [buttonStatus]="buttonStatus" [typeValue]="'button'" [foxHotKeyValue]="'alt+s'" (buttonClick)="enterEventClick()"></fox-loading-button>
+</div>

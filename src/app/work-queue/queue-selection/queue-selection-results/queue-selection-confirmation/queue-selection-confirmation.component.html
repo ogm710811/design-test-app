@@ -1,0 +1,16 @@
+<fox-modal #modal class="queue-selection-confirmation-modal" [closable]="false" modalTitle="Opening Queue">
+  <div class="text-modal">You are about to begin working on Work Queue {{queueName}}. Once you begin working on this
+    queue, you will be assigned an item. You must either complete the item or send it to a user's workbench. Do you wish
+    to continue?
+  </div>
+
+  <div class="container-buttons">
+    <button type="button" class="btn btn-clear" (click)="modal.closeModal('cancel')">
+      Cancel
+    </button>
+    <button type="button" class="btn btn-work-queue-confirm" (click)="modal.closeModal('ok')">
+      <span><i class="fas fa-briefcase" focusable="false"></i></span><span>Work This Queue</span>
+    </button>
+  </div>
+</fox-modal>
+

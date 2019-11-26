@@ -1,0 +1,47 @@
+<div class="claimSearchBack">
+  <a class="backClaimSearchLink" [routerLink]="url"><i class="fas fa-chevron-left"></i>
+    Back to Search Results
+  </a>
+</div>
+<div class="tab-claim-detail">
+  <div *ngIf="pageHeaderService.currentNav === 1">
+    <fox-loading-overlay>
+      <fox-provider-summary [detailsService]="providerSearchResultDetailsService"
+                            [providerAddress]="providerAddress"
+                            [providerTypeCode]="providerTypeCode">
+      </fox-provider-summary>
+      <fox-provider-demographics [taxonomyCode]="taxonomyCode" [mPin]="mPin"
+                                 [detailsService]="providerSearchResultDetailsService"
+                                 [providerTypeCode]="providerTypeCode"
+                                 [overrideProviderAddress]="overrideProviderAddress"
+                                 [providerAddress]="providerAddress"
+                                 [tinTaxStatus]="tinTaxStatus">
+      </fox-provider-demographics>
+    </fox-loading-overlay>
+  </div>
+
+  <div *ngIf="pageHeaderService.currentNav === 2">
+    <fox-provider-summary [detailsService]="providerSearchResultDetailsService"
+                          [providerAddress]="providerAddress"
+                          [providerTypeCode]="providerTypeCode"></fox-provider-summary>
+    <fox-provider-status-codes [detailsService]="providerSearchResultDetailsService"></fox-provider-status-codes>
+  </div>
+
+  <div *ngIf="pageHeaderService.currentNav === 3">
+    <fox-provider-summary [detailsService]="providerSearchResultDetailsService"
+                          [providerAddress]="providerAddress"
+                          [providerTypeCode]="providerTypeCode"></fox-provider-summary>
+    <fox-provider-notes [detailsService]="providerSearchResultDetailsService"></fox-provider-notes>
+  </div>
+
+
+  <div *ngIf="pageHeaderService.currentNav === 4">
+    <fox-provider-summary [detailsService]="providerSearchResultDetailsService"
+                            [providerAddress]="providerAddress"
+                            [providerTypeCode]="providerTypeCode"></fox-provider-summary>
+    <fox-provider-alternate [detailsService]="providerSearchResultDetailsService"
+                            [providerTypeCode]="providerTypeCode"
+                            [altProviderAddress]="altProviderAddress"></fox-provider-alternate>
+  </div>
+</div>
+

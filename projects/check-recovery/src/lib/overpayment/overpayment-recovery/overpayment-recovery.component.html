@@ -1,0 +1,260 @@
+<ng-container *ngIf="pageHeaderService.currentNav === 1">
+  <div class="container-metadata-item-import">
+  <fox-section>
+    <ng-container *ngIf="!fileUploaded">
+      <div class="container-file-import-parent file-import-button">
+        <div class="container-title-file-import">
+          <fox-section-title class="section-title">File Import</fox-section-title>
+          <fox-section-subheader>
+            Select an import action before selecting a file to upload. When all fields are valued, click the <strong>Upload (U)</strong> button to proceed.
+          </fox-section-subheader>
+        </div>
+
+      <div class="container-file-import overpayment-error file-import-input">
+        <form [formGroup]="importFileFormGroup" novalidate>
+          <div class="container-left file-action">
+            <mat-form-field class="doc-type">
+              <mat-label>Import Action*</mat-label>
+              <mat-select class="select-action" [formControl]="fileImportFc" [(ngModel)]="importActionValue" (selectionChange)="showVendorOptions()">
+                <mat-option [value]=""></mat-option>
+                <mat-option *ngFor="let action of importActionDropDown" [value]="action.code">
+                  {{action.description}}
+                </mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="checkFormControlValidity('importActions')">
+                Field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="container-right">
+            <mat-form-field *ngIf="render" class="container-vendor-report">
+              <mat-label>Vendor*</mat-label>
+              <mat-select class="select-vendor" [formControl]="vendorOptionsFc" [(ngModel)]="vendorName">
+                <mat-option value=""></mat-option>
+                <mat-option value="Optum">Optum</mat-option>
+                <mat-option value="Performant">Performant</mat-option>
+                <mat-option *ngIf="importActionValue === 'P'" value="PRS">PRS</mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="checkFormControlValidity('vendorFile')">
+                Field is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="renderReportDate" class="container-vendor-report">
+              <mat-label>Report Date*</mat-label>
+              <input matInput placeholder="MM/DD/YYYY" [formControl]="reportDateFc" maxlength="10"
+                     [ngModel]="inputReportDate | dateFormat" (ngModelChange)="changeDetails($event)" >
+              <mat-error>
+                <ng-container *ngIf="checkFormControlValidity('ReportFile')">
+                  Field is required
+                </ng-container>
+                <ng-container *ngIf="inputReportDate && checkFormatDate">
+                  Please Enter Date in MM/DD/YYYY format
+                </ng-container>
+              </mat-error>
+            </mat-form-field>
+
+            <div class="container-import-file">
+              <mat-form-field class="input-import-file">
+                <mat-label>Choose File* </mat-label>
+                <input matInput  #fileInput1 [formControl]="inputFileFc" class="input-file" type="text" [(ngModel)]="localFileLocation">
+                <mat-error
+                  *ngIf="checkFormControlValidity('inputFile')">
+                  Field is required
+                </mat-error>
+              </mat-form-field>
+              <input class="input-hidden" [formControl]="uploadImport"   #fileInput2  type="file" [(ngModel)]="localFileUpload" (change)="onFileChange($event.target.files)"  required>
+              <button type="button" class="btn btn-secondary btn-browse" (click)="fileInput2.click()" foxHotkey="alt+b">
+                Browse (B)
+              </button>
+            </div>
+
+            <div class="container-format-example">
+              <mat-label>File Format Example: </mat-label>
+              <p class="text-file-eg">
+                <a *ngIf="isIEOrEdge" download="csv-excel-example-file.csv" (click)="getExample()" >csv-excel-example-file.csv</a>
+                <a *ngIf="!isIEOrEdge" download="csv-excel-example-file.csv" [href]="fileDownloadUrl" >csv-excel-example-file.csv</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="btn-file-upload">
+            <button type="button" class="btn btn-primary btn-upload" foxHotkey="alt+u" (click)="uploadFile()" [disabled]="disableUpload || (!importFileFormGroup.valid)">
+              Upload (U) >
+            </button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="fileUploaded">
+      <div class="container-section-uploaded">
+        <div class="container-title-file-upload">
+          <fox-section-title class="section-title">Import Summary</fox-section-title>
+          <p>When this file has been processed, the uploaded file and completion output file may be viewed in the <strong>Recovery History</strong> tab.</p>
+        </div>
+
+      <div class="container-table table-import-summary" >
+        <table class="table table-import-summary">
+          <thead class="thead-default">
+          <tr>
+            <ng-container *ngFor="let header of tableSummaryHeaders; let j = index">
+              <th [foxLink] (linkPressed)="sortData(header.HeaderPO)" class="table-header table-header-{{j}}"
+                  [ngClass]="{'sorted-column-header':(column === header.HeaderPO), 'asc': !isDesc, 'desc': isDesc}">
+                <fox-table-header-sort>{{header.headerName}}</fox-table-header-sort>
+              </th>
+            </ng-container>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let log of recoveryLog">
+            <tr>
+              <td>{{log.createdBy }}</td>
+              <td>{{log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'short'}}</td>
+              <td>{{log.recordType}}</td>
+              <td>{{log.status}}</td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="btn-upload-another">
+        <button type="button" class="btn btn-secondary btn-upload-another" (click)="uploadAnother()" foxHotkey="alt+b">
+          Upload Another File
+        </button>
+      </div>
+      </div>
+    </ng-container>
+  </fox-section>
+  </div>
+</ng-container>
+
+<fox-modal [(visible)]="showConfirmActionModal" modalTitle="Confirm Action" [closable]="true" class="modal-frame" *ngIf="showConfirmActionModal">
+
+  <div>
+    <p>You are about to perform an action that will affect one or more claims. This action cannot
+      be undone. Are you sure you wish to proceed?</p>
+
+    <p class="col-md-12 text-right btn-confirm-action">
+      <button type="button" class="btn btn-secondary"
+              (click)="showConfirmActionModal = !showConfirmActionModal">Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" (click)="onClickProceed()">
+        Proceed
+      </button>
+    </p>
+  </div>
+
+</fox-modal>
+
+<fox-modal [(visible)]="showProgressModal" hideBorder="true" modalTitle="Uploading...{{uploadProgressValue}}%"
+           [closable]="false" class="modal-frame" *ngIf="showProgressModal">
+
+  <div class="">
+    <span class="container-progress-bar">
+    <mat-progress-bar  [value]="uploadProgressValue" class="progress-bar"></mat-progress-bar>
+    </span>
+    <span class="container-btn-cancel">
+    <button type="button" class="btn btn-secondary btn-cancel" (click)="showProgressModal=false; uploadProgressValue=0">Cancel</button>
+    </span>
+  </div>
+  <div>
+    <p class="text-file-uploading"> The file is being uploaded to FOX... </p>
+  </div>
+</fox-modal>
+
+<ng-container *ngIf="pageHeaderService.currentNav === 2">
+  <div class="table-recovery-log-2">
+  <fox-section>
+    <div class="container-top-header">
+      <fox-section-title class="section-title">Overpayment Recovery Log</fox-section-title>
+      <p class="file-import-subheader">View a history of import actions below. Filter to specific actions with the dropdown.
+        Uploaded and completion report files can be downloaded by clicking links in the table. </p>
+
+      <div class="container-history-action">
+        <mat-form-field>
+          <mat-select class="select-history" [formControl]="hisActionFc" (selectionChange)="currentPage=0; getRecoveryLog($event.value)" >
+            <mat-option value=""> <img src="/assets/img/decremental-bars.svg"/> Action: ALL</mat-option>
+            <mat-option *ngFor="let action of importActionDropDown" [value]="action.description === 'ALL' ? '' : action.code">
+              {{action.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="container-not-found" *ngIf="page === undefined">
+      <i focusable="false" class="fa fa-info-circle"></i>
+      <p class="header-container">No Logs Found</p>
+    </div>
+
+    <div class="container-table table-recovery-log" *ngIf="page !== undefined">
+      <table class="table table-overpayment-recovery">
+        <thead class="thead-default">
+        <tr>
+          <ng-container *ngFor="let header of tableHeaders; let j = index">
+            <th [foxLink] (linkPressed)="sortData(header.HeaderPO)" class="table-header table-header-{{j}}"
+                [ngClass]="{'sorted-column-header':(column === header.HeaderPO), 'asc': !isDesc, 'desc': isDesc}">
+              <fox-table-header-sort>{{header.headerName}}</fox-table-header-sort>
+            </th>
+          </ng-container>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let log of filterLogData; let j=index">
+          <tr>
+            <td>{{log.createdBy}}</td>
+            <td>{{log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'short'}}</td>
+            <td>{{log.recordType}}</td>
+            <td class="col-status">{{log.status}}</td>
+            <td>
+              <button *ngIf="isIEOrEdge" class="btn-download" (click)="getInputFile(log.overpaymentRecoveryId)">
+                <a class="link-download" download="{{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'.csv'}}"
+                   [href]="downloadLinkI" (click)="getInputFile(log.overpaymentRecoveryId)">
+                  {{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'.csv'}}
+                </a>
+              </button>
+                <a *ngIf="!isIEOrEdge" class="link-download" download="{{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'.csv'}}"
+                    [href]="downloadLinkI" (click)="getInputFile(log.overpaymentRecoveryId)">
+                  {{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'.csv'}}
+                </a>
+            </td>
+            <td class="col-report-file">
+              <button *ngIf="isIEOrEdge" class="btn-download" (click)="getOutputFile(log.overpaymentRecoveryId)">
+                <a class="link-download" download="{{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'_results.csv'}}"
+                   [href]="downloadLinkO" (click)="getOutputFile(log.overpaymentRecoveryId)">
+                  {{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'_results.csv'}}
+                </a>
+              </button>
+                <a *ngIf="!isIEOrEdge" class="link-download" download="{{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'_results.csv'}}"
+                   [href]="downloadLinkO" (click)="getOutputFile(log.overpaymentRecoveryId)">
+                  {{log.createdBy+'_'+(log.createDate | regexpReplace: '^(.*)Z$': '$1'| date: 'MMddyy_HHmm')+'_results.csv'}}
+                </a>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-container *ngIf="filterLogData.length > 0 && page && page.size && page.totalElements && page.totalPages">
+
+      <fox-paginator-non-material [(pageSize)]="page.size"
+                                  [dataLengthInput]="page.totalElements"
+                                  [pageTotal]="page.totalPages"
+                                  [(currentPage)]="currentPage"
+                                  (currentPageChange)=" getRecoveryLog(hisActionFc.value)"
+                                  (pageSizeChange)="currentPage=0; getRecoveryLog(hisActionFc.value)">
+      </fox-paginator-non-material>
+
+    </ng-container>
+
+  </fox-section>
+  </div>
+</ng-container>
+

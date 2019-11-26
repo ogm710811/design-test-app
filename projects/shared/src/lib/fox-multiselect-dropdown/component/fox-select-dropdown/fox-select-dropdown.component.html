@@ -1,0 +1,24 @@
+<ng-select
+        [items]="selectDropdownDataSource"
+        [multiple]="true"
+        [addTag]="true"
+        [appendTo]=selectDropdownParams?.appendTo
+        [closeOnSelect]=selectDropdownParams?.closeOnSelect
+        [placeholder]=selectDropdownParams?.placeholder
+        [hideSelected]=selectDropdownParams?.hideSelected
+        [maxSelectedItems]=selectDropdownParams?.maxSelectedItems
+        bindValue="id"
+        bindLabel="name"
+        (clear)="onClear()"
+        (change)="onChange()"
+        [(ngModel)]="selectedItems">
+
+  <ng-container *ngIf="selectDropdownParams?.hasAllSelectCheckbox">
+    <ng-template ng-header-tmp>
+      <input id="item1-{{index}}" type="checkbox" [checked]="isSelectAllChecked" (change)="checkSelectAll()"/> <span>(Select All)</span>
+    </ng-template>
+  </ng-container>
+  <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> <span>{{item.name}}</span>
+  </ng-template>
+</ng-select>

@@ -1,0 +1,104 @@
+<div class="row">
+  <div id="medicare-supplement-screen-b-previous"
+       class="col-xs-12 container-div-return-prev">
+    <span class="span-return-button" (click)="goToPrevious()"
+          foxHotkey="ctrl+f1"
+          hotkeyAction="click" tabindex="0">
+      <img src="assets/img/arrow-left.svg"/>
+      <span class="span-return-prev">Return to Previous (F1)</span>
+    </span>
+  </div>
+</div>
+<form #additionalClaimInformation="ngForm" (ngSubmit)="enterEventClick()">
+  <fox-section>
+    <div class="row">
+      <div class="col-xs-12">
+        <fox-section-title>
+          Additional Claim Information (ACI)
+        </fox-section-title>
+        <div class="container-div-fox-sub-title">
+          <fox-section-subheader>
+            Select a claim type below.
+          </fox-section-subheader>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <label class="label-for-input">
+          Claim Type
+        </label>
+        <div class="container-select-border">
+          <fox-select-single [items]="items"
+                             bindLabel="value"
+                             bindValue="key"
+                             [selected]="screen.mc7cltp"
+                             (selectEmitter)="screen.mc7cltp = $event">
+          </fox-select-single>
+        </div>
+        <div class="span-sub-label">Institutional (I) or Professional (P)</div>
+      </div>
+    </div>
+    <mat-divider class="mat-divider"></mat-divider>
+    <div class="container-div-type-of-bill">
+      <fox-section-title>
+        Type Of Bill
+      </fox-section-title>
+    </div>
+    <div class="container-div-fox-sub-title">
+      <fox-section-subheader>
+        Tab to navigate and update fields. Click “Continue” (or use Alt + L or Enter) to proceed.
+      </fox-section-subheader>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 container-div-margin-bottom container-padding-right">
+        <fox-input type="text"
+                   id="txtMC7FCODE"
+                   name="txtMC7FCODE"
+                   labelText="Facility Code / Place Of Service"
+                   [(ngModel)]="screen.mc7fclt"
+                   [length]="2">
+        </fox-input>
+      </div>
+      <div class="col-xs-12 col-sm-4 container-div-margin-bottom container-padding-left">
+        <fox-input type="text"
+                   id="txtMC7FREQ"
+                   name="txtMC7FREQ"
+                   labelText="Frequency / Resubmission Code"
+                   [(ngModel)]="screen.mc7freq"
+                   [length]="1">
+        </fox-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 container-padding-right">
+        <fox-input type="fox-currency"
+                   id="txtMC7TCHG"
+                   name="txtMC7TCHG"
+                   labelText="Total Charge"
+                   [(ngModel)]="screen.mc7tchg"
+                   [length]="10">
+        </fox-input>
+      </div>
+    </div>
+  </fox-section>
+
+  <div class="container-div-button-margin">
+    <div class="container-div-float-right margin-bottom-20">
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="clear(additionalClaimInformation)"
+              foxHotkey="alt+r"
+              hotkeyAction="click">
+        Clear (R)
+      </button>
+      <fox-loading-button class="button-spacing container-div-margin-left"
+                          [buttonValue] = "'Continue (L)'"
+                          [buttonStatus]="continueStatus"
+                          [typeValue]="'submit'"
+                          [hasChevron]="true"
+                          [foxHotKeyValue]="'alt+l'">
+      </fox-loading-button>
+    </div>
+  </div>
+</form>

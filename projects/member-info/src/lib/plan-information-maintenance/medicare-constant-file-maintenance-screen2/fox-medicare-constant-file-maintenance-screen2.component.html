@@ -1,0 +1,292 @@
+<fox-section>
+  <fox-section-title>Medicare Constant File - {{screen.m29titl | titlecase }}</fox-section-title>
+  <div class="col-sm-12 margin-top-20">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>
+          End Date:
+        </mat-label>
+        <input matInput id="txtM29EDT1" placeholder="(MM/DD/YYYY)" [formControl]="customEndDate" maxlength="10"
+          size="10" type="text" [(ngModel)]="screen.m29edt1" />
+        <mat-error *ngIf="customEndDate.errors">Please enter in MM/DD/YYYY format</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>
+          Start Date:
+        </mat-label>
+        <input matInput id="txtM29SDT1" placeholder="(MM/DD/YYYY)" [formControl]="customStartDate" name="txtM29SDT1" #txtM29SDT1
+          maxlength="10" size="10" tabindex="-1" type="text" disabled="{{screen.m29titl == 'REVIEW'}}" [(ngModel)]="screen.m29sdt1"
+        />
+        <mat-error *ngIf="customStartDate.errors">Please enter in MM/DD/YYYY format</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <mat-label>
+          Benefit Reduction Period Indicator:
+        </mat-label>
+        <input matInput id="txtM29RIND" name="txtM29RIND" #txtM29RIND maxlength="1" size="1" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.m29rind" />
+      </mat-form-field>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section>
+  <div class="form-row col-sm-12">
+    <div class="form-row col-sm-1"></div>
+    <div class="form-row col-sm-3">
+      <mat-label class="mat-input-placeholder">Type of Service</mat-label>
+    </div>
+    <div class="form-row col-sm-3">
+      <mat-label class="mat-input-placeholder">Assign</mat-label>
+    </div>
+    <div class="form-row col-sm-3">
+      <mat-label class="mat-input-placeholder">Non-Assign</mat-label>
+    </div>
+  </div>
+
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label class="mat-input-placeholder">1.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS1" name="txtM29TOS1" #txtM29TOS1 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[0].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS1" name="txtM29AS1" #txtM29AS1 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[0].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS1" name="txtM29NAS1" #txtM29NAS1 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[0].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label class="mat-input-placeholder">2.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS2" name="txtM29TOS2" #txtM29TOS2 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[1].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS2" name="txtM29AS2" #txtM29AS2 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[1].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS2" name="txtM29NAS2" #txtM29NAS2 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[1].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label class="mat-input-placeholder">3.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS3" name="txtM29TOS3" #txtM29TOS3 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[2].m29tos" />
+      </mat-form-field>
+
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS3" name="txtM29AS3" #txtM29AS3 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[2].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS3" name="txtM29NAS3" #txtM29NAS3 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[2].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label class="mat-input-placeholder">4.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS4" name="txtM29TOS4" #txtM29TOS4 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[3].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS4" name="txtM29AS4" #txtM29AS4 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[3].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS4" name="txtM29NAS4" #txtM29NAS4 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[3].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label class="mat-input-placeholder">5.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS5" name="txtM29TOS5" #txtM29TOS4 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[4].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS5" name="txtM29AS5" #txtM29AS5 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[4].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS5" name="txtM29NAS5" #txtM29NAS5 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[4].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label>6.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS6" name="txtM29TOS6" #txtM29TOS6 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[5].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS6" name="txtM29AS6" #txtM29AS6 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[5].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS6" name="txtM29NAS6" #txtM29NAS6 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[5].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label>7.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS7" name="txtM29TOS7" #txtM29TOS7 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[6].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS7" name="txtM29AS7" #txtM29AS7 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[6].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS7" name="txtM29NAS7" #txtM29NAS7 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[6].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label>8.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS8" name="txtM29TOS8" #txtM29TOS8 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[7].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS8" name="txtM29AS8" #txtM29AS8 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[7].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS8" name="txtM29NAS8" #txtM29NAS8 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[7].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label>9.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS9" name="txtM29TOS9" #txtM29TOS9 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[8].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS9" name="txtM29AS9" #txtM29AS9 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[8].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS9" name="txtM29NAS9" #txtM29NAS9 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[8].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row col-sm-12">
+    <div class="col-sm-1 margin-top-25">
+      <mat-label>10.</mat-label>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29TOS0" name="txtM29TOS0" #txtM29TOS0 maxlength="2" size="2" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[9].m29tos" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29AS0" name="txtM29AS0" #txtM29AS0 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[9].m29as" />
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput id="txtM29NAS0" name="txtM29NAS0" #txtM29NAS0 maxlength="8" size="8" type="text" disabled="{{screen.m29titl == 'REVIEW'}}"
+          [(ngModel)]="screen.mdcrRudmanGrps[9].m29nas" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="col-sm-12 text-right margin-top-40">
+    <button type="button" class="btn btn-default margin-right-20" (click)="f1EventClick()" *ngIf="hideButton" foxHotkey="alt+c">Return
+      (R)
+    </button>
+    <button id="Cancel" name="Cancel" #Cancel type="button" class="btn btn-default margin-right-20" (click)="clearEventClick()"
+      *ngIf="hideButton" foxHotkey="alt+c">Reset (T)</button>
+    <button id="Enter" name="Enter" #Enter type="button" class="btn btn-primary" (click)="enterEventClick()" *ngIf="hideButton"
+      foxHotkey="alt+e">Enter (E)</button>
+  </div>
+
+</fox-section>

@@ -1,0 +1,176 @@
+.span-set-bill-line {
+  display: inline-flex;
+  height: 35px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.span-set-bill-left {
+  color: #252C37;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-left: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+.span-set-bill-right {
+  color: #ffffff;
+  background-color: #196ECF;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+.fox-section-icd {
+  margin-top: -27px;
+}
+
+.container-top-title {
+  padding-top: 30px;
+}
+
+.span-sub-title {
+  color: #6E7681;
+  line-height: 16px;
+}
+
+.container-title {
+  color: #252C37;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.container-margin-left-25 {
+  margin-left: 25px;
+}
+
+.span-sub-title {
+  color: #6E7681;
+  line-height: 16px;
+}
+
+.span-bill-line {
+  float: right;
+  padding-right: 20px;
+}
+
+.margin-input {
+  margin: 20px 20px 30px 20px;
+}
+
+.container-bill-line {
+  padding-top: 15px;
+}
+
+.container-misc-plan {
+  padding: 20px 20px;
+}
+
+.container-icd {
+  margin-left: 0;
+  padding-right: 20px;
+}
+
+.container-ben-date {
+  margin-bottom: 7px;
+}
+
+.button-margin-right-15 {
+  margin-right: 15px;
+}
+
+.container-legends-bottom {
+  padding: 20px 30px;
+}
+
+.container-legends-bottom-inside {
+  width: 100%;
+  background-color: #F4F5F6;
+}
+
+.container-label {
+  color: #252C37;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  margin: 0;
+  margin-bottom: 7px;
+}
+
+.container-input {
+  border: 1px solid #CED3DA;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  padding: 6px 10px 7px;
+}
+
+.container-margin-icd {
+  margin: 20px 20px 23px 20px;
+}
+
+.container-icd-label {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  height: 21px;
+  margin-bottom: 25px;
+}
+
+.container-icd {
+  margin-left: 0;
+  padding-right: 20px;
+}
+.span-bold {
+  font-weight: 600;
+}
+
+.span-padding-20 {
+  padding-right: 20px;
+}
+
+.container-margin-left {
+  margin-left: 15px;
+  position: relative;
+}
+
+.container-return-previous {
+  margin-bottom: 25px;
+  text-align: left;
+  height: 22px;
+  color: #196ECF;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.img-arrow-left {
+  height: 14px;
+  width: 14px;
+  margin-right: 7px;
+}
+
+.span-label {
+  margin-right: 20px;
+}
+
+@media (max-width: 767px) {
+  .span-bill-line {
+    float: left;
+    padding-left: 20px;
+    padding-top: 25px;
+  }
+
+  .container-title {
+    margin-left: 20px;
+  }
+
+  .container-ben-date {
+    padding-top: 18px;
+  }
+}
+

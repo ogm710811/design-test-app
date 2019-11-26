@@ -1,0 +1,25 @@
+<div class="go-back-link">
+  <a tabindex="0" (keyup.enter)="goBack()" (keyup.space)="goBack()" (click)="goBack()">
+    <i focusable="false" aria-hidden="true" class="fa fa-chevron-left"></i> Return to Check Register
+  </a>
+</div>
+<fox-section>
+  <fox-check-detail *ngIf="checkIds && checkIds.length === 1" #details [checkId]="checkIds[0]"
+                    (checkDetailsChange)="onCheckDetailsChange($event)"></fox-check-detail>
+</fox-section>
+
+<!--New form design component name: fox-check-replacement-->
+<ng-container *ngIf="toggleCheckReplacementVersionFeature; else checkReplacementOldVersion">
+  <ng-container *ngIf="grantedAccessToRVScreen()">
+    <fox-check-replacement [checkDetails]="checkDetails" ></fox-check-replacement>
+  </ng-container>
+</ng-container>
+
+<!--Old form design component name fox-replace-void-->
+<ng-template #checkReplacementOldVersion>
+  <fox-section *ngIf="grantedAccessToRVScreen()">
+    <div *ngIf="checkDetails && checkIds">
+      <fox-replace-void [checkDetails]="checkDetails"></fox-replace-void>
+    </div>
+  </fox-section>
+</ng-template>

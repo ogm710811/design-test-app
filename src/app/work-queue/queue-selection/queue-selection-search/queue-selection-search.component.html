@@ -1,0 +1,33 @@
+<fox-section>
+  <fox-section-title>Queue Parameters</fox-section-title>
+  <form [formGroup]="searchControl">
+    <mat-form-field class="fld-q-sel">
+      <mat-label>Work Type</mat-label>
+      <mat-select formControlName="workType" class="sel-q-sel" [(ngModel)]="lastWorkType" (selectionChange)="changeWorkType()">
+        <mat-option value="">Select a Work Type</mat-option>
+        <mat-option *ngFor="let option of workTypeOptions" [value]="option.description">
+          {{option.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="fld-q-sel">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category" class="sel-q-sel" [(ngModel)]="lastCategory">
+        <mat-option value="">Select a Category</mat-option>
+        <mat-option *ngFor="let option of categoryOptions" [value]="option.categoryName">
+          {{option.categoryName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="fld-q-sel">
+      <mat-label>Queue Type</mat-label>
+      <mat-select class="sel-q-sel" formControlName="queueType" [(ngModel)]="lastQueueType">
+        <mat-option *ngFor="let option of queueTypeOptions"
+                    [value]="option.description.toLowerCase() === 'all' ? '' : option.description">
+          {{option.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="button" class="btn btn-primary" id="btn-load-queue" (click)="onSubmitSearch()" foxHotkey="alt+l">Load Queues (L)</button>
+  </form>
+</fox-section>

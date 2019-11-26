@@ -1,0 +1,265 @@
+<mat-accordion>
+  <mat-expansion-panel class="border-top-blue claim-search-panel-top"
+                       [expanded]="true" #matExpansionPanel
+                       (opened)="showEnteredParameters=false"
+                       (closed)="showEnteredParameters=true">
+    <mat-expansion-panel-header class="exp-panel-header"
+                                (click)="expandPanel(matExpansionPanel, $event)"
+                                [collapsedHeight]="'86px'" focusable="false">
+      <span class="mat-content-search-param">
+        <div class="container-history-title">Search Criteria</div>
+        <div class="container-search-subtitle" *ngIf="!showEnteredParameters">
+          <span>Enter criteria below to find claims in claim history. If claim # is used, other criteria are not required. Results will display if less than 100.</span>
+        </div>
+        <div class="container-search-parameters" *ngIf="showEnteredParameters">
+          <ng-container *ngFor="let param of parametersUsed; let j = index">
+            <span *ngIf="j >= 1"> | </span>
+            <span><span class="text-bold">{{param.paramName}}:</span> {{param.paramValue}}</span>
+          </ng-container>
+        </div>
+        </span>
+    </mat-expansion-panel-header>
+    <div class="container-grey-border-search-param">
+      <div class="claim-search-main">
+        <div class="col-md-12 no-padding">
+          <form [formGroup]="claimSearchFormGroup" novalidate>
+            <div class="container-search-input row no-padding">
+              <div class="container-left col-xs-12 col-md-2 no-padding">
+                <div class="row">
+                  <div class="container-claim-field col-md-12 col-xs-6">
+                    <mat-form-field class="col-claim-no mat-form-input-field-claim">
+                      <mat-label class="search-param-label">Claim #</mat-label>
+                      <input matInput maxlength="12" formControlName="claimNumFormControl"
+                             [(ngModel)]="claimNumIdInput" (keyup.enter)="searchData(claimSearchFormGroup)">
+                    </mat-form-field>
+                    <div class="section-message">
+                      <span *ngIf="!(claimSearchFormGroup.controls['claimNumFormControl'].hasError('pattern') ||
+                      claimSearchFormGroup.controls['claimNumFormControl'].hasError('minlength'))">Other fields not required if used</span>
+                      <mat-error>
+                        <div *ngIf="claimSearchFormGroup.controls['claimNumFormControl'].hasError('pattern')">
+                          Enter numbers only
+                        </div>
+                        <div *ngIf="claimSearchFormGroup.controls['claimNumFormControl'].hasError('minlength')">
+                          Minimum of 11 digits required
+                        </div>
+                      </mat-error>
+                    </div>
+                  </div>
+                  <div class="container-member-search col-md-12 col-xs-6">
+                    <span><img class="icon-external-link" focusable="false"
+                               src="assets/img/external-link-blue.svg"></span>
+                    <a class="section-member-search" [routerLink]="memberLookup()">Member Search Page</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-10 no-padding container-right">
+                <div class="row row-small input-claim-search-field">
+                  <mat-form-field class="col-xs-6 col-md-3 field-row-1">
+                    <mat-label class="search-param-label">Member #</mat-label>
+                    <input matInput minlength="9" maxlength="11" formControlName="memberNumFormControl"
+                           [(ngModel)]="memberIdInput" (keyup.enter)="searchData(claimSearchFormGroup)">
+                    <mat-error
+                      *ngIf="claimSearchFormGroup.controls['memberNumFormControl'].hasError('minlength') ||
+                    claimSearchFormGroup.controls['memberNumFormControl'].hasError('pattern')">
+                      Minimum of 9 digits required
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-xs-6 col-md-3 field-row-1">
+                    <mat-label class="search-param-label">DOS From</mat-label>
+                    <input matInput maxlength="10" formControlName="dosFromFormControl"
+                           placeholder="MM/DD/YYYY" [(ngModel)]="dosFromInput"
+                           (keyup.enter)="searchData(claimSearchFormGroup)">
+                    <mat-error
+                      *ngIf="claimSearchFormGroup.controls['dosFromFormControl'].hasError('pattern')">
+                      Enter in MM/DD/YYYY
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-xs-6 col-md-3 field-row-2">
+                    <mat-label class="search-param-label">DOS To</mat-label>
+                    <input matInput maxlength="10" formControlName="dosToFormControl"
+                           placeholder="MM/DD/YYYY" [(ngModel)]="dosToInput"
+                           (keyup.enter)="searchData(claimSearchFormGroup)">
+                    <mat-error
+                      *ngIf="claimSearchFormGroup.controls['dosToFormControl'].hasError('pattern')">
+                      Enter in MM/DD/YYYY
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-xs-6 col-md-3 field-row-2">
+                    <mat-label class="search-param-label">Type of Service</mat-label>
+                    <input matInput maxlength="60" formControlName="serviceType"
+                           [(ngModel)]="typeOfServiceInput" (keyup.enter)="searchData(claimSearchFormGroup)">
+                  </mat-form-field>
+                </div>
+                <div class="row row-small input-claim-search-field">
+                  <mat-form-field class="col-xs-6 col-md-3 field-row-3">
+                    <mat-label class="search-param-label">Claim Status</mat-label>
+                    <mat-select formControlName="status" [(ngModel)]="statusInput"
+                                (keyup.enter)="searchData(claimSearchFormGroup)">
+                      <mat-option value="" selected>ALL</mat-option>
+                      <mat-option class="fox-dropdown-option" value="D">DISBURSED</mat-option>
+                      <mat-option class="fox-dropdown-option" value="Q">AWAITING QUALITY REVIEW
+                      </mat-option>
+                      <mat-option class="fox-dropdown-option" value="R">POINT OF SALE DRUG CLAIM
+                      </mat-option>
+                      <mat-option class="fox-dropdown-option" value="S">SUSPENDED</mat-option>
+                      <mat-option class="fox-dropdown-option" value="X">DELETED</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-xs-6 col-md-3 field-row-3">
+                    <mat-label class="search-param-label">Billing Provider NPI #</mat-label>
+                    <input matInput maxlength="60" formControlName="billNpiFormControl"
+                           [(ngModel)]="billInput" (keyup.enter)="searchData(claimSearchFormGroup)">
+                    <mat-error
+                      *ngIf="claimSearchFormGroup.controls['billNpiFormControl'].hasError('pattern')">
+                      Enter numbers only
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12 no-padding text-right btn-claim-search">
+          <button type="button" class="btn btn-secondary"
+                  (click)="resetForm()" foxHotkey="alt+r">Clear (R)
+          </button>
+          <button type="submit" class="btn btn-primary submit-btn"
+                  [disabled]="!checkIfFormFilled()" (click)="searchData(claimSearchFormGroup)"
+                  foxHotkey="alt+s" [ngClass]="{'btn-disabled': !checkIfFormFilled()}"
+                  #claimNumid>Search (S)
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<fox-section [noPadding]="true" *ngIf="isMemberCardDisplay">
+  <div class="container-member-card-refactor">
+    <div class="col-md-12 no-padding margin-bottom-5">
+      <div class="col-md-6 no-padding">
+        <div class="pull-left">
+          <span class="container-icon">
+            <span><img class="icon-member-info" focusable="false" src="assets/img/Member_White.svg"></span>
+          </span>
+        </div>
+        <div class="section-member-title">
+          <span class="container-member-title">{{memberCard.firstName}} {{memberCard.middleName}} {{memberCard.lastName}} {{memberCard.suffix}}</span>
+          <span class="container-member-num">#{{memberNumDisplay}}</span>
+        </div>
+      </div>
+      <div class="col-md-offset-6 no-padding">
+        <div class="text-right container-member-profile-btn">
+          <button class="btn btn-secondary btn-profile" (click)="getRedirectUrl(memberCard.aarpMembershipNumber)">Member Profile</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 no-padding">
+      <div class="section-member-card-1 col-md-6 no-padding">
+        <div class="section-member-card-dob col-md-3 no-padding">
+          <span><img class="icon-right" focusable="false" src="assets/img/Calendar_Dates.svg"></span>
+          <span class="span-icon-title">Born</span>
+          <span class="span-icon-value">{{memberCard.dateOfBirth | date : 'MM/dd/yyyy'}}</span>
+        </div>
+        <div class="section-member-card-plan col-md-3 no-padding">
+            <span><img class="icon-right" focusable="false" src="assets/img/flag-grey.svg"></span>
+            <span class="span-icon-title">Plans:</span>
+            <span class="span-icon-value">{{memberCard.effectivePlans}}</span>
+        </div>
+      </div>
+      <div class="section-member-card-2 col-md-6 no-padding">
+        <div class="section-member-card-stat col-md-3 no-padding">
+          <span><img class="icon-right" focusable="false" src="assets/img/Claim_Number.svg"></span>
+          <span class="span-icon-title"># of Lifetime Claims:</span>
+          <span class="span-icon-value">{{memberCard.totalClmCount | number}}</span>
+        </div>
+        <div class="section-member-card-stat col-md-3 no-padding">
+            <span><img class="icon-right" focusable="false" src="assets/img/information.svg"></span>
+            <span class="span-icon-title">Member Status:</span>
+            <span class="span-icon-value">{{memberCard.status}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</fox-section>
+
+<fox-section [noPadding]="true" *ngIf="isMemberDataDisplay && !isDataDisplay">
+  <div class="container-result">
+    <div class="section-result-title">Claims Found for Multiple Members</div>
+    <div class="container-sub-note">Click a Claim Tracking # to view the claim image</div>
+  </div>
+
+  <ng-container *ngIf="isMemberDataDisplay">
+    <fox-member-history-results [memberResults]="memberResults"
+                                [(isDesc)]="memberResultIsDesc"
+                                [(column)]="memberResultSortColumn"
+                                (selectEvent)="selectedMember($event)"
+                                (columnChange)="getMember()"
+                                (notifyErr)="onNotifyErr($event)">
+    </fox-member-history-results>
+  </ng-container>
+</fox-section>
+
+<fox-section class="container-search-results" [noPadding]="true" *ngIf="!isMemberDataDisplay">
+  <div class="container-result">
+    <div class="section-result-title">Search Results</div>
+    <div class="container-sub-note" *ngIf="!isDataDisplay">Click a Claim # to view the claim</div>
+    <div class="container-sub-note-2" *ngIf="isDataDisplay">Click a Claim # to view the claim details. Expand and show most recent bill lines</div>
+  </div>
+  <fox-loading-overlay>
+    <div *ngIf="!(isDataDisplay)" class="container-not-found">
+      <span><img class="img-info" focusable="false" src="assets/img/information.svg"></span>
+      <div class="section-note-1">There is no active query for claims</div>
+      <div class="section-note-2">Search by one of the valid criteria above and select Search (S)</div>
+    </div>
+
+  <ng-container *ngIf="isDataDisplay">
+    <div class="ribbon-menu" *ngIf="selectedRow !== 0">
+      <div class="ribbon-left">
+        <div class="link-ribbon"  *ngIf="isReplaceEobActive || isReplaceRaActive" [foxLink] (click)="getSendReplaceEob('REPLACE')">Replace EOB</div>
+        <div class="link-ribbon"  *ngIf="isSendEobActive || isSendRaActive" [foxLink] (click)="getSendReplaceEob('SEND')">Send EOB</div>
+      </div>
+      <div class="ribbon-right">
+        <div class="label-selected">{{selectedRow}} item<span *ngIf="selectedRow > 1">s</span> selected</div>
+        <div class="link-ribbon" [foxLink] (click)="hideMaintainaceSection()">Cancel</div>
+      </div>
+    </div>
+    <div class="container-history-table">
+      <div class="table-claim-history-result">
+        <fox-claim-history-results #claimHistoryResultsComponent
+                               [claimHistoryResults]="claimHistoryResults"
+                               [selectedClmHistList]="selectedClmHistList"
+                               [(isDesc)]="historyResultIsDesc"
+                               [(column)]="historyResultSortColumn"
+                               (selectedRow)="getSelectedRow($event)"
+                               (columnChange)="getHistory()"
+                               (isAllSelected)="isAllSelected=$event"
+                               (clmNumList)="getClaimNum($event)"
+                               (allClmNumList)="getAllClaimNum($event)"
+                               [(isSelectDisabled)]="isSelectDisabled || !toggleReplaceSendEobEditFeature">
+    </fox-claim-history-results>
+      </div>
+    </div>
+    <fox-paginator-non-material [(pageSize)]="historyPageSize"
+                               [dataLengthInput]="historyDataLengthInput"
+                               [pageTotal]="historyPageTotal"
+                               [(currentPage)]="currentHistoryPage"
+                               (currentPageChange)="getHistory()"
+                               (pageSizeChange)="currentHistoryPage=0;getHistory()">
+    </fox-paginator-non-material>
+  </ng-container>
+  </fox-loading-overlay>
+</fox-section>
+
+<fox-send-replace-eob-modal [(sendReplaceModalVisible)]="sendReplaceModalVisible"
+                            [enableSendReplace]="enableSendReplace"
+                            [eobModalType]="eobModalType" [eobModalTitle]="eobModalTitle"
+                            [isEobActive]="isEobActive" [isRaActive]="isRaActive"
+                            [sendReplaceEobResultSet]="sendReplaceEobResultSet"
+                            [sendReplaceEobValidateSet]="sendReplaceEobResultSet"
+                            (cancelSendReplace)="cancelSendReplace()"
+                            (confirmSendReplace)="confirmSendReplace()"
+                            (sendReplaceSuccessMsg)="sendReplaceSuccessMsg($event)"
+                            (sendReplaceFailMsg)="sendReplaceFailMsg($event)"
+                            (responseMsg)="responseMsg=$event">
+</fox-send-replace-eob-modal>

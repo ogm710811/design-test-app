@@ -1,0 +1,11 @@
+<div class="content-or-overlay">
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="loading-indicator">
+      <img class="img-load" src="assets/img/load-icon-fox-and-mouse.svg"/>
+      <p class="txt-load">Loading...</p>
+    </div>
+  </div>
+</div>

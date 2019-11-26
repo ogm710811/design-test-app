@@ -1,0 +1,29 @@
+<table id="bypassqueuetabl" class="table tbl-bypass-queue">
+  <thead class="thead-default thead">
+  <tr>
+    <th class="tbl-head-cell" *ngFor="let colHead of colHeads">{{colHead}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let dat of data">
+    <td *ngFor="let key of keys">
+      {{valueByKey(dat, key)}}
+    </td>
+    <td class="td-sel-container">
+      <mat-form-field class="reassign-dropdown">
+        <mat-select [(value)]="dat.selectedName"
+                    (selectionChange)="selectedOption($event.value, dat)">
+          <ng-container *ngFor="let destination of dropdownPopulation(dat['userName'])">
+            <mat-option value="{{destination}}">{{destination}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </td>
+    <td>
+      <a id="btnBypass" [foxLink] (linkPressed)="action(dat)">
+        Re-Assign
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>

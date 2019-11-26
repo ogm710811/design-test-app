@@ -1,0 +1,39 @@
+<fox-section [noPadding]="true">
+  <fox-loading-overlay>
+    <div class="container-approve-deny">
+      <div *ngIf="isPending">
+      <div class="title-approve-deny">Request Approval</div>
+      <div class="section-note">
+        <p>This is pending approval. You may make a selection below.</p>
+      </div>
+      <div>
+        <button class="btn btn-primary btn-submit-approve" (click)="updateRequest('APPROVED')">
+          <i class="fas fa-check-circle"></i>&nbsp;&nbsp;Approve</button>
+        <button class="btn btn-primary btn-submit-deny" (click)="denialReasonModalVisible=true">
+          <i class="fas fa-times-circle"></i>&nbsp;&nbsp;Deny</button>
+      </div>
+    </div>
+      <div *ngIf="isApproved">
+      <div class="title-approve-deny">Request Approved</div>
+      <div class="success-note-approve">
+        <p>This request was <b>Approved</b> on {{reviewTimeStmp | date: 'MM/dd/yyyy'}} by {{approverMsid}}.</p>
+      </div>
+    </div>
+      <div *ngIf="isDeny">
+      <div class="title-approve-deny">Request Denied</div>
+      <div class="success-note-deny">
+        <p>This request was <b>Denied</b> on {{reviewTimeStmp | date: 'MM/dd/yyyy'}} by {{approverMsid}} with the following reason:</p>
+      </div>
+      <div class="denial-reason">
+        <p>{{denialRsn}}</p>
+      </div>
+    </div>
+    </div>
+  </fox-loading-overlay>
+</fox-section>
+
+<fox-denial-reason-modal [(denialReasonModalVisible)]="denialReasonModalVisible"
+                         (confirmDenialRequest)="confirmDenialModal()"
+                         (denialRsnEmitter)="denialRsn=$event"
+                         (cancelDenialRequest)="cancelDenialRequest()">
+</fox-denial-reason-modal>
